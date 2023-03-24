@@ -8,6 +8,13 @@ const GlobalStyled = createGlobalStyle`
       margin: 0;
       padding: 0;
     }
+    p {
+      font-family: "Pretendard Variable";
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 160%;
+      letter-spacing: -0.15px;
+    }
     a{
       text-decoration: none;
       color: inherit;
