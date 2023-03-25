@@ -13,6 +13,8 @@ export const Input = styled.input`
   font-size: 1rem;
   line-height: 160%;
 
+  color: ${color.gray800};
+
   &::placeholder {
     color: ${color.gray500};
   }
