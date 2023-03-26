@@ -15,39 +15,21 @@ export const Arrow = styled.div<PositionPropType>`
   width: 0px;
   height: 0px;
 
-  border-bottom: 6px solid transparent;
-  border-top: 6px solid transparent;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent;
 
-  ${({ position }) =>
-    position.startsWith("top")
-      ? css`
-          border-bottom: 6px solid ${color.gray850};
-        `
-      : css`
-          border-right: 6px solid ${color.gray850};
-        `}
+  border-bottom-color: ${(props) =>
+    props.position.startsWith("top") && color.gray850};
+  border-right-color: ${(props) =>
+    props.position.startsWith("left") && color.gray850};
 
   margin: auto;
-  ${({ position }) =>
-    position === "left-top"
-      ? css`
-          margin-top: 16px;
-        `
-      : position === "left-bottom"
-      ? css`
-          margin-bottom: 16px;
-        `
-      : position === "top-left"
-      ? css`
-          margin-left: 16px;
-        `
-      : position === "top-right"
-      ? css`
-          margin-right: 16px;
-        `
-      : null}
+
+  margin-top: ${(props) => props.position === "left-top" && "16px"};
+  margin-bottom: ${(props) => props.position === "left-bottom" && "16px"};
+  margin-left: ${(props) => props.position === "top-left" && "16px"};
+  margin-right: ${(props) => props.position === "top-right" && "16px"};
 `;
 
 export const Message = styled.div`
@@ -62,17 +44,10 @@ export const Message = styled.div`
 `;
 
 export const Content = styled.div<PositionPropType>`
-  ${({ position }) =>
-    position.startsWith("top")
-      ? css`
-          margin-top: -4px;
-        `
-      : css`
-          margin-left: -4px;
-        `}
-
   display: none;
   position: absolute;
+  margin-top: ${(props) => props.position.startsWith("top") && "-4px"};
+  margin-left: ${(props) => props.position.startsWith("left") && "-4px"};
   font-size: 14px;
   z-index: 200;
 `;
