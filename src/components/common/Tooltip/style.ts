@@ -81,7 +81,7 @@ export const Container = styled.div<PositionPropType>`
   position: relative;
   box-sizing: content-box;
 
-  &:hover ${Content}, &:active ${Content}, ${Content} {
+  &:hover ${Content}, &:active ${Content} {
     display: ${({ position }) =>
       position.startsWith("top") ? "block" : "flex"};
   }
