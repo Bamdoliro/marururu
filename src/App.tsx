@@ -1,7 +1,15 @@
+import DropdownMenu from "components/common/DropdownMenu";
 import React from "react";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <DropdownMenu
+      dropdownMenuDatas={[
+        { dropdownItemText: "dkssud" },
+        { dropdownItemText: "dkssud" },
+      ]}
+    />
+  );
 };
 
 export default App;
