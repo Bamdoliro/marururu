@@ -9,24 +9,30 @@ interface DropdownItemType {
 
 interface PropsType {
   dropdownMenuDatas: DropdownItemType[];
+  width: string;
 }
 
-const DropdownMenu = ({ dropdownMenuDatas }: PropsType) => {
+const DropdownMenu = ({ dropdownMenuDatas, width = "320px" }: PropsType) => {
   const [isOpenDropdownMenu, setIsOpenDropdownMenu] = useState(false);
+  const [dropdownMenuText, setDropdownMenuText] =
+    useState("옵션을 선택해 주세요");
 
   const clickedToggle = () => {
     setIsOpenDropdownMenu((prev) => !prev);
   };
 
   return (
-    <S.DropdownMenu>
-      <S.DropdownMenuBox onClick={clickedToggle}>
-        <S.DropdownMenuText>옵션을 선택하세요</S.DropdownMenuText>
+    <S.DropdownMenu style={{ width }}>
+      <S.DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
+        <S.DropdownMenuText>{dropdownMenuText}</S.DropdownMenuText>
         <S.Img src={isOpenDropdownMenu ? ArrowUnder : ArrowTop} />
       </S.DropdownMenuBox>
       <S.DropdownMenuList isOpen={isOpenDropdownMenu}>
         {dropdownMenuDatas?.map((item, index) => (
-          <S.DropdownMenuItem key={`dropdown ${index}`}>
+          <S.DropdownMenuItem
+            key={`dropdown ${index}`}
+            onClick={() => setDropdownMenuText(item.dropdownItemText)}
+          >
             {item.dropdownItemText}
           </S.DropdownMenuItem>
         ))}

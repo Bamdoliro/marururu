@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import * as T from "styles/text.style";
 import { color } from "styles/theme.style";
 
@@ -9,7 +9,7 @@ export const DropdownMenu = styled.div`
   gap: 8px;
 `;
 
-export const DropdownMenuBox = styled.div`
+export const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,10 +19,18 @@ export const DropdownMenuBox = styled.div`
   padding: 10px 16px;
 
   background-color: ${color.white};
-  border: 1px solid ${color.gray400};
   border-radius: 6px;
-
   cursor: pointer;
+
+  ${({ isOpen }) =>
+    isOpen
+      ? css`
+          border: 1px solid ${color.maruDefault};
+          outline: 2px solid rgba(20, 112, 255, 0.25);
+        `
+      : css`
+          border: 1px solid ${color.gray400};
+        `};
 `;
 
 export const DropdownMenuText = styled(T.p2)`
@@ -34,8 +42,8 @@ export const Img = styled.img`
   height: 14px;
 `;
 
-export const DropdownMenuList = styled.ul<{ isOpen: boolean }>`
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+export const DropdownMenuList = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   padding: 8px 0px;
   width: 100%;
   background-color: ${color.white};
@@ -44,7 +52,7 @@ export const DropdownMenuList = styled.ul<{ isOpen: boolean }>`
   border-radius: 6px;
 `;
 
-export const DropdownMenuItem = styled.li`
+export const DropdownMenuItem = styled.button`
   display: flex;
   align-items: center;
   padding: 10px 16px;

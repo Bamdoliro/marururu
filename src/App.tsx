@@ -8,6 +8,7 @@ const App = () => {
         { dropdownItemText: "dkssud" },
         { dropdownItemText: "dkssud" },
       ]}
+      width="320px"
     />
   );
 };
