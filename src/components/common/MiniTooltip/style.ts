@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import { color } from "styles/theme.style";
-
-type PositionPropType = {
-  top?: boolean;
-  left?: boolean;
-  start?: boolean;
-  end?: boolean;
-};
+import { PositionPropType } from "types/common/tooltip.type";
 
 export const Arrow = styled.div<PositionPropType>`
   width: 0px;
@@ -16,12 +10,12 @@ export const Arrow = styled.div<PositionPropType>`
   border-style: solid;
   border-color: transparent;
 
-  border-bottom-color: ${({ top }) => top && color.gray850};
-  border-right-color: ${({ left }) => left && color.gray850};
+  ${({ top }) => top && `border-bottom-color: ${color.gray850}`};
+  ${({ left }) => left && `border-right-color: ${color.gray850}`};
 
   margin: auto;
-  margin-left: ${({ top, start }) => top && start && "16px"};
-  margin-right: ${({ top, end }) => top && end && "16px"};
+  ${({ top, start }) => top && start && "margin-left: 16px"};
+  ${({ top, end }) => top && end && "margin-right: 16px"};
 `;
 
 export const Message = styled.div`
@@ -37,8 +31,9 @@ export const Message = styled.div`
 export const Content = styled.div<PositionPropType>`
   display: none;
   position: absolute;
-  margin-top: ${({ top }) => top && "-4px"};
-  margin-left: ${({ left }) => left && "-4px"};
+  width: auto;
+  ${({ top }) => top && "margin-top: -4px"};
+  ${({ left }) => left && "margin-left: -4px"};
   font-size: 14px;
   z-index: 200;
 `;
@@ -46,6 +41,7 @@ export const Content = styled.div<PositionPropType>`
 export const Container = styled.div<PositionPropType>`
   position: relative;
   box-sizing: content-box;
+  width: fit-content;
 
   &:hover ${Content}, &:active ${Content} {
     display: ${({ top }) => (top ? "block" : "flex")};

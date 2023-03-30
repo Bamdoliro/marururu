@@ -1,10 +1,15 @@
 import { ReactNode } from "react";
 
-export interface TooltipPropsType {
+export type PositionPropType = Partial<{
+  top: boolean;
+  left: boolean;
+  start: boolean;
+  end: boolean;
+}>;
+
+type ContentPropsType = {
   children: ReactNode;
   message: string;
-  top?: boolean;
-  left?: boolean;
-  start?: boolean;
-  end?: boolean;
-}
+};
+
+export type TooltipPropsType = PositionPropType & ContentPropsType;

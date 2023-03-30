@@ -1,11 +1,7 @@
-import { MiniTooltipPropsType } from "types/common/miniTooltip.type";
+import { TooltipPropsType } from "types/common/tooltip.type";
 import * as S from "./style";
 
-const MiniTooltip = ({
-  children,
-  message,
-  ...positions
-}: MiniTooltipPropsType) => (
+const MiniTooltip = ({ children, message, ...positions }: TooltipPropsType) => (
   <S.Container {...positions}>
     {children}
     <S.Content {...positions}>
