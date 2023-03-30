@@ -3,5 +3,8 @@ import { ReactNode } from "react";
 export interface MiniTooltipPropsType {
   children: ReactNode;
   message: string;
-  position: "left" | "top-left" | "top" | "top-right";
+  top?: boolean;
+  left?: boolean;
+  start?: boolean;
+  end?: boolean;
 }

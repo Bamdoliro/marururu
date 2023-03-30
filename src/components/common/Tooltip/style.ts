@@ -1,15 +1,12 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { color } from "styles/theme.style";
 
-export interface PositionPropType {
-  position:
-    | "left-bottom"
-    | "left"
-    | "left-top"
-    | "top-left"
-    | "top"
-    | "top-right";
-}
+type PositionPropType = {
+  top?: boolean;
+  left?: boolean;
+  start?: boolean;
+  end?: boolean;
+};
 
 export const Arrow = styled.div<PositionPropType>`
   width: 0px;
@@ -19,17 +16,15 @@ export const Arrow = styled.div<PositionPropType>`
   border-style: solid;
   border-color: transparent;
 
-  border-bottom-color: ${(props) =>
-    props.position.startsWith("top") && color.gray850};
-  border-right-color: ${(props) =>
-    props.position.startsWith("left") && color.gray850};
+  border-bottom-color: ${({ top }) => top && color.gray850};
+  border-right-color: ${({ left }) => left && color.gray850};
 
   margin: auto;
 
-  margin-top: ${(props) => props.position === "left-top" && "16px"};
-  margin-bottom: ${(props) => props.position === "left-bottom" && "16px"};
-  margin-left: ${(props) => props.position === "top-left" && "16px"};
-  margin-right: ${(props) => props.position === "top-right" && "16px"};
+  margin-top: ${({ left, start }) => left && start && "16px"};
+  margin-bottom: ${({ left, end }) => left && end && "16px"};
+  margin-left: ${({ top, start }) => top && start && "16px"};
+  margin-right: ${({ top, end }) => top && end && "16px"};
 `;
 
 export const Message = styled.div`
@@ -46,8 +41,8 @@ export const Message = styled.div`
 export const Content = styled.div<PositionPropType>`
   display: none;
   position: absolute;
-  margin-top: ${(props) => props.position.startsWith("top") && "-4px"};
-  margin-left: ${(props) => props.position.startsWith("left") && "-4px"};
+  margin-top: ${({ top }) => top && "-4px"};
+  margin-left: ${({ left }) => left && "-4px"};
   font-size: 14px;
   z-index: 200;
 `;
@@ -57,7 +52,6 @@ export const Container = styled.div<PositionPropType>`
   box-sizing: content-box;
 
   &:hover ${Content}, &:active ${Content} {
-    display: ${({ position }) =>
-      position.startsWith("top") ? "block" : "flex"};
+    display: ${({ top }) => (top ? "block" : "flex")};
   }
 `;

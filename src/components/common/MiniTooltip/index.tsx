@@ -1,11 +1,15 @@
 import { MiniTooltipPropsType } from "types/common/miniTooltip.type";
 import * as S from "./style";
 
-const MiniTooltip = ({ children, message, position }: MiniTooltipPropsType) => (
-  <S.Container position={position}>
+const MiniTooltip = ({
+  children,
+  message,
+  ...positions
+}: MiniTooltipPropsType) => (
+  <S.Container {...positions}>
     {children}
-    <S.Content position={position}>
-      <S.Arrow position={position} />
+    <S.Content {...positions}>
+      <S.Arrow {...positions} />
       <S.Message>{message}</S.Message>
     </S.Content>
   </S.Container>
