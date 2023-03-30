@@ -1,0 +1,1 @@
+export type ButtonOptionType = "FILLED" | "UNFILLED";
