@@ -3,7 +3,7 @@ import * as S from "./style";
 
 const Tooltip = ({ children, message, ...positions }: TooltipPropsType) => (
   <S.Container {...positions}>
-    {children}
+    <S.Children {...positions}>{children}</S.Children>
     <S.Content {...positions}>
       <S.Arrow {...positions} />
       <S.Message>{message}</S.Message>

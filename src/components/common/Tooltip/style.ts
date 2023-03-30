@@ -35,17 +35,22 @@ export const Message = styled.div`
 export const Content = styled.div<PositionPropType>`
   display: none;
   position: absolute;
+  max-width: 148px;
+
   ${({ top }) => top && "margin-top: -4px"};
   ${({ left }) => left && "margin-left: -4px"};
   font-size: 14px;
   z-index: 200;
 `;
 
+export const Children = styled.div<PositionPropType>`
+  display: inline-block;
+  &:hover + ${Content}, &:active + ${Content} {
+    display: ${({ top }) => (top ? "block" : "flex")};
+  }
+`;
+
 export const Container = styled.div<PositionPropType>`
   position: relative;
   box-sizing: content-box;
-
-  &:hover ${Content}, &:active ${Content} {
-    display: ${({ top }) => (top ? "block" : "flex")};
-  }
 `;

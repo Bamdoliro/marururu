@@ -31,7 +31,7 @@ export const Message = styled.div`
 export const Content = styled.div<PositionPropType>`
   display: none;
   position: absolute;
-  width: auto;
+
   ${({ top }) => top && "margin-top: -4px"};
   ${({ left }) => left && "margin-left: -4px"};
   font-size: 14px;
