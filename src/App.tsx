@@ -7,7 +7,7 @@ const App = () => {
       <Button
         onClick={() => console.log("hi")}
         value="회원가입"
-        option="FILLED"
+        option="PRIMARY"
         width="88px"
       />
     </div>

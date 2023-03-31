@@ -11,9 +11,11 @@ interface PropsType {
 
 const Button = ({ onClick, value, width }: PropsType) => {
     return (
-            <S.Button option="FILLED" style={{ width }}>
-                {value}
-            </S.Button>
+        <S.Button option="PRIMARY" style={{ width }}>
+            <S.ButtonText>
+            {value}
+            </S.ButtonText>
+        </S.Button>
     )
 }
 

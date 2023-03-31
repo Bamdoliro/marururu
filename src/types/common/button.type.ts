@@ -1,1 +1,1 @@
-export type ButtonOptionType = "FILLED" | "UNFILLED";
+export type ButtonOptionType = "PRIMARY" | "SECONDARY" | "TERTIARY" | "QUATERNARY";
