@@ -38,6 +38,13 @@ export const Content = styled.div<PositionPropType>`
   z-index: 200;
 `;
 
+export const Children = styled.div<PositionPropType>`
+  display: inline-block;
+  &:hover + ${Content}, &:active + ${Content} {
+    display: ${({ top }) => (top ? "block" : "flex")};
+  }
+`;
+
 export const Container = styled.div<PositionPropType>`
   position: relative;
   box-sizing: content-box;

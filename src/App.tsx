@@ -1,3 +1,4 @@
+import MiniTooltip from "components/common/MiniTooltip";
 import Tooltip from "components/common/Tooltip";
 import React from "react";
 
