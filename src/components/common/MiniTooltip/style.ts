@@ -40,9 +40,9 @@ export const Content = styled.div<PositionPropType>`
 export const Container = styled.div<PositionPropType>`
   position: relative;
   box-sizing: content-box;
-  ${({ $top }) => ($top ? "display: inline-block" : "display: flex")};
+  display: ${({ $top }) => ($top ? "inline-block" : "flex")};
 
   &:hover ${Content}, &:active ${Content} {
-    ${({ $top }) => ($top ? "display: block" : "display: flex")};
+    display: ${({ $top }) => ($top ? "block" : "flex")};
   }
 `;
