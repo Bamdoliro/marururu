@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
 export type PositionPropType = Partial<{
-  top: boolean;
-  left: boolean;
-  start: boolean;
-  end: boolean;
+  $top: boolean;
+  $left: boolean;
+  $start: boolean;
+  $end: boolean;
 }>;
 
 type ContentPropsType = {

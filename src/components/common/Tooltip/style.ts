@@ -10,15 +10,15 @@ export const Arrow = styled.div<PositionPropType>`
   border-style: solid;
   border-color: transparent;
 
-  ${({ top }) => top && `border-bottom-color: ${color.gray850}`};
-  ${({ left }) => left && `border-right-color: ${color.gray850}`};
+  ${({ $top }) => $top && `border-bottom-color: ${color.gray850}`};
+  ${({ $left }) => $left && `border-right-color: ${color.gray850}`};
 
   margin: auto;
 
-  ${({ left, start }) => left && start && "margin-top: 16px"};
-  ${({ left, end }) => left && end && "margin-bottom: 16px"};
-  ${({ top, start }) => top && start && "margin-left: 16px"};
-  ${({ top, end }) => top && end && "margin-right: 16px"};
+  ${({ $left, $start }) => $left && $start && "margin-top: 16px"};
+  ${({ $left, $end }) => $left && $end && "margin-bottom: 16px"};
+  ${({ $top, $start }) => $top && $start && "margin-left: 16px"};
+  ${({ $top, $end }) => $top && $end && "margin-right: 16px"};
 `;
 
 export const Message = styled.div`
@@ -34,23 +34,20 @@ export const Message = styled.div`
 
 export const Content = styled.div<PositionPropType>`
   display: none;
-  position: absolute;
   max-width: 148px;
 
-  ${({ top }) => top && "margin-top: -4px"};
-  ${({ left }) => left && "margin-left: -4px"};
+  ${({ $top }) => $top && "margin-top: -4px"};
+  ${({ $left }) => $left && "margin-left: -4px"};
   font-size: 14px;
   z-index: 200;
-`;
-
-export const Children = styled.div<PositionPropType>`
-  display: inline-block;
-  &:hover + ${Content}, &:active + ${Content} {
-    display: ${({ top }) => (top ? "block" : "flex")};
-  }
 `;
 
 export const Container = styled.div<PositionPropType>`
   position: relative;
   box-sizing: content-box;
+  ${({ $top }) => ($top ? "display: inline-block" : "display: flex")};
+
+  &:hover ${Content}, &:active ${Content} {
+    ${({ $top }) => ($top ? "display: block" : "display: flex")};
+  }
 `;
