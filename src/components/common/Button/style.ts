@@ -1,4 +1,4 @@
-import { ButtonOptionType, ButtonColorType } from './../../../types/common/button.type';
+import { ButtonOptionType } from './../../../types/common/button.type';
 import styled, { 
     css, 
     FlattenInterpolation,
@@ -7,7 +7,7 @@ import styled, {
 import { color } from 'styles/theme.style';
 import * as T from 'styles/text.style';
 
-export const Button = styled.button<{ option: ButtonOptionType, color: ButtonColorType }>`
+export const Button = styled.button<{ option: ButtonOptionType }>`
     display: flex;
     align-items: center;
     justify-content: center;
