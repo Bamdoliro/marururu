@@ -17,7 +17,6 @@ export const Button = styled.button<{ option: ButtonOptionType, color: ButtonCol
     cursor: pointer;
 
     ${({ option }) => option && getButtonStyle[option]}
-    ${({ color }) => color && getTextColor[color]}
 `; 
 
 export const ButtonText = styled(T.btn2)`
@@ -32,7 +31,7 @@ export const ButtonIcon = styled.img`
 const getButtonStyle: Record<ButtonOptionType, FlattenInterpolation<ThemeProps<ButtonOptionType>>> = {
     PRIMARY: css`
         background-color: ${color.maruDefault};
-        // color: ${color.white};
+        color: ${color.white};
         &:hover {
             background-color: ${color.maruHigh};
         }
@@ -40,7 +39,7 @@ const getButtonStyle: Record<ButtonOptionType, FlattenInterpolation<ThemeProps<B
 
     SECONDARY: css`
         background-color: ${color.gray200};
-        // color: ${color.gray900};
+        color: ${color.gray900};
         &:hover {
             background-color: ${color.gray300};
         }
@@ -48,7 +47,7 @@ const getButtonStyle: Record<ButtonOptionType, FlattenInterpolation<ThemeProps<B
 
     TERTIARY: css`
         background-color: ${color.white};
-        // color: ${color.gray900};
+        color: ${color.gray900};
         border: 1px solid ${color.gray300};
         &:hover {
             border: 1px solid ${color.gray400};
@@ -57,7 +56,7 @@ const getButtonStyle: Record<ButtonOptionType, FlattenInterpolation<ThemeProps<B
 
     QUATERNARY: css`
         background-color: ${color.white};
-        // color: ${color.gray600};
+        color: ${color.gray600};
         border: none;
         &:hover {
             color: ${color.gray900};
@@ -66,33 +65,12 @@ const getButtonStyle: Record<ButtonOptionType, FlattenInterpolation<ThemeProps<B
 
     DELETE: css`
         background-color: ${color.red}1A;
+        color: ${color.red};
+
         border: 1px solid ${color.red};
         &:hover {
             color: ${color.white};
             background-color: ${color.red};
         }
-    `
-};
-
-
-const getTextColor: Record<ButtonColorType, FlattenInterpolation<ThemeProps<ButtonColorType>>> = {
-    maruDefault: css`
-        color: ${color.maruDefault};
-    `,
-
-    white: css`
-        color: ${color.white};
-    `,
-
-    gray900: css`
-        color: ${color.gray900};
-    `,
-
-    gray600: css`
-        color: ${color.gray600};
-    `,
-
-    red: css`
-        color: ${color.red};
     `
 };
