@@ -1,8 +1,8 @@
 import { ButtonOptionType } from './../../../types/common/button.type';
 import styled, { 
     css, 
-    FlattenInterpolation,
-    ThemeProps } 
+    FlattenInterpolation
+     } 
     from "styled-components";
 import { color } from 'styles/theme.style';
 import * as T from 'styles/text.style';
@@ -19,16 +19,14 @@ export const Button = styled.button<{ option: ButtonOptionType }>`
     ${({ option }) => option && getButtonStyle[option]}
 `; 
 
-export const ButtonText = styled(T.btn2)`
-
-`;
+export const ButtonText = styled(T.btn2)``;
 
 export const ButtonIcon = styled.img`
     width: 24px;
     height: 24px;
 `;
 
-const getButtonStyle: Record<ButtonOptionType, FlattenInterpolation<ThemeProps<ButtonOptionType>>> = {
+const getButtonStyle: Record<ButtonOptionType, FlattenInterpolation> = {
     PRIMARY: css`
         background-color: ${color.maruDefault};
         color: ${color.white};

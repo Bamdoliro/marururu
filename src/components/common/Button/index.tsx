@@ -1,10 +1,16 @@
 import { ButtonPropsType } from 'types/common/button.type';
 import * as S from './style';
 
-const Button = ({ onClick, value, option, color, icon }: ButtonPropsType) => {
+const Button = ({
+     onClick, 
+     value, 
+     option, 
+     width, 
+     icon 
+    }: ButtonPropsType) => {
     return (
-        <S.Button onClick={onClick} option={option} color={color}>
-            {icon && <S.ButtonIcon src={icon} />}
+        <S.Button onClick={ onClick } option={ option } style={{ width }}>
+            {icon && <S.ButtonIcon src={ icon } />}
             <S.ButtonText>{value}</S.ButtonText>
         </S.Button>
     )
