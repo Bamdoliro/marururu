@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import { color } from "./theme.style";
 
 const GlobalStyled = createGlobalStyle`
     ${reset};
@@ -7,6 +8,9 @@ const GlobalStyled = createGlobalStyle`
       box-sizing: border-box; 
       margin: 0;
       padding: 0;
+    }
+    input[type=checkbox], input[type=radio] {
+      accent-color:${color.maruDefault};
     }
     p {
       font-family: "Pretendard Variable";
