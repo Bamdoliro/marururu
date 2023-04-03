@@ -80,6 +80,14 @@ export const btn3 = styled.p`
   letter-spacing: 0px;
 `;
 
+export const context = styled.p`
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 130%;
+  letter-spacing: 0px;
+`;
+
 export const p1 = styled.p`
   font-family: "Pretendard Variable";
   font-weight: 400;
