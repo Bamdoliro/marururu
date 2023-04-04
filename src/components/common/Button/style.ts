@@ -67,4 +67,16 @@ const getButtonStyle: Record<ButtonOptionType, FlattenSimpleInterpolation> = {
       background-color: ${color.red};
     }
   `,
+  LINK_TEXT: css`
+    padding: 0;
+    border-radius: 0;
+    ${ButtonText} {
+      color: ${color.gray500};
+      border-bottom: 1px solid ${color.gray500};
+      &:hover {
+        color: ${color.maruDefault};
+        border-bottom: 1px solid ${color.maruDefault};
+      }
+    }
+  `,
 };
