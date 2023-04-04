@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { color } from "styles/theme.style";
-import { PositionPropType } from "types/common/tooltip.type";
+import { PositionPropsType } from "types/common/tooltip.type";
 
-export const Arrow = styled.div<PositionPropType>`
+export const Arrow = styled.div<PositionPropsType>`
   width: 0px;
   height: 0px;
 
@@ -32,7 +32,7 @@ export const Message = styled.div`
   z-index: 200;
 `;
 
-export const Content = styled.div<PositionPropType>`
+export const Content = styled.div<PositionPropsType>`
   display: none;
   max-width: 148px;
 
@@ -42,7 +42,7 @@ export const Content = styled.div<PositionPropType>`
   z-index: 200;
 `;
 
-export const Container = styled.div<PositionPropType>`
+export const Container = styled.div<PositionPropsType>`
   position: relative;
   box-sizing: content-box;
   display: ${({ $top }) => ($top ? "inline-block" : "flex")};
