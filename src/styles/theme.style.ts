@@ -4,6 +4,7 @@ export const color = {
   maruHigh: "#3081FF",
   maruRow: "#0C57CB",
   orange: "#FF763B",
+  red: "#F44336",
   gray50: "#FCFCFD",
   gray100: "#F8F8F9",
   gray200: "#EEF0F2",
