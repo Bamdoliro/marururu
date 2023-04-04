@@ -13,9 +13,6 @@ type ContentPropsType = {
   message: string;
 };
 
-export type TooltipPropsType = SinglePropFrom<
-  PositionPropsType,
-  "$top" | "$left"
-> &
-  Partial<SinglePropFrom<PositionPropsType, "$start" | "$end">> &
-  ContentPropsType;
+export type TooltipPropsType = ContentPropsType &
+  SinglePropFrom<PositionPropsType, "$top" | "$left"> &
+  Partial<SinglePropFrom<PositionPropsType, "$start" | "$end">>;
