@@ -3,4 +3,5 @@ export type ButtonOptionType =
   | "SECONDARY"
   | "TERTIARY"
   | "QUATERNARY"
-  | "DELETE";
+  | "DELETE"
+  | "LINK_TEXT";
