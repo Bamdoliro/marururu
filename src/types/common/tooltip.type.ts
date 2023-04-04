@@ -1,11 +1,12 @@
 import { ReactNode } from "react";
 import { SinglePropFrom } from "types/utils/singlePropFrom.type";
 
-export type PositionPropsType = Partial<{
+export type FormPropsType = Partial<{
   $top: boolean;
   $left: boolean;
   $start: boolean;
   $end: boolean;
+  $mini: boolean;
 }>;
 
 type ContentPropsType = {
@@ -14,5 +15,6 @@ type ContentPropsType = {
 };
 
 export type TooltipPropsType = ContentPropsType &
-  SinglePropFrom<PositionPropsType, "$top" | "$left"> &
-  Partial<SinglePropFrom<PositionPropsType, "$start" | "$end">>;
+  FormPropsType &
+  SinglePropFrom<FormPropsType, "$top" | "$left"> &
+  Partial<SinglePropFrom<FormPropsType, "$start" | "$end">>;

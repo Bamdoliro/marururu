@@ -1,12 +1,12 @@
 import { TooltipPropsType } from "types/common/tooltip.type";
 import * as S from "./style";
 
-const Tooltip = ({ children, message, ...positions }: TooltipPropsType) => (
-  <S.Container {...positions}>
+const Tooltip = ({ children, message, ...form }: TooltipPropsType) => (
+  <S.Container {...form}>
     {children}
-    <S.Content {...positions}>
-      <S.Arrow {...positions} />
-      <S.Message>{message}</S.Message>
+    <S.Content {...form}>
+      <S.Arrow {...form} />
+      <S.Message {...form}>{message}</S.Message>
     </S.Content>
   </S.Container>
 );
