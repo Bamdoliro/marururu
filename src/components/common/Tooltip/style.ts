@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { color } from "styles/theme.style";
-import { PositionPropType } from "types/common/tooltip.type";
+import { FormPropsType } from "types/common/tooltip.type";
 
-export const Arrow = styled.div<PositionPropType>`
+export const Arrow = styled.div<FormPropsType>`
   width: 0px;
   height: 0px;
 
@@ -15,15 +15,16 @@ export const Arrow = styled.div<PositionPropType>`
 
   margin: auto;
 
-  ${({ $left, $start }) => $left && $start && "margin-top: 16px"};
-  ${({ $left, $end }) => $left && $end && "margin-bottom: 16px"};
+  ${({ $left, $start, $mini }) =>
+    $left && $start && !$mini ? "margin-top: 16px" : 0};
+  ${({ $left, $end, $mini }) =>
+    $left && $end && !$mini ? "margin-bottom: 16px" : 0};
   ${({ $top, $start }) => $top && $start && "margin-left: 16px"};
   ${({ $top, $end }) => $top && $end && "margin-right: 16px"};
 `;
 
-export const Message = styled.div`
-  max-width: 148px;
-  padding: 8px 16px;
+export const Message = styled.div<FormPropsType>`
+  padding: ${({ $mini }) => ($mini ? "4px 16px" : "8px 16px")};
   background-color: ${color.gray850};
   color: #fff;
   border-radius: 4px;
@@ -32,9 +33,9 @@ export const Message = styled.div`
   z-index: 200;
 `;
 
-export const Content = styled.div<PositionPropType>`
+export const Content = styled.div<FormPropsType>`
   display: none;
-  max-width: 148px;
+  ${({ $mini }) => !$mini && "max-width: 148px"};
 
   ${({ $top }) => $top && "margin-top: -4px"};
   ${({ $left }) => $left && "margin-left: -4px"};
@@ -42,7 +43,7 @@ export const Content = styled.div<PositionPropType>`
   z-index: 200;
 `;
 
-export const Container = styled.div<PositionPropType>`
+export const Container = styled.div<FormPropsType>`
   position: relative;
   box-sizing: content-box;
   display: ${({ $top }) => ($top ? "inline-block" : "flex")};
