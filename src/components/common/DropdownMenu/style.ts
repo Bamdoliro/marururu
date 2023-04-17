@@ -10,6 +10,9 @@ export const DropdownMenu = styled.div`
 `;
 
 export const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
+  ${font.p2}
+  color: ${color.gray500};
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,11 +34,6 @@ export const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
       : css`
           border: 1px solid ${color.gray400};
         `};
-`;
-
-export const DropdownMenuText = styled.p`
-  ${font.p2}
-  color: ${color.gray500};
 `;
 
 export const Img = styled.img`
