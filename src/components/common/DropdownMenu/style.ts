@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import * as T from "styles/text.style";
+import { font } from "styles/text.style";
 import { color } from "styles/theme.style";
 
 export const DropdownMenu = styled.div`
@@ -33,7 +33,8 @@ export const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
         `};
 `;
 
-export const DropdownMenuText = styled(T.p2)`
+export const DropdownMenuText = styled.p`
+  ${font.p2}
   color: ${color.gray500};
 `;
 

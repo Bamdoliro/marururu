@@ -1,19 +1,19 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 import { ButtonOptionType } from "types/common/button.type";
 import * as S from "./style";
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
-  value: string;
+  children: ReactNode;
   option: ButtonOptionType;
   width?: string;
   icon?: string;
 }
 
-const Button = ({ onClick, value, option, width, icon }: PropsType) => {
+const Button = ({ onClick, children, option, width, icon }: PropsType) => {
   return (
     <S.Button onClick={onClick} option={option} style={{ width }}>
       {icon && <S.ButtonIcon src={icon} />}
-      <S.ButtonText>{value}</S.ButtonText>
+      {children}
     </S.Button>
   );
 };

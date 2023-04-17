@@ -30,4 +30,5 @@ export const font = {
   caption: fontGenerator(400, 0.75, 140, 0),
   btn1: fontGenerator(500, 1, 130, 0),
   btn2: fontGenerator(500, 0.875, 130, 0),
+  context: fontGenerator(500, 1, 130, 0),
 };

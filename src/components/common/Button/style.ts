@@ -1,26 +1,21 @@
 import { ButtonOptionType } from "./../../../types/common/button.type";
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 import { color } from "styles/theme.style";
-import * as T from "styles/text.style";
+import { font } from "styles/text.style";
 
 export const Button = styled.button<{ option: ButtonOptionType }>`
+  ${font.btn2}
+  ${({ option }) => option && getButtonStyle[option]}
+
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px 16px;
   border-radius: 6px;
-
   cursor: pointer;
-
-  ${({ option }) => option && getButtonStyle[option]}
 `;
 
-export const ButtonText = styled(T.btn2)``;
-
-export const ButtonIcon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
+export const ButtonIcon = styled.img``;
 
 const getButtonStyle: Record<ButtonOptionType, FlattenSimpleInterpolation> = {
   PRIMARY: css`
@@ -70,13 +65,11 @@ const getButtonStyle: Record<ButtonOptionType, FlattenSimpleInterpolation> = {
   LINK_TEXT: css`
     padding: 0;
     border-radius: 0;
-    ${ButtonText} {
-      color: ${color.gray500};
-      border-bottom: 1px solid ${color.gray500};
-      &:hover {
-        color: ${color.maruDefault};
-        border-bottom: 1px solid ${color.maruDefault};
-      }
+    color: ${color.gray500};
+    border-bottom: 1px solid ${color.gray500};
+    &:hover {
+      color: ${color.maruDefault};
+      border-bottom: 1px solid ${color.maruDefault};
     }
   `,
 };
