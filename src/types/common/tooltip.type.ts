@@ -1,16 +1,16 @@
 import { ReactNode } from "react";
 
-type ContentPropsType = {
+interface ContentPropsType {
   children: ReactNode;
   message: string;
-};
+}
 
-export type FormPropsType = {
+export interface FormPropsType {
   $top: boolean;
   $left: boolean;
   $start: boolean;
   $end: boolean;
   $mini: boolean;
-};
+}
 
 export type TooltipPropsType = ContentPropsType & FormPropsType;
