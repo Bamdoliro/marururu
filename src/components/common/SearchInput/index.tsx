@@ -1,6 +1,7 @@
 import * as S from "./style";
 import Search from "assets/search.svg";
 import { InputPropsType } from "types/common/input.type";
+import Icon from "components/common/Icon";
 
 const SearchInput = ({
   width = "320px",
@@ -11,10 +12,9 @@ const SearchInput = ({
   onChange,
 }: InputPropsType) => {
   return (
-    <S.SearchInput>
-      <S.Img src={Search} />
+    <S.SearchInput style={{ width }}>
+      <Icon src={Search} />
       <S.Input
-        style={{ width }}
         onChange={onChange}
         placeholder={placeholder}
         type={type}

@@ -7,7 +7,6 @@ export const SearchInput = styled.div`
   align-items: center;
   gap: 4px;
 
-  width: 320px;
   height: 40px;
   padding: 10px 8px;
 
@@ -19,11 +18,6 @@ export const SearchInput = styled.div`
     border: 1px solid ${color.maruDefault};
     outline: 2px solid rgba(20, 112, 255, 0.25);
   }
-`;
-
-export const Img = styled.img`
-  width: 16px;
-  height: 16px;
 `;
 
 export const Input = styled.input`

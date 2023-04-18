@@ -1,7 +1,12 @@
+import Previewinput from "components/common/PreviewInput";
 import React from "react";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Previewinput />
+    </div>
+  );
 };
 
 export default App;
