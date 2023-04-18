@@ -1,5 +1,4 @@
 import Previewinput from "components/common/PreviewInput";
-import React from "react";
 
 const App = () => {
   return (
