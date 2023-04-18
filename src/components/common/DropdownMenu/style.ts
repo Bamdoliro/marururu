@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import * as T from "styles/text.style";
+import { font } from "styles/text.style";
 import { color } from "styles/theme.style";
 
 export const DropdownMenu = styled.div`
@@ -10,6 +10,9 @@ export const DropdownMenu = styled.div`
 `;
 
 export const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
+  ${font.p2}
+  color: ${color.gray500};
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,10 +34,6 @@ export const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
       : css`
           border: 1px solid ${color.gray400};
         `};
-`;
-
-export const DropdownMenuText = styled(T.p2)`
-  color: ${color.gray500};
 `;
 
 export const Img = styled.img`

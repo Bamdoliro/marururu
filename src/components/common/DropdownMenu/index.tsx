@@ -3,13 +3,9 @@ import ArrowUnder from "assets/arrow_under.svg";
 import ArrowTop from "assets/arrow_top.svg";
 import { useState } from "react";
 
-interface DropdownItemType {
-  dropdownItemText: string;
-}
-
 interface PropsType {
-  dropdownMenuDatas: DropdownItemType[];
-  width: string;
+  dropdownMenuDatas: string[];
+  width?: string;
 }
 
 const DropdownMenu = ({ dropdownMenuDatas, width = "320px" }: PropsType) => {
@@ -24,16 +20,19 @@ const DropdownMenu = ({ dropdownMenuDatas, width = "320px" }: PropsType) => {
   return (
     <S.DropdownMenu style={{ width }}>
       <S.DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
-        <S.DropdownMenuText>{dropdownMenuText}</S.DropdownMenuText>
+        {dropdownMenuText}
         <S.Img src={isOpenDropdownMenu ? ArrowUnder : ArrowTop} />
       </S.DropdownMenuBox>
       <S.DropdownMenuList isOpen={isOpenDropdownMenu}>
         {dropdownMenuDatas?.map((item, index) => (
           <S.DropdownMenuItem
             key={`dropdown ${index}`}
-            onClick={() => setDropdownMenuText(item.dropdownItemText)}
+            onClick={() => {
+              setDropdownMenuText(item);
+              setIsOpenDropdownMenu(false);
+            }}
           >
-            {item.dropdownItemText}
+            {item}
           </S.DropdownMenuItem>
         ))}
       </S.DropdownMenuList>

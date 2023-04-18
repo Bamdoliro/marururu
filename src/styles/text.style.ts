@@ -1,129 +1,34 @@
-import styled from "styled-components";
-
-export const D1 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 4.5rem;
-  line-height: 130%;
-  letter-spacing: -1.5px;
+const fontGenerator = (
+  weight: number,
+  size: number,
+  lineHeight: number,
+  letterSpacing: number
+) =>
+  `
+  font-family: 'Pretendard Variable';
+  font-weight: ${weight};
+  font-size: ${size}rem;
+  line-height: ${lineHeight}%;
+  letter-spacing: ${letterSpacing}px;
 `;
 
-export const D2 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 3.75rem;
-  line-height: 130%;
-  letter-spacing: -0.5px;
-`;
+export const font = {
+  D1: fontGenerator(700, 4.5, 130, -1.5),
+  D2: fontGenerator(700, 3.75, 130, -0.5),
+  D3: fontGenerator(600, 3, 130, 0),
 
-export const D3 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 130%;
-  letter-spacing: 0px;
-`;
+  H1: fontGenerator(700, 2.25, 140, 0.25),
+  H2: fontGenerator(700, 1.75, 140, 0),
+  H3: fontGenerator(600, 1.5, 140, 0.15),
+  H4: fontGenerator(600, 1.25, 140, 0.15),
+  H5: fontGenerator(600, 1.125, 140, 0.15),
 
-export const H1 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 2.25rem;
-  line-height: 140%;
-  letter-spacing: 0.25px;
-`;
+  p1: fontGenerator(400, 1.125, 140, 0.15),
+  p2: fontGenerator(400, 1, 160, -0.15),
+  p3: fontGenerator(400, 0.875, 160, -0.1),
 
-export const H2 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 700;
-  font-size: 1.75rem;
-  line-height: 140%;
-  letter-spacing: 0px;
-`;
-
-export const H3 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 600;
-  font-size: 1.5rem;
-  line-height: 140%;
-  letter-spacing: 0.15px;
-`;
-
-export const H4 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 140%;
-  letter-spacing: 0.15px;
-`;
-
-export const H5 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 140%;
-  letter-spacing: 0.15px;
-`;
-
-export const btn2 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 130%;
-  letter-spacing: 0px;
-`;
-
-export const btn3 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 130%;
-  letter-spacing: 0px;
-`;
-
-export const context = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 130%;
-  letter-spacing: 0px;
-`;
-
-export const p1 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 160%;
-  letter-spacing: -0.15px;
-`;
-
-export const p2 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 160%;
-  letter-spacing: -0.15px;
-`;
-
-export const p3 = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 160%;
-  letter-spacing: -0.1px;
-`;
-
-export const caption = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 400;
-  font-size: 0.75rem;
-  line-height: 140%;
-  letter-spacing: 0px;
-`;
-
-export const code = styled.p`
-  font-family: "Pretendard Variable";
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 130%;
-  letter-spacing: 0px;
-`;
+  caption: fontGenerator(400, 0.75, 140, 0),
+  btn1: fontGenerator(500, 1, 130, 0),
+  btn2: fontGenerator(500, 0.875, 130, 0),
+  context: fontGenerator(500, 1, 130, 0),
+};

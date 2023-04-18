@@ -1,19 +1,15 @@
 import styled from "styled-components";
-import * as T from "styles/text.style";
+import { font } from "styles/text.style";
 import { color } from "styles/theme.style";
 
 export const Input = styled.input`
+  ${font.p2}
+  color: ${color.gray800};
+
   height: 48px;
   padding: 10px 16px;
   background-color: ${color.white};
   border: 1px solid ${color.gray400};
-  border-radius: 6px;
-
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 160%;
-
-  color: ${color.gray800};
 
   &::placeholder {
     color: ${color.gray500};
@@ -25,7 +21,9 @@ export const Input = styled.input`
   }
 `;
 
-export const Desc = styled(T.context)`
+export const Desc = styled.p`
+  ${font.context}
   color: ${color.gray700};
+
   padding-bottom: 8px;
 `;
