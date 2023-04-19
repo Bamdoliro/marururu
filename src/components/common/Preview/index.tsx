@@ -1,5 +1,5 @@
-import Visibility from "assets/visibility.svg";
-import VisibilityOff from "assets/visibility_off.svg";
+import VisibilityIcon from "assets/visibility.svg";
+import VisibilityOffIcon from "assets/visibility_off.svg";
 import { Dispatch, SetStateAction } from "react";
 import Icon from "components/common/Icon";
 
@@ -10,9 +10,9 @@ interface PropsType {
 
 const Preview = ({ setPreview, preview }: PropsType) => {
   return preview ? (
-    <Icon src={Visibility} onClick={() => setPreview(false)} />
+    <Icon src={VisibilityIcon} onClick={() => setPreview(false)} />
   ) : (
-    <Icon src={VisibilityOff} onClick={() => setPreview(true)} />
+    <Icon src={VisibilityOffIcon} onClick={() => setPreview(true)} />
   );
 };
 

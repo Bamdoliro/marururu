@@ -1,6 +1,6 @@
 import * as S from "./style";
-import ArrowUnder from "assets/arrow_under.svg";
-import ArrowTop from "assets/arrow_top.svg";
+import ArrowUnderIcon from "assets/arrow_under.svg";
+import ArrowTopIcon from "assets/arrow_top.svg";
 import { useState } from "react";
 
 interface PropsType {
@@ -21,7 +21,7 @@ const DropdownMenu = ({ dropdownMenuDatas, width = "320px" }: PropsType) => {
     <S.DropdownMenu style={{ width }}>
       <S.DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         {dropdownMenuText}
-        <S.Img src={isOpenDropdownMenu ? ArrowUnder : ArrowTop} />
+        <S.Img src={isOpenDropdownMenu ? ArrowUnderIcon : ArrowTopIcon} />
       </S.DropdownMenuBox>
       <S.DropdownMenuList isOpen={isOpenDropdownMenu}>
         {dropdownMenuDatas?.map((item, index) => (

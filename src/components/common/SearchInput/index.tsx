@@ -1,5 +1,5 @@
 import * as S from "./style";
-import Search from "assets/search.svg";
+import SearchIcon from "assets/search.svg";
 import { InputPropsType } from "types/common/input.type";
 import Icon from "components/common/Icon";
 
@@ -13,7 +13,7 @@ const SearchInput = ({
 }: InputPropsType) => {
   return (
     <S.SearchInput style={{ width }}>
-      <Icon src={Search} />
+      <Icon src={SearchIcon} />
       <S.Input
         onChange={onChange}
         placeholder={placeholder}
