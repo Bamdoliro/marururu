@@ -2,6 +2,18 @@ import styled from "styled-components";
 import { font } from "styles/text.style";
 import { color } from "styles/theme.style";
 
+export const Container = styled.div`
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 60px;
+`;
+
+export const Desc = styled.p`
+  ${font.context}
+  color: ${color.gray700};
+  grid-column: 1 / 3;
+`;
+
 export const Input = styled.input`
   ${font.p2}
   color: ${color.gray800};
@@ -22,9 +34,9 @@ export const Input = styled.input`
   }
 `;
 
-export const Desc = styled.p`
-  ${font.context}
-  color: ${color.gray700};
-
-  padding-bottom: 8px;
+export const Button = styled.button`
+  ${font.btn1};
+  color: ${color.white};
+  background-color: #257CFF;
+  border-radius: 6px;
 `;
