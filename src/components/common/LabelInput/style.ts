@@ -1,16 +1,15 @@
 import styled from "styled-components";
+import * as I from 'components/common/Input/style';
 import { font } from "styles/text.style";
 import { color } from "styles/theme.style";
 
 export const Container = styled.div`
   display: grid;
-  gap: 8px;
+  column-gap: 8px;
   grid-template-columns: 1fr 60px;
 `;
 
-export const Desc = styled.p`
-  ${font.context}
-  color: ${color.gray700};
+export const Desc = styled(I.Desc)`
   grid-column: 1 / 3;
 `;
 
