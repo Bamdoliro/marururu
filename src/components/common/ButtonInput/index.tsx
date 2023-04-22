@@ -2,7 +2,7 @@ import { LabelInputPropsType } from "types/common/labelInput.type";
 import Input from "components/common/Input";
 import * as S from "./style";
 
-const LabelInput = ({
+const ButtonInput = ({
   width = "360px",
   desc,
   placeholder,
@@ -27,4 +27,4 @@ const LabelInput = ({
   );
 };
 
-export default LabelInput;
+export default ButtonInput;
