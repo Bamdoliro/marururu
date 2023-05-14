@@ -1,9 +1,9 @@
 export const color = {
-  white: "#ffffff",
+  white: "#FFFFFF",
   orange: "#FF763B",
   red: "#F44336",
 
-  maruDefault: "#1470FF",
+  maruDefault: "#257CFF",
   maruHigh: "#3081FF",
   maruRow: "#0C57CB",
 

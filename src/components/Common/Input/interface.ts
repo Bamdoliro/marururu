@@ -5,3 +5,8 @@ export interface InputPropsInterface
   width?: string;
   desc?: string;
 }
+
+export interface ButtonInputPropsInterface extends InputPropsInterface {
+  buttonText: string;
+  buttonClick: () => void;
+}
