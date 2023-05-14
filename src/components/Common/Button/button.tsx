@@ -36,7 +36,7 @@ const StyledButton = styled.button<{
   icon: ButtonIconType;
   size: ButtonSizeType;
 }>`
-  ${font.btn2}
+  ${font.btn1}
   display: flex;
   align-items: center;
   justify-content: center;
