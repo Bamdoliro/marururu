@@ -22,7 +22,7 @@ const Button = ({
 }: PropsInterface) => {
   return (
     <StyledButton onClick={onClick} option={option} icon={icon} size={size}>
-      {icon === "PLUS_ICON" && <AddIcon />}
+      {icon === "ADD_ICON" && <AddIcon />}
       {children}
       {icon === "SHORTCUTS_ICON" && <ShortcutsIcon />}
     </StyledButton>
