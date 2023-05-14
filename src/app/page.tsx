@@ -1,14 +1,9 @@
 "use client";
 
-import ButtonInput from "@/components/Common/Input/button";
-import PreviewInput from "@/components/Common/Input/preview";
+import AuthLayout from "@/layouts/AuthLayout";
 
 const Home = () => {
-  return (
-    <div>
-      <PreviewInput />
-    </div>
-  );
+  return <AuthLayout>as</AuthLayout>;
 };
 
 export default Home;
