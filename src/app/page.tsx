@@ -1,17 +1,12 @@
 "use client";
 
 import ButtonInput from "@/components/Common/Input/button";
+import PreviewInput from "@/components/Common/Input/preview";
 
 const Home = () => {
   return (
     <div>
-      <ButtonInput
-        desc="as"
-        buttonText="인증하기"
-        buttonClick={function (): void {
-          throw new Error("Function not implemented.");
-        }}
-      />
+      <PreviewInput />
     </div>
   );
 };

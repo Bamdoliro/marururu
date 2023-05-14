@@ -13,7 +13,7 @@ const SearchInput = ({
 }: InputPropsInterface) => {
   return (
     <StyledSearchInput>
-      <SearchIcon />
+      <SearchIcon cursor="pointer" />
       <Input
         style={{ width }}
         onChange={onChange}

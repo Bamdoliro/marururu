@@ -16,19 +16,24 @@ const PreviewInput = ({
 }: InputPropsInterface) => {
   const [isPreview, setIsPreview] = useState(false);
 
+  const togglePreview = () => setIsPreview((prev) => !prev);
+
   return (
     <>
       {desc && <Desc>{desc}</Desc>}
-      <StyledPreviewInput>
+      <StyledPreviewInput style={{ width }}>
         <Input
-          style={{ width }}
           onChange={onChange}
           placeholder={placeholder}
           type={isPreview ? "text" : "password"}
           name={name}
           value={value}
         />
-        {isPreview ? <VisbilityOn /> : <VisbilityOff />}
+        {isPreview ? (
+          <VisbilityOn cursor="pointer" onClick={togglePreview} />
+        ) : (
+          <VisbilityOff cursor="pointer" onClick={togglePreview} />
+        )}
       </StyledPreviewInput>
     </>
   );
@@ -39,6 +44,7 @@ export default PreviewInput;
 const StyledPreviewInput = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   height: 48px;
   padding: 10px 16px;

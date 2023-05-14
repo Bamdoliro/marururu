@@ -41,6 +41,7 @@ export const StyledButtonInput = styled.div`
 
 export const Button = styled.button`
   ${font.btn2};
+
   color: ${color.white};
   background-color: ${color.maruDefault};
   border-radius: 6px;
