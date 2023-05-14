@@ -1,6 +1,6 @@
 "use client";
 
-import ButtonInput from "@/components/Common/Input/buttoninput";
+import ButtonInput from "@/components/Common/Input/button";
 
 const Home = () => {
   return (
