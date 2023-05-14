@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import "@/styles/global.css";
 
 export const metadata = {
   title: "마루",
