@@ -1,11 +1,11 @@
 "use client";
 
-import Input from "@/components/Common/Input/input";
+import SearchInput from "@/components/Common/Input/searchinput";
 
 const Home = () => {
   return (
     <div>
-      <Input />
+      <SearchInput />
     </div>
   );
 };

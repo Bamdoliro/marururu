@@ -1,6 +1,7 @@
 import { InputHTMLAttributes } from "react";
 
-export interface InputPropsType extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputPropsInterface
+  extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   desc?: string;
 }

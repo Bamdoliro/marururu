@@ -1,11 +1,10 @@
-import styled from "styled-components";
-import { font } from "@/styles/font";
 import { color } from "@/styles/color";
+import styled from "styled-components";
+import SearchIcon from "../Icon/Search";
 import { InputPropsInterface } from "./interface";
 
-const Input = ({
+const SearchInput = ({
   width = "320px",
-  desc,
   placeholder,
   type = "text",
   name,
@@ -13,9 +12,9 @@ const Input = ({
   onChange,
 }: InputPropsInterface) => {
   return (
-    <>
-      {desc && <Desc>{desc}</Desc>}
-      <StyledInput
+    <StyledSearchInput>
+      <SearchIcon />
+      <Input
         style={{ width }}
         onChange={onChange}
         placeholder={placeholder}
@@ -23,32 +22,34 @@ const Input = ({
         name={name}
         value={value}
       />
-    </>
+    </StyledSearchInput>
   );
 };
 
-export default Input;
+export default SearchInput;
 
-const StyledInput = styled.input`
-  ${font.p2}
-  color: ${color.gray800};
-  height: 48px;
-  padding: 10px 16px;
+const StyledSearchInput = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 10px 8px;
   background-color: ${color.white};
   border: 1px solid ${color.gray400};
   border-radius: 6px;
 
-  &::placeholder {
-    color: ${color.gray500};
-  }
-  &:focus {
+  &:focus-within {
     border: 1px solid ${color.maruDefault};
     outline: 2px solid rgba(20, 112, 255, 0.25);
   }
 `;
 
-const Desc = styled.p`
-  ${font.context}
-  color: ${color.gray700};
-  padding-bottom: 8px;
+const Input = styled.input`
+  color: ${color.gray800};
+  width: 100%;
+  height: 100%;
+
+  &::placeholder {
+    color: ${color.gray500};
+  }
 `;
