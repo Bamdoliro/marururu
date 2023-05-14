@@ -5,9 +5,8 @@ import { ButtonInputPropsInterface } from "./interface";
 import styled from "styled-components";
 
 const ButtonInput = ({
-  width = "360px",
+  width,
   desc,
-  placeholder,
   name,
   value,
   onChange,
@@ -15,19 +14,13 @@ const ButtonInput = ({
   buttonClick,
 }: ButtonInputPropsInterface) => {
   return (
-    <>
+    <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}
-      <StyledButtonInput style={{ width }}>
-        <Input
-          width="100%"
-          placeholder={placeholder}
-          name={name}
-          value={value}
-          onChange={onChange}
-        />
+      <StyledButtonInput>
+        <Input width="100%" name={name} value={value} onChange={onChange} />
         <Button onClick={buttonClick}>{buttonText}</Button>
       </StyledButtonInput>
-    </>
+    </div>
   );
 };
 
@@ -36,20 +29,24 @@ export default ButtonInput;
 export const StyledButtonInput = styled.div`
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 8px;
+  width: 100%;
 `;
 
 export const Button = styled.button`
   ${font.btn2};
-
   color: ${color.white};
   background-color: ${color.maruDefault};
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 6px;
-  width: 106px;
+  width: 68px;
   height: 48px;
+  padding: 10px 16px;
 
   &:hover {
-    background-color: ${color.maruHigh};
+    background-color: ${color.maruHoverd};
   }
 `;
 

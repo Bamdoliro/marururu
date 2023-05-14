@@ -19,9 +19,9 @@ const PreviewInput = ({
   const togglePreview = () => setIsPreview((prev) => !prev);
 
   return (
-    <>
+    <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}
-      <StyledPreviewInput style={{ width }}>
+      <StyledPreviewInput>
         <Input
           onChange={onChange}
           placeholder={placeholder}
@@ -35,7 +35,7 @@ const PreviewInput = ({
           <VisbilityOff cursor="pointer" onClick={togglePreview} />
         )}
       </StyledPreviewInput>
-    </>
+    </div>
   );
 };
 

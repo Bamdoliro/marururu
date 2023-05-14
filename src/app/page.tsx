@@ -1,9 +1,7 @@
 "use client";
 
-import AuthLayout from "@/layouts/AuthLayout";
-
 const Home = () => {
-  return <AuthLayout>as</AuthLayout>;
+  return <div>home이다</div>;
 };
 
 export default Home;

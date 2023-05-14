@@ -6,7 +6,7 @@ export const getButtonStyle = {
     background-color: ${color.maruDefault};
     color: ${color.white};
     &:hover {
-      background-color: ${color.maruHigh};
+      background-color: ${color.maruHoverd};
     }
   `,
   SECONDARY: css`

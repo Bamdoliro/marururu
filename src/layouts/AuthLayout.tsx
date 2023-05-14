@@ -34,6 +34,7 @@ const AuthBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 451px;
+  gap: 34px;
+  width: 446px;
   height: 100%;
 `;

@@ -3,9 +3,10 @@ export const color = {
   orange: "#FF763B",
   red: "#F44336",
 
-  maruDefault: "#257CFF",
+  maruDefault: "#1470FF",
   maruHigh: "#3081FF",
   maruRow: "#0C57CB",
+  maruHoverd: "#186EEE",
 
   gray50: "#FCFCFD",
   gray100: "#F8F8F9",
