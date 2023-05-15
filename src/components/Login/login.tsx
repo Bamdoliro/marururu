@@ -27,9 +27,9 @@ const Login = () => {
               </FindPassword>
             </Column>
           </Column>
-          <SignUpText>
-            회원이 아니신가요? <SignUp>회원가입</SignUp>
-          </SignUpText>
+          <SignUp>
+            회원이 아니신가요? <SignUpLink>회원가입</SignUpLink>
+          </SignUp>
         </LoginBox>
       </StyledLogin>
     </AppLayout>
@@ -39,7 +39,6 @@ const Login = () => {
 export default Login;
 
 const StyledLogin = styled.div`
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,12 +68,12 @@ const FindPassword = styled.a`
   }
 `;
 
-const SignUpText = styled.div`
+const SignUp = styled.div`
   ${font.p2}
   color: ${color.gray500};
 `;
 
-const SignUp = styled.a`
+const SignUpLink = styled.a`
   ${font.p2}
   color: ${color.gray500};
   text-decoration-line: underline;

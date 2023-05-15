@@ -7,7 +7,7 @@ import PreviewInput from "../Common/Input/preview";
 import Button from "../Common/Button/button";
 import Input from "../Common/Input/input";
 import Image from "next/image";
-import SignUpAgreement from "./Agreement/agreement";
+import Terms from "./Terms/terms";
 import Column from "../Common/Flex/column";
 
 const SignUp = () => {
@@ -47,7 +47,7 @@ const SignUp = () => {
               <PreviewInput desc="비밀번호 재확인" width="100%" />
             </Column>
             {/* 이용약관 동의 */}
-            <SignUpAgreement />
+            <Terms />
             <Button width="100%">회원가입</Button>
           </SignUpBox>
         </ContentBox>
