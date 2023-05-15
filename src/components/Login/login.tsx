@@ -11,7 +11,7 @@ import PreviewInput from "../Common/Input/preview";
 
 const Login = () => {
   return (
-    <AppLayout>
+    <AppLayout backgroundColor={color.gray100}>
       <StyledLogin>
         <LoginBox>
           <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
@@ -39,11 +39,12 @@ const Login = () => {
 export default Login;
 
 const StyledLogin = styled.div`
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 818px;
   height: 100%;
   background-color: ${color.white};
 `;
