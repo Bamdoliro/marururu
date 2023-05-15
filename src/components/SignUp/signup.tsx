@@ -20,8 +20,8 @@ const SignUp = () => {
           height={290}
           style={{ margin: "0 auto" }}
         />
-        <ContentBox>
-          <SignUpBox>
+        <SignUpBox>
+          <SignUpWrap>
             <Col>
               <Title>회원가입</Title>
               <ButtonInput
@@ -45,8 +45,8 @@ const SignUp = () => {
             <Button icon="NONE" size="MEDIUM" width="100%">
               회원가입
             </Button>
-          </SignUpBox>
-        </ContentBox>
+          </SignUpWrap>
+        </SignUpBox>
       </StyledSignUp>
     </AppLayout>
   );
@@ -63,7 +63,7 @@ const StyledSignUp = styled.div`
   background-color: ${color.gray50};
 `;
 
-const ContentBox = styled.div`
+const SignUpBox = styled.div`
   display: flex;
   align-items: center;
   width: 708px;
@@ -72,7 +72,7 @@ const ContentBox = styled.div`
   padding-left: 105px;
 `;
 
-const SignUpBox = styled.div`
+const SignUpWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 36px;
