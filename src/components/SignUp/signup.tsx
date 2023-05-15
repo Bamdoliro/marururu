@@ -71,11 +71,11 @@ const StyledSignUp = styled.div`
 
 const ContentBox = styled.div`
   display: flex;
-  align-items: center;
   width: 708px;
   height: 100%;
   background-color: ${color.white};
   padding-left: 105px;
+  overflow: scroll;
 `;
 
 const SignUpBox = styled.div`
@@ -83,7 +83,8 @@ const SignUpBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 446px;
-  height: 700px;
+  height: 721px;
+  margin: 120px 0px;
 `;
 
 const Title = styled.p`
