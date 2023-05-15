@@ -27,9 +27,8 @@ export default SignUpAgreement;
 const StyledAgreement = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 10px;
   width: 100%;
-  height: 102px;
 `;
 
 const Agreement = styled.div`

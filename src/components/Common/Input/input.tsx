@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
 import { InputPropsInterface } from "./interface";
+import Message from "./message";
 
 const Input = ({
   width,
@@ -12,6 +13,7 @@ const Input = ({
   value,
   onChange,
   maxLength,
+  msg,
 }: InputPropsInterface) => {
   return (
     <div style={{ width }}>
@@ -24,6 +26,7 @@ const Input = ({
         value={value}
         maxLength={maxLength}
       />
+      {msg && <Message>{msg}</Message>}
     </div>
   );
 };

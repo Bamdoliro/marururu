@@ -5,6 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import VisbilityOn from "../Icon/VisibilityOn";
 import VisbilityOff from "../Icon/VisibilityOff";
+import Message from "./message";
 
 const PreviewInput = ({
   width = "320px",
@@ -75,10 +76,4 @@ const Desc = styled.p`
   ${font.context}
   color: ${color.gray700};
   padding-bottom: 8px;
-`;
-
-const Message = styled.p`
-  font-size: ${font.p3};
-  color: ${color.gray500};
-  margin-top: 4px;
 `;

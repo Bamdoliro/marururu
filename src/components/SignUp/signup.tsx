@@ -33,7 +33,12 @@ const SignUp = () => {
                 placeholder="이메일"
                 width="100%"
               />
-              <Input desc="인증코드" width="100%" maxLength={6} />
+              <Input
+                desc="인증코드"
+                width="100%"
+                maxLength={6}
+                msg="발송된 이메일의 인증번호를 입력해주세요."
+              />
               <PreviewInput
                 desc="비밀번호"
                 width="100%"
@@ -61,7 +66,7 @@ const StyledSignUp = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${color.gray50};
+  background-color: ${color.gray100};
 `;
 
 const ContentBox = styled.div`
@@ -76,9 +81,9 @@ const ContentBox = styled.div`
 const SignUpBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  justify-content: space-between;
   width: 446px;
-  height: 693px;
+  height: 700px;
 `;
 
 const Title = styled.p`
