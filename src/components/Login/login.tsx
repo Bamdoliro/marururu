@@ -4,8 +4,7 @@ import { font } from "@/styles/font";
 import Image from "next/image";
 import styled from "styled-components";
 import Button from "../Common/Button/button";
-import FlexColumn from "../Common/Flex/column";
-import FlexRow from "../Common/Flex/row";
+import Column from "../Common/Flex/column";
 import RightArrowIcon from "../Common/Icon/RightArrow";
 import Input from "../Common/Input/input";
 import PreviewInput from "../Common/Input/preview";
@@ -16,19 +15,21 @@ const Login = () => {
       <StyledLogin>
         <LoginBox>
           <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
-          <FlexColumn gap="36px">
-            <FlexColumn gap="24px">
+          <Column gap="36px">
+            <Column gap="24px">
               <Input desc="아이디" width="100%" />
               <PreviewInput desc="비밀번호" width="100%" />
-            </FlexColumn>
-            <FlexColumn gap="16px" alignItems="flex-end">
+            </Column>
+            <Column gap="16px" alignItems="flex-end">
               <Button width="100%">로그인</Button>
               <FindPassword>
                 비밀번호 찾기 <RightArrowIcon color={color.gray500} />
               </FindPassword>
-            </FlexColumn>
-          </FlexColumn>
-          <SignUp>회원이 아니신가요? 회원가입</SignUp>
+            </Column>
+          </Column>
+          <SignUpText>
+            회원이 아니신가요? <SignUp>회원가입</SignUp>
+          </SignUpText>
         </LoginBox>
       </StyledLogin>
     </AppLayout>
@@ -67,7 +68,15 @@ const FindPassword = styled.a`
   }
 `;
 
+const SignUpText = styled.div`
+  ${font.p2}
+  color: ${color.gray500};
+`;
+
 const SignUp = styled.a`
   ${font.p2}
   color: ${color.gray500};
+  text-decoration-line: underline;
+  text-decoration-color: ${color.gray500};
+  cursor: pointer;
 `;

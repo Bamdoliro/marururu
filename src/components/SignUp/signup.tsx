@@ -8,7 +8,7 @@ import Button from "../Common/Button/button";
 import Input from "../Common/Input/input";
 import Image from "next/image";
 import SignUpAgreement from "./Agreement/agreement";
-import FlexColumn from "../Common/Flex/column";
+import Column from "../Common/Flex/column";
 
 const SignUp = () => {
   return (
@@ -23,7 +23,7 @@ const SignUp = () => {
         />
         <ContentBox>
           <SignUpBox>
-            <FlexColumn gap="24px">
+            <Column gap="24px">
               <Title>회원가입</Title>
               <ButtonInput
                 desc="이메일 인증"
@@ -45,7 +45,7 @@ const SignUp = () => {
                 msg="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
               />
               <PreviewInput desc="비밀번호 재확인" width="100%" />
-            </FlexColumn>
+            </Column>
             {/* 이용약관 동의 */}
             <SignUpAgreement />
             <Button width="100%">회원가입</Button>

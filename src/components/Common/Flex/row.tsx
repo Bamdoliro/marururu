@@ -13,22 +13,22 @@ interface PropsInterface {
   alignItems?: "none" | "center" | "flex-end" | "flex-start" | "space-between";
 }
 
-const FlexRow = ({
+const Row = ({
   children,
   gap,
   justifyContent = "none",
   alignItems = "none",
 }: PropsInterface) => {
   return (
-    <StyledFlexRow style={{ gap, justifyContent, alignItems }}>
+    <StyledRow style={{ gap, justifyContent, alignItems }}>
       {children}
-    </StyledFlexRow>
+    </StyledRow>
   );
 };
 
-export default FlexRow;
+export default Row;
 
-const StyledFlexRow = styled.div`
+const StyledRow = styled.div`
   display: flex;
   width: 100%;
 `;
