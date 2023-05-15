@@ -7,6 +7,7 @@ import PreviewInput from "../Common/Input/preview";
 import Button from "../Common/Button/button";
 import Input from "../Common/Input/input";
 import Image from "next/image";
+import SignUpAgreement from "./Agreement/agreement";
 
 const SignUp = () => {
   return (
@@ -39,23 +40,8 @@ const SignUp = () => {
               />
               <PreviewInput desc="비밀번호 재확인" width="100%" />
             </Col>
-            <AgreementBox>
-              <Agreement>
-                <input type="checkbox" />
-                이용약관 전체동의
-              </Agreement>
-              <hr />
-              <Agreement>
-                <input type="checkbox" />
-                개인정보 수집 이용동의
-                <AgreementLinkText>[ 필수 ] {">"}</AgreementLinkText>
-              </Agreement>
-              <Agreement>
-                <input type="checkbox" />
-                약관 전체동의
-                <AgreementLinkText>[ 필수 ] {">"}</AgreementLinkText>
-              </Agreement>
-            </AgreementBox>
+            {/* 이용약관 동의 */}
+            <SignUpAgreement />
             <Button icon="NONE" size="MEDIUM" width="100%">
               회원가입
             </Button>
@@ -103,26 +89,4 @@ const Col = styled.div`
 const Title = styled.p`
   ${font.H2}
   color: ${color.black};
-`;
-
-const AgreementBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-  width: 100%;
-  height: 102px;
-`;
-
-const Agreement = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: ${font.btn3};
-  color: ${color.gray500};
-`;
-
-const AgreementLinkText = styled.p`
-  font-size: ${font.btn3};
-  color: ${color.maruDefault};
-  cursor: pointer;
 `;
