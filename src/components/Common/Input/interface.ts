@@ -4,6 +4,7 @@ export interface InputPropsInterface
   extends InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   desc?: string;
+  msg?: string;
 }
 
 export interface ButtonInputPropsInterface extends InputPropsInterface {

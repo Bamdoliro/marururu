@@ -1,4 +1,5 @@
 import { color } from "@/styles/color";
+import { font } from "@/styles/font";
 import { css } from "styled-components";
 
 export const getButtonStyle = {
@@ -6,7 +7,7 @@ export const getButtonStyle = {
     background-color: ${color.maruDefault};
     color: ${color.white};
     &:hover {
-      background-color: ${color.maruHigh};
+      background-color: ${color.maruHoverd};
     }
   `,
   SECONDARY: css`
@@ -70,9 +71,15 @@ export const getButtonPadding = {
 
 export const getButtonSize = {
   LARGE: css`
+    ${font.btn1}
     height: 54px;
   `,
   MEDIUM: css`
+    ${font.btn1}
+    height: 48px;
+  `,
+  SMALL: css`
+    ${font.btn2}
     height: 40px;
   `,
 };

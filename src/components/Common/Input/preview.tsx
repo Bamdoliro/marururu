@@ -5,6 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import VisbilityOn from "../Icon/VisibilityOn";
 import VisbilityOff from "../Icon/VisibilityOff";
+import Message from "./message";
 
 const PreviewInput = ({
   width = "320px",
@@ -12,6 +13,7 @@ const PreviewInput = ({
   name,
   desc,
   value,
+  msg,
   onChange,
 }: InputPropsInterface) => {
   const [isPreview, setIsPreview] = useState(false);
@@ -19,9 +21,9 @@ const PreviewInput = ({
   const togglePreview = () => setIsPreview((prev) => !prev);
 
   return (
-    <>
+    <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}
-      <StyledPreviewInput style={{ width }}>
+      <StyledPreviewInput>
         <Input
           onChange={onChange}
           placeholder={placeholder}
@@ -35,7 +37,8 @@ const PreviewInput = ({
           <VisbilityOff cursor="pointer" onClick={togglePreview} />
         )}
       </StyledPreviewInput>
-    </>
+      {msg && <Message>{msg}</Message>}
+    </div>
   );
 };
 

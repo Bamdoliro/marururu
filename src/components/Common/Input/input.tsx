@@ -2,28 +2,32 @@ import styled from "styled-components";
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
 import { InputPropsInterface } from "./interface";
+import Message from "./message";
 
 const Input = ({
-  width = "320px",
+  width,
   desc,
   placeholder,
   type = "text",
   name,
   value,
   onChange,
+  maxLength,
+  msg,
 }: InputPropsInterface) => {
   return (
-    <>
+    <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}
       <StyledInput
-        style={{ width }}
         onChange={onChange}
         placeholder={placeholder}
         type={type}
         name={name}
         value={value}
+        maxLength={maxLength}
       />
-    </>
+      {msg && <Message>{msg}</Message>}
+    </div>
   );
 };
 
@@ -33,6 +37,7 @@ const StyledInput = styled.input`
   ${font.p2}
   color: ${color.gray800};
   height: 48px;
+  width: 100%;
   padding: 10px 16px;
   background-color: ${color.white};
   border: 1px solid ${color.gray400};
