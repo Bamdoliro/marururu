@@ -12,7 +12,7 @@ const AppLayout = ({ children }: PropsInterface) => {
 
 export default AppLayout;
 
-const StyledAppLayout = styled.div`
+const StyledAppLayout = styled.section`
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};

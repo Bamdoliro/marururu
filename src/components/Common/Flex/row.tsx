@@ -4,8 +4,13 @@ import styled from "styled-components";
 interface PropsInterface {
   children: ReactNode;
   gap: string;
-  justifyContent?: "none" | "center" | "flex-end" | "flex-start";
-  alignItems?: "none" | "center" | "flex-end" | "flex-start";
+  justifyContent?:
+    | "none"
+    | "center"
+    | "flex-end"
+    | "flex-start"
+    | "space-between";
+  alignItems?: "none" | "center" | "flex-end" | "flex-start" | "space-between";
 }
 
 const FlexRow = ({
@@ -25,4 +30,5 @@ export default FlexRow;
 
 const StyledFlexRow = styled.div`
   display: flex;
+  width: 100%;
 `;

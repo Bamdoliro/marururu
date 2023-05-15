@@ -16,10 +16,10 @@ const SignUp = () => {
       <StyledSignUp>
         <Image
           src="/assets/ColaboLogo.svg"
-          alt="colabo-logo"
+          style={{ margin: "0 auto" }}
           width={477}
           height={290}
-          style={{ margin: "0 auto" }}
+          alt="colabo-logo"
         />
         <ContentBox>
           <SignUpBox>
@@ -48,9 +48,7 @@ const SignUp = () => {
             </FlexColumn>
             {/* 이용약관 동의 */}
             <SignUpAgreement />
-            <Button icon="NONE" size="MEDIUM" width="100%">
-              회원가입
-            </Button>
+            <Button width="100%">회원가입</Button>
           </SignUpBox>
         </ContentBox>
       </StyledSignUp>

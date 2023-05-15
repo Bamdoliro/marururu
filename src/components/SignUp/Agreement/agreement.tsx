@@ -1,3 +1,4 @@
+import RightArrowIcon from "@/components/Common/Icon/RightArrow";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
@@ -12,11 +13,17 @@ const SignUpAgreement = () => {
       <hr />
       <Agreement>
         <input type="checkbox" />
-        개인정보 수집 이용동의<LinkText>[ 필수 ] {">"}</LinkText>
+        개인정보 수집 이용동의
+        <LinkText>
+          [ 필수 ] <RightArrowIcon />
+        </LinkText>
       </Agreement>
       <Agreement>
         <input type="checkbox" />
-        약관 전체동의<LinkText>[ 필수 ] {">"}</LinkText>
+        약관 전체동의
+        <LinkText>
+          [ 필수 ] <RightArrowIcon />
+        </LinkText>
       </Agreement>
     </StyledAgreement>
   );
@@ -39,8 +46,10 @@ const Agreement = styled.div`
   color: ${color.gray500};
 `;
 
-const LinkText = styled.p`
+const LinkText = styled.div`
   font-size: ${font.btn3};
   color: ${color.maruDefault};
+  display: flex;
+  align-items: center;
   cursor: pointer;
 `;
