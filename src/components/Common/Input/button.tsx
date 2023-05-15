@@ -9,6 +9,7 @@ const ButtonInput = ({
   desc,
   name,
   value,
+  placeholder,
   onChange,
   buttonText,
   buttonClick,
@@ -17,7 +18,13 @@ const ButtonInput = ({
     <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}
       <StyledButtonInput>
-        <Input width="100%" name={name} value={value} onChange={onChange} />
+        <Input
+          width="100%"
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
         <Button onClick={buttonClick}>{buttonText}</Button>
       </StyledButtonInput>
     </div>

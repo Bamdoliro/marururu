@@ -73,6 +73,9 @@ export const getButtonSize = {
     height: 54px;
   `,
   MEDIUM: css`
+    height: 48px;
+  `,
+  SMALL: css`
     height: 40px;
   `,
 };

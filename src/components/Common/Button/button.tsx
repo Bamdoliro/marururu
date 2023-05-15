@@ -8,9 +8,10 @@ import ShortcutsIcon from "../Icon/Shortcuts";
 
 interface PropsInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  option: ButtonOptionType;
-  icon: ButtonIconType;
-  size: ButtonSizeType;
+  option?: ButtonOptionType;
+  icon?: ButtonIconType;
+  size?: ButtonSizeType;
+  width: string;
 }
 
 const Button = ({
@@ -19,9 +20,16 @@ const Button = ({
   option = "PRIMARY",
   icon = "NONE",
   size = "MEDIUM",
+  width,
 }: PropsInterface) => {
   return (
-    <StyledButton onClick={onClick} option={option} icon={icon} size={size}>
+    <StyledButton
+      style={{ width }}
+      onClick={onClick}
+      option={option}
+      icon={icon}
+      size={size}
+    >
       {icon === "ADD_ICON" && <AddIcon />}
       {children}
       {icon === "SHORTCUTS_ICON" && <ShortcutsIcon />}
@@ -42,7 +50,6 @@ const StyledButton = styled.button<{
   justify-content: center;
   border-radius: 6px;
   cursor: pointer;
-  height: 54px;
 
   ${({ icon }) => icon && getButtonPadding[icon]};
   ${({ option }) => option && getButtonStyle[option]}

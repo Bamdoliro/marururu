@@ -8,4 +8,4 @@ export type ButtonOptionType =
 
 export type ButtonIconType = "NONE" | "ADD_ICON" | "SHORTCUTS_ICON";
 
-export type ButtonSizeType = "LARGE" | "MEDIUM";
+export type ButtonSizeType = "LARGE" | "MEDIUM" | "SMALL";

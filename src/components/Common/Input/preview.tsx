@@ -12,6 +12,7 @@ const PreviewInput = ({
   name,
   desc,
   value,
+  msg,
   onChange,
 }: InputPropsInterface) => {
   const [isPreview, setIsPreview] = useState(false);
@@ -35,6 +36,7 @@ const PreviewInput = ({
           <VisbilityOff cursor="pointer" onClick={togglePreview} />
         )}
       </StyledPreviewInput>
+      {msg && <Message>{msg}</Message>}
     </div>
   );
 };
@@ -73,4 +75,10 @@ const Desc = styled.p`
   ${font.context}
   color: ${color.gray700};
   padding-bottom: 8px;
+`;
+
+const Message = styled.p`
+  font-size: ${font.p3};
+  color: ${color.gray500};
+  margin-top: 4px;
 `;
