@@ -11,7 +11,7 @@ interface PropsInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   option?: ButtonOptionType;
   icon?: ButtonIconType;
   size?: ButtonSizeType;
-  width: string;
+  width?: string;
 }
 
 const Button = ({
@@ -44,7 +44,6 @@ const StyledButton = styled.button<{
   icon: ButtonIconType;
   size: ButtonSizeType;
 }>`
-  ${font.btn1}
   display: flex;
   align-items: center;
   justify-content: center;
