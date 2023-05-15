@@ -6,19 +6,17 @@ const SignUpAgreement = () => {
   return (
     <StyledAgreement>
       <Agreement>
-        <input type="checkbox" />
+        <input type="checkbox" name="all" />
         이용약관 전체동의
       </Agreement>
       <hr />
       <Agreement>
         <input type="checkbox" />
-        개인정보 수집 이용동의
-        <AgreementLinkText>[ 필수 ] {">"}</AgreementLinkText>
+        개인정보 수집 이용동의<LinkText>[ 필수 ] {">"}</LinkText>
       </Agreement>
       <Agreement>
         <input type="checkbox" />
-        약관 전체동의
-        <AgreementLinkText>[ 필수 ] {">"}</AgreementLinkText>
+        약관 전체동의<LinkText>[ 필수 ] {">"}</LinkText>
       </Agreement>
     </StyledAgreement>
   );
@@ -42,7 +40,7 @@ const Agreement = styled.div`
   color: ${color.gray500};
 `;
 
-const AgreementLinkText = styled.p`
+const LinkText = styled.p`
   font-size: ${font.btn3};
   color: ${color.maruDefault};
   cursor: pointer;

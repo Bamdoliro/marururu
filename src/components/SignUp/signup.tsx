@@ -8,6 +8,7 @@ import Button from "../Common/Button/button";
 import Input from "../Common/Input/input";
 import Image from "next/image";
 import SignUpAgreement from "./Agreement/agreement";
+import FlexColumn from "../Common/Flex/column";
 
 const SignUp = () => {
   return (
@@ -20,9 +21,9 @@ const SignUp = () => {
           height={290}
           style={{ margin: "0 auto" }}
         />
-        <SignUpBox>
-          <SignUpWrap>
-            <Col>
+        <ContentBox>
+          <SignUpBox>
+            <FlexColumn gap="24px">
               <Title>회원가입</Title>
               <ButtonInput
                 desc="이메일 인증"
@@ -39,14 +40,14 @@ const SignUp = () => {
                 msg="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
               />
               <PreviewInput desc="비밀번호 재확인" width="100%" />
-            </Col>
+            </FlexColumn>
             {/* 이용약관 동의 */}
             <SignUpAgreement />
             <Button icon="NONE" size="MEDIUM" width="100%">
               회원가입
             </Button>
-          </SignUpWrap>
-        </SignUpBox>
+          </SignUpBox>
+        </ContentBox>
       </StyledSignUp>
     </AppLayout>
   );
@@ -63,7 +64,7 @@ const StyledSignUp = styled.div`
   background-color: ${color.gray50};
 `;
 
-const SignUpBox = styled.div`
+const ContentBox = styled.div`
   display: flex;
   align-items: center;
   width: 708px;
@@ -72,18 +73,12 @@ const SignUpBox = styled.div`
   padding-left: 105px;
 `;
 
-const SignUpWrap = styled.div`
+const SignUpBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 36px;
   width: 446px;
   height: 693px;
-`;
-
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 `;
 
 const Title = styled.p`
