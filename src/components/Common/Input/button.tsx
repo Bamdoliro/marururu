@@ -10,6 +10,7 @@ const ButtonInput = ({
   name,
   value,
   placeholder,
+  type = "text",
   onChange,
   buttonText,
   buttonClick,
@@ -22,6 +23,7 @@ const ButtonInput = ({
           width="100%"
           name={name}
           value={value}
+          type={type}
           onChange={onChange}
           placeholder={placeholder}
         />
