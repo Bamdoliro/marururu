@@ -16,20 +16,19 @@ const Login = () => {
       <StyledLogin>
         <LoginBox>
           <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
-          <FlexColumn gap="48px">
-            <Input desc="아이디" width="100%" />
-            <PreviewInput desc="비밀번호" width="100%" />
-            <Button width="100%">로그인</Button>
-            <FlexRow gap="4px" justifyContent="space-between">
-              <KeepLogin>
-                <input type="checkbox" />
-                로그인 유지
-              </KeepLogin>
+          <FlexColumn gap="36px">
+            <FlexColumn gap="24px">
+              <Input desc="아이디" width="100%" />
+              <PreviewInput desc="비밀번호" width="100%" />
+            </FlexColumn>
+            <FlexColumn gap="16px" alignItems="flex-end">
+              <Button width="100%">로그인</Button>
               <FindPassword>
                 비밀번호 찾기 <RightArrowIcon color={color.gray500} />
               </FindPassword>
-            </FlexRow>
+            </FlexColumn>
           </FlexColumn>
+          <SignUp>회원이 아니신가요? 회원가입</SignUp>
         </LoginBox>
       </StyledLogin>
     </AppLayout>
@@ -52,11 +51,11 @@ const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 64px;
+  gap: 56px;
   width: 446px;
 `;
 
-const FindPassword = styled.div`
+const FindPassword = styled.a`
   ${font.p2}
   color: ${color.gray500};
   cursor: pointer;
@@ -68,10 +67,7 @@ const FindPassword = styled.div`
   }
 `;
 
-const KeepLogin = styled.div`
+const SignUp = styled.a`
   ${font.p2}
   color: ${color.gray500};
-  display: flex;
-  align-items: center;
-  gap: 4px;
 `;
