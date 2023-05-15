@@ -15,14 +15,14 @@ const SignUpAgreement = () => {
         <input type="checkbox" />
         개인정보 수집 이용동의
         <LinkText>
-          [ 필수 ] <RightArrowIcon />
+          [ 필수 ] <RightArrowIcon color={color.maruDefault} />
         </LinkText>
       </Agreement>
       <Agreement>
         <input type="checkbox" />
         약관 전체동의
         <LinkText>
-          [ 필수 ] <RightArrowIcon />
+          [ 필수 ] <RightArrowIcon color={color.maruDefault} />
         </LinkText>
       </Agreement>
     </StyledAgreement>
@@ -39,17 +39,15 @@ const StyledAgreement = styled.div`
 `;
 
 const Agreement = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
   font-size: ${font.btn3};
   color: ${color.gray500};
+  display: flex;
+  gap: 5px;
 `;
 
 const LinkText = styled.div`
   font-size: ${font.btn3};
   color: ${color.maruDefault};
   display: flex;
-  align-items: center;
   cursor: pointer;
 `;

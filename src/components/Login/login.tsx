@@ -26,7 +26,7 @@ const Login = () => {
                 로그인 유지
               </KeepLogin>
               <FindPassword>
-                비밀번호 찾기 <RightArrowIcon />
+                비밀번호 찾기 <RightArrowIcon color={color.gray500} />
               </FindPassword>
             </FlexRow>
           </FlexColumn>
