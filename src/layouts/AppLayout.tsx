@@ -4,15 +4,18 @@ import styled from "styled-components";
 
 interface PropsInterface {
   children: ReactNode;
+  backgroundColor: string;
 }
 
-const AppLayout = ({ children }: PropsInterface) => {
-  return <StyledAppLayout>{children}</StyledAppLayout>;
+const AppLayout = ({ children, backgroundColor }: PropsInterface) => {
+  return (
+    <StyledAppLayout style={{ backgroundColor }}>{children}</StyledAppLayout>
+  );
 };
 
 export default AppLayout;
 
-const StyledAppLayout = styled.div`
+const StyledAppLayout = styled.section`
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};

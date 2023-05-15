@@ -4,26 +4,32 @@ import styled from "styled-components";
 interface PropsInterface {
   children: ReactNode;
   gap: string;
-  justifyContent?: "none" | "center" | "flex-end" | "flex-start";
-  alignItems?: "none" | "center" | "flex-end" | "flex-start";
+  justifyContent?:
+    | "none"
+    | "center"
+    | "flex-end"
+    | "flex-start"
+    | "space-between";
+  alignItems?: "none" | "center" | "flex-end" | "flex-start" | "space-between";
 }
 
-const FlexColumn = ({
+const Column = ({
   children,
   gap,
   justifyContent = "none",
   alignItems = "none",
 }: PropsInterface) => {
   return (
-    <StyledFlexColumn style={{ gap, justifyContent, alignItems }}>
+    <StyledColumn style={{ gap, justifyContent, alignItems }}>
       {children}
-    </StyledFlexColumn>
+    </StyledColumn>
   );
 };
 
-export default FlexColumn;
+export default Column;
 
-const StyledFlexColumn = styled.div`
+const StyledColumn = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
