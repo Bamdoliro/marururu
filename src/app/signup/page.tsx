@@ -11,9 +11,11 @@ import Column from "@/components/common/Flex/Column";
 import AppLayout from "@/layouts/AppLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { joinUser } from "@/api/auth";
+import { useJoinUser } from "@/models/auth/useJoinUser";
 
 const SignUpPage = () => {
+  const { handleJoinUserData, joinUserMutate } = useJoinUser();
+
   return (
     <AppLayout>
       <StyledSignUp>
@@ -30,28 +32,41 @@ const SignUpPage = () => {
               <Title>회원가입</Title>
               <ButtonInput
                 desc="이메일 인증"
-                buttonText={"인증"}
+                buttonText="인증"
                 type="email"
                 buttonClick={() => console.log("인증버튼 클릭")}
                 placeholder="이메일"
                 width="100%"
+                name="email"
+                onChange={handleJoinUserData}
               />
               <Input
                 desc="인증코드"
                 width="100%"
                 maxLength={6}
                 msg="발송된 이메일의 인증번호를 입력해주세요."
+                name="code"
+                onChange={handleJoinUserData}
               />
               <PreviewInput
                 desc="비밀번호"
                 width="100%"
                 msg="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
+                name="password"
+                onChange={handleJoinUserData}
               />
-              <PreviewInput desc="비밀번호 재확인" width="100%" />
+              <PreviewInput
+                desc="비밀번호 재확인"
+                width="100%"
+                name="repassword"
+                onChange={handleJoinUserData}
+              />
             </Column>
             {/* 이용약관 동의 */}
             <Terms />
-            <Button width="100%">회원가입</Button>
+            <Button width="100%" onClick={() => joinUserMutate.mutate()}>
+              회원가입
+            </Button>
           </SignUpBox>
         </ContentBox>
       </StyledSignUp>
