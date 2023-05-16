@@ -2,12 +2,12 @@ import { color } from "@/styles/color";
 import { ReactNode } from "react";
 import styled from "styled-components";
 
-interface PropsInterface {
+interface PropsType {
   children: ReactNode;
   backgroundColor?: string;
 }
 
-const AppLayout = ({ children, backgroundColor }: PropsInterface) => {
+const AppLayout = ({ children, backgroundColor }: PropsType) => {
   return (
     <StyledAppLayout style={{ backgroundColor }}>{children}</StyledAppLayout>
   );

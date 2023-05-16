@@ -1,7 +1,7 @@
-import Input from "./input";
+import Input from "./Input";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { ButtonInputPropsInterface } from "./interface";
+import { ButtonInputPropsType } from "./type";
 import styled from "styled-components";
 
 const ButtonInput = ({
@@ -14,7 +14,7 @@ const ButtonInput = ({
   onChange,
   buttonText,
   buttonClick,
-}: ButtonInputPropsInterface) => {
+}: ButtonInputPropsType) => {
   return (
     <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}

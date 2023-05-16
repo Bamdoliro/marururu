@@ -1,4 +1,4 @@
-import RightArrowIcon from "@/components/Common/Icon/RightArrow";
+import RightArrowIcon from "@/components/common/Icon/RightArrow";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";

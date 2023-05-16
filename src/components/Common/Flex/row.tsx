@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 
-interface PropsInterface {
+interface PropsType {
   children: ReactNode;
   gap: string;
   justifyContent?:
@@ -18,7 +18,7 @@ const Row = ({
   gap,
   justifyContent = "none",
   alignItems = "none",
-}: PropsInterface) => {
+}: PropsType) => {
   return (
     <StyledRow style={{ gap, justifyContent, alignItems }}>
       {children}

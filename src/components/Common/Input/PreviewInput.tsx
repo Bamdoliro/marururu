@@ -1,11 +1,11 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { InputPropsInterface } from "./interface";
+import { InputPropsType } from "./type";
 import { useState } from "react";
 import styled from "styled-components";
 import VisbilityOn from "../Icon/VisibilityOn";
 import VisbilityOff from "../Icon/VisibilityOff";
-import Message from "./message";
+import Message from "./Message";
 
 const PreviewInput = ({
   width = "320px",
@@ -15,7 +15,7 @@ const PreviewInput = ({
   value,
   msg,
   onChange,
-}: InputPropsInterface) => {
+}: InputPropsType) => {
   const [isPreview, setIsPreview] = useState(false);
 
   const togglePreview = () => setIsPreview((prev) => !prev);

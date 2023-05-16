@@ -1,7 +1,7 @@
 import { color } from "@/styles/color";
 import styled from "styled-components";
 import SearchIcon from "../Icon/Search";
-import { InputPropsInterface } from "./interface";
+import { InputPropsType } from "./type";
 
 const SearchInput = ({
   width = "320px",
@@ -10,7 +10,7 @@ const SearchInput = ({
   name,
   value,
   onChange,
-}: InputPropsInterface) => {
+}: InputPropsType) => {
   return (
     <StyledSearchInput>
       <SearchIcon cursor="pointer" />

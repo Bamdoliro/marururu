@@ -1,6 +1,6 @@
-import { IconPropsInterface } from "./interface";
+import { IconPropsType } from "./type";
 
-const LogoIcon = ({ cursor, onClick }: IconPropsInterface) => {
+const LogoIcon = ({ cursor, onClick }: IconPropsType) => {
   return (
     <svg
       width="100"
