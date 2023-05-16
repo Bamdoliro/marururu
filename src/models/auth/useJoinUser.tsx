@@ -1,4 +1,9 @@
-import { joinUser, joinUserParamsType } from "@/api/auth";
+import {
+  joinUser,
+  joinUserParamsType,
+  requestEmail,
+  requestEmailParamsType,
+} from "@/api/auth";
 import { ChangeEvent, useState } from "react";
 import { useMutation } from "react-query";
 
@@ -25,15 +30,25 @@ export const useJoinUser = () => {
   const joinUserMutation = ({ email, code, password }: joinUserParamsType) => {
     return useMutation(() => joinUser({ email, code, password }), {
       onSuccess: () => {
-        console.log("heelo");
+        console.log("회원가입 성공");
+      },
+    });
+  };
+
+  const requestEmailMutation = ({ email }: requestEmailParamsType) => {
+    return useMutation(() => requestEmail({ email }), {
+      onSuccess: () => {
+        console.log("이메일 인증 성공");
       },
     });
   };
 
   const joinUserMutate = joinUserMutation(joinUserData);
+  const requestEmailMutate = requestEmailMutation(joinUserData);
 
   return {
     handleJoinUserData,
     joinUserMutate,
+    requestEmailMutate,
   };
 };

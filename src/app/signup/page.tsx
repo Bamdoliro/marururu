@@ -14,7 +14,8 @@ import { font } from "@/styles/font";
 import { useJoinUser } from "@/models/auth/useJoinUser";
 
 const SignUpPage = () => {
-  const { handleJoinUserData, joinUserMutate } = useJoinUser();
+  const { handleJoinUserData, joinUserMutate, requestEmailMutate } =
+    useJoinUser();
 
   return (
     <AppLayout>
@@ -34,7 +35,7 @@ const SignUpPage = () => {
                 desc="이메일 인증"
                 buttonText="인증"
                 type="email"
-                buttonClick={() => console.log("인증버튼 클릭")}
+                buttonClick={() => requestEmailMutate.mutate()}
                 placeholder="이메일"
                 width="100%"
                 name="email"
