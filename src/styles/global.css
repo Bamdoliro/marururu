@@ -18,6 +18,10 @@
     text-decoration: none;
     color: inherit;
   }
+
+  label {
+    cursor: pointer;
+  }
   
   input, textarea { 
     -moz-user-select: auto;

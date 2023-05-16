@@ -7,20 +7,20 @@ const Terms = () => {
   return (
     <StyledTerms>
       <Agreement>
-        <input type="checkbox" name="all" />
-        이용약관 전체동의
+        <input type="checkbox" id="all-check" />
+        <label htmlFor="all-check">이용약관 전체동의</label>
       </Agreement>
       <hr />
       <Agreement>
-        <input type="checkbox" />
-        개인정보 수집 이용동의
+        <input type="checkbox" id="agreement1" />
+        <label htmlFor="agreement1">개인정보 수집 이용동의</label>
         <AgreementLink>
           [ 필수 ] <RightArrowIcon color={color.maruDefault} />
         </AgreementLink>
       </Agreement>
       <Agreement>
-        <input type="checkbox" />
-        약관 전체동의
+        <input type="checkbox" id="agreement2" />
+        <label htmlFor="agreement2">약관 전체동의</label>
         <AgreementLink>
           [ 필수 ] <RightArrowIcon color={color.maruDefault} />
         </AgreementLink>
