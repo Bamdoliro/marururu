@@ -4,7 +4,12 @@ import { InputPropsType } from "./type";
 import styled from "styled-components";
 import Message from "./Message";
 import { formatTime, timer } from "@/utils/timer";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+
+interface TimeInputPropsType extends InputPropsType {
+  time: number;
+  setTime: Dispatch<SetStateAction<number>>;
+}
 
 const TimerInput = ({
   width = "320px",
@@ -16,12 +21,10 @@ const TimerInput = ({
   msg,
   onChange,
   maxLength,
-}: InputPropsType) => {
-  const [time, setTime] = useState(300);
-
-  useEffect(() => {
-    timer(setTime);
-  }, []);
+  time,
+  setTime,
+}: TimeInputPropsType) => {
+  timer({ time, setTime });
 
   return (
     <div style={{ width }}>

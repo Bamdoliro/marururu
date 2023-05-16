@@ -5,7 +5,7 @@ import { InputPropsType } from "./type";
 import Message from "./Message";
 
 const Input = ({
-  width,
+  width = "320px",
   desc,
   placeholder,
   type = "text",

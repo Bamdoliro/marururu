@@ -1,11 +1,23 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
-export const timer = (setTime: Dispatch<SetStateAction<number>>) => {
-  const interval = setInterval(() => {
-    setTime((prev) => prev - 1);
-  }, 1000);
+interface PropsType {
+  time: number;
+  setTime: Dispatch<SetStateAction<number>>;
+}
 
-  return () => clearInterval(interval);
+export const timer = ({ time, setTime }: PropsType) => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prev) => prev - 1);
+    }, 1000);
+
+    if (time === 0) {
+      setTime(0);
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [time, setTime]);
 };
 
 export const formatTime = (time: number) => {

@@ -5,8 +5,3 @@ export interface InputPropsType extends InputHTMLAttributes<HTMLInputElement> {
   desc?: string;
   msg?: string;
 }
-
-export interface ButtonInputPropsType extends InputPropsType {
-  buttonText: string;
-  buttonClick: () => void;
-}

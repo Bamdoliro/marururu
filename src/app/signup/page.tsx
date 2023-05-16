@@ -4,7 +4,6 @@ import styled from "styled-components";
 import ButtonInput from "@/components/common/Input/ButtonInput";
 import PreviewInput from "@/components/common/Input/PreviewInput";
 import Button from "@/components/common/Button/Button";
-import Input from "@/components/common/Input/Input";
 import Image from "next/image";
 import Terms from "@/components/signup/Terms";
 import Column from "@/components/common/Flex/Column";
@@ -15,8 +14,14 @@ import { useJoinUser } from "@/models/auth/useJoinUser";
 import TimerInput from "@/components/common/Input/TimerInput";
 
 const SignUpPage = () => {
-  const { handleJoinUserData, joinUserMutate, requestEmailMutate } =
-    useJoinUser();
+  const {
+    handleJoinUserData,
+    requestEmailMutate,
+    requestEmailEnabled,
+    clickSignUp,
+    time,
+    setTime,
+  } = useJoinUser();
 
   return (
     <AppLayout>
@@ -29,27 +34,35 @@ const SignUpPage = () => {
           alt="colabo-logo"
         />
         <ContentBox>
-          <SignUpBox>
+          <SignUpBox enabled={requestEmailEnabled}>
             <Column gap="24px">
               <Title>회원가입</Title>
               <ButtonInput
                 desc="이메일 인증"
                 buttonText="인증"
                 type="email"
-                buttonClick={() => requestEmailMutate.mutate()}
+                buttonClick={() => {
+                  requestEmailMutate.mutate();
+                  setTime(300);
+                }}
                 placeholder="이메일"
                 width="100%"
                 name="email"
                 onChange={handleJoinUserData}
+                enabled={requestEmailEnabled}
               />
-              <TimerInput
-                desc="인증코드"
-                width="100%"
-                maxLength={6}
-                msg="발송된 이메일의 인증번호를 입력해주세요."
-                name="code"
-                onChange={handleJoinUserData}
-              />
+              {requestEmailEnabled && (
+                <TimerInput
+                  desc="인증코드"
+                  width="100%"
+                  maxLength={6}
+                  msg="발송된 이메일의 인증번호를 입력해주세요."
+                  name="code"
+                  onChange={handleJoinUserData}
+                  time={time}
+                  setTime={setTime}
+                />
+              )}
               <PreviewInput
                 desc="비밀번호"
                 width="100%"
@@ -66,7 +79,7 @@ const SignUpPage = () => {
             </Column>
             {/* 이용약관 동의 */}
             <Terms />
-            <Button width="100%" onClick={() => joinUserMutate.mutate()}>
+            <Button width="100%" onClick={clickSignUp}>
               회원가입
             </Button>
           </SignUpBox>
@@ -93,15 +106,15 @@ const ContentBox = styled.div`
   height: 100%;
   background-color: ${color.white};
   padding-left: 105px;
-  overflow: scroll;
+  overflow: auto;
 `;
 
-const SignUpBox = styled.div`
+const SignUpBox = styled.div<{ enabled: Boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 446px;
-  height: 721px;
+  height: ${(props) => (props.enabled ? "721px" : "592px")};
   margin: 120px 0px;
 `;
 

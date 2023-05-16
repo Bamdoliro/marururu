@@ -1,8 +1,14 @@
 import Input from "./Input";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { ButtonInputPropsType } from "./type";
+import { InputPropsType } from "./type";
 import styled from "styled-components";
+
+interface ButtonInputPropsType extends InputPropsType {
+  buttonText: string;
+  buttonClick: () => void;
+  enabled?: boolean;
+}
 
 const ButtonInput = ({
   width,
@@ -14,6 +20,7 @@ const ButtonInput = ({
   onChange,
   buttonText,
   buttonClick,
+  enabled = false,
 }: ButtonInputPropsType) => {
   return (
     <div style={{ width }}>
@@ -27,7 +34,9 @@ const ButtonInput = ({
           onChange={onChange}
           placeholder={placeholder}
         />
-        <Button onClick={buttonClick}>{buttonText}</Button>
+        <Button onClick={buttonClick} enabled={enabled}>
+          {buttonText}
+        </Button>
       </StyledButtonInput>
     </div>
   );
@@ -42,10 +51,11 @@ export const StyledButtonInput = styled.div`
   width: 100%;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{ enabled: Boolean }>`
   ${font.btn2};
   color: ${color.white};
-  background-color: ${color.maruDefault};
+  background-color: ${(props) =>
+    props.enabled ? color.gray400 : color.maruDefault};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +65,9 @@ export const Button = styled.button`
   padding: 10px 16px;
 
   &:hover {
-    background-color: ${color.maruHoverd};
+    background-color: ${(props) =>
+      props.enabled ? color.gray400 : color.maruHoverd};
+    cursor: ${(props) => (props.enabled ? "default" : "pointer")};
   }
 `;
 
