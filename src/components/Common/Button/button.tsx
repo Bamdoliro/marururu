@@ -1,12 +1,11 @@
 import { ButtonHTMLAttributes, ReactNode } from "react";
-import { ButtonIconType, ButtonOptionType, ButtonSizeType } from "./interface";
-import { font } from "@/styles/font";
-import { getButtonSize, getButtonStyle, getButtonPadding } from "./index";
+import { ButtonIconType, ButtonOptionType, ButtonSizeType } from "./type";
+import { getButtonSize, getButtonStyle, getButtonPadding } from "./style";
 import { styled } from "styled-components";
 import AddIcon from "../Icon/Add";
 import ShortcutsIcon from "../Icon/Shortcuts";
 
-interface PropsInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   option?: ButtonOptionType;
   icon?: ButtonIconType;
@@ -21,7 +20,7 @@ const Button = ({
   icon = "NONE",
   size = "MEDIUM",
   width,
-}: PropsInterface) => {
+}: PropsType) => {
   return (
     <StyledButton
       style={{ width }}

@@ -47,10 +47,11 @@ export const getButtonStyle = {
     border-radius: 0;
     padding: 0;
     color: ${color.gray500};
-    border-bottom: 1px solid ${color.gray500};
+    text-decoration-line: underline;
+    text-decoration-color: ${color.gray500};
     &:hover {
       color: ${color.maruDefault};
-      border-bottom: 1px solid ${color.maruDefault};
+      text-decoration-color: ${color.maruDefault};
     }
   `,
 };

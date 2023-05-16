@@ -1,6 +1,6 @@
-import { IconPropsInterface } from "./interface";
+import { IconPropsType } from "./type";
 
-const RightArrowIcon = ({ color }: IconPropsInterface) => {
+const RightArrowIcon = ({ color }: IconPropsType) => {
   return (
     <svg
       width="16"

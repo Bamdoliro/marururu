@@ -1,50 +1,53 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { InputPropsInterface } from "./interface";
-import { useState } from "react";
+import { InputPropsType } from "./type";
 import styled from "styled-components";
-import VisbilityOn from "../Icon/VisibilityOn";
-import VisbilityOff from "../Icon/VisibilityOff";
-import Message from "./message";
+import Message from "./Message";
+import { formatTime, timer } from "@/utils/timer";
+import { Dispatch, SetStateAction, useState } from "react";
 
-const PreviewInput = ({
+interface TimeInputPropsType extends InputPropsType {
+  time: number;
+  setTime: Dispatch<SetStateAction<number>>;
+}
+
+const TimerInput = ({
   width = "320px",
   placeholder,
   name,
   desc,
   value,
+  type = "text",
   msg,
   onChange,
-}: InputPropsInterface) => {
-  const [isPreview, setIsPreview] = useState(false);
-
-  const togglePreview = () => setIsPreview((prev) => !prev);
+  maxLength,
+  time,
+  setTime,
+}: TimeInputPropsType) => {
+  timer({ time, setTime });
 
   return (
     <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}
-      <StyledPreviewInput>
+      <StyledTimernput>
         <Input
           onChange={onChange}
           placeholder={placeholder}
-          type={isPreview ? "text" : "password"}
+          type={type}
           name={name}
           value={value}
+          maxLength={maxLength}
         />
-        {isPreview ? (
-          <VisbilityOn cursor="pointer" onClick={togglePreview} />
-        ) : (
-          <VisbilityOff cursor="pointer" onClick={togglePreview} />
-        )}
-      </StyledPreviewInput>
+        <Timer>{formatTime(time)}</Timer>
+      </StyledTimernput>
       {msg && <Message>{msg}</Message>}
     </div>
   );
 };
 
-export default PreviewInput;
+export default TimerInput;
 
-const StyledPreviewInput = styled.div`
+const StyledTimernput = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,4 +79,9 @@ const Desc = styled.p`
   ${font.context}
   color: ${color.gray700};
   padding-bottom: 8px;
+`;
+
+const Timer = styled.p`
+  ${font.p3}
+  color: ${color.red};
 `;

@@ -1,4 +1,4 @@
-export interface IconPropsInterface {
+export interface IconPropsType {
   onClick?: () => void;
   color?: string;
   cursor?: "pointer" | "none";

@@ -1,6 +1,6 @@
-import { IconPropsInterface } from "./interface";
+import { IconPropsType } from "./type";
 
-const VisbilityOn = ({ cursor, onClick }: IconPropsInterface) => {
+const VisbilityOn = ({ cursor, onClick }: IconPropsType) => {
   return (
     <svg
       width="24"

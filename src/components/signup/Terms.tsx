@@ -1,37 +1,37 @@
-import RightArrowIcon from "@/components/Common/Icon/RightArrow";
+import RightArrowIcon from "@/components/common/Icon/RightArrow";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
 
-const SignUpAgreement = () => {
+const Terms = () => {
   return (
-    <StyledAgreement>
+    <StyledTerms>
       <Agreement>
-        <input type="checkbox" name="all" />
-        이용약관 전체동의
+        <input type="checkbox" id="all-check" />
+        <label htmlFor="all-check">이용약관 전체동의</label>
       </Agreement>
       <hr />
       <Agreement>
-        <input type="checkbox" />
-        개인정보 수집 이용동의
-        <LinkText>
+        <input type="checkbox" id="agreement1" />
+        <label htmlFor="agreement1">개인정보 수집 이용동의</label>
+        <AgreementLink>
           [ 필수 ] <RightArrowIcon color={color.maruDefault} />
-        </LinkText>
+        </AgreementLink>
       </Agreement>
       <Agreement>
-        <input type="checkbox" />
-        약관 전체동의
-        <LinkText>
+        <input type="checkbox" id="agreement2" />
+        <label htmlFor="agreement2">약관 전체동의</label>
+        <AgreementLink>
           [ 필수 ] <RightArrowIcon color={color.maruDefault} />
-        </LinkText>
+        </AgreementLink>
       </Agreement>
-    </StyledAgreement>
+    </StyledTerms>
   );
 };
 
-export default SignUpAgreement;
+export default Terms;
 
-const StyledAgreement = styled.div`
+const StyledTerms = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -45,7 +45,7 @@ const Agreement = styled.div`
   gap: 5px;
 `;
 
-const LinkText = styled.div`
+const AgreementLink = styled.div`
   font-size: ${font.btn3};
   color: ${color.maruDefault};
   display: flex;

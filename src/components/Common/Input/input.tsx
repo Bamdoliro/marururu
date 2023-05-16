@@ -1,20 +1,19 @@
 import styled from "styled-components";
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
-import { InputPropsInterface } from "./interface";
-import Message from "./message";
+import { InputPropsType } from "./type";
+import Message from "./Message";
 
 const Input = ({
-  width,
+  width = "320px",
   desc,
   placeholder,
   type = "text",
   name,
   value,
   onChange,
-  maxLength,
   msg,
-}: InputPropsInterface) => {
+}: InputPropsType) => {
   return (
     <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}
@@ -24,7 +23,6 @@ const Input = ({
         type={type}
         name={name}
         value={value}
-        maxLength={maxLength}
       />
       {msg && <Message>{msg}</Message>}
     </div>

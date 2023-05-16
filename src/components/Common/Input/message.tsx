@@ -1,13 +1,13 @@
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
 import styled from "styled-components";
-import { Children, ReactNode } from "react";
+import { ReactNode } from "react";
 
-interface PropsInterface {
+interface PropsType {
   children: ReactNode;
 }
 
-const Message = ({ children }: PropsInterface) => {
+const Message = ({ children }: PropsType) => {
   return <StyledMessage>{children}</StyledMessage>;
 };
 
