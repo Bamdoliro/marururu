@@ -4,9 +4,9 @@ import { InputPropsType } from "./type";
 import styled from "styled-components";
 import Message from "./Message";
 import { formatTime, timer } from "@/utils/timer";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-interface TimeInputPropsType extends InputPropsType {
+interface TimerInputPropsType extends InputPropsType {
   time: number;
   setTime: Dispatch<SetStateAction<number>>;
 }
@@ -23,13 +23,13 @@ const TimerInput = ({
   maxLength,
   time,
   setTime,
-}: TimeInputPropsType) => {
+}: TimerInputPropsType) => {
   timer({ time, setTime });
 
   return (
     <div style={{ width }}>
       {desc && <Desc>{desc}</Desc>}
-      <StyledTimernput>
+      <StyledTimerInput>
         <Input
           onChange={onChange}
           placeholder={placeholder}
@@ -39,7 +39,7 @@ const TimerInput = ({
           maxLength={maxLength}
         />
         <Timer>{formatTime(time)}</Timer>
-      </StyledTimernput>
+      </StyledTimerInput>
       {msg && <Message>{msg}</Message>}
     </div>
   );
@@ -47,7 +47,7 @@ const TimerInput = ({
 
 export default TimerInput;
 
-const StyledTimernput = styled.div`
+const StyledTimerInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
