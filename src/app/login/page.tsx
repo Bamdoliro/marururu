@@ -1,15 +1,20 @@
-import AppLayout from "@/layouts/AppLayout";
-import { color } from "@/styles/color";
-import { font } from "@/styles/font";
-import Image from "next/image";
+"use client";
+
 import styled from "styled-components";
+import Image from "next/image";
 import Button from "@/components/common/Button/Button";
 import Column from "@/components/common/Flex/Column";
 import RightArrowIcon from "@/components/common/Icon/RightArrow";
 import Input from "@/components/common/Input/Input";
 import PreviewInput from "@/components/common/Input/PreviewInput";
+import AppLayout from "@/layouts/AppLayout";
+import { useRouter } from "next/navigation";
+import { color } from "@/styles/color";
+import { font } from "@/styles/font";
 
 const LoginPage = () => {
+  const router = useRouter();
+
   return (
     <AppLayout backgroundColor={color.gray100}>
       <StyledLogin>
@@ -28,7 +33,10 @@ const LoginPage = () => {
             </Column>
           </Column>
           <SignUp>
-            회원이 아니신가요? <SignUpLink>회원가입</SignUpLink>
+            회원이 아니신가요?{" "}
+            <SignUpLink onClick={() => router.push("signup")}>
+              회원가입
+            </SignUpLink>
           </SignUp>
         </LoginBox>
       </StyledLogin>

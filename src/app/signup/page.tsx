@@ -1,6 +1,5 @@
-import AppLayout from "@/layouts/AppLayout";
-import { color } from "@/styles/color";
-import { font } from "@/styles/font";
+"use client";
+
 import styled from "styled-components";
 import ButtonInput from "@/components/common/Input/ButtonInput";
 import PreviewInput from "@/components/common/Input/PreviewInput";
@@ -9,6 +8,10 @@ import Input from "@/components/common/Input/Input";
 import Image from "next/image";
 import Terms from "@/components/signup/Terms";
 import Column from "@/components/common/Flex/Column";
+import AppLayout from "@/layouts/AppLayout";
+import { color } from "@/styles/color";
+import { font } from "@/styles/font";
+import { joinUser } from "@/api/auth";
 
 const SignUpPage = () => {
   return (
