@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import "@/styles/global.css";
+import Provider from "@/utils/provider";
 
 export const metadata = {
   title: "마루",
@@ -13,7 +14,9 @@ interface PropsType {
 const RootLayout = ({ children }: PropsType) => {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 };

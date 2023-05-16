@@ -1,6 +1,6 @@
 import { maru } from "./index";
 
-interface joinUserPropsType {
+export interface joinUserParamsType {
   email: string;
   code: string;
   password: string;
@@ -10,7 +10,7 @@ export const joinUser = async ({
   email,
   code,
   password,
-}: joinUserPropsType) => {
+}: joinUserParamsType) => {
   const { data } = await maru.post("/user", { email, code, password });
   return data;
 };
