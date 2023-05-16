@@ -4,6 +4,7 @@ import {
   requestEmail,
   requestEmailParamsType,
 } from "@/api/auth";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { useMutation } from "react-query";
 
@@ -15,6 +16,8 @@ export interface joinUserDataType {
 }
 
 export const useJoinUser = () => {
+  const router = useRouter();
+
   const [joinUserData, setJoinUserData] = useState<joinUserDataType>({
     email: "",
     code: "",
@@ -30,7 +33,8 @@ export const useJoinUser = () => {
   const joinUserMutation = ({ email, code, password }: joinUserParamsType) => {
     return useMutation(() => joinUser({ email, code, password }), {
       onSuccess: () => {
-        console.log("회원가입 성공");
+        alert("회원가입 성공");
+        router.push("/");
       },
     });
   };
@@ -38,7 +42,7 @@ export const useJoinUser = () => {
   const requestEmailMutation = ({ email }: requestEmailParamsType) => {
     return useMutation(() => requestEmail({ email }), {
       onSuccess: () => {
-        console.log("이메일 인증 성공");
+        alert("이메일 인증 성공");
       },
     });
   };

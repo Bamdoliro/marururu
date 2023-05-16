@@ -12,6 +12,7 @@ import AppLayout from "@/layouts/AppLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { useJoinUser } from "@/models/auth/useJoinUser";
+import TimerInput from "@/components/common/Input/TimerInput";
 
 const SignUpPage = () => {
   const { handleJoinUserData, joinUserMutate, requestEmailMutate } =
@@ -41,7 +42,7 @@ const SignUpPage = () => {
                 name="email"
                 onChange={handleJoinUserData}
               />
-              <Input
+              <TimerInput
                 desc="인증코드"
                 width="100%"
                 maxLength={6}

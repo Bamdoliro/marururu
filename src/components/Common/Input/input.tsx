@@ -12,7 +12,6 @@ const Input = ({
   name,
   value,
   onChange,
-  maxLength,
   msg,
 }: InputPropsType) => {
   return (
@@ -24,7 +23,6 @@ const Input = ({
         type={type}
         name={name}
         value={value}
-        maxLength={maxLength}
       />
       {msg && <Message>{msg}</Message>}
     </div>
