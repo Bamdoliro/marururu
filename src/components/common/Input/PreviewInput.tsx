@@ -5,7 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import VisbilityOn from "../Icon/VisibilityOn";
 import VisbilityOff from "../Icon/VisibilityOff";
-import Message from "./Message";
+import Message from "./message";
 
 const PreviewInput = ({
   width = "320px",

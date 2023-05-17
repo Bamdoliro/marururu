@@ -1,4 +1,4 @@
-import Input from "./Input";
+import Input from "./input";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { InputPropsType } from "./type";

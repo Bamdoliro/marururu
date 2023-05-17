@@ -3,10 +3,10 @@
 import styled from "styled-components";
 import ButtonInput from "@/components/common/Input/ButtonInput";
 import PreviewInput from "@/components/common/Input/PreviewInput";
-import Button from "@/components/common/Button/Button";
+import Button from "@/components/common/Button/button";
 import Image from "next/image";
 import Terms from "@/components/signup/Terms";
-import Column from "@/components/common/Flex/Column";
+import Column from "@/components/common/Flex/column";
 import AppLayout from "@/layouts/AppLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";

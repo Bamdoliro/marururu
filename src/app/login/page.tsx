@@ -2,10 +2,10 @@
 
 import styled from "styled-components";
 import Image from "next/image";
-import Button from "@/components/common/Button/Button";
-import Column from "@/components/common/Flex/Column";
+import Button from "@/components/common/Button/button";
+import Column from "@/components/common/Flex/column";
 import RightArrowIcon from "@/components/common/Icon/RightArrow";
-import Input from "@/components/common/Input/Input";
+import Input from "@/components/common/Input/input";
 import PreviewInput from "@/components/common/Input/PreviewInput";
 import AppLayout from "@/layouts/AppLayout";
 import { color } from "@/styles/color";
