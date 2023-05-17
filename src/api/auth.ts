@@ -1,5 +1,17 @@
 import { maru } from "./index";
 
+// 로그인
+
+export interface loginUserParamsType {
+  email: string;
+  password: string;
+}
+
+export const loginUser = async ({ email, password }: loginUserParamsType) => {
+  const { data } = await maru.post("/auth", { email, password });
+  return data;
+};
+
 // 회원가입
 
 export interface joinUserParamsType {

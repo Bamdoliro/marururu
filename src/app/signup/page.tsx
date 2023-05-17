@@ -10,18 +10,23 @@ import Column from "@/components/common/Flex/Column";
 import AppLayout from "@/layouts/AppLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { useJoinUser } from "@/models/auth/useJoinUser";
+import { useJoin } from "@/models/auth/useJoin";
 import TimerInput from "@/components/common/Input/TimerInput";
+import { useState } from "react";
 
 const SignUpPage = () => {
   const {
     handleJoinUserData,
     requestEmailMutate,
-    requestEmailEnabled,
     clickSignUp,
-    time,
-    setTime,
-  } = useJoinUser();
+    setCheckTermsAgree,
+  } = useJoin();
+  const [time, setTime] = useState(0);
+  /**
+   * true면 인증 요청을 보낸 상태
+   * false면 인증 요청을 아직 보내지 않은 상태
+   */
+  const requestEmailEnabled = time !== 0;
 
   return (
     <AppLayout>
@@ -78,7 +83,7 @@ const SignUpPage = () => {
               />
             </Column>
             {/* 이용약관 동의 */}
-            <Terms />
+            <Terms setCheckTermsAgree={setCheckTermsAgree} />
             <Button width="100%" onClick={clickSignUp}>
               회원가입
             </Button>
