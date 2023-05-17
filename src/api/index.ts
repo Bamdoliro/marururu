@@ -1,4 +1,6 @@
+import { ACCESS_KEY, REQUEST_KEY } from "@/constants/token";
 import axios from "axios";
+import { Storage } from "./storage";
 import { tokenExpired } from "./tokenExpired";
 
 const maru = axios.create({
@@ -11,6 +13,7 @@ const maru = axios.create({
 
 maru.interceptors.request.use(
   (config) => {
+    config.headers[REQUEST_KEY] = `Bearer ${Storage.getItem(ACCESS_KEY)}`;
     return config;
   },
   (error) => {
