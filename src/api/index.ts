@@ -1,4 +1,5 @@
 import axios from "axios";
+import { tokenExpired } from "./tokenExpired";
 
 const maru = axios.create({
   baseURL: "http://localhost:8088/",
@@ -21,7 +22,15 @@ maru.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
+  async (error) => {
+    const { status, code, message } = error.response.data;
+    console.log(status, code, message);
+
+    if (message) {
+      if (status === 401 && code === "EXPIRED_TOKEN") {
+        tokenExpired();
+      }
+    }
     return Promise.reject(error);
   }
 );
