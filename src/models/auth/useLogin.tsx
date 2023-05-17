@@ -1,4 +1,5 @@
 import { loginUser, loginUserParamsType } from "@/api/auth";
+import { Storage } from "@/api/storage";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 import { useMutation } from "react-query";
@@ -23,9 +24,15 @@ export const useLogin = () => {
   const loginUserMutation = ({ email, password }: loginUserParamsType) => {
     return useMutation(() => loginUser({ email, password }), {
       onSuccess: (res) => {
-        console.log(res);
-        console.log("로그인 성공 !");
+        const { accessToken, refreshToken } = res.data;
+        Storage.setItem("access-token", accessToken);
+        Storage.setItem("refresh-token", refreshToken);
+
+        alert("로그인 성공 !");
         router.push("/");
+      },
+      onError: () => {
+        alert("로그인 실패");
       },
     });
   };
