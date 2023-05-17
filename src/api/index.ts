@@ -13,7 +13,6 @@ const maru = axios.create({
 
 maru.interceptors.request.use(
   (config) => {
-    config.headers[REQUEST_KEY] = `Bearer ${Storage.getItem(ACCESS_KEY)}`;
     return config;
   },
   (error) => {
