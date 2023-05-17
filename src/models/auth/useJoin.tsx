@@ -5,18 +5,17 @@ import {
   requestEmailParamsType,
 } from "@/api/auth";
 import { useRouter } from "next/navigation";
-import { join } from "path";
 import { ChangeEvent, useState } from "react";
 import { useMutation } from "react-query";
 
-export interface joinUserDataType {
+interface joinUserDataType {
   email: string;
   code: string;
   password: string;
   repassword: string;
 }
 
-export const useJoinUser = () => {
+export const useJoin = () => {
   const router = useRouter();
   const [joinUserData, setJoinUserData] = useState<joinUserDataType>({
     email: "",

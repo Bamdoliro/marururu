@@ -10,7 +10,7 @@ import Column from "@/components/common/Flex/Column";
 import AppLayout from "@/layouts/AppLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { useJoinUser } from "@/models/auth/useJoinUser";
+import { useJoin } from "@/models/auth/useJoin";
 import TimerInput from "@/components/common/Input/TimerInput";
 import { useState } from "react";
 
@@ -20,7 +20,7 @@ const SignUpPage = () => {
     requestEmailMutate,
     clickSignUp,
     setCheckTermsAgree,
-  } = useJoinUser();
+  } = useJoin();
   const [time, setTime] = useState(0);
   /**
    * true면 인증 요청을 보낸 상태
