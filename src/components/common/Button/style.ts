@@ -27,10 +27,9 @@ export const getButtonStyle = {
   `,
   QUATERNARY: css`
     background-color: ${color.white};
-    color: ${color.gray600};
+    color: ${color.gray900};
     border: none;
     &:hover {
-      color: ${color.gray900};
       background-color: ${color.gray200};
     }
   `,
