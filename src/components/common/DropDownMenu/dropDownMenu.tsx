@@ -20,6 +20,11 @@ const DropDownMenu = ({ label, dropdownMenuDatas, width = "320px" }: PropsType) 
   const [isOpenDropdownMenu, setIsOpenDropdownMenu] = useState(false);
   const [dropdownMenuText, setDropdownMenuText] =
     useState("옵션을 선택해 주세요");
+  
+  const clickedMenu = (item: DropdownItemType) => {
+    setDropdownMenuText(item.dropdownItemText);
+    setIsOpenDropdownMenu(false);
+  }
 
   const clickedToggle = () => {
     setIsOpenDropdownMenu((prev) => !prev);
@@ -35,7 +40,7 @@ const DropDownMenu = ({ label, dropdownMenuDatas, width = "320px" }: PropsType) 
         {dropdownMenuDatas?.map((item, index) => (
           <DropdownMenuItem
             key={`dropdown ${index}`}
-            onClick={() => setDropdownMenuText(item.dropdownItemText)}
+            onClick={() => clickedMenu(item)}
           >
             {item.dropdownItemText}
           </DropdownMenuItem>
@@ -82,7 +87,8 @@ const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
         `};
 `;
 
-const DropdownMenuText = styled(font.p2)`
+const DropdownMenuText = styled.p`
+  ${font.p2}
   color: ${color.gray500};
 `;
 
