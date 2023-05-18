@@ -7,7 +7,7 @@ import Column from "@/components/common/Flex/column";
 import RightArrowIcon from "@/components/common/Icon/RightArrow";
 import Input from "@/components/common/Input/input";
 import PreviewInput from "@/components/common/Input/PreviewInput";
-import AppLayout from "@/layouts/AppLayout";
+import BaseLayout from "@/layouts/BaseLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { useLogin } from "@/models/auth/useLogin";
@@ -18,7 +18,7 @@ const LoginPage = () => {
   const { handleLoginUserData, clickLogin } = useLogin();
 
   return (
-    <AppLayout backgroundColor={color.gray100}>
+    <BaseLayout backgroundColor={color.gray100}>
       <StyledLogin>
         <LoginBox>
           <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
@@ -54,7 +54,7 @@ const LoginPage = () => {
           </SignUp>
         </LoginBox>
       </StyledLogin>
-    </AppLayout>
+    </BaseLayout>
   );
 };
 

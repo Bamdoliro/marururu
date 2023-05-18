@@ -1,4 +1,3 @@
-import Header from "@/components/common/Header/header";
 import { color } from "@/styles/color";
 import { ReactNode } from "react";
 import styled from "styled-components";
@@ -8,18 +7,15 @@ interface PropsType {
   backgroundColor?: string;
 }
 
-const AppLayout = ({ children, backgroundColor }: PropsType) => {
+const BaseLayout = ({ children, backgroundColor }: PropsType) => {
   return (
-    <StyledAppLayout style={{ backgroundColor }}>
-      <Header />
-      {children}
-    </StyledAppLayout>
+    <StyledBaseLayout style={{ backgroundColor }}>{children}</StyledBaseLayout>
   );
 };
 
-export default AppLayout;
+export default BaseLayout;
 
-const StyledAppLayout = styled.section`
+const StyledBaseLayout = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
