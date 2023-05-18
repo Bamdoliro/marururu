@@ -4,24 +4,41 @@ import styled from "styled-components";
 import Button from "../Button/button";
 import Row from "../Flex/row";
 import LogoIcon from "../Icon/Logo";
+import NavigationBar from "./navigation";
 
 const Header = () => {
   const router = useRouter();
 
   return (
-    <StyledHeader>
-      <HeaderWrap>
-        <LogoIcon cursor="pointer" onClick={() => router.push("/")} />
-        <Row gap="10px" alignItems="center">
-          <Button option="QUATERNARY" size="SMALL">
-            로그인
-          </Button>
-          <Button option="PRIMARY" size="SMALL">
-            회원가입
-          </Button>
-        </Row>
-      </HeaderWrap>
-    </StyledHeader>
+    <>
+      <StyledHeader>
+        <HeaderWrap>
+          <LogoIcon cursor="pointer" onClick={() => router.push("/")} />
+          <Row gap="10px" alignItems="center">
+            <Button option="QUATERNARY" size="SMALL">
+              로그인
+            </Button>
+            <Button option="PRIMARY" size="SMALL">
+              회원가입
+            </Button>
+          </Row>
+        </HeaderWrap>
+      </StyledHeader>
+      <NavigationBar>
+        <Button option="QUATERNARY" size="SMALL">
+          홈
+        </Button>
+        <Button option="QUATERNARY" size="SMALL">
+          원서접수
+        </Button>
+        <Button option="QUATERNARY" size="SMALL">
+          공지사항
+        </Button>
+        <Button option="QUATERNARY" size="SMALL">
+          도움말
+        </Button>
+      </NavigationBar>
+    </>
   );
 };
 
