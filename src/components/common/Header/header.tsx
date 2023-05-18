@@ -5,23 +5,31 @@ import Button from "../Button/button";
 import Row from "../Flex/row";
 import LogoIcon from "../Icon/Logo";
 import NavigationBar from "./navigation";
+import Profile from "./profile";
 
 const Header = () => {
   const router = useRouter();
+
+  // 로그인 상태 테스트입니다
+  const loginStatus = true;
 
   return (
     <>
       <StyledHeader>
         <HeaderWrap>
           <LogoIcon cursor="pointer" onClick={() => router.push("/")} />
-          <Row gap="10px" alignItems="center">
-            <Button option="QUATERNARY" size="SMALL">
-              로그인
-            </Button>
-            <Button option="PRIMARY" size="SMALL">
-              회원가입
-            </Button>
-          </Row>
+          {loginStatus ? (
+            <Row gap="10px" alignItems="center">
+              <Button option="QUATERNARY" size="SMALL">
+                로그인
+              </Button>
+              <Button option="PRIMARY" size="SMALL">
+                회원가입
+              </Button>
+            </Row>
+          ) : (
+            <Profile name="김석진" />
+          )}
         </HeaderWrap>
       </StyledHeader>
       <NavigationBar>
