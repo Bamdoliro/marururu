@@ -1,7 +1,9 @@
 "use client";
 
+import AppLayout from "@/layouts/AppLayout";
+
 const Home = () => {
-  return <div>home이다</div>;
+  return <AppLayout>home이다</AppLayout>;
 };
 
 export default Home;

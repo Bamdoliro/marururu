@@ -7,7 +7,7 @@ import Button from "@/components/common/Button/button";
 import Image from "next/image";
 import Terms from "@/components/signup/Terms";
 import Column from "@/components/common/Flex/column";
-import AppLayout from "@/layouts/AppLayout";
+import BaseLayout from "@/layouts/BaseLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { useJoin } from "@/models/auth/useJoin";
@@ -29,7 +29,7 @@ const SignUpPage = () => {
   const requestEmailEnabled = time !== 0;
 
   return (
-    <AppLayout>
+    <BaseLayout>
       <StyledSignUp>
         <Image
           src="/assets/ColaboLogo.svg"
@@ -90,7 +90,7 @@ const SignUpPage = () => {
           </SignUpBox>
         </ContentBox>
       </StyledSignUp>
-    </AppLayout>
+    </BaseLayout>
   );
 };
 
