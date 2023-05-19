@@ -13,7 +13,6 @@ const Provider = ({ children }: PropsType) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
       {children}
     </QueryClientProvider>
   );

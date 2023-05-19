@@ -1,9 +1,8 @@
-// import styled, { css } from 'styled-components';
 import { font } from "@/styles/font";
-import { useState } from 'react';
-import ArrowDropDown from '../Icon/ArrowDropDown';
-import { color } from '@/styles/color';
-import { css, styled } from "styled-components";
+import { useState } from "react";
+import { color } from "@/styles/color";
+import styled, { css } from "styled-components";
+import ArrowDropDownMenu from "../Icon/ArrowDropDownMenu";
 
 interface DropdownItemType {
   dropdownItemText: string;
@@ -15,26 +14,28 @@ interface PropsType {
   width: string;
 }
 
-const DropDownMenu = ({ label, dropdownMenuDatas, width = "320px" }: PropsType) => {
-
+const DropDownMenu = ({
+  label,
+  dropdownMenuDatas,
+  width = "320px",
+}: PropsType) => {
   const [isOpenDropdownMenu, setIsOpenDropdownMenu] = useState(false);
   const [dropdownMenuText, setDropdownMenuText] =
     useState("옵션을 선택해 주세요");
-  
+
   const clickedMenu = (item: DropdownItemType) => {
     setDropdownMenuText(item.dropdownItemText);
     setIsOpenDropdownMenu(false);
-  }
+  };
 
   const clickedToggle = () => {
     setIsOpenDropdownMenu((prev) => !prev);
   };
   return (
     <StryledDropDwonMenu style={{ width }}>
-  
       <DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         <DropdownMenuText>{dropdownMenuText}</DropdownMenuText>
-        <ArrowDropDown />
+        <ArrowDropDownMenu />
       </DropdownMenuBox>
       <DropdownMenuList isOpen={isOpenDropdownMenu}>
         {dropdownMenuDatas?.map((item, index) => (
@@ -47,21 +48,19 @@ const DropDownMenu = ({ label, dropdownMenuDatas, width = "320px" }: PropsType) 
         ))}
       </DropdownMenuList>
     </StryledDropDwonMenu>
-  )
-}
+  );
+};
 
 export default DropDownMenu;
 
 const StryledDropDwonMenu = styled.div`
-    display: flex;
-    flex-direction : column;
-    width: 320px;
-    gap:8px;
-`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+`;
 
-const Label = styled.label`
-
-`
+const Label = styled.label``;
 
 const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
   display: flex;
@@ -97,8 +96,10 @@ const Img = styled.img`
   height: 14px;
 `;
 
-
 const DropdownMenuList = styled.div<{ isOpen: boolean }>`
+  z-index: 1;
+  position: absolute;
+  top: 56px;
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   padding: 8px 0px;
   width: 100%;
@@ -119,4 +120,3 @@ const DropdownMenuItem = styled.button`
     background-color: ${color.gray200};
   }
 `;
-
