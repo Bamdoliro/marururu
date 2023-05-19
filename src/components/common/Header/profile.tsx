@@ -25,6 +25,6 @@ const StyledProfile = styled.div`
 `;
 
 const Name = styled.p`
-  font-size: ${font.H5};
+  ${font.H5};
   color: ${color.gray900};
 `;

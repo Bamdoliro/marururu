@@ -14,7 +14,7 @@ const Message = ({ children }: PropsType) => {
 export default Message;
 
 const StyledMessage = styled.p`
-  font-size: ${font.p3};
+  ${font.p3};
   color: ${color.gray500};
   margin-top: 4px;
 `;

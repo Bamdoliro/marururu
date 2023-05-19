@@ -98,14 +98,14 @@ const StyledTerms = styled.div`
 `;
 
 const Agreement = styled.div`
-  font-size: ${font.btn3};
+  ${font.btn3};
   color: ${color.gray500};
   display: flex;
   gap: 5px;
 `;
 
 const AgreementLink = styled.div`
-  font-size: ${font.btn3};
+  ${font.btn3};
   color: ${color.maruDefault};
   display: flex;
   cursor: pointer;
