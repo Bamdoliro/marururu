@@ -2,6 +2,7 @@
 
 import DropDownMenu from "@/components/common/DropDownMenu/dropDownMenu";
 import Column from "@/components/common/Flex/column";
+import Header from "@/components/common/Header/header";
 import AppLayout from "@/layouts/AppLayout";
 
 const Home = () => {

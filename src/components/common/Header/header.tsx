@@ -11,7 +11,7 @@ const Header = () => {
   const router = useRouter();
 
   // 로그인 상태 테스트입니다
-  const loginStatus = true;
+  const loginStatus = false;
 
   return (
     <>

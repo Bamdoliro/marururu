@@ -32,32 +32,35 @@ const DropDownMenu = ({
     setIsOpenDropdownMenu((prev) => !prev);
   };
   return (
-    <StryledDropDwonMenu style={{ width }}>
+    <StryledDropdownMenu style={{ width }}>
       <DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         <DropdownMenuText>{dropdownMenuText}</DropdownMenuText>
         <ArrowDropDownMenu />
       </DropdownMenuBox>
-      <DropdownMenuList isOpen={isOpenDropdownMenu}>
-        {dropdownMenuDatas?.map((item, index) => (
-          <DropdownMenuItem
-            key={`dropdown ${index}`}
-            onClick={() => clickedMenu(item)}
-          >
-            {item.dropdownItemText}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuList>
-    </StryledDropDwonMenu>
+      <DropdownMenuListBox isOpen={isOpenDropdownMenu}>
+        <DropdownMenuList>
+          {dropdownMenuDatas?.map((item, index) => (
+            <DropdownMenuItem
+              key={`dropdown ${index}`}
+              onClick={() => clickedMenu(item)}
+            >
+              {item.dropdownItemText}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuList>
+      </DropdownMenuListBox>
+    </StryledDropdownMenu>
   );
 };
 
 export default DropDownMenu;
 
-const StryledDropDwonMenu = styled.div`
+const StryledDropdownMenu = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   width: 320px;
+  gap: 8px;
 `;
 
 const Label = styled.label``;
@@ -91,16 +94,13 @@ const DropdownMenuText = styled.p`
   color: ${color.gray500};
 `;
 
-const Img = styled.img`
-  width: 14px;
-  height: 14px;
+const DropdownMenuListBox = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
 `;
 
-const DropdownMenuList = styled.div<{ isOpen: boolean }>`
+const DropdownMenuList = styled.div`
   z-index: 1;
   position: absolute;
-  top: 56px;
-  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
   padding: 8px 0px;
   width: 100%;
   background-color: ${color.white};
