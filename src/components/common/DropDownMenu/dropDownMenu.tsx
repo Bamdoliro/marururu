@@ -33,6 +33,7 @@ const DropDownMenu = ({
   };
   return (
     <StryledDropdownMenu style={{ width }}>
+      <Label>{label}</Label>
       <DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         <DropdownMenuText>{dropdownMenuText}</DropdownMenuText>
         <ArrowDropDownMenu />
@@ -63,7 +64,9 @@ const StryledDropdownMenu = styled.div`
   gap: 8px;
 `;
 
-const Label = styled.label``;
+const Label = styled.label`
+  ${font.context}
+`;
 
 const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
   display: flex;
