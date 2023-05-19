@@ -1,26 +1,16 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
-
-interface PropsType {
-  children: ReactNode;
-  gap: string;
-  justifyContent?:
-    | "none"
-    | "center"
-    | "flex-end"
-    | "flex-start"
-    | "space-between";
-  alignItems?: "none" | "center" | "flex-end" | "flex-start" | "space-between";
-}
+import { FlexPropsType } from "./type";
 
 const Row = ({
   children,
   gap,
   justifyContent = "none",
   alignItems = "none",
-}: PropsType) => {
+  width = "100%",
+}: FlexPropsType) => {
   return (
-    <StyledRow style={{ gap, justifyContent, alignItems }}>
+    <StyledRow style={{ gap, justifyContent, alignItems, width }}>
       {children}
     </StyledRow>
   );
