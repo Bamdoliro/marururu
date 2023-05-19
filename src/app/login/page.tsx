@@ -23,7 +23,7 @@ const LoginPage = () => {
         <LoginBox>
           <LoginBoxWrap>
             <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
-            <Column gap="36px">
+            <Column gap="36px" width="100%">
               <Column gap="24px">
                 <Input
                   desc="아이디"

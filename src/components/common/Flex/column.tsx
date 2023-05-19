@@ -19,7 +19,7 @@ const Column = ({
   gap,
   justifyContent = "none",
   alignItems = "none",
-  width = "100%",
+  width,
 }: PropsType) => {
   return (
     <StyledColumn style={{ gap, justifyContent, alignItems, width }}>
