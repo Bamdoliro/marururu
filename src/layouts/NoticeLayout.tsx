@@ -5,24 +5,30 @@ import styled from "styled-components";
 
 interface PropsType {
   children: ReactNode;
-  backgroundColor?: string;
 }
 
-const AppLayout = ({ children, backgroundColor }: PropsType) => {
+const NoticeLayout = ({ children }: PropsType) => {
   return (
-    <StyledAppLayout style={{ backgroundColor }}>
+    <StyledNoticeLayout>
       <Header />
-      {children}
-    </StyledAppLayout>
+      <NoticeLayoutWrap>{children}</NoticeLayoutWrap>
+    </StyledNoticeLayout>
   );
 };
 
-export default AppLayout;
+export default NoticeLayout;
 
-const StyledAppLayout = styled.section`
+const StyledNoticeLayout = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
+`;
+
+const NoticeLayoutWrap = styled.div`
+  padding-top: 48px;
+  width: 72%;
+  height: 100%;
 `;

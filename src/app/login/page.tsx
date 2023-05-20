@@ -21,37 +21,40 @@ const LoginPage = () => {
     <BaseLayout backgroundColor={color.gray100}>
       <StyledLogin>
         <LoginBox>
-          <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
-          <Column gap="36px">
-            <Column gap="24px">
-              <Input
-                desc="아이디"
-                width="100%"
-                name="email"
-                onChange={handleLoginUserData}
-              />
-              <PreviewInput
-                desc="비밀번호"
-                width="100%"
-                name="password"
-                onChange={handleLoginUserData}
-              />
+          <LoginBoxWrap>
+            <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
+            <Column gap="36px" width="100%">
+              <Column gap="24px">
+                <Input
+                  desc="아이디"
+                  width="100%"
+                  name="email"
+                  onChange={handleLoginUserData}
+                />
+                <PreviewInput
+                  desc="비밀번호"
+                  width="100%"
+                  name="password"
+                  onChange={handleLoginUserData}
+                />
+              </Column>
+              <Column gap="16px" alignItems="flex-end">
+                <Button width="100%" onClick={clickLogin}>
+                  로그인
+                </Button>
+                <FindPassword>
+                  비밀번호 찾기
+                  <RightArrowIcon color={color.gray500} size={16} />
+                </FindPassword>
+              </Column>
             </Column>
-            <Column gap="16px" alignItems="flex-end">
-              <Button width="100%" onClick={clickLogin}>
-                로그인
-              </Button>
-              <FindPassword>
-                비밀번호 찾기 <RightArrowIcon color={color.gray500} />
-              </FindPassword>
-            </Column>
-          </Column>
-          <SignUp>
-            회원이 아니신가요?
-            <SignUpLink onClick={() => router.push("/signup")}>
-              회원가입
-            </SignUpLink>
-          </SignUp>
+            <SignUp>
+              회원이 아니신가요?
+              <SignUpLink onClick={() => router.push("/signup")}>
+                회원가입
+              </SignUpLink>
+            </SignUp>
+          </LoginBoxWrap>
         </LoginBox>
       </StyledLogin>
     </BaseLayout>
@@ -62,6 +65,13 @@ export default LoginPage;
 
 const StyledLogin = styled.div`
   display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
+
+const LoginBox = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -70,7 +80,7 @@ const StyledLogin = styled.div`
   background-color: ${color.white};
 `;
 
-const LoginBox = styled.div`
+const LoginBoxWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

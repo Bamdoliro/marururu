@@ -14,39 +14,45 @@ const Header = () => {
   const loginStatus = true;
 
   return (
-    <>
-      <StyledHeader>
-        <HeaderWrap>
-          <LogoIcon cursor="pointer" onClick={() => router.push("/")} />
-          {loginStatus ? (
-            <Row gap="10px" alignItems="center">
-              <Button option="QUATERNARY" size="SMALL">
-                로그인
-              </Button>
-              <Button option="PRIMARY" size="SMALL">
-                회원가입
-              </Button>
-            </Row>
-          ) : (
-            <Profile name="김석진" />
-          )}
-        </HeaderWrap>
-      </StyledHeader>
+    <StyledHeader>
+      <HeaderWrap>
+        <LogoIcon cursor="pointer" onClick={() => router.push("/")} />
+        {loginStatus ? (
+          <Row gap="10px" alignItems="center">
+            <Button option="QUATERNARY" size="SMALL">
+              로그인
+            </Button>
+            <Button option="PRIMARY" size="SMALL">
+              회원가입
+            </Button>
+          </Row>
+        ) : (
+          <Profile name="김석진" />
+        )}
+      </HeaderWrap>
       <NavigationBar>
-        <Button option="QUATERNARY" size="SMALL">
+        <Button
+          option="QUATERNARY"
+          size="SMALL"
+          onClick={() => router.push("/")}
+        >
           홈
         </Button>
         <Button option="QUATERNARY" size="SMALL">
           원서접수
         </Button>
-        <Button option="QUATERNARY" size="SMALL">
+        <Button
+          option="QUATERNARY"
+          size="SMALL"
+          onClick={() => router.push("/notice")}
+        >
           공지사항
         </Button>
         <Button option="QUATERNARY" size="SMALL">
           도움말
         </Button>
       </NavigationBar>
-    </>
+    </StyledHeader>
   );
 };
 
@@ -54,10 +60,11 @@ export default Header;
 
 const StyledHeader = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 72px;
+  height: 126px;
   background-color: ${color.white};
 `;
 
@@ -66,5 +73,5 @@ const HeaderWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 86%;
-  height: 100%;
+  height: 72px;
 `;
