@@ -2,28 +2,26 @@ import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
 import Column from "../common/Flex/column";
-import RightArrowIcon from "../common/Icon/RightArrow";
 
 interface PropsType {
   title: string;
   date: string;
 }
 
-const NoticeItem = ({ title, date }: PropsType) => {
+const NoticeInfo = ({ title, date }: PropsType) => {
   return (
-    <StyledNoticeItem>
+    <StyledNoticeInfo>
       <Column gap="4px">
         <Title>{title}</Title>
         <Date>{date}</Date>
       </Column>
-      <RightArrowIcon color={color.gray900} size={22} />
-    </StyledNoticeItem>
+    </StyledNoticeInfo>
   );
 };
 
-export default NoticeItem;
+export default NoticeInfo;
 
-const StyledNoticeItem = styled.div`
+const StyledNoticeInfo = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
