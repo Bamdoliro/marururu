@@ -31,5 +31,4 @@ const NoticeLayoutWrap = styled.div`
   padding-top: 48px;
   width: 72%;
   height: 100%;
-  border: 1px solid black;
 `;

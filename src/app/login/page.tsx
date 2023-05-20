@@ -43,7 +43,8 @@ const LoginPage = () => {
                   로그인
                 </Button>
                 <FindPassword>
-                  비밀번호 찾기 <RightArrowIcon color={color.gray500} />
+                  비밀번호 찾기
+                  <RightArrowIcon color={color.gray500} size={16} />
                 </FindPassword>
               </Column>
             </Column>

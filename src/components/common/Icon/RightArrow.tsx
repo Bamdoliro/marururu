@@ -1,10 +1,10 @@
 import { IconPropsType } from "./type";
 
-const RightArrowIcon = ({ color }: IconPropsType) => {
+const RightArrowIcon = ({ color, size }: IconPropsType) => {
   return (
     <svg
-      width="16"
-      height="16"
+      width={size}
+      height={size}
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
