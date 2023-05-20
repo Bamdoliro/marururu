@@ -12,6 +12,7 @@ interface PropsType {
     | "space-between";
   alignItems?: "none" | "center" | "flex-end" | "flex-start" | "space-between";
   width?: string;
+  height?: string;
 }
 
 const Column = ({
@@ -20,9 +21,10 @@ const Column = ({
   justifyContent = "none",
   alignItems = "none",
   width,
+  height,
 }: PropsType) => {
   return (
-    <StyledColumn style={{ gap, justifyContent, alignItems, width }}>
+    <StyledColumn style={{ gap, justifyContent, alignItems, width, height }}>
       {children}
     </StyledColumn>
   );

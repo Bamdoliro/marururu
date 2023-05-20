@@ -125,5 +125,5 @@ const SignUpBox = styled.div<{ enabled: Boolean }>`
 
 const Title = styled.p`
   ${font.H2}
-  color: ${color.black};
+  color: ${color.gray900};
 `;

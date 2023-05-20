@@ -35,7 +35,7 @@ const StyledNotice = styled.div`
 
 const Title = styled.p`
   ${font.H2}
-  color: ${color.black};
+  color: ${color.gray900};
 `;
 
 const NoticeList = styled.div`

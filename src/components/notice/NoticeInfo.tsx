@@ -11,7 +11,7 @@ interface PropsType {
 const NoticeInfo = ({ title, date }: PropsType) => {
   return (
     <StyledNoticeInfo>
-      <Column gap="4px">
+      <Column gap="16px" height="72px">
         <Title>{title}</Title>
         <Date>{date}</Date>
       </Column>
@@ -25,17 +25,17 @@ const StyledNoticeInfo = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 59px;
+  height: 80px;
   border-bottom: 1px solid ${color.gray300};
-  padding-bottom: 16px;
+  padding-bottom: 8px;
 `;
 
 const Title = styled.p`
-  ${font.context}
+  ${font.H3}
   color: ${color.gray900};
 `;
 
 const Date = styled.p`
-  ${font.caption}
+  ${font.p3}
   color: ${color.gray750};
 `;

@@ -12,11 +12,11 @@ interface PropsType {
 const NoticeItem = ({ title, date }: PropsType) => {
   return (
     <StyledNoticeItem>
-      <Column gap="4px">
+      <Column gap="8px" height="55px">
         <Title>{title}</Title>
         <Date>{date}</Date>
       </Column>
-      <RightArrowIcon color={color.gray900} size={22} />
+      <RightArrowIcon color={color.gray600} size={24} />
     </StyledNoticeItem>
   );
 };
@@ -27,18 +27,18 @@ const StyledNoticeItem = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 59px;
+  height: 71px;
   border-bottom: 1px solid ${color.gray300};
   padding-bottom: 16px;
   cursor: pointer;
 `;
 
 const Title = styled.p`
-  ${font.context}
+  ${font.H5}
   color: ${color.gray900};
 `;
 
 const Date = styled.p`
-  ${font.caption}
+  ${font.p3}
   color: ${color.gray750};
 `;
