@@ -28,7 +28,6 @@ const StyledNoticeInfo = styled.div`
   height: 59px;
   border-bottom: 1px solid ${color.gray300};
   padding-bottom: 16px;
-  cursor: pointer;
 `;
 
 const Title = styled.p`

@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "@/components/common/Header/header";
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 

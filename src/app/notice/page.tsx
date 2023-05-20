@@ -4,6 +4,7 @@ import NoticeItem from "@/components/notice/NoticeItem";
 import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
+import { NoticeListDatas } from "@/fixtures/notice";
 import styled from "styled-components";
 
 const NoticePage = () => {
@@ -12,7 +13,10 @@ const NoticePage = () => {
       <StyledNotice>
         <Title>공지사항</Title>
         <NoticeList>
-          <NoticeItem title="테스트" date="2022.10.20" />
+          {NoticeListDatas &&
+            NoticeListDatas.map((item) => (
+              <NoticeItem title={item.title} date={item.date} />
+            ))}
         </NoticeList>
       </StyledNotice>
     </NoticeLayout>
