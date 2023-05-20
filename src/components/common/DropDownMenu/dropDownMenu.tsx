@@ -9,13 +9,13 @@ interface DropdownItemType {
 }
 
 interface PropsType {
-  label: string;
+  desc: string;
   dropdownMenuDatas: DropdownItemType[];
   width: string;
 }
 
 const DropDownMenu = ({
-  label,
+  desc,
   dropdownMenuDatas,
   width = "320px",
 }: PropsType) => {
@@ -33,7 +33,7 @@ const DropDownMenu = ({
   };
   return (
     <StryledDropdownMenu style={{ width }}>
-      <Label>{label}</Label>
+      <Desc>{desc}</Desc>
       <DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         <DropdownMenuText>{dropdownMenuText}</DropdownMenuText>
         <ArrowDropDownMenu />
@@ -64,7 +64,7 @@ const StryledDropdownMenu = styled.div`
   gap: 8px;
 `;
 
-const Label = styled.label`
+const Desc = styled.p`
   ${font.context}
 `;
 
