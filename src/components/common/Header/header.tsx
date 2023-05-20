@@ -38,14 +38,14 @@ const Header = () => {
         >
           홈
         </Button>
+        <Button option="QUATERNARY" size="SMALL">
+          원서접수
+        </Button>
         <Button
           option="QUATERNARY"
           size="SMALL"
           onClick={() => router.push("/notice")}
         >
-          원서접수
-        </Button>
-        <Button option="QUATERNARY" size="SMALL">
           공지사항
         </Button>
         <Button option="QUATERNARY" size="SMALL">

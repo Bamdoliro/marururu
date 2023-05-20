@@ -1,5 +1,5 @@
 import { ACCESS_KEY, REFRESH_KEY } from "@/constants/token";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { maru } from "../index";
 import { Storage } from "../storage";
 

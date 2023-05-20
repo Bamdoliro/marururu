@@ -15,7 +15,7 @@ const NoticeDetailPage = () => {
     <NoticeLayout>
       <StyledNoticeDetail>
         <BackBox onClick={() => router.back()}>
-          <LeftArrowIcon color={color.gray600} size={36} />
+          <LeftArrowIcon color={color.gray600} size={24} />
           <Title>공지사항</Title>
         </BackBox>
         <ContentsBox>
@@ -41,12 +41,12 @@ const BackBox = styled.div`
   display: flex;
   align-items: center;
   gap: 2px;
-  width: 135px;
+  width: 89px;
   cursor: pointer;
 `;
 
 const Title = styled.p`
-  ${font.H2}
+  ${font.H5}
   color: ${color.gray900};
 `;
 

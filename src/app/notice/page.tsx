@@ -15,7 +15,12 @@ const NoticePage = () => {
         <NoticeList>
           {NoticeListDatas &&
             NoticeListDatas.map((item) => (
-              <NoticeItem title={item.title} date={item.date} />
+              <NoticeItem
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                date={item.date}
+              />
             ))}
         </NoticeList>
       </StyledNotice>

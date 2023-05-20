@@ -1,17 +1,21 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import Column from "../common/Flex/column";
 import RightArrowIcon from "../common/Icon/RightArrow";
 
 interface PropsType {
+  id: number;
   title: string;
   date: string;
 }
 
-const NoticeItem = ({ title, date }: PropsType) => {
+const NoticeItem = ({ id, title, date }: PropsType) => {
+  const router = useRouter();
+
   return (
-    <StyledNoticeItem>
+    <StyledNoticeItem onClick={() => router.push(`/notice/${id}`)}>
       <Column gap="8px" height="55px">
         <Title>{title}</Title>
         <Date>{date}</Date>
