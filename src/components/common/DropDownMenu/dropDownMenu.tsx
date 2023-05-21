@@ -33,7 +33,7 @@ const DropdownMenu = ({
     setIsOpenDropdownMenu((prev) => !prev);
   };
   return (
-    <StryledDropdownMenu style={{ width }}>
+    <StyledDropdownMenu style={{ width }}>
       <Desc>{desc}</Desc>
       <DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         <SelectedItemText>{selectedItemText}</SelectedItemText>
@@ -51,13 +51,13 @@ const DropdownMenu = ({
           ))}
         </DropdownMenuList>
       </DropdownMenuListBox>
-    </StryledDropdownMenu>
+    </StyledDropdownMenu>
   );
 };
 
 export default DropdownMenu;
 
-const StryledDropdownMenu = styled.div`
+const StyledDropdownMenu = styled.div`
   display: flex;
   flex-direction: column;
 `;
