@@ -14,10 +14,10 @@ const NoticeDetailPage = () => {
   return (
     <NoticeLayout>
       <StyledNoticeDetail>
-        <BackBox onClick={() => router.back()}>
+        <BackButton onClick={() => router.back()}>
           <LeftArrowIcon color={color.gray600} size={24} />
           <Title>공지사항</Title>
-        </BackBox>
+        </BackButton>
         <ContentsBox>
           <NoticeInfo title="테스트" date="2023.11.05" />
           <Content>이것은 테스트 입니다</Content>
@@ -37,7 +37,7 @@ const StyledNoticeDetail = styled.div`
   height: 100%;
 `;
 
-const BackBox = styled.div`
+const BackButton = styled.button`
   display: flex;
   align-items: center;
   gap: 2px;

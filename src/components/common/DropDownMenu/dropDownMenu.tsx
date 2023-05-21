@@ -60,7 +60,7 @@ export default DropdownMenu;
 const Desc = styled.p`
   ${font.context}
   color: ${color.gray700};
-  margin-bottom: 8px;
+  padding-bottom: 8px;
 `;
 
 const StyledDropdownMenu = styled.div<{ isOpen: boolean }>`
