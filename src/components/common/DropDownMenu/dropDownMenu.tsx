@@ -54,11 +54,9 @@ const DropDownMenu = ({
 export default DropDownMenu;
 
 const StryledDropdownMenu = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 320px;
-  gap: 8px;
 `;
 
 const Desc = styled.p`
@@ -96,12 +94,14 @@ const DropdownMenuText = styled.p`
 `;
 
 const DropdownMenuListBox = styled.div<{ isOpen: boolean }>`
+  position: relative;
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
 `;
 
 const DropdownMenuList = styled.div`
   z-index: 1;
   position: absolute;
+  top: 8px;
   padding: 8px 0px;
   width: 100%;
   background-color: ${color.white};
