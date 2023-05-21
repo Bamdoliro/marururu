@@ -4,7 +4,7 @@ import NoticeItem from "@/components/notice/NoticeItem";
 import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { NoticeListDatas } from "@/fixtures/notice";
+import { NoticeListDatas } from "@/data/notice";
 import styled from "styled-components";
 
 const NoticePage = () => {

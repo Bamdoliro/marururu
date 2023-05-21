@@ -10,12 +10,12 @@ import PreviewInput from "@/components/common/Input/PreviewInput";
 import BaseLayout from "@/layouts/BaseLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { useLogin } from "@/models/auth/useLogin";
+import { useLogin } from "@/hooks/useLogin";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const router = useRouter();
-  const { handleLoginUserData, clickLogin } = useLogin();
+  const { handleLoginUserData, loginUserMutate } = useLogin();
 
   return (
     <BaseLayout backgroundColor={color.gray100}>
@@ -39,7 +39,7 @@ const LoginPage = () => {
                 />
               </Column>
               <Column gap="16px" alignItems="flex-end">
-                <Button width="100%" onClick={clickLogin}>
+                <Button width="100%" onClick={() => loginUserMutate.mutate()}>
                   로그인
                 </Button>
                 <FindPassword>
