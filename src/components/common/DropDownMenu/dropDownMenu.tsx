@@ -12,16 +12,17 @@ interface PropsType {
   desc: string;
   dropdownMenuData: DropdownItemType[];
   width?: string;
+  placeholder?: string;
 }
 
 const DropdownMenu = ({
   desc,
   dropdownMenuData,
   width = "320px",
+  placeholder = "옵션을 선택해 주세요",
 }: PropsType) => {
   const [isOpenDropdownMenu, setIsOpenDropdownMenu] = useState(false);
-  const [selectedItemText, setSelectedItemText] =
-    useState("옵션을 선택해 주세요");
+  const [selectedItemText, setSelectedItemText] = useState(placeholder);
 
   const clickedMenu = (item: DropdownItemType) => {
     setSelectedItemText(item.dropdownItemText);
