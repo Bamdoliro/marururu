@@ -1,12 +1,5 @@
-import {
-  joinUser,
-  joinUserParamsType,
-  requestEmail,
-  requestEmailParamsType,
-} from "@/api/auth";
-import { useRouter } from "next/navigation";
+import { joinUserMutation, requestEmailMutation } from "@/features/auth";
 import { ChangeEvent, useState } from "react";
-import { useMutation } from "react-query";
 
 interface joinUserDataType {
   email: string;
@@ -16,7 +9,6 @@ interface joinUserDataType {
 }
 
 export const useJoin = () => {
-  const router = useRouter();
   const [joinUserData, setJoinUserData] = useState<joinUserDataType>({
     email: "",
     code: "",
@@ -35,24 +27,6 @@ export const useJoin = () => {
     setJoinUserData({ ...joinUserData, [name]: value });
   };
 
-  const joinUserMutation = ({ email, code, password }: joinUserParamsType) => {
-    return useMutation(() => joinUser({ email, code, password }), {
-      onSuccess: () => {
-        alert("회원가입 성공");
-        router.push("/login");
-      },
-      onError: () => {
-        alert("회원가입 실패");
-      },
-    });
-  };
-  const requestEmailMutation = ({ email }: requestEmailParamsType) => {
-    return useMutation(() => requestEmail({ email }));
-  };
-
-  const joinUserMutate = joinUserMutation(joinUserData);
-  const requestEmailMutate = requestEmailMutation(joinUserData);
-
   const clickSignUp = () => {
     if (joinUserData.password === joinUserData.repassword) {
       if (checkTermsAgree == true) {
@@ -65,6 +39,9 @@ export const useJoin = () => {
       alert("비밀번호를 한번만 확인해주세요");
     }
   };
+
+  const joinUserMutate = joinUserMutation(joinUserData);
+  const requestEmailMutate = requestEmailMutation(joinUserData);
 
   return {
     handleJoinUserData,

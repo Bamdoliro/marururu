@@ -15,21 +15,29 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <HeaderWrap>
+      <HeaderBar>
         <LogoIcon cursor="pointer" onClick={() => router.push("/")} />
         {loginStatus ? (
           <Row gap="10px" alignItems="center">
-            <Button option="QUATERNARY" size="SMALL">
+            <Button
+              option="QUATERNARY"
+              size="SMALL"
+              onClick={() => router.push("/login")}
+            >
               로그인
             </Button>
-            <Button option="PRIMARY" size="SMALL">
+            <Button
+              option="PRIMARY"
+              size="SMALL"
+              onClick={() => router.push("/signup")}
+            >
               회원가입
             </Button>
           </Row>
         ) : (
           <Profile name="김석진" />
         )}
-      </HeaderWrap>
+      </HeaderBar>
       <NavigationBar>
         <Button
           option="QUATERNARY"
@@ -68,7 +76,7 @@ const StyledHeader = styled.div`
   background-color: ${color.white};
 `;
 
-const HeaderWrap = styled.div`
+const HeaderBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
