@@ -3,10 +3,7 @@ import { useState } from "react";
 import { color } from "@/styles/color";
 import styled, { css } from "styled-components";
 import ArrowDropDownMenu from "../Icon/ArrowDropDownMenu";
-
-interface DropdownItemType {
-  dropdownItemText: string;
-}
+import { DropdownItemType } from "./type";
 
 interface PropsType {
   desc: string;
@@ -66,6 +63,7 @@ const StryledDropdownMenu = styled.div`
 
 const Desc = styled.p`
   ${font.context}
+  color: ${color.gray700};
 `;
 
 const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
