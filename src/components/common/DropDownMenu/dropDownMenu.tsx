@@ -33,12 +33,12 @@ const DropdownMenu = ({
     setIsOpenDropdownMenu((prev) => !prev);
   };
   return (
-    <StyledDropdownMenu style={{ width }}>
+    <div style={{ width }}>
       <Desc>{desc}</Desc>
-      <DropdownMenuBox onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
+      <StyledDropdownMenu onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         <SelectedItemText>{selectedItemText}</SelectedItemText>
         <ArrowDropDownMenu />
-      </DropdownMenuBox>
+      </StyledDropdownMenu>
       <DropdownMenuListBox isOpen={isOpenDropdownMenu}>
         <DropdownMenuList>
           {dropdownMenuData?.map((item, index) => (
@@ -51,16 +51,11 @@ const DropdownMenu = ({
           ))}
         </DropdownMenuList>
       </DropdownMenuListBox>
-    </StyledDropdownMenu>
+    </div>
   );
 };
 
 export default DropdownMenu;
-
-const StyledDropdownMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const Desc = styled.p`
   ${font.context}
@@ -68,7 +63,7 @@ const Desc = styled.p`
   margin-bottom: 8px;
 `;
 
-const DropdownMenuBox = styled.div<{ isOpen: boolean }>`
+const StyledDropdownMenu = styled.div<{ isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
