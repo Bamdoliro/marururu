@@ -21,8 +21,7 @@ export default AppLayout;
 
 const StyledAppLayout = styled.section`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
