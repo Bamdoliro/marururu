@@ -1,3 +1,5 @@
+import { Storage } from "@/api/storage";
+import { ACCESS_KEY } from "@/constants/token";
 import { color } from "@/styles/color";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
@@ -11,13 +13,15 @@ const Header = () => {
   const router = useRouter();
 
   // 로그인 상태 테스트입니다
-  const loginStatus = false;
+  const loginStatus = Storage.getItem(ACCESS_KEY);
 
   return (
     <StyledHeader>
       <HeaderBar>
         <LogoIcon cursor="pointer" onClick={() => router.push("/")} />
         {loginStatus ? (
+          <Profile name="밤돌이로" />
+        ) : (
           <Row gap="10px" alignItems="center">
             <Button
               option="QUATERNARY"
@@ -34,8 +38,6 @@ const Header = () => {
               회원가입
             </Button>
           </Row>
-        ) : (
-          <Profile name="김석진" />
         )}
       </HeaderBar>
       <NavigationBar>

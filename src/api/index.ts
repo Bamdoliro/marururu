@@ -1,10 +1,8 @@
-import { ACCESS_KEY, REQUEST_KEY } from "@/constants/token";
 import axios from "axios";
-import { Storage } from "./storage";
 import { tokenExpired } from "./tokenExpired";
 
 const maru = axios.create({
-  baseURL: "http://localhost:8088/",
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
@@ -26,8 +24,6 @@ maru.interceptors.response.use(
   },
   async (error) => {
     const { status, code, message } = error.response.data;
-    console.log(status, code, message);
-
     if (message) {
       if (status === 401 && code === "EXPIRED_TOKEN") {
         tokenExpired();
