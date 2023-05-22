@@ -54,7 +54,7 @@ const ContentsBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding-left: 7px;
+  padding: 0px 7px;
 `;
 
 const Content = styled.pre`

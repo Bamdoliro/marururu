@@ -1,9 +1,9 @@
 "use client";
 
-import AppLayout from "@/layouts/AppLayout";
+import MainLayout from "@/layouts/MainLayout";
 
 const Home = () => {
-  return <AppLayout>home이다.</AppLayout>;
+  return <MainLayout>asdas</MainLayout>;
 };
 
 export default Home;

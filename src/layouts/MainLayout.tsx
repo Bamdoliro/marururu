@@ -1,32 +1,31 @@
+import Header from "@/components/common/Header/header";
 import { color } from "@/styles/color";
 import { ReactNode } from "react";
 import styled from "styled-components";
 
 interface PropsType {
-  calendar: ReactNode;
-  faq: ReactNode;
-  admissionReqs: ReactNode;
+  children: ReactNode;
 }
 
-const AppLayout = ({
-  calendar,
-  faq,
-  admissionReqs
-}: PropsType) => {
+const MainLayout = ({ children }: PropsType) => {
   return (
     <StyledMainLayout>
-
+      <Header />
+      <MainLayoutWrap>{children}</MainLayoutWrap>
     </StyledMainLayout>
   );
 };
 
-export default AppLayout;
+export default MainLayout;
 
 const StyledMainLayout = styled.section`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
+`;
+
+const MainLayoutWrap = styled.div`
+  display: grid;
 `;

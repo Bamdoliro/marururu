@@ -18,7 +18,7 @@ const NoticeLayout = ({ children }: PropsType) => {
 
 export default NoticeLayout;
 
-const StyledNoticeLayout = styled.div`
+const StyledNoticeLayout = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
