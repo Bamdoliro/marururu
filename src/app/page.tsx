@@ -30,27 +30,23 @@ const StyledMain = styled.div`
 const Video = styled.div`
   width: 56%;
   height: 60%;
-  border: 1px solid red;
   background-color: red;
 `;
 
 const Schedule = styled.div`
   width: 40%;
   height: 60%;
-  border: 1px solid blue;
   background-color: blue;
 `;
 
 const Notice = styled.div`
   width: 48%;
   height: 33%;
-  border: 1px solid purple;
   background-color: purple;
 `;
 
 const Question = styled.div`
   width: 48%;
   height: 33%;
-  border: 1px solid green;
   background-color: green;
 `;

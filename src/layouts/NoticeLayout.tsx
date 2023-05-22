@@ -28,7 +28,7 @@ const StyledNoticeLayout = styled.section`
 `;
 
 const NoticeLayoutWrap = styled.div`
-  padding-top: 48px;
+  padding: 48px 0px;
   width: 72%;
   height: 100%;
 `;
