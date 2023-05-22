@@ -21,7 +21,6 @@ export const loginUserMutation = ({ email, password }: loginUserParamsType) => {
       Storage.setItem(ACCESS_KEY, accessToken);
       Storage.setItem(REFRESH_KEY, refreshToken);
 
-      alert("로그인 성공 !");
       router.push("/");
     },
     onError: () => {

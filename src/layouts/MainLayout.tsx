@@ -21,11 +21,14 @@ export default MainLayout;
 const StyledMainLayout = styled.section`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
 `;
 
 const MainLayoutWrap = styled.div`
-  display: grid;
+  padding: 48px 0px;
+  width: 86%;
+  height: 100%;
 `;
