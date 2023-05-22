@@ -2,7 +2,8 @@ import { font } from "@/styles/font";
 import { useState } from "react";
 import { color } from "@/styles/color";
 import styled, { css } from "styled-components";
-import ArrowDropDownMenu from "../Icon/ArrowDropDownMenu";
+import DownArrowIcon from "../Icon/DownArrow";
+import UpArrowIcon from "../Icon/UpArrow";
 
 interface DropdownItemType {
   dropdownItemText: string;
@@ -37,7 +38,7 @@ const DropdownMenu = ({
       <Desc>{desc}</Desc>
       <StyledDropdownMenu onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         <SelectedItemText>{selectedItemText}</SelectedItemText>
-        <ArrowDropDownMenu />
+        {isOpenDropdownMenu ? <UpArrowIcon /> : <DownArrowIcon />}
       </StyledDropdownMenu>
       <DropdownMenuListBox isOpen={isOpenDropdownMenu}>
         <DropdownMenuList>
@@ -60,7 +61,7 @@ export default DropdownMenu;
 const Desc = styled.p`
   ${font.context}
   color: ${color.gray700};
-  margin-bottom: 8px;
+  padding-bottom: 8px;
 `;
 
 const StyledDropdownMenu = styled.div<{ isOpen: boolean }>`
