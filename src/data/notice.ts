@@ -1,4 +1,4 @@
-export const NoticeListDatas = [
+export const NoticeListData = [
   {
     id: 1,
     title: "테스트입니다",
