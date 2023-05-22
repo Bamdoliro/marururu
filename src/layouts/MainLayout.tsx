@@ -25,10 +25,12 @@ const StyledMainLayout = styled.section`
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
+  border: 1px solid black;
 `;
 
 const MainLayoutWrap = styled.div`
   padding-top: 48px;
   width: 86%;
   height: 100%;
+  border: 1px solid black;
 `;
