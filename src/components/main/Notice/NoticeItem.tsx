@@ -12,8 +12,8 @@ const NoticeItem = ({ title, id }: PropsType) => {
   const router = useRouter();
 
   return (
-    <StyledNoticeItem onClick={() => router.push(`/notice/${id}`)}>
-      <Title>{title}</Title>
+    <StyledNoticeItem>
+      <Title onClick={() => router.push(`/notice/${id}`)}>{title}</Title>
     </StyledNoticeItem>
   );
 };
