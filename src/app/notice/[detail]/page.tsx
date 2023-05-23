@@ -41,8 +41,6 @@ const BackButton = styled.button`
   display: flex;
   align-items: center;
   gap: 2px;
-  width: 89px;
-  cursor: pointer;
 `;
 
 const Title = styled.p`

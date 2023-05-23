@@ -1,6 +1,7 @@
 "use client";
 
 import MainLayout from "@/layouts/MainLayout";
+import Notice from "@/components/main/Notice/Notice";
 import styled from "styled-components";
 
 const Home = () => {
@@ -37,12 +38,6 @@ const Schedule = styled.div`
   width: 40%;
   height: 60%;
   background-color: blue;
-`;
-
-const Notice = styled.div`
-  width: 48%;
-  height: 33%;
-  background-color: purple;
 `;
 
 const Question = styled.div`
