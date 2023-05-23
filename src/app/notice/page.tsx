@@ -4,7 +4,7 @@ import NoticeItem from "@/components/notice/NoticeItem";
 import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { NoticeListData } from "@/data/notice";
+import { NoticeItemData } from "@/data/notice";
 import styled from "styled-components";
 
 const NoticePage = () => {
@@ -13,7 +13,7 @@ const NoticePage = () => {
       <StyledNotice>
         <Title>공지사항</Title>
         <NoticeList>
-          {NoticeListData?.map((item) => (
+          {NoticeItemData?.map((item) => (
             <NoticeItem
               key={item.id}
               id={item.id}

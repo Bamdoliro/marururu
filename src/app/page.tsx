@@ -1,8 +1,9 @@
 "use client";
 
 import MainLayout from "@/layouts/MainLayout";
-import styled from "styled-components";
+import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
+import styled from "styled-components";
 
 const Home = () => {
   return (
@@ -32,12 +33,6 @@ const Video = styled.div`
   width: 56%;
   height: 60%;
   background-color: red;
-`;
-
-const Notice = styled.div`
-  width: 48%;
-  height: 33%;
-  background-color: purple;
 `;
 
 const Question = styled.div`
