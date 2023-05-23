@@ -2,6 +2,7 @@
 
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice/Notice";
+import Schedule from "@/components/main/Schedule/Schedule";
 import styled from "styled-components";
 
 const Home = () => {
@@ -34,14 +35,9 @@ const Video = styled.div`
   background-color: red;
 `;
 
-const Schedule = styled.div`
-  width: 40%;
-  height: 60%;
-  background-color: blue;
-`;
-
 const Question = styled.div`
   width: 48%;
   height: 33%;
   background-color: green;
 `;
+
