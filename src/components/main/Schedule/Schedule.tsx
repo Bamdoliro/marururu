@@ -26,7 +26,6 @@ const StyledSchedule = styled.div`
   gap: 16px;
   width: 40%;
   height: 60%;
-  overflow: auto;
 `;
 
 const StyledScheduleList = styled.div`
@@ -35,11 +34,7 @@ const StyledScheduleList = styled.div`
   gap: 24px;
   height: 100%;
   width: 100%;
-`;
-
-const SchduleWrap = styled.div`
-  width: 100%;
-  height: 100%;
+  overflow: auto;
 `;
 
 const Title = styled.p`
