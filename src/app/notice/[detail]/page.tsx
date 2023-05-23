@@ -1,6 +1,7 @@
 "use client";
 
 import LeftArrowIcon from "@/components/common/Icon/LeftArrow";
+import Link from "@/components/common/Link/link";
 import NoticeInfo from "@/components/notice/NoticeInfo";
 import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";
@@ -14,10 +15,10 @@ const NoticeDetailPage = () => {
   return (
     <NoticeLayout>
       <StyledNoticeDetail>
-        <BackButton onClick={() => router.back()}>
+        <Link onClick={() => router.push("/notice")} gap="2px">
           <LeftArrowIcon color={color.gray600} size={24} />
           <Title>공지사항</Title>
-        </BackButton>
+        </Link>
         <ContentsBox>
           <NoticeInfo title="테스트" date="2023.11.05" />
           <Content>이것은 테스트 입니다</Content>
@@ -35,14 +36,6 @@ const StyledNoticeDetail = styled.div`
   gap: 36px;
   width: 100%;
   height: 100%;
-`;
-
-const BackButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  width: 89px;
-  cursor: pointer;
 `;
 
 const Title = styled.p`
