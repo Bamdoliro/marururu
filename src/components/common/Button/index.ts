@@ -66,7 +66,7 @@ export const getButtonStyle = {
 
 export const getButtonPadding = {
   NONE: css`
-    padding: 10px 16px;
+    padding: 0px 16px;
   `,
   ADD_ICON: css`
     gap: 4px;
