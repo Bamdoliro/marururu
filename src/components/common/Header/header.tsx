@@ -42,23 +42,23 @@ const Header = () => {
       </HeaderBar>
       <NavigationBar>
         <Button
-          option="QUATERNARY"
+          option="HOVER_UNDERLINE"
           size="SMALL"
           onClick={() => router.push("/")}
         >
           홈
         </Button>
-        <Button option="QUATERNARY" size="SMALL">
+        <Button option="HOVER_UNDERLINE" size="SMALL">
           원서접수
         </Button>
         <Button
-          option="QUATERNARY"
+          option="HOVER_UNDERLINE"
           size="SMALL"
           onClick={() => router.push("/notice")}
         >
           공지사항
         </Button>
-        <Button option="QUATERNARY" size="SMALL">
+        <Button option="HOVER_UNDERLINE" size="SMALL">
           도움말
         </Button>
       </NavigationBar>

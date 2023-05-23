@@ -7,15 +7,14 @@ import Button from "@/components/common/Button/button";
 
 const Home = () => {
   return (
-    // <MainLayout>
-    //   <StyledMain>
-    //     <Video />
-    //     <Schedule />
-    //     <Notice />
-    //     <Question />
-    //   </StyledMain>
-    // </MainLayout>
-    <Button option="LINK_TEXT">김석진이다</Button>
+    <MainLayout>
+      <StyledMain>
+        <Video />
+        <Schedule />
+        <Notice />
+        <Question />
+      </StyledMain>
+    </MainLayout>
   );
 };
 
