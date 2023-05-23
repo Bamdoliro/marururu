@@ -53,6 +53,15 @@ export const getButtonStyle = {
       text-decoration-color: ${color.maruDefault};
     }
   `,
+  HOVER_UNDERLINE: css`
+    background-color: ${color.white};
+    color: ${color.gray900};
+    border-radius: 0;
+    &:hover {
+      color: ${color.maruDefault};
+      border-bottom: 3px solid ${color.maruDefault};
+    }
+  `,
 };
 
 export const getButtonPadding = {

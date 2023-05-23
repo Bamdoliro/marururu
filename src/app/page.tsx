@@ -3,17 +3,19 @@
 import MainLayout from "@/layouts/MainLayout";
 import styled from "styled-components";
 import Schedule from "@/components/main/Schedule/Schedule";
+import Button from "@/components/common/Button/button";
 
 const Home = () => {
   return (
-    <MainLayout>
-      <StyledMain>
-        <Video />
-        <Schedule />
-        <Notice />
-        <Question />
-      </StyledMain>
-    </MainLayout>
+    // <MainLayout>
+    //   <StyledMain>
+    //     <Video />
+    //     <Schedule />
+    //     <Notice />
+    //     <Question />
+    //   </StyledMain>
+    // </MainLayout>
+    <Button option="LINK_TEXT">김석진이다</Button>
   );
 };
 
@@ -45,4 +47,3 @@ const Question = styled.div`
   height: 33%;
   background-color: green;
 `;
-
