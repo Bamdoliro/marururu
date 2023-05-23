@@ -6,47 +6,43 @@ import ScheduleItem from "./ScheduleItem";
 import { SchedulesData } from "@/data/schedule";
 
 const Schedule = () => {
-    return(
-        <StyledSchedule>
-            <Column gap="16px" height="72px">
-            <Title>입학일정</Title>
-            <StyledScheduleList>
-                {SchedulesData?.map((item) => (
-                    <ScheduleItem
-                    date={item.date}
-                    plan={item.plan}
-                    />
-                ))}
-            </StyledScheduleList>
-            </Column>
-        </StyledSchedule>
-    )
-}
-
+  return (
+    <StyledSchedule>
+      <Title>입학일정</Title>
+      <StyledScheduleList>
+        {SchedulesData?.map((item) => (
+          <ScheduleItem date={item.date} plan={item.plan} />
+        ))}
+      </StyledScheduleList>
+    </StyledSchedule>
+  );
+};
 
 export default Schedule;
 
 const StyledSchedule = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   width: 40%;
   height: 60%;
-  border: 1px solid black;
+  overflow: auto;
 `;
 
 const StyledScheduleList = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  width: 100%;
+`;
 
 const SchduleWrap = styled.div`
-    width: 100%;
-    height: 100%;
-
+  width: 100%;
+  height: 100%;
 `;
 
 const Title = styled.p`
   ${font.H3}
   color: ${color.gray900};
 `;
-
