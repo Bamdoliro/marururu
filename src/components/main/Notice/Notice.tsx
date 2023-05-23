@@ -23,6 +23,10 @@ const Notice = () => {
           title="2023학년도 부산소프트웨어마이스터고등학교 입학설명회 참가 신청"
           id={2}
         />
+        <NoticeItem
+          title="2023학년도 부산소프트웨어마이스터고등학교 입학설명회 참가 신청"
+          id={3}
+        />
       </NoticeList>
     </StyledNotice>
   );
@@ -52,4 +56,5 @@ const Title = styled.p`
 const NoticeList = styled.div`
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 `;
