@@ -4,6 +4,7 @@ import RightArrowIcon from "@/components/common/Icon/RightArrow";
 import NoticeItem from "./NoticeItem";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
+import { MainNoticeItemData } from "@/data/main";
 
 const Notice = () => {
   const router = useRouter();
@@ -15,18 +16,9 @@ const Notice = () => {
         <RightArrowIcon color={color.gray900} size={22} />
       </NoticeButton>
       <NoticeList>
-        <NoticeItem
-          title="2023학년도 부산소프트웨어마이스터고등학교 입학설명회 참가 신청"
-          id={1}
-        />
-        <NoticeItem
-          title="2023학년도 부산소프트웨어마이스터고등학교 입학설명회 참가 신청"
-          id={2}
-        />
-        <NoticeItem
-          title="2023학년도 부산소프트웨어마이스터고등학교 입학설명회 참가 신청"
-          id={3}
-        />
+        {MainNoticeItemData?.map((item) => (
+          <NoticeItem title={item.title} id={item.id} />
+        ))}
       </NoticeList>
     </StyledNotice>
   );
