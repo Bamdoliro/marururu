@@ -3,6 +3,7 @@
 import MainLayout from "@/layouts/MainLayout";
 import styled from "styled-components";
 import Schedule from "@/components/main/Schedule/Schedule";
+import Footer from "@/components/common/Footer/footer";
 
 const Home = () => {
   return (
