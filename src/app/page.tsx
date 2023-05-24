@@ -3,14 +3,14 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
-import Button from "@/components/common/Button/button";
+import Video from "@/components/main/Video/Video";
 import styled from "styled-components";
 
 const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
-        <Video />
+        <Video year={2024} />
         <Schedule />
         <Notice />
         <Question />
@@ -28,12 +28,6 @@ const StyledMain = styled.div`
   gap: 7% 4%;
   width: 100%;
   height: 100%;
-`;
-
-const Video = styled.div`
-  width: 56%;
-  height: 60%;
-  background-color: red;
 `;
 
 const Question = styled.div`
