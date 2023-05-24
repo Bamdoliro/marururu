@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
-        <Video title="2024학년도 입학 안내 영상" url="dj" />
+        <Video title="2024학년도 입학 안내 영상" />
         <Schedule />
         <Notice />
         <Question />
@@ -29,12 +29,6 @@ const StyledMain = styled.div`
   width: 100%;
   height: 100%;
 `;
-
-// const Video = styled.div`
-//   width: 56%;
-//   height: 60%;
-//   background-color: red;
-// `;
 
 const Question = styled.div`
   width: 48%;

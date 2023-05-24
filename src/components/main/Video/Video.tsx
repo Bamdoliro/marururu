@@ -5,10 +5,9 @@ import Column from "../../common/Flex/column";
 
 interface propstype {
     title: string;
-    url: string;
 }
 
-const Video = ({title, url}: propstype) => {
+const Video = ({ title }: propstype) => {
     return (
         <StyledVideo>
              <Title>{title}</Title>
