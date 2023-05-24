@@ -48,16 +48,36 @@ export const getButtonStyle = {
     color: ${color.gray500};
     text-decoration-line: underline;
     text-decoration-color: ${color.gray500};
+    text-underline-position: under;
     &:hover {
       color: ${color.maruDefault};
       text-decoration-color: ${color.maruDefault};
+    }
+  `,
+  HOVER_UNDERLINE: css`
+    position: relative;
+    background-color: ${color.white};
+    color: ${color.gray900};
+    border-radius: 0;
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: ${color.maruDefault};
+      transform: scaleX(0);
+    }
+    &:hover::before {
+      transform: scaleX(1);
     }
   `,
 };
 
 export const getButtonPadding = {
   NONE: css`
-    padding: 10px 16px;
+    padding: 0px 16px;
   `,
   ADD_ICON: css`
     gap: 4px;

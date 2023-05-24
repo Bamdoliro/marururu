@@ -35,4 +35,3 @@ const Question = styled.div`
   height: 33%;
   background-color: green;
 `;
-
