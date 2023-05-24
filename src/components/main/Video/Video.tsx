@@ -31,9 +31,8 @@ const StyledVideo = styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
-    width: 701px;
+    width: 703px;
     height: 451px;
-    overflow: auto;
 `
 
 const Title = styled.p`
@@ -44,5 +43,4 @@ const Title = styled.p`
 const VideoBox = styled.div`
     width: 100%;
     height: 89%;
-    border-radius: 16px;
-`
+`;
