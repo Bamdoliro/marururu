@@ -3,8 +3,11 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
-import Button from "@/components/common/Button/button";
 import styled from "styled-components";
+
+if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+  import("../mocks");
+}
 
 const Home = () => {
   return (
