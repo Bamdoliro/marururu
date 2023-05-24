@@ -3,24 +3,24 @@ import { font } from "@/styles/font";
 import styled from "styled-components";
 import Column from "../../common/Flex/column";
 
-interface propstype {
-    title: string;
+interface PropsType {
+    year: number;
 }
 
-const Video = ({ title }: propstype) => {
+const Video = ({ year }: PropsType) => {
     return (
         <StyledVideo>
-             <Title>{title}</Title>
-             <VideoContainer>
-             <iframe 
-                width="100%" height="89%" 
-                src="https://www.youtube.com/embed/qkDBUiAV_Pk" 
-                title="YouTube video player" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowFullScreen>
-             </iframe>
-             </VideoContainer>
+             <Title>{year}년 입학 안내 영상</Title>
+             <VideoBox>
+                <iframe 
+                    width="100%" height="89%" 
+                    src="https://www.youtube.com/embed/qkDBUiAV_Pk" 
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen>
+                </iframe>
+             </VideoBox>
         </StyledVideo>
     )
 }
@@ -41,7 +41,7 @@ const Title = styled.p`
     color: ${color.gray900};
 `;
 
-const VideoContainer = styled.div`
+const VideoBox = styled.div`
     width: 100%;
     height: 89%;
     border-radius: 16px;

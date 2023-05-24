@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
-        <Video title="2024학년도 입학 안내 영상" />
+        <Video year={2024} />
         <Schedule />
         <Notice />
         <Question />
