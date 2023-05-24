@@ -3,6 +3,7 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
+import Button from "@/components/common/Button/button";
 import styled from "styled-components";
 
 const Home = () => {
@@ -40,4 +41,3 @@ const Question = styled.div`
   height: 33%;
   background-color: green;
 `;
-
