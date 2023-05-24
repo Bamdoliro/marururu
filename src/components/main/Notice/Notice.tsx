@@ -18,7 +18,7 @@ const Notice = () => {
       </Link>
       <NoticeList>
         {MainNoticeItemData?.map((item) => (
-          <NoticeItem title={item.title} id={item.id} />
+          <NoticeItem key={item.id} title={item.title} id={item.id} />
         ))}
       </NoticeList>
     </StyledNotice>

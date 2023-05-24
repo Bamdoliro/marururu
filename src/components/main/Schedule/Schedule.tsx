@@ -1,17 +1,19 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
-import Column from "../../common/Flex/column";
 import ScheduleItem from "./ScheduleItem";
 import { SchedulesData } from "@/data/schedule";
+import { getSchedule } from "@/api/home";
 
 const Schedule = () => {
+  getSchedule();
+
   return (
     <StyledSchedule>
       <Title>입학일정</Title>
       <StyledScheduleList>
         {SchedulesData?.map((item) => (
-          <ScheduleItem date={item.date} plan={item.plan} />
+          <ScheduleItem key={item.id} date={item.date} plan={item.plan} />
         ))}
       </StyledScheduleList>
     </StyledSchedule>
