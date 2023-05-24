@@ -3,13 +3,14 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
+import Video from "@/components/main/Video/Video";
 import styled from "styled-components";
 
 const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
-        <Video />
+        <Video title="2024학년도 입학 안내 영상" url="dj" />
         <Schedule />
         <Notice />
         <Question />
@@ -29,11 +30,11 @@ const StyledMain = styled.div`
   height: 100%;
 `;
 
-const Video = styled.div`
-  width: 56%;
-  height: 60%;
-  background-color: red;
-`;
+// const Video = styled.div`
+//   width: 56%;
+//   height: 60%;
+//   background-color: red;
+// `;
 
 const Question = styled.div`
   width: 48%;
