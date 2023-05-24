@@ -2,17 +2,16 @@ import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
 import ScheduleItem from "./ScheduleItem";
-import { SchedulesData } from "@/data/schedule";
-import { getSchedule } from "@/api/home";
+import { scheduleListQuery } from "@/features/main";
 
 const Schedule = () => {
-  getSchedule();
+  const { data } = scheduleListQuery();
 
   return (
     <StyledSchedule>
       <Title>입학일정</Title>
       <StyledScheduleList>
-        {SchedulesData?.map((item) => (
+        {data.map((item) => (
           <ScheduleItem key={item.id} date={item.date} plan={item.plan} />
         ))}
       </StyledScheduleList>
@@ -43,3 +42,6 @@ const Title = styled.p`
   ${font.H3}
   color: ${color.gray900};
 `;
+function aysnc(): import("react").EffectCallback {
+  throw new Error("Function not implemented.");
+}

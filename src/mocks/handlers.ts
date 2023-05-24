@@ -1,25 +1,16 @@
 import { rest } from "msw";
 import { MainNoticeItemData, NoticeItemData, ScheduleItemData } from "./dummy";
 
-const MOCK_API_BASE_URL = "http://localhost:8080/";
+export const MOCK_API_BASE_URL = "http://localhost:3000";
 
 export const handlers = [
   rest.get(`${MOCK_API_BASE_URL}/main/notice/list`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({ message: "", body: MainNoticeItemData })
-    );
+    return res(ctx.status(200), ctx.json(MainNoticeItemData));
   }),
   rest.get(`${MOCK_API_BASE_URL}/notice/list`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({ message: "", body: NoticeItemData })
-    );
+    return res(ctx.status(200), ctx.json(NoticeItemData));
   }),
-  rest.get(`${MOCK_API_BASE_URL}/schedule/list`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({ message: "", body: ScheduleItemData })
-    );
+  rest.get(`${MOCK_API_BASE_URL}/main/schedule/list`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(ScheduleItemData));
   }),
 ];
