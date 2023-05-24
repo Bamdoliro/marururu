@@ -8,5 +8,6 @@ export const scheduleList = async () => {
 
 export const noticeList = async () => {
   const { data } = await axios.get(`${MOCK_API_BASE_URL}/main/notice/list`);
+  console.log(data);
   return data;
 };
