@@ -6,14 +6,17 @@ import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { NoticeItemData } from "@/data/notice";
 import styled from "styled-components";
+import { noticeListQuery } from "@/features/notice";
 
 const NoticePage = () => {
+  const { data } = noticeListQuery();
+
   return (
     <NoticeLayout>
       <StyledNotice>
         <Title>공지사항</Title>
         <NoticeList>
-          {NoticeItemData?.map((item) => (
+          {data.map((item) => (
             <NoticeItem
               key={item.id}
               id={item.id}
