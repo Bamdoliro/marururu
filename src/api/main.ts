@@ -5,3 +5,8 @@ export const mainNoticeList = async () => {
   const { data } = await axios.get(`${MOCK_API_BASE_URL}/main/notice/list`);
   return data;
 };
+
+export const mainQuestionList = async () => {
+  const { data } = await axios.get(`${MOCK_API_BASE_URL}/main/question/list`);
+  return data;
+};

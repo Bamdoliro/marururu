@@ -30,3 +30,18 @@ export const NoticeItemData = [
     date: "2022.10.10",
   },
 ];
+
+export const MainQuestionItemData = [
+  {
+    id: 1,
+    title: "하루 일과가 마치는 시간이 어떻게 되나요?",
+  },
+  {
+    id: 2,
+    title: "하루 일과가 마치는 시간이 어떻게 되나요?",
+  },
+  {
+    id: 3,
+    title: "하루 일과가 마치는 시간이 어떻게 되나요?",
+  },
+];
