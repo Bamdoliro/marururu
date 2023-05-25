@@ -1,4 +1,5 @@
 import { mainNoticeList, mainScheduleList } from "@/api/main";
+import * as KEY from "@/constants/key";
 import { useQuery } from "react-query";
 
 /** 메인 입학 일정 리스트 */
@@ -9,8 +10,9 @@ export interface MainScheduleListType {
 }
 
 export const useMainScheduleListQuery = () => {
-  const { data } = useQuery<MainScheduleListType[]>(["scheduleList"], () =>
-    mainScheduleList()
+  const { data } = useQuery<MainScheduleListType[]>(
+    [KEY.MAIN_SCHEDULE_LIST],
+    () => mainScheduleList()
   );
   return { data: data || [] };
 };
@@ -23,7 +25,7 @@ interface MainNoticeListType {
 }
 
 export const useMainNoticeListQuery = () => {
-  const { data } = useQuery<MainNoticeListType[]>(["mainNoticeList"], () =>
+  const { data } = useQuery<MainNoticeListType[]>([KEY.MAIN_NOTICE_LIST], () =>
     mainNoticeList()
   );
   return { data: data || [] };
