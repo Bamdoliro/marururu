@@ -59,7 +59,6 @@ const LeftFooterConetnt = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
-  border: 1px solid black;
   width: 489px;
   height: 216px;
 `;
@@ -88,15 +87,13 @@ const RightFooterContent = styled.div`
   display: flex;
   flex-direction: row;
   gap: 132px;
-  width: 326px;
+  width: 350px;
   height: 201px;
-  border: 1px solid black;
 `;
 
 const Five = styled.div`
   width: 120px;
   height: 201px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -106,7 +103,6 @@ const Three = styled.div`
   height: 111px;
   width: 145px;
   display: flex;
-  border: 1px solid black;
   flex-direction: column;
   gap: 24px;
 `;
@@ -114,5 +110,7 @@ const Three = styled.div`
 const FooterIcon = styled.div`
   width: 90px;
   height: 36px;
-  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 `;
