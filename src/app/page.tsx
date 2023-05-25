@@ -4,6 +4,7 @@ import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
 import Video from "@/components/main/Video/Video";
+import Question from "@/components/main/Question/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 
@@ -33,10 +34,4 @@ const StyledMain = styled.div`
   gap: 7% 4%;
   width: 100%;
   height: 100%;
-`;
-
-const Question = styled.div`
-  width: 48%;
-  height: 33%;
-  background-color: green;
 `;
