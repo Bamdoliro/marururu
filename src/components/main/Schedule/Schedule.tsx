@@ -2,16 +2,14 @@ import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
 import ScheduleItem from "./ScheduleItem";
-import { useMainScheduleListQuery } from "@/features/main";
+import { ScheduleItemData } from "./data";
 
 const Schedule = () => {
-  const { data } = useMainScheduleListQuery();
-
   return (
     <StyledSchedule>
       <Title>입학일정</Title>
       <StyledScheduleList>
-        {data.map((item) => (
+        {ScheduleItemData.map((item) => (
           <ScheduleItem key={item.id} date={item.date} plan={item.plan} />
         ))}
       </StyledScheduleList>
