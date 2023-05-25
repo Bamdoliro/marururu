@@ -5,10 +5,11 @@ import NoticeItem from "./NoticeItem";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link/link";
-import { MainNoticeItemData } from "@/data/main";
+import { useMainNoticeListQuery } from "@/features/main";
 
 const Notice = () => {
   const router = useRouter();
+  const { data } = useMainNoticeListQuery();
 
   return (
     <StyledNotice>
@@ -17,8 +18,8 @@ const Notice = () => {
         <RightArrowIcon color={color.gray900} size={22} />
       </Link>
       <NoticeList>
-        {MainNoticeItemData?.map((item) => (
-          <NoticeItem title={item.title} id={item.id} />
+        {data.map((item) => (
+          <NoticeItem key={item.id} id={item.id} title={item.title} />
         ))}
       </NoticeList>
     </StyledNotice>

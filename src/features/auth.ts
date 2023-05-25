@@ -12,7 +12,10 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 
 /** 로그인 */
-export const loginUserMutation = ({ email, password }: loginUserParamsType) => {
+export const useLoginUserMutation = ({
+  email,
+  password,
+}: loginUserParamsType) => {
   const router = useRouter();
 
   return useMutation(() => loginUser({ email, password }), {
@@ -30,7 +33,7 @@ export const loginUserMutation = ({ email, password }: loginUserParamsType) => {
 };
 
 /** 회원가입 */
-export const joinUserMutation = ({
+export const useJoinUserMutation = ({
   email,
   code,
   password,
@@ -49,6 +52,6 @@ export const joinUserMutation = ({
 };
 
 /** 이메일 인증번호 요청 */
-export const requestEmailMutation = ({ email }: requestEmailParamsType) => {
+export const useRequestEmailMutation = ({ email }: requestEmailParamsType) => {
   return useMutation(() => requestEmail({ email }));
 };

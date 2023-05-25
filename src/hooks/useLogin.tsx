@@ -1,4 +1,4 @@
-import { loginUserMutation } from "@/features/auth";
+import { useLoginUserMutation } from "@/features/auth";
 import { ChangeEvent, useState } from "react";
 
 interface loginUserDataType {
@@ -17,7 +17,7 @@ export const useLogin = () => {
     setLoginUserData({ ...loginUserData, [name]: value });
   };
 
-  const loginUserMutate = loginUserMutation(loginUserData);
+  const loginUserMutate = useLoginUserMutation(loginUserData);
 
   return { handleLoginUserData, loginUserMutate };
 };
