@@ -1,16 +1,16 @@
-import { mainNoticeList, scheduleList } from "@/api/main";
+import { mainNoticeList, mainScheduleList } from "@/api/main";
 import { useQuery } from "react-query";
 
 /** 메인 입학 일정 리스트 */
-export interface ScheduleListType {
+export interface MainScheduleListType {
   id: number;
   date: string;
   plan: string;
 }
 
-export const scheduleListQuery = () => {
-  const { data } = useQuery<ScheduleListType[]>(["scheduleList"], () =>
-    scheduleList()
+export const useMainScheduleListQuery = () => {
+  const { data } = useQuery<MainScheduleListType[]>(["scheduleList"], () =>
+    mainScheduleList()
   );
   return { data: data || [] };
 };
@@ -22,7 +22,7 @@ interface MainNoticeListType {
   title: string;
 }
 
-export const mainNoticeListQuery = () => {
+export const useMainNoticeListQuery = () => {
   const { data } = useQuery<MainNoticeListType[]>(["mainNoticeList"], () =>
     mainNoticeList()
   );

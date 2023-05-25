@@ -4,12 +4,11 @@ import NoticeItem from "@/components/notice/NoticeItem";
 import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { NoticeItemData } from "@/data/notice";
 import styled from "styled-components";
-import { noticeListQuery } from "@/features/notice";
+import { useNoticeListQuery } from "@/features/notice";
 
 const NoticePage = () => {
-  const { data } = noticeListQuery();
+  const { data } = useNoticeListQuery();
 
   return (
     <NoticeLayout>

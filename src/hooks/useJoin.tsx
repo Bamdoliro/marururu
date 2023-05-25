@@ -1,4 +1,4 @@
-import { joinUserMutation, requestEmailMutation } from "@/features/auth";
+import { useJoinUserMutation, useRequestEmailMutation } from "@/features/auth";
 import { ChangeEvent, useState } from "react";
 
 interface joinUserDataType {
@@ -31,7 +31,6 @@ export const useJoin = () => {
     if (joinUserData.password === joinUserData.repassword) {
       if (checkTermsAgree == true) {
         joinUserMutate.mutate();
-        console.log(joinUserData);
       } else {
         alert("이용약관 동의를 해주세요");
       }
@@ -40,8 +39,8 @@ export const useJoin = () => {
     }
   };
 
-  const joinUserMutate = joinUserMutation(joinUserData);
-  const requestEmailMutate = requestEmailMutation(joinUserData);
+  const joinUserMutate = useJoinUserMutation(joinUserData);
+  const requestEmailMutate = useRequestEmailMutation(joinUserData);
 
   return {
     handleJoinUserData,

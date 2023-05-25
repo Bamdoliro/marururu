@@ -7,7 +7,7 @@ interface NoticeListType {
   date: string;
 }
 
-export const noticeListQuery = () => {
+export const useNoticeListQuery = () => {
   const { data } = useQuery<NoticeListType[]>(["noticeList"], () =>
     noticeList()
   );

@@ -2,10 +2,10 @@ import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
 import ScheduleItem from "./ScheduleItem";
-import { scheduleListQuery } from "@/features/main";
+import { useMainScheduleListQuery } from "@/features/main";
 
 const Schedule = () => {
-  const { data } = scheduleListQuery();
+  const { data } = useMainScheduleListQuery();
 
   return (
     <StyledSchedule>

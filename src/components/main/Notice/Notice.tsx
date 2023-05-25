@@ -5,11 +5,11 @@ import NoticeItem from "./NoticeItem";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link/link";
-import { mainNoticeListQuery } from "@/features/main";
+import { useMainNoticeListQuery } from "@/features/main";
 
 const Notice = () => {
   const router = useRouter();
-  const { data } = mainNoticeListQuery();
+  const { data } = useMainNoticeListQuery();
 
   return (
     <StyledNotice>
