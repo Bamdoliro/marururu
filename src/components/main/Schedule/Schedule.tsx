@@ -1,17 +1,16 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
-import Column from "../../common/Flex/column";
 import ScheduleItem from "./ScheduleItem";
-import { SchedulesData } from "@/data/schedule";
+import { ScheduleItemData } from "./data";
 
 const Schedule = () => {
   return (
     <StyledSchedule>
       <Title>입학일정</Title>
       <StyledScheduleList>
-        {SchedulesData?.map((item) => (
-          <ScheduleItem date={item.date} plan={item.plan} />
+        {ScheduleItemData.map((item) => (
+          <ScheduleItem key={item.id} date={item.date} plan={item.plan} />
         ))}
       </StyledScheduleList>
     </StyledSchedule>
@@ -41,3 +40,6 @@ const Title = styled.p`
   ${font.H3}
   color: ${color.gray900};
 `;
+function aysnc(): import("react").EffectCallback {
+  throw new Error("Function not implemented.");
+}
