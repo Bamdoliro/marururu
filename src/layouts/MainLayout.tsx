@@ -1,3 +1,4 @@
+import Footer from "@/components/common/Footer/footer";
 import Header from "@/components/common/Header/header";
 import { color } from "@/styles/color";
 import { ReactNode } from "react";
@@ -9,10 +10,14 @@ interface PropsType {
 
 const MainLayout = ({ children }: PropsType) => {
   return (
+    <>
+    
     <StyledMainLayout>
       <Header />
       <MainLayoutWrap>{children}</MainLayoutWrap>
     </StyledMainLayout>
+    <Footer />
+    </>
   );
 };
 
