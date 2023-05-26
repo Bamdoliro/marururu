@@ -5,6 +5,7 @@ import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
 import Footer from "@/components/common/Footer/footer";
 import Video from "@/components/main/Video/Video";
+import Question from "@/components/main/Question/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 
@@ -18,8 +19,8 @@ const Home = () => {
       <StyledMain>
         <Video year={2024} />
         <Schedule />
-        {/* <Notice /> */}
-        {/* <Question /> */}
+        <Notice />
+        <Question />
       </StyledMain>
     </MainLayout>
   );
