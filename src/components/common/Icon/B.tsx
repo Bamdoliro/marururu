@@ -1,4 +1,6 @@
-const BIcon = () => {
+import { IconPropsType } from "./type";
+
+const BIcon = ({ onClick, cursor }: IconPropsType) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +8,8 @@ const BIcon = () => {
       height="36"
       viewBox="0 0 36 36"
       fill="none"
+      onClick={onClick}
+      cursor={cursor}
     >
       <g opacity="0.7">
         <path

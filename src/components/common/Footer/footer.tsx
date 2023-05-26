@@ -2,45 +2,44 @@ import styled from "styled-components";
 import { color } from "@/styles/color";
 import GrayLogoIcon from "../Icon/GrayLogo";
 import Column from "../Flex/column";
-import IgIcon from "../Icon/Ig";
+import InstagramIcon from "../Icon/Instagram";
 import BIcon from "../Icon/B";
+import { font } from "@/styles/font";
+import Row from "../Flex/row";
+import Link from "../Link/link";
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <Lala>
-        <LeftFooterConetnt>
-          <GrayLogoIcon />
-          <Column gap="20px">
-            <StyledContent>
-              <p>주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)</p>
-              <p>교무실(입학처): 051-971-2153, Fax: 051-971-2061</p>
-              <p> 행정실:051-971-2152, Fax: 051-971-6325</p>
-            </StyledContent>
-            <LeftUnderFooter>
-              Copyright © 밤돌이로 all rights reserved.
-            </LeftUnderFooter>
-          </Column>
-        </LeftFooterConetnt>
-        <RightFooterContent>
-          <Five>
-            <p>원서접수</p>
-            <p>공지사항</p>
-            <p>자주묻는질문</p>
-            <p>학교소개</p>
-            <p>마루소개</p>
-          </Five>
-          <Three>
-            <p>이용약관</p>
-            <p>개인정보처리방침</p>
-            <p>학교 홈페이지</p>
-          </Three>
-        </RightFooterContent>
-        <FooterIcon>
-          <IgIcon />
-          <BIcon />
-        </FooterIcon>
-      </Lala>
+      <InfoBox>
+        <GrayLogoIcon />
+        <Column gap="20px">
+          <ContentBox>
+            <p>주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)</p>
+            <p>교무실(입학처): 051-971-2153, Fax: 051-971-2061</p>
+            <p> 행정실:051-971-2152, Fax: 051-971-6325</p>
+          </ContentBox>
+          <Copyright>Copyright © 밤돌이로 all rights reserved.</Copyright>
+        </Column>
+      </InfoBox>
+      <NavigationBox>
+        <Column gap="24px">
+          <Link onClick={() => console.log("test")}>원서접수</Link>
+          <Link onClick={() => console.log("test")}>공지사항</Link>
+          <Link onClick={() => console.log("test")}>자주묻는질문</Link>
+          <Link onClick={() => console.log("test")}>학교소개</Link>
+          <Link onClick={() => console.log("test")}>마루소개</Link>
+        </Column>
+        <Column gap="24px">
+          <Link onClick={() => console.log("test")}>이용약관</Link>
+          <Link onClick={() => console.log("test")}>개인정보처리방침</Link>
+          <Link onClick={() => console.log("test")}>학교 홈페이지</Link>
+        </Column>
+      </NavigationBox>
+      <Row gap="16px" alignItems="center">
+        <InstagramIcon cursor="pointer" />
+        <BIcon cursor="pointer" />
+      </Row>
     </StyledFooter>
   );
 };
@@ -49,21 +48,23 @@ export default Footer;
 
 const StyledFooter = styled.div`
   background-color: ${color.gray100};
+  display: flex;
+  align-items: flex-start;
+  gap: 155px;
   height: 350px;
   width: 100%;
   padding: 40px 0px 0px 100px;
-  color: ${color.gray600};
 `;
 
-const LeftFooterConetnt = styled.div`
+const InfoBox = styled.div`
+  ${font.p3}
+  color: ${color.gray600};
   display: flex;
   flex-direction: column;
   gap: 40px;
-  width: 489px;
-  height: 216px;
 `;
 
-const StyledContent = styled.p`
+const ContentBox = styled.p`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -71,46 +72,14 @@ const StyledContent = styled.p`
   padding-bottom: 20px;
 `;
 
-const LeftUnderFooter = styled.p`
+const Copyright = styled.p`
+  ${font.p3}
   color: ${color.gray600};
 `;
 
-const Lala = styled.div`
+const NavigationBox = styled.div`
+  ${font.p3}
+  color: ${color.gray600};
   display: flex;
-  flex-direction: row;
   gap: 155px;
-  width: 1163px;
-  height: 216px;
-`;
-
-const RightFooterContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 132px;
-  width: 350px;
-  height: 201px;
-`;
-
-const Five = styled.div`
-  width: 120px;
-  height: 201px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-`;
-
-const Three = styled.div`
-  height: 111px;
-  width: 145px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-`;
-
-const FooterIcon = styled.div`
-  width: 90px;
-  height: 36px;
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
 `;

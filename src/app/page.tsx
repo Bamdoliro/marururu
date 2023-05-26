@@ -18,8 +18,8 @@ const Home = () => {
       <StyledMain>
         <Video year={2024} />
         <Schedule />
-        <Notice />
-        <Question />
+        {/* <Notice /> */}
+        {/* <Question /> */}
       </StyledMain>
     </MainLayout>
   );
