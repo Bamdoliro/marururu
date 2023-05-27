@@ -9,10 +9,12 @@ interface PropsType {
 
 const NoticeLayout = ({ children }: PropsType) => {
   return (
-    <StyledNoticeLayout>
+    <>
       <Header />
-      <NoticeLayoutWrap>{children}</NoticeLayoutWrap>
-    </StyledNoticeLayout>
+      <StyledNoticeLayout>
+        <NoticeLayoutWrap>{children}</NoticeLayoutWrap>
+      </StyledNoticeLayout>
+    </>
   );
 };
 

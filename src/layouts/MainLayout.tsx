@@ -11,12 +11,11 @@ interface PropsType {
 const MainLayout = ({ children }: PropsType) => {
   return (
     <>
-    
-    <StyledMainLayout>
       <Header />
-      <MainLayoutWrap>{children}</MainLayoutWrap>
-    </StyledMainLayout>
-    <Footer />
+      <StyledMainLayout>
+        <MainLayoutWrap>{children}</MainLayoutWrap>
+      </StyledMainLayout>
+      <Footer />
     </>
   );
 };
@@ -30,6 +29,7 @@ const StyledMainLayout = styled.section`
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
+  margin-bottom: 250px;
 `;
 
 const MainLayoutWrap = styled.div`

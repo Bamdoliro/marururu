@@ -10,10 +10,10 @@ interface PropsType {
 
 const AppLayout = ({ children, backgroundColor }: PropsType) => {
   return (
-    <StyledAppLayout style={{ backgroundColor }}>
+    <>
       <Header />
-      {children}
-    </StyledAppLayout>
+      <StyledAppLayout style={{ backgroundColor }}>{children}</StyledAppLayout>
+    </>
   );
 };
 
