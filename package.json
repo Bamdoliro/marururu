@@ -14,6 +14,7 @@
     "@types/react-dom": "18.2.4",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.4.0",
+    "moment": "^2.29.4",
     "next": "13.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

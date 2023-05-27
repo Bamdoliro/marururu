@@ -3,11 +3,10 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
-import Footer from "@/components/common/Footer/footer";
-import Video from "@/components/main/Video/Video";
 import Question from "@/components/main/Question/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
+import DDayCard from "@/components/main/DDayCard/DDayCard";
 
 if (process.env.NODE_ENV === "development") {
   initMockAPI();
@@ -17,7 +16,7 @@ const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
-        <Video year={2024} />
+        <DDayCard goal="1차 합격자 발표까지" date="2023-11-02" />
         <Schedule />
         <Notice />
         <Question />
