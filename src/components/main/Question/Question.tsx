@@ -32,8 +32,9 @@ const StyledQuestion = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 48%;
-  height: 33%;
+  flex-grow: 1;
+  max-width: 596px;
+  aspect-ratio: 596 / 242;
 `;
 
 const Title = styled.p`

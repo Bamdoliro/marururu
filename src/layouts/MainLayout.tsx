@@ -27,7 +27,6 @@ const StyledMainLayout = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 100vh;
   background-color: ${color.white};
   margin-bottom: 250px;
 `;
@@ -35,5 +34,4 @@ const StyledMainLayout = styled.section`
 const MainLayoutWrap = styled.div`
   padding: 48px 0px;
   width: 86%;
-  height: 100%;
 `;

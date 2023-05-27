@@ -3,7 +3,6 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice/Notice";
 import Schedule from "@/components/main/Schedule/Schedule";
-import Footer from "@/components/common/Footer/footer";
 import Video from "@/components/main/Video/Video";
 import Question from "@/components/main/Question/Question";
 import initMockAPI from "@/mocks";
@@ -17,10 +16,14 @@ const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
-        <Video year={2024} />
-        <Schedule />
-        <Notice />
-        <Question />
+        <ResposiveFlex>
+          <Video year={2024} />
+          <Schedule />
+        </ResposiveFlex>
+        <ResposiveFlex>
+          <Notice />
+          <Question />
+        </ResposiveFlex>
       </StyledMain>
     </MainLayout>
   );
@@ -30,9 +33,17 @@ export default Home;
 
 const StyledMain = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 7% 4%;
+  flex-direction: column;
+  gap: 60px;
   width: 100%;
-  height: 100%;
+`;
+
+const ResposiveFlex = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;

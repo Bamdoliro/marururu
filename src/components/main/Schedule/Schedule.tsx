@@ -23,8 +23,9 @@ const StyledSchedule = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 40%;
-  height: 60%;
+  flex-grow: 1;
+  max-width: 489px;
+  aspect-ratio: 489 / 451;
 `;
 
 const StyledScheduleList = styled.div`
