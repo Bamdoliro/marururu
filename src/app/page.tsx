@@ -7,6 +7,7 @@ import Video from "@/components/main/Video/Video";
 import Question from "@/components/main/Question/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
+import Row from "@/components/common/Flex/row";
 
 if (process.env.NODE_ENV === "development") {
   initMockAPI();
@@ -16,14 +17,14 @@ const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
-        <ResposiveFlex>
+        <Row gap="48px" justifyContent="center">
           <Video year={2024} />
           <Schedule />
-        </ResposiveFlex>
-        <ResposiveFlex>
+        </Row>
+        <Row gap="48px" justifyContent="center">
           <Notice />
           <Question />
-        </ResposiveFlex>
+        </Row>
       </StyledMain>
     </MainLayout>
   );
@@ -36,14 +37,4 @@ const StyledMain = styled.div`
   flex-direction: column;
   gap: 60px;
   width: 100%;
-`;
-
-const ResposiveFlex = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
 `;

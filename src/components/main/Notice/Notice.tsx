@@ -34,7 +34,7 @@ const StyledNotice = styled.div`
   gap: 16px;
   flex-grow: 1;
   max-width: 596px;
-  aspect-ratio: 596 / 242;
+  height: 242px;
 `;
 
 const Title = styled.p`

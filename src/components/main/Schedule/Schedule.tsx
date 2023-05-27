@@ -25,7 +25,6 @@ const StyledSchedule = styled.div`
   gap: 16px;
   flex-grow: 1;
   max-width: 489px;
-  aspect-ratio: 489 / 451;
 `;
 
 const StyledScheduleList = styled.div`
