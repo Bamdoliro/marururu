@@ -33,6 +33,7 @@ const StyledNotice = styled.div`
   flex-direction: column;
   gap: 16px;
   flex-grow: 1;
+  flex-basis: 0;
   max-width: 596px;
   height: 242px;
 `;
