@@ -1,4 +1,4 @@
-import { Row } from "@/components/common/Flex";
+import Row from "@/components/common/Flex/Row";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";

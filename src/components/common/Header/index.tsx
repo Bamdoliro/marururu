@@ -4,7 +4,7 @@ import { color } from "@/styles/color";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import Button from "../Button";
-import { Row } from "../Flex";
+import Row from "../Flex/Row";
 import LogoIcon from "../Icon/Logo";
 import NavigationBar from "./NavigationBar";
 import Profile from "./Profile";

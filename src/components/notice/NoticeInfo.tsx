@@ -1,6 +1,6 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { Column } from "../common/Flex";
+import Column from "../common/Flex/Column";
 import styled from "styled-components";
 
 interface PropsType {

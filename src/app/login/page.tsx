@@ -3,7 +3,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Button from "@/components/common/Button";
-import { Column } from "@/components/common/Flex";
+import Column from "@/components/common/Flex/Column";
 import RightArrowIcon from "@/components/common/Icon/RightArrow";
 import Input from "@/components/common/Input";
 import PreviewInput from "@/components/common/Input/PreviewInput";
