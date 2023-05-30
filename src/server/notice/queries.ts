@@ -1,4 +1,4 @@
-import { noticeList } from "@/api/notice";
+import { noticeList } from "./api";
 import * as KEY from "@/constants/key";
 import { useQuery } from "react-query";
 

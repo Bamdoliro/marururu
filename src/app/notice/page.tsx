@@ -5,7 +5,7 @@ import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
-import { useNoticeListQuery } from "@/features/notice";
+import { useNoticeListQuery } from "@/server/notice/queries";
 
 const NoticePage = () => {
   const { data } = useNoticeListQuery();

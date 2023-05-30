@@ -1,7 +1,7 @@
 import { ACCESS_KEY, REFRESH_KEY } from "@/constants/token";
 import { useRouter } from "next/navigation";
-import { maru } from "../axios/index";
-import { Storage } from "../storage";
+import { maru } from "../../axios/index";
+import { Storage } from "../../storage";
 
 export const refreshToken = async () => {
   const router = useRouter();
