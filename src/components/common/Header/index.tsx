@@ -6,8 +6,8 @@ import styled from "styled-components";
 import Button from "../Button";
 import { Row } from "../Flex";
 import LogoIcon from "../Icon/Logo";
-import NavigationBar from "./navigation";
-import Profile from "./profile";
+import NavigationBar from "./NavigationBar";
+import Profile from "./Profile";
 
 const Header = () => {
   const router = useRouter();
