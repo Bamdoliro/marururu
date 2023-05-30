@@ -1,11 +1,10 @@
 "use client";
 
 import MainLayout from "@/layouts/MainLayout";
-import Notice from "@/components/main/Notice/Notice";
-import Schedule from "@/components/main/Schedule/Schedule";
-import Footer from "@/components/common/Footer";
-import Video from "@/components/main/Video/Video";
-import Question from "@/components/main/Question/Question";
+import Notice from "@/components/main/Notice";
+import Schedule from "@/components/main/Schedule";
+import Video from "@/components/main/Video";
+import Question from "@/components/main/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 
