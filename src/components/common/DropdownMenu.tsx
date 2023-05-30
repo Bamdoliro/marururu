@@ -2,8 +2,8 @@ import { font } from "@/styles/font";
 import { useState } from "react";
 import { color } from "@/styles/color";
 import styled, { css } from "styled-components";
-import DownArrowIcon from "../Icon/DownArrow";
-import UpArrowIcon from "../Icon/UpArrow";
+import DownArrowIcon from "./Icon/DownArrow";
+import UpArrowIcon from "./Icon/UpArrow";
 
 interface DropdownItemType {
   dropdownItemText: string;

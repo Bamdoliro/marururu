@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { color } from "@/styles/color";
-import GrayLogoIcon from "../Icon/GrayLogo";
-import Column from "../Flex/column";
-import InstagramIcon from "../Icon/Instagram";
-import BIcon from "../Icon/B";
+import GrayLogoIcon from "./Icon/GrayLogo";
+import { Column, Row } from "./Flex";
+import InstagramIcon from "./Icon/Instagram";
+import BIcon from "./Icon/B";
 import { font } from "@/styles/font";
-import Row from "../Flex/row";
-import Link from "../Link/link";
+import Link from "./Link";
 
 const Footer = () => {
   return (

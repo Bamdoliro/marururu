@@ -1,7 +1,7 @@
 "use client";
 
 import LeftArrowIcon from "@/components/common/Icon/LeftArrow";
-import Link from "@/components/common/Link/link";
+import Link from "@/components/common/Link";
 import NoticeInfo from "@/components/notice/NoticeInfo";
 import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";

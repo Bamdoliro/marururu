@@ -4,7 +4,7 @@ import RightArrowIcon from "@/components/common/Icon/RightArrow";
 import QuestionItem from "./QuestionItem";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
-import Link from "@/components/common/Link/link";
+import Link from "@/components/common/Link";
 import { useMainQuestionListQuery } from "@/server/main/queries";
 
 const Question = () => {

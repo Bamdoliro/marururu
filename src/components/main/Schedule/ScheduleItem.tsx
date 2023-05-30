@@ -1,8 +1,7 @@
-import Row from "@/components/common/Flex/row";
+import { Row } from "@/components/common/Flex";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
-import Column from "../../common/Flex/column";
 
 interface propstype {
   date: string;

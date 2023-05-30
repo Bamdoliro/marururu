@@ -30,9 +30,27 @@ const Column = ({
   );
 };
 
-export default Column;
-
 const StyledColumn = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const Row = ({
+  children,
+  gap,
+  justifyContent = "none",
+  alignItems = "none",
+  width,
+}: PropsType) => {
+  return (
+    <StyledRow style={{ gap, justifyContent, alignItems, width }}>
+      {children}
+    </StyledRow>
+  );
+};
+
+const StyledRow = styled.div`
+  display: flex;
+`;
+
+export { Row, Column };
