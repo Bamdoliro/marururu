@@ -1,5 +1,5 @@
-import Footer from "@/components/common/Footer/footer";
-import Header from "@/components/common/Header/header";
+import Footer from "@/components/common/Footer";
+import Header from "@/components/common/Header";
 import { color } from "@/styles/color";
 import { ReactNode } from "react";
 import styled from "styled-components";

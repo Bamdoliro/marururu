@@ -2,7 +2,7 @@ import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
-import Column from "../common/Flex/column";
+import Column from "../common/Flex/Column";
 import RightArrowIcon from "../common/Icon/RightArrow";
 
 interface PropsType {

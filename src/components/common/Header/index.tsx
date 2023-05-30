@@ -1,13 +1,13 @@
-import { Storage } from "@/api/storage";
+import { Storage } from "@/lib/storage";
 import { ACCESS_KEY } from "@/constants/token";
 import { color } from "@/styles/color";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
-import Button from "../Button/button";
-import Row from "../Flex/row";
+import Button from "../Button";
+import Row from "../Flex/Row";
 import LogoIcon from "../Icon/Logo";
-import NavigationBar from "./navigation";
-import Profile from "./profile";
+import NavigationBar from "./NavigationBar";
+import Profile from "./Profile";
 
 const Header = () => {
   const router = useRouter();
