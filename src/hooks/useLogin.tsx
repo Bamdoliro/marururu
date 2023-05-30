@@ -1,4 +1,4 @@
-import { useLoginUserMutation } from "@/server/auth/mutation";
+import { useLoginUserMutation } from "@/services/auth/mutation";
 import { ChangeEvent, useState } from "react";
 
 interface loginUserDataType {

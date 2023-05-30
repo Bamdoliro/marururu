@@ -40,6 +40,3 @@ const Title = styled.p`
   ${font.H3}
   color: ${color.gray900};
 `;
-function aysnc(): import("react").EffectCallback {
-  throw new Error("Function not implemented.");
-}
