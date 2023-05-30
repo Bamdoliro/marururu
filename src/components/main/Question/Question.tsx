@@ -5,7 +5,7 @@ import QuestionItem from "./QuestionItem";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link/link";
-import { useMainQuestionListQuery } from "@/features/main";
+import { useMainQuestionListQuery } from "@/server/main/queries";
 
 const Question = () => {
   const router = useRouter();

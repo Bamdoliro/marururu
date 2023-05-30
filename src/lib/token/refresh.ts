@@ -1,9 +1,9 @@
 import { ACCESS_KEY, REFRESH_KEY } from "@/constants/token";
 import { useRouter } from "next/navigation";
-import { maru } from "../index";
+import { maru } from "../axios/index";
 import { Storage } from "../storage";
 
-export const tokenExpired = async () => {
+export const refreshToken = async () => {
   const router = useRouter();
 
   try {

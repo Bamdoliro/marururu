@@ -1,7 +1,6 @@
-import { maru } from "./index";
+import { maru } from "@/lib/axios";
 
 // 로그인
-
 export interface loginUserParamsType {
   email: string;
   password: string;
@@ -13,7 +12,6 @@ export const loginUser = async ({ email, password }: loginUserParamsType) => {
 };
 
 // 회원가입
-
 export interface joinUserParamsType {
   email: string;
   code: string;
@@ -30,7 +28,6 @@ export const joinUser = async ({
 };
 
 // 이메일 요청
-
 export interface requestEmailParamsType {
   email: string;
 }
