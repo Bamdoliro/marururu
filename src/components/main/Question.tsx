@@ -1,11 +1,11 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import RightArrowIcon from "@/components/common/Icon/RightArrow";
-import QuestionItem from "./QuestionItem";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link";
 import { useMainQuestionListQuery } from "@/services/main/queries";
+import QuestionIcon from "@/components/common/Icon/QuestionIcon";
 
 const Question = () => {
   const router = useRouter();
@@ -19,7 +19,14 @@ const Question = () => {
       </Link>
       <QuestionList>
         {data.map((item) => (
-          <QuestionItem key={item.id} id={item.id} title={item.title} />
+          <QuestionItem>
+            <QuestionIcon />
+            <QuestionItemTitle
+              onClick={() => router.push(`/question/${item.id}`)}
+            >
+              {item.title}
+            </QuestionItemTitle>
+          </QuestionItem>
         ))}
       </QuestionList>
     </StyledQuestion>
@@ -45,4 +52,24 @@ const QuestionList = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: auto;
+`;
+
+const QuestionItem = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 33.3%;
+  padding: 0px 16px;
+  border-bottom: 1px solid ${color.gray300};
+`;
+
+const QuestionItemTitle = styled.a`
+  ${font.p1}
+  color: ${color.gray750};
+  cursor: pointer;
+  // 일정 길이 넘어가면 ... 처리
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 12px;
 `;

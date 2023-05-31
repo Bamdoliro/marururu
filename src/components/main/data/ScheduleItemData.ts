@@ -1,4 +1,4 @@
-export const ScheduleItemData = [
+const ScheduleItemData = [
   {
     id: 1,
     date: "10월 17일 (화) ~ 20일 (금)",
@@ -20,3 +20,5 @@ export const ScheduleItemData = [
     plan: "최종 합격자 발표",
   },
 ];
+
+export default ScheduleItemData;
