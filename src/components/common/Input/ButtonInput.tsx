@@ -12,7 +12,7 @@ interface ButtonInputPropsType extends InputPropsType {
 
 const ButtonInput = ({
   width,
-  desc,
+  label,
   name,
   value,
   placeholder,
@@ -24,7 +24,7 @@ const ButtonInput = ({
 }: ButtonInputPropsType) => {
   return (
     <div style={{ width }}>
-      {desc && <Desc>{desc}</Desc>}
+      {label && <Label>{label}</Label>}
       <StyledButtonInput>
         <Input
           width="100%"
@@ -71,7 +71,7 @@ export const Button = styled.button<{ enabled: Boolean }>`
   }
 `;
 
-const Desc = styled.p`
+const Label = styled.p`
   ${font.context}
   color: ${color.gray700};
   padding-bottom: 8px;

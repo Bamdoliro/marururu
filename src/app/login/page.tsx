@@ -26,13 +26,13 @@ const LoginPage = () => {
             <Column gap="36px" width="100%">
               <Column gap="24px">
                 <Input
-                  desc="아이디"
+                  label="아이디"
                   width="100%"
                   name="email"
                   onChange={handleLoginUserData}
                 />
                 <PreviewInput
-                  desc="비밀번호"
+                  label="비밀번호"
                   width="100%"
                   name="password"
                   onChange={handleLoginUserData}
