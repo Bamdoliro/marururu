@@ -2,8 +2,8 @@ import { font } from "@/styles/font";
 import { styled } from "styled-components";
 import moment from "moment";
 import { color } from "@/styles/color";
-import Column from "@/components/common/Flex/column";
-import Button from "@/components/common/Button/button";
+import Column from "@/components/common/Flex/Column";
+import Button from "@/components/common/Button";
 
 interface DDayPropTypes {
   goal: string;
