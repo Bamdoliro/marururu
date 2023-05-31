@@ -13,7 +13,7 @@ const Video = ({ year }: PropsType) => {
       <VideoBox>
         <iframe
           width="100%"
-          height="89%"
+          height="100%"
           src="https://www.youtube.com/embed/qkDBUiAV_Pk"
           title="YouTube video player"
           frameBorder="0"
