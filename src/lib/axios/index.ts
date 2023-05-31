@@ -1,5 +1,5 @@
 import axios from "axios";
-import { tokenExpired } from "./tokenExpired";
+import { refreshToken } from "../token/refresh";
 
 const maru = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -26,7 +26,7 @@ maru.interceptors.response.use(
     const { status, code, message } = error.response.data;
     if (message) {
       if (status === 401 && code === "EXPIRED_TOKEN") {
-        tokenExpired();
+        refreshToken();
       }
     }
     return Promise.reject(error);

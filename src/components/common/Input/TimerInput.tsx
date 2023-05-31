@@ -2,7 +2,7 @@ import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { InputPropsType } from "./type";
 import styled from "styled-components";
-import Message from "./message";
+import Message from "./Message";
 import { formatTime, timer } from "@/utils/timer";
 import { Dispatch, SetStateAction } from "react";
 

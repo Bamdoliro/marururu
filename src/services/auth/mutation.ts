@@ -5,9 +5,9 @@ import {
   loginUserParamsType,
   requestEmail,
   requestEmailParamsType,
-} from "@/api/auth";
+} from "./api";
 import { ACCESS_KEY, REFRESH_KEY } from "@/constants/token";
-import { Storage } from "@/api/storage";
+import { Storage } from "@/lib/storage";
 import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 

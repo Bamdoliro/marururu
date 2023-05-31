@@ -4,8 +4,8 @@ import RightArrowIcon from "@/components/common/Icon/RightArrow";
 import NoticeItem from "./NoticeItem";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
-import Link from "@/components/common/Link/link";
-import { useMainNoticeListQuery } from "@/features/main";
+import Link from "@/components/common/Link";
+import { useMainNoticeListQuery } from "@/services/main/queries";
 
 const Notice = () => {
   const router = useRouter();
