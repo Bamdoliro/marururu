@@ -1,7 +1,6 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
-import Column from "../../common/Flex/Column";
 
 interface PropsType {
   year: number;
@@ -14,13 +13,13 @@ const Video = ({ year }: PropsType) => {
       <VideoBox>
         <iframe
           width="100%"
-          height="100%"
+          height="89%"
           src="https://www.youtube.com/embed/qkDBUiAV_Pk"
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-        ></iframe>
+        />
       </VideoBox>
     </StyledVideo>
   );
@@ -32,8 +31,8 @@ const StyledVideo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex-grow: 1;
-  max-width: 703px;
+  width: 703px;
+  height: 451px;
 `;
 
 const Title = styled.p`
@@ -43,5 +42,5 @@ const Title = styled.p`
 
 const VideoBox = styled.div`
   width: 100%;
-  aspect-ratio: 703 / 401;
+  height: 89%;
 `;

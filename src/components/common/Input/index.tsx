@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
 import { InputPropsType } from "./type";
-import Message from "./message";
+import Message from "./Message";
 
 const Input = ({
   width = "320px",

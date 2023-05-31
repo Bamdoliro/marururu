@@ -11,4 +11,5 @@ export interface FlexPropsType {
     | "space-between";
   alignItems?: "none" | "center" | "flex-end" | "flex-start" | "space-between";
   width?: string;
+  height?: string;
 }

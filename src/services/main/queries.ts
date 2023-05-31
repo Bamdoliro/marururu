@@ -1,15 +1,9 @@
-import { mainNoticeList, mainQuestionList } from "@/api/main";
+import { mainNoticeList, mainQuestionList } from "./api";
 import * as KEY from "@/constants/key";
 import { useQuery } from "react-query";
 
-/** 메인 공지사항 리스트 */
-
+// 메인 공지사항 리스트
 interface MainNoticeListType {
-  id: number;
-  title: string;
-}
-
-interface MainQuestionListType {
   id: number;
   title: string;
 }
@@ -21,9 +15,16 @@ export const useMainNoticeListQuery = () => {
   return { data: data || [] };
 };
 
+// 메인 Qna 리스트
+interface MainQuestionListType {
+  id: number;
+  title: string;
+}
+
 export const useMainQuestionListQuery = () => {
-  const { data } = useQuery<MainQuestionListType[]>([KEY.MAIN_QUESTION_LIST], () =>
-    mainQuestionList()
+  const { data } = useQuery<MainQuestionListType[]>(
+    [KEY.MAIN_QUESTION_LIST],
+    () => mainQuestionList()
   );
-return { data: data || [] };
+  return { data: data || [] };
 };

@@ -1,7 +1,7 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
+import Column from "../common/Flex/Column";
 import styled from "styled-components";
-import Column from "../common/Flex/column";
 
 interface PropsType {
   title: string;

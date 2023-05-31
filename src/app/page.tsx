@@ -1,13 +1,13 @@
 "use client";
 
 import MainLayout from "@/layouts/MainLayout";
-import Notice from "@/components/main/Notice/Notice";
-import Schedule from "@/components/main/Schedule/Schedule";
+import Notice from "@/components/main/Notice";
+import Schedule from "@/components/main/Schedule";
 import Video from "@/components/main/Video/Video";
-import Question from "@/components/main/Question/Question";
+import Question from "@/components/main/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
-import Row from "@/components/common/Flex/row";
+import Row from "@/components/common/Flex/Row";
 
 if (process.env.NODE_ENV === "development") {
   initMockAPI();
