@@ -4,7 +4,7 @@ import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice";
 import Schedule from "@/components/main/Schedule";
 import Video from "@/components/main/Video";
-import Question from "@/components/main/Question";
+import FAQ from "@/components/main/FAQ";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 
@@ -19,7 +19,7 @@ const Home = () => {
         <Video year={2024} />
         <Schedule />
         <Notice />
-        <Question />
+        <FAQ />
       </StyledMain>
     </MainLayout>
   );

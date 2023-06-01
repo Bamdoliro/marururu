@@ -7,12 +7,12 @@ import Link from "@/components/common/Link";
 import { useMainQuestionListQuery } from "@/services/main/queries";
 import QuestionItem from "./QuestionItem";
 
-const Question = () => {
+const FAQ = () => {
   const router = useRouter();
   const { data } = useMainQuestionListQuery();
 
   return (
-    <StyledQuestion>
+    <StyledFAQ>
       <Link onClick={() => router.push("/question")} gap="8px">
         <Title>자주묻는 질문</Title>
         <RightArrowIcon color={color.gray900} size={22} />
@@ -22,13 +22,13 @@ const Question = () => {
           <QuestionItem key={item.id} id={item.id} title={item.title} />
         ))}
       </QuestionList>
-    </StyledQuestion>
+    </StyledFAQ>
   );
 };
 
-export default Question;
+export default FAQ;
 
-const StyledQuestion = styled.div`
+const StyledFAQ = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
