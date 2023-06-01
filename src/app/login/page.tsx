@@ -21,7 +21,7 @@ const LoginPage = () => {
     <BaseLayout backgroundColor={color.gray100}>
       <StyledLogin>
         <LoginBox>
-          <LoginBoxWrap>
+          <LoginBoxWrapper>
             <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
             <Column gap="36px" width="100%">
               <Column gap="24px">
@@ -42,10 +42,10 @@ const LoginPage = () => {
                 <Button width="100%" onClick={() => loginUserMutate.mutate()}>
                   로그인
                 </Button>
-                <FindPassword>
+                <FindPasswordLink>
                   비밀번호 찾기
                   <RightArrowIcon color={color.gray500} size={16} />
-                </FindPassword>
+                </FindPasswordLink>
               </Column>
             </Column>
             <SignUp>
@@ -54,7 +54,7 @@ const LoginPage = () => {
                 회원가입
               </SignUpLink>
             </SignUp>
-          </LoginBoxWrap>
+          </LoginBoxWrapper>
         </LoginBox>
       </StyledLogin>
     </BaseLayout>
@@ -80,7 +80,7 @@ const LoginBox = styled.div`
   background-color: ${color.white};
 `;
 
-const LoginBoxWrap = styled.div`
+const LoginBoxWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +88,7 @@ const LoginBoxWrap = styled.div`
   width: 446px;
 `;
 
-const FindPassword = styled.a`
+const FindPasswordLink = styled.a`
   ${font.p2}
   color: ${color.gray500};
   cursor: pointer;
