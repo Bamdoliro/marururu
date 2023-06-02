@@ -1,5 +1,9 @@
 import { rest } from "msw";
-import { MainNoticeItemData, NoticeItemData, MainQuestionItemData } from "./dummy";
+import {
+  MainNoticeItemData,
+  NoticeItemData,
+  MainQuestionItemData,
+} from "./dummy";
 
 export const MOCK_API_BASE_URL = "http://localhost:3000";
 
