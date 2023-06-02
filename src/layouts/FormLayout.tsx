@@ -11,11 +11,18 @@ interface PropsType {
 
 const FormLayout = ({ children, title }: PropsType) => {
   return (
-        <StyledFormLayout >
-          <Title>{title}</Title>
-          {children}
-        </StyledFormLayout> 
-  );  
+    <>
+      <Header />
+      <StyledFormLayout>
+        <FormLayoutWrapper>
+          <InfoBox>
+            <Title>{title}</Title>
+          </InfoBox>
+          <ContentBox>{children}</ContentBox>
+        </FormLayoutWrapper>
+      </StyledFormLayout>
+    </>
+  );
 };
 
 export default FormLayout;
@@ -23,16 +30,31 @@ export default FormLayout;
 const StyledFormLayout = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 61px auto 0px auto;
-  width: 56%;
-  height: 50%;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
   background-color: ${color.white};
+
+  margin-top: 44px;
+`;
+
+const FormLayoutWrapper = styled.div`
+  width: 56.25%;
+  height: 100%;
+`;
+
+const InfoBox = styled.div`
+  border-bottom: 1px solid ${color.gray300};
+  padding-bottom: 24px;
 `;
 
 const Title = styled.p`
   ${font.H3};
   color: ${color.gray900};
-  border-bottom: 1px solid ${color.gray300};
-  padding-bottom: 24px;
-  margin-bottom: 40px;
-` 
+`;
+
+const ContentBox = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 40px 0px 60px;
+`;
