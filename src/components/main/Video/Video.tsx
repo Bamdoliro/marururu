@@ -32,8 +32,8 @@ const StyledVideo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-width: 703px;
   flex-grow: 703;
-  aspect-ratio: 703 / 451;
 `;
 
 const Title = styled.p`

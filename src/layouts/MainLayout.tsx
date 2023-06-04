@@ -29,6 +29,7 @@ const StyledMainLayout = styled.section`
   width: 100vw;
   background-color: ${color.white};
   margin-bottom: 250px;
+  flex-grow: 1;
 `;
 
 const MainLayoutWrap = styled.div`
