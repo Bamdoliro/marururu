@@ -26,13 +26,13 @@ const LoginPage = () => {
             <Column gap="36px" width="100%">
               <Column gap="24px">
                 <Input
-                  desc="아이디"
+                  label="아이디"
                   width="100%"
                   name="email"
                   onChange={handleLoginUserData}
                 />
                 <PreviewInput
-                  desc="비밀번호"
+                  label="비밀번호"
                   width="100%"
                   name="password"
                   onChange={handleLoginUserData}
@@ -42,10 +42,10 @@ const LoginPage = () => {
                 <Button width="100%" onClick={() => loginUserMutate.mutate()}>
                   로그인
                 </Button>
-                <FindPassword>
+                <FindPasswordLink>
                   비밀번호 찾기
                   <RightArrowIcon color={color.gray500} size={16} />
-                </FindPassword>
+                </FindPasswordLink>
               </Column>
             </Column>
             <SignUp>
@@ -88,7 +88,7 @@ const LoginBoxWrap = styled.div`
   width: 446px;
 `;
 
-const FindPassword = styled.a`
+const FindPasswordLink = styled.a`
   ${font.p2}
   color: ${color.gray500};
   cursor: pointer;

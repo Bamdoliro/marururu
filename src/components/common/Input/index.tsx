@@ -6,7 +6,7 @@ import Message from "./Message";
 
 const Input = ({
   width = "320px",
-  desc,
+  label,
   placeholder,
   type = "text",
   name,
@@ -16,7 +16,7 @@ const Input = ({
 }: InputPropsType) => {
   return (
     <div style={{ width }}>
-      {desc && <Desc>{desc}</Desc>}
+      {label && <Label>{label}</Label>}
       <StyledInput
         onChange={onChange}
         placeholder={placeholder}
@@ -50,7 +50,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const Desc = styled.p`
+const Label = styled.p`
   ${font.context}
   color: ${color.gray700};
   padding-bottom: 8px;
