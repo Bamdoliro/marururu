@@ -48,7 +48,11 @@ const Header = () => {
         >
           홈
         </Button>
-        <Button option="HOVER_UNDERLINE" size="LARGE">
+        <Button 
+          option="HOVER_UNDERLINE" 
+          size="LARGE"
+          onClick={() => router.push("/form")}
+        >
           원서접수
         </Button>
         <Button
