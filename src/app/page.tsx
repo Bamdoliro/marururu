@@ -8,6 +8,7 @@ import Question from "@/components/main/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 import Row from "@/components/common/Flex/Row";
+import RecruitementCard from "@/components/main/RecruitmentCard/RecruitmentCard";
 
 if (process.env.NODE_ENV === "development") {
   initMockAPI();

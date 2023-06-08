@@ -5,20 +5,20 @@ import { color } from "@/styles/color";
 import Column from "@/components/common/Flex/Column";
 import Button from "@/components/common/Button";
 
-interface DDayPropTypes {
-  goal: string;
+interface RecruitementCardPropTypes {
   date: string;
-  status: "모집 중" | "1차 합격자 발표" | "최종 합격자 발표";
+  status: "모집 중" | "1차 합격자 발표" | "최종합격자 발표";
 }
 
-function RecruitementCard({ goal, date, status }: DDayPropTypes) {
+function RecruitementCard({ date, status }: RecruitementCardPropTypes) {
   const isRecruiting = status === "모집 중";
 
   const formatter = new Intl.DateTimeFormat("ko", {
     dateStyle: "long",
   });
 
-  const remainDays = isRecruiting || moment(date).diff(moment(), "days");
+  const remainDays =
+    isRecruiting || moment(new Date(date).getDate()).diff(moment().date());
   const convertedDate = isRecruiting || formatter.format(new Date(date));
 
   return (
@@ -36,13 +36,17 @@ function RecruitementCard({ goal, date, status }: DDayPropTypes) {
         ) : (
           <Column gap="16px">
             <Column gap="8px">
-              <DDayGoal>{goal}</DDayGoal>
+              <DDayGoal>{status}</DDayGoal>
               <DDay>D-{remainDays}</DDay>
             </Column>
             <Period>{convertedDate}</Period>
           </Column>
         )}
-        <Button width="321px">
+        <Button
+          width="321px"
+          size="LARGE"
+          option={remainDays !== 0 ? "DISABLED" : "PRIMARY"}
+        >
           {isRecruiting ? "원서 접수하기" : "결과 확인하기"}
         </Button>
       </Column>
