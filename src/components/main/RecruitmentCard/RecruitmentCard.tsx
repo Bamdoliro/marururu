@@ -6,11 +6,11 @@ import Column from "@/components/common/Flex/Column";
 import Button from "@/components/common/Button";
 
 interface RecruitementCardPropTypes {
-  date: string;
+  period: string;
   status: "모집 중" | "1차 합격자 발표" | "최종합격자 발표";
 }
 
-function RecruitementCard({ date, status }: RecruitementCardPropTypes) {
+function RecruitementCard({ period, status }: RecruitementCardPropTypes) {
   const isRecruiting = status === "모집 중";
 
   const formatter = new Intl.DateTimeFormat("ko", {
@@ -18,8 +18,8 @@ function RecruitementCard({ date, status }: RecruitementCardPropTypes) {
   });
 
   const remainDays =
-    isRecruiting || moment(new Date(date).getDate()).diff(moment().date());
-  const convertedDate = isRecruiting || formatter.format(new Date(date));
+    isRecruiting || Math.ceil(moment(period).diff(moment(), "days", true));
+  const convertedDate = isRecruiting || formatter.format(new Date(period));
 
   return (
     <StyledApplicationCard>
@@ -31,7 +31,7 @@ function RecruitementCard({ date, status }: RecruitementCardPropTypes) {
               <br />
               2024학년도 신입생 모집
             </Announcement>
-            <Period>{date}</Period>
+            <Period>{period}</Period>
           </Column>
         ) : (
           <Column gap="16px">
@@ -42,10 +42,11 @@ function RecruitementCard({ date, status }: RecruitementCardPropTypes) {
             <Period>{convertedDate}</Period>
           </Column>
         )}
+
         <Button
           width="321px"
           size="LARGE"
-          option={remainDays !== 0 ? "DISABLED" : "PRIMARY"}
+          option={isRecruiting || remainDays === 0 ? "PRIMARY" : "DISABLED"}
         >
           {isRecruiting ? "원서 접수하기" : "결과 확인하기"}
         </Button>
