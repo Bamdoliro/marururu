@@ -73,6 +73,11 @@ export const getButtonStyle = {
       transform: scaleX(1);
     }
   `,
+  DISABLED: css`
+    background-color: ${color.gray700};
+    color: ${color.white};
+    cursor: auto;
+  `,
 };
 
 export const getButtonPadding = {
