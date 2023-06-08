@@ -1,7 +1,7 @@
 import axios from "axios";
 import { refreshToken } from "../token/refresh";
 
-const maru = axios.create({
+export const maru = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 10000,
   headers: {
@@ -32,4 +32,3 @@ maru.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export { maru };

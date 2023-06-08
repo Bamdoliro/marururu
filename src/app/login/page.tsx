@@ -21,7 +21,7 @@ const LoginPage = () => {
     <BaseLayout backgroundColor={color.gray100}>
       <StyledLogin>
         <LoginBox>
-          <LoginBoxWrapper>
+          <LoginBoxWrap>
             <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
             <Column gap="36px" width="100%">
               <Column gap="24px">
@@ -54,7 +54,7 @@ const LoginPage = () => {
                 회원가입
               </SignUpLink>
             </SignUp>
-          </LoginBoxWrapper>
+          </LoginBoxWrap>
         </LoginBox>
       </StyledLogin>
     </BaseLayout>
@@ -80,7 +80,7 @@ const LoginBox = styled.div`
   background-color: ${color.white};
 `;
 
-const LoginBoxWrapper = styled.div`
+const LoginBoxWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

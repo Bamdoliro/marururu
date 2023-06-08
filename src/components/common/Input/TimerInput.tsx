@@ -3,7 +3,7 @@ import { font } from "@/styles/font";
 import { InputPropsType } from "./type";
 import styled from "styled-components";
 import Message from "./Message";
-import { formatTime, timer } from "@/utils/timer";
+import { formatTime, timer } from "@/utils/functions/timer";
 import { Dispatch, SetStateAction } from "react";
 
 interface TimerInputPropsType extends InputPropsType {

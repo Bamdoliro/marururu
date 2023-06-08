@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link";
 import { useMainNoticeListQuery } from "@/services/main/queries";
-import NoticeItem from "./NoticeItem";
+import NoticeItem from "./items/NoticeItem";
 
 const Notice = () => {
   const router = useRouter();

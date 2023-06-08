@@ -9,7 +9,7 @@ interface PropsType {
 const NavigationBar = ({ children }: PropsType) => {
   return (
     <StyledNavigationBar>
-      <NavigationBarWrapper>{children}</NavigationBarWrapper>
+      <NavigationBarWrap>{children}</NavigationBarWrap>
     </StyledNavigationBar>
   );
 };
@@ -26,7 +26,7 @@ const StyledNavigationBar = styled.div`
   border-bottom: 1px solid ${color.gray200};
 `;
 
-const NavigationBarWrapper = styled.div`
+const NavigationBarWrap = styled.div`
   display: flex;
   align-items: center;
   width: 86%;
