@@ -7,6 +7,7 @@ import Video from "@/components/main/Video";
 import Question from "@/components/main/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
+import Button from "@/components/common/Button";
 
 if (process.env.NODE_ENV === "development") {
   initMockAPI();
@@ -16,6 +17,7 @@ const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
+        <Button>asdf</Button>
         <Video year={2024} />
         <Schedule />
         <Notice />
