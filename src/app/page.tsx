@@ -5,7 +5,6 @@ import Notice from "@/components/main/Notice";
 import Schedule from "@/components/main/Schedule";
 import Video from "@/components/main/Video";
 import FAQ from "@/components/main/FAQ";
-import Question from "@/components/main/Question";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 import Row from "@/components/common/Flex/Row";
@@ -24,7 +23,7 @@ const Home = () => {
         </Row>
         <Row gap="48px" justifyContent="center">
           <Notice />
-          <Question />
+          <FAQ />
         </Row>
       </StyledMain>
     </MainLayout>
