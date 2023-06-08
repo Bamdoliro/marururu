@@ -5,7 +5,8 @@ export type ButtonOptionType =
   | "QUATERNARY"
   | "DELETE"
   | "LINK_TEXT"
-  | "HOVER_UNDERLINE";
+  | "HOVER_UNDERLINE"
+  | "DISABLED";
 
 export type ButtonIconType = "NONE" | "ADD_ICON" | "SHORTCUTS_ICON";
 
