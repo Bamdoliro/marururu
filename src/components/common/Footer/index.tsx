@@ -64,7 +64,7 @@ const InfoBox = styled.div`
   gap: 40px;
 `;
 
-const ContentBox = styled.p`
+const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
