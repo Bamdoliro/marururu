@@ -5,12 +5,12 @@ import { color } from "@/styles/color";
 import Column from "@/components/common/Flex/Column";
 import Button from "@/components/common/Button";
 
-interface RecruitementCardPropTypes {
+interface ApplicationCardPropTypes {
   period: string;
   status: "모집 중" | "1차 합격자 발표" | "최종합격자 발표";
 }
 
-function RecruitementCard({ period, status }: RecruitementCardPropTypes) {
+function ApplicationCard({ period, status }: ApplicationCardPropTypes) {
   const isRecruiting = status === "모집 중";
 
   const formatter = new Intl.DateTimeFormat("ko", {
@@ -55,7 +55,7 @@ function RecruitementCard({ period, status }: RecruitementCardPropTypes) {
   );
 }
 
-export default RecruitementCard;
+export default ApplicationCard;
 
 const StyledApplicationCard = styled.div`
   position: relative;
