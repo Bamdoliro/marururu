@@ -10,7 +10,7 @@ interface ApplicationCardPropTypes {
   status: "모집 중" | "1차 합격자 발표" | "최종합격자 발표";
 }
 
-function ApplicationCard({ period, status }: ApplicationCardPropTypes) {
+const ApplicationCard = ({ period, status }: ApplicationCardPropTypes) => {
   const isRecruiting = status === "모집 중";
 
   const formatter = new Intl.DateTimeFormat("ko", {
@@ -53,7 +53,7 @@ function ApplicationCard({ period, status }: ApplicationCardPropTypes) {
       </Column>
     </StyledApplicationCard>
   );
-}
+};
 
 export default ApplicationCard;
 
