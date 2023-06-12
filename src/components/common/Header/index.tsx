@@ -8,6 +8,13 @@ import Row from "../Flex/Row";
 import LogoIcon from "../Icon/Logo";
 import NavigationBar from "./NavigationBar";
 import Profile from "./Profile";
+import {
+  FORM_PAGE_ROUTE,
+  LOGIN_PAGE_ROUTE,
+  MAIN_PAGE_ROUTE,
+  NOTICE_PAGE_ROUTE,
+  SIGNUP_PAGE_ROUTE,
+} from "@/constants/router";
 
 const Header = () => {
   const router = useRouter();
@@ -18,7 +25,10 @@ const Header = () => {
   return (
     <StyledHeader>
       <HeaderBar>
-        <LogoIcon cursor="pointer" onClick={() => router.push("/")} />
+        <LogoIcon
+          cursor="pointer"
+          onClick={() => router.push(MAIN_PAGE_ROUTE)}
+        />
         {loginStatus ? (
           <Profile name="밤돌이로" />
         ) : (
@@ -26,14 +36,14 @@ const Header = () => {
             <Button
               option="QUATERNARY"
               size="SMALL"
-              onClick={() => router.push("/login")}
+              onClick={() => router.push(LOGIN_PAGE_ROUTE)}
             >
               로그인
             </Button>
             <Button
               option="PRIMARY"
               size="SMALL"
-              onClick={() => router.push("/signup")}
+              onClick={() => router.push(SIGNUP_PAGE_ROUTE)}
             >
               회원가입
             </Button>
@@ -44,21 +54,21 @@ const Header = () => {
         <Button
           option="HOVER_UNDERLINE"
           size="LARGE"
-          onClick={() => router.push("/")}
+          onClick={() => router.push(MAIN_PAGE_ROUTE)}
         >
           홈
         </Button>
-        <Button 
-          option="HOVER_UNDERLINE" 
+        <Button
+          option="HOVER_UNDERLINE"
           size="LARGE"
-          onClick={() => router.push("/form")}
+          onClick={() => router.push(FORM_PAGE_ROUTE)}
         >
           원서접수
         </Button>
         <Button
           option="HOVER_UNDERLINE"
           size="LARGE"
-          onClick={() => router.push("/notice")}
+          onClick={() => router.push(NOTICE_PAGE_ROUTE)}
         >
           공지사항
         </Button>

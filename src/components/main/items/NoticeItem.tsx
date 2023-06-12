@@ -2,6 +2,7 @@ import { font } from "@/styles/font";
 import { color } from "@/styles/color";
 import { useRouter } from "next/navigation";
 import { styled } from "styled-components";
+import { NOTICE_PAGE_ROUTE } from "@/constants/router";
 
 interface PropsType {
   id: number;
@@ -12,7 +13,7 @@ const NoticeItem = ({ id, title }: PropsType) => {
   const router = useRouter();
 
   return (
-    <StyledNoticeItem onClick={() => router.push(`/notice/${id}`)}>
+    <StyledNoticeItem onClick={() => router.push(`${NOTICE_PAGE_ROUTE}/${id}`)}>
       <Title>{title}</Title>
     </StyledNoticeItem>
   );

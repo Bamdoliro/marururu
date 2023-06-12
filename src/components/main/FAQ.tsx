@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link";
 import { useMainQuestionListQuery } from "@/services/main/queries";
 import QuestionItem from "./items/QuestionItem";
+import { FAQ_PAGE_ROUTE } from "@/constants/router";
 
 const FAQ = () => {
   const router = useRouter();
@@ -13,7 +14,7 @@ const FAQ = () => {
 
   return (
     <StyledFAQ>
-      <Link onClick={() => router.push("/question")} gap="8px">
+      <Link onClick={() => router.push(FAQ_PAGE_ROUTE)} gap="8px">
         <Title>자주묻는 질문</Title>
         <RightArrowIcon color={color.gray900} size={22} />
       </Link>

@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
 import { styled } from "styled-components";
+import { FAQ_PAGE_ROUTE } from "@/constants/router";
 
 interface PropsType {
   id: number;
@@ -13,7 +14,7 @@ const QuestionItem = ({ id, title }: PropsType) => {
   const router = useRouter();
 
   return (
-    <StyledQuestionItem onClick={() => router.push(`/question/${id}`)}>
+    <StyledQuestionItem onClick={() => router.push(`${FAQ_PAGE_ROUTE}/${id}`)}>
       <QuestionIcon />
       <Title>{title}</Title>
     </StyledQuestionItem>

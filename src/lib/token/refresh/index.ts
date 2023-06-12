@@ -1,3 +1,4 @@
+import { LOGIN_PAGE_ROUTE } from "@/constants/router";
 import { ACCESS_KEY, REFRESH_KEY } from "@/constants/token";
 import { useRouter } from "next/navigation";
 import { maru } from "../../axios/index";
@@ -16,6 +17,6 @@ export const refreshToken = async () => {
   } catch {
     alert("다시 로그인 해주세요");
     localStorage.clear();
-    router.push("/login");
+    router.push(LOGIN_PAGE_ROUTE);
   }
 };

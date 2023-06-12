@@ -1,3 +1,4 @@
+import { NOTICE_PAGE_ROUTE } from "@/constants/router";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { useRouter } from "next/navigation";
@@ -15,7 +16,7 @@ const NoticeItem = ({ id, title, date }: PropsType) => {
   const router = useRouter();
 
   return (
-    <StyledNoticeItem onClick={() => router.push(`/notice/${id}`)}>
+    <StyledNoticeItem onClick={() => router.push(`${NOTICE_PAGE_ROUTE}/${id}`)}>
       <Column gap="8px" height="55px">
         <Title>{title}</Title>
         <Date>{date}</Date>
