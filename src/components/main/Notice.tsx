@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link";
 import { useMainNoticeListQuery } from "@/services/main/queries";
 import NoticeItem from "./items/NoticeItem";
+import { NOTICE_PAGE_ROUTE } from "@/constants/router";
 
 const Notice = () => {
   const router = useRouter();
@@ -13,7 +14,7 @@ const Notice = () => {
 
   return (
     <StyledNotice>
-      <Link onClick={() => router.push("/notice")} gap="8px">
+      <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)} gap="8px">
         <Title>공지사항</Title>
         <RightArrowIcon color={color.gray900} size={22} />
       </Link>

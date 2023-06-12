@@ -12,6 +12,7 @@ import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { useLogin } from "@/hooks/useLogin";
 import { useRouter } from "next/navigation";
+import { SIGNUP_PAGE_ROUTE } from "@/constants/router";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -50,7 +51,7 @@ const LoginPage = () => {
             </Column>
             <SignUp>
               회원이 아니신가요?
-              <SignUpLink onClick={() => router.push("/signup")}>
+              <SignUpLink onClick={() => router.push(SIGNUP_PAGE_ROUTE)}>
                 회원가입
               </SignUpLink>
             </SignUp>

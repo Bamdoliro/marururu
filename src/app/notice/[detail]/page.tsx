@@ -3,6 +3,7 @@
 import LeftArrowIcon from "@/components/common/Icon/LeftArrow";
 import Link from "@/components/common/Link";
 import NoticeHeader from "@/components/notice/NoticeHeader";
+import { NOTICE_PAGE_ROUTE } from "@/constants/router";
 import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
@@ -15,7 +16,7 @@ const NoticeDetailPage = () => {
   return (
     <NoticeLayout>
       <StyledNoticeDetail>
-        <Link onClick={() => router.push("/notice")} gap="2px">
+        <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)} gap="2px">
           <LeftArrowIcon color={color.gray600} size={24} />
           <Title>공지사항</Title>
         </Link>
