@@ -2,22 +2,22 @@ import { font } from "@/styles/font";
 import { useState } from "react";
 import { color } from "@/styles/color";
 import styled, { css } from "styled-components";
-import DownArrowIcon from "./Icon/DownArrow";
-import UpArrowIcon from "./Icon/UpArrow";
+import DownArrowIcon from "../Icon/DownArrow";
+import UpArrowIcon from "../Icon/UpArrow";
 
 interface DropdownItemType {
   dropdownItemText: string;
 }
 
 interface PropsType {
-  desc: string;
+  label: string;
   dropdownMenuData: DropdownItemType[];
   width?: string;
   placeholder?: string;
 }
 
 const DropdownMenu = ({
-  desc,
+  label,
   dropdownMenuData,
   width = "320px",
   placeholder = "옵션을 선택해 주세요",
@@ -35,7 +35,7 @@ const DropdownMenu = ({
   };
   return (
     <div style={{ width }}>
-      <Desc>{desc}</Desc>
+      <Label>{label}</Label>
       <StyledDropdownMenu onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
         <SelectedItemText>{selectedItemText}</SelectedItemText>
         {isOpenDropdownMenu ? <UpArrowIcon /> : <DownArrowIcon />}
@@ -58,7 +58,7 @@ const DropdownMenu = ({
 
 export default DropdownMenu;
 
-const Desc = styled.p`
+const Label = styled.p`
   ${font.context}
   color: ${color.gray700};
   padding-bottom: 8px;

@@ -1,41 +1,40 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import RightArrowIcon from "@/components/common/Icon/RightArrow";
-import QuestionItem from "./QuestionItem";
 import styled from "styled-components";
 import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link";
-import { useMainQuestionListQuery } from "@/services/main/queries";
+import { useMainNoticeListQuery } from "@/services/main/queries";
+import NoticeItem from "./items/NoticeItem";
+import { NOTICE_PAGE_ROUTE } from "@/constants/router";
 
-const Question = () => {
+const Notice = () => {
   const router = useRouter();
-  const { data } = useMainQuestionListQuery();
+  const { data } = useMainNoticeListQuery();
 
   return (
-    <StyledQuestion>
-      <Link onClick={() => router.push("/question")} gap="8px">
-        <Title>자주묻는 질문</Title>
+    <StyledNotice>
+      <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)} gap="8px">
+        <Title>공지사항</Title>
         <RightArrowIcon color={color.gray900} size={22} />
       </Link>
-      <QuestionList>
+      <NoticeList>
         {data.map((item) => (
-          <QuestionItem key={item.id} id={item.id} title={item.title} />
+          <NoticeItem key={item.id} id={item.id} title={item.title} />
         ))}
-      </QuestionList>
-    </StyledQuestion>
+      </NoticeList>
+    </StyledNotice>
   );
 };
 
-export default Question;
+export default Notice;
 
-const StyledQuestion = styled.div`
+const StyledNotice = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex-grow: 1;
-  flex-basis: 0;
-  max-width: 596px;
-  height: 242px;
+  width: 48%;
+  height: 33%;
 `;
 
 const Title = styled.p`
@@ -43,7 +42,7 @@ const Title = styled.p`
   color: ${color.gray900};
 `;
 
-const QuestionList = styled.div`
+const NoticeList = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: auto;

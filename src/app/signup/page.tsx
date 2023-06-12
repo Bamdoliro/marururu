@@ -43,7 +43,7 @@ const SignUpPage = () => {
             <Column gap="24px">
               <Title>회원가입</Title>
               <ButtonInput
-                desc="이메일 인증"
+                label="이메일 인증"
                 buttonText="인증"
                 type="email"
                 buttonClick={() => {
@@ -58,7 +58,7 @@ const SignUpPage = () => {
               />
               {requestEmailEnabled && (
                 <TimerInput
-                  desc="인증코드"
+                  label="인증코드"
                   width="100%"
                   maxLength={6}
                   msg="발송된 이메일의 인증번호를 입력해주세요."
@@ -69,14 +69,14 @@ const SignUpPage = () => {
                 />
               )}
               <PreviewInput
-                desc="비밀번호"
+                label="비밀번호"
                 width="100%"
                 msg="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
                 name="password"
                 onChange={handleJoinUserData}
               />
               <PreviewInput
-                desc="비밀번호 재확인"
+                label="비밀번호 재확인"
                 width="100%"
                 name="repassword"
                 onChange={handleJoinUserData}

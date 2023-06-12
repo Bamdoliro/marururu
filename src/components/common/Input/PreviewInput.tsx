@@ -11,7 +11,7 @@ const PreviewInput = ({
   width = "320px",
   placeholder,
   name,
-  desc,
+  label,
   value,
   msg,
   onChange,
@@ -22,7 +22,7 @@ const PreviewInput = ({
 
   return (
     <div style={{ width }}>
-      {desc && <Desc>{desc}</Desc>}
+      {label && <Label>{label}</Label>}
       <StyledPreviewInput>
         <Input
           onChange={onChange}
@@ -72,7 +72,7 @@ const Input = styled.input`
   }
 `;
 
-const Desc = styled.p`
+const Label = styled.p`
   ${font.context}
   color: ${color.gray700};
   padding-bottom: 8px;

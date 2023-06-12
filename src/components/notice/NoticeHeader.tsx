@@ -8,20 +8,20 @@ interface PropsType {
   date: string;
 }
 
-const NoticeInfo = ({ title, date }: PropsType) => {
+const NoticeHeader = ({ title, date }: PropsType) => {
   return (
-    <StyledNoticeInfo>
+    <StyledNoticeHeader>
       <Column gap="16px" height="72px">
         <Title>{title}</Title>
         <Date>{date}</Date>
       </Column>
-    </StyledNoticeInfo>
+    </StyledNoticeHeader>
   );
 };
 
-export default NoticeInfo;
+export default NoticeHeader;
 
-const StyledNoticeInfo = styled.div`
+const StyledNoticeHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;

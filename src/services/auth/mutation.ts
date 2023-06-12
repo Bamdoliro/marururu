@@ -10,6 +10,8 @@ import { ACCESS_KEY, REFRESH_KEY } from "@/constants/token";
 import { Storage } from "@/lib/storage";
 import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
+import axiosErrorTemplate from "@/utils/functions/axiosErrorTemplate";
+import { LOGIN_PAGE_ROUTE, MAIN_PAGE_ROUTE } from "@/constants/router";
 
 /** 로그인 */
 export const useLoginUserMutation = ({
@@ -23,11 +25,10 @@ export const useLoginUserMutation = ({
       const { accessToken, refreshToken } = res.data;
       Storage.setItem(ACCESS_KEY, accessToken);
       Storage.setItem(REFRESH_KEY, refreshToken);
-
-      router.push("/");
+      router.push(MAIN_PAGE_ROUTE);
     },
-    onError: () => {
-      alert("로그인 실패");
+    onError: (err) => {
+      axiosErrorTemplate(err);
     },
   });
 };
@@ -43,15 +44,19 @@ export const useJoinUserMutation = ({
   return useMutation(() => joinUser({ email, code, password }), {
     onSuccess: () => {
       alert("회원가입 성공");
-      router.push("/login");
+      router.push(LOGIN_PAGE_ROUTE);
     },
-    onError: () => {
-      alert("회원가입 실패");
+    onError: (err) => {
+      axiosErrorTemplate(err);
     },
   });
 };
 
 /** 이메일 인증번호 요청 */
 export const useRequestEmailMutation = ({ email }: requestEmailParamsType) => {
-  return useMutation(() => requestEmail({ email }));
+  return useMutation(() => requestEmail({ email }), {
+    onError: (err) => {
+      axiosErrorTemplate(err);
+    },
+  });
 };

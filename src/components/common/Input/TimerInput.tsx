@@ -3,7 +3,7 @@ import { font } from "@/styles/font";
 import { InputPropsType } from "./type";
 import styled from "styled-components";
 import Message from "./Message";
-import { formatTime, timer } from "@/utils/timer";
+import { formatTime, timer } from "@/utils/functions/timer";
 import { Dispatch, SetStateAction } from "react";
 
 interface TimerInputPropsType extends InputPropsType {
@@ -15,7 +15,7 @@ const TimerInput = ({
   width = "320px",
   placeholder,
   name,
-  desc,
+  label,
   value,
   type = "text",
   msg,
@@ -28,7 +28,7 @@ const TimerInput = ({
 
   return (
     <div style={{ width }}>
-      {desc && <Desc>{desc}</Desc>}
+      {label && <Label>{label}</Label>}
       <StyledTimerInput>
         <Input
           onChange={onChange}
@@ -75,7 +75,7 @@ const Input = styled.input`
   }
 `;
 
-const Desc = styled.p`
+const Label = styled.p`
   ${font.context}
   color: ${color.gray700};
   padding-bottom: 8px;
