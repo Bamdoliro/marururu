@@ -11,7 +11,7 @@ import {
   submitStartTime,
 } from "@/models/submitTime";
 
-const ApplicationCard = () => {
+const ApplyCard = () => {
   const remainDays = Math.ceil(
     moment().isBefore(firstTime)
       ? firstTime.diff(moment(), "days")
@@ -19,7 +19,7 @@ const ApplicationCard = () => {
   );
 
   return (
-    <StyledApplicationCard>
+    <StyledApplyCard>
       <Column gap="0" width="100%" height="100%" justifyContent="space-between">
         {moment().isBefore(submitEndTime) ? (
           <Column gap="36px">
@@ -70,13 +70,13 @@ const ApplicationCard = () => {
           </Button>
         )}
       </Column>
-    </StyledApplicationCard>
+    </StyledApplyCard>
   );
 };
 
-export default ApplicationCard;
+export default ApplyCard;
 
-const StyledApplicationCard = styled.div`
+const StyledApplyCard = styled.div`
   width: 56%;
   height: 436px;
   border-radius: 32px;
