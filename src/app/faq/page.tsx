@@ -1,6 +1,7 @@
 "use client";
 
 import CategoryBar from "@/components/faq/CategoryBar";
+import FaqItem from "@/components/faq/FaqItem";
 import FaqLayout from "@/layouts/FaqLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
@@ -12,6 +13,9 @@ const FaqPage = () => {
       <StyledFaq>
         <Title>자주 묻는 질문</Title>
         <CategoryBar />
+        <FaqItem question="adsa" answer="ass" />
+        <FaqItem question="adsa" answer="ass" />
+        <FaqItem question="adsa" answer="ass" />
       </StyledFaq>
     </FaqLayout>
   );
