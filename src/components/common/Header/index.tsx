@@ -18,8 +18,7 @@ import {
 const Header = () => {
   const router = useRouter();
 
-  // 로그인 상태 테스트입니다
-  const loginStatus = Storage.getItem(ACCESS_KEY);
+  const loginStatus = Storage.getItem(ACCESS_KEY) || false;
 
   return (
     <StyledHeader>

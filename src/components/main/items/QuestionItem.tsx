@@ -27,7 +27,7 @@ const StyledQuestionItem = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 33.3%;
+  height: 64px;
   padding: 0px 16px;
   border-bottom: 1px solid ${color.gray300};
   cursor: pointer;
