@@ -20,7 +20,7 @@ const Faq = () => {
       </Link>
       <QuestionList>
         {data.map((item) => (
-          <QuestionItem key={item.id} id={item.id} title={item.title} />
+          <QuestionItem key={item.id} id={item.id} question={item.question} />
         ))}
       </QuestionList>
     </StyledFaq>

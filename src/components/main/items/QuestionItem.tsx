@@ -7,16 +7,16 @@ import { FAQ_PAGE_ROUTE } from "@/constants/router";
 
 interface PropsType {
   id: number;
-  title: string;
+  question: string;
 }
 
-const QuestionItem = ({ id, title }: PropsType) => {
+const QuestionItem = ({ id, question }: PropsType) => {
   const router = useRouter();
 
   return (
     <StyledQuestionItem onClick={() => router.push(`${FAQ_PAGE_ROUTE}/${id}`)}>
       <QuestionIcon />
-      <Title>{title}</Title>
+      <Question>{question}</Question>
     </StyledQuestionItem>
   );
 };
@@ -33,7 +33,7 @@ const StyledQuestionItem = styled.div`
   cursor: pointer;
 `;
 
-const Title = styled.a`
+const Question = styled.a`
   ${font.p1}
   color: ${color.gray750};
   // 일정 길이 넘어가면 ... 처리

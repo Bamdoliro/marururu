@@ -18,7 +18,7 @@ export const useMainNoticeListQuery = () => {
 // 메인 Qna 리스트
 interface MainQuestionListType {
   id: number;
-  title: string;
+  question: string;
 }
 
 export const useMainQuestionListQuery = () => {

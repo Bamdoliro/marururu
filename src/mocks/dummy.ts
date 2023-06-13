@@ -34,14 +34,14 @@ export const NoticeItemData = [
 export const MainQuestionItemData = [
   {
     id: 0,
-    title: "하루 일과가 마치는 시간이 어떻게 되나요?",
+    question: "하루 일과가 마치는 시간이 어떻게 되나요?",
   },
   {
     id: 1,
-    title: "하루 일과가 마치는 시간이 어떻게 되나요?",
+    question: "하루 일과가 마치는 시간이 어떻게 되나요?",
   },
   {
     id: 2,
-    title: "하루 일과가 마치는 시간이 어떻게 되나요?",
+    question: "하루 일과가 마치는 시간이 어떻게 되나요?",
   },
 ];
