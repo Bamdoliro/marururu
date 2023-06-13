@@ -6,7 +6,6 @@ import styled from "styled-components";
 import Button from "../Button";
 import Row from "../Flex/Row";
 import LogoIcon from "../Icon/Logo";
-import NavigationBar from "./NavigationBar";
 import Profile from "./Profile";
 import {
   FORM_PAGE_ROUTE,
@@ -91,12 +90,21 @@ const StyledHeader = styled.div`
   height: 126px;
   background-color: ${color.white};
   margin-bottom: 44px;
+  padding: 0px 100px;
 `;
 
 const HeaderBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 86%;
-  height: 72px;
+  width: 100%;
+`;
+
+const NavigationBar = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  background-color: ${color.white};
+  border-bottom: 1px solid ${color.gray200};
 `;
