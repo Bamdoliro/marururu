@@ -13,9 +13,11 @@ const FaqPage = () => {
       <StyledFaq>
         <Title>자주 묻는 질문</Title>
         <CategoryBar />
-        <FaqItem question="adsa" answer="ass" />
-        <FaqItem question="adsa" answer="ass" />
-        <FaqItem question="adsa" answer="ass" />
+        <FaqList>
+          <FaqItem question="adsa" answer="ass" />
+          <FaqItem question="adsa" answer="ass" />
+          <FaqItem question="adsa" answer="ass" />
+        </FaqList>
       </StyledFaq>
     </FaqLayout>
   );
@@ -31,4 +33,10 @@ const StyledFaq = styled.div`
 const Title = styled.p`
   ${font.H2}
   color: ${color.gray900};
+`;
+
+const FaqList = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
