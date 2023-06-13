@@ -32,7 +32,7 @@ const StyledVideo = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 703px;
-  height: 451px;
+  height: 100%;
 `;
 
 const Title = styled.p`

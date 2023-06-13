@@ -12,9 +12,7 @@ const MainLayout = ({ children }: PropsType) => {
   return (
     <>
       <Header />
-      <StyledMainLayout>
-        <MainLayoutWrap>{children}</MainLayoutWrap>
-      </StyledMainLayout>
+      <StyledMainLayout>{children}</StyledMainLayout>
       <Footer />
     </>
   );
@@ -23,16 +21,9 @@ const MainLayout = ({ children }: PropsType) => {
 export default MainLayout;
 
 const StyledMainLayout = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100vw;
+  height: 100vh;
   background-color: ${color.white};
+  padding: 0px 100px;
   margin-bottom: 250px;
-  flex-grow: 1;
-`;
-
-const MainLayoutWrap = styled.div`
-  padding: 48px 0px;
-  width: 86%;
 `;

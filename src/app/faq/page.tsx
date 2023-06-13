@@ -1,5 +1,5 @@
-const FAQPage = () => {
+const FaqPage = () => {
   return <div>as</div>;
 };
 
-export default FAQPage;
+export default FaqPage;

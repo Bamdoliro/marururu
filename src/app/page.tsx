@@ -4,7 +4,7 @@ import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice";
 import Schedule from "@/components/main/Schedule";
 import Video from "@/components/main/Video";
-import FAQ from "@/components/main/FAQ";
+import Faq from "@/components/main/Faq";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 import Row from "@/components/common/Flex/Row";
@@ -17,13 +17,13 @@ const Home = () => {
   return (
     <MainLayout>
       <StyledMain>
-        <Row gap="48px" justifyContent="center">
+        <Row gap="48px" height="451px" width="100%" justifyContent="center">
           <Video year={2024} />
           <Schedule />
         </Row>
-        <Row gap="48px" justifyContent="center">
+        <Row gap="48px" width="100%" height="242px" justifyContent="center">
           <Notice />
-          <FAQ />
+          <Faq />
         </Row>
       </StyledMain>
     </MainLayout>
@@ -35,6 +35,8 @@ export default Home;
 const StyledMain = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 60px;
   width: 100%;
+  height: 100%;
 `;

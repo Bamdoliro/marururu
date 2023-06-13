@@ -11,9 +11,7 @@ const NoticeLayout = ({ children }: PropsType) => {
   return (
     <>
       <Header />
-      <StyledNoticeLayout>
-        <NoticeLayoutWrap>{children}</NoticeLayoutWrap>
-      </StyledNoticeLayout>
+      <StyledNoticeLayout>{children}</StyledNoticeLayout>
     </>
   );
 };
@@ -21,16 +19,8 @@ const NoticeLayout = ({ children }: PropsType) => {
 export default NoticeLayout;
 
 const StyledNoticeLayout = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
-`;
-
-const NoticeLayoutWrap = styled.div`
-  padding: 48px 0px;
-  width: 72%;
-  height: 100%;
+  padding: 0px 205px;
 `;

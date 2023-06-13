@@ -7,9 +7,10 @@ const Row = ({
   justifyContent = "none",
   alignItems = "none",
   width,
+  height,
 }: FlexPropsType) => {
   return (
-    <StyledRow style={{ gap, justifyContent, alignItems, width }}>
+    <StyledRow style={{ gap, justifyContent, alignItems, width, height }}>
       {children}
     </StyledRow>
   );
