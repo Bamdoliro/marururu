@@ -8,12 +8,12 @@ import { useMainQuestionListQuery } from "@/services/main/queries";
 import QuestionItem from "./items/QuestionItem";
 import { FAQ_PAGE_ROUTE } from "@/constants/router";
 
-const FAQ = () => {
+const Faq = () => {
   const router = useRouter();
   const { data } = useMainQuestionListQuery();
 
   return (
-    <StyledFAQ>
+    <StyledFaq>
       <Link onClick={() => router.push(FAQ_PAGE_ROUTE)} gap="8px">
         <Title>자주묻는 질문</Title>
         <RightArrowIcon color={color.gray900} size={22} />
@@ -23,13 +23,13 @@ const FAQ = () => {
           <QuestionItem key={item.id} id={item.id} title={item.title} />
         ))}
       </QuestionList>
-    </StyledFAQ>
+    </StyledFaq>
   );
 };
 
-export default FAQ;
+export default Faq;
 
-const StyledFAQ = styled.div`
+const StyledFaq = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
