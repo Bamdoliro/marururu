@@ -1,13 +1,33 @@
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
+import { useState } from "react";
 import styled from "styled-components";
 import Category from "./Category";
 
+const CATEGORY_ITEM_DATA = [
+  {
+    id: 0,
+    name: "입학 과정",
+  },
+  {
+    id: 1,
+    name: "기숙사",
+  },
+];
+
 const CategoryBar = () => {
+  const [selectedCategory, setSelectedCategory] = useState(0);
+
   return (
     <StyledCategoryBar>
-      <Category isClicked={true}>입학 과정</Category>
-      <Category isClicked={false}>입학 과정</Category>
+      {CATEGORY_ITEM_DATA.map((item) => (
+        <Category
+          isClicked={selectedCategory === item.id}
+          onClick={() => setSelectedCategory(item.id)}
+        >
+          {item.name}
+        </Category>
+      ))}
     </StyledCategoryBar>
   );
 };

@@ -5,10 +5,15 @@ import styled from "styled-components";
 interface PropsType {
   children: ReactNode;
   isClicked: boolean;
+  onClick: () => void;
 }
 
-const Category = ({ children, isClicked }: PropsType) => {
-  return <StyledCategory isClicked={isClicked}>{children}</StyledCategory>;
+const Category = ({ children, isClicked, onClick }: PropsType) => {
+  return (
+    <StyledCategory isClicked={isClicked} onClick={onClick}>
+      {children}
+    </StyledCategory>
+  );
 };
 
 export default Category;
