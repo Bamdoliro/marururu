@@ -45,8 +45,8 @@ const StyledSchedule = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 40%;
-  height: 60%;
+  width: 489px;
+  height: 100%;
 `;
 
 const StyledScheduleList = styled.div`
