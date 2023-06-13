@@ -29,15 +29,3 @@ export const formatTime = (time: number) => {
 
   return `${minutes}:${seconds}`;
 };
-
-export const formatDate = (dateString: string) => {
-  const formatter = new Intl.DateTimeFormat("ko", {
-    dateStyle: "long",
-  });
-
-  return formatter.format(new Date(dateString));
-};
-
-export const getRemainDays = (dateString: string) => {
-  return Math.ceil(moment(dateString).diff(moment(), "days", true));
-};

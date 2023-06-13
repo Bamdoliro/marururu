@@ -3,53 +3,68 @@ import { styled } from "styled-components";
 import { color } from "@/styles/color";
 import Column from "@/components/common/Flex/Column";
 import Button from "@/components/common/Button";
-import { formatDate, getRemainDays } from "@/utils/timer";
+import moment from "moment";
+import {
+  finalTime,
+  firstTime,
+  submitEndTime,
+  submitStartTime,
+} from "@/models/submitTime";
 
-export enum ApplicationStatus {
-  RECRUITING = "모집 중",
-  FIRST_PASS = "1차 합격자 발표",
-  FINAL_PASS = "최종합격자 발표",
-}
-
-interface ApplicationCardPropsType {
-  period: string;
-  status: ApplicationStatus;
-}
-
-const ApplicationCard = ({ period, status }: ApplicationCardPropsType) => {
-  const isRecruiting = status === "모집 중";
+const ApplicationCard = () => {
+  const remainDays = Math.ceil(
+    moment().isBefore(firstTime)
+      ? firstTime.diff(moment(), "days")
+      : finalTime.diff(moment(), "days")
+  );
 
   return (
     <StyledApplicationCard>
       <Column gap="0" width="100%" height="100%" justifyContent="space-between">
-        {isRecruiting ? (
+        {moment().isBefore(submitEndTime) ? (
           <Column gap="36px">
             <Notice>
               부산소프트웨어마이스터고등학교
               <br />
               2024학년도 신입생 모집
             </Notice>
-            <Period>{period}</Period>
+            <Period>
+              {submitStartTime.locale("ko").format("yyyy년 MM월 DD일")} ~
+              {submitEndTime.locale("ko").format("yyyy년 MM월 DD일")}
+            </Period>
           </Column>
         ) : (
           <Column gap="16px">
             <Column gap="8px">
-              <Status>{status}</Status>
-              <RemainDays>D-{getRemainDays(period)}</RemainDays>
+              <Status>
+                {moment().isBefore(firstTime)
+                  ? "1차 합격자 발표"
+                  : "최종합격자 발표"}
+              </Status>
+              {/* TODO: 남은 시간이 하루보다 적을 때 시간으로 나타내야함 */}
+              <RemainDays>D-{remainDays}</RemainDays>
             </Column>
-            <Period>{formatDate(period)}</Period>
+            <Period>
+              {moment().isBefore(firstTime)
+                ? firstTime.locale("ko").format("yyyy년 MM월 DD일")
+                : finalTime.locale("ko").format("yyyy년 MM월 DD일")}
+            </Period>
           </Column>
         )}
 
-        {isRecruiting ? (
-          <Button width="321px" size="LARGE">
+        {moment().isBefore(submitEndTime) ? (
+          <Button
+            width="321px"
+            size="LARGE"
+            option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
+          >
             원서 접수하기
           </Button>
         ) : (
           <Button
             width="321px"
             size="LARGE"
-            option={getRemainDays(period) === 0 ? "PRIMARY" : "DISABLED"}
+            option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
           >
             결과 확인하기
           </Button>
@@ -62,7 +77,6 @@ const ApplicationCard = ({ period, status }: ApplicationCardPropsType) => {
 export default ApplicationCard;
 
 const StyledApplicationCard = styled.div`
-  position: relative;
   width: 56%;
   height: 436px;
   border-radius: 32px;
