@@ -22,5 +22,5 @@ const StyledNoticeLayout = styled.section`
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
-  padding: 0px 205px;
+  padding: 0px 207px;
 `;

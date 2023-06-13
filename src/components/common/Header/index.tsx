@@ -37,6 +37,11 @@ const HEADER_ITEM_DATA = [
     name: "자주 묻는 질문",
     route: FAQ_PAGE_ROUTE,
   },
+  {
+    id: 4,
+    name: "학교 소개",
+    route: "/",
+  },
 ];
 
 const Header = () => {
