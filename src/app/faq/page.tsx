@@ -1,5 +1,9 @@
+"use client";
+
+import FaqLayout from "@/layouts/FaqLayout";
+
 const FaqPage = () => {
-  return <div>as</div>;
+  return <FaqLayout>as</FaqLayout>;
 };
 
 export default FaqPage;

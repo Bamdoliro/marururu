@@ -34,7 +34,7 @@ const HEADER_ITEM_DATA = [
   },
   {
     id: 3,
-    name: "도움말",
+    name: "자주 묻는 질문",
     route: FAQ_PAGE_ROUTE,
   },
 ];
