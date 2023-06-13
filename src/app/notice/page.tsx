@@ -10,19 +10,22 @@ import { useNoticeListQuery } from "@/services/notice/queries";
 const NoticePage = () => {
   const { data } = useNoticeListQuery();
 
+  console.log(data);
+
   return (
     <NoticeLayout>
       <StyledNotice>
         <Title>공지사항</Title>
         <NoticeList>
-          {data.map((item) => (
+          <NoticeItem id={0} title={"테스트입니다"} date={"2022.10.10"} />
+          {/* {data.map((item) => (
             <NoticeItem
               key={item.id}
               id={item.id}
               title={item.title}
               date={item.date}
             />
-          ))}
+          ))} */}
         </NoticeList>
       </StyledNotice>
     </NoticeLayout>

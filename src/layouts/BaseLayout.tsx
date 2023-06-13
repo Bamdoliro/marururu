@@ -16,8 +16,6 @@ const BaseLayout = ({ children, backgroundColor }: PropsType) => {
 export default BaseLayout;
 
 const StyledBaseLayout = styled.section`
-  display: flex;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
