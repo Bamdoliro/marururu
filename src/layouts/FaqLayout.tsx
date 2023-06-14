@@ -22,7 +22,7 @@ export default FaqLayout;
 
 const StyledFaqLayout = styled.section`
   width: 100vw;
-  height: 100vh;
+  flex-grow: 1;
   background-color: ${color.white};
   padding: 0px 207px;
 `;
