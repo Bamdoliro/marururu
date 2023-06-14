@@ -3,15 +3,11 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice";
 import Schedule from "@/components/main/Schedule";
-import Faq from "@/components/main/Faq";
 import initMockAPI from "@/mocks";
-import styled from "styled-components";
 import Row from "@/components/common/Flex/Row";
 import SchoolRecruitCard from "@/components/main/SchoolRecruitCard";
-import initMockAPI from "@/mocks";
-import styled from "styled-components";
-import Row from "@/components/common/Flex/Row";
 import Faq from "@/components/main/Faq";
+import styled from "styled-components";
 
 if (process.env.NODE_ENV === "development") {
   initMockAPI();
