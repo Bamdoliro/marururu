@@ -75,9 +75,10 @@ const StyledSchoolRecruitCard = styled.div`
 
   background: rgba(0, 0, 0, 0.65) url("/assets/SchoolBackground.png");
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto 100%;
+  background-position: center right;
+  background-size: cover;
   background-blend-mode: darken;
+  background-attachment: fixed;
 `;
 
 const Notice = styled.p`
