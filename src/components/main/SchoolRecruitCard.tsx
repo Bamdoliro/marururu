@@ -37,7 +37,8 @@ const SchoolRecruitCard = () => {
           <Column gap="16px">
             <Column gap="8px">
               <Status>
-                {moment().isBefore(firstTime)
+                {moment().isAfter(submitStartTime) &&
+                moment().isBefore(submitEndTime)
                   ? "1차 합격자 발표"
                   : "최종합격자 발표"}
               </Status>
