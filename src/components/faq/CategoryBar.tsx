@@ -4,7 +4,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Category from "./Category";
 
-const CATEGORY_ITEM_DATA = [
+const CATEGORY_DATA = [
   {
     id: 0,
     name: "입학 과정",
@@ -15,12 +15,12 @@ const CATEGORY_ITEM_DATA = [
   },
 ];
 
-const CategoryBar = () => {
+const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState(0);
 
   return (
-    <StyledCategoryBar>
-      {CATEGORY_ITEM_DATA.map((item) => (
+    <StyledCategories>
+      {CATEGORY_DATA.map((item) => (
         <Category
           key={item.id}
           isSelected={selectedCategory === item.id}
@@ -29,13 +29,13 @@ const CategoryBar = () => {
           {item.name}
         </Category>
       ))}
-    </StyledCategoryBar>
+    </StyledCategories>
   );
 };
 
-export default CategoryBar;
+export default Categories;
 
-const StyledCategoryBar = styled.div`
+const StyledCategories = styled.div`
   ${font.context}
   color: ${color.gray900};
   height: 36px;

@@ -14,7 +14,7 @@ const NoticePage = () => {
 
   return (
     <NoticeLayout>
-      <StyledNotice>
+      <StyledNoticePage>
         <Title>공지사항</Title>
         <NoticeList>
           <NoticeItem id={0} title={"테스트입니다"} date={"2022.10.10"} />
@@ -27,14 +27,14 @@ const NoticePage = () => {
             />
           ))} */}
         </NoticeList>
-      </StyledNotice>
+      </StyledNoticePage>
     </NoticeLayout>
   );
 };
 
 export default NoticePage;
 
-const StyledNotice = styled.div`
+const StyledNoticePage = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;

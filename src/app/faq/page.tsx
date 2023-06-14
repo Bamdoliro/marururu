@@ -1,6 +1,6 @@
 "use client";
 
-import CategoryBar from "@/components/faq/CategoryBar";
+import Categories from "@/components/faq/CategoryBar";
 import FaqItem from "@/components/faq/FaqItem";
 import FaqLayout from "@/layouts/FaqLayout";
 import { color } from "@/styles/color";
@@ -10,22 +10,22 @@ import styled from "styled-components";
 const FaqPage = () => {
   return (
     <FaqLayout>
-      <StyledFaq>
+      <StyledFaqPage>
         <Title>자주 묻는 질문</Title>
-        <CategoryBar />
+        <Categories />
         <FaqList>
           <FaqItem question="adsa" answer="ass" />
           <FaqItem question="adsa" answer="ass" />
           <FaqItem question="adsa" answer="ass" />
         </FaqList>
-      </StyledFaq>
+      </StyledFaqPage>
     </FaqLayout>
   );
 };
 
 export default FaqPage;
 
-const StyledFaq = styled.div`
+const StyledFaqPage = styled.div`
   width: 100%;
   height: 100%;
 `;

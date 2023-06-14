@@ -16,7 +16,7 @@ import {
   SIGNUP_PAGE_ROUTE,
 } from "@/constants/router";
 
-const HEADER_ITEM_DATA = [
+const HEADER_DATA = [
   {
     id: 0,
     name: "홈",
@@ -77,7 +77,7 @@ const Header = () => {
         )}
       </HeaderBar>
       <NavigationBar>
-        {HEADER_ITEM_DATA.map((item) => (
+        {HEADER_DATA.map((item) => (
           <Button
             key={item.id}
             option="HOVER_UNDERLINE"

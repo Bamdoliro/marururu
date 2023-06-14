@@ -3,7 +3,7 @@ import { font } from "@/styles/font";
 import styled from "styled-components";
 import ScheduleItem from "./items/ScheduleItem";
 
-const SCHEDULE_ITEM_DATA = [
+const SCHEDULE_DATA = [
   {
     id: 0,
     date: "10월 17일 (화) ~ 20일 (금)",
@@ -31,7 +31,7 @@ const Schedule = () => {
     <StyledSchedule>
       <Title>입학일정</Title>
       <StyledScheduleList>
-        {SCHEDULE_ITEM_DATA.map((item) => (
+        {SCHEDULE_DATA.map((item) => (
           <ScheduleItem key={item.id} date={item.date} plan={item.plan} />
         ))}
       </StyledScheduleList>

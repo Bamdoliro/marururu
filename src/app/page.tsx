@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "development") {
 const Home = () => {
   return (
     <MainLayout>
-      <StyledMain>
+      <StyledMainPage>
         <Row gap="48px" height="451px" width="100%" justifyContent="center">
           <Video year={2024} />
           <Schedule />
@@ -25,14 +25,14 @@ const Home = () => {
           <Notice />
           <Faq />
         </Row>
-      </StyledMain>
+      </StyledMainPage>
     </MainLayout>
   );
 };
 
 export default Home;
 
-const StyledMain = styled.div`
+const StyledMainPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
