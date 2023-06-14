@@ -8,6 +8,10 @@ import initMockAPI from "@/mocks";
 import styled from "styled-components";
 import Row from "@/components/common/Flex/Row";
 import SchoolRecruitCard from "@/components/main/SchoolRecruitCard";
+import initMockAPI from "@/mocks";
+import styled from "styled-components";
+import Row from "@/components/common/Flex/Row";
+import Faq from "@/components/main/FAQ";
 
 if (process.env.NODE_ENV === "development") {
   initMockAPI();
@@ -16,25 +20,27 @@ if (process.env.NODE_ENV === "development") {
 const Home = () => {
   return (
     <MainLayout>
-      <StyledMain>
-        <Row gap="48px" justifyContent="center">
+      <StyledMainPage>
+        <Row gap="48px" height="451px" width="100%" justifyContent="center">
           <SchoolRecruitCard />
           <Schedule />
         </Row>
-        <Row gap="48px" justifyContent="center">
+        <Row gap="48px" width="100%" height="242px" justifyContent="center">
           <Notice />
-          <FAQ />
+          <Faq />
         </Row>
-      </StyledMain>
+      </StyledMainPage>
     </MainLayout>
   );
 };
 
 export default Home;
 
-const StyledMain = styled.div`
+const StyledMainPage = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 60px;
   width: 100%;
+  height: 100%;
 `;

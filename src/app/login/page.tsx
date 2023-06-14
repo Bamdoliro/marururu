@@ -20,7 +20,7 @@ const LoginPage = () => {
 
   return (
     <BaseLayout backgroundColor={color.gray100}>
-      <StyledLogin>
+      <StyledLoginPage>
         <LoginBox>
           <LoginBoxWrap>
             <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
@@ -57,14 +57,14 @@ const LoginPage = () => {
             </SignUp>
           </LoginBoxWrap>
         </LoginBox>
-      </StyledLogin>
+      </StyledLoginPage>
     </BaseLayout>
   );
 };
 
 export default LoginPage;
 
-const StyledLogin = styled.div`
+const StyledLoginPage = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;

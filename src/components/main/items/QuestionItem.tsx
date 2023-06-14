@@ -1,4 +1,4 @@
-import QuestionIcon from "@/components/common/Icon/QuestionIcon";
+import QuestionIcon from "@/components/common/Icon/Question";
 import { useRouter } from "next/navigation";
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
@@ -7,16 +7,16 @@ import { FAQ_PAGE_ROUTE } from "@/constants/router";
 
 interface PropsType {
   id: number;
-  title: string;
+  question: string;
 }
 
-const QuestionItem = ({ id, title }: PropsType) => {
+const QuestionItem = ({ id, question }: PropsType) => {
   const router = useRouter();
 
   return (
     <StyledQuestionItem onClick={() => router.push(`${FAQ_PAGE_ROUTE}/${id}`)}>
-      <QuestionIcon />
-      <Title>{title}</Title>
+      <QuestionIcon color={color.maruDefault} />
+      <Question>{question}</Question>
     </StyledQuestionItem>
   );
 };
@@ -27,13 +27,13 @@ const StyledQuestionItem = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 33.3%;
+  height: 64px;
   padding: 0px 16px;
   border-bottom: 1px solid ${color.gray300};
   cursor: pointer;
 `;
 
-const Title = styled.a`
+const Question = styled.a`
   ${font.p1}
   color: ${color.gray750};
   // 일정 길이 넘어가면 ... 처리

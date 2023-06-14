@@ -51,7 +51,7 @@ export const StyledButtonInput = styled.div`
   width: 100%;
 `;
 
-export const Button = styled.button<{ enabled: Boolean }>`
+export const Button = styled.button<{ enabled: boolean }>`
   ${font.btn2};
   color: ${color.white};
   background-color: ${(props) =>

@@ -6,9 +6,9 @@ import styled from "styled-components";
 import Button from "../Button";
 import Row from "../Flex/Row";
 import LogoIcon from "../Icon/Logo";
-import NavigationBar from "./NavigationBar";
 import Profile from "./Profile";
 import {
+  FAQ_PAGE_ROUTE,
   FORM_PAGE_ROUTE,
   LOGIN_PAGE_ROUTE,
   MAIN_PAGE_ROUTE,
@@ -16,10 +16,36 @@ import {
   SIGNUP_PAGE_ROUTE,
 } from "@/constants/router";
 
+const HEADER_DATA = [
+  {
+    id: 0,
+    name: "홈",
+    route: MAIN_PAGE_ROUTE,
+  },
+  {
+    id: 1,
+    name: "원서접수",
+    route: FORM_PAGE_ROUTE,
+  },
+  {
+    id: 2,
+    name: "공지사항",
+    route: NOTICE_PAGE_ROUTE,
+  },
+  {
+    id: 3,
+    name: "자주 묻는 질문",
+    route: FAQ_PAGE_ROUTE,
+  },
+  {
+    id: 4,
+    name: "학교 소개",
+    route: "/",
+  },
+];
+
 const Header = () => {
   const router = useRouter();
-
-  // 로그인 상태 테스트입니다
   const loginStatus = Storage.getItem(ACCESS_KEY);
 
   return (
@@ -51,30 +77,16 @@ const Header = () => {
         )}
       </HeaderBar>
       <NavigationBar>
-        <Button
-          option="HOVER_UNDERLINE"
-          size="LARGE"
-          onClick={() => router.push(MAIN_PAGE_ROUTE)}
-        >
-          홈
-        </Button>
-        <Button
-          option="HOVER_UNDERLINE"
-          size="LARGE"
-          onClick={() => router.push(FORM_PAGE_ROUTE)}
-        >
-          원서접수
-        </Button>
-        <Button
-          option="HOVER_UNDERLINE"
-          size="LARGE"
-          onClick={() => router.push(NOTICE_PAGE_ROUTE)}
-        >
-          공지사항
-        </Button>
-        <Button option="HOVER_UNDERLINE" size="LARGE">
-          도움말
-        </Button>
+        {HEADER_DATA.map((item) => (
+          <Button
+            key={item.id}
+            option="HOVER_UNDERLINE"
+            size="LARGE"
+            onClick={() => router.push(item.route)}
+          >
+            {item.name}
+          </Button>
+        ))}
       </NavigationBar>
     </StyledHeader>
   );
@@ -90,12 +102,22 @@ const StyledHeader = styled.div`
   width: 100%;
   height: 126px;
   background-color: ${color.white};
+  margin-bottom: 44px;
+  padding: 0px 100px;
 `;
 
 const HeaderBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 86%;
-  height: 72px;
+  width: 100%;
+`;
+
+const NavigationBar = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+  background-color: ${color.white};
+  border-bottom: 1px solid ${color.gray200};
 `;

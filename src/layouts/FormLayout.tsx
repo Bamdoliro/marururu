@@ -14,12 +14,12 @@ const FormLayout = ({ children, title }: PropsType) => {
     <>
       <Header />
       <StyledFormLayout>
-        <FormLayoutWrapper>
+        <FormBox>
           <InfoBox>
             <Title>{title}</Title>
           </InfoBox>
           <ContentBox>{children}</ContentBox>
-        </FormLayoutWrapper>
+        </FormBox>
       </StyledFormLayout>
     </>
   );
@@ -28,24 +28,20 @@ const FormLayout = ({ children, title }: PropsType) => {
 export default FormLayout;
 
 const StyledFormLayout = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};
-
-  margin-top: 44px;
 `;
 
-const FormLayoutWrapper = styled.div`
-  width: 56.25%;
-  height: 100%;
+const FormBox = styled.div`
+  margin: 0 auto;
+  width: 810px;
 `;
 
 const InfoBox = styled.div`
-  border-bottom: 1px solid ${color.gray300};
+  width: 100%;
   padding-bottom: 24px;
+  border-bottom: 1px solid ${color.gray300};
 `;
 
 const Title = styled.p`
@@ -56,5 +52,5 @@ const Title = styled.p`
 const ContentBox = styled.div`
   width: 100%;
   height: 100%;
-  padding: 40px 0px 60px;
+  padding-top: 40px;
 `;

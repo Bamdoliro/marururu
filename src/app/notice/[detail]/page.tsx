@@ -15,7 +15,7 @@ const NoticeDetailPage = () => {
 
   return (
     <NoticeLayout>
-      <StyledNoticeDetail>
+      <StyledNoticeDetailPage>
         <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)} gap="2px">
           <LeftArrowIcon color={color.gray600} size={24} />
           <Title>공지사항</Title>
@@ -24,14 +24,14 @@ const NoticeDetailPage = () => {
           <NoticeHeader title="테스트" date="2023.11.05" />
           <Content>이것은 테스트 입니다</Content>
         </ContentsBox>
-      </StyledNoticeDetail>
+      </StyledNoticeDetailPage>
     </NoticeLayout>
   );
 };
 
 export default NoticeDetailPage;
 
-const StyledNoticeDetail = styled.div`
+const StyledNoticeDetailPage = styled.div`
   display: flex;
   flex-direction: column;
   gap: 36px;

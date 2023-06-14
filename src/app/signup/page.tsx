@@ -30,7 +30,7 @@ const SignUpPage = () => {
 
   return (
     <BaseLayout>
-      <StyledSignUp>
+      <StyledSignUpPage>
         <Image
           src="/assets/ColaboLogo.svg"
           style={{ margin: "0 auto" }}
@@ -89,14 +89,14 @@ const SignUpPage = () => {
             </Button>
           </SignUpBox>
         </ContentBox>
-      </StyledSignUp>
+      </StyledSignUpPage>
     </BaseLayout>
   );
 };
 
 export default SignUpPage;
 
-const StyledSignUp = styled.div`
+const StyledSignUpPage = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -114,7 +114,7 @@ const ContentBox = styled.div`
   overflow: auto;
 `;
 
-const SignUpBox = styled.div<{ enabled: Boolean }>`
+const SignUpBox = styled.div<{ enabled: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

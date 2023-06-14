@@ -12,7 +12,6 @@ const ScheduleItem = ({ date, plan }: PropsType) => {
   return (
     <StyledScheduleItem>
       <Date>{date}</Date>
-      <Line />
       <Row gap="6px" alignItems="center">
         <Bar />
         <Plan>{plan}</Plan>
@@ -31,14 +30,11 @@ const StyledScheduleItem = styled.div`
   width: 100%;
 `;
 
-const Line = styled.div`
-  width: 100%;
-  border: 0.5px solid ${color.gray300};
-`;
-
 const Date = styled.p`
   ${font.context}
   color: ${color.gray900};
+  border-bottom: 1px solid ${color.gray300};
+  padding-bottom: 6px;
 `;
 
 const Plan = styled.p`

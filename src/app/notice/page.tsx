@@ -12,7 +12,7 @@ const NoticePage = () => {
 
   return (
     <NoticeLayout>
-      <StyledNotice>
+      <StyledNoticePage>
         <Title>공지사항</Title>
         <NoticeList>
           {data.map((item) => (
@@ -24,14 +24,14 @@ const NoticePage = () => {
             />
           ))}
         </NoticeList>
-      </StyledNotice>
+      </StyledNoticePage>
     </NoticeLayout>
   );
 };
 
 export default NoticePage;
 
-const StyledNotice = styled.div`
+const StyledNoticePage = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;

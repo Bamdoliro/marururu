@@ -1,6 +1,6 @@
 import { IconPropsType } from "./type";
 
-const BIcon = ({ onClick, cursor }: IconPropsType) => {
+const BamdoliroIcon = ({ onClick, cursor }: IconPropsType) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -29,4 +29,4 @@ const BIcon = ({ onClick, cursor }: IconPropsType) => {
   );
 };
 
-export default BIcon;
+export default BamdoliroIcon;

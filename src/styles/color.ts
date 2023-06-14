@@ -9,7 +9,7 @@ export const color = {
   maruRow: "#0C57CB",
   maruHoverd: "#186EEE",
 
-  gray50: "#FCFCFD",
+  gray50: "#FAFAFB",
   gray100: "#F8F8F9",
   gray200: "#EEF0F2",
   gray300: "#DDDEE3",

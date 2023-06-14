@@ -33,8 +33,8 @@ const StyledNotice = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 48%;
-  height: 33%;
+  width: 596px;
+  height: 100%;
 `;
 
 const Title = styled.p`
