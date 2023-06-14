@@ -1,4 +1,4 @@
-export const MainNoticeItemData = [
+export const MAIN_NOTICE_DATA = [
   {
     id: 0,
     title: "테스트입니다",
@@ -13,7 +13,7 @@ export const MainNoticeItemData = [
   },
 ];
 
-export const NoticeItemData = [
+export const NOTICE_DATA = [
   {
     id: 0,
     title: "테스트입니다",
@@ -31,7 +31,7 @@ export const NoticeItemData = [
   },
 ];
 
-export const MainQuestionItemData = [
+export const MAIN_QUESTION_DATA = [
   {
     id: 0,
     question: "하루 일과가 마치는 시간이 어떻게 되나요?",
