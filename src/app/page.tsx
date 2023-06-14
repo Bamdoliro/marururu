@@ -3,7 +3,6 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice";
 import Schedule from "@/components/main/Schedule";
-import Video from "@/components/main/Video";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 import Row from "@/components/common/Flex/Row";
@@ -18,7 +17,6 @@ const Home = () => {
     <MainLayout>
       <StyledMainPage>
         <Row gap="48px" height="451px" width="100%" justifyContent="center">
-          <Video year={2024} />
           <Schedule />
         </Row>
         <Row gap="48px" width="100%" height="242px" justifyContent="center">
