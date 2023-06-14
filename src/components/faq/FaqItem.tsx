@@ -68,6 +68,6 @@ const AnswerBox = styled.div`
 `;
 
 const Answer = styled.p`
-  ${font.p1}
+  ${font.p2}
   color: ${color.gray900};
 `;
