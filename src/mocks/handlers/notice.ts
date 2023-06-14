@@ -1,4 +1,3 @@
-import { MOCK_API_BASE_URL } from "./index";
 import { rest } from "msw";
 
 const NOTICE_DATA = [
@@ -20,7 +19,7 @@ const NOTICE_DATA = [
 ];
 
 export const noticeHandlers = [
-  rest.get(`${MOCK_API_BASE_URL}/notice`, (req, res, ctx) => {
+  rest.get("/notice/list", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(NOTICE_DATA));
   }),
 ];

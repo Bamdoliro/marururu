@@ -1,6 +1,7 @@
 import { noticeHandlers } from "./notice";
 import { mainHandlers } from "./main";
+import { faqHandlers } from "./faq";
 
-export const MOCK_API_BASE_URL = "http://localhost:3000";
+export const handlers = [...noticeHandlers, ...mainHandlers, ...faqHandlers];
 
-export const handlers = [...noticeHandlers, ...mainHandlers];
+console.log(handlers);

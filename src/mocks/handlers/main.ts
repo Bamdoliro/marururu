@@ -1,5 +1,4 @@
 import { rest } from "msw";
-import { MOCK_API_BASE_URL } from "./index";
 
 const MAIN_NOTICE_DATA = [
   {
@@ -32,11 +31,11 @@ const MAIN_QUESTION_DATA = [
 ];
 
 export const mainHandlers = [
-  rest.get(`${MOCK_API_BASE_URL}/main/notice`, (req, res, ctx) => {
+  rest.get("/main/notice/list", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(MAIN_NOTICE_DATA));
   }),
 
-  rest.get(`${MOCK_API_BASE_URL}/main/question`, (req, res, ctx) => {
+  rest.get("/main/question/list", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(MAIN_QUESTION_DATA));
   }),
 ];

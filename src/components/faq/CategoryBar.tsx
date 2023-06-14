@@ -1,32 +1,25 @@
+import { useFaqCategoryListQuery } from "@/services/faq/queries";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { useState } from "react";
 import styled from "styled-components";
 import Category from "./Category";
 
-const CATEGORY_DATA = [
-  {
-    id: 0,
-    name: "입학 과정",
-  },
-  {
-    id: 1,
-    name: "기숙사",
-  },
-];
-
 const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState(0);
+  const { data } = useFaqCategoryListQuery();
+
+  // console.log(data);
 
   return (
     <StyledCategories>
-      {CATEGORY_DATA.map((item) => (
+      {data.map((item) => (
         <Category
           key={item.id}
           isSelected={selectedCategory === item.id}
           onClick={() => setSelectedCategory(item.id)}
         >
-          {item.name}
+          {item.category}
         </Category>
       ))}
     </StyledCategories>

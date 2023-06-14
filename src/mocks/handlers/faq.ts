@@ -1,5 +1,4 @@
 import { rest } from "msw";
-import { MOCK_API_BASE_URL } from "./index";
 
 const CATEGORY_DATA = [
   {
@@ -39,10 +38,10 @@ const FAQ_DATA = [
 ];
 
 export const faqHandlers = [
-  rest.get(`${MOCK_API_BASE_URL}/faq/category`, (req, res, ctx) => {
+  rest.get("/faq/category/list", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(CATEGORY_DATA));
   }),
-  rest.get(`${MOCK_API_BASE_URL}/faq`, (req, res, ctx) => {
+  rest.get("/faq/list", (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(FAQ_DATA));
   }),
 ];
