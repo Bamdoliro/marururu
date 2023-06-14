@@ -42,7 +42,6 @@ export default FaqItem;
 const StyledFaqItem = styled.div`
   width: 100%;
   border-bottom: 1px solid ${color.gray300};
-  cursor: pointer;
 `;
 
 const QuestionBox = styled.div`
@@ -52,6 +51,7 @@ const QuestionBox = styled.div`
   justify-content: space-between;
   background-color: ${color.white};
   padding: 24px;
+  cursor: pointer;
 `;
 
 const Question = styled.p`

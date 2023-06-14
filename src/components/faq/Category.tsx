@@ -29,4 +29,5 @@ const StyledCategory = styled.span<{ isSelected: boolean }>`
     isSelected ? color.maruDefault : color.gray900};
   background-color: ${({ isSelected }) =>
     isSelected ? "#eff5ff" : color.gray100};
+  cursor: pointer;
 `;

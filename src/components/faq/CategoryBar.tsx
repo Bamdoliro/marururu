@@ -44,5 +44,4 @@ const StyledCategories = styled.div`
   align-items: center;
   gap: 12px;
   margin: 36px 0px 40px;
-  cursor: pointer;
 `;
