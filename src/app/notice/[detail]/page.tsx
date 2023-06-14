@@ -3,7 +3,7 @@
 import LeftArrowIcon from "@/components/common/Icon/LeftArrow";
 import Link from "@/components/common/Link";
 import NoticeHeader from "@/components/notice/NoticeHeader";
-import { NOTICE_PAGE_ROUTE } from "@/constants/router";
+import { NOTICE_PAGE_ROUTE } from "@/constants/routes";
 import NoticeLayout from "@/layouts/NoticeLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";

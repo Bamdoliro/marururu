@@ -52,7 +52,7 @@ const SchoolRecruitCard = () => {
           </Column>
         )}
         <Button
-          width="321px"
+          width="250px"
           size="LARGE"
           option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
         >
