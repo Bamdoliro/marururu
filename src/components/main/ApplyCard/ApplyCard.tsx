@@ -52,23 +52,13 @@ const ApplyCard = () => {
           </Column>
         )}
 
-        {moment().isBefore(submitEndTime) ? (
-          <Button
-            width="321px"
-            size="LARGE"
-            option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
-          >
-            원서 접수하기
-          </Button>
-        ) : (
-          <Button
-            width="321px"
-            size="LARGE"
-            option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
-          >
-            결과 확인하기
-          </Button>
-        )}
+        <Button
+          width="321px"
+          size="LARGE"
+          option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
+        >
+          {moment().isBefore(submitEndTime) ? "원서 접수하기" : "결과 확인하기"}
+        </Button>
       </Column>
     </StyledApplyCard>
   );
