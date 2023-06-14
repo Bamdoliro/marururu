@@ -69,7 +69,7 @@ const StyledSchoolRecruitCard = styled.div`
   width: 702px;
   height: 436px;
   border-radius: 32px;
-  padding: 72px 60px 64px;
+  padding: 60px;
   overflow: hidden;
 
   background: rgba(0, 0, 0, 0.65) url("/assets/SchoolView.png");
