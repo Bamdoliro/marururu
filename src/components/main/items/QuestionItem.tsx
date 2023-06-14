@@ -1,4 +1,4 @@
-import QuestionIcon from "@/components/common/Icon/QuestionIcon";
+import QuestionIcon from "@/components/common/Icon/Question";
 import { useRouter } from "next/navigation";
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
@@ -15,7 +15,7 @@ const QuestionItem = ({ id, question }: PropsType) => {
 
   return (
     <StyledQuestionItem onClick={() => router.push(`${FAQ_PAGE_ROUTE}/${id}`)}>
-      <QuestionIcon />
+      <QuestionIcon color={color.maruDefault} />
       <Question>{question}</Question>
     </StyledQuestionItem>
   );

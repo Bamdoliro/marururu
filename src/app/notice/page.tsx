@@ -10,31 +10,28 @@ import { useNoticeListQuery } from "@/services/notice/queries";
 const NoticePage = () => {
   const { data } = useNoticeListQuery();
 
-  console.log(data);
-
   return (
     <NoticeLayout>
-      <StyledNotice>
+      <StyledNoticePage>
         <Title>공지사항</Title>
         <NoticeList>
-          <NoticeItem id={0} title={"테스트입니다"} date={"2022.10.10"} />
-          {/* {data.map((item) => (
+          {data.map((item) => (
             <NoticeItem
               key={item.id}
               id={item.id}
               title={item.title}
               date={item.date}
             />
-          ))} */}
+          ))}
         </NoticeList>
-      </StyledNotice>
+      </StyledNoticePage>
     </NoticeLayout>
   );
 };
 
 export default NoticePage;
 
-const StyledNotice = styled.div`
+const StyledNoticePage = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;

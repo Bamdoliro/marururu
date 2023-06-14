@@ -1,3 +1,4 @@
+import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 import { color } from "@/styles/color";
 import { ReactNode } from "react";
@@ -7,18 +8,19 @@ interface PropsType {
   children: ReactNode;
 }
 
-const NoticeLayout = ({ children }: PropsType) => {
+const FaqLayout = ({ children }: PropsType) => {
   return (
     <>
       <Header />
-      <StyledNoticeLayout>{children}</StyledNoticeLayout>
+      <StyledFaqLayout>{children}</StyledFaqLayout>
+      <Footer />
     </>
   );
 };
 
-export default NoticeLayout;
+export default FaqLayout;
 
-const StyledNoticeLayout = styled.section`
+const StyledFaqLayout = styled.section`
   width: 100vw;
   height: 100vh;
   background-color: ${color.white};

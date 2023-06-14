@@ -16,7 +16,7 @@ import {
   SIGNUP_PAGE_ROUTE,
 } from "@/constants/router";
 
-const HEADER_ITEM_DATA = [
+const HEADER_DATA = [
   {
     id: 0,
     name: "홈",
@@ -34,8 +34,13 @@ const HEADER_ITEM_DATA = [
   },
   {
     id: 3,
-    name: "도움말",
+    name: "자주 묻는 질문",
     route: FAQ_PAGE_ROUTE,
+  },
+  {
+    id: 4,
+    name: "학교 소개",
+    route: "/",
   },
 ];
 
@@ -72,7 +77,7 @@ const Header = () => {
         )}
       </HeaderBar>
       <NavigationBar>
-        {HEADER_ITEM_DATA.map((item) => (
+        {HEADER_DATA.map((item) => (
           <Button
             key={item.id}
             option="HOVER_UNDERLINE"
