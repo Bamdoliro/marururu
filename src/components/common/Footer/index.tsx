@@ -3,7 +3,6 @@ import GrayLogoIcon from "../Icon/GrayLogo";
 import Column from "../Flex/Column";
 import Row from "../Flex/Row";
 import InstagramIcon from "../Icon/Instagram";
-import BIcon from "../Icon/B";
 import Link from "../Link";
 import { font } from "@/styles/font";
 import styled from "styled-components";
@@ -13,6 +12,7 @@ import {
   FORM_PAGE_ROUTE,
   NOTICE_PAGE_ROUTE,
 } from "@/constants/router";
+import BamdoliroIcon from "../Icon/Bamdoliro";
 
 const Footer = () => {
   const router = useRouter();
@@ -53,7 +53,7 @@ const Footer = () => {
         </NavigationBox>
         <Row gap="16px" alignItems="center">
           <InstagramIcon cursor="pointer" />
-          <BIcon cursor="pointer" />
+          <BamdoliroIcon cursor="pointer" />
         </Row>
       </Row>
     </StyledFooter>
