@@ -7,8 +7,16 @@ import BIcon from "../Icon/B";
 import Link from "../Link";
 import { font } from "@/styles/font";
 import styled from "styled-components";
+import { useRouter } from "next/navigation";
+import {
+  FAQ_PAGE_ROUTE,
+  FORM_PAGE_ROUTE,
+  NOTICE_PAGE_ROUTE,
+} from "@/constants/router";
 
 const Footer = () => {
+  const router = useRouter();
+
   return (
     <StyledFooter>
       <InfoBox>
@@ -22,23 +30,31 @@ const Footer = () => {
           <Copyright>Copyright © 밤돌이로 all rights reserved.</Copyright>
         </Column>
       </InfoBox>
-      <NavigationBox>
-        <Column gap="24px">
-          <Link onClick={() => console.log("test")}>원서접수</Link>
-          <Link onClick={() => console.log("test")}>공지사항</Link>
-          <Link onClick={() => console.log("test")}>자주묻는질문</Link>
-          <Link onClick={() => console.log("test")}>학교소개</Link>
-          <Link onClick={() => console.log("test")}>마루소개</Link>
-        </Column>
-        <Column gap="24px">
-          <Link onClick={() => console.log("test")}>이용약관</Link>
-          <Link onClick={() => console.log("test")}>개인정보처리방침</Link>
-          <Link onClick={() => console.log("test")}>학교 홈페이지</Link>
-        </Column>
-      </NavigationBox>
-      <Row gap="16px" alignItems="center">
-        <InstagramIcon cursor="pointer" />
-        <BIcon cursor="pointer" />
+      <Row gap="95px" alignItems="flex-start">
+        <NavigationBox>
+          <Column gap="24px">
+            <Link onClick={() => router.push(FORM_PAGE_ROUTE)}>원서접수</Link>
+            <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)}>공지사항</Link>
+            <Link onClick={() => router.push(FAQ_PAGE_ROUTE)}>
+              자주묻는질문
+            </Link>
+            <Link onClick={() => console.log("학교 소개 페이지")}>
+              학교소개
+            </Link>
+            <Link onClick={() => console.log("마루 소개 페이지")}>
+              마루소개
+            </Link>
+          </Column>
+          <Column gap="24px">
+            <Link onClick={() => console.log("test")}>이용약관</Link>
+            <Link onClick={() => console.log("test")}>개인정보처리방침</Link>
+            <Link onClick={() => console.log("test")}>학교 홈페이지</Link>
+          </Column>
+        </NavigationBox>
+        <Row gap="16px" alignItems="center">
+          <InstagramIcon cursor="pointer" />
+          <BIcon cursor="pointer" />
+        </Row>
       </Row>
     </StyledFooter>
   );
@@ -50,10 +66,11 @@ const StyledFooter = styled.div`
   background-color: ${color.gray100};
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 155px;
   height: 350px;
   width: 100%;
-  padding: 40px 0px 0px 100px;
+  padding: 40px 100px;
 `;
 
 const InfoBox = styled.div`
@@ -81,5 +98,5 @@ const NavigationBox = styled.div`
   ${font.p3}
   color: ${color.gray600};
   display: flex;
-  gap: 155px;
+  gap: 132px;
 `;
