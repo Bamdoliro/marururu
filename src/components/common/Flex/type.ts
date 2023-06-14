@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export interface FlexPropsType {
   children: ReactNode;
-  gap: string;
+  gap?: string;
   justifyContent?:
     | "none"
     | "center"

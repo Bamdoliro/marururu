@@ -11,7 +11,7 @@ import {
   submitStartTime,
 } from "@/models/submitTime";
 
-const ApplyCard = () => {
+const SchoolRecruitCard = () => {
   const remainDays = Math.ceil(
     moment().isBefore(firstTime)
       ? firstTime.diff(moment(), "days")
@@ -19,8 +19,8 @@ const ApplyCard = () => {
   );
 
   return (
-    <StyledApplyCard>
-      <Column gap="0" width="100%" height="100%" justifyContent="space-between">
+    <StyledSchoolRecruitCard>
+      <Column width="100%" height="100%" justifyContent="space-between">
         {moment().isBefore(submitEndTime) ? (
           <Column gap="36px">
             <Notice>
@@ -51,7 +51,6 @@ const ApplyCard = () => {
             </Period>
           </Column>
         )}
-
         <Button
           width="321px"
           size="LARGE"
@@ -60,14 +59,14 @@ const ApplyCard = () => {
           {moment().isBefore(submitEndTime) ? "원서 접수하기" : "결과 확인하기"}
         </Button>
       </Column>
-    </StyledApplyCard>
+    </StyledSchoolRecruitCard>
   );
 };
 
-export default ApplyCard;
+export default SchoolRecruitCard;
 
-const StyledApplyCard = styled.div`
-  width: 56%;
+const StyledSchoolRecruitCard = styled.div`
+  width: 702px;
   height: 436px;
   border-radius: 32px;
   padding: 72px 60px 64px;
