@@ -21,7 +21,7 @@ const SchoolRecruitCard = () => {
   return (
     <StyledSchoolRecruitCard>
       <Column width="100%" height="100%" justifyContent="space-between">
-        {moment().isBefore(submitEndTime) ? (
+        {moment().isAfter(submitStartTime) ? (
           <Column gap="36px">
             <Notice>
               부산소프트웨어마이스터고등학교
@@ -56,6 +56,7 @@ const SchoolRecruitCard = () => {
           size="LARGE"
           option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
         >
+          {" "}
           {moment().isBefore(submitEndTime) ? "원서 접수하기" : "결과 확인하기"}
         </Button>
       </Column>
