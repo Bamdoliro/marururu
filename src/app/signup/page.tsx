@@ -114,7 +114,7 @@ const ContentBox = styled.div`
   overflow: auto;
 `;
 
-const SignUpBox = styled.div<{ enabled: Boolean }>`
+const SignUpBox = styled.div<{ enabled: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -22,7 +22,8 @@ const CategoryBar = () => {
     <StyledCategoryBar>
       {CATEGORY_ITEM_DATA.map((item) => (
         <Category
-          isClicked={selectedCategory === item.id}
+          key={item.id}
+          isSelected={selectedCategory === item.id}
           onClick={() => setSelectedCategory(item.id)}
         >
           {item.name}

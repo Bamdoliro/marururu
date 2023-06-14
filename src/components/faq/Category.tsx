@@ -4,13 +4,13 @@ import styled from "styled-components";
 
 interface PropsType {
   children: ReactNode;
-  isClicked: boolean;
+  isSelected: boolean;
   onClick: () => void;
 }
 
-const Category = ({ children, isClicked, onClick }: PropsType) => {
+const Category = ({ children, isSelected, onClick }: PropsType) => {
   return (
-    <StyledCategory isClicked={isClicked} onClick={onClick}>
+    <StyledCategory isSelected={isSelected} onClick={onClick}>
       {children}
     </StyledCategory>
   );
@@ -18,14 +18,15 @@ const Category = ({ children, isClicked, onClick }: PropsType) => {
 
 export default Category;
 
-const StyledCategory = styled.span<{ isClicked: Boolean }>`
+const StyledCategory = styled.span<{ isSelected: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   padding: 0px 14px;
   border-radius: 25px;
-  color: ${({ isClicked }) => (isClicked ? color.maruDefault : color.gray900)};
-  background-color: ${({ isClicked }) =>
-    isClicked ? "#eff5ff" : color.gray100};
+  color: ${({ isSelected }) =>
+    isSelected ? color.maruDefault : color.gray900};
+  background-color: ${({ isSelected }) =>
+    isSelected ? "#eff5ff" : color.gray100};
 `;
