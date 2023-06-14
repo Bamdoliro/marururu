@@ -3,10 +3,15 @@
 import MainLayout from "@/layouts/MainLayout";
 import Notice from "@/components/main/Notice";
 import Schedule from "@/components/main/Schedule";
+import Faq from "@/components/main/Faq";
 import initMockAPI from "@/mocks";
 import styled from "styled-components";
 import Row from "@/components/common/Flex/Row";
-import Faq from "@/components/main/FAQ";
+import SchoolRecruitCard from "@/components/main/SchoolRecruitCard";
+import initMockAPI from "@/mocks";
+import styled from "styled-components";
+import Row from "@/components/common/Flex/Row";
+import Faq from "@/components/main/Faq";
 
 if (process.env.NODE_ENV === "development") {
   initMockAPI();
@@ -17,6 +22,7 @@ const Home = () => {
     <MainLayout>
       <StyledMainPage>
         <Row gap="48px" height="451px" width="100%" justifyContent="center">
+          <SchoolRecruitCard />
           <Schedule />
         </Row>
         <Row gap="48px" width="100%" height="242px" justifyContent="center">
