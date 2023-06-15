@@ -1,4 +1,4 @@
-import { NOTICE_PAGE_ROUTE } from "@/constants/router";
+import { NOTICE_PAGE_ROUTE } from "@/constants/routes";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { useRouter } from "next/navigation";

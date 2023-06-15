@@ -2,7 +2,7 @@ import { font } from "@/styles/font";
 import { color } from "@/styles/color";
 import { useRouter } from "next/navigation";
 import { styled } from "styled-components";
-import { NOTICE_PAGE_ROUTE } from "@/constants/router";
+import { NOTICE_PAGE_ROUTE } from "@/constants/routes";
 
 interface PropsType {
   id: number;

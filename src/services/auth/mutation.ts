@@ -11,7 +11,7 @@ import { Storage } from "@/lib/storage";
 import { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 import axiosErrorTemplate from "@/utils/functions/axiosErrorTemplate";
-import { LOGIN_PAGE_ROUTE, MAIN_PAGE_ROUTE } from "@/constants/router";
+import { LOGIN_PAGE_ROUTE, MAIN_PAGE_ROUTE } from "@/constants/routes";
 
 /** 로그인 */
 export const useLoginUserMutation = ({

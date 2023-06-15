@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link";
 import { useMainQuestionListQuery } from "@/services/main/queries";
 import QuestionItem from "./items/QuestionItem";
-import { FAQ_PAGE_ROUTE } from "@/constants/router";
+import { FAQ_PAGE_ROUTE } from "@/constants/routes";
 
 const Faq = () => {
   const router = useRouter();

@@ -1,4 +1,4 @@
-import { LOGIN_PAGE_ROUTE } from "@/constants/router";
+import { LOGIN_PAGE_ROUTE } from "@/constants/routes";
 import { ACCESS_KEY, REFRESH_KEY } from "@/constants/token";
 import { useRouter } from "next/navigation";
 import { maru } from "../../axios/index";

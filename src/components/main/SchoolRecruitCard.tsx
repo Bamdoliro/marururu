@@ -21,7 +21,7 @@ const SchoolRecruitCard = () => {
   return (
     <StyledSchoolRecruitCard>
       <Column width="100%" height="100%" justifyContent="space-between">
-        {moment().isBefore(submitEndTime) ? (
+        {moment().isAfter(submitStartTime) ? (
           <Column gap="36px">
             <Notice>
               부산소프트웨어마이스터고등학교
@@ -37,7 +37,8 @@ const SchoolRecruitCard = () => {
           <Column gap="16px">
             <Column gap="8px">
               <Status>
-                {moment().isBefore(firstTime)
+                {moment().isAfter(submitStartTime) &&
+                moment().isBefore(submitEndTime)
                   ? "1차 합격자 발표"
                   : "최종합격자 발표"}
               </Status>
@@ -52,10 +53,11 @@ const SchoolRecruitCard = () => {
           </Column>
         )}
         <Button
-          width="321px"
+          width="250px"
           size="LARGE"
           option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
         >
+          {" "}
           {moment().isBefore(submitEndTime) ? "원서 접수하기" : "결과 확인하기"}
         </Button>
       </Column>
@@ -74,9 +76,10 @@ const StyledSchoolRecruitCard = styled.div`
 
   background: rgba(0, 0, 0, 0.65) url("/assets/SchoolBackground.png");
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto 100%;
+  background-position: center right;
+  background-size: cover;
   background-blend-mode: darken;
+  background-attachment: fixed;
 `;
 
 const Notice = styled.p`

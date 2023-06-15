@@ -11,7 +11,7 @@ import {
   FAQ_PAGE_ROUTE,
   FORM_PAGE_ROUTE,
   NOTICE_PAGE_ROUTE,
-} from "@/constants/router";
+} from "@/constants/routes";
 import BamdoliroIcon from "../Icon/Bamdoliro";
 
 const Footer = () => {

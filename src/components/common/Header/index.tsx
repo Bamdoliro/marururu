@@ -14,7 +14,7 @@ import {
   MAIN_PAGE_ROUTE,
   NOTICE_PAGE_ROUTE,
   SIGNUP_PAGE_ROUTE,
-} from "@/constants/router";
+} from "@/constants/routes";
 
 const HEADER_DATA = [
   {
