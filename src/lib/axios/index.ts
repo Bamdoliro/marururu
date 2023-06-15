@@ -3,7 +3,6 @@ import { refreshToken } from "../token/refresh";
 
 export const maru = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  withCredentials: true,
   timeout: 15000,
   headers: {
     "Content-Type": "application/json",
