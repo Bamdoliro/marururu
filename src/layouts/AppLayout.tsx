@@ -21,6 +21,6 @@ export default AppLayout;
 
 const StyledAppLayout = styled.section`
   width: 100vw;
-  height: 100vh;
+  min-height: 100%;
   background-color: ${color.white};
 `;

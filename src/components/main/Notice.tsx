@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "@/components/common/Link";
 import { useMainNoticeListQuery } from "@/services/main/queries";
 import NoticeItem from "./items/NoticeItem";
-import { NOTICE_PAGE_ROUTE } from "@/constants/router";
+import { NOTICE_PAGE_ROUTE } from "@/constants/routes";
 
 const Notice = () => {
   const router = useRouter();

@@ -50,6 +50,6 @@ const StyledButton = styled.button<{
   cursor: pointer;
 
   ${({ icon }) => icon && getButtonPadding[icon]};
-  ${({ option }) => option && getButtonStyle[option]}
-  ${({ size }) => size && getButtonSize[size]}
+  ${({ option }) => option && getButtonStyle[option]};
+  ${({ size }) => size && getButtonSize[size]};
 `;

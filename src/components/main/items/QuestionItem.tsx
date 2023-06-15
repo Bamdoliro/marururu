@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { font } from "@/styles/font";
 import { color } from "@/styles/color";
 import { styled } from "styled-components";
-import { FAQ_PAGE_ROUTE } from "@/constants/router";
+import { FAQ_PAGE_ROUTE } from "@/constants/routes";
 
 interface PropsType {
   id: number;

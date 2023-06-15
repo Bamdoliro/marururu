@@ -1,6 +1,6 @@
 "use client";
 
-import Categories from "@/components/faq/CategoryBar";
+import Categories from "@/components/faq/Categories";
 import FaqItem from "@/components/faq/FaqItem";
 import FaqLayout from "@/layouts/FaqLayout";
 import { useFaqListQuery } from "@/services/faq/queries";

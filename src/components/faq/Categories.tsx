@@ -9,8 +9,6 @@ const Categories = () => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const { data } = useFaqCategoryListQuery();
 
-  // console.log(data);
-
   return (
     <StyledCategories>
       {data.map((item) => (
