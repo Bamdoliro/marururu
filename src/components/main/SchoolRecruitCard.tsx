@@ -8,19 +8,22 @@ import Button from "@/components/common/Button";
 import moment, { utc } from "moment";
 import {
   finalTime,
-  firstTime,
+  firstStartTime,
   submitEndTime,
   submitStartTime,
 } from "@/models/submitTime";
 import { useEffect, useState } from "react";
+import { getDDay } from "@/utils/functions/timer";
+import { useRouter } from "next/navigation";
 
 const SchoolRecruitCard = () => {
+  const router = useRouter();
   const currentTime = moment().isBefore(submitStartTime)
     ? submitStartTime
     : moment().isBefore(submitEndTime)
     ? submitEndTime
-    : moment().isBefore(firstTime)
-    ? firstTime
+    : moment().isBefore(firstStartTime.clone().add(2, "days"))
+    ? firstStartTime
     : finalTime;
 
   const [remainDays, setRemainDays] = useState(
@@ -37,7 +40,15 @@ const SchoolRecruitCard = () => {
 
   const isSubmitPeriod = moment().isBetween(submitStartTime, submitEndTime);
   const timeDiff = utc(currentTime.diff(moment())).format("HH:mm:ss");
-  const buttonOption = isSubmitPeriod || !remainDays ? "PRIMARY" : "DISABLED";
+  const buttonOption =
+    isSubmitPeriod || (-2 < remainDays && remainDays <= 0)
+      ? "PRIMARY"
+      : "DISABLED";
+  const buttonOnClick = isSubmitPeriod
+    ? () => router.push("/form")
+    : -2 < remainDays && remainDays <= 0
+    ? () => console.log("결과 확인하기 페이지 이동")
+    : undefined;
   const buttonText = moment().isBefore(submitEndTime)
     ? "원서 접수하기"
     : "결과 확인하기";
@@ -63,20 +74,27 @@ const SchoolRecruitCard = () => {
               <Status>
                 {currentTime === submitStartTime
                   ? "원서 접수 시작까지"
-                  : currentTime === firstTime
+                  : currentTime === firstStartTime
                   ? "1차 합격자 발표"
                   : currentTime === finalTime
                   ? "최종합격자 발표"
                   : null}
               </Status>
               <RemainDays>
-                {remainDays >= 1 ? `D-${Math.floor(remainDays)}` : timeDiff}
+                {remainDays >= 1 || remainDays < 0
+                  ? getDDay(remainDays)
+                  : timeDiff}
               </RemainDays>
             </Column>
             <Period>{currentTime.format("yyyy년 MM월 DD일")}</Period>
           </Column>
         )}
-        <Button width="250px" size="LARGE" option={buttonOption}>
+        <Button
+          width="250px"
+          size="LARGE"
+          option={buttonOption}
+          onClick={buttonOnClick}
+        >
           {buttonText}
         </Button>
       </Column>

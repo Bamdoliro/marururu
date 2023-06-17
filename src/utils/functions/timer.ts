@@ -29,3 +29,14 @@ export const formatTime = (time: number) => {
 
   return `${minutes}:${seconds}`;
 };
+
+export const getDDay = (remainDays: number) => {
+  remainDays = Math.floor(remainDays);
+  if (remainDays > 0) {
+    return `D-${remainDays}`;
+  } else if (remainDays <= -2) {
+    return `D+${-remainDays - 1}`;
+  } else {
+    return "D-Day";
+  }
+};
