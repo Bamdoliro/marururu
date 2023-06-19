@@ -10,7 +10,7 @@ import Column from "@/components/common/Flex/Column";
 import BaseLayout from "@/layouts/BaseLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { useJoin } from "@/hooks/useJoin";
+import useJoin from "@/hooks/useJoin";
 import TimerInput from "@/components/common/Input/TimerInput";
 import { useState } from "react";
 

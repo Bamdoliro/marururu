@@ -10,7 +10,7 @@ import PreviewInput from "@/components/common/Input/PreviewInput";
 import BaseLayout from "@/layouts/BaseLayout";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
-import { useLogin } from "@/hooks/useLogin";
+import useLogin from "@/hooks/useLogin";
 import { useRouter } from "next/navigation";
 import { SIGNUP_PAGE_ROUTE } from "@/constants/routes";
 

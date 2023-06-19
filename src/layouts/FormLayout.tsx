@@ -2,6 +2,7 @@ import Header from "@/components/common/Header";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import { ReactNode } from "react";
+import ProgressBar from "@/components/form/ProgressBar";
 import styled from "styled-components";
 
 interface PropsType {
@@ -14,6 +15,7 @@ const FormLayout = ({ children, title }: PropsType) => {
     <>
       <Header />
       <StyledFormLayout>
+        <ProgressBar />
         <FormBox>
           <InfoBox>
             <Title>{title}</Title>

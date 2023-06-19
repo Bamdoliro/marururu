@@ -1,18 +1,18 @@
 import { useLoginUserMutation } from "@/services/auth/mutation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 
 interface loginUserDataType {
   email: string;
   password: string;
 }
 
-export const useLogin = () => {
+const useLogin = () => {
   const [loginUserData, setLoginUserData] = useState<loginUserDataType>({
     email: "",
     password: "",
   });
 
-  const handleLoginUserData = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleLoginUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
     setLoginUserData({ ...loginUserData, [name]: value });
   };
@@ -21,3 +21,5 @@ export const useLogin = () => {
 
   return { handleLoginUserData, loginUserMutate };
 };
+
+export default useLogin;
