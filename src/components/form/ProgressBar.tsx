@@ -30,6 +30,10 @@ const PROGRESS_BAR_DATA = [
   },
 ];
 
+/**
+ * @TODO 다음페이지로 성공적으로 넘어갔을때 complete 처리를 해줘야합니다
+ */
+
 const ProgressBar = () => {
   const { currentPage, movePage } = useFormPage();
 
