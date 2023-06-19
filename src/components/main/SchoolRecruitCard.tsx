@@ -1,27 +1,62 @@
+"use client";
+
 import { font } from "@/styles/font";
 import { styled } from "styled-components";
 import { color } from "@/styles/color";
 import Column from "@/components/common/Flex/Column";
 import Button from "@/components/common/Button";
-import moment from "moment";
+import moment, { utc } from "moment";
 import {
   finalTime,
-  firstTime,
+  firstStartTime,
   submitEndTime,
   submitStartTime,
 } from "@/models/submitTime";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getDay } from "@/utils/functions/dayFormatter";
 
 const SchoolRecruitCard = () => {
-  const remainDays = Math.ceil(
-    moment().isBefore(firstTime)
-      ? firstTime.diff(moment(), "days")
-      : finalTime.diff(moment(), "days")
+  const router = useRouter();
+  const currentTime = moment().isBefore(submitStartTime)
+    ? submitStartTime
+    : moment().isBefore(submitEndTime)
+    ? submitEndTime
+    : moment().isBefore(firstStartTime.clone().add(2, "days"))
+    ? firstStartTime
+    : finalTime;
+
+  const [remainDays, setRemainDays] = useState(
+    currentTime.diff(moment(), "days", true)
   );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRemainDays(currentTime.diff(moment(), "days", true));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const isSubmitPeriod = moment().isBetween(submitStartTime, submitEndTime);
+  const timeDiff = utc(currentTime.diff(moment())).format("HH:mm:ss");
+  const buttonOption =
+    isSubmitPeriod || (-2 < remainDays && remainDays <= 0)
+      ? "PRIMARY"
+      : "DISABLED";
+  const buttonOnClick = isSubmitPeriod
+    ? () => router.push("/form")
+    : -2 < remainDays && remainDays <= 0
+    ? () => console.log("결과 확인하기 페이지 이동")
+    : undefined;
+  const buttonText = moment().isBefore(submitEndTime)
+    ? "원서 접수하기"
+    : "결과 확인하기";
 
   return (
     <StyledSchoolRecruitCard>
       <Column width="100%" height="100%" justifyContent="space-between">
-        {moment().isAfter(submitStartTime) ? (
+        {isSubmitPeriod ? (
           <Column gap="36px">
             <Notice>
               부산소프트웨어마이스터고등학교
@@ -29,36 +64,38 @@ const SchoolRecruitCard = () => {
               2024학년도 신입생 모집
             </Notice>
             <Period>
-              {submitStartTime.locale("ko").format("yyyy년 MM월 DD일")} ~
-              {submitEndTime.locale("ko").format("yyyy년 MM월 DD일")}
+              {submitStartTime.format("yyyy년 MM월 DD일")} ~
+              {submitEndTime.format("yyyy년 MM월 DD일")}
             </Period>
           </Column>
         ) : (
           <Column gap="16px">
             <Column gap="8px">
               <Status>
-                {moment().isAfter(submitStartTime) &&
-                moment().isBefore(submitEndTime)
+                {currentTime === submitStartTime
+                  ? "원서 접수 시작까지"
+                  : currentTime === firstStartTime
                   ? "1차 합격자 발표"
-                  : "최종합격자 발표"}
+                  : currentTime === finalTime
+                  ? "최종합격자 발표"
+                  : null}
               </Status>
-              {/* TODO: 남은 시간이 하루보다 적을 때 시간으로 나타내야함 */}
-              <RemainDays>D-{remainDays}</RemainDays>
+              <RemainDays>
+                {remainDays >= 1 || remainDays < 0
+                  ? getDay(remainDays)
+                  : timeDiff}
+              </RemainDays>
             </Column>
-            <Period>
-              {moment().isBefore(firstTime)
-                ? firstTime.locale("ko").format("yyyy년 MM월 DD일")
-                : finalTime.locale("ko").format("yyyy년 MM월 DD일")}
-            </Period>
+            <Period>{currentTime.format("yyyy년 MM월 DD일")}</Period>
           </Column>
         )}
         <Button
           width="250px"
           size="LARGE"
-          option={moment().isBefore(submitStartTime) ? "DISABLED" : "PRIMARY"}
+          option={buttonOption}
+          onClick={buttonOnClick}
         >
-          {" "}
-          {moment().isBefore(submitEndTime) ? "원서 접수하기" : "결과 확인하기"}
+          {buttonText}
         </Button>
       </Column>
     </StyledSchoolRecruitCard>
