@@ -13,8 +13,8 @@ import {
   submitStartTime,
 } from "@/models/submitTime";
 import { useEffect, useState } from "react";
-import { getDDay } from "@/utils/functions/timer";
 import { useRouter } from "next/navigation";
+import { getDay } from "@/utils/functions/dayFormatter";
 
 const SchoolRecruitCard = () => {
   const router = useRouter();
@@ -82,7 +82,7 @@ const SchoolRecruitCard = () => {
               </Status>
               <RemainDays>
                 {remainDays >= 1 || remainDays < 0
-                  ? getDDay(remainDays)
+                  ? getDay(remainDays)
                   : timeDiff}
               </RemainDays>
             </Column>
