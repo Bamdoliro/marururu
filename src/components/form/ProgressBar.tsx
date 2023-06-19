@@ -76,7 +76,7 @@ const Circle = styled.div<{ active: boolean; name: string }>`
   z-index: 1;
   ${font.p1}
   color: ${(props) => (props.active ? color.maruDefault : color.gray600)};
-  background-color: ${color.gray50};
+  background-color: ${(props) => (props.active ? color.white : color.gray50)};
   display: flex;
   justify-content: center;
   align-items: center;
