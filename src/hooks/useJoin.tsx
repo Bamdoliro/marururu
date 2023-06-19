@@ -2,7 +2,7 @@ import {
   useJoinUserMutation,
   useRequestEmailMutation,
 } from "@/services/auth/mutation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 
 interface joinUserDataType {
   email: string;
@@ -11,7 +11,7 @@ interface joinUserDataType {
   repassword: string;
 }
 
-export const useJoin = () => {
+const useJoin = () => {
   const [joinUserData, setJoinUserData] = useState<joinUserDataType>({
     email: "",
     code: "",
@@ -25,7 +25,7 @@ export const useJoin = () => {
    */
   const [checkTermsAgree, setCheckTermsAgree] = useState(false);
 
-  const handleJoinUserData = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleJoinUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
     setJoinUserData({ ...joinUserData, [name]: value });
   };
@@ -52,3 +52,5 @@ export const useJoin = () => {
     setCheckTermsAgree,
   };
 };
+
+export default useJoin;

@@ -1,3 +1,4 @@
+import useFormPage from "@/hooks/useFormPage";
 import { color } from "@/styles/color";
 import { font } from "@/styles/font";
 import styled from "styled-components";
@@ -30,10 +31,17 @@ const PROGRESS_BAR_DATA = [
 ];
 
 const ProgressBar = () => {
+  const { currentPage, movePage } = useFormPage();
+
   return (
     <StyledProgressBar>
       {PROGRESS_BAR_DATA.map((item, index) => (
-        <Circle key={item.id} name={item.name} active={false}>
+        <Circle
+          key={item.id}
+          name={item.name}
+          active={currentPage === index + 1}
+          onClick={movePage}
+        >
           {index + 1}
         </Circle>
       ))}
