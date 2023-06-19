@@ -418,7 +418,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.7, @types/react-dom@npm:^18.2.0":
+"@types/react-dom@npm:^18.0.7, @types/react-dom@npm:^18.2.0, @types/react-dom@npm:^18.2.5":
   version: 18.2.5
   resolution: "@types/react-dom@npm:18.2.5"
   dependencies:
@@ -427,7 +427,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.0.22, @types/react@npm:^18.2.0":
+"@types/react@npm:*, @types/react@npm:^18.0.22, @types/react@npm:^18.2.0, @types/react@npm:^18.2.12":
   version: 18.2.12
   resolution: "@types/react@npm:18.2.12"
   dependencies:
@@ -3124,10 +3124,14 @@ __metadata:
   resolution: "marururu@workspace:."
   dependencies:
     "@turbo/gen": ^1.9.7
+    "@types/react": ^18.2.12
+    "@types/react-dom": ^18.2.5
     "@yarnpkg/sdks": ^3.0.0-rc.45
     eslint: ^7.32.0
     eslint-config-custom: "*"
     prettier: ^2.5.1
+    react: ^18.2.0
+    react-dom: ^18.2.0
     turbo: latest
     typescript: ^5.1.3
   languageName: unknown
