@@ -1,0 +1,22 @@
+name: "✨ Feature"
+description: "새로운 기능에 대한 이슈를 작성하세요!"
+labels: "✨ Feature"
+body:
+  - type: textarea
+    attributes:
+      label: ✨ 개요
+      description: 새로운 기능에 대한 설명을 작성해 주세요.
+      placeholder: 꼼꼼하게 적을수록 좋습니다!
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: ✅ 해야 할 일
+      description: 해야 할 일을 작성해 주세요.
+      placeholder: ◻︎ User Entity 작성
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 🙋🏻 덧붙일 말
+      description: 더 하고 싶은 말이 있다면 작성해 주세요.
