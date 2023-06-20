@@ -2,8 +2,8 @@ import { color, font } from '@maru/global-style';
 import { InputPropsType } from './type';
 import { useState } from 'react';
 import styled from 'styled-components';
-import VisibleEyeIcon from '../../Icon/VisibleEye';
-import InvisibleEyeIcon from '../../Icon/InvisibleEye';
+import VisibleEyeIcon from '../../Icons/VisibleEye';
+import InvisibleEyeIcon from '../../Icons/InvisibleEye';
 import Message from './Message';
 
 const PreviewInput = ({

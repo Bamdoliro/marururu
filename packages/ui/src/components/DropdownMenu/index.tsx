@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { color, font } from '@maru/global-style';
 import styled, { css } from 'styled-components';
-import TopArrowIcon from '../../Icon/TopArrow';
-import BottomArrowIcon from '../../Icon/BottomArrow';
+import TopArrowIcon from '../../Icons/TopArrow';
+import BottomArrowIcon from '../../Icons/BottomArrow';
 
 interface DropdownItemType {
     dropdownItemText: string;

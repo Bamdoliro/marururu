@@ -2,8 +2,8 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { ButtonIconType, ButtonOptionType, ButtonSizeType } from './type';
 import { getButtonSize, getButtonStyle, getButtonPadding } from './style';
 import styled from 'styled-components';
-import AddIcon from '../../Icon/Add';
-import ShortcutsIcon from '../../Icon/Shortcuts';
+import AddIcon from '../../Icons/Add';
+import ShortcutsIcon from '../../Icons/Shortcuts';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;

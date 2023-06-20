@@ -1,7 +1,7 @@
 {
   "name": "@maru/global-style",
   "version": "0.0.0",
-  "main": "./index.tsx",
+  "main": "./index.ts",
   "license": "MIT",
   "scripts": {
     "lint": "eslint \"**/*.ts*\""

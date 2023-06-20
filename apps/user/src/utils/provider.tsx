@@ -1,18 +1,22 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactNode } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import GlobalStyle from '@maru/global-style/src/global';
 
 interface PropsType {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 const Provider = ({ children }: PropsType) => {
-  const queryClient = new QueryClient();
+    const queryClient = new QueryClient();
 
-  return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
+    return (
+        <QueryClientProvider client={queryClient}>
+            <GlobalStyle />
+            {children}
+        </QueryClientProvider>
+    );
 };
 
 export default Provider;

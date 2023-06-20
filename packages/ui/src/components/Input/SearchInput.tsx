@@ -1,6 +1,6 @@
 import { color } from '@maru/global-style';
 import styled from 'styled-components';
-import SearchIcon from '../../Icon/Search';
+import SearchIcon from '../../Icons/Search';
 import { InputPropsType } from './type';
 
 const SearchInput = ({
