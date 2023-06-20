@@ -1,0 +1,17 @@
+{
+  "name": "@packages/maru-ui",
+  "version": "0.0.0",
+  "main": "./index.tsx",
+  "types": "./index.tsx",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "dependencies": {
+    "@packages/eslint-config-custom": "*",
+    "@packages/tsconfig": "*",
+    "@packages/maru-global-style": "*",
+    "styled-components": "^6.0.0-rc.3",
+    "@types/styled-components": "^5.1.26"
+  }
+}

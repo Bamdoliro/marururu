@@ -1789,7 +1789,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@packages/eslint-config-custom@workspace:packages/eslint-config-custom":
+"@packages/eslint-config-custom@*, @packages/eslint-config-custom@workspace:packages/eslint-config-custom":
   version: 0.0.0-use.local
   resolution: "@packages/eslint-config-custom@workspace:packages/eslint-config-custom"
   dependencies:
@@ -1809,23 +1809,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@packages/tsconfig@workspace:packages/tsconfig":
+"@packages/maru-ui@workspace:packages/maru-ui":
   version: 0.0.0-use.local
-  resolution: "@packages/tsconfig@workspace:packages/tsconfig"
+  resolution: "@packages/maru-ui@workspace:packages/maru-ui"
+  dependencies:
+    "@packages/eslint-config-custom": "*"
+    "@packages/tsconfig": "*"
+    "@types/styled-components": ^5.1.26
+    styled-components: ^6.0.0-rc.3
   languageName: unknown
   linkType: soft
 
-"@packages/ui@workspace:packages/ui":
+"@packages/tsconfig@*, @packages/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
-  resolution: "@packages/ui@workspace:packages/ui"
-  dependencies:
-    "@types/react": ^18.2.0
-    "@types/react-dom": ^18.2.0
-    eslint: ^7.32.0
-    eslint-config-custom: "*"
-    react: ^17.0.2
-    tsconfig: "*"
-    typescript: ^4.5.2
+  resolution: "@packages/tsconfig@workspace:packages/tsconfig"
   languageName: unknown
   linkType: soft
 
@@ -1986,7 +1983,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.0.7, @types/react-dom@npm:^18.2.0":
+"@types/react-dom@npm:^18.0.7":
   version: 18.2.6
   resolution: "@types/react-dom@npm:18.2.6"
   dependencies:
@@ -1995,7 +1992,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.0.22, @types/react@npm:^18.2.0":
+"@types/react@npm:*, @types/react@npm:^18.0.22":
   version: 18.2.13
   resolution: "@types/react@npm:18.2.13"
   dependencies:
@@ -5786,16 +5783,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^17.0.2":
-  version: 17.0.2
-  resolution: "react@npm:17.0.2"
-  dependencies:
-    loose-envify: ^1.1.0
-    object-assign: ^4.1.1
-  checksum: b254cc17ce3011788330f7bbf383ab653c6848902d7936a87b09d835d091e3f295f7e9dd1597c6daac5dc80f90e778c8230218ba8ad599f74adcc11e33b9d61b
-  languageName: node
-  linkType: hard
-
 "react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
@@ -6851,7 +6838,7 @@ turbo@latest:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.5.2, typescript@npm:^4.5.3":
+"typescript@npm:^4.5.3":
   version: 4.9.5
   resolution: "typescript@npm:4.9.5"
   bin:
@@ -6861,7 +6848,7 @@ turbo@latest:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.5.2#~builtin<compat/typescript>, typescript@patch:typescript@^4.5.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.5.3#~builtin<compat/typescript>":
   version: 4.9.5
   resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"
   bin:
