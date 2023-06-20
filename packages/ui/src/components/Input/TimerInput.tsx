@@ -1,8 +1,9 @@
-import { color, font } from '@packages/maru-global-style';
+import { color, font } from '@maru/global-style';
 import { InputPropsType } from './type';
 import styled from 'styled-components';
 import Message from './Message';
-import { formatTime, timer } from '@/utils/functions/timer';
+import formatTime from '../../utils/formatTime';
+import useTimer from '../../hooks/useTimer';
 import { Dispatch, SetStateAction } from 'react';
 
 interface TimerInputPropsType extends InputPropsType {
@@ -23,7 +24,7 @@ const TimerInput = ({
     time,
     setTime,
 }: TimerInputPropsType) => {
-    timer({ time, setTime });
+    useTimer(time, setTime);
 
     return (
         <div style={{ width }}>

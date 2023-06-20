@@ -1,5 +1,5 @@
 {
-  "name": "@packages/maru-ui",
+  "name": "@maru/ui",
   "version": "0.0.0",
   "main": "./index.tsx",
   "types": "./index.tsx",
@@ -8,10 +8,12 @@
     "lint": "eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@packages/eslint-config-custom": "*",
-    "@packages/tsconfig": "*",
-    "@packages/maru-global-style": "*",
-    "styled-components": "^6.0.0-rc.3",
+    "@maru/eslint-config-custom": "*",
+    "@maru/global-style": "*",
+    "@maru/tsconfig": "*",
+    "styled-components": "^6.0.0-rc.3"
+  },
+  "devDependencies": {
     "@types/styled-components": "^5.1.26"
   }
 }

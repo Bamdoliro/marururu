@@ -1,4 +1,4 @@
-import { color, font } from '@packages/maru-global-style';
+import { color, font } from '@maru/global-style';
 import { InputPropsType } from './type';
 import { useState } from 'react';
 import styled from 'styled-components';

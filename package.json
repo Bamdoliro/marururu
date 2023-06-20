@@ -7,9 +7,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@maru/eslint-config-custom": "*",
     "@turbo/gen": "^1.9.7",
     "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
     "prettier": "^2.5.1",
     "turbo": "latest"
   },

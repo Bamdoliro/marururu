@@ -1,4 +1,4 @@
-import { color, font } from '@packages/maru-global-style';
+import { color, font } from '@maru/global-style';
 import styled from 'styled-components';
 import { ReactNode } from 'react';
 

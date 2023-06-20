@@ -1,4 +1,4 @@
-import { color, font } from '@packages/maru-global-style';
+import { color, font } from '@maru/global-style';
 import { css } from 'styled-components';
 
 export const getButtonStyle = {

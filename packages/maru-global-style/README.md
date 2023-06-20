@@ -1,1 +1,0 @@
-# maru-global-style

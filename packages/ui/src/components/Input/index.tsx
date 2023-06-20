@@ -1,55 +1,56 @@
-import { color } from '@packages/maru-global-style';
 import styled from 'styled-components';
-import SearchIcon from '../../Icon/Search';
+import { color, font } from '@maru/global-style';
 import { InputPropsType } from './type';
+import Message from './Message';
 
-const SearchInput = ({
+const Input = ({
     width = '320px',
+    label,
     placeholder,
     type = 'text',
     name,
     value,
     onChange,
+    msg,
 }: InputPropsType) => {
     return (
-        <StyledSearchInput>
-            <SearchIcon cursor="pointer" />
-            <Input
-                style={{ width }}
+        <div style={{ width }}>
+            {label && <Label>{label}</Label>}
+            <StyledInput
                 onChange={onChange}
                 placeholder={placeholder}
                 type={type}
                 name={name}
                 value={value}
             />
-        </StyledSearchInput>
+            {msg && <Message>{msg}</Message>}
+        </div>
     );
 };
 
-export default SearchInput;
+export default Input;
 
-const StyledSearchInput = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    height: 40px;
-    padding: 10px 8px;
+const StyledInput = styled.input`
+    ${font.p2}
+    color: ${color.gray800};
+    height: 48px;
+    width: 100%;
+    padding: 10px 16px;
     background-color: ${color.white};
     border: 1px solid ${color.gray400};
     border-radius: 6px;
 
-    &:focus-within {
+    &::placeholder {
+        color: ${color.gray500};
+    }
+    &:focus {
         border: 1px solid ${color.maruDefault};
         outline: 2px solid rgba(20, 112, 255, 0.25);
     }
 `;
 
-const Input = styled.input`
-    color: ${color.gray800};
-    width: 100%;
-    height: 100%;
-
-    &::placeholder {
-        color: ${color.gray500};
-    }
+const Label = styled.p`
+    ${font.context}
+    color: ${color.gray700};
+    padding-bottom: 8px;
 `;

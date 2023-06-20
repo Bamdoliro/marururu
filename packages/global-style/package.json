@@ -1,5 +1,5 @@
 {
-  "name": "@packages/maru-global-style",
+  "name": "@maru/global-style",
   "version": "0.0.0",
   "main": "./index.tsx",
   "license": "MIT",
@@ -7,7 +7,9 @@
     "lint": "eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@types/styled-components": "^5.1.26",
     "styled-components": "^6.0.0-rc.3"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26"
   }
 }
