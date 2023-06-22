@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "devDependencies": {
+    "@maru/eslint": "*",
+    "@maru/tsconfig": "*",
     "@types/node": "20.3.1",
     "@types/react": "18.2.13",
-    "@types/react-dom": "18.2.6"
+    "@types/react-dom": "18.2.6",
+    "@types/styled-components": "^5.1.26"
   },
   "dependencies": {
     "@maru/theme": "*",
@@ -23,6 +26,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-query": "^3.39.3",
+    "styled-components": "^6.0.0-rc.5",
     "typescript": "5.1.3"
   }
 }

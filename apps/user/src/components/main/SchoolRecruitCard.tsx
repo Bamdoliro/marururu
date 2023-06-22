@@ -5,7 +5,7 @@ import moment, { utc } from 'moment';
 import { finalTime, firstStartTime, submitEndTime, submitStartTime } from '@/models/submitTime';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getDay } from '@/utils/functions/dayFormatter';
+import { getDay } from '@/utils/dayFormatter';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';
 

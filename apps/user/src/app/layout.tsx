@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Provider from '@/utils/provider';
+import Provider from '@/components/common/Provider';
 
 export const metadata = {
     title: '마루',
