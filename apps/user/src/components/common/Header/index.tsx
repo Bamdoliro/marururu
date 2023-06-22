@@ -1,4 +1,4 @@
-import { Storage } from '@/lib/storage';
+import { Storage } from '@/api/storage/storage';
 import { ACCESS_KEY } from '@/constants/token';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
