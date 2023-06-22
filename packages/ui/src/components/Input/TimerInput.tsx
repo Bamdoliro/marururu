@@ -1,4 +1,4 @@
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 import { InputPropsType } from './type';
 import styled from 'styled-components';
 import Message from './Message';

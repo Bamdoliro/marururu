@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { SIGNUP_PAGE_ROUTE } from '@/constants/routes';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import RightArrowIcon from '@/components/common/Icons/RightArrow';
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 
 const LoginPage = () => {
     const router = useRouter();

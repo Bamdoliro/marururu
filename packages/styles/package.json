@@ -1,5 +1,5 @@
 {
-  "name": "@maru/global-style",
+  "name": "@maru/styles",
   "version": "0.0.0",
   "main": "./index.ts",
   "license": "MIT",

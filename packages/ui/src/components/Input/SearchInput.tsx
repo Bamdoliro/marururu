@@ -1,4 +1,4 @@
-import { color } from '@maru/global-style';
+import { color } from '@maru/styles';
 import styled from 'styled-components';
 import SearchIcon from '../../Icons/Search';
 import { InputPropsType } from './type';

@@ -1,5 +1,5 @@
 import Header from '@/components/common/Header';
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 import { ReactNode } from 'react';
 import ProgressBar from '@/components/form/ProgressBar';
 import styled from 'styled-components';

@@ -1669,9 +1669,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@maru/global-style@*, @maru/global-style@workspace:packages/global-style":
+"@maru/styles@*, @maru/styles@workspace:packages/styles":
   version: 0.0.0-use.local
-  resolution: "@maru/global-style@workspace:packages/global-style"
+  resolution: "@maru/styles@workspace:packages/styles"
   dependencies:
     "@types/styled-components": ^5.1.26
     styled-components: ^6.0.0-rc.3
@@ -1689,7 +1689,7 @@ __metadata:
   resolution: "@maru/ui@workspace:packages/ui"
   dependencies:
     "@maru/eslint": "*"
-    "@maru/global-style": "*"
+    "@maru/styles": "*"
     "@maru/tsconfig": "*"
     "@types/styled-components": ^5.1.26
     styled-components: ^6.0.0-rc.3
@@ -7347,7 +7347,7 @@ turbo@latest:
   version: 0.0.0-use.local
   resolution: "user@workspace:apps/user"
   dependencies:
-    "@maru/global-style": "*"
+    "@maru/styles": "*"
     "@maru/ui": "*"
     "@types/node": 20.3.1
     "@types/react": 18.2.13

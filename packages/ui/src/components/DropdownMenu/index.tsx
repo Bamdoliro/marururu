@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 import styled, { css } from 'styled-components';
 import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';

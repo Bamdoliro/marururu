@@ -4,7 +4,7 @@ import LeftArrowIcon from '@/components/common/Icons/LeftArrow';
 import NoticeHeader from '@/components/notice/NoticeHeader';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import NoticeLayout from '@/layouts/NoticeLayout';
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 import { useRouter } from 'next/navigation';
 import { Link } from '@maru/ui';
 import { styled } from 'styled-components';

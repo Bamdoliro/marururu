@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@maru/eslint": "*",
-    "@maru/global-style": "*",
+    "@maru/styles": "*",
     "@maru/tsconfig": "*",
     "styled-components": "^6.0.0-rc.3"
   },

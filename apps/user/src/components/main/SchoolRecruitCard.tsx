@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getDay } from '@/utils/functions/dayFormatter';
 import { Column, Button } from '@maru/ui';
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 
 const SchoolRecruitCard = () => {
     const router = useRouter();

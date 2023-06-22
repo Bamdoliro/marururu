@@ -2,7 +2,7 @@ import QuestionIcon from '@/components/common/Icons/Question';
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 import { FAQ_PAGE_ROUTE } from '@/constants/routes';
-import { font, color } from '@maru/global-style';
+import { font, color } from '@maru/styles';
 
 interface PropsType {
     id: number;

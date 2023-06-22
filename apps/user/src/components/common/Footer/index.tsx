@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { FAQ_PAGE_ROUTE, FORM_PAGE_ROUTE, NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { Column, Row, Link } from '@maru/ui';
-import { font, color } from '@maru/global-style';
+import { font, color } from '@maru/styles';
 
 const Footer = () => {
     const router = useRouter();

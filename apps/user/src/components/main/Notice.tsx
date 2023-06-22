@@ -5,7 +5,7 @@ import { useMainNoticeListQuery } from '@/services/main/queries';
 import NoticeItem from './items/NoticeItem';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { Link } from '@maru/ui';
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 
 const Notice = () => {
     const router = useRouter();

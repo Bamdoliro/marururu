@@ -1,5 +1,5 @@
 import { Row } from '@maru/ui';
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 import styled from 'styled-components';
 
 interface PropsType {

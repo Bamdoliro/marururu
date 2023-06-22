@@ -4,7 +4,7 @@ import Categories from '@/components/faq/Categories';
 import FaqItem from '@/components/faq/FaqItem';
 import FaqLayout from '@/layouts/FaqLayout';
 import { useFaqListQuery } from '@/services/faq/queries';
-import { color, font } from '@maru/global-style';
+import { color, font } from '@maru/styles';
 import styled from 'styled-components';
 
 const FaqPage = () => {
