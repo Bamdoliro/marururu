@@ -1,1 +1,1 @@
-# @maru/global-style
+# @maru/theme
