@@ -1,0 +1,20 @@
+{
+  "name": "@maru/ui",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "devDependencies": {
+    "@maru/eslint": "*",
+    "@maru/tsconfig": "*",
+    "@types/styled-components": "^5.1.26"
+  },
+  "dependencies": {
+    "@maru/theme": "*",
+    "styled-components": "^6.0.0-rc.3",
+    "typescript": "^5.1.3"
+  }
+}
