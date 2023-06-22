@@ -1684,9 +1684,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@maru/ui@*, @maru/ui@workspace:packages/ui":
+"@maru/ui@*, @maru/ui@workspace:packages/maru-ui":
   version: 0.0.0-use.local
-  resolution: "@maru/ui@workspace:packages/ui"
+  resolution: "@maru/ui@workspace:packages/maru-ui"
   dependencies:
     "@maru/eslint": "*"
     "@maru/theme": "*"
