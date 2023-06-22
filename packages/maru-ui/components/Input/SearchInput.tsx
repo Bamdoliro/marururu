@@ -1,4 +1,4 @@
-import { color } from '@maru/theme';
+import { color, flex } from '@maru/theme';
 import styled from 'styled-components';
 import SearchIcon from '../../Icons/Search';
 import { InputPropsType } from './type';
@@ -29,8 +29,7 @@ const SearchInput = ({
 export default SearchInput;
 
 const StyledSearchInput = styled.div`
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     gap: 4px;
     height: 40px;
     padding: 10px 8px;

@@ -1,4 +1,4 @@
-import { IconPropsType } from '@maru/ui';
+import type { IconPropsType } from '@maru/ui';
 
 const RightArrowIcon = ({ color, size }: IconPropsType) => {
     return (

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 import styled, { css } from 'styled-components';
 import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
@@ -109,8 +109,7 @@ const DropdownMenuList = styled.div`
 `;
 
 const DropdownMenuItem = styled.button`
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     padding: 10px 16px;
     width: 100%;
     height: 48px;

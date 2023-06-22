@@ -1,5 +1,5 @@
 import DownArrowIcon from '../Icons/ArrowDropDown';
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -18,8 +18,7 @@ const Profile = ({ name }: PropsType) => {
 export default Profile;
 
 const StyledProfile = styled.div`
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     cursor: pointer;
 `;
 

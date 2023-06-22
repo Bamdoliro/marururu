@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { color } from '@maru/theme';
+import { color, flex } from '@maru/theme';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -19,9 +19,7 @@ const Category = ({ children, isSelected, onClick }: PropsType) => {
 export default Category;
 
 const StyledCategory = styled.span<{ isSelected: boolean }>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     height: 100%;
     padding: 0px 14px;
     border-radius: 25px;

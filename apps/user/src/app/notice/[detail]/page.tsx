@@ -4,7 +4,7 @@ import LeftArrowIcon from '@/components/common/Icons/LeftArrow';
 import NoticeHeader from '@/components/notice/NoticeHeader';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import NoticeLayout from '@/layouts/NoticeLayout';
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 import { useRouter } from 'next/navigation';
 import { Link } from '@maru/ui';
 import { styled } from 'styled-components';
@@ -31,8 +31,7 @@ const NoticeDetailPage = () => {
 export default NoticeDetailPage;
 
 const StyledNoticeDetailPage = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 36px;
     width: 100%;
     height: 100%;
@@ -44,8 +43,7 @@ const Title = styled.p`
 `;
 
 const ContentsBox = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 24px;
     padding: 0px 7px;
 `;

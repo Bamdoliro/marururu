@@ -1,15 +1,10 @@
-import { ReactNode } from "react";
+import { ReactNode, CSSProperties } from 'react';
 
 export interface FlexPropsType {
-  children: ReactNode;
-  gap?: string;
-  justifyContent?:
-    | "none"
-    | "center"
-    | "flex-end"
-    | "flex-start"
-    | "space-between";
-  alignItems?: "none" | "center" | "flex-end" | "flex-start" | "space-between";
-  width?: string;
-  height?: string;
+    children: ReactNode;
+    gap?: string;
+    justifyContent?: CSSProperties['justifyContent'];
+    alignItems?: CSSProperties['alignItems'];
+    width?: string;
+    height?: string;
 }

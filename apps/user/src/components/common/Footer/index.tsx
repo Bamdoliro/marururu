@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { FAQ_PAGE_ROUTE, FORM_PAGE_ROUTE, NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { Column, Row, Link } from '@maru/ui';
-import { font, color } from '@maru/theme';
+import { font, color, flex } from '@maru/theme';
 
 const Footer = () => {
     const router = useRouter();
@@ -50,10 +50,8 @@ const Footer = () => {
 export default Footer;
 
 const StyledFooter = styled.div`
+    ${flex({ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' })}
     background-color: ${color.gray100};
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
     gap: 155px;
     height: 350px;
     width: 100%;
@@ -63,14 +61,12 @@ const StyledFooter = styled.div`
 const InfoBox = styled.div`
     ${font.p3}
     color: ${color.gray600};
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 40px;
 `;
 
 const ContentBox = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 8px;
     border-bottom: 1px solid ${color.gray300};
     padding-bottom: 20px;
@@ -85,5 +81,6 @@ const NavigationBox = styled.div`
     ${font.p3}
     color: ${color.gray600};
     display: flex;
+    // @TODO 확인
     gap: 132px;
 `;

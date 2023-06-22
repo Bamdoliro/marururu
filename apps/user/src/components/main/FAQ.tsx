@@ -5,7 +5,7 @@ import { useMainQuestionListQuery } from '@/services/main/queries';
 import QuestionItem from './items/QuestionItem';
 import { FAQ_PAGE_ROUTE } from '@/constants/routes';
 import { Link } from '@maru/ui';
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 
 const Faq = () => {
     const router = useRouter();
@@ -29,8 +29,7 @@ const Faq = () => {
 export default Faq;
 
 const StyledFaq = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 16px;
     width: 596px;
     height: 100%;

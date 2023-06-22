@@ -2,7 +2,7 @@ import { useFaqCategoryListQuery } from '@/services/faq/queries';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Category from './Category';
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 
 const Categories = () => {
     const [selectedCategory, setSelectedCategory] = useState(0);
@@ -29,8 +29,7 @@ const StyledCategories = styled.div`
     color: ${color.gray900};
     height: 36px;
     width: 100%;
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     gap: 12px;
     margin: 36px 0px 40px;
 `;

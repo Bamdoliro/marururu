@@ -6,7 +6,7 @@ import Terms from '@/components/signup/Terms';
 import BaseLayout from '@/layouts/BaseLayout';
 import useJoin from '@/services/auth/hooks/useJoin';
 import { useState } from 'react';
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 import { ButtonInput, PreviewInput, Button, Column, TimerInput } from '@maru/ui';
 
 const SignUpPage = () => {
@@ -87,16 +87,15 @@ const SignUpPage = () => {
 export default SignUpPage;
 
 const StyledSignUpPage = styled.div`
+    ${flex({ justifyContent: 'space-between', alignItems: 'center' })}
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: ${color.gray100};
 `;
 
 const ContentBox = styled.div`
     display: flex;
+    // @TODO 확인
     width: 708px;
     height: 100%;
     background-color: ${color.white};
@@ -105,9 +104,7 @@ const ContentBox = styled.div`
 `;
 
 const SignUpBox = styled.div<{ enabled: boolean }>`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
     width: 446px;
     height: ${(props) => (props.enabled ? '721px' : '592px')};
     margin: 120px 0px;

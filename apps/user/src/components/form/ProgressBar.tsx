@@ -1,5 +1,5 @@
 import useFormPage from '@/hooks/useFormPage';
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 import styled from 'styled-components';
 
 const PROGRESS_BAR_DATA = [
@@ -55,9 +55,7 @@ export default ProgressBar;
 
 const StyledProgressBar = styled.div`
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
     padding: 0px 205px;
     margin-bottom: 61px;

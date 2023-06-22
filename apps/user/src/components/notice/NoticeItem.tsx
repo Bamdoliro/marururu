@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import RightArrowIcon from '../common/Icons/RightArrow';
 import { Column } from '@maru/ui';
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 
 interface PropsType {
     id: number;
@@ -28,8 +28,7 @@ const NoticeItem = ({ id, title, date }: PropsType) => {
 export default NoticeItem;
 
 const StyledNoticeItem = styled.div`
-    display: flex;
-    justify-content: space-between;
+    ${flex({ justifyContent: 'space-between' })}
     width: 100%;
     height: 71px;
     border-bottom: 1px solid ${color.gray300};

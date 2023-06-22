@@ -1,4 +1,4 @@
-import { color, font } from '@maru/theme';
+import { color, flex, font } from '@maru/theme';
 import { InputPropsType } from './type';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -44,9 +44,7 @@ const PreviewInput = ({
 export default PreviewInput;
 
 const StyledPreviewInput = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     gap: 10px;
     height: 48px;
     padding: 10px 16px;

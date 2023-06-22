@@ -8,6 +8,7 @@ import SchoolRecruitCard from '@/components/main/SchoolRecruitCard';
 import { Row } from '@maru/ui';
 import Faq from '@/components/main/FAQ';
 import styled from 'styled-components';
+import { flex } from '@maru/theme';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();
@@ -33,9 +34,7 @@ const Home = () => {
 export default Home;
 
 const StyledMainPage = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    ${flex({ flexDirection: 'column', alignItems: 'center' })}
     gap: 60px;
     width: 100%;
     height: 100%;

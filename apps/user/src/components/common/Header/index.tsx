@@ -2,7 +2,7 @@ import { Storage } from '@/api/storage/storage';
 import { ACCESS_KEY } from '@/constants/token';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import { color } from '@maru/theme';
+import { color, flex } from '@maru/theme';
 import { Button, Row } from '@maru/ui';
 import Profile from './Profile';
 import {
@@ -88,10 +88,7 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    ${flex({ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' })}
     width: 100%;
     height: 126px;
     background-color: ${color.white};
@@ -100,15 +97,12 @@ const StyledHeader = styled.div`
 `;
 
 const HeaderBar = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flex({ flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
 `;
 
 const NavigationBar = styled.div`
-    display: flex;
-    align-items: center;
+    ${flex({ flexDirection: 'column', alignItems: 'center' })}
     width: 100%;
     height: 54px;
     background-color: ${color.white};
