@@ -1,5 +1,5 @@
 {
-  "name": "@maru/eslint-config-custom",
+  "name": "@maru/eslint",
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",

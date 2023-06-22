@@ -8,7 +8,7 @@
     "lint": "eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@maru/eslint-config-custom": "*",
+    "@maru/eslint": "*",
     "@maru/global-style": "*",
     "@maru/tsconfig": "*",
     "styled-components": "^6.0.0-rc.3"

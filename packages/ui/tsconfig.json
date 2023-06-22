@@ -1,5 +1,5 @@
 {
     "extends": "@maru/tsconfig/react-library.json",
-    "include": ["."],
+    "include": [".", "../global-style/src/color.ts"],
     "exclude": ["dist", "build", "node_modules"]
 }

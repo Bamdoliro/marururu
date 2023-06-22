@@ -6,10 +6,10 @@
   "scripts": {
     "lint": "eslint \"**/*.ts*\""
   },
-  "dependencies": {
-    "styled-components": "^6.0.0-rc.3"
-  },
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
+  },
+  "dependencies": {
+    "styled-components": "^6.0.0-rc.3"
   }
 }

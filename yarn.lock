@@ -1658,9 +1658,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@maru/eslint-config-custom@*, @maru/eslint-config-custom@workspace:packages/eslint-config-custom":
+"@maru/eslint@*, @maru/eslint@workspace:configs/eslint":
   version: 0.0.0-use.local
-  resolution: "@maru/eslint-config-custom@workspace:packages/eslint-config-custom"
+  resolution: "@maru/eslint@workspace:configs/eslint"
   dependencies:
     eslint-config-next: ^13.4.1
     eslint-config-prettier: ^8.3.0
@@ -1678,9 +1678,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@maru/tsconfig@*, @maru/tsconfig@workspace:packages/tsconfig":
+"@maru/tsconfig@*, @maru/tsconfig@workspace:configs/tsconfig":
   version: 0.0.0-use.local
-  resolution: "@maru/tsconfig@workspace:packages/tsconfig"
+  resolution: "@maru/tsconfig@workspace:configs/tsconfig"
   languageName: unknown
   linkType: soft
 
@@ -1688,7 +1688,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@maru/ui@workspace:packages/ui"
   dependencies:
-    "@maru/eslint-config-custom": "*"
+    "@maru/eslint": "*"
     "@maru/global-style": "*"
     "@maru/tsconfig": "*"
     "@types/styled-components": ^5.1.26
@@ -5164,7 +5164,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "marururu@workspace:."
   dependencies:
-    "@maru/eslint-config-custom": "*"
+    "@maru/eslint": "*"
     "@turbo/gen": ^1.9.7
     eslint: ^7.32.0
     moment: ^2.29.4
