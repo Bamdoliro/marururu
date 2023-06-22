@@ -1,6 +1,6 @@
 import RightArrowIcon from '../common/Icons/RightArrow';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { color, font } from '@maru/styles';
+import { color, font } from '@maru/theme';
 import styled from 'styled-components';
 
 interface PropsType {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ScheduleItem from './items/ScheduleItem';
-import { color, font } from '@maru/styles';
+import { color, font } from '@maru/theme';
 
 const SCHEDULE_DATA = [
     {

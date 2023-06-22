@@ -1,5 +1,5 @@
 import DownArrowIcon from '../Icons/ArrowDropDown';
-import { color, font } from '@maru/styles';
+import { color, font } from '@maru/theme';
 import styled from 'styled-components';
 
 interface PropsType {

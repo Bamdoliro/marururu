@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import RightArrowIcon from '../common/Icons/RightArrow';
 import { Column } from '@maru/ui';
-import { color, font } from '@maru/styles';
+import { color, font } from '@maru/theme';
 
 interface PropsType {
     id: number;

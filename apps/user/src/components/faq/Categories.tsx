@@ -2,7 +2,7 @@ import { useFaqCategoryListQuery } from '@/services/faq/queries';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Category from './Category';
-import { color, font } from '@maru/styles';
+import { color, font } from '@maru/theme';
 
 const Categories = () => {
     const [selectedCategory, setSelectedCategory] = useState(0);

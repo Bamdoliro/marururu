@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import GlobalStyle from '@maru/global-style/src/global';
+import { GlobalStyle } from '@maru/theme';
 
 interface PropsType {
     children: ReactNode;

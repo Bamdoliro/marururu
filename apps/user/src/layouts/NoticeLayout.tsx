@@ -1,5 +1,5 @@
 import Header from '@/components/common/Header';
-import { color } from '@maru/styles';
+import { color } from '@maru/theme';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 

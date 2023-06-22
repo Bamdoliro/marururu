@@ -3,7 +3,7 @@ import TopArrowIcon from '../common/Icons/TopArrow';
 import BottomArrowIcon from '../common/Icons/BottomArrow';
 import AnswerIcon from '../common/Icons/Answer';
 import QuestionIcon from '../common/Icons/Question';
-import { color, font } from '@maru/styles';
+import { color, font } from '@maru/theme';
 import { Row } from '@maru/ui';
 import { useState } from 'react';
 

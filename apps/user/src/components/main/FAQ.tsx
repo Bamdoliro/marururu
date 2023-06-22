@@ -5,7 +5,7 @@ import { useMainQuestionListQuery } from '@/services/main/queries';
 import QuestionItem from './items/QuestionItem';
 import { FAQ_PAGE_ROUTE } from '@/constants/routes';
 import { Link } from '@maru/ui';
-import { color, font } from '@maru/styles';
+import { color, font } from '@maru/theme';
 
 const Faq = () => {
     const router = useRouter();

@@ -20,9 +20,5 @@
     "apps/*",
     "packages/*",
     "configs/*"
-  ],
-  "dependencies": {
-    "moment": "^2.29.4",
-    "react-query": "^3.39.3"
-  }
+  ]
 }
