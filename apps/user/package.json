@@ -16,6 +16,7 @@
   "dependencies": {
     "@maru/theme": "*",
     "@maru/ui": "*",
+    "@maru/util": "*",
     "axios": "^1.4.0",
     "moment": "^2.29.4",
     "next": "13.4.6",
