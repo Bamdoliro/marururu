@@ -1,7 +1,8 @@
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
-import { font, color, flex } from '@maru/theme';
+import { font, color } from '@maru/theme';
+import { flex } from '@maru/util';
 
 interface PropsType {
     id: number;

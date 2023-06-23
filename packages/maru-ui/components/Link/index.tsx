@@ -1,4 +1,4 @@
-import { flex } from '@maru/theme';
+import { flex } from '@maru/util';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 

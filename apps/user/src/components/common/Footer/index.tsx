@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { FAQ_PAGE_ROUTE, FORM_PAGE_ROUTE, NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { Column, Row, Link } from '@maru/ui';
-import { font, color, flex } from '@maru/theme';
+import { font, color } from '@maru/theme';
+import { flex } from '@maru/util';
 
 const Footer = () => {
     const router = useRouter();
@@ -50,7 +51,7 @@ const Footer = () => {
 export default Footer;
 
 const StyledFooter = styled.div`
-    ${flex({ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' })}
+    ${flex({ justifyContent: 'center', alignItems: 'flex-start' })}
     background-color: ${color.gray100};
     gap: 155px;
     height: 350px;

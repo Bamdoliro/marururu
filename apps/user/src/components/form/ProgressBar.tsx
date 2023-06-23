@@ -1,5 +1,6 @@
 import useFormPage from '@/hooks/useFormPage';
-import { color, flex, font } from '@maru/theme';
+import { color, font } from '@maru/theme';
+import { flex } from '@maru/util';
 import styled from 'styled-components';
 
 const PROGRESS_BAR_DATA = [

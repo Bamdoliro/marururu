@@ -1,5 +1,6 @@
 import Input from '.';
-import { color, flex, font } from '@maru/theme';
+import { flex } from '@maru/util';
+import { color, font } from '@maru/theme';
 import { InputPropsType } from './type';
 import styled from 'styled-components';
 

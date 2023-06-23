@@ -2,7 +2,8 @@
 
 import NoticeItem from '@/components/notice/NoticeItem';
 import NoticeLayout from '@/layouts/NoticeLayout';
-import { color, flex, font } from '@maru/theme';
+import { color, font } from '@maru/theme';
+import { flex } from '@maru/util';
 import styled from 'styled-components';
 import { useNoticeListQuery } from '@/services/notice/queries';
 

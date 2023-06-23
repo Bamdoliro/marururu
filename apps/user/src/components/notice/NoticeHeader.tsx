@@ -1,5 +1,6 @@
 import { Column } from '@maru/ui';
-import { color, flex, font } from '@maru/theme';
+import { color, font } from '@maru/theme';
+import { flex } from '@maru/util';
 import styled from 'styled-components';
 
 interface PropsType {

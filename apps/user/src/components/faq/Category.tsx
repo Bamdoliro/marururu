@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { color, flex } from '@maru/theme';
+import { color } from '@maru/theme';
+import { flex } from '@maru/util';
 import styled from 'styled-components';
 
 interface PropsType {

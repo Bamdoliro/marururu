@@ -6,7 +6,8 @@ import Terms from '@/components/signup/Terms';
 import BaseLayout from '@/layouts/BaseLayout';
 import useJoin from '@/services/auth/hooks/useJoin';
 import { useState } from 'react';
-import { color, flex, font } from '@maru/theme';
+import { color, font } from '@maru/theme';
+import { flex } from '@maru/util';
 import { ButtonInput, PreviewInput, Button, Column, TimerInput } from '@maru/ui';
 
 const SignUpPage = () => {

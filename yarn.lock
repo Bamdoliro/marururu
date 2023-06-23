@@ -1694,6 +1694,7 @@ __metadata:
     "@maru/eslint": "*"
     "@maru/theme": "*"
     "@maru/tsconfig": "*"
+    "@maru/util": "*"
     "@types/styled-components": ^5.1.26
     styled-components: ^6.0.0-rc.3
     typescript: ^5.1.3

@@ -1,4 +1,5 @@
-import { color, flex, font } from '@maru/theme';
+import { color, font } from '@maru/theme';
+import { flex } from '@maru/util';
 import { InputPropsType } from './type';
 import { useState } from 'react';
 import styled from 'styled-components';

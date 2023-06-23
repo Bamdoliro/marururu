@@ -8,7 +8,7 @@ import SchoolRecruitCard from '@/components/main/SchoolRecruitCard';
 import { Row } from '@maru/ui';
 import Faq from '@/components/main/FAQ';
 import styled from 'styled-components';
-import { flex } from '@maru/theme';
+import { flex } from '@maru/util';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();
