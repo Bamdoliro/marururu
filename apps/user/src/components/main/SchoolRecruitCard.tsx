@@ -5,7 +5,7 @@ import moment, { utc } from 'moment';
 import { finalTime, firstStartTime, submitEndTime, submitStartTime } from '@/models/submitTime';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getDay } from '@/utils/dayFormatter';
+import { formatDay } from '@/utils/formatDay';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';
 
@@ -68,7 +68,9 @@ const SchoolRecruitCard = () => {
                                     : null}
                             </Status>
                             <RemainDays>
-                                {remainDays >= 1 || remainDays < 0 ? getDay(remainDays) : timeDiff}
+                                {remainDays >= 1 || remainDays < 0
+                                    ? formatDay(remainDays)
+                                    : timeDiff}
                             </RemainDays>
                         </Column>
                         <Period>{currentTime.format('yyyy년 MM월 DD일')}</Period>

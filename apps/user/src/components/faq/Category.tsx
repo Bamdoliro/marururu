@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { color } from '@maru/theme';
+import { color, font } from '@maru/theme';
 import { flex } from '@maru/util';
 import styled from 'styled-components';
 
@@ -19,8 +19,9 @@ const Category = ({ children, isSelected, onClick }: PropsType) => {
 
 export default Category;
 
-const StyledCategory = styled.span<{ isSelected: boolean }>`
+const StyledCategory = styled.button<{ isSelected: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
+    ${font.context}
     height: 100%;
     padding: 0px 14px;
     border-radius: 25px;
