@@ -1,0 +1,17 @@
+{
+  "name": "@maru/hooks",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "devDependencies": {
+    "@maru/eslint": "*",
+    "@maru/tsconfig": "*"
+  },
+  "dependencies": {
+    "typescript": "^5.1.3"
+  }
+}

@@ -1669,6 +1669,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@maru/hooks@workspace:packages/maru-hooks":
+  version: 0.0.0-use.local
+  resolution: "@maru/hooks@workspace:packages/maru-hooks"
+  dependencies:
+    "@maru/eslint": "*"
+    "@maru/tsconfig": "*"
+    typescript: ^5.1.3
+  languageName: unknown
+  linkType: soft
+
 "@maru/theme@*, @maru/theme@workspace:packages/maru-theme":
   version: 0.0.0-use.local
   resolution: "@maru/theme@workspace:packages/maru-theme"

@@ -2,12 +2,12 @@
 
 import { styled } from 'styled-components';
 import { finalTime, firstStartTime, submitEndTime, submitStartTime } from '@/models/submitTime';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { formatDay } from '@/utils/formatDay';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';
-import { useInterval } from '@maru/utils/src/useInterval';
+import { useInterval } from '@maru/hooks';
 import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';
