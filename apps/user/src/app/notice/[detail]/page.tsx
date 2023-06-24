@@ -5,7 +5,7 @@ import NoticeHeader from '@/components/notice/NoticeHeader';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import NoticeLayout from '@/layouts/NoticeLayout';
 import { color, font } from '@maru/theme';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { Link } from '@maru/ui';
 import { styled } from 'styled-components';

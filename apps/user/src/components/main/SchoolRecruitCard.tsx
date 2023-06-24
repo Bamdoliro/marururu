@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { formatDay } from '@/utils/formatDay';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';
-import { useInterval } from '@maru/util/src/useInterval';
+import { useInterval } from '@maru/utils/src/useInterval';
 import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';

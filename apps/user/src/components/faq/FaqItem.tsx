@@ -4,7 +4,7 @@ import BottomArrowIcon from '../common/Icons/BottomArrow';
 import AnswerIcon from '../common/Icons/Answer';
 import QuestionIcon from '../common/Icons/Question';
 import { color, font } from '@maru/theme';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 import { Row } from '@maru/ui';
 import { useState } from 'react';
 

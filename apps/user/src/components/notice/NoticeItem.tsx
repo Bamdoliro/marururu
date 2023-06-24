@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import RightArrowIcon from '../common/Icons/RightArrow';
 import { Column } from '@maru/ui';
 import { color, font } from '@maru/theme';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 
 interface PropsType {
     id: number;

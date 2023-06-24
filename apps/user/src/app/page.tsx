@@ -5,10 +5,10 @@ import Notice from '@/components/main/Notice';
 import Schedule from '@/components/main/Schedule';
 import initMockAPI from '@/mocks';
 import SchoolRecruitCard from '@/components/main/SchoolRecruitCard';
-import Faq from '@/components/main/FAQ';
+import Faq from '@/components/main/Faq';
 import { Row } from '@maru/ui';
 import styled from 'styled-components';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();

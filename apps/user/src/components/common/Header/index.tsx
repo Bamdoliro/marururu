@@ -3,7 +3,7 @@ import { ACCESS_KEY } from '@/constants/token';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { color } from '@maru/theme';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 import { Button, Row } from '@maru/ui';
 import Profile from './Profile';
 import {

@@ -7,7 +7,7 @@ import BaseLayout from '@/layouts/BaseLayout';
 import useJoin from '@/services/auth/hooks/useJoin';
 import { useState } from 'react';
 import { color, font } from '@maru/theme';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 import { ButtonInput, PreviewInput, Button, Column, TimerInput } from '@maru/ui';
 
 const SignUpPage = () => {

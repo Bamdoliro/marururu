@@ -19,7 +19,7 @@
   "dependencies": {
     "@maru/theme": "*",
     "@maru/ui": "*",
-    "@maru/util": "*",
+    "@maru/utils": "*",
     "axios": "^1.4.0",
     "dayjs": "^1.11.8",
     "next": "13.4.6",

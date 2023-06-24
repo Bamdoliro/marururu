@@ -1,9 +1,9 @@
-# @maru/util
+# @maru/utils
 
-@maru/ui 라이브러리는 다양한 util 함수가 모여 있는 패키지입니다.
+@maru/utils 라이브러리는 다양한 util 함수가 모여 있는 패키지입니다.
 
 ```shell
-$ yarn add @maru/util
+$ yarn add @maru/utils
 ```
 
 ### 특징

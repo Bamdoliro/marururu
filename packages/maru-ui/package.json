@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@maru/theme": "*",
-    "@maru/util": "*",
+    "@maru/utils": "*",
     "styled-components": "^6.0.0-rc.3",
     "typescript": "^5.1.3"
   }

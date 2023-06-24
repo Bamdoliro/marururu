@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ScheduleItem from './items/ScheduleItem';
 import { color, font } from '@maru/theme';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 
 const SCHEDULE_DATA = [
     {

@@ -5,7 +5,7 @@ import FaqItem from '@/components/faq/FaqItem';
 import FaqLayout from '@/layouts/FaqLayout';
 import { useFaqListQuery } from '@/services/faq/queries';
 import { color, font } from '@maru/theme';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 const FaqPage = () => {

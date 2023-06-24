@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { FAQ_PAGE_ROUTE, FORM_PAGE_ROUTE, NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { Column, Row, Link } from '@maru/ui';
 import { font, color } from '@maru/theme';
-import { flex } from '@maru/util';
+import { flex } from '@maru/utils';
 
 const Footer = () => {
     const router = useRouter();
