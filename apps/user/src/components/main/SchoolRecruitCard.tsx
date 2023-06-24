@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { getDay } from '@/utils/dayFormatter';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';
+import { useInterval } from '@maru/util/src/useInterval';
 import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';
@@ -25,24 +26,28 @@ const SchoolRecruitCard = () => {
 
     const [remainDays, setRemainDays] = useState(currentTime.diff(dayjs(), 'days', true));
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setRemainDays(currentTime.diff(dayjs(), 'days', true));
-        }, 1000);
-
-        return () => clearInterval(interval);
-    }, []);
+    useInterval(() => {
+        setRemainDays(currentTime.diff(dayjs(), 'days', true));
+    }, 1000);
 
     const isSubmitPeriod = dayjs().isBetween(submitStartTime, submitEndTime);
     const timeDiff = dayjs.utc(currentTime.diff(dayjs())).format('HH:mm:ss');
     const buttonOption =
         isSubmitPeriod || (-2 < remainDays && remainDays <= 0) ? 'PRIMARY' : 'DISABLED';
+
     const buttonOnClick = isSubmitPeriod
         ? () => router.push('/form')
         : -2 < remainDays && remainDays <= 0
         ? () => console.log('결과 확인하기 페이지 이동')
         : undefined;
+
     const buttonText = dayjs().isBefore(submitEndTime) ? '원서 접수하기' : '결과 확인하기';
+
+    let statuses = new Map([
+        [submitStartTime, '원서 접수 시작까지'],
+        [firstStartTime, '1차 합격자 발표'],
+        [finalTime, '최종합격자 발표'],
+    ]);
 
     return (
         <StyledSchoolRecruitCard>
@@ -62,15 +67,7 @@ const SchoolRecruitCard = () => {
                 ) : (
                     <Column gap="16px">
                         <Column gap="8px">
-                            <Status>
-                                {currentTime === submitStartTime
-                                    ? '원서 접수 시작까지'
-                                    : currentTime === firstStartTime
-                                    ? '1차 합격자 발표'
-                                    : currentTime === finalTime
-                                    ? '최종합격자 발표'
-                                    : null}
-                            </Status>
+                            <Status>{statuses.get(currentTime)}</Status>
                             <RemainDays>
                                 {remainDays >= 1 || remainDays < 0 ? getDay(remainDays) : timeDiff}
                             </RemainDays>
