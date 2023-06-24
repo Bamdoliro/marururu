@@ -8,14 +8,14 @@ import styled from 'styled-components';
 import { useNoticeListQuery } from '@/services/notice/queries';
 
 const NoticePage = () => {
-    const { data } = useNoticeListQuery();
+    const { data: noticeListData } = useNoticeListQuery();
 
     return (
         <NoticeLayout>
             <StyledNoticePage>
                 <Title>공지사항</Title>
                 <NoticeList>
-                    {data.map((item) => (
+                    {noticeListData.map((item) => (
                         <NoticeItem
                             key={item.id}
                             id={item.id}

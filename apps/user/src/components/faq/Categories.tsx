@@ -7,11 +7,11 @@ import { flex } from '@maru/util';
 
 const Categories = () => {
     const [selectedCategory, setSelectedCategory] = useState(0);
-    const { data } = useFaqCategoryListQuery();
+    const { data: faqCategoryListData } = useFaqCategoryListQuery();
 
     return (
         <StyledCategories>
-            {data.map((item) => (
+            {faqCategoryListData.map((item) => (
                 <Category
                     key={item.id}
                     isSelected={selectedCategory === item.id}
