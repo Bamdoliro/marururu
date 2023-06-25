@@ -1669,7 +1669,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@maru/hooks@workspace:packages/maru-hooks":
+"@maru/hooks@*, @maru/hooks@workspace:packages/maru-hooks":
   version: 0.0.0-use.local
   resolution: "@maru/hooks@workspace:packages/maru-hooks"
   dependencies:
@@ -7382,6 +7382,7 @@ turbo@latest:
   resolution: "user@workspace:apps/user"
   dependencies:
     "@maru/eslint": "*"
+    "@maru/hooks": "*"
     "@maru/theme": "*"
     "@maru/tsconfig": "*"
     "@maru/ui": "*"

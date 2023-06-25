@@ -1,7 +1,12 @@
 'use client';
 
 import { styled } from 'styled-components';
-import { finalTime, firstStartTime, submitEndTime, submitStartTime } from '@/models/submitTime';
+import {
+    일차_합격_발표,
+    최종_합격_발표,
+    제출_마감_날짜,
+    제출_시작_날짜,
+} from '@/models/submitTime';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { formatDay } from '@/utils/formatDay';
@@ -16,13 +21,13 @@ dayjs.extend(utc);
 
 const SchoolRecruitCard = () => {
     const router = useRouter();
-    const currentTime = dayjs().isBefore(submitStartTime)
-        ? submitStartTime
-        : dayjs().isBefore(submitEndTime)
-        ? submitEndTime
-        : dayjs().isBefore(firstStartTime.clone().add(2, 'days'))
-        ? firstStartTime
-        : finalTime;
+    const currentTime = dayjs().isBefore(제출_시작_날짜)
+        ? 제출_시작_날짜
+        : dayjs().isBefore(제출_마감_날짜)
+        ? 제출_마감_날짜
+        : dayjs().isBefore(최종_합격_발표.clone().add(2, 'days'))
+        ? 최종_합격_발표
+        : 일차_합격_발표;
 
     const [remainDays, setRemainDays] = useState(currentTime.diff(dayjs(), 'days', true));
 
@@ -30,7 +35,7 @@ const SchoolRecruitCard = () => {
         setRemainDays(currentTime.diff(dayjs(), 'days', true));
     }, 1000);
 
-    const isSubmitPeriod = dayjs().isBetween(submitStartTime, submitEndTime);
+    const isSubmitPeriod = dayjs().isBetween(제출_시작_날짜, 제출_마감_날짜);
     const timeDiff = dayjs.utc(currentTime.diff(dayjs())).format('HH:mm:ss');
     const buttonOption =
         isSubmitPeriod || (-2 < remainDays && remainDays <= 0) ? 'PRIMARY' : 'DISABLED';
@@ -41,12 +46,12 @@ const SchoolRecruitCard = () => {
         ? () => console.log('결과 확인하기 페이지 이동')
         : undefined;
 
-    const buttonText = dayjs().isBefore(submitEndTime) ? '원서 접수하기' : '결과 확인하기';
+    const buttonText = dayjs().isBefore(제출_마감_날짜) ? '원서 접수하기' : '결과 확인하기';
 
     let statuses = new Map([
-        [submitStartTime, '원서 접수 시작까지'],
-        [firstStartTime, '1차 합격자 발표'],
-        [finalTime, '최종합격자 발표'],
+        [제출_시작_날짜, '원서 접수 시작까지'],
+        [최종_합격_발표, '1차 합격자 발표'],
+        [일차_합격_발표, '최종합격자 발표'],
     ]);
 
     return (
@@ -60,8 +65,8 @@ const SchoolRecruitCard = () => {
                             2024학년도 신입생 모집
                         </Notice>
                         <Period>
-                            {submitStartTime.format('YYYY년 MM월 DD일')} ~
-                            {submitEndTime.format('YYYY년 MM월 DD일')}
+                            {제출_시작_날짜.format('YYYY년 MM월 DD일')} ~
+                            {제출_마감_날짜.format('YYYY년 MM월 DD일')}
                         </Period>
                     </Column>
                 ) : (
