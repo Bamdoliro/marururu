@@ -9,6 +9,7 @@ import { SIGNUP_PAGE_ROUTE } from '@/constants/routes';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import RightArrowIcon from '@/components/common/Icons/RightArrow';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 
 const LoginPage = () => {
     const router = useRouter();
@@ -61,16 +62,13 @@ const LoginPage = () => {
 export default LoginPage;
 
 const StyledLoginPage = styled.div`
-    display: flex;
-    justify-content: center;
+    ${flex({ justifyContent: 'center' })}
     width: 100%;
     height: 100%;
 `;
 
 const LoginBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    ${flex({ flexDirection: 'column', alignItems: 'center' })}
     justify-content: center;
     width: 818px;
     height: 100%;
@@ -78,9 +76,7 @@ const LoginBox = styled.div`
 `;
 
 const LoginBoxWrap = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    ${flex({ flexDirection: 'column', alignItems: 'center' })}
     gap: 56px;
     width: 446px;
 `;
@@ -89,8 +85,7 @@ const FindPasswordLink = styled.a`
     ${font.p2}
     color: ${color.gray500};
     cursor: pointer;
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     &:hover {
         text-decoration-line: underline;
         text-decoration-color: ${color.gray500};
@@ -100,8 +95,7 @@ const FindPasswordLink = styled.a`
 const SignUp = styled.div`
     ${font.p2}
     color: ${color.gray500};
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     gap: 8px;
 `;
 

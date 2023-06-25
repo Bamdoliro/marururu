@@ -5,10 +5,11 @@ import FaqItem from '@/components/faq/FaqItem';
 import FaqLayout from '@/layouts/FaqLayout';
 import { useFaqListQuery } from '@/services/faq/queries';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 const FaqPage = () => {
-    const { data } = useFaqListQuery();
+    const { data: faqListData } = useFaqListQuery();
 
     return (
         <FaqLayout>
@@ -16,7 +17,7 @@ const FaqPage = () => {
                 <Title>자주 묻는 질문</Title>
                 <Categories />
                 <FaqList>
-                    {data.map((item) => (
+                    {faqListData.map((item) => (
                         <FaqItem key={item.id} question={item.question} answer={item.answer} />
                     ))}
                 </FaqList>
@@ -38,7 +39,6 @@ const Title = styled.p`
 `;
 
 const FaqList = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     width: 100%;
 `;

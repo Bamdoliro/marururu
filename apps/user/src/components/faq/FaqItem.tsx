@@ -4,6 +4,7 @@ import BottomArrowIcon from '../common/Icons/BottomArrow';
 import AnswerIcon from '../common/Icons/Answer';
 import QuestionIcon from '../common/Icons/Question';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import { Row } from '@maru/ui';
 import { useState } from 'react';
 
@@ -45,9 +46,7 @@ const StyledFaqItem = styled.div`
 
 const QuestionBox = styled.div`
     height: 77px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     background-color: ${color.white};
     padding: 24px;
     cursor: pointer;
@@ -60,8 +59,7 @@ const Question = styled.p`
 
 const AnswerBox = styled.div`
     height: 77px;
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     background-color: ${color.white};
     padding: 24px;
 `;

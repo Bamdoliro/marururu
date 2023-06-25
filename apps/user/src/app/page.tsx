@@ -5,9 +5,10 @@ import Notice from '@/components/main/Notice';
 import Schedule from '@/components/main/Schedule';
 import initMockAPI from '@/mocks';
 import SchoolRecruitCard from '@/components/main/SchoolRecruitCard';
+import Faq from '@/components/main/Faq';
 import { Row } from '@maru/ui';
-import Faq from '@/components/main/FAQ';
 import styled from 'styled-components';
+import { flex } from '@maru/utils';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();
@@ -33,9 +34,7 @@ const Home = () => {
 export default Home;
 
 const StyledMainPage = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    ${flex({ flexDirection: 'column', alignItems: 'center' })}
     gap: 60px;
     width: 100%;
     height: 100%;

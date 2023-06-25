@@ -1,6 +1,7 @@
 import RightArrowIcon from '../common/Icons/RightArrow';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -85,8 +86,7 @@ const Terms = ({ setCheckTermsAgree }: PropsType) => {
 export default Terms;
 
 const StyledTerms = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 10px;
     width: 100%;
 `;

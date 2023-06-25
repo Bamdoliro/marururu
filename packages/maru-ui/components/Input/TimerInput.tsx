@@ -1,4 +1,5 @@
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import { InputPropsType } from './type';
 import styled from 'styled-components';
 import Message from './Message';
@@ -48,9 +49,7 @@ const TimerInput = ({
 export default TimerInput;
 
 const StyledTimerInput = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     gap: 10px;
     height: 48px;
     padding: 10px 16px;

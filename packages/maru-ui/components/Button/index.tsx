@@ -4,6 +4,7 @@ import { getButtonSize, getButtonStyle, getButtonPadding } from './style';
 import styled from 'styled-components';
 import AddIcon from '../../Icons/Add';
 import ShortcutsIcon from '../../Icons/Shortcuts';
+import { flex } from '@maru/utils';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
@@ -37,9 +38,7 @@ const StyledButton = styled.button<{
     icon: ButtonIconType;
     size: ButtonSizeType;
 }>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
     cursor: pointer;
 

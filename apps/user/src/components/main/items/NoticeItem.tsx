@@ -2,6 +2,7 @@ import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { font, color } from '@maru/theme';
+import { flex } from '@maru/utils';
 
 interface PropsType {
     id: number;
@@ -21,8 +22,7 @@ const NoticeItem = ({ id, title }: PropsType) => {
 export default NoticeItem;
 
 const StyledNoticeItem = styled.div`
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 64px;
     padding: 0px 16px;

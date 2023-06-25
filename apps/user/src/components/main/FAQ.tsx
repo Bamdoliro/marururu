@@ -1,15 +1,16 @@
 import RightArrowIcon from '../common/Icons/RightArrow';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
-import { useMainQuestionListQuery } from '@/services/main/queries';
+import { useMainFaqListTypeQuery } from '@/services/main/queries';
 import QuestionItem from './items/QuestionItem';
 import { FAQ_PAGE_ROUTE } from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 
 const Faq = () => {
     const router = useRouter();
-    const { data } = useMainQuestionListQuery();
+    const { data: mainQuestionListData } = useMainFaqListTypeQuery();
 
     return (
         <StyledFaq>
@@ -18,7 +19,7 @@ const Faq = () => {
                 <RightArrowIcon color={color.gray900} size={22} />
             </Link>
             <QuestionList>
-                {data.map((item) => (
+                {mainQuestionListData.map((item) => (
                     <QuestionItem key={item.id} id={item.id} question={item.question} />
                 ))}
             </QuestionList>
@@ -29,8 +30,7 @@ const Faq = () => {
 export default Faq;
 
 const StyledFaq = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 16px;
     width: 596px;
     height: 100%;

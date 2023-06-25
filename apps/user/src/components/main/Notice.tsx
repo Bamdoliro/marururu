@@ -6,10 +6,11 @@ import NoticeItem from './items/NoticeItem';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 
 const Notice = () => {
     const router = useRouter();
-    const { data } = useMainNoticeListQuery();
+    const { data: noticeListData } = useMainNoticeListQuery();
 
     return (
         <StyledNotice>
@@ -18,7 +19,7 @@ const Notice = () => {
                 <RightArrowIcon color={color.gray900} size={22} />
             </Link>
             <NoticeList>
-                {data.map((item) => (
+                {noticeListData.map((item) => (
                     <NoticeItem key={item.id} id={item.id} title={item.title} />
                 ))}
             </NoticeList>
@@ -29,8 +30,7 @@ const Notice = () => {
 export default Notice;
 
 const StyledNotice = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 16px;
     width: 596px;
     height: 100%;

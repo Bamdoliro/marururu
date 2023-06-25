@@ -3,14 +3,15 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Category from './Category';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 
 const Categories = () => {
     const [selectedCategory, setSelectedCategory] = useState(0);
-    const { data } = useFaqCategoryListQuery();
+    const { data: faqCategoryListData } = useFaqCategoryListQuery();
 
     return (
         <StyledCategories>
-            {data.map((item) => (
+            {faqCategoryListData.map((item) => (
                 <Category
                     key={item.id}
                     isSelected={selectedCategory === item.id}
@@ -29,8 +30,7 @@ const StyledCategories = styled.div`
     color: ${color.gray900};
     height: 36px;
     width: 100%;
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     gap: 12px;
     margin: 36px 0px 40px;
 `;

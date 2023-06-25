@@ -10,7 +10,7 @@ import { ACCESS_KEY, REFRESH_KEY } from '@/constants/token';
 import { Storage } from '@/api/storage/storage';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
-import { axiosErrorTemplate } from '@maru/util';
+import { axiosErrorTemplate } from '@maru/utils';
 import { LOGIN_PAGE_ROUTE, MAIN_PAGE_ROUTE } from '@/constants/routes';
 
 /** 로그인 */

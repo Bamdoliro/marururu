@@ -1,5 +1,5 @@
 {
-  "name": "@maru/ui",
+  "name": "@maru/utils",
   "version": "0.0.0",
   "main": "./index.ts",
   "types": "./index.ts",
@@ -9,13 +9,10 @@
   },
   "devDependencies": {
     "@maru/eslint": "*",
-    "@maru/tsconfig": "*",
-    "@types/styled-components": "^5.1.26"
+    "@maru/tsconfig": "*"
   },
   "dependencies": {
-    "@maru/theme": "*",
-    "@maru/utils": "*",
-    "styled-components": "^6.0.0-rc.3",
+    "axios": "^1.4.0",
     "typescript": "^5.1.3"
   }
 }

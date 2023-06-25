@@ -1,4 +1,4 @@
-import IconPropsType from './type';
+import type IconPropsType from './type';
 
 const SearchIcon = ({ cursor, onClick }: IconPropsType) => {
     return (

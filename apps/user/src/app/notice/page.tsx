@@ -3,18 +3,19 @@
 import NoticeItem from '@/components/notice/NoticeItem';
 import NoticeLayout from '@/layouts/NoticeLayout';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useNoticeListQuery } from '@/services/notice/queries';
 
 const NoticePage = () => {
-    const { data } = useNoticeListQuery();
+    const { data: noticeListData } = useNoticeListQuery();
 
     return (
         <NoticeLayout>
             <StyledNoticePage>
                 <Title>공지사항</Title>
                 <NoticeList>
-                    {data.map((item) => (
+                    {noticeListData.map((item) => (
                         <NoticeItem
                             key={item.id}
                             id={item.id}
@@ -31,8 +32,7 @@ const NoticePage = () => {
 export default NoticePage;
 
 const StyledNoticePage = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 48px;
     width: 100%;
     height: 100%;
@@ -44,8 +44,7 @@ const Title = styled.p`
 `;
 
 const NoticeList = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 20px;
     width: 100%;
 `;

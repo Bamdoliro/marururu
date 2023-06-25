@@ -1,5 +1,5 @@
 {
     "extends": "@maru/tsconfig/react-library.json",
-    "include": [".", "../../apps/user/lib"],
+    "include": ["."],
     "exclude": ["dist", "build", "node_modules"]
 }

@@ -1,5 +1,6 @@
 import { Row } from '@maru/ui';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -22,8 +23,7 @@ const ScheduleItem = ({ date, plan }: PropsType) => {
 export default ScheduleItem;
 
 const StyledScheduleItem = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 3px;
     height: 58px;
     width: 100%;

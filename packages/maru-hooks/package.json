@@ -1,5 +1,5 @@
 {
-  "name": "@maru/util",
+  "name": "@maru/hooks",
   "version": "0.0.0",
   "main": "./index.ts",
   "types": "./index.ts",
@@ -12,7 +12,6 @@
     "@maru/tsconfig": "*"
   },
   "dependencies": {
-    "axios": "^1.4.0",
     "typescript": "^5.1.3"
   }
 }

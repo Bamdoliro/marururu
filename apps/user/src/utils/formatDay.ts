@@ -1,4 +1,4 @@
-export const getDay = (remainDays: number) => {
+export const formatDay = (remainDays: number) => {
     remainDays = Math.floor(remainDays);
     if (remainDays > 0) {
         return `D-${remainDays}`;

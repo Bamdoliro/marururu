@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "styled-components": "^6.0.0-rc.3",
+    "styled-reset": "^4.4.7",
     "typescript": "^5.1.3"
   }
 }

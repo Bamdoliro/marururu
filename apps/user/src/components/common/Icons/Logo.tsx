@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconPropsType } from '@maru/ui';
+import type { IconPropsType } from '@maru/ui';
 
 const LogoIcon = ({ cursor, onClick }: IconPropsType) => {
     return (

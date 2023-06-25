@@ -1,4 +1,5 @@
 import Input from '.';
+import { flex } from '@maru/utils';
 import { color, font } from '@maru/theme';
 import { InputPropsType } from './type';
 import styled from 'styled-components';
@@ -44,8 +45,7 @@ const ButtonInput = ({
 export default ButtonInput;
 
 export const StyledButtonInput = styled.div`
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     gap: 8px;
     width: 100%;
 `;
@@ -55,8 +55,7 @@ export const Button = styled.button<{ enabled: boolean }>`
     color: ${color.white};
     background-color: ${(props) => (props.enabled ? color.gray400 : color.maruDefault)};
     display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
     width: 68px;
     height: 48px;

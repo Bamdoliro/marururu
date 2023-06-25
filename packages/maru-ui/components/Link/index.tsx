@@ -1,24 +1,24 @@
-import { ReactNode } from "react";
-import styled from "styled-components";
+import { flex } from '@maru/utils';
+import { ReactNode } from 'react';
+import styled from 'styled-components';
 
 interface PropsType {
-  children: ReactNode;
-  onClick: () => void;
-  gap?: string;
+    children: ReactNode;
+    onClick: () => void;
+    gap?: string;
 }
 
 const Link = ({ children, gap, onClick }: PropsType) => {
-  return (
-    <StyledLink style={{ gap }} onClick={onClick}>
-      {children}
-    </StyledLink>
-  );
+    return (
+        <StyledLink style={{ gap }} onClick={onClick}>
+            {children}
+        </StyledLink>
+    );
 };
 
 export default Link;
 
 const StyledLink = styled.a`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+    ${flex({ alignItems: 'center' })}
+    cursor: pointer;
 `;
