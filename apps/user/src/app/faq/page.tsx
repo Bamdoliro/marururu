@@ -9,7 +9,7 @@ import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 const FaqPage = () => {
-    const { data: faqListData } = useFaqListQuery();
+    const faqListQuery = useFaqListQuery();
 
     return (
         <FaqLayout>
@@ -17,7 +17,7 @@ const FaqPage = () => {
                 <Title>자주 묻는 질문</Title>
                 <Categories />
                 <FaqList>
-                    {faqListData.map((item) => (
+                    {faqListQuery.data?.map((item) => (
                         <FaqItem key={item.id} question={item.question} answer={item.answer} />
                     ))}
                 </FaqList>
