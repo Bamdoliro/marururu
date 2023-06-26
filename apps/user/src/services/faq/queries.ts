@@ -10,7 +10,9 @@ interface FaqCategoryListType {
 
 export const useFaqCategoryListQuery = () => {
     return useQuery<FaqCategoryListType[]>([KEY.FAQ_CATEGORY_LIST], () => faqCategoryList(), {
+        refetchOnWindowFocus: false,
         initialData: [],
+        staleTime: 1000 * 60,
     });
 };
 
@@ -22,5 +24,9 @@ interface FaqListType {
 }
 
 export const useFaqListQuery = () => {
-    return useQuery<FaqListType[]>([KEY.FAQ_LIST], () => faqList(), { initialData: [] });
+    return useQuery<FaqListType[]>([KEY.FAQ_LIST], () => faqList(), {
+        refetchOnWindowFocus: false,
+        initialData: [],
+        staleTime: 1000 * 60,
+    });
 };

@@ -1,4 +1,4 @@
-import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutation';
+import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, useState } from 'react';
 
 interface joinUserDataType {

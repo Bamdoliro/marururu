@@ -10,5 +10,9 @@ interface NoticeListType {
 }
 
 export const useNoticeListQuery = () => {
-    return useQuery<NoticeListType[]>([KEY.NOTICE_LIST], () => noticeList(), { initialData: [] });
+    return useQuery<NoticeListType[]>([KEY.NOTICE_LIST], () => noticeList(), {
+        refetchOnWindowFocus: false,
+        initialData: [],
+        staleTime: 1000 * 60,
+    });
 };
