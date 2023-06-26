@@ -11,3 +11,4 @@ export { default as TimerInput } from './components/Input/TimerInput';
 
 // type
 export type { default as IconPropsType } from './Icons/type';
+export type { ButtonOptionType } from './components/Button/type';

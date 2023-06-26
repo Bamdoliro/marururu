@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Terms from '@/components/signup/Terms';
 import BaseLayout from '@/layouts/BaseLayout';
-import useJoin from '@/services/auth/hooks/useJoin';
+import useSignUp from './hook';
 import { useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { ButtonInput, PreviewInput, Button, Column, TimerInput } from '@maru/ui';
 
 const SignUpPage = () => {
-    const { handleJoinUserData, requestEmailMutate, clickSignUp, setCheckTermsAgree } = useJoin();
+    const { handleJoinUserData, requestEmailMutate, clickSignUp, setCheckTermsAgree } = useSignUp();
     const [time, setTime] = useState(0);
     /**
      * true면 인증 요청을 보낸 상태

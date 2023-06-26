@@ -8,7 +8,7 @@ interface joinUserDataType {
     repassword: string;
 }
 
-const useJoin = () => {
+const useSignUp = () => {
     const [joinUserData, setJoinUserData] = useState<joinUserDataType>({
         email: '',
         code: '',
@@ -50,4 +50,4 @@ const useJoin = () => {
     };
 };
 
-export default useJoin;
+export default useSignUp;
