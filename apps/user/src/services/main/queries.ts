@@ -9,7 +9,9 @@ interface MainNoticeListType {
 }
 
 export const useMainNoticeListQuery = () => {
-    return useQuery<MainNoticeListType[]>([KEY.MAIN_NOTICE_LIST], () => mainNoticeList(), {
+    return useQuery<MainNoticeListType[]>({
+        queryKey: [KEY.MAIN_NOTICE_LIST] as const,
+        queryFn: () => mainNoticeList(),
         initialData: [],
     });
 };
@@ -21,7 +23,9 @@ interface MainFaqListType {
 }
 
 export const useMainFaqListQuery = () => {
-    return useQuery<MainFaqListType[]>([KEY.MAIN_QUESTION_LIST], () => mainQuestionList(), {
+    return useQuery<MainFaqListType[]>({
+        queryKey: [KEY.MAIN_QUESTION_LIST] as const,
+        queryFn: () => mainQuestionList(),
         initialData: [],
     });
 };

@@ -1662,6 +1662,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@maru/eslint@workspace:configs/eslint"
   dependencies:
+    "@tanstack/eslint-plugin-query": ^4.29.9
     eslint-config-next: ^13.4.1
     eslint-config-prettier: ^8.3.0
     eslint-config-turbo: ^1.9.3
@@ -1912,6 +1913,13 @@ __metadata:
   dependencies:
     tslib: ^2.4.0
   checksum: 71e0e27234590435e4c62b97ef5e796f88e786841a38c7116a5e27a3eafa7b9ead7cdec5249b32165902076de78446945311c973e59bddf77c1e24f33a8f272a
+  languageName: node
+  linkType: hard
+
+"@tanstack/eslint-plugin-query@npm:^4.29.9":
+  version: 4.29.9
+  resolution: "@tanstack/eslint-plugin-query@npm:4.29.9"
+  checksum: d6a36974982e17630e8fc0772816d9e57c06da812d2cf560c120602febf80d0dbfe61d331a52c8b63773853062904968396f9d5a9b81799994e34a2f4f884438
   languageName: node
   linkType: hard
 

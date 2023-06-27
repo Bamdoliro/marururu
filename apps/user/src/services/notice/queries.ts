@@ -13,8 +13,6 @@ export const useNoticeListQuery = () => {
     return useQuery<NoticeListType[]>({
         queryKey: [KEY.NOTICE_LIST] as const,
         queryFn: () => noticeList(),
-        refetchOnWindowFocus: false,
         initialData: [],
-        staleTime: 1000 * 60,
     });
 };
