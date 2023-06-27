@@ -1,5 +1,4 @@
 module.exports = {
-    extends: ['next', 'turbo', 'prettier'],
     plugins: ['@tanstack/query'],
     rules: {
         '@tanstack/query/exhaustive-deps': 'error',
