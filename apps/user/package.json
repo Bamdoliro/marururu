@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.29.9",
     "@maru/eslint": "*",
     "@maru/tsconfig": "*",
     "@types/node": "20.3.1",

@@ -10,9 +10,7 @@ interface MainNoticeListType {
 
 export const useMainNoticeListQuery = () => {
     return useQuery<MainNoticeListType[]>([KEY.MAIN_NOTICE_LIST], () => mainNoticeList(), {
-        refetchOnWindowFocus: false,
         initialData: [],
-        staleTime: 1000 * 60,
     });
 };
 
@@ -24,8 +22,6 @@ interface MainFaqListType {
 
 export const useMainFaqListQuery = () => {
     return useQuery<MainFaqListType[]>([KEY.MAIN_QUESTION_LIST], () => mainQuestionList(), {
-        refetchOnWindowFocus: false,
         initialData: [],
-        staleTime: 1000 * 60,
     });
 };

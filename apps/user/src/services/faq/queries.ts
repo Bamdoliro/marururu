@@ -25,8 +25,6 @@ interface FaqListType {
 
 export const useFaqListQuery = () => {
     return useQuery<FaqListType[]>([KEY.FAQ_LIST], () => faqList(), {
-        refetchOnWindowFocus: false,
         initialData: [],
-        staleTime: 1000 * 60,
     });
 };
