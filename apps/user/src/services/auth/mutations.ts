@@ -7,7 +7,7 @@ import {
     requestEmailParamsType,
 } from './api';
 import { ACCESS_KEY, REFRESH_KEY } from '@/constants/token';
-import { Storage } from '@/api/storage/storage';
+import { Storage } from '@/apis/storage';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 import { axiosErrorTemplate } from '@maru/utils';

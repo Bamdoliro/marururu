@@ -10,7 +10,7 @@ import { flex } from '@maru/utils';
 
 const Notice = () => {
     const router = useRouter();
-    const { data: noticeListData } = useMainNoticeListQuery();
+    const mainNoticeListQuery = useMainNoticeListQuery();
 
     return (
         <StyledNotice>
@@ -19,7 +19,7 @@ const Notice = () => {
                 <RightArrowIcon color={color.gray900} size={22} />
             </Link>
             <NoticeList>
-                {noticeListData.map((item) => (
+                {mainNoticeListQuery.data?.map((item) => (
                     <NoticeItem key={item.id} id={item.id} title={item.title} />
                 ))}
             </NoticeList>

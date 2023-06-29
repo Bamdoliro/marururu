@@ -1,8 +1,14 @@
 {
   "name": "@maru/eslint",
   "version": "0.0.0",
-  "main": "index.js",
+  "files": [
+    "common.js",
+    "query.js"
+  ],
   "license": "MIT",
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.29.9"
+  },
   "dependencies": {
     "eslint-config-next": "^13.4.1",
     "eslint-config-prettier": "^8.3.0",

@@ -9,8 +9,11 @@ interface MainNoticeListType {
 }
 
 export const useMainNoticeListQuery = () => {
-    const { data } = useQuery<MainNoticeListType[]>([KEY.MAIN_NOTICE_LIST], () => mainNoticeList());
-    return { data: data || [] };
+    return useQuery<MainNoticeListType[]>({
+        queryKey: [KEY.MAIN_NOTICE_LIST] as const,
+        queryFn: () => mainNoticeList(),
+        initialData: [],
+    });
 };
 
 // 메인 faq 리스트
@@ -19,9 +22,10 @@ interface MainFaqListType {
     question: string;
 }
 
-export const useMainFaqListTypeQuery = () => {
-    const { data } = useQuery<MainFaqListType[]>([KEY.MAIN_QUESTION_LIST], () =>
-        mainQuestionList(),
-    );
-    return { data: data || [] };
+export const useMainFaqListQuery = () => {
+    return useQuery<MainFaqListType[]>({
+        queryKey: [KEY.MAIN_QUESTION_LIST] as const,
+        queryFn: () => mainQuestionList(),
+        initialData: [],
+    });
 };

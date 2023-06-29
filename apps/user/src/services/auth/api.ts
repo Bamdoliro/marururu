@@ -1,4 +1,4 @@
-import { maru } from '@/api/instance';
+import { maru } from '@/apis/instance';
 
 // 로그인
 export interface loginUserParamsType {
