@@ -1,17 +1,17 @@
 'use client';
 
 import NoticeItem from '@/components/notice/NoticeItem';
-import NoticeLayout from '@/layouts/NoticeLayout';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useNoticeListQuery } from '@/services/notice/queries';
+import AppLayout from '@/components/common/Layouts/AppLayout';
 
 const NoticePage = () => {
     const noticeListQuery = useNoticeListQuery();
 
     return (
-        <NoticeLayout>
+        <AppLayout padding="0px 207px">
             <StyledNoticePage>
                 <Title>공지사항</Title>
                 <NoticeList>
@@ -25,7 +25,7 @@ const NoticePage = () => {
                     ))}
                 </NoticeList>
             </StyledNoticePage>
-        </NoticeLayout>
+        </AppLayout>
     );
 };
 

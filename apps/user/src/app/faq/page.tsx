@@ -2,7 +2,7 @@
 
 import Categories from '@/components/faq/Categories';
 import FaqItem from '@/components/faq/FaqItem';
-import FaqLayout from '@/layouts/FaqLayout';
+import AppLayout from '@/components/common/Layouts/AppLayout';
 import { useFaqListQuery } from '@/services/faq/queries';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
@@ -12,7 +12,7 @@ const FaqPage = () => {
     const faqListQuery = useFaqListQuery();
 
     return (
-        <FaqLayout>
+        <AppLayout padding="0px 207px">
             <StyledFaqPage>
                 <Title>자주 묻는 질문</Title>
                 <Categories />
@@ -22,7 +22,7 @@ const FaqPage = () => {
                     ))}
                 </FaqList>
             </StyledFaqPage>
-        </FaqLayout>
+        </AppLayout>
     );
 };
 

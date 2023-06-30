@@ -57,6 +57,7 @@ const StyledFooter = styled.div`
     height: 350px;
     width: 100%;
     padding: 40px 100px;
+    margin-top: 250px;
 `;
 
 const InfoBox = styled.div`

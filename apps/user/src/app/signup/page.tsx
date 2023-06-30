@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Terms from '@/components/signup/Terms';
-import BaseLayout from '@/layouts/BaseLayout';
+import BaseLayout from '@/components/common/Layouts/BaseLayout';
 import useSignUp from './hook';
 import { useState } from 'react';
 import { color, font } from '@maru/theme';

@@ -3,18 +3,18 @@
 import LeftArrowIcon from '@/components/common/Icons/LeftArrow';
 import NoticeHeader from '@/components/notice/NoticeHeader';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
-import NoticeLayout from '@/layouts/NoticeLayout';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { Link } from '@maru/ui';
 import { styled } from 'styled-components';
+import AppLayout from '@/components/common/Layouts/AppLayout';
 
 const NoticeDetailPage = () => {
     const router = useRouter();
 
     return (
-        <NoticeLayout>
+        <AppLayout padding="0px 207px">
             <StyledNoticeDetailPage>
                 <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)} gap="2px">
                     <LeftArrowIcon color={color.gray600} size={24} />
@@ -25,7 +25,7 @@ const NoticeDetailPage = () => {
                     <Content>이것은 테스트 입니다</Content>
                 </ContentsBox>
             </StyledNoticeDetailPage>
-        </NoticeLayout>
+        </AppLayout>
     );
 };
 
