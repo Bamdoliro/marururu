@@ -1,4 +1,4 @@
-import Header from '@/components/common/Header';
+import Header from '@/components/common/Header/Header';
 import { color } from '@maru/theme';
 import { ReactNode } from 'react';
 import styled from 'styled-components';

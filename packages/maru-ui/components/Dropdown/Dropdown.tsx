@@ -6,56 +6,53 @@ import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
 
 interface DropdownItemType {
-    dropdownItemText: string;
+    dropdownItem: string;
 }
 
 interface PropsType {
     label: string;
-    dropdownMenuData: DropdownItemType[];
+    DropdownData: DropdownItemType[];
     width?: string;
     placeholder?: string;
 }
 
-const DropdownMenu = ({
+const Dropdown = ({
     label,
-    dropdownMenuData,
+    DropdownData,
     width = '320px',
     placeholder = '옵션을 선택해 주세요',
 }: PropsType) => {
-    const [isOpenDropdownMenu, setIsOpenDropdownMenu] = useState(false);
-    const [selectedItemText, setSelectedItemText] = useState(placeholder);
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(placeholder);
 
     const clickedMenu = (item: DropdownItemType) => {
-        setSelectedItemText(item.dropdownItemText);
-        setIsOpenDropdownMenu(false);
+        setSelectedItem(item.dropdownItem);
+        setIsOpen(false);
     };
 
-    const clickedToggle = () => {
-        setIsOpenDropdownMenu((prev) => !prev);
-    };
+    const clickToggle = () => setIsOpen((prev) => !prev);
+
     return (
         <div style={{ width }}>
             <Label>{label}</Label>
-            <StyledDropdownMenu onClick={clickedToggle} isOpen={isOpenDropdownMenu}>
-                <SelectedItemText>{selectedItemText}</SelectedItemText>
-                {isOpenDropdownMenu ? <TopArrowIcon /> : <BottomArrowIcon />}
-            </StyledDropdownMenu>
-            <DropdownMenuListBox isOpen={isOpenDropdownMenu}>
-                <DropdownMenuList>
-                    {dropdownMenuData?.map((item, index) => (
-                        <DropdownMenuItem
-                            key={`dropdown ${index}`}
-                            onClick={() => clickedMenu(item)}>
-                            {item.dropdownItemText}
-                        </DropdownMenuItem>
+            <StyledDropdown onClick={clickToggle} isOpen={isOpen}>
+                <SelectedItemText>{selectedItem}</SelectedItemText>
+                {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}
+            </StyledDropdown>
+            <DropdownListBox isOpen={isOpen}>
+                <DropdownList>
+                    {DropdownData?.map((item, index) => (
+                        <DropdownItem key={`dropdown ${index}`} onClick={() => clickedMenu(item)}>
+                            {item.dropdownItem}
+                        </DropdownItem>
                     ))}
-                </DropdownMenuList>
-            </DropdownMenuListBox>
+                </DropdownList>
+            </DropdownListBox>
         </div>
     );
 };
 
-export default DropdownMenu;
+export default Dropdown;
 
 const Label = styled.p`
     ${font.context}
@@ -63,7 +60,7 @@ const Label = styled.p`
     padding-bottom: 8px;
 `;
 
-const StyledDropdownMenu = styled.div<{ isOpen: boolean }>`
+const StyledDropdown = styled.div<{ isOpen: boolean }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -92,12 +89,12 @@ const SelectedItemText = styled.p`
     color: ${color.gray500};
 `;
 
-const DropdownMenuListBox = styled.div<{ isOpen: boolean }>`
+const DropdownListBox = styled.div<{ isOpen: boolean }>`
     position: relative;
     display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
 `;
 
-const DropdownMenuList = styled.div`
+const DropdownList = styled.div`
     z-index: 1;
     position: absolute;
     margin-top: 8px;
@@ -109,7 +106,7 @@ const DropdownMenuList = styled.div`
     border-radius: 6px;
 `;
 
-const DropdownMenuItem = styled.button`
+const DropdownItem = styled.button`
     ${flex({ alignItems: 'center' })}
     padding: 10px 16px;
     width: 100%;

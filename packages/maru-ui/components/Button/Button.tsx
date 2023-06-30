@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { ButtonIconType, ButtonOptionType, ButtonSizeType } from './type';
-import { getButtonSize, getButtonStyle, getButtonPadding } from './style';
+import { ButtonIconType, ButtonOptionType, ButtonSizeType } from './Button.type';
+import { getButtonSize, getButtonStyle, getButtonPadding } from './Button.style';
 import styled from 'styled-components';
 import AddIcon from '../../Icons/Add';
 import ShortcutsIcon from '../../Icons/Shortcuts';
