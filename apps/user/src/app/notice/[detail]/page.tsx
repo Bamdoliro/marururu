@@ -1,7 +1,7 @@
 'use client';
 
 import LeftArrowIcon from '@/components/common/Icons/LeftArrow';
-import NoticeHeader from '@/components/notice/NoticeHeader';
+import NoticeHeader from '@/components/notice/NoticeHeader/NoticeHeader';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import NoticeLayout from '@/layouts/NoticeLayout';
 import { color, font } from '@maru/theme';

@@ -1,7 +1,7 @@
 'use client';
 
-import Categories from '@/components/faq/Categories';
-import FaqItem from '@/components/faq/FaqItem';
+import CategoryFilter from '@/components/faq/CategoryFilter/CategoryFilter';
+import FaqItem from '@/components/faq/FaqItem/FaqItem';
 import FaqLayout from '@/layouts/FaqLayout';
 import { useFaqListQuery } from '@/services/faq/queries';
 import { color, font } from '@maru/theme';
@@ -15,7 +15,7 @@ const FaqPage = () => {
         <FaqLayout>
             <StyledFaqPage>
                 <Title>자주 묻는 질문</Title>
-                <Categories />
+                <CategoryFilter />
                 <FaqList>
                     {faqListQuery.data?.map((item) => (
                         <FaqItem key={item.id} question={item.question} answer={item.answer} />
