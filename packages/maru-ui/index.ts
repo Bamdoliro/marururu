@@ -7,7 +7,7 @@ export { default as Input } from './components/Input/Button';
 export { default as ButtonInput } from './components/Input/ButtonInput';
 export { default as PreviewInput } from './components/Input/PreviewInput';
 export { default as SearchInput } from './components/Input/SearchInput';
-export { default as TimerInput } from './components/Input/TimerInput';
+export { default as TimeLimitInput } from './components/Input/TimeLimitInput';
 
 // type
 export type { default as IconPropsType } from './Icons/Icon.type';

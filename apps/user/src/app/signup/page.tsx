@@ -8,7 +8,7 @@ import useSignUp from './signup.hook';
 import { useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { ButtonInput, PreviewInput, Button, Column, TimerInput } from '@maru/ui';
+import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput } from '@maru/ui';
 
 const SignUpPage = () => {
     const {
@@ -17,13 +17,13 @@ const SignUpPage = () => {
         handleSignUpButtonClick,
         setCheckTermsAgree,
     } = useSignUp();
-    const [time, setTime] = useState(0);
+
+    const [timerLimitTime, setTimerLimitTime] = useState(0);
     /**
      * true면 인증 요청을 보낸 상태
      * false면 인증 요청을 아직 보내지 않은 상태
      */
-    const requestEmailEnabled = time !== 0;
-
+    const requestEmailEnabled = timerLimitTime !== 0;
     return (
         <BaseLayout>
             <StyledSignUpPage>
@@ -41,7 +41,10 @@ const SignUpPage = () => {
                             <ButtonInput
                                 label="이메일 인증"
                                 buttonText="인증"
-                                handleButtonClick={handleRequestEmailButtonClick}
+                                handleButtonClick={() => {
+                                    handleRequestEmailButtonClick();
+                                    setTimerLimitTime(300);
+                                }}
                                 type="email"
                                 placeholder="이메일"
                                 width="100%"
@@ -50,14 +53,15 @@ const SignUpPage = () => {
                                 enabled={requestEmailEnabled}
                             />
                             {requestEmailEnabled && (
-                                <TimerInput
+                                <TimeLimitInput
                                     label="인증코드"
                                     width="100%"
                                     maxLength={6}
                                     msg="발송된 이메일의 인증번호를 입력해주세요."
                                     name="code"
                                     onChange={handleJoinUserData}
-                                    delay={5 * 10000}
+                                    time={timerLimitTime}
+                                    setTime={setTimerLimitTime}
                                 />
                             )}
                             <PreviewInput

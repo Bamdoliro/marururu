@@ -4,14 +4,15 @@ import { InputPropsType } from './Button.type';
 import styled from 'styled-components';
 import Message from './Message';
 import { formatTime } from '@maru/utils';
-import { useState } from 'react';
-import { useTimer } from '@maru/hooks';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useInterval } from '@maru/hooks';
 
-interface TimerInputPropsType extends InputPropsType {
-    delay: number;
+interface TimeLimitInputPropsType extends InputPropsType {
+    time: number;
+    setTime: Dispatch<SetStateAction<number>>;
 }
 
-const TimerInput = ({
+const TimeLimitInput = ({
     width = '320px',
     placeholder,
     name,
@@ -21,14 +22,26 @@ const TimerInput = ({
     msg,
     onChange,
     maxLength,
-    delay,
-}: TimerInputPropsType) => {
-    const [time, setTime] = useState(delay);
+    time,
+    setTime,
+}: TimeLimitInputPropsType) => {
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTime((prev) => prev - 1);
+        }, 1000);
+
+        if (time === 0) {
+            setTime(0);
+            clearInterval(interval);
+        }
+
+        return () => clearInterval(interval);
+    }, [time, setTime]);
 
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledTimerInput>
+            <StyledTimeLimitInput>
                 <Input
                     onChange={onChange}
                     placeholder={placeholder}
@@ -37,16 +50,16 @@ const TimerInput = ({
                     value={value}
                     maxLength={maxLength}
                 />
-                <Timer>{formatTime(100)}</Timer>
-            </StyledTimerInput>
+                <Timer>{formatTime(time)}</Timer>
+            </StyledTimeLimitInput>
             {msg && <Message>{msg}</Message>}
         </div>
     );
 };
 
-export default TimerInput;
+export default TimeLimitInput;
 
-const StyledTimerInput = styled.div`
+const StyledTimeLimitInput = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     gap: 10px;
     height: 48px;
