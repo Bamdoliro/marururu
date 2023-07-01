@@ -1,7 +1,7 @@
-import Input from '.';
+import Input from './Button';
 import { flex } from '@maru/utils';
 import { color, font } from '@maru/theme';
-import { InputPropsType } from './type';
+import { InputPropsType } from './Button.type';
 import styled from 'styled-components';
 
 interface ButtonInputPropsType extends InputPropsType {

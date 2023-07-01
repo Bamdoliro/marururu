@@ -1,6 +1,6 @@
 import type { IconPropsType } from '@maru/ui';
 
-const QuestionIcon = ({ color }: IconPropsType) => {
+const FaqIcon = ({ color }: IconPropsType) => {
     return (
         <svg
             width="24"
@@ -16,4 +16,4 @@ const QuestionIcon = ({ color }: IconPropsType) => {
     );
 };
 
-export default QuestionIcon;
+export default FaqIcon;

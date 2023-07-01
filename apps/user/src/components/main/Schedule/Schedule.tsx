@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ScheduleItem from './items/ScheduleItem';
+import ScheduleItem from './ScheduleItem';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 

@@ -5,12 +5,12 @@ import Category from './Category';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 
-const Categories = () => {
+const CategoryFilter = () => {
     const [selectedCategory, setSelectedCategory] = useState(0);
     const faqCategoryListQuery = useFaqCategoryListQuery();
 
     return (
-        <StyledCategories>
+        <StyledCategoryFilter>
             {faqCategoryListQuery.data?.map((item) => (
                 <Category
                     key={item.id}
@@ -19,13 +19,13 @@ const Categories = () => {
                     {item.category}
                 </Category>
             ))}
-        </StyledCategories>
+        </StyledCategoryFilter>
     );
 };
 
-export default Categories;
+export default CategoryFilter;
 
-const StyledCategories = styled.div`
+const StyledCategoryFilter = styled.div`
     ${font.context}
     color: ${color.gray900};
     height: 36px;

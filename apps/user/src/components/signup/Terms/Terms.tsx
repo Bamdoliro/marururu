@@ -1,9 +1,9 @@
-import RightArrowIcon from '../common/Icons/RightArrow';
+import RightArrowIcon from '../../common/Icons/RightArrow';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import useTerms from './hooks/Terms.hook';
+import useTerms from './Terms.hook';
 
 interface PropsType {
     setCheckTermsAgree: Dispatch<SetStateAction<boolean>>;

@@ -1,8 +1,8 @@
-import RightArrowIcon from '../common/Icons/RightArrow';
+import RightArrowIcon from '../../common/Icons/RightArrow';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { useMainNoticeListQuery } from '@/services/main/queries';
-import NoticeItem from './items/NoticeItem';
+import NoticeItem from './NoticeItem';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';

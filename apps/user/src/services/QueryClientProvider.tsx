@@ -16,7 +16,6 @@ const QueryClientProvider = ({ children }: PropsType) => {
                 defaultOptions: {
                     queries: {
                         refetchOnWindowFocus: false,
-                        staleTime: 1000 * 60,
                     },
                 },
             }),

@@ -1,6 +1,6 @@
 'use client';
 
-import NoticeItem from '@/components/notice/NoticeItem';
+import NoticeItem from '@/components/notice/NoticeItem/NoticeItem';
 import NoticeLayout from '@/layouts/NoticeLayout';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';

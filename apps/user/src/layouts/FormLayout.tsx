@@ -1,7 +1,7 @@
-import Header from '@/components/common/Header';
+import Header from '@/components/common/Header/Header';
 import { color, font } from '@maru/theme';
 import { ReactNode } from 'react';
-import ProgressBar from '@/components/form/ProgressBar';
+import ProgressBar from '@/components/form/ProgressBar/ProgressBar';
 import styled from 'styled-components';
 
 interface PropsType {

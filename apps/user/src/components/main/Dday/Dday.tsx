@@ -5,7 +5,7 @@ import { 제출_마감_날짜, 제출_시작_날짜 } from '@/models/submitTime'
 import { formatDay } from '@/utils/formatDay';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';
-import useDday from './hooks/Dday.hook';
+import useDday from './Dday.hook';
 
 const Dday = () => {
     const {

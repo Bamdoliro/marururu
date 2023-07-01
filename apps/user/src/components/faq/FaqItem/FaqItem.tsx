@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import TopArrowIcon from '../common/Icons/TopArrow';
-import BottomArrowIcon from '../common/Icons/BottomArrow';
-import AnswerIcon from '../common/Icons/Answer';
-import QuestionIcon from '../common/Icons/Question';
+import TopArrowIcon from '../../common/Icons/TopArrow';
+import BottomArrowIcon from '../../common/Icons/BottomArrow';
+import AnswerIcon from '../../common/Icons/Answer';
+import QuestionIcon from '../../common/Icons/Faq';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { Row } from '@maru/ui';

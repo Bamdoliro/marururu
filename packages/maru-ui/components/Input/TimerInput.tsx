@@ -1,6 +1,6 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { InputPropsType } from './type';
+import { InputPropsType } from './Button.type';
 import styled from 'styled-components';
 import Message from './Message';
 import formatTime from '../../utils/formatTime';

@@ -1,4 +1,4 @@
-import type IconPropsType from './type';
+import type IconPropsType from './Icon.type';
 
 const InvisibleEyeIcon = ({ cursor, onClick }: IconPropsType) => {
     return (

@@ -3,10 +3,10 @@ import BamdoliroLogoIcon from '../Icons/Bamdoliro';
 import InstagramLogoIcon from '../Icons/Instagram';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
-import { FAQ_PAGE_ROUTE, FORM_PAGE_ROUTE, NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { Column, Row, Link } from '@maru/ui';
 import { font, color } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { FAQ_PAGE_ROUTE, FORM_PAGE_ROUTE, NOTICE_PAGE_ROUTE } from '@/constants/routes';
 
 const Footer = () => {
     const router = useRouter();
