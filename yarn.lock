@@ -2038,6 +2038,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.195":
+  version: 4.14.195
+  resolution: "@types/lodash@npm:4.14.195"
+  checksum: 39b75ca635b3fa943d17d3d3aabc750babe4c8212485a4df166fe0516e39288e14b0c60afc6e21913cc0e5a84734633c71e617e2bd14eaa1cf51b8d7799c432e
+  languageName: node
+  linkType: hard
+
 "@types/minimatch@npm:*":
   version: 5.1.2
   resolution: "@types/minimatch@npm:5.1.2"
@@ -5208,7 +5215,9 @@ __metadata:
   dependencies:
     "@maru/eslint": "*"
     "@turbo/gen": ^1.9.7
+    "@types/lodash": ^4.14.195
     eslint: ^7.32.0
+    lodash: ^4.17.21
     msw: ^1.2.2
     prettier: ^2.5.1
     turbo: latest
