@@ -30,8 +30,8 @@ const useInput = ({ initialValue = '', useDebounce = false, debounceTimeout = 15
     );
 
     const onChange = useCallback(
-        (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            handleSetValue(event.target.value);
+        (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            handleSetValue(e.target.value);
         },
         [handleSetValue],
     );
