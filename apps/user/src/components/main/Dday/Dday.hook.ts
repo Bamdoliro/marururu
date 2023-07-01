@@ -11,13 +11,12 @@ import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';
 import type { ButtonOptionType } from '@maru/ui';
+import { formatDay } from '@/utils/formatDay';
 
 dayjs.extend(isBetween);
 dayjs.extend(utc);
 
-const useDday = () => {
-    const router = useRouter();
-
+export const useDday = () => {
     const currentTime = dayjs().isBefore(제출_시작_날짜)
         ? 제출_시작_날짜
         : dayjs().isBefore(제출_마감_날짜)
@@ -33,34 +32,60 @@ const useDday = () => {
     }, 1000);
 
     const isSubmitPeriod = dayjs().isBetween(제출_시작_날짜, 제출_마감_날짜);
-    const timeDiff = dayjs.utc(currentTime.diff(dayjs())).format('HH:mm:ss');
-    const buttonOption: ButtonOptionType =
-        isSubmitPeriod || (-2 < remainDays && remainDays <= 0) ? 'PRIMARY' : 'DISABLED';
 
-    const handleMovePageButtonClick = isSubmitPeriod
-        ? () => router.push('/form')
-        : -2 < remainDays && remainDays <= 0
-        ? () => console.log('결과 확인하기 페이지 이동')
-        : undefined;
+    return {
+        currentTime,
+        remainDays,
+        isSubmitPeriod,
+    };
+};
 
-    const buttonText = dayjs().isBefore(제출_마감_날짜) ? '원서 접수하기' : '결과 확인하기';
+export const useSchoolRecruitDate = () => {
+    const submitStart = 제출_시작_날짜.format('YYYY년 MM월 DD일');
+    const submitEnd = 제출_마감_날짜.format('YYYY년 MM월 DD일');
+    return {
+        submitStart,
+        submitEnd,
+    };
+};
 
-    const status = new Map([
+export const useRemainDate = () => {
+    const { currentTime, remainDays } = useDday();
+    const statusMap = new Map([
         [제출_시작_날짜, '원서 접수 시작까지'],
         [최종_합격_발표, '1차 합격자 발표'],
         [일차_합격_발표, '최종합격자 발표'],
     ]);
 
+    const timeDiff = dayjs.utc(currentTime.diff(dayjs())).format('HH:mm:ss');
+
+    const status = statusMap.get(currentTime);
+    const remainTime = remainDays >= 1 || remainDays < 0 ? formatDay(remainDays) : timeDiff;
+    const targetDate = currentTime.format('YYYY 년 MM월 DD일');
+
     return {
-        isSubmitPeriod,
         status,
-        currentTime,
-        remainDays,
-        timeDiff,
+        remainTime,
+        targetDate,
+    };
+};
+
+export const useButtonStatus = () => {
+    const { currentTime, remainDays, isSubmitPeriod } = useDday();
+    const router = useRouter();
+
+    const buttonOption: ButtonOptionType =
+        isSubmitPeriod || (-2 < remainDays && remainDays <= 0) ? 'PRIMARY' : 'DISABLED';
+    const handleMovePageButtonClick = isSubmitPeriod
+        ? () => router.push('/form')
+        : -2 < remainDays && remainDays <= 0
+        ? () => console.log('결과 확인하기 페이지 이동')
+        : undefined;
+    const buttonText = dayjs().isBefore(제출_마감_날짜) ? '원서 접수하기' : '결과 확인하기';
+
+    return {
         buttonOption,
         handleMovePageButtonClick,
         buttonText,
     };
 };
-
-export default useDday;
