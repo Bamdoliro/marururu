@@ -1,15 +1,9 @@
-import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutation';
+import { joinUserParamsType } from '@/services/auth/api';
+import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, useState } from 'react';
 
-interface joinUserDataType {
-    email: string;
-    code: string;
-    password: string;
-    repassword: string;
-}
-
 const useSignUp = () => {
-    const [joinUserData, setJoinUserData] = useState<joinUserDataType>({
+    const [joinUserData, setJoinUserData] = useState<joinUserParamsType>({
         email: '',
         code: '',
         password: '',
