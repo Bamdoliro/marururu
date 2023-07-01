@@ -13,6 +13,7 @@
     "@types/styled-components": "^5.1.26"
   },
   "dependencies": {
+    "@maru/hooks": "*",
     "@maru/theme": "*",
     "@maru/utils": "*",
     "styled-components": "^6.0.0-rc.3",

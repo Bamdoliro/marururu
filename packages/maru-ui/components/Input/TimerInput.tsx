@@ -3,13 +3,12 @@ import { flex } from '@maru/utils';
 import { InputPropsType } from './Button.type';
 import styled from 'styled-components';
 import Message from './Message';
-import formatTime from '../../utils/formatTime';
-import useTimer from '../../hooks/useTimer';
-import { Dispatch, SetStateAction } from 'react';
+import { formatTime } from '@maru/utils';
+import { useState } from 'react';
+import { useTimer } from '@maru/hooks';
 
 interface TimerInputPropsType extends InputPropsType {
-    time: number;
-    setTime: Dispatch<SetStateAction<number>>;
+    delay: number;
 }
 
 const TimerInput = ({
@@ -22,10 +21,9 @@ const TimerInput = ({
     msg,
     onChange,
     maxLength,
-    time,
-    setTime,
+    delay,
 }: TimerInputPropsType) => {
-    useTimer(time, setTime);
+    const [time, setTime] = useState(delay);
 
     return (
         <div style={{ width }}>
@@ -39,7 +37,7 @@ const TimerInput = ({
                     value={value}
                     maxLength={maxLength}
                 />
-                <Timer>{formatTime(time)}</Timer>
+                <Timer>{formatTime(100)}</Timer>
             </StyledTimerInput>
             {msg && <Message>{msg}</Message>}
         </div>
