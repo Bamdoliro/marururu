@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 import Image from 'next/image';
-import BaseLayout from '@/components/common/Layouts/BaseLayout';
+import BaseLayout from '@/layouts/BaseLayout';
 import useLogin from './hook';
 import { useRouter } from 'next/navigation';
 import { SIGNUP_PAGE_ROUTE } from '@/constants/routes';

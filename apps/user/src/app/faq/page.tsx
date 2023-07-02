@@ -2,7 +2,7 @@
 
 import Categories from '@/components/faq/Categories';
 import FaqItem from '@/components/faq/FaqItem';
-import AppLayout from '@/components/common/Layouts/AppLayout';
+import AppLayout from '@/layouts/AppLayout';
 import { useFaqListQuery } from '@/services/faq/queries';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';

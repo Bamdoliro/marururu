@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { FlexPropsType } from './type';
+import type { FlexPropsType } from './type';
 
 const Row = ({ children, gap, justifyContent, alignItems, width, height }: FlexPropsType) => {
     return (

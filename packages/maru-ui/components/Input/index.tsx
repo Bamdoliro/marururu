@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { color, font } from '@maru/theme';
-import { InputPropsType } from './type';
+import type { InputPropsType } from './type';
 import Message from './Message';
 
 const Input = ({

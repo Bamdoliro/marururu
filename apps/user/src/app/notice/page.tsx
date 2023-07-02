@@ -5,7 +5,7 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useNoticeListQuery } from '@/services/notice/queries';
-import AppLayout from '@/components/common/Layouts/AppLayout';
+import AppLayout from '@/layouts/AppLayout';
 
 const NoticePage = () => {
     const noticeListQuery = useNoticeListQuery();

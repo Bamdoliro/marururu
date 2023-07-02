@@ -16,9 +16,9 @@ const FormLayout = ({ children, title }: PropsType) => {
             <StyledFormLayout>
                 <ProgressBar />
                 <FormBox>
-                    <InfoBox>
+                    <FormInfoBox>
                         <Title>{title}</Title>
-                    </InfoBox>
+                    </FormInfoBox>
                     <ContentBox>{children}</ContentBox>
                 </FormBox>
             </StyledFormLayout>
@@ -39,7 +39,7 @@ const FormBox = styled.div`
     width: 810px;
 `;
 
-const InfoBox = styled.div`
+const FormInfoBox = styled.div`
     width: 100%;
     padding-bottom: 24px;
     border-bottom: 1px solid ${color.gray300};

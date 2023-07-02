@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FlexPropsType } from './type';
+import type { FlexPropsType } from './type';
 import { flex } from '@maru/utils';
 
 const Column = ({ children, gap, justifyContent, alignItems, width, height }: FlexPropsType) => {
