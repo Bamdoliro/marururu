@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import Message from './Message';
 import { formatTime } from '@maru/utils';
 import { useInterval } from '@maru/hooks';
-import { useEffect, Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 interface TimeLimitInputPropsType extends InputPropsType {
-    time: number;
-    setTime: Dispatch<SetStateAction<number>>;
+    timer: number;
+    setTimer: Dispatch<SetStateAction<number>>;
 }
 
 const TimeLimitInput = ({
@@ -22,13 +22,13 @@ const TimeLimitInput = ({
     msg,
     onChange,
     maxLength,
-    time,
-    setTime,
+    timer,
+    setTimer,
 }: TimeLimitInputPropsType) => {
     useInterval(() => {
-        setTime((prev) => prev - 1);
-        if (time === 0) {
-            setTime(0);
+        setTimer((prev) => prev - 1);
+        if (timer <= 0) {
+            setTimer(0);
         }
     }, 1000);
 
@@ -44,7 +44,7 @@ const TimeLimitInput = ({
                     value={value}
                     maxLength={maxLength}
                 />
-                <Timer>{formatTime(time)}</Timer>
+                <Timer>{formatTime(timer)}</Timer>
             </StyledTimeLimitInput>
             {msg && <Message>{msg}</Message>}
         </div>

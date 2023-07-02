@@ -17,13 +17,13 @@ const SignUpPage = () => {
         handleSignUpButtonClick,
         setCheckTermsAgree,
     } = useSignUp();
-
     const [timerLimitTime, setTimerLimitTime] = useState(0);
     /**
      * true면 인증 요청을 보낸 상태
      * false면 인증 요청을 아직 보내지 않은 상태
      */
     const requestEmailEnabled = timerLimitTime !== 0;
+
     return (
         <BaseLayout>
             <StyledSignUpPage>
@@ -43,7 +43,7 @@ const SignUpPage = () => {
                                 buttonText="인증"
                                 handleButtonClick={() => {
                                     handleRequestEmailButtonClick();
-                                    setTimerLimitTime(300);
+                                    setTimerLimitTime(300); // 5분
                                 }}
                                 type="email"
                                 placeholder="이메일"
@@ -60,8 +60,8 @@ const SignUpPage = () => {
                                     msg="발송된 이메일의 인증번호를 입력해주세요."
                                     name="code"
                                     onChange={handleJoinUserData}
-                                    time={timerLimitTime}
-                                    setTime={setTimerLimitTime}
+                                    timer={timerLimitTime}
+                                    setTimer={setTimerLimitTime}
                                 />
                             )}
                             <PreviewInput
