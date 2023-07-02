@@ -7,14 +7,9 @@ import {
     제출_마감_날짜,
     제출_시작_날짜,
 } from '@/models/submitTime';
-import isBetween from 'dayjs/plugin/isBetween';
-import utc from 'dayjs/plugin/utc';
-import dayjs from 'dayjs';
 import type { ButtonOptionType } from '@maru/ui';
 import { formatDay } from '@/utils/formatDay';
-
-dayjs.extend(isBetween);
-dayjs.extend(utc);
+import dayjs from 'dayjs';
 
 export const useDday = () => {
     const currentTime = dayjs().isBefore(제출_시작_날짜)

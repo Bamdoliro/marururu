@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
 import QueryClientProvider from '@/services/QueryClientProvider';
+import isBetween from 'dayjs/plugin/isBetween';
+import utc from 'dayjs/plugin/utc';
+import dayjs from 'dayjs';
+
+dayjs.extend(isBetween);
+dayjs.extend(utc);
 
 export const metadata = {
     title: '마루',

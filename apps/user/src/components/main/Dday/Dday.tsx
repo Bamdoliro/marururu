@@ -3,7 +3,7 @@
 import { styled } from 'styled-components';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';
-import { useButtonStatus, useDday, useRemainDate, useSchoolRecruitDate } from './Dday.hook';
+import { useButtonStatus, useDday, useRemainDate, useSchoolRecruitDate } from './Dday.hooks';
 
 const Dday = () => {
     const { isSubmitPeriod } = useDday();
