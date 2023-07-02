@@ -3,7 +3,7 @@ export { default as DropdownMenu } from './components/Dropdown/Dropdown';
 export { default as Row } from './components/Flex/Row';
 export { default as Column } from './components/Flex/Column';
 export { default as Link } from './components/Link/Link';
-export { default as Input } from './components/Input/Button';
+export { default as Input } from './components/Input/Input';
 export { default as ButtonInput } from './components/Input/ButtonInput';
 export { default as PreviewInput } from './components/Input/PreviewInput';
 export { default as SearchInput } from './components/Input/SearchInput';
