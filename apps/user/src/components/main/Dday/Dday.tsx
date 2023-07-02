@@ -1,23 +1,18 @@
 'use client';
 
 import { styled } from 'styled-components';
-import { 제출_마감_날짜, 제출_시작_날짜 } from '@/models/submitTime';
-import { formatDay } from '@/utils/formatDay';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';
-import useDday from './Dday.hook';
+import { useButtonStatus, useDday, useRemainDate, useSchoolRecruitDate } from './Dday.hooks';
 
 const Dday = () => {
-    const {
-        isSubmitPeriod,
-        status,
-        currentTime,
-        remainDays,
-        timeDiff,
-        buttonOption,
-        handleMovePageButtonClick,
-        buttonText,
-    } = useDday();
+    const { isSubmitPeriod } = useDday();
+
+    const { submitStart, submitEnd } = useSchoolRecruitDate();
+
+    const { status, remainTime, targetDate } = useRemainDate();
+
+    const { buttonOption, handleMovePageButtonClick, buttonText } = useButtonStatus();
 
     return (
         <StyledDday>
@@ -30,21 +25,16 @@ const Dday = () => {
                             2024학년도 신입생 모집
                         </Notice>
                         <Period>
-                            {제출_시작_날짜.format('YYYY년 MM월 DD일')} ~
-                            {제출_마감_날짜.format('YYYY년 MM월 DD일')}
+                            {submitStart} ~ {submitEnd}
                         </Period>
                     </Column>
                 ) : (
                     <Column gap="16px">
                         <Column gap="8px">
-                            <Status>{status.get(currentTime)}</Status>
-                            <RemainDays>
-                                {remainDays >= 1 || remainDays < 0
-                                    ? formatDay(remainDays)
-                                    : timeDiff}
-                            </RemainDays>
+                            <Status>{status}</Status>
+                            <RemainDays>{remainTime}</RemainDays>
                         </Column>
-                        <Period>{currentTime.format('YYYY년 MM월 DD일')}</Period>
+                        <Period>{targetDate}</Period>
                     </Column>
                 )}
                 <Button
