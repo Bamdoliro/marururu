@@ -4,8 +4,8 @@ import { InputPropsType } from './Button.type';
 import styled from 'styled-components';
 import Message from './Message';
 import { formatTime } from '@maru/utils';
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { useInterval } from '@maru/hooks';
+import { useEffect, Dispatch, SetStateAction } from 'react';
 
 interface TimeLimitInputPropsType extends InputPropsType {
     time: number;
@@ -25,18 +25,12 @@ const TimeLimitInput = ({
     time,
     setTime,
 }: TimeLimitInputPropsType) => {
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setTime((prev) => prev - 1);
-        }, 1000);
-
+    useInterval(() => {
+        setTime((prev) => prev - 1);
         if (time === 0) {
             setTime(0);
-            clearInterval(interval);
         }
-
-        return () => clearInterval(interval);
-    }, [time, setTime]);
+    }, 1000);
 
     return (
         <div style={{ width }}>
