@@ -1,7 +1,7 @@
 'use client';
 
 import { styled } from 'styled-components';
-import { 제출_마감_날짜, 제출_시작_날짜 } from '@/models/submitTime';
+import { 제출_마감_날짜, 제출_시작_날짜 } from '@/constants/submitTime';
 import { formatDay } from '@/utils/formatDay';
 import { Column, Button } from '@maru/ui';
 import { color, font } from '@maru/theme';

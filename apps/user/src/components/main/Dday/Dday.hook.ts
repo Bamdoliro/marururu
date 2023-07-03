@@ -6,7 +6,7 @@ import {
     최종_합격_발표,
     제출_마감_날짜,
     제출_시작_날짜,
-} from '@/models/submitTime';
+} from '@/constants/submitTime';
 import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import useInterval from './useInterval';
 
 const useTimer = () => {
     const [timerTime, setTimerTime] = useState(0);
