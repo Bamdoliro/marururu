@@ -14,11 +14,8 @@ interface TimeLimitInputPropsType extends InputPropsType {
 
 const TimeLimitInput = ({
     width = '320px',
-    placeholder,
     name,
     label,
-    value,
-    type = 'text',
     msg,
     onChange,
     maxLength,
@@ -36,14 +33,7 @@ const TimeLimitInput = ({
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
             <StyledTimeLimitInput>
-                <Input
-                    onChange={onChange}
-                    placeholder={placeholder}
-                    type={type}
-                    name={name}
-                    value={value}
-                    maxLength={maxLength}
-                />
+                <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
                 <Timer>{formatTime(timerTime)}</Timer>
             </StyledTimeLimitInput>
             {msg && <Message>{msg}</Message>}
