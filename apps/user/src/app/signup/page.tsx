@@ -5,10 +5,10 @@ import Image from 'next/image';
 import Terms from '@/components/signup/Terms/Terms';
 import BaseLayout from '@/layouts/BaseLayout';
 import useSignUp from './signup.hook';
-import { useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput } from '@maru/ui';
+import { useTimer } from '@maru/hooks';
 
 const SignUpPage = () => {
     const {
@@ -17,12 +17,7 @@ const SignUpPage = () => {
         handleSignUpButtonClick,
         setCheckTermsAgree,
     } = useSignUp();
-    const [timerLimitTime, setTimerLimitTime] = useState(0);
-    /**
-     * true면 인증 요청을 보낸 상태
-     * false면 인증 요청을 아직 보내지 않은 상태
-     */
-    const requestEmailEnabled = timerLimitTime !== 0;
+    const { requestEmailEnabled, startTimer, timerTime, setTimerTime } = useTimer();
 
     return (
         <BaseLayout>
@@ -43,7 +38,7 @@ const SignUpPage = () => {
                                 buttonText="인증"
                                 handleButtonClick={() => {
                                     handleRequestEmailButtonClick();
-                                    setTimerLimitTime(300); // 5분
+                                    startTimer(300); // 5분
                                 }}
                                 type="email"
                                 placeholder="이메일"
@@ -60,8 +55,8 @@ const SignUpPage = () => {
                                     msg="발송된 이메일의 인증번호를 입력해주세요."
                                     name="code"
                                     onChange={handleJoinUserData}
-                                    timer={timerLimitTime}
-                                    setTimer={setTimerLimitTime}
+                                    timerTime={timerTime}
+                                    setTimerTime={setTimerTime}
                                 />
                             )}
                             <PreviewInput

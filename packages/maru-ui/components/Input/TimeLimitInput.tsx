@@ -8,8 +8,8 @@ import { useInterval } from '@maru/hooks';
 import { Dispatch, SetStateAction } from 'react';
 
 interface TimeLimitInputPropsType extends InputPropsType {
-    timer: number;
-    setTimer: Dispatch<SetStateAction<number>>;
+    timerTime: number;
+    setTimerTime: Dispatch<SetStateAction<number>>;
 }
 
 const TimeLimitInput = ({
@@ -22,13 +22,13 @@ const TimeLimitInput = ({
     msg,
     onChange,
     maxLength,
-    timer,
-    setTimer,
+    timerTime,
+    setTimerTime,
 }: TimeLimitInputPropsType) => {
     useInterval(() => {
-        setTimer((prev) => prev - 1);
-        if (timer <= 0) {
-            setTimer(0);
+        setTimerTime((prev) => prev - 1);
+        if (timerTime <= 0) {
+            setTimerTime(0);
         }
     }, 1000);
 
@@ -44,7 +44,7 @@ const TimeLimitInput = ({
                     value={value}
                     maxLength={maxLength}
                 />
-                <Timer>{formatTime(timer)}</Timer>
+                <Timer>{formatTime(timerTime)}</Timer>
             </StyledTimeLimitInput>
             {msg && <Message>{msg}</Message>}
         </div>
