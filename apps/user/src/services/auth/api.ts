@@ -16,6 +16,7 @@ export interface joinUserParamsType {
     email: string;
     code: string;
     password: string;
+    repassword?: string;
 }
 
 export const joinUser = async ({ email, code, password }: joinUserParamsType) => {
