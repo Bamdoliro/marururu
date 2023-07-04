@@ -22,14 +22,17 @@ const useSignUp = () => {
      */
     const [checkTermsAgree, setCheckTermsAgree] = useState(false);
 
+    const joinUserMutate = useJoinUserMutation(joinUserData);
+    const requestEmailMutate = useRequestEmailMutation(joinUserData);
+
     const handleJoinUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setJoinUserData({ ...joinUserData, [name]: value });
     };
 
-    const clickSignUp = () => {
+    const handleSignUpButtonClick = () => {
         if (joinUserData.password === joinUserData.repassword) {
-            if (checkTermsAgree == true) {
+            if (checkTermsAgree === true) {
                 joinUserMutate.mutate();
             } else {
                 alert('이용약관 동의를 해주세요');
@@ -39,13 +42,12 @@ const useSignUp = () => {
         }
     };
 
-    const joinUserMutate = useJoinUserMutation(joinUserData);
-    const requestEmailMutate = useRequestEmailMutation(joinUserData);
+    const handleRequestEmailButtonClick = () => requestEmailMutate.mutate();
 
     return {
         handleJoinUserData,
-        requestEmailMutate,
-        clickSignUp,
+        handleRequestEmailButtonClick,
+        handleSignUpButtonClick,
         setCheckTermsAgree,
     };
 };

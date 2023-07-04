@@ -5,19 +5,19 @@ import Image from 'next/image';
 import Terms from '@/components/signup/Terms/Terms';
 import BaseLayout from '@/layouts/BaseLayout';
 import useSignUp from './signup.hook';
-import { useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { ButtonInput, PreviewInput, Button, Column, TimerInput } from '@maru/ui';
+import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput } from '@maru/ui';
+import { useTimer } from '@maru/hooks';
 
 const SignUpPage = () => {
-    const { handleJoinUserData, requestEmailMutate, clickSignUp, setCheckTermsAgree } = useSignUp();
-    const [time, setTime] = useState(0);
-    /**
-     * true면 인증 요청을 보낸 상태
-     * false면 인증 요청을 아직 보내지 않은 상태
-     */
-    const requestEmailEnabled = time !== 0;
+    const {
+        handleJoinUserData,
+        handleRequestEmailButtonClick,
+        handleSignUpButtonClick,
+        setCheckTermsAgree,
+    } = useSignUp();
+    const { requestEmailEnabled, startTimer, timerTime, setTimerTime } = useTimer();
 
     return (
         <BaseLayout>
@@ -36,11 +36,11 @@ const SignUpPage = () => {
                             <ButtonInput
                                 label="이메일 인증"
                                 buttonText="인증"
-                                type="email"
-                                buttonClick={() => {
-                                    requestEmailMutate.mutate();
-                                    setTime(300);
+                                handleButtonClick={() => {
+                                    handleRequestEmailButtonClick();
+                                    startTimer(300); // 5분
                                 }}
+                                type="email"
                                 placeholder="이메일"
                                 width="100%"
                                 name="email"
@@ -48,15 +48,15 @@ const SignUpPage = () => {
                                 enabled={requestEmailEnabled}
                             />
                             {requestEmailEnabled && (
-                                <TimerInput
+                                <TimeLimitInput
                                     label="인증코드"
                                     width="100%"
                                     maxLength={6}
                                     msg="발송된 이메일의 인증번호를 입력해주세요."
                                     name="code"
                                     onChange={handleJoinUserData}
-                                    time={time}
-                                    setTime={setTime}
+                                    timerTime={timerTime}
+                                    setTimerTime={setTimerTime}
                                 />
                             )}
                             <PreviewInput
@@ -75,7 +75,7 @@ const SignUpPage = () => {
                         </Column>
                         {/* 이용약관 동의 */}
                         <Terms setCheckTermsAgree={setCheckTermsAgree} />
-                        <Button width="100%" onClick={clickSignUp}>
+                        <Button width="100%" onClick={handleSignUpButtonClick}>
                             회원가입
                         </Button>
                     </SignUpBox>
@@ -96,7 +96,6 @@ const StyledSignUpPage = styled.div`
 
 const ContentBox = styled.div`
     display: flex;
-    // @TODO 확인
     width: 708px;
     height: 100%;
     background-color: ${color.white};

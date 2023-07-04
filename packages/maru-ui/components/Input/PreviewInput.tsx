@@ -1,6 +1,6 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { InputPropsType } from './Button.type';
+import { InputPropsType } from './Input.type';
 import { useState } from 'react';
 import styled from 'styled-components';
 import VisibleEyeIcon from '../../Icons/VisibleEye';

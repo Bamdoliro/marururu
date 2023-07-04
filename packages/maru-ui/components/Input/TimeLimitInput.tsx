@@ -1,54 +1,49 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { InputPropsType } from './Button.type';
+import { InputPropsType } from './Input.type';
 import styled from 'styled-components';
 import Message from './Message';
-import formatTime from '../../utils/formatTime';
-import useTimer from '../../hooks/useTimer';
+import { formatTime } from '@maru/utils';
+import { useInterval } from '@maru/hooks';
 import { Dispatch, SetStateAction } from 'react';
 
-interface TimerInputPropsType extends InputPropsType {
-    time: number;
-    setTime: Dispatch<SetStateAction<number>>;
+interface TimeLimitInputPropsType extends InputPropsType {
+    timerTime: number;
+    setTimerTime: Dispatch<SetStateAction<number>>;
 }
 
-const TimerInput = ({
+const TimeLimitInput = ({
     width = '320px',
-    placeholder,
     name,
     label,
-    value,
-    type = 'text',
     msg,
     onChange,
     maxLength,
-    time,
-    setTime,
-}: TimerInputPropsType) => {
-    useTimer(time, setTime);
+    timerTime,
+    setTimerTime,
+}: TimeLimitInputPropsType) => {
+    useInterval(() => {
+        setTimerTime((prev) => prev - 1);
+        if (timerTime <= 0) {
+            setTimerTime(0);
+        }
+    }, 1000);
 
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledTimerInput>
-                <Input
-                    onChange={onChange}
-                    placeholder={placeholder}
-                    type={type}
-                    name={name}
-                    value={value}
-                    maxLength={maxLength}
-                />
-                <Timer>{formatTime(time)}</Timer>
-            </StyledTimerInput>
+            <StyledTimeLimitInput>
+                <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
+                <Timer>{formatTime(timerTime)}</Timer>
+            </StyledTimeLimitInput>
             {msg && <Message>{msg}</Message>}
         </div>
     );
 };
 
-export default TimerInput;
+export default TimeLimitInput;
 
-const StyledTimerInput = styled.div`
+const StyledTimeLimitInput = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     gap: 10px;
     height: 48px;
