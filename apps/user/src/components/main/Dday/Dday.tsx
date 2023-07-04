@@ -7,11 +7,8 @@ import { useButtonStatus, useDday, useRemainDate, useSchoolRecruitDate } from '.
 
 const Dday = () => {
     const { isSubmitPeriod } = useDday();
-
     const { submitStart, submitEnd } = useSchoolRecruitDate();
-
     const { status, remainTime, targetDate } = useRemainDate();
-
     const { buttonOption, handleMovePageButtonClick, buttonText } = useButtonStatus();
 
     return (

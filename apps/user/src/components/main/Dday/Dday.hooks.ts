@@ -6,7 +6,7 @@ import {
     최종_합격_발표,
     제출_마감_날짜,
     제출_시작_날짜,
-} from '@/models/submitTime';
+} from '@/constants/submitTime';
 import type { ButtonOptionType } from '@maru/ui';
 import { formatDay } from '@/utils/formatDay';
 import dayjs from 'dayjs';
@@ -66,7 +66,7 @@ export const useRemainDate = () => {
 };
 
 export const useButtonStatus = () => {
-    const { currentTime, remainDays, isSubmitPeriod } = useDday();
+    const { remainDays, isSubmitPeriod } = useDday();
     const router = useRouter();
 
     const buttonOption: ButtonOptionType =
