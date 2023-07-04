@@ -1,6 +1,5 @@
 'use client';
 
-import MainLayout from '@/layouts/MainLayout';
 import Notice from '@/components/main/Notice/Notice';
 import Schedule from '@/components/main/Schedule/Schedule';
 import initMockAPI from '@/mocks';
@@ -9,6 +8,7 @@ import Faq from '@/components/main/Faq/Faq';
 import { Row } from '@maru/ui';
 import styled from 'styled-components';
 import { flex } from '@maru/utils';
+import AppLayout from '@/layouts/AppLayout';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();
@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const Home = () => {
     return (
-        <MainLayout>
+        <AppLayout style={{ padding: '0px 100px', marginBottom: '250px' }}>
             <StyledMainPage>
                 <Row gap="48px" height="451px" width="100%" justifyContent="center">
                     <Dday />
@@ -27,7 +27,7 @@ const Home = () => {
                     <Faq />
                 </Row>
             </StyledMainPage>
-        </MainLayout>
+        </AppLayout>
     );
 };
 

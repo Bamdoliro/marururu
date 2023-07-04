@@ -71,7 +71,7 @@ export const useRemainDate = () => {
 };
 
 export const useButtonStatus = () => {
-    const { currentTime, remainDays, isSubmitPeriod } = useDday();
+    const { remainDays, isSubmitPeriod } = useDday();
     const router = useRouter();
 
     const buttonOption: ButtonOptionType =

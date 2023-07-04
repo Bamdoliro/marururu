@@ -5,10 +5,11 @@ import styled from 'styled-components';
 interface PropsType {
     children: ReactNode;
     backgroundColor?: string;
+    style?: Object;
 }
 
-const BaseLayout = ({ children, backgroundColor }: PropsType) => {
-    return <StyledBaseLayout style={{ backgroundColor }}>{children}</StyledBaseLayout>;
+const BaseLayout = ({ children, backgroundColor, style }: PropsType) => {
+    return <StyledBaseLayout style={{ backgroundColor, ...style }}>{children}</StyledBaseLayout>;
 };
 
 export default BaseLayout;
