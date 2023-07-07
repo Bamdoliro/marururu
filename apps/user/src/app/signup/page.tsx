@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Terms from '@/components/signup/Terms/Terms';
 import BaseLayout from '@/layouts/BaseLayout';
-import useSignUp from './signup.hook';
+import useSignUp from './signup.hooks';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput } from '@maru/ui';
