@@ -31,7 +31,6 @@ const Footer = () => {
                         <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)}>공지사항</Link>
                         <Link onClick={() => router.push(FAQ_PAGE_ROUTE)}>자주묻는질문</Link>
                         <Link onClick={() => console.log('학교 소개 페이지')}>학교소개</Link>
-                        <Link onClick={() => console.log('마루 소개 페이지')}>마루소개</Link>
                     </Column>
                     <Column gap="24px">
                         <Link onClick={() => console.log('test')}>이용약관</Link>

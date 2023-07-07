@@ -12,12 +12,12 @@ const useLogin = () => {
         password: '',
     });
 
+    const loginUserMutate = useLoginUserMutation(loginUserData);
+
     const handleLoginUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setLoginUserData({ ...loginUserData, [name]: value });
     };
-
-    const loginUserMutate = useLoginUserMutation(loginUserData);
 
     return { handleLoginUserData, loginUserMutate };
 };
