@@ -14,12 +14,16 @@ const useLogin = () => {
 
     const loginUserMutate = useLoginUserMutation(loginUserData);
 
+    const handleLoginButtonClick = () => {
+        loginUserMutate.mutate();
+    };
+
     const handleLoginUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setLoginUserData({ ...loginUserData, [name]: value });
     };
 
-    return { handleLoginUserData, loginUserMutate };
+    return { handleLoginUserData, handleLoginButtonClick };
 };
 
 export default useLogin;

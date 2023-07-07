@@ -14,7 +14,7 @@ const SignUpPage = () => {
     const {
         handleJoinUserData,
         handleRequestEmailButtonClick,
-        handleSignUpButtonClick,
+        handleJoinButtonClick,
         setCheckTermsAgree,
     } = useSignUp();
     const { requestEmailEnabled, startTimer, timerTime, setTimerTime } = useTimer();
@@ -75,7 +75,7 @@ const SignUpPage = () => {
                         </Column>
                         {/* 이용약관 동의 */}
                         <Terms setCheckTermsAgree={setCheckTermsAgree} />
-                        <Button width="100%" onClick={handleSignUpButtonClick}>
+                        <Button width="100%" onClick={handleJoinButtonClick}>
                             회원가입
                         </Button>
                     </SignUpBox>
