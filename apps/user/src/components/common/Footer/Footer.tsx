@@ -24,6 +24,7 @@ const Footer = () => {
                     <Copyright>Copyright © 밤돌이로 all rights reserved.</Copyright>
                 </Column>
             </InfoBox>
+
             <Row gap="95px" alignItems="flex-start">
                 <NavigationBox>
                     <Column gap="24px">
@@ -51,9 +52,8 @@ const Footer = () => {
 export default Footer;
 
 const StyledFooter = styled.div`
-    ${flex({ justifyContent: 'center', alignItems: 'flex-start' })}
+    ${flex({ justifyContent: 'space-between', alignItems: 'center' })}
     background-color: ${color.gray100};
-    gap: 155px;
     height: 350px;
     width: 100%;
     padding: 40px 100px;
@@ -64,6 +64,7 @@ const InfoBox = styled.div`
     color: ${color.gray600};
     ${flex({ flexDirection: 'column' })}
     gap: 40px;
+    width: 489px;
 `;
 
 const ContentBox = styled.div`
