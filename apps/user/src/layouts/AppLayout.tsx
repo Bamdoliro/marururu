@@ -1,13 +1,13 @@
 import Footer from '@/components/common/Footer/Footer';
 import Header from '@/components/common/Header/Header';
 import { color } from '@maru/theme';
-import { ReactNode } from 'react';
-import styled, { CSSProp } from 'styled-components';
+import { CSSProperties, ReactNode } from 'react';
+import styled from 'styled-components';
 
 interface PropsType {
     children: ReactNode;
     backgroundColor?: string;
-    style?: Object;
+    style?: CSSProperties;
 }
 
 const AppLayout = ({ children, backgroundColor = color.white, style }: PropsType) => {

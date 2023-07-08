@@ -1,25 +1,25 @@
+import { loginUserParamsType } from '@/services/auth/api';
 import { useLoginUserMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, useState } from 'react';
 
-interface loginUserDataType {
-    email: string;
-    password: string;
-}
-
 const useLogin = () => {
-    const [loginUserData, setLoginUserData] = useState<loginUserDataType>({
+    const [loginUserData, setLoginUserData] = useState<loginUserParamsType>({
         email: '',
         password: '',
     });
+
+    const loginUserMutate = useLoginUserMutation(loginUserData);
+
+    const handleLoginButtonClick = () => {
+        loginUserMutate.mutate();
+    };
 
     const handleLoginUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setLoginUserData({ ...loginUserData, [name]: value });
     };
 
-    const loginUserMutate = useLoginUserMutation(loginUserData);
-
-    return { handleLoginUserData, loginUserMutate };
+    return { handleLoginUserData, handleLoginButtonClick };
 };
 
 export default useLogin;

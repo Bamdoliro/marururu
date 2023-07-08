@@ -1,21 +1,33 @@
+import { joinUserParamsType } from '@/services/auth/api';
 import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
-import { ChangeEventHandler, useState } from 'react';
-
-interface joinUserDataType {
-    email: string;
-    code: string;
-    password: string;
-    repassword: string;
-}
+import { ChangeEventHandler, SetStateAction, Dispatch, useState } from 'react';
 
 const useSignUp = () => {
-    const [joinUserData, setJoinUserData] = useState<joinUserDataType>({
+    const [joinUserData, setJoinUserData] = useState<joinUserParamsType>({
         email: '',
         code: '',
         password: '',
         repassword: '',
     });
 
+    const { handleJoinUserData, handleJoinButtonClick, setCheckTermsAgree } = useJoin(
+        joinUserData,
+        setJoinUserData,
+    );
+    const { handleRequestEmailButtonClick } = useRequestEmail(joinUserData);
+
+    return {
+        handleJoinUserData,
+        handleJoinButtonClick,
+        handleRequestEmailButtonClick,
+        setCheckTermsAgree,
+    };
+};
+
+const useJoin = (
+    joinUserData: joinUserParamsType,
+    setJoinUserData: Dispatch<SetStateAction<joinUserParamsType>>,
+) => {
     /**
      * 이용약관 동의를 했으면 true
      * 이용약관 동의를 하지 않았으면 false
@@ -23,14 +35,13 @@ const useSignUp = () => {
     const [checkTermsAgree, setCheckTermsAgree] = useState(false);
 
     const joinUserMutate = useJoinUserMutation(joinUserData);
-    const requestEmailMutate = useRequestEmailMutation(joinUserData);
 
     const handleJoinUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setJoinUserData({ ...joinUserData, [name]: value });
     };
 
-    const handleSignUpButtonClick = () => {
+    const handleJoinButtonClick = () => {
         if (joinUserData.password === joinUserData.repassword) {
             if (checkTermsAgree === true) {
                 joinUserMutate.mutate();
@@ -42,14 +53,20 @@ const useSignUp = () => {
         }
     };
 
-    const handleRequestEmailButtonClick = () => requestEmailMutate.mutate();
-
     return {
         handleJoinUserData,
-        handleRequestEmailButtonClick,
-        handleSignUpButtonClick,
+        handleJoinButtonClick,
         setCheckTermsAgree,
     };
+};
+
+const useRequestEmail = (joinUserData: joinUserParamsType) => {
+    const requestEmailMutate = useRequestEmailMutation(joinUserData);
+    const handleRequestEmailButtonClick = () => {
+        requestEmailMutate.mutate();
+    };
+
+    return { handleRequestEmailButtonClick };
 };
 
 export default useSignUp;

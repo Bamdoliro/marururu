@@ -1,11 +1,11 @@
 import { color } from '@maru/theme';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface PropsType {
     children: ReactNode;
     backgroundColor?: string;
-    style?: Object;
+    style?: CSSProperties;
 }
 
 const BaseLayout = ({ children, backgroundColor, style }: PropsType) => {

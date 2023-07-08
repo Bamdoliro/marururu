@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import BaseLayout from '@/layouts/BaseLayout';
-import useLogin from './login.hook';
+import useLogin from './login.hooks';
 import { useRouter } from 'next/navigation';
 import { SIGNUP_PAGE_ROUTE } from '@/constants/routes';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
@@ -13,7 +13,7 @@ import { flex } from '@maru/utils';
 
 const LoginPage = () => {
     const router = useRouter();
-    const { handleLoginUserData, loginUserMutate } = useLogin();
+    const { handleLoginUserData, handleLoginButtonClick } = useLogin();
 
     return (
         <BaseLayout backgroundColor={color.gray100}>
@@ -37,7 +37,7 @@ const LoginPage = () => {
                                 />
                             </Column>
                             <Column gap="16px" alignItems="flex-end">
-                                <Button width="100%" onClick={() => loginUserMutate.mutate()}>
+                                <Button width="100%" onClick={handleLoginButtonClick}>
                                     로그인
                                 </Button>
                                 <FindPasswordLink>
