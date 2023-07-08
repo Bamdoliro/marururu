@@ -1,7 +1,7 @@
 'use client';
 
-import { CategoryFilter } from '@/components';
-import { FaqItem } from '@/components/';
+import { CategoryFilter } from '@/components/faq';
+import { FaqItem } from '@/components/faq';
 import AppLayout from '@/layouts/AppLayout';
 import { useFaqListQuery } from '@/services/faq/queries';
 import { color, font } from '@maru/theme';

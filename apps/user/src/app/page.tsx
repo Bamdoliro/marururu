@@ -1,10 +1,10 @@
 'use client';
 
-import { Notice } from '@/components/';
-import { Schedule } from '@/components/';
+import { Notice } from '@/components/main';
+import { Schedule } from '@/components/main';
 import initMockAPI from '@/mocks';
-import { Dday } from '@/components/';
-import { Faq } from '@/components/';
+import { Dday } from '@/components/main';
+import { Faq } from '@/components/main';
 import { Row } from '@maru/ui';
 import styled from 'styled-components';
 import { flex } from '@maru/utils';
