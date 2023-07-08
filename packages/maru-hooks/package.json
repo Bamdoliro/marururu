@@ -9,9 +9,7 @@
   },
   "devDependencies": {
     "@maru/eslint": "*",
-    "@maru/tsconfig": "*"
-  },
-  "dependencies": {
+    "@maru/tsconfig": "*",
     "typescript": "^5.1.3"
   }
 }
