@@ -1,4 +1,4 @@
-import RightArrowIcon from '../../common/Icons/RightArrow';
+import { RightArrowIcon } from '../../common/Icons';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { useMainFaqListQuery } from '@/services/main/queries';

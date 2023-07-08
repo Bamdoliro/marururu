@@ -1,7 +1,7 @@
 'use client';
 
-import LeftArrowIcon from '@/components/common/Icons/LeftArrow';
-import NoticeHeader from '@/components/notice/NoticeHeader/NoticeHeader';
+import { LeftArrowIcon } from '@/components/common/Icons';
+import { NoticeHeader } from '@/components';
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';

@@ -7,7 +7,7 @@ import useLogin from './login.hook';
 import { useRouter } from 'next/navigation';
 import { SIGNUP_PAGE_ROUTE } from '@/constants/routes';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
-import RightArrowIcon from '@/components/common/Icons/RightArrow';
+import { RightArrowIcon } from '@/components/common/Icons';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 

@@ -1,4 +1,4 @@
-import RightArrowIcon from '../../common/Icons/RightArrow';
+import { RightArrowIcon } from '../../common/Icons';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';

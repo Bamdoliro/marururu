@@ -1,4 +1,4 @@
-import FaqIcon from '@/components/common/Icons/Faq';
+import { FaqIcon } from '@/components/common/Icons';
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 import { FAQ_PAGE_ROUTE } from '@/constants/routes';
