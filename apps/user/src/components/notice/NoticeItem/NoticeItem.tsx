@@ -1,7 +1,7 @@
 import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import RightArrowIcon from '../../common/Icons/RightArrow';
+import { RightArrowIcon } from '../../common/Icons';
 import { Column } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';

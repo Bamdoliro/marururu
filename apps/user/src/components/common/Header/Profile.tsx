@@ -1,4 +1,4 @@
-import DownArrowIcon from '../Icons/ArrowDropDown';
+import { ArrowDropDownIcon } from '../Icons';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -11,7 +11,7 @@ const Profile = ({ name }: PropsType) => {
     return (
         <StyledProfile>
             <Name>{name} 님</Name>
-            <DownArrowIcon />
+            <ArrowDropDownIcon />
         </StyledProfile>
     );
 };

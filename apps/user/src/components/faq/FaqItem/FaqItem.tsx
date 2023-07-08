@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import TopArrowIcon from '../../common/Icons/TopArrow';
-import BottomArrowIcon from '../../common/Icons/BottomArrow';
-import AnswerIcon from '../../common/Icons/Answer';
-import QuestionIcon from '../../common/Icons/Faq';
+import { TopArrowIcon } from '../../common/Icons';
+import { BottomArrowIcon } from '../../common/Icons';
+import { AnswerIcon } from '../../common/Icons';
+import { FaqIcon } from '../../common/Icons';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { Row } from '@maru/ui';
@@ -20,7 +20,7 @@ const FaqItem = ({ question, answer }: PropsType) => {
         <StyledFaqItem>
             <QuestionBox onClick={() => setIsOpen((prev) => !prev)}>
                 <Row gap="12px" alignItems="center">
-                    <QuestionIcon color={color.gray400} />
+                    <FaqIcon color={color.gray400} />
                     <Question>{question}</Question>
                 </Row>
                 {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}

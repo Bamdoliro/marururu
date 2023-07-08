@@ -1,6 +1,6 @@
-import GrayLogoIcon from '../Icons/GrayLogo';
-import BamdoliroLogoIcon from '../Icons/Bamdoliro';
-import InstagramLogoIcon from '../Icons/Instagram';
+import { GrayLogoIcon } from '../Icons';
+import { BamdoliroLogoIcon } from '../Icons';
+import { InstagramLogoIcon } from '../Icons';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { Column, Row, Link } from '@maru/ui';

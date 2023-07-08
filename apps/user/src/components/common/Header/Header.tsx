@@ -14,7 +14,7 @@ import {
     NOTICE_PAGE_ROUTE,
     SIGNUP_PAGE_ROUTE,
 } from '@/constants/routes';
-import LogoIcon from '../Icons/Logo';
+import { LogoIcon } from '../Icons';
 
 const HEADER_DATA = [
     {
