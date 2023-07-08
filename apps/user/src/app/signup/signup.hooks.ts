@@ -1,15 +1,9 @@
+import { joinUserParamsType } from '@/services/auth/api';
 import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, SetStateAction, Dispatch, useState } from 'react';
 
-interface joinUserDataType {
-    email: string;
-    code: string;
-    password: string;
-    repassword: string;
-}
-
 const useSignUp = () => {
-    const [joinUserData, setJoinUserData] = useState<joinUserDataType>({
+    const [joinUserData, setJoinUserData] = useState<joinUserParamsType>({
         email: '',
         code: '',
         password: '',
@@ -31,8 +25,8 @@ const useSignUp = () => {
 };
 
 const useJoin = (
-    joinUserData: joinUserDataType,
-    setJoinUserData: Dispatch<SetStateAction<joinUserDataType>>,
+    joinUserData: joinUserParamsType,
+    setJoinUserData: Dispatch<SetStateAction<joinUserParamsType>>,
 ) => {
     /**
      * 이용약관 동의를 했으면 true
@@ -66,7 +60,7 @@ const useJoin = (
     };
 };
 
-const useRequestEmail = (joinUserData: joinUserDataType) => {
+const useRequestEmail = (joinUserData: joinUserParamsType) => {
     const requestEmailMutate = useRequestEmailMutation(joinUserData);
     const handleRequestEmailButtonClick = () => {
         requestEmailMutate.mutate();
