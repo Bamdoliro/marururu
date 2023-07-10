@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { useMainNoticeListQuery } from '@/services/main/queries';
 import NoticeItem from './NoticeItem';
-import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
+import ROUTES from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
@@ -14,7 +14,7 @@ const Notice = () => {
 
     return (
         <StyledNotice>
-            <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)} gap="8px">
+            <Link onClick={() => router.push(ROUTES.NOTICE)} gap="8px">
                 <Title>공지사항</Title>
                 <RightArrowIcon color={color.gray900} size={22} />
             </Link>

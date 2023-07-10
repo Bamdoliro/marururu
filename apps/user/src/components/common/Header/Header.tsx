@@ -1,41 +1,34 @@
 import { Storage } from '@/apis/storage';
-import { ACCESS_KEY } from '@/constants/token';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { Button, Row } from '@maru/ui';
 import Profile from './Profile';
-import {
-    FAQ_PAGE_ROUTE,
-    FORM_PAGE_ROUTE,
-    LOGIN_PAGE_ROUTE,
-    MAIN_PAGE_ROUTE,
-    NOTICE_PAGE_ROUTE,
-    SIGNUP_PAGE_ROUTE,
-} from '@/constants/routes';
+import ROUTES from '@/constants/routes';
+import TOKEN from '@/constants/token';
 import { LogoIcon } from '../Icons';
 
 const HEADER_DATA = [
     {
         id: 0,
         name: '홈',
-        route: MAIN_PAGE_ROUTE,
+        route: ROUTES.MAIN,
     },
     {
         id: 1,
         name: '원서접수',
-        route: FORM_PAGE_ROUTE,
+        route: ROUTES.FORM,
     },
     {
         id: 2,
         name: '공지사항',
-        route: NOTICE_PAGE_ROUTE,
+        route: ROUTES.NOTICE,
     },
     {
         id: 3,
         name: '자주 묻는 질문',
-        route: FAQ_PAGE_ROUTE,
+        route: ROUTES.FAQ,
     },
     {
         id: 4,
@@ -46,12 +39,12 @@ const HEADER_DATA = [
 
 const Header = () => {
     const router = useRouter();
-    const loginStatus = Storage.getItem(ACCESS_KEY);
+    const loginStatus = Storage.getItem(TOKEN.ACCESS);
 
     return (
         <StyledHeader>
             <HeaderBar>
-                <LogoIcon cursor="pointer" onClick={() => router.push(MAIN_PAGE_ROUTE)} />
+                <LogoIcon cursor="pointer" onClick={() => router.push(ROUTES.MAIN)} />
                 {loginStatus ? (
                     <Profile name="밤돌이로" />
                 ) : (
@@ -59,13 +52,13 @@ const Header = () => {
                         <Button
                             option="QUATERNARY"
                             size="SMALL"
-                            onClick={() => router.push(LOGIN_PAGE_ROUTE)}>
+                            onClick={() => router.push(ROUTES.LOGIN)}>
                             로그인
                         </Button>
                         <Button
                             option="PRIMARY"
                             size="SMALL"
-                            onClick={() => router.push(SIGNUP_PAGE_ROUTE)}>
+                            onClick={() => router.push(ROUTES.SIGNUP)}>
                             회원가입
                         </Button>
                     </Row>

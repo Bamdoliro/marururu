@@ -1,3 +1,7 @@
-export const ACCESS_KEY = "access-token";
-export const REFRESH_KEY = "refresh-token";
-export const REQUEST_KEY = "Authorization";
+const TOKEN = {
+    ACCESS: 'access-token',
+    REFRESH: 'refresh-token',
+    REQUEST: 'Authorization',
+} as const;
+
+export default TOKEN;

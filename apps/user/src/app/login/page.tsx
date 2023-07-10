@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { BaseLayout } from '@/layouts';
 import useLogin from './login.hooks';
 import { useRouter } from 'next/navigation';
-import { SIGNUP_PAGE_ROUTE } from '@/constants/routes';
+import ROUTES from '@/constants/routes';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { RightArrowIcon } from '@/components/common/Icons';
 import { color, font } from '@maru/theme';
@@ -48,7 +48,7 @@ const LoginPage = () => {
                         </Column>
                         <SignUp>
                             회원이 아니신가요?
-                            <SignUpLink onClick={() => router.push(SIGNUP_PAGE_ROUTE)}>
+                            <SignUpLink onClick={() => router.push(ROUTES.SIGNUP)}>
                                 회원가입
                             </SignUpLink>
                         </SignUp>

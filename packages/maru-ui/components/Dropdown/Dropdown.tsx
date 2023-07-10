@@ -5,13 +5,9 @@ import styled, { css } from 'styled-components';
 import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
 
-interface DropdownItemType {
-    dropdownItem: string;
-}
-
 interface PropsType {
     label: string;
-    DropdownData: DropdownItemType[];
+    DropdownData: string[];
     width?: string;
     placeholder?: string;
 }
@@ -25,8 +21,8 @@ const Dropdown = ({
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(placeholder);
 
-    const clickedMenu = (item: DropdownItemType) => {
-        setSelectedItem(item.dropdownItem);
+    const clickedMenu = (item: string) => {
+        setSelectedItem(item);
         setIsOpen(false);
     };
 
@@ -43,7 +39,7 @@ const Dropdown = ({
                 <DropdownList>
                     {DropdownData?.map((item, index) => (
                         <DropdownItem key={`dropdown ${index}`} onClick={() => clickedMenu(item)}>
-                            {item.dropdownItem}
+                            {item}
                         </DropdownItem>
                     ))}
                 </DropdownList>

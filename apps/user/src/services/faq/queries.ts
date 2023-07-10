@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import * as KEY from '@/constants/key';
+import KEY from '@/constants/key';
 import { faqCategoryList, faqList } from './api';
 
 // 카테고리 리스트

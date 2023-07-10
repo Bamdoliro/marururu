@@ -1,4 +1,4 @@
-import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
+import ROUTES from '@/constants/routes';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { RightArrowIcon } from '../../common/Icons';
@@ -16,7 +16,7 @@ const NoticeItem = ({ id, title, date }: PropsType) => {
     const router = useRouter();
 
     return (
-        <StyledNoticeItem onClick={() => router.push(`${NOTICE_PAGE_ROUTE}/${id}`)}>
+        <StyledNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
             <Column gap="8px" height="55px">
                 <Title>{title}</Title>
                 <Date>{date}</Date>
