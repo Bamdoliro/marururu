@@ -8,7 +8,7 @@ import {
     제출_시작_날짜,
 } from '@/constants/submitTime';
 import type { ButtonOptionType } from '@maru/ui';
-import { formatDay } from '@/utils/formatDay';
+import { formatDay } from '@/utils';
 import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
 import dayjs from 'dayjs';

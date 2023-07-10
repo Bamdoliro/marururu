@@ -3,9 +3,9 @@
 import { NoticeItem } from '@/components/notice';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import styled from 'styled-components';
 import { useNoticeListQuery } from '@/services/notice/queries';
-import AppLayout from '@/layouts/AppLayout';
+import { AppLayout } from '@/layouts';
+import styled from 'styled-components';
 
 const NoticePage = () => {
     const noticeListQuery = useNoticeListQuery();

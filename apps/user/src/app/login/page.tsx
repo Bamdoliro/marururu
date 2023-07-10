@@ -1,8 +1,7 @@
 'use client';
 
-import styled from 'styled-components';
 import Image from 'next/image';
-import BaseLayout from '@/layouts/BaseLayout';
+import { BaseLayout } from '@/layouts';
 import useLogin from './login.hooks';
 import { useRouter } from 'next/navigation';
 import { SIGNUP_PAGE_ROUTE } from '@/constants/routes';
@@ -10,6 +9,7 @@ import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { RightArrowIcon } from '@/components/common/Icons';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import styled from 'styled-components';
 
 const LoginPage = () => {
     const router = useRouter();

@@ -6,9 +6,9 @@ import initMockAPI from '@/mocks';
 import { Dday } from '@/components/main';
 import { Faq } from '@/components/main';
 import { Row } from '@maru/ui';
-import styled from 'styled-components';
 import { flex } from '@maru/utils';
-import AppLayout from '@/layouts/AppLayout';
+import { AppLayout } from '@/layouts';
+import styled from 'styled-components';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();

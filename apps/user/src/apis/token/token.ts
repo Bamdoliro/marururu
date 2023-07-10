@@ -1,5 +1,5 @@
 import { ACCESS_KEY, REQUEST_KEY } from '@/constants/token';
-import { Storage } from '../storage/storage';
+import { Storage } from '../storage';
 
 export const authorization = () => {
     return {

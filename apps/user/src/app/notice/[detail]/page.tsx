@@ -8,7 +8,7 @@ import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { Link } from '@maru/ui';
 import { styled } from 'styled-components';
-import AppLayout from '@/layouts/AppLayout';
+import { AppLayout } from '@/layouts';
 
 const NoticeDetailPage = () => {
     const router = useRouter();

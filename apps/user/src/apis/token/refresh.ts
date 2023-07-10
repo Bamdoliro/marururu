@@ -1,8 +1,8 @@
 import { LOGIN_PAGE_ROUTE } from '@/constants/routes';
 import { ACCESS_KEY, REFRESH_KEY } from '@/constants/token';
 import { useRouter } from 'next/navigation';
-import { maru } from '../instance/instance';
-import { Storage } from '../storage/storage';
+import { maru } from '../instance';
+import { Storage } from '../storage';
 
 export const refreshToken = async () => {
     const router = useRouter();

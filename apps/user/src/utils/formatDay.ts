@@ -1,4 +1,4 @@
-export const formatDay = (remainDays: number) => {
+const formatDay = (remainDays: number) => {
     remainDays = Math.floor(remainDays);
     if (remainDays > 0) {
         return `D-${remainDays}`;
@@ -8,3 +8,5 @@ export const formatDay = (remainDays: number) => {
         return 'D-Day';
     }
 };
+
+export default formatDay;
