@@ -21,8 +21,16 @@ const NoticeDetailPage = () => {
                     <Title>공지사항</Title>
                 </Link>
                 <ContentsBox>
-                    <NoticeHeader title="테스트" date="2023.5.10" />
-                    <Content>이것은 테스트 입니다</Content>
+                    <NoticeHeader title="2023학년도 2차전형 일정 안내" date="2023.5.10" />
+                    <Content>
+                        1차 원서접수: 10월 16일 (월) ~ 19일 (목)
+                        <br />
+                        1차 합격자 발표: 10월 23일 (월)
+                        <br />
+                        2차 전형: 10월 27일 (금)
+                        <br />
+                        11월 2일 (목): 최종 합격자 발표
+                    </Content>
                 </ContentsBox>
             </StyledNoticeDetailPage>
         </AppLayout>

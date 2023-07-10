@@ -10,17 +10,7 @@ import styled from 'styled-components';
 const NOTICE_LIST_DATA = [
     {
         id: 1,
-        title: '아 뭐 쓰지 1',
-        date: '2023.5.10',
-    },
-    {
-        id: 2,
-        title: '아 뭐 쓰지 2',
-        date: '2023.5.10',
-    },
-    {
-        id: 3,
-        title: '아 뭐 쓰지 3',
+        title: '2023학년도 2차전형 일정 안내',
         date: '2023.5.10',
     },
 ];

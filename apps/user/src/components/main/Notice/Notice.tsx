@@ -11,15 +11,7 @@ import { flex } from '@maru/utils';
 const NOTICE_LIST_DATA = [
     {
         id: 1,
-        title: '아 뭐 쓰지 1',
-    },
-    {
-        id: 2,
-        title: '아 뭐 쓰지 2',
-    },
-    {
-        id: 3,
-        title: '아 뭐 쓰지 3',
+        title: '2023학년도 2차전형 일정 안내',
     },
 ];
 

@@ -6,17 +6,17 @@ import { flex } from '@maru/utils';
 const SCHEDULE_DATA = [
     {
         id: 0,
-        date: '10월 17일 (화) ~ 20일 (금)',
+        date: '10월 16일 (월) ~ 19일 (목)',
         plan: '1차 원서접수',
     },
     {
         id: 1,
-        date: '10월 24일 (화)',
+        date: '10월 23일 (월)',
         plan: '1차 합격자 발표',
     },
     {
         id: 2,
-        date: '10월 28일 (토)',
+        date: '10월 27일 (금)',
         plan: '2차 전형',
     },
     {
