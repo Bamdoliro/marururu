@@ -25,7 +25,7 @@ const CATEGORY_LIST_DATA = [
 ];
 
 const CategoryFilter = () => {
-    const [selectedCategory, setSelectedCategory] = useState(0);
+    const [selectedCategory, setSelectedCategory] = useState(1);
     // const faqCategoryListQuery = useFaqCategoryListQuery();
 
     return (
