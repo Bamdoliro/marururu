@@ -6,12 +6,12 @@ import {
     requestEmail,
     requestEmailParamsType,
 } from './api';
-import { ACCESS_KEY, REFRESH_KEY } from '@/constants/token';
 import { Storage } from '@/apis/storage';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 import { axiosErrorTemplate } from '@maru/utils';
-import { LOGIN_PAGE_ROUTE, MAIN_PAGE_ROUTE } from '@/constants/routes';
+import TOKEN from '@/constants/token';
+import ROUTES from '@/constants/routes';
 
 /** 로그인 */
 export const useLoginUserMutation = ({ email, password }: loginUserParamsType) => {
@@ -20,9 +20,9 @@ export const useLoginUserMutation = ({ email, password }: loginUserParamsType) =
     return useMutation(() => loginUser({ email, password }), {
         onSuccess: (res) => {
             const { accessToken, refreshToken } = res.data;
-            Storage.setItem(ACCESS_KEY, accessToken);
-            Storage.setItem(REFRESH_KEY, refreshToken);
-            router.push(MAIN_PAGE_ROUTE);
+            Storage.setItem(TOKEN.ACCESS, accessToken);
+            Storage.setItem(TOKEN.REFRESH, refreshToken);
+            router.push(ROUTES.MAIN);
         },
         onError: (err) => {
             axiosErrorTemplate(err);
@@ -37,7 +37,7 @@ export const useJoinUserMutation = ({ email, code, password }: joinUserParamsTyp
     return useMutation(() => joinUser({ email, code, password }), {
         onSuccess: () => {
             alert('회원가입 성공');
-            router.push(LOGIN_PAGE_ROUTE);
+            router.push(ROUTES.LOGIN);
         },
         onError: (err) => {
             axiosErrorTemplate(err);

@@ -1,5 +1,9 @@
-export const MAIN_NOTICE_LIST = "useMainNoticeList";
-export const NOTICE_LIST = "useNoticeList";
-export const MAIN_QUESTION_LIST = "useMainQuestionList";
-export const FAQ_CATEGORY_LIST = "useFaqCategoryListQuery";
-export const FAQ_LIST = "useFaqListQuery";
+const KEY = {
+    MAIN_NOTICE_LIST: 'useMainNoticeList',
+    NOTICE_LIST: 'useNoticeList',
+    MAIN_QUESTION_LIST: 'useMainQuestionList',
+    FAQ_CATEGORY_LIST: 'useFaqCategoryListQuery',
+    FAQ_LIST: 'useFaqListQuery',
+} as const;
+
+export default KEY;

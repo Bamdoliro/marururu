@@ -1,5 +1,5 @@
 import { noticeList } from './api';
-import * as KEY from '@/constants/key';
+import KEY from '@/constants/key';
 import { useQuery } from 'react-query';
 
 // 공지사항 리스트
