@@ -2,7 +2,7 @@
   "name": "@maru/eslint",
   "version": "0.0.0",
   "files": [
-    "custom.js",
+    "common.js",
     "query.js"
   ],
   "license": "MIT",
