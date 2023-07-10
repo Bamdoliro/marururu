@@ -11,15 +11,15 @@ import { flex } from '@maru/utils';
 const NOTICE_LIST_DATA = [
     {
         id: 1,
-        title: '안녕',
+        title: '아 뭐 쓰지 1',
     },
     {
         id: 2,
-        title: '안녕',
+        title: '아 뭐 쓰지 2',
     },
     {
         id: 3,
-        title: '안녕',
+        title: '아 뭐 쓰지 3',
     },
 ];
 

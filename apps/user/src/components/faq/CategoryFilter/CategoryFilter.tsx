@@ -8,19 +8,19 @@ import { flex } from '@maru/utils';
 const CATEGORY_LIST_DATA = [
     {
         id: 1,
-        category: '안녕',
+        category: '질문 TOP',
     },
     {
         id: 2,
-        category: '안녕',
+        category: '입학 과정',
     },
     {
         id: 3,
-        category: '안녕',
+        category: '학교 생활',
     },
     {
         id: 4,
-        category: '안녕',
+        category: '관련 서류 제출',
     },
 ];
 

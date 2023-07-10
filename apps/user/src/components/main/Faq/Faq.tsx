@@ -11,15 +11,15 @@ import { flex } from '@maru/utils';
 const FAQ_LIST_DATA = [
     {
         id: 1,
-        question: '안녕',
+        question: '하루 일과가 마치는 시간이 어떻게 되나요?',
     },
     {
         id: 2,
-        question: '안녕',
+        question: '입학하기 전에 선행학습을 해야하나요?',
     },
     {
         id: 3,
-        question: '안녕',
+        question: '현재 다른 학교 고등학생인데 전학 갈 수 있나요?',
     },
 ];
 

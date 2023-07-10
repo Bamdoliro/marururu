@@ -11,18 +11,18 @@ import styled from 'styled-components';
 const FAQ_LIST_DATA = [
     {
         id: 1,
-        question: '안녕',
-        answer: '안녕',
+        question: '하루 일과가 마치는 시간이 어떻게 되나요?',
+        answer: '1교시부터 11교시까지 입니다.',
     },
     {
         id: 2,
-        question: '안녕',
-        answer: '안녕',
+        question: '입학하기 전에 선행학습을 해야하나요?',
+        answer: '아니요, 필요하지 않습니다.',
     },
     {
         id: 3,
-        question: '안녕',
-        answer: '안녕',
+        question: '현재 다른 학교 고등학생인데 전학 갈 수 있나요?',
+        answer: '전학은 불가능합니다.',
     },
 ];
 

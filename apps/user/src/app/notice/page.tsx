@@ -10,17 +10,17 @@ import styled from 'styled-components';
 const NOTICE_LIST_DATA = [
     {
         id: 1,
-        title: '안녕',
+        title: '아 뭐 쓰지 1',
         date: '2023.5.10',
     },
     {
         id: 2,
-        title: '안녕',
+        title: '아 뭐 쓰지 2',
         date: '2023.5.10',
     },
     {
         id: 3,
-        title: '안녕',
+        title: '아 뭐 쓰지 3',
         date: '2023.5.10',
     },
 ];

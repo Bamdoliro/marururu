@@ -21,7 +21,7 @@ const NoticeDetailPage = () => {
                     <Title>공지사항</Title>
                 </Link>
                 <ContentsBox>
-                    <NoticeHeader title="테스트" date="2023.11.05" />
+                    <NoticeHeader title="테스트" date="2023.5.10" />
                     <Content>이것은 테스트 입니다</Content>
                 </ContentsBox>
             </StyledNoticeDetailPage>
