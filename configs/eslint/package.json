@@ -6,14 +6,18 @@
     "query.js"
   ],
   "license": "MIT",
-  "devDependencies": {
-    "@tanstack/eslint-plugin-query": "^4.29.9"
+  "scripts": {
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@tanstack/eslint-plugin-query": "^4.29.9",
     "eslint-config-next": "^13.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-turbo": "^1.9.3",
     "eslint-plugin-react": "7.28.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
   },
   "publishConfig": {
     "access": "public"

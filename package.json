@@ -6,21 +6,20 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "devDependencies": {
-    "@maru/eslint": "*",
-    "@turbo/gen": "^1.9.7",
-    "eslint": "^7.32.0",
-    "msw": "^1.2.2",
-    "prettier": "^2.5.1",
-    "turbo": "latest"
-  },
   "name": "marururu",
-  "packageManager": "yarn@3.6.0",
+  "packageManager": "pnpm@8.6.7",
   "workspaces": [
     "apps/*",
     "packages/*",
     "configs/*"
   ],
+  "devDependencies": {
+    "@maru/eslint": "workspace:*",
+    "@turbo/gen": "^1.9.7",
+    "eslint": "^7.32.0",
+    "prettier": "^2.5.1",
+    "turbo": "latest"
+  },
   "dependencies": {
     "@types/lodash": "^4.14.195",
     "lodash": "^4.17.21"
