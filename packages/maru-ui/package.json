@@ -8,7 +8,6 @@
     "lint": "eslint \"**/*.ts*\""
   },
   "devDependencies": {
-    "@maru/eslint": "workspace:*",
     "@maru/tsconfig": "workspace:*",
     "@types/react": "18.2.13",
     "@types/styled-components": "^5.1.26",
