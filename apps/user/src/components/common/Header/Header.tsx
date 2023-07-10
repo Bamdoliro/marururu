@@ -18,7 +18,7 @@ const HEADER_DATA = [
     {
         id: 1,
         name: '원서접수',
-        route: ROUTES.FORM,
+        route: '/ready',
     },
     {
         id: 2,
