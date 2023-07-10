@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { maru } from '../instance';
 import { Storage } from '../storage';
 
-export const refreshToken = async () => {
+const refreshToken = async () => {
     const router = useRouter();
 
     try {
@@ -20,3 +20,5 @@ export const refreshToken = async () => {
         router.push(ROUTES.LOGIN);
     }
 };
+
+export default refreshToken;
