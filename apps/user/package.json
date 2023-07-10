@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "devDependencies": {
-    "@maru/eslint": "*",
-    "@maru/tsconfig": "*",
+    "@maru/eslint": "workspace:*",
+    "@maru/tsconfig": "workspace:*",
     "@types/node": "20.3.1",
     "@types/react": "18.2.13",
     "@types/react-dom": "18.2.6",
@@ -21,10 +21,10 @@
     "typescript": "5.1.3"
   },
   "dependencies": {
-    "@maru/hooks": "*",
-    "@maru/theme": "*",
-    "@maru/ui": "*",
-    "@maru/utils": "*",
+    "@maru/hooks": "workspace:*",
+    "@maru/theme": "workspace:*",
+    "@maru/ui": "workspace:*",
+    "@maru/utils": "workspace:*",
     "dayjs": "^1.11.8",
     "next": "13.4.6",
     "react": "18.2.0",

@@ -7,6 +7,9 @@
   "scripts": {
     "lint": "eslint \"**/*.ts*\""
   },
+  "dependencies": {
+    "react": "18.2.0"
+  },
   "devDependencies": {
     "@maru/eslint": "*",
     "@maru/tsconfig": "*",
