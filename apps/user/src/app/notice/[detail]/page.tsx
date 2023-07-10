@@ -2,7 +2,7 @@
 
 import { LeftArrowIcon } from '@/components/common/Icons';
 import { NoticeHeader } from '@/components/notice';
-import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
+import ROUTES from '@/constants/routes';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
@@ -16,7 +16,7 @@ const NoticeDetailPage = () => {
     return (
         <AppLayout style={{ padding: '0px 207px' }}>
             <StyledNoticeDetailPage>
-                <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)} gap="2px">
+                <Link onClick={() => router.push(ROUTES.NOTICE)} gap="2px">
                     <LeftArrowIcon color={color.gray600} size={24} />
                     <Title>공지사항</Title>
                 </Link>

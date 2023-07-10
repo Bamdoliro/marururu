@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { useMainFaqListQuery } from '@/services/main/queries';
 import QuestionItem from './FaqItem';
-import { FAQ_PAGE_ROUTE } from '@/constants/routes';
+import ROUTES from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
@@ -14,7 +14,7 @@ const Faq = () => {
 
     return (
         <StyledFaq>
-            <Link onClick={() => router.push(FAQ_PAGE_ROUTE)} gap="8px">
+            <Link onClick={() => router.push(ROUTES.FAQ)} gap="8px">
                 <Title>자주묻는 질문</Title>
                 <RightArrowIcon color={color.gray900} size={22} />
             </Link>

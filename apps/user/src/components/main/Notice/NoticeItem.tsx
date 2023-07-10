@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
-import { NOTICE_PAGE_ROUTE } from '@/constants/routes';
+import ROUTES from '@/constants/routes';
 import { font, color } from '@maru/theme';
 import { flex } from '@maru/utils';
 
@@ -13,7 +13,7 @@ const NoticeItem = ({ id, title }: PropsType) => {
     const router = useRouter();
 
     return (
-        <StyledNoticeItem onClick={() => router.push(`${NOTICE_PAGE_ROUTE}/${id}`)}>
+        <StyledNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
             <Title>{title}</Title>
         </StyledNoticeItem>
     );

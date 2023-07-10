@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Column, Row, Link } from '@maru/ui';
 import { font, color } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { FAQ_PAGE_ROUTE, FORM_PAGE_ROUTE, NOTICE_PAGE_ROUTE } from '@/constants/routes';
+import ROUTES from '@/constants/routes';
 
 const Footer = () => {
     const router = useRouter();
@@ -28,9 +28,9 @@ const Footer = () => {
             <Row gap="95px" alignItems="flex-start">
                 <NavigationBox>
                     <Column gap="24px">
-                        <Link onClick={() => router.push(FORM_PAGE_ROUTE)}>원서접수</Link>
-                        <Link onClick={() => router.push(NOTICE_PAGE_ROUTE)}>공지사항</Link>
-                        <Link onClick={() => router.push(FAQ_PAGE_ROUTE)}>자주묻는질문</Link>
+                        <Link onClick={() => router.push(ROUTES.FORM)}>원서접수</Link>
+                        <Link onClick={() => router.push(ROUTES.NOTICE)}>공지사항</Link>
+                        <Link onClick={() => router.push(ROUTES.FAQ)}>자주묻는질문</Link>
                         <Link onClick={() => console.log('학교 소개 페이지')}>학교소개</Link>
                     </Column>
                     <Column gap="24px">
