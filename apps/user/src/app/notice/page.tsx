@@ -7,15 +7,33 @@ import { useNoticeListQuery } from '@/services/notice/queries';
 import { AppLayout } from '@/layouts';
 import styled from 'styled-components';
 
+const NOTICE_LIST_DATA = [
+    {
+        id: 1,
+        title: '안녕',
+        date: '2023.5.10',
+    },
+    {
+        id: 2,
+        title: '안녕',
+        date: '2023.5.10',
+    },
+    {
+        id: 3,
+        title: '안녕',
+        date: '2023.5.10',
+    },
+];
+
 const NoticePage = () => {
-    const noticeListQuery = useNoticeListQuery();
+    // const noticeListQuery = useNoticeListQuery();
 
     return (
         <AppLayout style={{ padding: '0px 207px' }}>
             <StyledNoticePage>
                 <Title>공지사항</Title>
                 <NoticeList>
-                    {noticeListQuery.data?.map((item) => (
+                    {NOTICE_LIST_DATA.map((item) => (
                         <NoticeItem
                             key={item.id}
                             id={item.id}

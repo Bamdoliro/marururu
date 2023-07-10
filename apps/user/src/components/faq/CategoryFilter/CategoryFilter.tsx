@@ -5,13 +5,32 @@ import Category from './Category';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 
+const CATEGORY_LIST_DATA = [
+    {
+        id: 1,
+        category: '안녕',
+    },
+    {
+        id: 2,
+        category: '안녕',
+    },
+    {
+        id: 3,
+        category: '안녕',
+    },
+    {
+        id: 4,
+        category: '안녕',
+    },
+];
+
 const CategoryFilter = () => {
     const [selectedCategory, setSelectedCategory] = useState(0);
-    const faqCategoryListQuery = useFaqCategoryListQuery();
+    // const faqCategoryListQuery = useFaqCategoryListQuery();
 
     return (
         <StyledCategoryFilter>
-            {faqCategoryListQuery.data?.map((item) => (
+            {CATEGORY_LIST_DATA.map((item) => (
                 <Category
                     key={item.id}
                     isSelected={selectedCategory === item.id}

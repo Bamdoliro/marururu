@@ -8,9 +8,24 @@ import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 
+const FAQ_LIST_DATA = [
+    {
+        id: 1,
+        question: '안녕',
+    },
+    {
+        id: 2,
+        question: '안녕',
+    },
+    {
+        id: 3,
+        question: '안녕',
+    },
+];
+
 const Faq = () => {
     const router = useRouter();
-    const mainFaqListQuery = useMainFaqListQuery();
+    // const mainFaqListQuery = useMainFaqListQuery();
 
     return (
         <StyledFaq>
@@ -19,7 +34,7 @@ const Faq = () => {
                 <RightArrowIcon color={color.gray900} size={22} />
             </Link>
             <QuestionList>
-                {mainFaqListQuery.data?.map((item) => (
+                {FAQ_LIST_DATA.map((item) => (
                     <QuestionItem key={item.id} id={item.id} question={item.question} />
                 ))}
             </QuestionList>

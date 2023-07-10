@@ -13,7 +13,7 @@ const FaqItem = ({ id, question }: PropsType) => {
     const router = useRouter();
 
     return (
-        <StyledFaqItem onClick={() => router.push(`${ROUTES.FAQ}/${id}`)}>
+        <StyledFaqItem onClick={() => router.push(ROUTES.FAQ)}>
             <FaqIcon color={color.maruDefault} />
             <Faq>{question}</Faq>
         </StyledFaqItem>

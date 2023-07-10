@@ -8,9 +8,24 @@ import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 
+const NOTICE_LIST_DATA = [
+    {
+        id: 1,
+        title: '안녕',
+    },
+    {
+        id: 2,
+        title: '안녕',
+    },
+    {
+        id: 3,
+        title: '안녕',
+    },
+];
+
 const Notice = () => {
     const router = useRouter();
-    const mainNoticeListQuery = useMainNoticeListQuery();
+    // const mainNoticeListQuery = useMainNoticeListQuery();
 
     return (
         <StyledNotice>
@@ -19,7 +34,7 @@ const Notice = () => {
                 <RightArrowIcon color={color.gray900} size={22} />
             </Link>
             <NoticeList>
-                {mainNoticeListQuery.data?.map((item) => (
+                {NOTICE_LIST_DATA.map((item) => (
                     <NoticeItem key={item.id} id={item.id} title={item.title} />
                 ))}
             </NoticeList>

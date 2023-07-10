@@ -8,8 +8,26 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
+const FAQ_LIST_DATA = [
+    {
+        id: 1,
+        question: '안녕',
+        answer: '안녕',
+    },
+    {
+        id: 2,
+        question: '안녕',
+        answer: '안녕',
+    },
+    {
+        id: 3,
+        question: '안녕',
+        answer: '안녕',
+    },
+];
+
 const FaqPage = () => {
-    const faqListQuery = useFaqListQuery();
+    // const faqListQuery = useFaqListQuery();
 
     return (
         <AppLayout style={{ padding: '0px 207px' }}>
@@ -17,7 +35,7 @@ const FaqPage = () => {
                 <Title>자주 묻는 질문</Title>
                 <CategoryFilter />
                 <FaqList>
-                    {faqListQuery.data?.map((item) => (
+                    {FAQ_LIST_DATA.map((item) => (
                         <FaqItem key={item.id} question={item.question} answer={item.answer} />
                     ))}
                 </FaqList>
