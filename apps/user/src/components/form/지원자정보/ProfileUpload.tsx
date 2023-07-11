@@ -36,6 +36,7 @@ const ImgUpload = styled.div`
     height: 100%;
     border-radius: 6px;
     border: 1px dashed ${color.gray400};
+    background-color: ${color.gray50};
 `;
 
 const ImgUploadText = styled.p`
