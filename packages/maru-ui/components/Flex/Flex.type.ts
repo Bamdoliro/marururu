@@ -2,9 +2,9 @@ import { ReactNode, CSSProperties } from 'react';
 
 export interface FlexPropsType {
     children: ReactNode;
-    gap?: string;
+    gap?: CSSProperties['gap'];
     justifyContent?: CSSProperties['justifyContent'];
     alignItems?: CSSProperties['alignItems'];
-    width?: string;
-    height?: string;
+    width?: CSSProperties['width'];
+    height?: CSSProperties['height'];
 }
