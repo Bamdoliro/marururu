@@ -8,6 +8,7 @@ interface ButtonInputPropsType extends InputPropsType {
     buttonText: string;
     handleButtonClick: () => void;
     enabled?: boolean;
+    buttonWidth?: string;
 }
 
 const ButtonInput = ({
@@ -21,6 +22,7 @@ const ButtonInput = ({
     buttonText,
     handleButtonClick,
     enabled = false,
+    buttonWidth = '',
 }: ButtonInputPropsType) => {
     return (
         <div style={{ width }}>
@@ -34,7 +36,10 @@ const ButtonInput = ({
                     onChange={onChange}
                     placeholder={placeholder}
                 />
-                <Button onClick={handleButtonClick} enabled={enabled}>
+                <Button
+                    onClick={handleButtonClick}
+                    enabled={enabled}
+                    style={{ width: buttonWidth }}>
                     {buttonText}
                 </Button>
             </StyledButtonInput>
@@ -57,9 +62,9 @@ export const Button = styled.button<{ enabled: boolean }>`
     display: flex;
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
-    width: 68px;
     height: 48px;
     padding: 10px 16px;
+    flex-shrink: 0;
 
     &:hover {
         background-color: ${(props) => (props.enabled ? color.gray400 : color.maruHoverd)};
