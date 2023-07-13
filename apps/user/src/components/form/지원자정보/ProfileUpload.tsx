@@ -1,18 +1,22 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
+import { handleImgUploadButtonClcik } from './지원자정보.hooks';
 import styled from 'styled-components';
 
 const ProfileUpload = () => {
     return (
         <StyledProfileUpload>
             <Title>증명사진</Title>
-            <ImgUpload>
+            <ImgUploadBox>
                 <Column gap={12} alignItems="center">
-                    <Button size="SMALL">파일 선택</Button>
+                    <input type="file" id="img-upload-input" hidden />
+                    <Button size="SMALL" onClick={handleImgUploadButtonClcik}>
+                        파일 선택
+                    </Button>
                     <ImgUploadText>또는</ImgUploadText>
                     <ImgUploadText>여기로 사진을 끌어오세요</ImgUploadText>
                 </Column>
-            </ImgUpload>
+            </ImgUploadBox>
             <Desc>3x4 cm 증명사진</Desc>
         </StyledProfileUpload>
     );
@@ -28,7 +32,7 @@ const StyledProfileUpload = styled.div`
     height: 363px;
 `;
 
-const ImgUpload = styled.div`
+const ImgUploadBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,6 +42,8 @@ const ImgUpload = styled.div`
     border: 1px dashed ${color.gray400};
     background-color: ${color.gray50};
 `;
+
+const ImgUploadButton = styled.input``;
 
 const ImgUploadText = styled.p`
     ${font.p2}
