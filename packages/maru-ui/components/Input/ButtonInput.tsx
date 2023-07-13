@@ -23,6 +23,7 @@ const ButtonInput = ({
     handleButtonClick,
     enabled = false,
     buttonWidth = '',
+    readOnly,
 }: ButtonInputPropsType) => {
     return (
         <div style={{ width }}>
@@ -35,6 +36,7 @@ const ButtonInput = ({
                     type={type}
                     onChange={onChange}
                     placeholder={placeholder}
+                    readOnly={readOnly}
                 />
                 <Button
                     onClick={handleButtonClick}
