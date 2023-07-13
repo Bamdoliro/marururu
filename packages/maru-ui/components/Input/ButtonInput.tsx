@@ -23,11 +23,11 @@ const ButtonInput = ({
     enabled = false,
 }: ButtonInputPropsType) => {
     return (
-        <div style={{ width }}>
+        <div>
             {label && <Label>{label}</Label>}
             <StyledButtonInput>
                 <Input
-                    width="100%"
+                    width={width}
                     name={name}
                     value={value}
                     type={type}

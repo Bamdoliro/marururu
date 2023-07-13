@@ -13,6 +13,7 @@ const 보호자정보 = () => {
                     label="주소"
                     buttonText="검색"
                     handleButtonClick={() => console.log('검색 입력 창입니다')}
+                    width="100%"
                 />
                 <Input label="상세 주소" width="100%" />
             </Column>
