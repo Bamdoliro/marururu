@@ -1,18 +1,25 @@
 import { color, font } from '@maru/theme';
+import { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-interface RadioPropsType {
+interface RadioPropsType extends InputHTMLAttributes<HTMLInputElement> {
     text: string;
     value: string;
     name: string;
     defaultChecked?: boolean;
 }
 
-const Radio = ({ text, value, name, defaultChecked }: RadioPropsType) => {
+const Radio = ({ text, value, name, defaultChecked, onChange }: RadioPropsType) => {
     return (
         <StyledRadio>
             <Label>
-                <Input type="radio" value={value} name={name} defaultChecked={defaultChecked} />
+                <Input
+                    type="radio"
+                    value={value}
+                    name={name}
+                    defaultChecked={defaultChecked}
+                    onChange={onChange}
+                />
                 <RadioBox></RadioBox>
                 <Text>{text}</Text>
             </Label>
