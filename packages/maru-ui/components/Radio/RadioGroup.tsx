@@ -7,7 +7,7 @@ interface RadioGroupPropsType {
     label: string;
     list: { value?: string; content: string }[] | string[];
     name: string;
-    onChange: ChangeEventHandler;
+    onChange?: ChangeEventHandler;
 }
 
 const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
