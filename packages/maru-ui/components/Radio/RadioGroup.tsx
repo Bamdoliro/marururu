@@ -1,17 +1,29 @@
 import { color, font } from '@maru/theme';
-import { ReactNode } from 'react';
+import { ChangeEventHandler, InputHTMLAttributes, ReactNode } from 'react';
 import { styled } from 'styled-components';
+import Radio from './Radio';
 
 interface RadioGroupPropsType {
     label: string;
-    children: ReactNode[];
+    list: { value?: string; content: string }[] | string[];
+    name: string;
+    onChange: ChangeEventHandler;
 }
 
-const RadioGroup = ({ label, children }: RadioGroupPropsType) => {
+const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
     return (
         <StyledRadioGroup>
             <Label>{label}</Label>
-            <RadioListBox>{children}</RadioListBox>
+            <RadioListBox>
+                {list.map((item) => (
+                    <Radio
+                        value={typeof item === 'string' ? item : item.value}
+                        content={typeof item === 'string' ? item : item.content}
+                        name={name}
+                        onChange={onChange}
+                    />
+                ))}
+            </RadioListBox>
         </StyledRadioGroup>
     );
 };

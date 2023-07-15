@@ -2,14 +2,9 @@ import { color, font } from '@maru/theme';
 import { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-interface RadioPropsType extends InputHTMLAttributes<HTMLInputElement> {
-    text: string;
-    value: string;
-    name: string;
-    defaultChecked?: boolean;
-}
+interface RadioPropsType extends InputHTMLAttributes<HTMLInputElement> {}
 
-const Radio = ({ text, value, name, defaultChecked, onChange }: RadioPropsType) => {
+const Radio = ({ content, value, name, defaultChecked, onChange }: RadioPropsType) => {
     return (
         <StyledRadio>
             <Label>
@@ -21,7 +16,7 @@ const Radio = ({ text, value, name, defaultChecked, onChange }: RadioPropsType) 
                     onChange={onChange}
                 />
                 <RadioBox></RadioBox>
-                <Text>{text}</Text>
+                <Content>{content}</Content>
             </Label>
         </StyledRadio>
     );
@@ -68,7 +63,7 @@ const Label = styled.label`
     height: 26px;
 `;
 
-const Text = styled.p`
+const Content = styled.p`
     ${font.p2};
     color: ${color.gray900};
 `;
