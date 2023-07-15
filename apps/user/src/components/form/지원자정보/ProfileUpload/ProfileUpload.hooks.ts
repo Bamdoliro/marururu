@@ -1,4 +1,5 @@
-import { ChangeEvent, DragEvent, useRef, useState } from 'react';
+import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
+import { ChangeEvent, DragEvent, useRef, useState, useEffect } from 'react';
 
 export const useOpenUploadImageFile = () => {
     const imageFileInputRef = useRef<HTMLInputElement>(null);
@@ -12,17 +13,23 @@ export const useOpenUploadImageFile = () => {
  * @TODO header에 contentType forData 넣어야함
  * @EXAMPLE https://github.com/soolung/simblue-client/blob/develop/src/utils/api/banner.js#L26-L35
  */
-export const useUploadImageFile = (file: File) => {
-    const formData = new FormData();
-    formData.append('image', file);
-    console.log(formData);
+export const useUploadImageFile = () => {
+    const uploadProfileImage = (file: File) => {
+        const formData = new FormData();
+        formData.append('image', file);
+        const uploadProfileImageMutate = useUploadProfileImageMutation(formData);
+        uploadProfileImageMutate.mutate();
+    };
+
+    return { uploadProfileImage };
 };
 
 export const useImageFileChange = () => {
     const handleImageFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { uploadProfileImage } = useUploadImageFile();
         const { files } = e.target;
         if (!files || files.length === 0) return;
-        useUploadImageFile(files[0]);
+        uploadProfileImage(files[0]);
     };
 
     return { handleImageFileChange };
@@ -51,7 +58,8 @@ export const useImageFileDragAndDrop = () => {
     const onDrop = (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        useUploadImageFile(e.dataTransfer.files[0]);
+        const { uploadProfileImage } = useUploadImageFile();
+        uploadProfileImage(e.dataTransfer.files[0]);
         setIsDragging(false);
     };
 

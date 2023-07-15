@@ -2,7 +2,7 @@ import { joinUserParamsType } from '@/services/auth/api';
 import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, SetStateAction, Dispatch, useState } from 'react';
 
-const useSignUp = () => {
+export const useSignUp = () => {
     const [joinUserData, setJoinUserData] = useState<joinUserParamsType>({
         email: '',
         code: '',
@@ -68,5 +68,3 @@ const useRequestEmail = (joinUserData: joinUserParamsType) => {
 
     return { handleRequestEmailButtonClick };
 };
-
-export default useSignUp;
