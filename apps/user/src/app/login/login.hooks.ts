@@ -7,10 +7,10 @@ export const useLogin = () => {
         email: '',
         password: '',
     });
-    const loginUserMutate = useLoginUserMutation(loginUserData);
+    const loginUserMutation = useLoginUserMutation(loginUserData);
 
     const handleLoginButtonClick = () => {
-        loginUserMutate.mutate();
+        loginUserMutation.mutate();
     };
 
     const handleLoginUserData: ChangeEventHandler<HTMLInputElement> = (e) => {

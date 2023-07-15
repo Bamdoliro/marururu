@@ -1,14 +1,14 @@
 import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
 import { ChangeEvent, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
 
-export const useUploadProfileImage = (setProfileImage: Dispatch<SetStateAction<string>>) => {
+export const useUploadProfileImageFile = (setProfileImage: Dispatch<SetStateAction<string>>) => {
     const uploadProfileImageMutation = useUploadProfileImageMutation(setProfileImage);
 
-    const uploadProfileImage = (image: FormData) => {
+    const uploadProfileImageFile = (image: FormData) => {
         uploadProfileImageMutation.mutate(image);
     };
 
-    return { uploadProfileImage };
+    return { uploadProfileImageFile };
 };
 
 export const useOpenUploadImageFile = () => {
@@ -19,19 +19,19 @@ export const useOpenUploadImageFile = () => {
     return { imageFileInputRef, handleImageUploadButtonClick };
 };
 
-export const useImageFileChange = (uploadProfileImage: (image: FormData) => void) => {
+export const useImageFileChange = (uploadProfileImageFile: (image: FormData) => void) => {
     const handleImageFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { files } = e.target;
         if (!files || files.length === 0) return;
         const formData = new FormData();
         formData.append('image', files[0]);
-        uploadProfileImage(formData);
+        uploadProfileImageFile(formData);
     };
 
     return { handleImageFileChange };
 };
 
-export const useImageFileDragAndDrop = (uploadProfileImage: (image: FormData) => void) => {
+export const useImageFileDragAndDrop = (uploadProfileImageFile: (image: FormData) => void) => {
     const [isDragging, setIsDragging] = useState(false);
 
     const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
@@ -56,7 +56,7 @@ export const useImageFileDragAndDrop = (uploadProfileImage: (image: FormData) =>
         e.stopPropagation();
         const formData = new FormData();
         formData.append('image', e.dataTransfer.files[0]);
-        uploadProfileImage(formData);
+        uploadProfileImageFile(formData);
         setIsDragging(false);
     };
 

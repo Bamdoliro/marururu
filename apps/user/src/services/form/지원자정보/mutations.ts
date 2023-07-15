@@ -8,7 +8,6 @@ export const useUploadProfileImageMutation = (
     return useMutation((image: FormData) => uploadProfileImage(image), {
         onSuccess: (res) => {
             setProfileImage(res.data.data.url);
-            console.log(res.data.data.url);
         },
         onError: (err) => {
             console.log(err);

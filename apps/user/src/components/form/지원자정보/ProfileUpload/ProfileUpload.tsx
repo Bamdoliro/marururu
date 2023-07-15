@@ -4,7 +4,7 @@ import {
     useImageFileChange,
     useImageFileDragAndDrop,
     useOpenUploadImageFile,
-    useUploadProfileImage,
+    useUploadProfileImageFile,
 } from './ProfileUpload.hooks';
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -12,11 +12,11 @@ import { useState } from 'react';
 const ProfileUpload = () => {
     const [profileImage, setProfileImage] = useState('');
 
-    const { uploadProfileImage } = useUploadProfileImage(setProfileImage);
+    const { uploadProfileImageFile } = useUploadProfileImageFile(setProfileImage);
     const { imageFileInputRef, handleImageUploadButtonClick } = useOpenUploadImageFile();
     const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } =
-        useImageFileDragAndDrop(uploadProfileImage);
-    const { handleImageFileChange } = useImageFileChange(uploadProfileImage);
+        useImageFileDragAndDrop(uploadProfileImageFile);
+    const { handleImageFileChange } = useImageFileChange(uploadProfileImageFile);
 
     return (
         <StyledProfileUpload>
@@ -31,13 +31,6 @@ const ProfileUpload = () => {
                     onDrop={onDrop}
                     isDragging={isDragging}>
                     <Column gap={12} alignItems="center">
-                        <input
-                            type="file"
-                            ref={imageFileInputRef}
-                            accept=".png, .jpg, .jpeg"
-                            onChange={handleImageFileChange}
-                            hidden
-                        />
                         <Button size="SMALL" onClick={handleImageUploadButtonClick}>
                             파일 선택
                         </Button>
@@ -46,8 +39,19 @@ const ProfileUpload = () => {
                     </Column>
                 </ImageUploadBox>
             )}
-
+            {profileImage.length !== 0 && (
+                <Button size="SMALL" onClick={handleImageUploadButtonClick}>
+                    재 업로드
+                </Button>
+            )}
             <Desc>3x4 cm 증명사진</Desc>
+            <input
+                type="file"
+                ref={imageFileInputRef}
+                accept=".png, .jpg, .jpeg"
+                onChange={handleImageFileChange}
+                hidden
+            />
         </StyledProfileUpload>
     );
 };
@@ -58,16 +62,14 @@ const StyledProfileUpload = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 225px;
-    height: 363px;
 `;
 
 const ImageUploadBox = styled.div<{ isDragging: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    width: 225px;
+    height: 300px;
     border-radius: 6px;
     border: 1px dashed ${(props) => (props.isDragging ? color.maruDefault : color.gray400)};
     background-color: ${color.gray50};
@@ -79,8 +81,8 @@ const ImageUploadText = styled.p`
 `;
 
 const ImagePreview = styled.img`
-    width: 100%;
-    height: 100%;
+    width: 225px;
+    height: 300px;
     border-radius: 6px;
 `;
 
