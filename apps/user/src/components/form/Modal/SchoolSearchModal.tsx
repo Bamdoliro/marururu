@@ -2,12 +2,19 @@ import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import { styled } from 'styled-components';
 import Close from '@maru/ui/Icons/Close';
+import { useInput } from '@maru/hooks';
+import { useEffect } from 'react';
+import useFormSchoolListQuery from '@/services/form/출신학교및학력/queries';
 
 interface PropsType {
     closeModal: () => any;
 }
 
 const SchoolSearchModal = ({ closeModal }: PropsType) => {
+    const { value, onChange, debouncedValue } = useInput({ initialValue: '', useDebounce: true });
+
+    const schoolListQuery = useFormSchoolListQuery(debouncedValue);
+
     return (
         <Background>
             <StyledSchoolSearchModal>
@@ -17,25 +24,21 @@ const SchoolSearchModal = ({ closeModal }: PropsType) => {
                             <Title>학교 검색</Title>
                             <Close cursor="pointer" onClick={closeModal} />
                         </Row>
-                        <SearchInput placeholder="학교 이름을 입력해주세요." />
+                        <SearchInput
+                            value={value}
+                            onChange={onChange}
+                            placeholder="학교 이름을 입력해주세요."
+                        />
                     </Column>
                     <SchoolList>
-                        <SchoolItem>
-                            <SchoolName>부산소프트웨어마이스터고등학교</SchoolName>
-                            <SchoolRegion>부산광역시 강서구</SchoolRegion>
-                        </SchoolItem>
-                        <SchoolItem>
-                            <SchoolName>부산소프트웨어마이스터고등학교</SchoolName>
-                            <SchoolRegion>부산광역시 강서구</SchoolRegion>
-                        </SchoolItem>
-                        <SchoolItem>
-                            <SchoolName>부산소프트웨어마이스터고등학교</SchoolName>
-                            <SchoolRegion>부산광역시 강서구</SchoolRegion>
-                        </SchoolItem>
-                        <SchoolItem>
-                            <SchoolName>부산소프트웨어마이스터고등학교</SchoolName>
-                            <SchoolRegion>부산광역시 강서구</SchoolRegion>
-                        </SchoolItem>
+                        {schoolListQuery.data?.map(
+                            (school: { SCHUL_NM: string; ORG_RDNMA: string }) => (
+                                <SchoolItem>
+                                    <SchoolName>{school.SCHUL_NM}</SchoolName>
+                                    <SchoolRegion>{school.ORG_RDNMA}</SchoolRegion>
+                                </SchoolItem>
+                            ),
+                        )}
                     </SchoolList>
                 </Column>
                 <Row gap="16px" justifyContent="flex-end">
