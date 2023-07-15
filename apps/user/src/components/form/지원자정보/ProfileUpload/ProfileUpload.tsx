@@ -1,41 +1,57 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
+import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
 import {
     useImageFileChange,
     useImageFileDragAndDrop,
     useOpenUploadImageFile,
 } from './ProfileUpload.hooks';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const ProfileUpload = () => {
+    const [profileImage, setProfileImage] = useState('');
+    const uploadProfileImageMutation = useUploadProfileImageMutation(setProfileImage);
+
+    // 이미지 업로드
+    const uploadProfileImage = (image: FormData) => {
+        uploadProfileImageMutation.mutate(image);
+    };
+
     const { imageFileInputRef, handleImageUploadButtonClick } = useOpenUploadImageFile();
-    const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } = useImageFileDragAndDrop();
-    const { handleImageFileChange } = useImageFileChange();
+    const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } =
+        useImageFileDragAndDrop(uploadProfileImage);
+    const { handleImageFileChange } = useImageFileChange(uploadProfileImage);
 
     return (
         <StyledProfileUpload>
             <Title>증명사진</Title>
-            <ImgUploadBox
-                onDragEnter={onDragEnter}
-                onDragLeave={onDragLeave}
-                onDragOver={onDragOver}
-                onDrop={onDrop}
-                isDragging={isDragging}>
-                <Column gap={12} alignItems="center">
-                    <input
-                        type="file"
-                        ref={imageFileInputRef}
-                        accept=".png, .jpg, .jpeg"
-                        onChange={handleImageFileChange}
-                        hidden
-                    />
-                    <Button size="SMALL" onClick={handleImageUploadButtonClick}>
-                        파일 선택
-                    </Button>
-                    <ImgUploadText>또는</ImgUploadText>
-                    <ImgUploadText>여기로 사진을 끌어오세요</ImgUploadText>
-                </Column>
-            </ImgUploadBox>
+            {profileImage ? (
+                <ImagePreview src={profileImage} alt="profile-image" />
+            ) : (
+                <ImageUploadBox
+                    onDragEnter={onDragEnter}
+                    onDragLeave={onDragLeave}
+                    onDragOver={onDragOver}
+                    onDrop={onDrop}
+                    isDragging={isDragging}>
+                    <Column gap={12} alignItems="center">
+                        <input
+                            type="file"
+                            ref={imageFileInputRef}
+                            accept=".png, .jpg, .jpeg"
+                            onChange={handleImageFileChange}
+                            hidden
+                        />
+                        <Button size="SMALL" onClick={handleImageUploadButtonClick}>
+                            파일 선택
+                        </Button>
+                        <ImageUploadText>또는</ImageUploadText>
+                        <ImageUploadText>여기로 사진을 끌어오세요</ImageUploadText>
+                    </Column>
+                </ImageUploadBox>
+            )}
+
             <Desc>3x4 cm 증명사진</Desc>
         </StyledProfileUpload>
     );
@@ -51,7 +67,7 @@ const StyledProfileUpload = styled.div`
     height: 363px;
 `;
 
-const ImgUploadBox = styled.div<{ isDragging: boolean }>`
+const ImageUploadBox = styled.div<{ isDragging: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,9 +78,15 @@ const ImgUploadBox = styled.div<{ isDragging: boolean }>`
     background-color: ${color.gray50};
 `;
 
-const ImgUploadText = styled.p`
+const ImageUploadText = styled.p`
     ${font.p2}
     color: ${color.gray500};
+`;
+
+const ImagePreview = styled.img`
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
 `;
 
 const Title = styled.p`

@@ -1,5 +1,4 @@
-import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
-import { ChangeEvent, DragEvent, useRef, useState, useEffect } from 'react';
+import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 
 export const useOpenUploadImageFile = () => {
     const imageFileInputRef = useRef<HTMLInputElement>(null);
@@ -9,33 +8,19 @@ export const useOpenUploadImageFile = () => {
     return { imageFileInputRef, handleImageUploadButtonClick };
 };
 
-/**
- * @TODO header에 contentType forData 넣어야함
- * @EXAMPLE https://github.com/soolung/simblue-client/blob/develop/src/utils/api/banner.js#L26-L35
- */
-export const useUploadImageFile = () => {
-    const uploadProfileImage = (file: File) => {
-        const formData = new FormData();
-        formData.append('image', file);
-        const uploadProfileImageMutate = useUploadProfileImageMutation(formData);
-        uploadProfileImageMutate.mutate();
-    };
-
-    return { uploadProfileImage };
-};
-
-export const useImageFileChange = () => {
+export const useImageFileChange = (uploadProfileImage: (image: FormData) => void) => {
     const handleImageFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { uploadProfileImage } = useUploadImageFile();
         const { files } = e.target;
         if (!files || files.length === 0) return;
-        uploadProfileImage(files[0]);
+        const formData = new FormData();
+        formData.append('image', files[0]);
+        uploadProfileImage(formData);
     };
 
     return { handleImageFileChange };
 };
 
-export const useImageFileDragAndDrop = () => {
+export const useImageFileDragAndDrop = (uploadProfileImage: (image: FormData) => void) => {
     const [isDragging, setIsDragging] = useState(false);
 
     const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
@@ -58,8 +43,9 @@ export const useImageFileDragAndDrop = () => {
     const onDrop = (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        const { uploadProfileImage } = useUploadImageFile();
-        uploadProfileImage(e.dataTransfer.files[0]);
+        const formData = new FormData();
+        formData.append('image', e.dataTransfer.files[0]);
+        uploadProfileImage(formData);
         setIsDragging(false);
     };
 
