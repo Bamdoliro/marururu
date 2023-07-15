@@ -1,18 +1,35 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { useOpenUploadImgFile } from './ProfileUpload.hooks';
+import {
+    useImageFileChange,
+    useImageFileDragAndDrop,
+    useOpenUploadImageFile,
+} from './ProfileUpload.hooks';
 import styled from 'styled-components';
 
 const ProfileUpload = () => {
-    const { imgFileInputRef, handleImgUploadButtonClick } = useOpenUploadImgFile();
+    const { imageFileInputRef, handleImageUploadButtonClick } = useOpenUploadImageFile();
+    const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } = useImageFileDragAndDrop();
+    const { handleImageFileChange } = useImageFileChange();
 
     return (
         <StyledProfileUpload>
             <Title>증명사진</Title>
-            <ImgUploadBox>
+            <ImgUploadBox
+                onDragEnter={onDragEnter}
+                onDragLeave={onDragLeave}
+                onDragOver={onDragOver}
+                onDrop={onDrop}
+                isDragging={isDragging}>
                 <Column gap={12} alignItems="center">
-                    <input type="file" accept=".png, .jpeg" ref={imgFileInputRef} hidden />
-                    <Button size="SMALL" onClick={handleImgUploadButtonClick}>
+                    <input
+                        type="file"
+                        ref={imageFileInputRef}
+                        accept=".png, .jpg, .jpeg"
+                        onChange={handleImageFileChange}
+                        hidden
+                    />
+                    <Button size="SMALL" onClick={handleImageUploadButtonClick}>
                         파일 선택
                     </Button>
                     <ImgUploadText>또는</ImgUploadText>
@@ -34,18 +51,16 @@ const StyledProfileUpload = styled.div`
     height: 363px;
 `;
 
-const ImgUploadBox = styled.div`
+const ImgUploadBox = styled.div<{ isDragging: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
     border-radius: 6px;
-    border: 1px dashed ${color.gray400};
+    border: 1px dashed ${(props) => (props.isDragging ? color.maruDefault : color.gray400)};
     background-color: ${color.gray50};
 `;
-
-const ImgUploadButton = styled.input``;
 
 const ImgUploadText = styled.p`
     ${font.p2}

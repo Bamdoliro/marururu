@@ -1,11 +1,59 @@
-import { useRef } from 'react';
+import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 
-export const useOpenUploadImgFile = () => {
-    const imgFileInputRef = useRef<HTMLInputElement>(null);
+export const useOpenUploadImageFile = () => {
+    const imageFileInputRef = useRef<HTMLInputElement>(null);
+    const handleImageUploadButtonClick = () => {
+        imageFileInputRef.current?.click();
+    };
+    return { imageFileInputRef, handleImageUploadButtonClick };
+};
 
-    const handleImgUploadButtonClick = () => {
-        imgFileInputRef.current?.click();
+/**
+ * @TODO header에 contentType forData 넣어야함
+ * @EXAMPLE https://github.com/soolung/simblue-client/blob/develop/src/utils/api/banner.js#L26-L35
+ */
+export const useUploadImageFile = (file: File) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    console.log(formData);
+};
+
+export const useImageFileChange = () => {
+    const handleImageFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { files } = e.target;
+        if (!files || files.length === 0) return;
+        useUploadImageFile(files[0]);
     };
 
-    return { imgFileInputRef, handleImgUploadButtonClick };
+    return { handleImageFileChange };
+};
+
+export const useImageFileDragAndDrop = () => {
+    const [isDragging, setIsDragging] = useState(false);
+
+    const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(true);
+    };
+    const onDragLeave = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(false);
+    };
+    const onDragOver = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.dataTransfer.files) {
+            setIsDragging(true);
+        }
+    };
+    const onDrop = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        useUploadImageFile(e.dataTransfer.files[0]);
+        setIsDragging(false);
+    };
+
+    return { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop };
 };
