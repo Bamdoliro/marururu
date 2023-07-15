@@ -1,4 +1,15 @@
-import { ChangeEvent, DragEvent, useRef, useState } from 'react';
+import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
+import { ChangeEvent, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
+
+export const useUploadProfileImage = (setProfileImage: Dispatch<SetStateAction<string>>) => {
+    const uploadProfileImageMutation = useUploadProfileImageMutation(setProfileImage);
+
+    const uploadProfileImage = (image: FormData) => {
+        uploadProfileImageMutation.mutate(image);
+    };
+
+    return { uploadProfileImage };
+};
 
 export const useOpenUploadImageFile = () => {
     const imageFileInputRef = useRef<HTMLInputElement>(null);

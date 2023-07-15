@@ -1,23 +1,18 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
 import {
     useImageFileChange,
     useImageFileDragAndDrop,
     useOpenUploadImageFile,
+    useUploadProfileImage,
 } from './ProfileUpload.hooks';
 import styled from 'styled-components';
 import { useState } from 'react';
 
 const ProfileUpload = () => {
     const [profileImage, setProfileImage] = useState('');
-    const uploadProfileImageMutation = useUploadProfileImageMutation(setProfileImage);
 
-    // 이미지 업로드
-    const uploadProfileImage = (image: FormData) => {
-        uploadProfileImageMutation.mutate(image);
-    };
-
+    const { uploadProfileImage } = useUploadProfileImage(setProfileImage);
     const { imageFileInputRef, handleImageUploadButtonClick } = useOpenUploadImageFile();
     const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } =
         useImageFileDragAndDrop(uploadProfileImage);
