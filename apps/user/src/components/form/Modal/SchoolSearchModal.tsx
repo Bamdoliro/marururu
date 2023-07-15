@@ -3,7 +3,11 @@ import { Button, Column, Row, SearchInput } from '@maru/ui';
 import { styled } from 'styled-components';
 import Close from '@maru/ui/Icons/Close';
 
-const SchoolSearchModal = () => {
+interface PropsType {
+    closeModal: () => any;
+}
+
+const SchoolSearchModal = ({ closeModal }: PropsType) => {
     return (
         <Background>
             <StyledSchoolSearchModal>
@@ -11,7 +15,7 @@ const SchoolSearchModal = () => {
                     <Column gap="16px">
                         <Row justifyContent="space-between">
                             <Title>학교 검색</Title>
-                            <Close cursor="pointer" />
+                            <Close cursor="pointer" onClick={closeModal} />
                         </Row>
                         <SearchInput placeholder="학교 이름을 입력해주세요." />
                     </Column>
@@ -35,7 +39,7 @@ const SchoolSearchModal = () => {
                     </SchoolList>
                 </Column>
                 <Row gap="16px" justifyContent="flex-end">
-                    <Button option="SECONDARY" size="SMALL">
+                    <Button option="SECONDARY" size="SMALL" onClick={closeModal}>
                         취소
                     </Button>
                     <Button size="SMALL">완료</Button>

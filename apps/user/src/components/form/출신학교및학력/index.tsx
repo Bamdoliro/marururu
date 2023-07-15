@@ -2,8 +2,11 @@ import { ButtonInput, Input } from '@maru/ui';
 import { RadioGroup } from '@maru/ui';
 import { styled } from 'styled-components';
 import SchoolSearchModal from '../Modal/SchoolSearchModal';
+import useModal from '../Modal/useModal';
 
 const 출신학교및학력 = () => {
+    const { isOpen, openModal, closeModal } = useModal();
+
     return (
         <Styled출신학교및학력>
             <ButtonInput
@@ -11,7 +14,7 @@ const 출신학교및학력 = () => {
                 label="출신학교"
                 buttonText="검색"
                 buttonWidth="68px"
-                handleButtonClick={() => {}}
+                handleButtonClick={openModal}
                 placeholder="클릭하여 검색하기"
                 readOnly
             />
@@ -38,7 +41,7 @@ const 출신학교및학력 = () => {
             <div></div>
             <Input name="teacherName" label="작성 교사 이름" placeholder="뭐시기 뭐시기" />
             <Input name="teacherPhone" label="작성 교사 연락처" placeholder="뭐시기 뭐시기" />
-            <SchoolSearchModal />
+            {isOpen && <SchoolSearchModal closeModal={closeModal} />}
         </Styled출신학교및학력>
     );
 };
