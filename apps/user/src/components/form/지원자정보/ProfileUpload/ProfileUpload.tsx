@@ -41,10 +41,10 @@ const ProfileUpload = () => {
             )}
             {profileImage.length !== 0 && (
                 <Button size="SMALL" onClick={handleImageUploadButtonClick}>
-                    재 업로드
+                    재업로드
                 </Button>
             )}
-            <Desc>3x4 cm 증명사진</Desc>
+            <Desc>20MB 이하, 3x4 cm 증명사진</Desc>
             <input
                 type="file"
                 ref={imageFileInputRef}
