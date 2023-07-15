@@ -1,16 +1,18 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { handleImgUploadButtonClcik } from './지원자정보.hooks';
+import { useOpenUploadImgFile } from './ProfileUpload.hooks';
 import styled from 'styled-components';
 
 const ProfileUpload = () => {
+    const { imgFileInputRef, handleImgUploadButtonClick } = useOpenUploadImgFile();
+
     return (
         <StyledProfileUpload>
             <Title>증명사진</Title>
             <ImgUploadBox>
                 <Column gap={12} alignItems="center">
-                    <input type="file" id="img-upload-input" hidden />
-                    <Button size="SMALL" onClick={handleImgUploadButtonClcik}>
+                    <input type="file" accept=".png, .jpeg" ref={imgFileInputRef} hidden />
+                    <Button size="SMALL" onClick={handleImgUploadButtonClick}>
                         파일 선택
                     </Button>
                     <ImgUploadText>또는</ImgUploadText>

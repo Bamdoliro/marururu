@@ -1,6 +1,6 @@
 import { Column, Input, Row, Radio } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
-import ProfileUpload from './ProfileUpload';
+import ProfileUpload from './ProfileUpload/ProfileUpload';
 import styled from 'styled-components';
 
 const 지원자정보 = () => {
