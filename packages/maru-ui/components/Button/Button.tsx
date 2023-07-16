@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import { ButtonIconType, ButtonOptionType, ButtonSizeType } from './Button.type';
 import { getButtonSize, getButtonStyle, getButtonPadding } from './Button.style';
 import styled from 'styled-components';
@@ -11,7 +11,7 @@ interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     option?: ButtonOptionType;
     icon?: ButtonIconType;
     size?: ButtonSizeType;
-    width?: string;
+    width?: CSSProperties['width'];
 }
 
 const Button = ({
