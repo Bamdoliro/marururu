@@ -2,16 +2,15 @@ import { loginUserParamsType } from '@/services/auth/api';
 import { useLoginUserMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, useState } from 'react';
 
-const useLogin = () => {
+export const useLogin = () => {
     const [loginUserData, setLoginUserData] = useState<loginUserParamsType>({
         email: '',
         password: '',
     });
-
-    const loginUserMutate = useLoginUserMutation(loginUserData);
+    const loginUserMutation = useLoginUserMutation(loginUserData);
 
     const handleLoginButtonClick = () => {
-        loginUserMutate.mutate();
+        loginUserMutation.mutate();
     };
 
     const handleLoginUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -21,5 +20,3 @@ const useLogin = () => {
 
     return { handleLoginUserData, handleLoginButtonClick };
 };
-
-export default useLogin;

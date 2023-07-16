@@ -2,7 +2,7 @@ import { joinUserParamsType } from '@/services/auth/api';
 import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, SetStateAction, Dispatch, useState } from 'react';
 
-const useSignUp = () => {
+export const useSignUp = () => {
     const [joinUserData, setJoinUserData] = useState<joinUserParamsType>({
         email: '',
         code: '',
@@ -34,7 +34,7 @@ const useJoin = (
      */
     const [checkTermsAgree, setCheckTermsAgree] = useState(false);
 
-    const joinUserMutate = useJoinUserMutation(joinUserData);
+    const joinUserMutation = useJoinUserMutation(joinUserData);
 
     const handleJoinUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
@@ -44,7 +44,7 @@ const useJoin = (
     const handleJoinButtonClick = () => {
         if (joinUserData.password === joinUserData.repassword) {
             if (checkTermsAgree === true) {
-                joinUserMutate.mutate();
+                joinUserMutation.mutate();
             } else {
                 alert('이용약관 동의를 해주세요');
             }
@@ -61,12 +61,10 @@ const useJoin = (
 };
 
 const useRequestEmail = (joinUserData: joinUserParamsType) => {
-    const requestEmailMutate = useRequestEmailMutation(joinUserData);
+    const requestEmailMutation = useRequestEmailMutation(joinUserData);
     const handleRequestEmailButtonClick = () => {
-        requestEmailMutate.mutate();
+        requestEmailMutation.mutate();
     };
 
     return { handleRequestEmailButtonClick };
 };
-
-export default useSignUp;

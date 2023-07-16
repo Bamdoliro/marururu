@@ -129,7 +129,7 @@ importers:
         version: 18.2.0
     devDependencies:
       '@maru/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../configs/tsconfig
       '@types/react':
         specifier: 18.2.13
