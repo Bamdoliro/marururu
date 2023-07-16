@@ -6,7 +6,7 @@ import { useInput } from '@maru/hooks';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import useFormSchoolListQuery from '@/services/form/출신학교및학력/queries';
 import Check from '@maru/ui/Icons/Check';
-import useSchoolModalHandler from './SchoolSearchModal.hooks';
+import useSchoolModalHandler from './FindSchoolModal.hooks';
 
 interface PropsType {
     closeModal: () => void;

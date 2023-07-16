@@ -36,7 +36,8 @@ const StyledFormLayout = styled.section`
 
 const FormBox = styled.div`
     margin: 0 auto;
-    width: 810px;
+    min-width: 810px;
+    width: fit-content;
 `;
 
 const InfoBox = styled.div`

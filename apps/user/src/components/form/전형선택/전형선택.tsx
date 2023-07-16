@@ -58,7 +58,7 @@ const 전형선택 = () => {
             )}
             {selectedAdmissions.specialAdmissions === '기회균등전형' && (
                 <RadioGroup
-                    label="기회 균등 선택"
+                    label="기회 균등 전형 선택"
                     name="equalOpportunityAdmissions"
                     list={[
                         '국민기초생활수급권자',

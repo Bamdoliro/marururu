@@ -1,7 +1,7 @@
 import { ButtonInput, Input } from '@maru/ui';
 import { RadioGroup } from '@maru/ui';
 import { styled } from 'styled-components';
-import SchoolSearchModal from '../Modal/SchoolSearchModal';
+import FindSchoolModal from './FindSchoolModal/FindSchoolModal';
 import useModal from '@maru/hooks/src/useModal';
 import { useState } from 'react';
 
@@ -73,7 +73,7 @@ const 출신학교및학력 = () => {
                 width="100%"
             />
             {isOpen && (
-                <SchoolSearchModal closeModal={closeModal} setAppliedSchool={setAppliedSchool} />
+                <FindSchoolModal closeModal={closeModal} setAppliedSchool={setAppliedSchool} />
             )}
         </Styled출신학교및학력>
     );
