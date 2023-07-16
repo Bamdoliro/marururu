@@ -17,6 +17,7 @@ interface PropsType {
 interface SchoolPropsType {
     SCHUL_NM: string;
     ORG_RDNMA: string;
+    ORG_TELNO: string;
     SD_SCHUL_CODE: string;
 }
 
@@ -28,6 +29,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
     const [selectedSchool, setSelectedSchool] = useState({
         SCHUL_NM: '',
         ORG_RDNMA: '',
+        ORG_TELNO: '',
         SD_SCHUL_CODE: '',
     });
 
@@ -36,7 +38,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
     };
 
     const resetSelectedSchool = () => {
-        setSelectedSchool({ SCHUL_NM: '', ORG_RDNMA: '', SD_SCHUL_CODE: '' });
+        setSelectedSchool({ SCHUL_NM: '', ORG_RDNMA: '', ORG_TELNO: '', SD_SCHUL_CODE: '' });
     };
 
     const applySchool = (school: SchoolPropsType) => {
@@ -68,12 +70,22 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                     </Column>
                     <SchoolList>
                         {schoolListQuery.data?.map(
-                            ({ SCHUL_NM, ORG_RDNMA, SD_SCHUL_CODE }: SchoolPropsType) => (
+                            ({
+                                SCHUL_NM,
+                                ORG_RDNMA,
+                                ORG_TELNO,
+                                SD_SCHUL_CODE,
+                            }: SchoolPropsType) => (
                                 <SchoolItem
                                     key={SD_SCHUL_CODE}
                                     selected={selectedSchool.SD_SCHUL_CODE === SD_SCHUL_CODE}
                                     onClick={() =>
-                                        selectSchool({ SCHUL_NM, ORG_RDNMA, SD_SCHUL_CODE })
+                                        selectSchool({
+                                            SCHUL_NM,
+                                            ORG_RDNMA,
+                                            ORG_TELNO,
+                                            SD_SCHUL_CODE,
+                                        })
                                     }>
                                     <SchoolName>
                                         {selectedSchool.SD_SCHUL_CODE === SD_SCHUL_CODE && (
@@ -160,8 +172,7 @@ const SchoolItem = styled.div<{ selected: boolean }>`
     background: ${color.gray50};
     justify-content: space-between;
     align-items: center;
-    flex-shrink: 0;
-    align-self: stretch;
+    cursor: pointer;
 
     ${({ selected }) =>
         selected &&

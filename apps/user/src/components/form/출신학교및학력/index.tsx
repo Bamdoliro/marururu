@@ -10,6 +10,7 @@ const 출신학교및학력 = () => {
     const [appliedSchool, setAppliedSchool] = useState({
         SCHUL_NM: '',
         ORG_RDNMA: '',
+        ORG_TELNO: '',
         SD_SCHUL_CODE: '',
     });
 
@@ -57,6 +58,7 @@ const 출신학교및학력 = () => {
             <Input
                 name="schoolContact"
                 label="학교 연락처"
+                value={appliedSchool.ORG_TELNO}
                 placeholder="뭐시기 뭐시기"
                 width="100%"
             />
