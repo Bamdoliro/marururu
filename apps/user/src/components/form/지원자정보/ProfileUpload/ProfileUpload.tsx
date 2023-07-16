@@ -39,7 +39,7 @@ const ProfileUpload = () => {
                     </Column>
                 </ImageUploadBox>
             )}
-            {profileImage.length !== 0 && (
+            {profileImage && (
                 <Button size="SMALL" onClick={handleImageUploadButtonClick}>
                     재업로드
                 </Button>
