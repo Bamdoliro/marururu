@@ -2,16 +2,16 @@ import { ButtonInput, Input } from '@maru/ui';
 import { RadioGroup } from '@maru/ui';
 import { styled } from 'styled-components';
 import SchoolSearchModal from '../Modal/SchoolSearchModal';
-import useModal from '../Modal/useModal';
+import useModal from '@maru/hooks/src/useModal';
 import { useState } from 'react';
 
 const 출신학교및학력 = () => {
     const { isOpen, openModal, closeModal } = useModal();
     const [appliedSchool, setAppliedSchool] = useState({
-        SCHUL_NM: '',
-        ORG_RDNMA: '',
-        ORG_TELNO: '',
-        SD_SCHUL_CODE: '',
+        schoolName: '',
+        schoolRegion: '',
+        schoolPhone: '',
+        schoolCode: '',
     });
 
     return (
@@ -25,7 +25,7 @@ const 출신학교및학력 = () => {
             <ButtonInput
                 name="almaMater"
                 label="출신학교"
-                value={appliedSchool.SCHUL_NM}
+                value={appliedSchool.schoolName}
                 buttonText="검색"
                 buttonWidth="68px"
                 handleButtonClick={openModal}
@@ -42,7 +42,7 @@ const 출신학교및학력 = () => {
             <ButtonInput
                 name="regions"
                 label="지역"
-                value={appliedSchool.ORG_RDNMA}
+                value={appliedSchool.schoolRegion}
                 buttonText="검색"
                 buttonWidth="68px"
                 handleButtonClick={() => {}}
@@ -58,7 +58,7 @@ const 출신학교및학력 = () => {
             <Input
                 name="schoolContact"
                 label="학교 연락처"
-                value={appliedSchool.ORG_TELNO}
+                value={appliedSchool.schoolPhone}
                 placeholder="뭐시기 뭐시기"
                 width="100%"
             />

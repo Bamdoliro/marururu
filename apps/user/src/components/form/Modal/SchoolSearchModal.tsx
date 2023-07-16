@@ -10,15 +10,15 @@ import { useQueryClient } from 'react-query';
 import KEY from '@/constants/key';
 
 interface PropsType {
-    closeModal: () => any;
+    closeModal: () => void;
     setAppliedSchool: Dispatch<SetStateAction<SchoolPropsType>>;
 }
 
 interface SchoolPropsType {
-    SCHUL_NM: string;
-    ORG_RDNMA: string;
-    ORG_TELNO: string;
-    SD_SCHUL_CODE: string;
+    schoolName: string;
+    schoolRegion: string;
+    schoolPhone: string;
+    schoolCode: string;
 }
 
 const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
@@ -27,10 +27,10 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
     const schoolListQuery = useFormSchoolListQuery(debouncedValue);
 
     const [selectedSchool, setSelectedSchool] = useState({
-        SCHUL_NM: '',
-        ORG_RDNMA: '',
-        ORG_TELNO: '',
-        SD_SCHUL_CODE: '',
+        schoolName: '',
+        schoolRegion: '',
+        schoolPhone: '',
+        schoolCode: '',
     });
 
     const selectSchool = (school: SchoolPropsType) => {
@@ -38,7 +38,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
     };
 
     const resetSelectedSchool = () => {
-        setSelectedSchool({ SCHUL_NM: '', ORG_RDNMA: '', ORG_TELNO: '', SD_SCHUL_CODE: '' });
+        setSelectedSchool({ schoolName: '', schoolRegion: '', schoolPhone: '', schoolCode: '' });
     };
 
     const applySchool = (school: SchoolPropsType) => {
@@ -71,29 +71,27 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                     <SchoolList>
                         {schoolListQuery.data?.map(
                             ({
-                                SCHUL_NM,
-                                ORG_RDNMA,
-                                ORG_TELNO,
-                                SD_SCHUL_CODE,
-                            }: SchoolPropsType) => (
+                                SCHUL_NM: schoolName,
+                                ORG_RDNMA: schoolRegion,
+                                ORG_TELNO: schoolPhone,
+                                SD_SCHUL_CODE: schoolCode,
+                            }) => (
                                 <SchoolItem
-                                    key={SD_SCHUL_CODE}
-                                    selected={selectedSchool.SD_SCHUL_CODE === SD_SCHUL_CODE}
+                                    key={schoolCode}
+                                    selected={selectedSchool.schoolCode === schoolCode}
                                     onClick={() =>
                                         selectSchool({
-                                            SCHUL_NM,
-                                            ORG_RDNMA,
-                                            ORG_TELNO,
-                                            SD_SCHUL_CODE,
+                                            schoolName,
+                                            schoolRegion,
+                                            schoolPhone,
+                                            schoolCode,
                                         })
                                     }>
                                     <SchoolName>
-                                        {selectedSchool.SD_SCHUL_CODE === SD_SCHUL_CODE && (
-                                            <Check />
-                                        )}
-                                        {SCHUL_NM}
+                                        {selectedSchool.schoolCode === schoolCode && <Check />}
+                                        {schoolName}
                                     </SchoolName>
-                                    <SchoolRegion>{ORG_RDNMA}</SchoolRegion>
+                                    <SchoolRegion>{schoolRegion}</SchoolRegion>
                                 </SchoolItem>
                             ),
                         )}
