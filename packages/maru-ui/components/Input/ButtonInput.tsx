@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 interface ButtonInputPropsType extends InputPropsType {
     buttonText: string;
-    handleButtonClick: () => void;
+    handleInputButtonClick: () => void;
     enabled?: boolean;
 }
 
@@ -19,22 +19,24 @@ const ButtonInput = ({
     type = 'text',
     onChange,
     buttonText,
-    handleButtonClick,
+    handleInputButtonClick,
     enabled = false,
+    readOnly,
 }: ButtonInputPropsType) => {
     return (
-        <div style={{ width }}>
+        <div>
             {label && <Label>{label}</Label>}
             <StyledButtonInput>
                 <Input
-                    width="100%"
+                    width={width}
                     name={name}
                     value={value}
                     type={type}
                     onChange={onChange}
                     placeholder={placeholder}
+                    readOnly={readOnly}
                 />
-                <Button onClick={handleButtonClick} enabled={enabled}>
+                <Button onClick={handleInputButtonClick} enabled={enabled}>
                     {buttonText}
                 </Button>
             </StyledButtonInput>

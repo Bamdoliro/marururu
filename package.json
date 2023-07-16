@@ -19,9 +19,5 @@
     "eslint": "^7.32.0",
     "prettier": "^2.5.1",
     "turbo": "latest"
-  },
-  "dependencies": {
-    "@types/lodash": "^4.14.195",
-    "lodash": "^4.17.21"
   }
 }
