@@ -1,19 +1,28 @@
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import Close from '@maru/ui/Icons/Close';
 import { useInput } from '@maru/hooks';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useFormSchoolListQuery from '@/services/form/출신학교및학력/queries';
+import Check from '@maru/ui/Icons/Check';
+import { useQueryClient } from 'react-query';
+import KEY from '@/constants/key';
 
 interface PropsType {
     closeModal: () => any;
 }
 
 const SchoolSearchModal = ({ closeModal }: PropsType) => {
+    const [selectedSchoolCode, setSelectedSchoolCode] = useState('');
+
     const { value, onChange, debouncedValue } = useInput({ initialValue: '', useDebounce: true });
 
     const schoolListQuery = useFormSchoolListQuery(debouncedValue);
+
+    const selectSchool = (schoolCode: string) => {
+        setSelectedSchoolCode(schoolCode);
+    };
 
     return (
         <Background>
@@ -32,9 +41,19 @@ const SchoolSearchModal = ({ closeModal }: PropsType) => {
                     </Column>
                     <SchoolList>
                         {schoolListQuery.data?.map(
-                            (school: { SCHUL_NM: string; ORG_RDNMA: string }) => (
-                                <SchoolItem>
-                                    <SchoolName>{school.SCHUL_NM}</SchoolName>
+                            (school: {
+                                SCHUL_NM: string;
+                                ORG_RDNMA: string;
+                                SD_SCHUL_CODE: string;
+                            }) => (
+                                <SchoolItem
+                                    key={school.SD_SCHUL_CODE}
+                                    onClick={() => selectSchool(school.SD_SCHUL_CODE)}
+                                    selected={selectedSchoolCode === school.SD_SCHUL_CODE}>
+                                    <SchoolName>
+                                        {selectedSchoolCode === school.SD_SCHUL_CODE && <Check />}
+                                        {school.SCHUL_NM}
+                                    </SchoolName>
                                     <SchoolRegion>{school.ORG_RDNMA}</SchoolRegion>
                                 </SchoolItem>
                             ),
@@ -93,7 +112,7 @@ const SchoolList = styled.div`
     overflow: auto;
 `;
 
-const SchoolItem = styled.div`
+const SchoolItem = styled.div<{ selected: boolean }>`
     display: flex;
     height: 56px;
     padding: 15px 16px;
@@ -103,11 +122,21 @@ const SchoolItem = styled.div`
     align-items: center;
     flex-shrink: 0;
     align-self: stretch;
+
+    ${({ selected }) =>
+        selected &&
+        css`
+            padding: 15px 15px;
+            border: 1px solid ${color.maruDefault};
+        `}
 `;
 
 const SchoolName = styled.p`
     ${font.p2}
     color: ${color.gray900};
+    display: flex;
+    align-items: center;
+    gap: 4px;
 `;
 
 const SchoolRegion = styled.p`
