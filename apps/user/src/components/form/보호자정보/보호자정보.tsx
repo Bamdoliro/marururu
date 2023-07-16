@@ -1,14 +1,14 @@
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useState } from 'react';
+import FindAddressModal from './FindAddressModal/FindAddressModal';
 import styled from 'styled-components';
-import AddressModal from './AddressModal/AddressModal';
 
 const 보호자정보 = () => {
-    const [isOpenAddressModal, setIsOpenAddressModal] = useState(false);
+    const [isOpenFindAddressModal, setIsOpenFindAddressModal] = useState(false);
     const [address, setAddress] = useState('');
 
-    const openAddressModal = () => {
-        setIsOpenAddressModal(true);
+    const openFindAddressModal = () => {
+        setIsOpenFindAddressModal(true);
     };
 
     return (
@@ -22,7 +22,7 @@ const 보호자정보 = () => {
                     <ButtonInput
                         label="주소"
                         buttonText="검색"
-                        handleInputButtonClick={openAddressModal}
+                        handleInputButtonClick={openFindAddressModal}
                         width="100%"
                         value={address}
                         readOnly
@@ -30,11 +30,12 @@ const 보호자정보 = () => {
                     <Input label="상세 주소" width="100%" />
                 </Column>
             </Styled보호자정보>
-            <AddressModal
-                isOpenAddressModal={isOpenAddressModal}
-                closeModal={() => setIsOpenAddressModal(false)}
-                setAddress={setAddress}
-            />
+            {isOpenFindAddressModal && (
+                <FindAddressModal
+                    closeModal={() => setIsOpenFindAddressModal(false)}
+                    setAddress={setAddress}
+                />
+            )}
         </>
     );
 };
