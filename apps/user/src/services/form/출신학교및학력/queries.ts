@@ -8,7 +8,7 @@ const useFormSchoolListQuery = (name: string) => {
             KEY.FORM_SCHOOL_LIST,
             name.replaceAll(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ 0-9]/gim, ''),
         ],
-        queryFn: async () => schoolList(name),
+        queryFn: () => schoolList(name),
     });
 };
 

@@ -12,7 +12,7 @@ interface RadioGroupPropsType {
 
 const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
     return (
-        <StyledRadioGroup>
+        <div>
             <Label>{label}</Label>
             <RadioListBox>
                 {list.map((item) => (
@@ -24,11 +24,9 @@ const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
                     />
                 ))}
             </RadioListBox>
-        </StyledRadioGroup>
+        </div>
     );
 };
-
-const StyledRadioGroup = styled.div``;
 
 const RadioListBox = styled.div`
     display: flex;
