@@ -7,13 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@types/lodash':
-        specifier: ^4.14.195
-        version: 4.14.195
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
     devDependencies:
       '@maru/eslint':
         specifier: workspace:*
@@ -54,6 +47,9 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
+      react-daum-postcode:
+        specifier: ^3.1.3
+        version: 3.1.3(react@18.2.0)
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
@@ -122,6 +118,12 @@ importers:
 
   packages/maru-hooks:
     dependencies:
+      '@types/lodash':
+        specifier: ^4.14.195
+        version: 4.14.195
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -4372,6 +4374,14 @@ packages:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
     dev: true
+
+  /react-daum-postcode@3.1.3(react@18.2.0):
+    resolution: {integrity: sha512-qTyzUb1BeszPFO4FXSj6p83Wrn5Zpo6YqI2EZ46XSVRZT+du9CrKg9p3KshBRFKYxXmFE1Mv7wEynzXdRFNlmQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
