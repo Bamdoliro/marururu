@@ -25,14 +25,14 @@ const 보호자정보 = () => {
                         handleInputButtonClick={openAddressModal}
                         width="100%"
                         value={address}
-                        readOnly={true}
+                        readOnly
                     />
                     <Input label="상세 주소" width="100%" />
                 </Column>
             </Styled보호자정보>
             <AddressModal
                 isOpenAddressModal={isOpenAddressModal}
-                isClose={() => setIsOpenAddressModal(false)}
+                closeModal={() => setIsOpenAddressModal(false)}
                 setAddress={setAddress}
             />
         </>

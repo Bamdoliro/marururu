@@ -9,12 +9,12 @@ interface PropsType {
     closeModal: () => void;
 }
 
-const AddressModal = ({ isOpenAddressModal, isClose, setAddress }: PropsType) => {
-    const addressModalRef = useOutsideClick(isClose);
+const AddressModal = ({ isOpenAddressModal, closeModal, setAddress }: PropsType) => {
+    const addressModalRef = useOutsideClick(closeModal);
 
     const onComplete = ({ address }: { address: string }) => {
         setAddress(address);
-        isClose();
+        closeModal();
     };
 
     return (
