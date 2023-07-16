@@ -72,9 +72,11 @@ const 출신학교및학력 = () => {
                 placeholder="뭐시기 뭐시기"
                 width="100%"
             />
-            {isOpen && (
-                <SchoolSearchModal closeModal={closeModal} setAppliedSchool={setAppliedSchool} />
-            )}
+            <SchoolSearchModal
+                isOpen={isOpen}
+                closeModal={closeModal}
+                setAppliedSchool={setAppliedSchool}
+            />
         </Styled출신학교및학력>
     );
 };

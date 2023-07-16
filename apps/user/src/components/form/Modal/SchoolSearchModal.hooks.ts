@@ -18,25 +18,21 @@ const useSchoolModalHandler = (
         schoolCode: '',
     });
 
-    const selectSchool = (school: SchoolPropsType) => {
+    const handleSchoolSelect = (school: SchoolPropsType) => {
         setSelectedSchool(school);
     };
 
-    const resetSelectedSchool = () => {
-        setSelectedSchool({ schoolName: '', schoolRegion: '', schoolPhone: '', schoolCode: '' });
-    };
-
     const closeSchoolModal = () => {
-        resetSelectedSchool();
+        setSelectedSchool({ schoolName: '', schoolRegion: '', schoolPhone: '', schoolCode: '' });
         closeModal();
     };
 
-    const applySchool = () => {
+    const onComplete = () => {
         setAppliedSchool(selectedSchool);
         closeModal();
     };
 
-    return { selectedSchool, selectSchool, closeSchoolModal, applySchool };
+    return { selectedSchool, handleSchoolSelect, closeSchoolModal, onComplete };
 };
 
 export default useSchoolModalHandler;

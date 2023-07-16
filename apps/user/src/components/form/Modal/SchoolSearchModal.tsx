@@ -9,6 +9,7 @@ import Check from '@maru/ui/Icons/Check';
 import useSchoolModalHandler from './SchoolSearchModal.hooks';
 
 interface PropsType {
+    isOpen: boolean;
     closeModal: () => void;
     setAppliedSchool: Dispatch<SetStateAction<SchoolPropsType>>;
 }
@@ -20,18 +21,16 @@ interface SchoolPropsType {
     schoolCode: string;
 }
 
-const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
+const SchoolSearchModal = ({ isOpen, closeModal, setAppliedSchool }: PropsType) => {
     const { value, onChange, debouncedValue } = useInput({ initialValue: '', useDebounce: true });
 
     const schoolListQuery = useFormSchoolListQuery(debouncedValue);
 
-    const { selectedSchool, selectSchool, closeSchoolModal, applySchool } = useSchoolModalHandler(
-        closeModal,
-        setAppliedSchool,
-    );
+    const { selectedSchool, handleSchoolSelect, closeSchoolModal, onComplete } =
+        useSchoolModalHandler(closeModal, setAppliedSchool);
 
     return (
-        <Background>
+        <Background isOpen={isOpen}>
             <StyledSchoolSearchModal>
                 <Column gap="24px">
                     <Column gap="16px">
@@ -46,18 +45,23 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                         />
                     </Column>
                     <SchoolList>
-                        {schoolListQuery.data?.map(
+                        {schoolListQuery.data?.schoolInfo?.[1].row.map(
                             ({
                                 SCHUL_NM: schoolName,
                                 ORG_RDNMA: schoolRegion,
                                 ORG_TELNO: schoolPhone,
                                 SD_SCHUL_CODE: schoolCode,
+                            }: {
+                                SCHUL_NM: string;
+                                ORG_RDNMA: string;
+                                ORG_TELNO: string;
+                                SD_SCHUL_CODE: string;
                             }) => (
                                 <SchoolItem
                                     key={schoolCode}
                                     selected={selectedSchool.schoolCode === schoolCode}
                                     onClick={() =>
-                                        selectSchool({
+                                        handleSchoolSelect({
                                             schoolName,
                                             schoolRegion,
                                             schoolPhone,
@@ -78,7 +82,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                     <Button option="SECONDARY" size="SMALL" onClick={closeSchoolModal}>
                         취소
                     </Button>
-                    <Button size="SMALL" onClick={applySchool}>
+                    <Button size="SMALL" onClick={onComplete}>
                         완료
                     </Button>
                 </Row>
@@ -89,11 +93,11 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
 
 export default SchoolSearchModal;
 
-const Background = styled.div`
+const Background = styled.div<{ isOpen: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
+    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     width: 100vw;
