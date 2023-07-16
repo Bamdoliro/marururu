@@ -21,6 +21,7 @@ const ButtonInput = ({
     buttonText,
     handleButtonClick,
     enabled = false,
+    readOnly,
 }: ButtonInputPropsType) => {
     return (
         <div>
@@ -33,6 +34,7 @@ const ButtonInput = ({
                     type={type}
                     onChange={onChange}
                     placeholder={placeholder}
+                    readOnly={readOnly}
                 />
                 <Button onClick={handleButtonClick} enabled={enabled}>
                     {buttonText}

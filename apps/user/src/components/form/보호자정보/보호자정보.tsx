@@ -5,6 +5,7 @@ import AddressModal from './AddressModal/AddressModal';
 
 const 보호자정보 = () => {
     const [isOpenAddressModal, setIsOpenAddressModal] = useState(false);
+    const [address, setAddress] = useState('');
 
     const openAddressModal = () => {
         setIsOpenAddressModal(true);
@@ -23,6 +24,8 @@ const 보호자정보 = () => {
                         buttonText="검색"
                         handleButtonClick={openAddressModal}
                         width="100%"
+                        value={address}
+                        readOnly={true}
                     />
                     <Input label="상세 주소" width="100%" />
                 </Column>
@@ -30,6 +33,7 @@ const 보호자정보 = () => {
             <AddressModal
                 isOpenAddressModal={isOpenAddressModal}
                 isClose={() => setIsOpenAddressModal(false)}
+                setAddress={setAddress}
             />
         </>
     );
