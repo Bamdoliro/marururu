@@ -9,7 +9,6 @@ import Check from '@maru/ui/Icons/Check';
 import useSchoolModalHandler from './SchoolSearchModal.hooks';
 
 interface PropsType {
-    isOpen: boolean;
     closeModal: () => void;
     setAppliedSchool: Dispatch<SetStateAction<SchoolPropsType>>;
 }
@@ -21,7 +20,7 @@ interface SchoolPropsType {
     schoolCode: string;
 }
 
-const SchoolSearchModal = ({ isOpen, closeModal, setAppliedSchool }: PropsType) => {
+const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
     const { value, onChange, debouncedValue } = useInput({ initialValue: '', useDebounce: true });
 
     const schoolListQuery = useFormSchoolListQuery(debouncedValue);
@@ -30,7 +29,7 @@ const SchoolSearchModal = ({ isOpen, closeModal, setAppliedSchool }: PropsType) 
         useSchoolModalHandler(closeModal, setAppliedSchool);
 
     return (
-        <Background isOpen={isOpen}>
+        <Background>
             <StyledSchoolSearchModal>
                 <Column gap="24px">
                     <Column gap="16px">
@@ -93,11 +92,11 @@ const SchoolSearchModal = ({ isOpen, closeModal, setAppliedSchool }: PropsType) 
 
 export default SchoolSearchModal;
 
-const Background = styled.div<{ isOpen: boolean }>`
+const Background = styled.div`
     position: fixed;
     top: 0;
     left: 0;
-    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 100vw;
