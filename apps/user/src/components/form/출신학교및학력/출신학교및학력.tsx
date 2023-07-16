@@ -1,7 +1,7 @@
 import { ButtonInput, Input } from '@maru/ui';
 import { RadioGroup } from '@maru/ui';
 import { styled } from 'styled-components';
-import SchoolSearchModal from '../Modal/SchoolSearchModal';
+import SchoolSearchModal from './SchoolSearchModal/SchoolSearchModal';
 import useModal from '@maru/hooks/src/useModal';
 import { useState } from 'react';
 
