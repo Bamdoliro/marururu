@@ -22,7 +22,6 @@ const ButtonInput = ({
     buttonText,
     handleInputButtonClick,
     enabled = false,
-    buttonWidth = '',
     readOnly,
 }: ButtonInputPropsType) => {
     return (
@@ -38,10 +37,7 @@ const ButtonInput = ({
                     placeholder={placeholder}
                     readOnly={readOnly}
                 />
-                <Button
-                    onClick={handleInputButtonClick}
-                    enabled={enabled}
-                    style={{ width: buttonWidth }}>
+                <Button onClick={handleInputButtonClick} enabled={enabled}>
                     {buttonText}
                 </Button>
             </StyledButtonInput>
@@ -65,7 +61,7 @@ export const Button = styled.button<{ enabled: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
     height: 48px;
-    padding: 10px 16px;
+    padding: 10px 20px;
     flex-shrink: 0;
 
     &:hover {
