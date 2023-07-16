@@ -8,6 +8,7 @@ interface ButtonInputPropsType extends InputPropsType {
     buttonText: string;
     handleInputButtonClick: () => void;
     enabled?: boolean;
+    buttonWidth?: string;
 }
 
 const ButtonInput = ({
@@ -59,9 +60,9 @@ export const Button = styled.button<{ enabled: boolean }>`
     display: flex;
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
-    width: 68px;
     height: 48px;
-    padding: 10px 16px;
+    padding: 10px 20px;
+    flex-shrink: 0;
 
     &:hover {
         background-color: ${(props) => (props.enabled ? color.gray400 : color.maruHoverd)};

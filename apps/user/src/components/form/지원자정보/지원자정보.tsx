@@ -1,4 +1,4 @@
-import { Column, Input, Row, Radio } from '@maru/ui';
+import { Column, Input, Row, Radio, RadioGroup } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import ProfileUpload from './ProfileUpload/ProfileUpload';
 import styled from 'styled-components';
@@ -16,8 +16,7 @@ const 지원자정보 = () => {
                         <Dropdown data={[]} placeholder="일" />
                     </Row>
                     <Row gap={40} alignItems="flex-end">
-                        <Radio name="gender" value="남자" label="성별" />
-                        <Radio name="gender" value="여자" />
+                        <RadioGroup label="성별" name="gender" list={['남자', '여자']} />
                     </Row>
                     <Input label="전화번호" placeholder="- 없이 입력해주세요" width="100%" />
                 </Column>

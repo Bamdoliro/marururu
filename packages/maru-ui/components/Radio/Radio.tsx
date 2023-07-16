@@ -1,29 +1,71 @@
-import { font, color } from '@maru/theme';
-import styled from 'styled-components';
-import Row from '../Flex/Row';
+import { color, font } from '@maru/theme';
+import { InputHTMLAttributes } from 'react';
+import { styled } from 'styled-components';
 
-interface PropsType {
-    label?: string;
-    name: string;
-    value: string;
-}
+interface RadioPropsType extends InputHTMLAttributes<HTMLInputElement> {}
 
-const Radio = ({ label, name, value }: PropsType) => {
+const Radio = ({ content, value, name, defaultChecked, onChange }: RadioPropsType) => {
     return (
-        <div>
-            <Label>{label}</Label>
-            <Row gap={8} alignItems="center">
-                <input type="radio" id={value} value={value} name={name} />
-                <label htmlFor={value}>{value}</label>
-            </Row>
-        </div>
+        <StyledRadio>
+            <Label>
+                <Input
+                    type="radio"
+                    value={value}
+                    name={name}
+                    defaultChecked={defaultChecked}
+                    onChange={onChange}
+                />
+                <RadioBox></RadioBox>
+                <Content>{content}</Content>
+            </Label>
+        </StyledRadio>
     );
 };
 
-export default Radio;
-
-const Label = styled.p`
-    ${font.context}
-    color: ${color.gray700};
-    padding-bottom: 8px;
+const StyledRadio = styled.div`
+    padding-right: 40px;
 `;
+
+const RadioBox = styled.div`
+    position: relative;
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    border: 1px solid ${color.gray400};
+    border-radius: 50%;
+`;
+
+const Input = styled.input`
+    display: none;
+
+    &:checked + ${RadioBox} {
+        border: 2px solid ${color.maruDefault};
+    }
+
+    &:checked + ${RadioBox}::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background-color: ${color.maruDefault};
+    }
+`;
+
+const Label = styled.label`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 26px;
+`;
+
+const Content = styled.p`
+    ${font.p2};
+    color: ${color.gray900};
+`;
+
+export default Radio;
