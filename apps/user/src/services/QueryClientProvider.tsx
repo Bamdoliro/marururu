@@ -1,6 +1,5 @@
 'use client';
 
-import { GlobalStyle } from '@maru/theme';
 import { ReactNode, useState } from 'react';
 import { QueryClient, QueryClientProvider as MaruQueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -23,7 +22,6 @@ const QueryClientProvider = ({ children }: PropsType) => {
 
     return (
         <MaruQueryClientProvider client={queryClient}>
-            <GlobalStyle />
             {children}
             <ReactQueryDevtools />
         </MaruQueryClientProvider>
