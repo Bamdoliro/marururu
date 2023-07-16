@@ -3,11 +3,10 @@ import { Button, Column, Row, SearchInput } from '@maru/ui';
 import { css, styled } from 'styled-components';
 import Close from '@maru/ui/Icons/Close';
 import { useInput } from '@maru/hooks';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import useFormSchoolListQuery from '@/services/form/출신학교및학력/queries';
 import Check from '@maru/ui/Icons/Check';
-import { useQueryClient } from 'react-query';
-import KEY from '@/constants/key';
+import useSchoolModalHandler from './SchoolSearchModal.hooks';
 
 interface PropsType {
     closeModal: () => void;
@@ -26,26 +25,10 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
 
     const schoolListQuery = useFormSchoolListQuery(debouncedValue);
 
-    const [selectedSchool, setSelectedSchool] = useState({
-        schoolName: '',
-        schoolRegion: '',
-        schoolPhone: '',
-        schoolCode: '',
-    });
-
-    const selectSchool = (school: SchoolPropsType) => {
-        setSelectedSchool(school);
-    };
-
-    const resetSelectedSchool = () => {
-        setSelectedSchool({ schoolName: '', schoolRegion: '', schoolPhone: '', schoolCode: '' });
-    };
-
-    const applySchool = (school: SchoolPropsType) => {
-        setAppliedSchool(school);
-    };
-
-    useEffect(resetSelectedSchool, [debouncedValue]);
+    const { selectedSchool, selectSchool, closeSchoolModal, applySchool } = useSchoolModalHandler(
+        closeModal,
+        setAppliedSchool,
+    );
 
     return (
         <Background>
@@ -54,13 +37,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                     <Column gap="16px">
                         <Row justifyContent="space-between">
                             <Title>학교 검색</Title>
-                            <Close
-                                cursor="pointer"
-                                onClick={() => {
-                                    resetSelectedSchool();
-                                    closeModal();
-                                }}
-                            />
+                            <Close cursor="pointer" onClick={closeSchoolModal} />
                         </Row>
                         <SearchInput
                             value={value}
@@ -98,21 +75,10 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                     </SchoolList>
                 </Column>
                 <Row gap="16px" justifyContent="flex-end">
-                    <Button
-                        option="SECONDARY"
-                        size="SMALL"
-                        onClick={() => {
-                            resetSelectedSchool();
-                            closeModal();
-                        }}>
+                    <Button option="SECONDARY" size="SMALL" onClick={closeSchoolModal}>
                         취소
                     </Button>
-                    <Button
-                        size="SMALL"
-                        onClick={() => {
-                            applySchool(selectedSchool);
-                            closeModal();
-                        }}>
+                    <Button size="SMALL" onClick={applySchool}>
                         완료
                     </Button>
                 </Row>

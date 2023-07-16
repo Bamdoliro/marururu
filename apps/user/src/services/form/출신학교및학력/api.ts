@@ -5,5 +5,5 @@ export const schoolList = async (name: string) => {
         `${process.env.NEXT_PUBLIC_SCHOOL_LIST_API!}&SCHUL_NM=${name}`,
     );
 
-    return data?.schoolInfo?.[1].row;
+    return data.schoolInfo?.[1].row;
 };
