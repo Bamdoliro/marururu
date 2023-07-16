@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
@@ -6,18 +6,13 @@ import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
 
 interface PropsType {
-    label: string;
-    DropdownData: string[];
-    width?: string;
+    label?: string;
+    data: string[];
+    width?: CSSProperties['width'];
     placeholder?: string;
 }
 
-const Dropdown = ({
-    label,
-    DropdownData,
-    width = '320px',
-    placeholder = '옵션을 선택해 주세요',
-}: PropsType) => {
+const Dropdown = ({ label, data, width = '320px', placeholder }: PropsType) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(placeholder);
 
@@ -37,7 +32,7 @@ const Dropdown = ({
             </StyledDropdown>
             <DropdownListBox isOpen={isOpen}>
                 <DropdownList>
-                    {DropdownData?.map((item, index) => (
+                    {data?.map((item, index) => (
                         <DropdownItem key={`dropdown ${index}`} onClick={() => clickedMenu(item)}>
                             {item}
                         </DropdownItem>

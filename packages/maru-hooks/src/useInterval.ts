@@ -29,11 +29,11 @@ const useInterval = (callback: () => void, options: IntervalOptionsType) => {
             };
         }
 
-        function tick() {
+        const tick = () => {
             if (savedCallback.current) {
                 savedCallback.current();
             }
-        }
+        };
 
         const id = window.setInterval(tick, delay);
         return () => window.clearInterval(id);
