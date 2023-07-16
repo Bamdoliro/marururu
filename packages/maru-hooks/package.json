@@ -11,7 +11,7 @@
     "react": "18.2.0"
   },
   "devDependencies": {
-    "@maru/tsconfig": "*",
+    "@maru/tsconfig": "workspace:*",
     "@types/react": "18.2.13",
     "typescript": "^5.1.3"
   }

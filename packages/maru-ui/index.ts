@@ -8,6 +8,7 @@ export { default as ButtonInput } from './components/Input/ButtonInput';
 export { default as PreviewInput } from './components/Input/PreviewInput';
 export { default as SearchInput } from './components/Input/SearchInput';
 export { default as TimeLimitInput } from './components/Input/TimeLimitInput';
+export { default as Radio } from './components/Radio/Radio';
 
 // type
 export type { default as IconPropsType } from './Icons/Icon.type';

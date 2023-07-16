@@ -61,7 +61,7 @@ export const useRemainDate = () => {
 
     const status = statusMap.get(currentTime);
     const remainTime = remainDays >= 1 || remainDays < 0 ? formatDay(remainDays) : timeDiff;
-    const targetDate = currentTime.format('YYYY 년 MM월 DD일');
+    const targetDate = currentTime.format('YYYY년 MM월 DD일');
 
     return {
         status,

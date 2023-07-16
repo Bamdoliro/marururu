@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { BaseLayout } from '@/layouts';
-import useLogin from './login.hooks';
+import { useLogin } from './login.hooks';
 import { useRouter } from 'next/navigation';
 import ROUTES from '@/constants/routes';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
