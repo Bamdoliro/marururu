@@ -22,7 +22,7 @@ const 보호자정보 = () => {
                     <ButtonInput
                         label="주소"
                         buttonText="검색"
-                        handleButtonClick={openAddressModal}
+                        handleInputButtonClick={openAddressModal}
                         width="100%"
                         value={address}
                         readOnly={true}
