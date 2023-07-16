@@ -6,7 +6,7 @@ import { SetStateAction, Dispatch } from 'react';
 interface PropsType {
     isOpenAddressModal: boolean;
     setAddress: Dispatch<SetStateAction<string>>;
-    isClose: () => void;
+    closeModal: () => void;
 }
 
 const AddressModal = ({ isOpenAddressModal, isClose, setAddress }: PropsType) => {
