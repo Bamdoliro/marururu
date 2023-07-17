@@ -6,7 +6,7 @@ import {
     requestEmail,
     requestEmailParamsType,
 } from './api';
-import { Storage } from '@/apis/storage';
+import { Storage } from '@/apis/storage/storage';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 import { axiosErrorTemplate } from '@maru/utils';

@@ -1,4 +1,4 @@
-import { formStepAtomState, FormStepType } from '@/store/form';
+import { formStepAtomState, FormStepType } from '@/store/form/form';
 import { useRecoilState } from 'recoil';
 
 const useForm = () => {
