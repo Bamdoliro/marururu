@@ -1,6 +1,5 @@
 import { color, font } from '@maru/theme';
-import { Row } from '@maru/ui';
-import { flex } from '@maru/utils';
+import { Row, Th, Td } from '@maru/ui';
 import styled from 'styled-components';
 
 // 모의 성적 계산
@@ -10,62 +9,62 @@ const GradePreview = () => {
             <Title>모의 성적 계산</Title>
             <Table>
                 <Row alignItems="center">
-                    <Th width="calc(100% / 6)" height="56px">
+                    <Th width="calc(100% / 6)" height={56}>
                         전형
                     </Th>
-                    <Th width="calc(100% / 6)" height="56px">
+                    <Th width="calc(100% / 6)" height={56}>
                         교과성적
                     </Th>
-                    <Th width="calc(100% / 6)" height="56px">
+                    <Th width="calc(100% / 6)" height={56}>
                         출결상황
                     </Th>
-                    <Th width="calc(100% / 6)" height="56px">
+                    <Th width="calc(100% / 6)" height={56}>
                         봉사활동
                     </Th>
-                    <Th width="calc(100% / 6)" height="56px">
+                    <Th width="calc(100% / 6)" height={56}>
                         가산점
                     </Th>
-                    <Th width="calc(100% / 6)" height="56px">
+                    <Th width="calc(100% / 6)" height={56}>
                         총점
                     </Th>
                 </Row>
                 <Row alignItems="center">
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         일반전형
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
                 </Row>
                 <Row alignItems="center">
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         특별전형
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
-                    <Td width="calc(100% / 6)" height="56px">
+                    <Td width="calc(100% / 6)" height={56}>
                         0
                     </Td>
                 </Row>
@@ -90,30 +89,4 @@ const Table = styled.div`
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
-`;
-
-const Th = styled.div<{ width: string; height: string }>`
-    ${font.context}
-    ${flex({ alignItems: 'center', justifyContent: 'center' })}
-    width: ${(props) => props.width};
-    height: ${(props) => props.height};
-    background-color: ${color.maruDefault};
-    color: ${color.white};
-    border-right: 1px solid ${color.white};
-    &:last-child {
-        border-right: none;
-    }
-`;
-
-const Td = styled.div<{ width: string; height: string }>`
-    ${font.btn2}
-    ${flex({ alignItems: 'center', justifyContent: 'center' })}
-    width: ${(props) => props.width};
-    height: ${(props) => props.height};
-    background-color: ${color.white};
-    color: ${color.gray900};
-    border: 0.5px solid ${color.gray300};
-    &:first-child {
-        background-color: ${color.gray50};
-    }
 `;
