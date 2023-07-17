@@ -5,14 +5,17 @@ import styled, { css } from 'styled-components';
 import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
 
+type DropdownSizeOption = 'MEDIUM' | 'SMALL';
+
 interface PropsType {
     label?: string;
     data: string[];
     width?: CSSProperties['width'];
+    size?: DropdownSizeOption;
     placeholder?: string;
 }
 
-const Dropdown = ({ label, data, width = '320px', placeholder }: PropsType) => {
+const Dropdown = ({ label, data, width = '320px', placeholder, size = 'MEDIUM' }: PropsType) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(placeholder);
 
@@ -25,8 +28,8 @@ const Dropdown = ({ label, data, width = '320px', placeholder }: PropsType) => {
 
     return (
         <div style={{ width }}>
-            <Label>{label}</Label>
-            <StyledDropdown onClick={clickToggle} isOpen={isOpen}>
+            {label && <Label>{label}</Label>}
+            <StyledDropdown size={size} onClick={clickToggle} isOpen={isOpen}>
                 <SelectedItemText>{selectedItem}</SelectedItemText>
                 {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}
             </StyledDropdown>
@@ -51,15 +54,11 @@ const Label = styled.p`
     padding-bottom: 8px;
 `;
 
-const StyledDropdown = styled.div<{ isOpen: boolean }>`
+const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    height: 48px;
     width: 100%;
-    padding: 10px 16px;
-
     background-color: ${color.white};
     border-radius: 6px;
     cursor: pointer;
@@ -73,6 +72,17 @@ const StyledDropdown = styled.div<{ isOpen: boolean }>`
             : css`
                   border: 1px solid ${color.gray400};
               `};
+
+    ${(props) =>
+        props.size === 'MEDIUM'
+            ? css`
+                  height: 48px;
+                  padding: 10px 16px;
+              `
+            : css`
+                  height: 40px;
+                  padding: 10px 10px 10px 16px;
+              `}
 `;
 
 const SelectedItemText = styled.p`
