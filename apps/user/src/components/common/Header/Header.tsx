@@ -1,4 +1,4 @@
-import { Storage } from '@/apis/storage';
+import { Storage } from '@/apis/storage/storage';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { color } from '@maru/theme';

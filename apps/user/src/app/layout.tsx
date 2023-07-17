@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import QueryClientProvider from '@/services/QueryClientProvider';
+import Provider from '@/components/Provider';
 
 export const metadata = {
     title: '마루',
@@ -14,7 +15,9 @@ const RootLayout = ({ children }: PropsType) => {
     return (
         <html lang="en">
             <body>
-                <QueryClientProvider>{children}</QueryClientProvider>
+                <QueryClientProvider>
+                    <Provider>{children}</Provider>
+                </QueryClientProvider>
             </body>
         </html>
     );

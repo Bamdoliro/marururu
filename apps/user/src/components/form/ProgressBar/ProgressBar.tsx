@@ -1,50 +1,32 @@
-import { useFormPage } from '@/hooks';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { useForm } from '@/hooks';
 import styled from 'styled-components';
 
 const PROGRESS_BAR_DATA = [
-    {
-        id: 0,
-        name: '지원자 정보',
-    },
-    {
-        id: 1,
-        name: '보호자 정보',
-    },
-    {
-        id: 2,
-        name: '출신학교 및 학력',
-    },
-    {
-        id: 3,
-        name: '전형 선택',
-    },
-    {
-        id: 4,
-        name: '성적 입력',
-    },
-    {
-        id: 5,
-        name: '자기소개서',
-    },
-];
+    '지원자 정보',
+    '보호자 정보',
+    '출신학교 및 학력',
+    '전형 선택',
+    '성적 입력',
+    '자기소개서',
+] as const;
 
 /**
  * @TODO 다음페이지로 성공적으로 넘어갔을때 complete 처리를 해줘야합니다
  */
 
 const ProgressBar = () => {
-    const { currentPage, movePage } = useFormPage();
+    const { formStep, onMoveForm } = useForm();
 
     return (
         <StyledProgressBar>
             {PROGRESS_BAR_DATA.map((item, index) => (
                 <Circle
-                    key={item.id}
-                    name={item.name}
-                    active={currentPage === index + 1}
-                    onClick={movePage}>
+                    key={`progress ${index}`}
+                    name={item}
+                    active={formStep === PROGRESS_BAR_DATA[index]}
+                    onClick={() => onMoveForm(PROGRESS_BAR_DATA[index])}>
                     {index + 1}
                 </Circle>
             ))}
