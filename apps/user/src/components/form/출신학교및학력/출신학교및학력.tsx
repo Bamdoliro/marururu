@@ -80,14 +80,11 @@ const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
                     placeholder="뭐시기 뭐시기"
                     width="100%"
                 />
-                {isOpen && (
-                    <SchoolSearchModal
-                        closeModal={closeModal}
-                        setAppliedSchool={setAppliedSchool}
-                    />
-                )}
             </Styled출신학교및학력>
             <FormController onPrevious={onPrevious} onNext={onNext} />
+            {isOpen && (
+                <SchoolSearchModal closeModal={closeModal} setAppliedSchool={setAppliedSchool} />
+            )}
         </FormLayout>
     );
 };

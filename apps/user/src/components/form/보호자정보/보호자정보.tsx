@@ -19,34 +19,32 @@ const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
     };
 
     return (
-        <>
-            <FormLayout title="보호자 정보">
-                <Styled보호자정보>
-                    <Column gap={30}>
-                        <Row gap={48} alignItems="center">
-                            <Input label="성명" width="100%" />
-                            <Input label="전화번호" placeholder="- 없이 입력" width="100%" />
-                        </Row>
-                        <ButtonInput
-                            label="주소"
-                            buttonText="검색"
-                            handleInputButtonClick={openFindAddressModal}
-                            width="100%"
-                            value={address}
-                            readOnly
-                        />
-                        <Input label="상세 주소" width="100%" />
-                    </Column>
-                </Styled보호자정보>
-                <FormController onPrevious={onPrevious} onNext={onNext} />
-            </FormLayout>
+        <FormLayout title="보호자 정보">
+            <Styled보호자정보>
+                <Column gap={30}>
+                    <Row gap={48} alignItems="center">
+                        <Input label="성명" width="100%" />
+                        <Input label="전화번호" placeholder="- 없이 입력" width="100%" />
+                    </Row>
+                    <ButtonInput
+                        label="주소"
+                        buttonText="검색"
+                        handleInputButtonClick={openFindAddressModal}
+                        width="100%"
+                        value={address}
+                        readOnly
+                    />
+                    <Input label="상세 주소" width="100%" />
+                </Column>
+            </Styled보호자정보>
+            <FormController onPrevious={onPrevious} onNext={onNext} />
             {isOpenFindAddressModal && (
                 <FindAddressModal
                     closeModal={() => setIsOpenFindAddressModal(false)}
                     setAddress={setAddress}
                 />
             )}
-        </>
+        </FormLayout>
     );
 };
 
