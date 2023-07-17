@@ -10,28 +10,64 @@ const GradePreview = () => {
             <Title>모의 성적 계산</Title>
             <Table>
                 <Row alignItems="center">
-                    <Th>전형</Th>
-                    <Th>교과성적</Th>
-                    <Th>출결상황</Th>
-                    <Th>봉사활동</Th>
-                    <Th>가산점</Th>
-                    <Th>총점</Th>
+                    <Th width="calc(100% / 6)" height="56px">
+                        전형
+                    </Th>
+                    <Th width="calc(100% / 6)" height="56px">
+                        교과성적
+                    </Th>
+                    <Th width="calc(100% / 6)" height="56px">
+                        출결상황
+                    </Th>
+                    <Th width="calc(100% / 6)" height="56px">
+                        봉사활동
+                    </Th>
+                    <Th width="calc(100% / 6)" height="56px">
+                        가산점
+                    </Th>
+                    <Th width="calc(100% / 6)" height="56px">
+                        총점
+                    </Th>
                 </Row>
                 <Row alignItems="center">
-                    <Td>일반전형</Td>
-                    <Td>0</Td>
-                    <Td>0</Td>
-                    <Td>0</Td>
-                    <Td>0</Td>
-                    <Td>0</Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        일반전형
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
                 </Row>
                 <Row alignItems="center">
-                    <Td>특별전형</Td>
-                    <Td>0</Td>
-                    <Td>0</Td>
-                    <Td>0</Td>
-                    <Td>0</Td>
-                    <Td>0</Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        특별전형
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
+                    <Td width="calc(100% / 6)" height="56px">
+                        0
+                    </Td>
                 </Row>
             </Table>
         </StyledGradePreview>
@@ -56,11 +92,11 @@ const Table = styled.div`
     overflow: hidden;
 `;
 
-const Th = styled.div`
+const Th = styled.div<{ width: string; height: string }>`
     ${font.context}
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
-    width: calc(100% / 6);
-    height: 56px;
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
     background-color: ${color.maruDefault};
     color: ${color.white};
     border-right: 1px solid ${color.white};
@@ -69,11 +105,11 @@ const Th = styled.div`
     }
 `;
 
-const Td = styled.div`
+const Td = styled.div<{ width: string; height: string }>`
     ${font.btn2}
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
-    width: calc(100% / 6);
-    height: 56px;
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
     background-color: ${color.white};
     color: ${color.gray900};
     border: 0.5px solid ${color.gray300};
