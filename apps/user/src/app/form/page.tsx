@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm } from '@/hooks';
-import { 지원자정보, 보호자정보, 출신학교및학력 } from '@/components/form';
+import { 지원자정보, 보호자정보, 출신학교및학력, 성적입력 } from '@/components/form';
 
 const FormPage = () => {
     const { formStep, onMoveForm } = useForm();
@@ -21,7 +21,9 @@ const FormPage = () => {
                 />
             )}
             {formStep === '전형 선택' && <div />}
-            {formStep === '성적 입력' && <div />}
+            {formStep === '성적 입력' && (
+                <성적입력 onNext={() => console.log('helo')} onPrevious={() => console.log('sd')} />
+            )}
             {formStep === '자기소개서' && <div />}
         </div>
     );
