@@ -1,9 +1,10 @@
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
-import styled from 'styled-components';
+import { useState } from 'react';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
+import styled from 'styled-components';
 
 const SUBJECT_DATA = [
     '국어',
@@ -18,14 +19,23 @@ const SUBJECT_DATA = [
     '음악',
     '미술',
     '정보',
-];
+] as const;
 
 const GradeCalculator = () => {
+    const [addSubjectData, setAddSubjectData] = useState([]);
+
     return (
         <StyledGradeCalculator>
             <GradeCalculatorHeader />
+
+            {/* 기존 과목 item */}
             {SUBJECT_DATA.map((item, index) => (
-                <GradeCalculatorItem key={`grade-caclulator-item ${index}`} subject={item} />
+                <GradeCalculatorItem option="DEFAULT" key={`subject${index}`} subject={item} />
+            ))}
+
+            {/* 사용자가 과목을 추가했을때 나타나는 item */}
+            {addSubjectData.map((item, index) => (
+                <GradeCalculatorItem option="ADD" key={`add-subject ${index}`} />
             ))}
             <GradeCalculatorFooter>
                 <Button icon="ADD_ICON" size="SMALL">
