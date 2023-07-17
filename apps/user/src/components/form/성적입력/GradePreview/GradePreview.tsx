@@ -4,9 +4,9 @@ import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 // 모의 성적 계산
-const GradeCalculator = () => {
+const GradePreview = () => {
     return (
-        <StyledGradeCalculator>
+        <StyledGradePreview>
             <Title>모의 성적 계산</Title>
             <Table>
                 <Row alignItems="center">
@@ -34,13 +34,13 @@ const GradeCalculator = () => {
                     <Td>0</Td>
                 </Row>
             </Table>
-        </StyledGradeCalculator>
+        </StyledGradePreview>
     );
 };
 
-export default GradeCalculator;
+export default GradePreview;
 
-const StyledGradeCalculator = styled.div`
+const StyledGradePreview = styled.div`
     width: 816px;
 `;
 
