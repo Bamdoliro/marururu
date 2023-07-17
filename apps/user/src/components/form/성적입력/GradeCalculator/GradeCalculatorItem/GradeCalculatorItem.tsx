@@ -3,11 +3,15 @@ import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-const GradeCalculatorItem = () => {
+interface PropsType {
+    subject: string;
+}
+
+const GradeCalculatorItem = ({ subject }: PropsType) => {
     return (
         <StyledGradeCalculatorItem>
             <Td width={123} height="100%">
-                국어
+                {subject}
             </Td>
             <Td width={190} height="100%">
                 <Dropdown size="SMALL" data={['A']} width={80} />
