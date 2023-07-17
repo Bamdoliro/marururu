@@ -1,1 +1,1 @@
-export { default as useFormPage } from './useFormPage';
+export { default as useForm } from './useForm';

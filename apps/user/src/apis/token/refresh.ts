@@ -1,8 +1,8 @@
 import ROUTES from '@/constants/routes';
 import TOKEN from '@/constants/token';
 import { useRouter } from 'next/navigation';
-import { maru } from '../instance';
-import { Storage } from '../storage';
+import { maru } from '../instance/instance';
+import { Storage } from '../storage/storage';
 
 const refreshToken = async () => {
     const router = useRouter();

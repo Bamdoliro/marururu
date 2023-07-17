@@ -1,6 +1,6 @@
 import TOKEN from '@/constants/token';
-import { Storage } from '@/apis/storage';
-import { maru } from '@/apis/instance';
+import { Storage } from '@/apis/storage/storage';
+import { maru } from '@/apis/instance/instance';
 
 export const uploadProfileImage = async (image: FormData) => {
     const { data } = await maru.post('/form/identification-picture', image, {
