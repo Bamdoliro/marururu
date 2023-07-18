@@ -1,12 +1,12 @@
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useState } from 'react';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
+import { useState } from 'react';
 import styled from 'styled-components';
 
-const SUBJECT_DATA = [
+const subjects = [
     '국어',
     '사회',
     '역사',
@@ -22,61 +22,52 @@ const SUBJECT_DATA = [
 ] as const;
 
 interface SubjectDataType {
-    id: number;
-    subject: string;
-    score2_1: number;
-    score2_2: number;
-    score3_1: number;
+    grade: number;
+    semester: number;
+    subjectName: string;
+    achievementLevel: string;
 }
 
 const GradeCalculator = () => {
-    const [addSubjectData, setAddSubjectData] = useState<SubjectDataType>({
-        id: 0,
-        subject: '',
-        score2_1: 0,
-        score2_2: 0,
-        score3_1: 0,
-    });
+    const [subjectListData, setSubjectListData] = useState<SubjectDataType[]>([]);
+    const [newSubjects, setNewSubjects] = useState<string[]>([]);
 
-    const [addSubjectsData, setAddSubjectsData] = useState<SubjectDataType[]>([]);
+    const handleAddNewSubjectButtonClick = () => {
+        setNewSubjects([...newSubjects, '']);
+    };
 
-    const handleAddSubjectButtonClick = () => {};
-
-    // const isNoneGeneralSubject = subject === '미술' || '영어' || '체육';
+    const handleDeleteNewSubjectButtonClick = (id: number) => {
+        setNewSubjects([...newSubjects.filter((_, index) => id !== index)]);
+    };
 
     return (
         <StyledGradeCalculator>
             <GradeCalculatorHeader />
-
             {/* 기존 과목 item */}
-            {SUBJECT_DATA.map((item, index) =>
-                item === '미술' || item === '음악' || item === '체육' ? (
+            {subjects.map((item, index) => {
+                const isSpecialSubject = item === '미술' || item === '음악' || item === '체육';
+                return (
                     <GradeCalculatorItem
-                        option="SPECIAL"
+                        option={isSpecialSubject ? 'SPECIAL' : 'GENERAL'}
                         key={`subject ${index}`}
                         subject={item}
-                        grades={['A', 'B', 'C']}
+                        grades={isSpecialSubject ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D', 'E']}
                     />
-                ) : (
-                    <GradeCalculatorItem
-                        option="GENERAL"
-                        key={`subject ${index}`}
-                        subject={item}
-                        grades={['A', 'B', 'C', 'D', 'E']}
-                    />
-                ),
-            )}
-
+                );
+            })}
             {/* 사용자가 과목을 추가했을때 나타나는 item */}
-            {addSubjectsData.map((item, index) => (
+            {newSubjects.map((_, index) => (
                 <GradeCalculatorItem
-                    option="ADD"
-                    key={`add-subject ${index}`}
+                    option="NEW"
+                    key={`new-subject ${index}`}
                     grades={['A', 'B', 'C', 'D', 'E']}
+                    handleDeleteNewSubjectButtonClick={() =>
+                        handleDeleteNewSubjectButtonClick(index)
+                    }
                 />
             ))}
             <GradeCalculatorFooter>
-                <Button onClick={handleAddSubjectButtonClick} icon="ADD_ICON" size="SMALL">
+                <Button onClick={handleAddNewSubjectButtonClick} icon="ADD_ICON" size="SMALL">
                     과목추가
                 </Button>
             </GradeCalculatorFooter>

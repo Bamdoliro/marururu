@@ -2,19 +2,26 @@ import { color, font } from '@maru/theme';
 import { Button, Td } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
+import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
 interface PropsType {
     subject?: string;
-    option: 'GENERAL' | 'SPECIAL' | 'ADD';
+    option: 'GENERAL' | 'SPECIAL' | 'NEW';
     grades: string[];
+    handleDeleteNewSubjectButtonClick?: () => void;
 }
 
-const GradeCalculatorItem = ({ subject, option, grades }: PropsType) => {
+const GradeCalculatorItem = ({
+    subject,
+    option,
+    grades,
+    handleDeleteNewSubjectButtonClick,
+}: PropsType) => {
     return (
         <StyledGradeCalculatorItem>
             <Td width={123} height="100%">
-                {option === 'ADD' ? <AddSubjectInput placeholder="과목명 입력" /> : subject}
+                {option === 'NEW' ? <NewSubjectInput placeholder="과목명 입력" /> : subject}
             </Td>
             <Td width={190} height="100%">
                 <Dropdown size="SMALL" data={grades} width={80} />
@@ -26,8 +33,11 @@ const GradeCalculatorItem = ({ subject, option, grades }: PropsType) => {
                 <Dropdown size="SMALL" data={grades} width={80} />
             </Td>
             <Td width={123} height="100%">
-                {option === 'ADD' && (
-                    <Button option="DELETE" size="SMALL">
+                {option === 'NEW' && (
+                    <Button
+                        onClick={handleDeleteNewSubjectButtonClick}
+                        option="DELETE"
+                        size="SMALL">
                         삭제
                     </Button>
                 )}
@@ -44,7 +54,7 @@ const StyledGradeCalculatorItem = styled.div`
     height: 64px;
 `;
 
-const AddSubjectInput = styled.input`
+const NewSubjectInput = styled.input`
     ${font.p2}
     color: ${color.gray900};
     background-color: ${color.gray100};
