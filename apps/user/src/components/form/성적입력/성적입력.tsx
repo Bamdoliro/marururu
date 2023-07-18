@@ -10,6 +10,8 @@ interface PropsType {
     onNext: () => void;
 }
 
+const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'];
+
 const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
     const [fieldStep, setFieldStep] = useState('성적 입력');
 
@@ -22,31 +24,16 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
             </Desc>
             <div>모의 성적 계산</div>
             <NavigationBar>
-                <Button
-                    option="HOVER_UNDERLINE"
-                    size="LARGE"
-                    onClick={() => setFieldStep('성적 입력')}>
-                    성적 입력
-                </Button>
-                <Button
-                    option="HOVER_UNDERLINE"
-                    size="LARGE"
-                    onClick={() => setFieldStep('출결상황')}>
-                    출결상황
-                </Button>
-                <Button
-                    option="HOVER_UNDERLINE"
-                    size="LARGE"
-                    onClick={() => setFieldStep('봉사시간')}>
-                    봉사시간
-                </Button>
-                <Button
-                    option="HOVER_UNDERLINE"
-                    size="LARGE"
-                    onClick={() => setFieldStep('자격증')}>
-                    자격증
-                </Button>
+                {FIELD_DATA.map((field) => (
+                    <Button
+                        option="HOVER_UNDERLINE"
+                        size="LARGE"
+                        onClick={() => setFieldStep(field)}>
+                        {field}
+                    </Button>
+                ))}
             </NavigationBar>
+
             {fieldStep === '성적 입력' && (
                 <>
                     <Desc>
