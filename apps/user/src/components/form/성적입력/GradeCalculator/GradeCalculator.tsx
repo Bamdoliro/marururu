@@ -3,8 +3,9 @@ import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
-import { useState } from 'react';
+import { ChangeEvent, useState, useRef } from 'react';
 import styled from 'styled-components';
+import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 
 const subjects = [
     '국어',
@@ -22,23 +23,62 @@ const subjects = [
 ] as const;
 
 interface SubjectDataType {
-    grade: number;
-    semester: number;
+    id: number;
     subjectName: string;
-    achievementLevel: string;
+    grade2_1: string;
+    grade2_2: string;
+    grade3_1: string;
 }
 
 const GradeCalculator = () => {
     const [subjectListData, setSubjectListData] = useState<SubjectDataType[]>([]);
-    const [newSubjects, setNewSubjects] = useState<string[]>([]);
 
+    const [subjectData, setSubjectData] = useState<SubjectDataType>({
+        id: 0,
+        subjectName: '',
+        grade2_1: '',
+        grade2_2: '',
+        grade3_1: '',
+    });
+    const [newSubjects, setNewSubjects] = useState<SubjectDataType[]>([]);
+
+    const newSubjectId = useRef(0);
     const handleAddNewSubjectButtonClick = () => {
-        setNewSubjects([...newSubjects, '']);
+        setNewSubjects([
+            ...newSubjects,
+            {
+                id: newSubjectId.current,
+                subjectName: '',
+                grade2_1: '',
+                grade2_2: '',
+                grade3_1: '',
+            },
+        ]);
+        newSubjectId.current++;
     };
 
     const handleDeleteNewSubjectButtonClick = (id: number) => {
-        setNewSubjects([...newSubjects.filter((_, index) => id !== index)]);
+        setNewSubjects((prev) => prev.filter((item) => item.id !== id));
     };
+
+    const handleNewSubjectNameChange = (id: number, e: ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+
+        const isSameNewSubject = newSubjects.find((item) => item.subjectName === value);
+        const isSameGeneralSubject = subjects.find((item) => item === value);
+
+        if (isSameNewSubject || isSameGeneralSubject) {
+            alert('해당 과목이 이미 존재합니다.');
+            return;
+        }
+
+        const newSubjectData = newSubjects.find((item) => item.id === id);
+        console.log(newSubjectData);
+
+        // setSubjectListData([...subjectListData, {}]);
+    };
+
+    const handleSubjectDataChange = (id: number) => {};
 
     return (
         <StyledGradeCalculator>
@@ -48,7 +88,6 @@ const GradeCalculator = () => {
                 const isSpecialSubject = item === '미술' || item === '음악' || item === '체육';
                 return (
                     <GradeCalculatorItem
-                        option={isSpecialSubject ? 'SPECIAL' : 'GENERAL'}
                         key={`subject ${index}`}
                         subject={item}
                         grades={isSpecialSubject ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D', 'E']}
@@ -56,14 +95,12 @@ const GradeCalculator = () => {
                 );
             })}
             {/* 사용자가 과목을 추가했을때 나타나는 item */}
-            {newSubjects.map((_, index) => (
-                <GradeCalculatorItem
-                    option="NEW"
+            {newSubjects.map((item, index) => (
+                <NewGradeCalculatorItem
+                    id={item.id}
                     key={`new-subject ${index}`}
                     grades={['A', 'B', 'C', 'D', 'E']}
-                    handleDeleteNewSubjectButtonClick={() =>
-                        handleDeleteNewSubjectButtonClick(index)
-                    }
+                    handleDeleteNewSubjectButtonClick={handleDeleteNewSubjectButtonClick}
                 />
             ))}
             <GradeCalculatorFooter>

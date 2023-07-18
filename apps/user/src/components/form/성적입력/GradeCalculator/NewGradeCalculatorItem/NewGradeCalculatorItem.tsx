@@ -2,19 +2,19 @@ import { color, font } from '@maru/theme';
 import { Button, Td } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
-import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
 interface PropsType {
-    subject?: string;
+    id: number;
     grades: string[];
+    handleDeleteNewSubjectButtonClick: (id: number) => void;
 }
 
-const GradeCalculatorItem = ({ subject, grades }: PropsType) => {
+const NewGradeCalculatorItem = ({ id, grades, handleDeleteNewSubjectButtonClick }: PropsType) => {
     return (
-        <StyledGradeCalculatorItem>
+        <StyledNewGradeCalculatorItem>
             <Td width={123} height="100%">
-                {subject}
+                <NewSubjectInput placeholder="과목명 입력" />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown size="SMALL" data={grades} width={80} />
@@ -26,16 +26,32 @@ const GradeCalculatorItem = ({ subject, grades }: PropsType) => {
                 <Dropdown size="SMALL" data={grades} width={80} />
             </Td>
             <Td width={123} height="100%">
-                {null}
+                <Button
+                    onClick={() => handleDeleteNewSubjectButtonClick(id)}
+                    option="DELETE"
+                    size="SMALL">
+                    삭제
+                </Button>
             </Td>
-        </StyledGradeCalculatorItem>
+        </StyledNewGradeCalculatorItem>
     );
 };
 
-export default GradeCalculatorItem;
+export default NewGradeCalculatorItem;
 
-const StyledGradeCalculatorItem = styled.div`
+const StyledNewGradeCalculatorItem = styled.div`
     ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 64px;
+`;
+
+const NewSubjectInput = styled.input`
+    ${font.p2}
+    color: ${color.gray900};
+    background-color: ${color.gray100};
+    width: 74px;
+    text-align: center;
+    &:-webkit-input-placeholder {
+        color: ${color.gray500};
+    }
 `;
