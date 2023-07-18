@@ -6,26 +6,27 @@ import styled from 'styled-components';
 
 interface PropsType {
     subject?: string;
-    option: 'DEFAULT' | 'ADD';
+    option: 'GENERAL' | 'SPECIAL' | 'ADD';
+    grades: string[];
 }
 
-const GradeCalculatorItem = ({ subject, option }: PropsType) => {
+const GradeCalculatorItem = ({ subject, option, grades }: PropsType) => {
     return (
         <StyledGradeCalculatorItem>
             <Td width={123} height="100%">
-                {option === 'DEFAULT' ? subject : <AddSubjectInput placeholder="과목명 입력" />}
+                {option === 'ADD' ? <AddSubjectInput placeholder="과목명 입력" /> : subject}
             </Td>
             <Td width={190} height="100%">
-                <Dropdown size="SMALL" data={['A']} width={80} />
+                <Dropdown size="SMALL" data={grades} width={80} />
             </Td>
             <Td width={190} height="100%">
-                <Dropdown size="SMALL" data={['A']} width={80} />
+                <Dropdown size="SMALL" data={grades} width={80} />
             </Td>
             <Td width={190} height="100%">
-                <Dropdown size="SMALL" data={['A']} width={80} />
+                <Dropdown size="SMALL" data={grades} width={80} />
             </Td>
             <Td width={123} height="100%">
-                {option === 'DEFAULT' ? null : (
+                {option === 'ADD' && (
                     <Button option="DELETE" size="SMALL">
                         삭제
                     </Button>

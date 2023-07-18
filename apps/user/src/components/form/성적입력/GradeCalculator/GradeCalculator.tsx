@@ -21,24 +21,62 @@ const SUBJECT_DATA = [
     '정보',
 ] as const;
 
+interface SubjectDataType {
+    id: number;
+    subject: string;
+    score2_1: number;
+    score2_2: number;
+    score3_1: number;
+}
+
 const GradeCalculator = () => {
-    const [addSubjectData, setAddSubjectData] = useState([]);
+    const [addSubjectData, setAddSubjectData] = useState<SubjectDataType>({
+        id: 0,
+        subject: '',
+        score2_1: 0,
+        score2_2: 0,
+        score3_1: 0,
+    });
+
+    const [addSubjectsData, setAddSubjectsData] = useState<SubjectDataType[]>([]);
+
+    const handleAddSubjectButtonClick = () => {};
+
+    // const isNoneGeneralSubject = subject === '미술' || '영어' || '체육';
 
     return (
         <StyledGradeCalculator>
             <GradeCalculatorHeader />
 
             {/* 기존 과목 item */}
-            {SUBJECT_DATA.map((item, index) => (
-                <GradeCalculatorItem option="DEFAULT" key={`subject${index}`} subject={item} />
-            ))}
+            {SUBJECT_DATA.map((item, index) =>
+                item === '미술' || item === '음악' || item === '체육' ? (
+                    <GradeCalculatorItem
+                        option="SPECIAL"
+                        key={`subject ${index}`}
+                        subject={item}
+                        grades={['A', 'B', 'C']}
+                    />
+                ) : (
+                    <GradeCalculatorItem
+                        option="GENERAL"
+                        key={`subject ${index}`}
+                        subject={item}
+                        grades={['A', 'B', 'C', 'D', 'E']}
+                    />
+                ),
+            )}
 
             {/* 사용자가 과목을 추가했을때 나타나는 item */}
-            {addSubjectData.map((item, index) => (
-                <GradeCalculatorItem option="ADD" key={`add-subject ${index}`} />
+            {addSubjectsData.map((item, index) => (
+                <GradeCalculatorItem
+                    option="ADD"
+                    key={`add-subject ${index}`}
+                    grades={['A', 'B', 'C', 'D', 'E']}
+                />
             ))}
             <GradeCalculatorFooter>
-                <Button icon="ADD_ICON" size="SMALL">
+                <Button onClick={handleAddSubjectButtonClick} icon="ADD_ICON" size="SMALL">
                     과목추가
                 </Button>
             </GradeCalculatorFooter>
