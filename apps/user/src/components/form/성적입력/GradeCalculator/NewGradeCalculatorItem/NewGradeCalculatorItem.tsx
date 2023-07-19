@@ -9,54 +9,69 @@ import styled from 'styled-components';
 interface PropsType {
     id: number;
     grades: string[];
-    subjects: readonly string[];
-    newSubjects: SubjectDataType[];
-    handleDeleteNewSubjectButtonClick: (id: number) => void;
+    newSubjectListData: SubjectDataType[];
+    setNewSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>;
 }
 
 const NewGradeCalculatorItem = ({
     id,
     grades,
-    subjects,
-    newSubjects,
-    handleDeleteNewSubjectButtonClick,
+    newSubjectListData,
+    setNewSubjectListData,
 }: PropsType) => {
-    const [newSubjectName, setNewSubjectName] = useState('');
+    const handleNewCaculatorItemDataChange = (data: string, name: string) => {
+        setNewSubjectListData((prevState) => {
+            const updatedData = prevState.map((item) => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        [name]: data,
+                    };
+                }
+                return item;
+            });
+            return updatedData;
+        });
+    };
 
-    const handleNewSubjectNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
-
-        setNewSubjectName(value);
-
-        if (value === '') return;
-
-        const isSameNewSubject = newSubjects.some((item) => item.subjectName === value);
-        const isSameGeneralSubject = subjects.includes(value);
-
-        if (isSameNewSubject || isSameGeneralSubject) {
-            alert('해당 과목이 이미 존재합니다.');
-            setNewSubjectName('');
-            return;
-        }
+    const handleDeleteNewSubjectButtonClick = (id: number) => {
+        setNewSubjectListData((prev) => prev.filter((item) => item.id !== id));
     };
 
     return (
         <StyledNewGradeCalculatorItem>
             <Td width={123} height="100%">
-                <NewSubjectInput
-                    value={newSubjectName}
-                    onChange={handleNewSubjectNameChange}
-                    placeholder="과목명 입력"
+                <NewSubjectInput placeholder="과목명 입력" />
+            </Td>
+            <Td width={190} height="100%">
+                <Dropdown
+                    value={newSubjectListData[id].grade2_1}
+                    size="SMALL"
+                    data={grades}
+                    width={80}
+                    name="grade2_1"
+                    onChange={handleNewCaculatorItemDataChange}
                 />
             </Td>
             <Td width={190} height="100%">
-                <Dropdown size="SMALL" data={grades} width={80} />
+                <Dropdown
+                    value={newSubjectListData[id].grade2_1}
+                    size="SMALL"
+                    data={grades}
+                    width={80}
+                    name="grade2_2"
+                    onChange={handleNewCaculatorItemDataChange}
+                />
             </Td>
             <Td width={190} height="100%">
-                <Dropdown size="SMALL" data={grades} width={80} />
-            </Td>
-            <Td width={190} height="100%">
-                <Dropdown size="SMALL" data={grades} width={80} />
+                <Dropdown
+                    value={newSubjectListData[id].grade2_1}
+                    size="SMALL"
+                    data={grades}
+                    width={80}
+                    name="grade3_1"
+                    onChange={handleNewCaculatorItemDataChange}
+                />
             </Td>
             <Td width={123} height="100%">
                 <Button

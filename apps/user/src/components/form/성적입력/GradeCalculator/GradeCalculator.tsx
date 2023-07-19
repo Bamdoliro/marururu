@@ -3,7 +3,7 @@ import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
-import { ChangeEvent, useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 
@@ -37,28 +37,21 @@ const GradeCalculator = () => {
     const [subjectListData, setSubjectListData] =
         useState<SubjectDataType[]>(subjectListInitialData);
 
-    // const [newSubjects, setNewSubjects] = useState<SubjectDataType[]>([]);
+    const [newSubjectListData, setNewSubjectListData] = useState<SubjectDataType[]>([]);
 
-    // const newSubjectId = useRef(0);
-    // const handleAddNewSubjectButtonClick = () => {
-    //     setNewSubjects([
-    //         ...newSubjects,
-    //         {
-    //             id: newSubjectId.current,
-    //             subjectName: '',
-    //             grade2_1: '',
-    //             grade2_2: '',
-    //             grade3_1: '',
-    //         },
-    //     ]);
-    //     newSubjectId.current += 1;
-    // };
+    const newSubejctIdRef = useRef(0);
+    const handleAddNewSubjectButtonClick = () => {
+        const newSubject = {
+            id: newSubejctIdRef.current,
+            subjectName: '',
+            grade2_1: 'A',
+            grade2_2: 'A',
+            grade3_1: 'A',
+        };
+        newSubejctIdRef.current++;
 
-    // const handleDeleteNewSubjectButtonClick = (id: number) => {
-    //     setNewSubjects((prev) => prev.filter((item) => item.id !== id));
-    // };
-
-    // const handleSubjectDataChange = (id: number) => {};
+        setNewSubjectListData((prev) => [...prev, newSubject]);
+    };
 
     return (
         <StyledGradeCalculator>
@@ -80,18 +73,17 @@ const GradeCalculator = () => {
                 );
             })}
             {/* 사용자가 과목을 추가했을때 나타나는 item */}
-            {/* {newSubjects.map((item, index) => (
+            {newSubjectListData.map((item, index) => (
                 <NewGradeCalculatorItem
                     id={item.id}
                     key={`new-subject ${index}`}
                     grades={['A', 'B', 'C', 'D', 'E']}
-                    subjects={subjects}
-                    newSubjects={newSubjects}
-                    handleDeleteNewSubjectButtonClick={handleDeleteNewSubjectButtonClick}
+                    newSubjectListData={newSubjectListData}
+                    setNewSubjectListData={setNewSubjectListData}
                 />
-            ))} */}
+            ))}
             <GradeCalculatorFooter>
-                <Button /*onClick={handleAddNewSubjectButtonClick}*/ icon="ADD_ICON" size="SMALL">
+                <Button onClick={handleAddNewSubjectButtonClick} icon="ADD_ICON" size="SMALL">
                     과목추가
                 </Button>
             </GradeCalculatorFooter>
