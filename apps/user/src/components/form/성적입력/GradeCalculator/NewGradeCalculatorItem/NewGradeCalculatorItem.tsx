@@ -24,12 +24,10 @@ const NewGradeCalculatorItem = ({
     const handleNewCaculatorItemDataChange = (data: string, name: string) => {
         setNewSubjectListData((prev) => {
             const updatedData = [...prev];
-            if (newSubjectIndex !== -1) {
-                updatedData[newSubjectIndex] = {
-                    ...updatedData[newSubjectIndex],
-                    [name]: data,
-                };
-            }
+            updatedData[newSubjectIndex] = {
+                ...updatedData[newSubjectIndex],
+                [name]: data,
+            };
             return updatedData;
         });
     };
@@ -61,7 +59,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectListData[newSubjectIndex].grade2_1}
+                    value={newSubjectListData[newSubjectIndex].grade2_2}
                     size="SMALL"
                     data={grades}
                     width={80}
@@ -71,7 +69,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectListData[newSubjectIndex].grade2_1}
+                    value={newSubjectListData[newSubjectIndex].grade3_1}
                     size="SMALL"
                     data={grades}
                     width={80}
