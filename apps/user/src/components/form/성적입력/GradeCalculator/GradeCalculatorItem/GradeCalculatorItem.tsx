@@ -15,8 +15,8 @@ interface PropsType {
 
 const GradeCalculatorItem = ({ id, subjectListData, grades, setSubjectListData }: PropsType) => {
     const handleCaculatorItemDataChange = (data: string, name: string) => {
-        setSubjectListData((prevState) => {
-            const updatedData = [...prevState];
+        setSubjectListData((prev) => {
+            const updatedData = [...prev];
             updatedData[id] = {
                 ...updatedData[id],
                 [name]: data,

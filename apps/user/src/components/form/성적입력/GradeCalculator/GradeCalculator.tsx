@@ -4,8 +4,9 @@ import { flex } from '@maru/utils';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import { useRef, useState } from 'react';
-import styled from 'styled-components';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
+import { v4 as uuidv4 } from 'uuid';
+import styled from 'styled-components';
 
 const subjectListInitialData = [
     { id: 0, subjectName: '국어', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
@@ -30,6 +31,14 @@ export interface SubjectDataType {
     grade3_1: string;
 }
 
+export interface NewSubjectDataType {
+    id: string;
+    subjectName: string;
+    grade2_1: string;
+    grade2_2: string;
+    grade3_1: string;
+}
+
 const GradeCalculator = () => {
     // subject에 들어가면 과목을 unique key로
     // new subejct는 id를 unique key로
@@ -37,18 +46,16 @@ const GradeCalculator = () => {
     const [subjectListData, setSubjectListData] =
         useState<SubjectDataType[]>(subjectListInitialData);
 
-    const [newSubjectListData, setNewSubjectListData] = useState<SubjectDataType[]>([]);
+    const [newSubjectListData, setNewSubjectListData] = useState<NewSubjectDataType[]>([]);
 
-    const newSubejctIdRef = useRef(0);
     const handleAddNewSubjectButtonClick = () => {
         const newSubject = {
-            id: newSubejctIdRef.current,
+            id: uuidv4(),
             subjectName: '',
             grade2_1: 'A',
             grade2_2: 'A',
             grade3_1: 'A',
         };
-        newSubejctIdRef.current++;
 
         setNewSubjectListData((prev) => [...prev, newSubject]);
     };

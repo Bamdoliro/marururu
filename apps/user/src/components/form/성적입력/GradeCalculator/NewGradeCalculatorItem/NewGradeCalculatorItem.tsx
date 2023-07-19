@@ -2,15 +2,15 @@ import { color, font } from '@maru/theme';
 import { Button, Td } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import { SubjectDataType } from '../GradeCalculator';
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { NewSubjectDataType } from '../GradeCalculator';
 import styled from 'styled-components';
 
 interface PropsType {
-    id: number;
+    id: string;
     grades: string[];
-    newSubjectListData: SubjectDataType[];
-    setNewSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>;
+    newSubjectListData: NewSubjectDataType[];
+    setNewSubjectListData: Dispatch<SetStateAction<NewSubjectDataType[]>>;
 }
 
 const NewGradeCalculatorItem = ({
@@ -19,59 +19,66 @@ const NewGradeCalculatorItem = ({
     newSubjectListData,
     setNewSubjectListData,
 }: PropsType) => {
+    const newindex = newSubjectListData.findIndex((item) => item.id === id);
+
     const handleNewCaculatorItemDataChange = (data: string, name: string) => {
-        setNewSubjectListData((prevState) => {
-            const updatedData = prevState.map((item) => {
-                if (item.id === id) {
-                    return {
-                        ...item,
-                        [name]: data,
-                    };
-                }
-                return item;
-            });
+        setNewSubjectListData((prev) => {
+            const updatedData = [...prev];
+            const index = updatedData.findIndex((item) => item.id === id);
+            if (index !== -1) {
+                updatedData[index] = {
+                    ...updatedData[index],
+                    [name]: data,
+                };
+            }
             return updatedData;
         });
     };
 
-    const handleDeleteNewSubjectButtonClick = (id: number) => {
+    const handleDeleteNewSubjectButtonClick = (id: string) => {
         setNewSubjectListData((prev) => prev.filter((item) => item.id !== id));
     };
 
     return (
         <StyledNewGradeCalculatorItem>
             <Td width={123} height="100%">
-                <NewSubjectInput placeholder="과목명 입력" />
+                <NewSubjectInput
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        handleNewCaculatorItemDataChange(e.target.value, 'subjectName')
+                    }
+                    value={newSubjectListData[newindex].subjectName}
+                    placeholder="과목명 입력"
+                />
             </Td>
             <Td width={190} height="100%">
-                <Dropdown
+                {/* <Dropdown
                     value={newSubjectListData[id].grade2_1}
                     size="SMALL"
                     data={grades}
                     width={80}
                     name="grade2_1"
                     onChange={handleNewCaculatorItemDataChange}
-                />
+                /> */}
             </Td>
             <Td width={190} height="100%">
-                <Dropdown
+                {/* <Dropdown
                     value={newSubjectListData[id].grade2_1}
                     size="SMALL"
                     data={grades}
                     width={80}
                     name="grade2_2"
                     onChange={handleNewCaculatorItemDataChange}
-                />
+                /> */}
             </Td>
             <Td width={190} height="100%">
-                <Dropdown
+                {/* <Dropdown
                     value={newSubjectListData[id].grade2_1}
                     size="SMALL"
                     data={grades}
                     width={80}
                     name="grade3_1"
                     onChange={handleNewCaculatorItemDataChange}
-                />
+                /> */}
             </Td>
             <Td width={123} height="100%">
                 <Button
