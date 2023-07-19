@@ -24,19 +24,19 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
             </Desc>
             <div>모의 성적 계산</div>
             <NavigationBar>
-                {FIELD_DATA.map((field) => (
+                {FIELD_DATA.map((item) => (
                     <Button
                         option="HOVER_UNDERLINE"
                         size="LARGE"
-                        onClick={() => setFieldStep(field)}>
-                        {field}
+                        onClick={() => setFieldStep(item)}>
+                        {item}
                     </Button>
                 ))}
             </NavigationBar>
 
             {fieldStep === '성적 입력' && (
                 <>
-                    <Desc>
+                    <Desc style={{ marginBottom: 16 }}>
                         *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
                         <br />
                         *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
@@ -46,7 +46,7 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
             )}
             {fieldStep === '출결상황' && (
                 <>
-                    <Desc>
+                    <Desc style={{ marginBottom: 16 }}>
                         *2023.09.30까지의 출결상황을 기재해주세요. 졸업생은 졸업일 기준으로
                         기재해주세요.
                     </Desc>
@@ -55,7 +55,7 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
             )}
             {fieldStep === '봉사시간' && (
                 <>
-                    <Desc>
+                    <Desc style={{ marginBottom: 16 }}>
                         *2023.09.30까지의 봉사시간을 기재해주세요. 졸업생은 졸업일 기준으로
                         기재해주세요.
                     </Desc>
@@ -64,7 +64,9 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
             )}
             {fieldStep === '자격증' && (
                 <>
-                    <Desc>*자격증을 중복 소지하고 있을 경우, 최고 수준의 자격증 1개만 인정함</Desc>
+                    <Desc style={{ marginBottom: 16 }}>
+                        *자격증을 중복 소지하고 있을 경우, 최고 수준의 자격증 1개만 인정함
+                    </Desc>
                     <div>자격증 입력 테이블</div>
                 </>
             )}
@@ -77,7 +79,6 @@ export default 성적입력;
 const Desc = styled.p`
     color: ${color.red};
     ${font.p3}
-    margin-bottom: 16px;
 `;
 
 const NavigationBar = styled.div`
