@@ -1,9 +1,9 @@
 import { CSSProperties, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import styled, { css } from 'styled-components';
 import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
+import styled, { css } from 'styled-components';
 
 type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
@@ -12,31 +12,42 @@ interface PropsType {
     data: string[];
     width?: CSSProperties['width'];
     size?: DropdownSizeOption;
-    placeholder?: string;
+    value?: string;
+    onChange: (value: string, name: string) => void;
+    name: string;
 }
 
-const Dropdown = ({ label, data, width = '320px', placeholder, size = 'MEDIUM' }: PropsType) => {
+const Dropdown = ({
+    label,
+    data,
+    width = '320px',
+    size = 'MEDIUM',
+    value = '',
+    onChange,
+    name,
+}: PropsType) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(placeholder);
 
-    const clickedMenu = (item: string) => {
-        setSelectedItem(item);
+    const handleMenuButtonClick = (data: string) => {
+        onChange(data, name);
         setIsOpen(false);
     };
 
-    const clickToggle = () => setIsOpen((prev) => !prev);
+    const handleToggleButtonClick = () => setIsOpen((prev) => !prev);
 
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledDropdown size={size} onClick={clickToggle} isOpen={isOpen}>
-                <SelectedItemText>{selectedItem}</SelectedItemText>
+            <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpen={isOpen}>
+                <SelectedItemText>{value}</SelectedItemText>
                 {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}
             </StyledDropdown>
             <DropdownListBox isOpen={isOpen}>
                 <DropdownList>
                     {data?.map((item, index) => (
-                        <DropdownItem key={`dropdown ${index}`} onClick={() => clickedMenu(item)}>
+                        <DropdownItem
+                            key={`dropdown ${index}`}
+                            onClick={() => handleMenuButtonClick(item)}>
                             {item}
                         </DropdownItem>
                     ))}
