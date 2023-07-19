@@ -13,6 +13,7 @@ const Input = ({
     onChange,
     msg,
     readOnly,
+    textAlign,
 }: InputPropsType) => {
     return (
         <div style={{ width }}>
@@ -24,6 +25,7 @@ const Input = ({
                 name={name}
                 value={value}
                 readOnly={readOnly}
+                style={{ textAlign }}
             />
             {msg && <Message>{msg}</Message>}
         </div>

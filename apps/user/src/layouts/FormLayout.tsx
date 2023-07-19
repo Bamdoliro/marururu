@@ -35,7 +35,7 @@ const StyledFormLayout = styled.section`
 
 const FormBox = styled.div`
     margin: 0 auto;
-    width: 810px;
+    width: 816px;
 `;
 
 const Title = styled.p`
