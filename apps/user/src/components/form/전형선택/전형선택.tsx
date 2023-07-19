@@ -5,7 +5,7 @@ import { flex } from '@maru/utils';
 import { FormLayout } from '@/layouts';
 
 const 전형선택 = () => {
-    const { selectedAdmissions, handleAdmissionsChange } = useHandleAdmissionsChange();
+    const { admissions, handleAdmissions } = useHandleAdmissionsChange();
 
     return (
         <FormLayout title="전형 선택">
@@ -14,9 +14,9 @@ const 전형선택 = () => {
                     label="입학 전형 선택"
                     name="입학전형선택"
                     list={['일반전형', '특별전형']}
-                    onChange={handleAdmissionsChange}
+                    onChange={handleAdmissions}
                 />
-                {selectedAdmissions.입학전형선택 === '특별전형' && (
+                {admissions.입학전형선택 === '특별전형' && (
                     <RadioGroup
                         label="특별 전형 선택"
                         name="특별전형선택"
@@ -26,10 +26,10 @@ const 전형선택 = () => {
                             '사회다양성전형',
                             '특례입학대상자전형',
                         ]}
-                        onChange={handleAdmissionsChange}
+                        onChange={handleAdmissions}
                     />
                 )}
-                {selectedAdmissions.특별전형선택 === '기회균등전형' && (
+                {admissions.특별전형선택 === '기회균등전형' && (
                     <RadioGroup
                         label="기회 균등 전형 선택"
                         name="기회균등전형선택"
@@ -40,10 +40,10 @@ const 전형선택 = () => {
                             '한부모가정',
                             '북한이탈청소년',
                         ]}
-                        onChange={handleAdmissionsChange}
+                        onChange={handleAdmissions}
                     />
                 )}
-                {selectedAdmissions.특별전형선택 === '사회다양성전형' && (
+                {admissions.특별전형선택 === '사회다양성전형' && (
                     <RadioGroup
                         label="사회다양성 전형 선택"
                         name="사회다양성전형선택"
@@ -54,7 +54,7 @@ const 전형선택 = () => {
                             '한부모가정',
                             '북한이탈청소년',
                         ]}
-                        onChange={handleAdmissionsChange}
+                        onChange={handleAdmissions}
                     />
                 )}
             </Styled전형선택>

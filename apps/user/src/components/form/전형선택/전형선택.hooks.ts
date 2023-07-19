@@ -2,21 +2,21 @@ import { ChangeEventHandler, useState } from 'react';
 import { styled } from 'styled-components';
 
 const useHandleAdmissionsChange = () => {
-    const [selectedAdmissions, setSelectedAdmissions] = useState({
+    const [admissions, setAdmissions] = useState({
         입학전형선택: '',
         특별전형선택: '',
         기회균등전형선택: '',
         사회다양성전형선택: '',
     });
 
-    const handleAdmissionsChange: ChangeEventHandler<HTMLInputElement> = ({
+    const handleAdmissions: ChangeEventHandler<HTMLInputElement> = ({
         target: { name, value },
     }) => {
         console.log(name);
         switch (name) {
             case '특별전형선택':
-                setSelectedAdmissions({
-                    ...selectedAdmissions,
+                setAdmissions({
+                    ...admissions,
                     특별전형선택: value,
                     기회균등전형선택: '',
                     사회다양성전형선택: '',
@@ -24,7 +24,7 @@ const useHandleAdmissionsChange = () => {
                 break;
             case '입학전형선택':
                 console.log(name);
-                setSelectedAdmissions({
+                setAdmissions({
                     입학전형선택: value,
                     특별전형선택: '',
                     기회균등전형선택: '',
@@ -32,14 +32,14 @@ const useHandleAdmissionsChange = () => {
                 });
                 break;
             default:
-                setSelectedAdmissions({
-                    ...selectedAdmissions,
+                setAdmissions({
+                    ...admissions,
                     [name]: value,
                 });
         }
     };
 
-    return { selectedAdmissions, handleAdmissionsChange };
+    return { admissions, handleAdmissions };
 };
 
 export default useHandleAdmissionsChange;
