@@ -5,7 +5,6 @@ import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import { useRef, useState } from 'react';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
-import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 
 const subjectListInitialData = [
@@ -31,14 +30,6 @@ export interface SubjectDataType {
     grade3_1: string;
 }
 
-export interface NewSubjectDataType {
-    id: string;
-    subjectName: string;
-    grade2_1: string;
-    grade2_2: string;
-    grade3_1: string;
-}
-
 const GradeCalculator = () => {
     // subject에 들어가면 과목을 unique key로
     // new subejct는 id를 unique key로
@@ -46,17 +37,18 @@ const GradeCalculator = () => {
     const [subjectListData, setSubjectListData] =
         useState<SubjectDataType[]>(subjectListInitialData);
 
-    const [newSubjectListData, setNewSubjectListData] = useState<NewSubjectDataType[]>([]);
+    const [newSubjectListData, setNewSubjectListData] = useState<SubjectDataType[]>([]);
 
+    const newSubjectIdRef = useRef(0);
     const handleAddNewSubjectButtonClick = () => {
         const newSubject = {
-            id: uuidv4(),
+            id: newSubjectIdRef.current,
             subjectName: '',
             grade2_1: 'A',
             grade2_2: 'A',
             grade3_1: 'A',
         };
-
+        newSubjectIdRef.current++;
         setNewSubjectListData((prev) => [...prev, newSubject]);
     };
 

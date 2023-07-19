@@ -3,14 +3,14 @@ import { Button, Td } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { NewSubjectDataType } from '../GradeCalculator';
+import { SubjectDataType } from '../GradeCalculator';
 import styled from 'styled-components';
 
 interface PropsType {
-    id: string;
+    id: number;
     grades: string[];
-    newSubjectListData: NewSubjectDataType[];
-    setNewSubjectListData: Dispatch<SetStateAction<NewSubjectDataType[]>>;
+    newSubjectListData: SubjectDataType[];
+    setNewSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>;
 }
 
 const NewGradeCalculatorItem = ({
@@ -19,15 +19,14 @@ const NewGradeCalculatorItem = ({
     newSubjectListData,
     setNewSubjectListData,
 }: PropsType) => {
-    const newindex = newSubjectListData.findIndex((item) => item.id === id);
+    const newSubjectIndex = newSubjectListData.findIndex((item) => item.id === id);
 
     const handleNewCaculatorItemDataChange = (data: string, name: string) => {
         setNewSubjectListData((prev) => {
             const updatedData = [...prev];
-            const index = updatedData.findIndex((item) => item.id === id);
-            if (index !== -1) {
-                updatedData[index] = {
-                    ...updatedData[index],
+            if (newSubjectIndex !== -1) {
+                updatedData[newSubjectIndex] = {
+                    ...updatedData[newSubjectIndex],
                     [name]: data,
                 };
             }
@@ -35,7 +34,7 @@ const NewGradeCalculatorItem = ({
         });
     };
 
-    const handleDeleteNewSubjectButtonClick = (id: string) => {
+    const handleDeleteNewSubjectButtonClick = (id: number) => {
         setNewSubjectListData((prev) => prev.filter((item) => item.id !== id));
     };
 
@@ -46,39 +45,39 @@ const NewGradeCalculatorItem = ({
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         handleNewCaculatorItemDataChange(e.target.value, 'subjectName')
                     }
-                    value={newSubjectListData[newindex].subjectName}
+                    value={newSubjectListData[newSubjectIndex].subjectName}
                     placeholder="과목명 입력"
                 />
             </Td>
             <Td width={190} height="100%">
-                {/* <Dropdown
-                    value={newSubjectListData[id].grade2_1}
+                <Dropdown
+                    value={newSubjectListData[newSubjectIndex].grade2_1}
                     size="SMALL"
                     data={grades}
                     width={80}
                     name="grade2_1"
                     onChange={handleNewCaculatorItemDataChange}
-                /> */}
+                />
             </Td>
             <Td width={190} height="100%">
-                {/* <Dropdown
-                    value={newSubjectListData[id].grade2_1}
+                <Dropdown
+                    value={newSubjectListData[newSubjectIndex].grade2_1}
                     size="SMALL"
                     data={grades}
                     width={80}
                     name="grade2_2"
                     onChange={handleNewCaculatorItemDataChange}
-                /> */}
+                />
             </Td>
             <Td width={190} height="100%">
-                {/* <Dropdown
-                    value={newSubjectListData[id].grade2_1}
+                <Dropdown
+                    value={newSubjectListData[newSubjectIndex].grade2_1}
                     size="SMALL"
                     data={grades}
                     width={80}
                     name="grade3_1"
                     onChange={handleNewCaculatorItemDataChange}
-                /> */}
+                />
             </Td>
             <Td width={123} height="100%">
                 <Button
