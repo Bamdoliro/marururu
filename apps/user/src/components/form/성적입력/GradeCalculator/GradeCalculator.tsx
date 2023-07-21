@@ -5,22 +5,9 @@ import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import { useRef, useState } from 'react';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
+import { subjectListInitialData } from '@/constants/form/지원자정보';
 import styled from 'styled-components';
-
-const subjectListInitialData = [
-    { id: 0, subjectName: '국어', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 1, subjectName: '사회', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 2, subjectName: '역사', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 3, subjectName: '도덕', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 4, subjectName: '수학', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 5, subjectName: '과학', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 6, subjectName: '기술가정', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 7, subjectName: '영어', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 8, subjectName: '체육', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 9, subjectName: '음악', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 10, subjectName: '미술', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-    { id: 11, subjectName: '정보', grade2_1: 'A', grade2_2: 'A', grade3_1: 'A' },
-];
+import { useAddNewSubject } from './GradeCalculator.hooks';
 
 export interface SubjectDataType {
     id: number;
@@ -31,26 +18,15 @@ export interface SubjectDataType {
 }
 
 const GradeCalculator = () => {
-    // subject에 들어가면 과목을 unique key로
-    // new subejct는 id를 unique key로
-
     const [subjectListData, setSubjectListData] =
         useState<SubjectDataType[]>(subjectListInitialData);
-
     const [newSubjectListData, setNewSubjectListData] = useState<SubjectDataType[]>([]);
 
     const newSubjectIdRef = useRef(0);
-    const handleAddNewSubjectButtonClick = () => {
-        const newSubject = {
-            id: newSubjectIdRef.current,
-            subjectName: '',
-            grade2_1: 'A',
-            grade2_2: 'A',
-            grade3_1: 'A',
-        };
-        newSubjectIdRef.current++;
-        setNewSubjectListData((prev) => [...prev, newSubject]);
-    };
+    const { handleAddNewSubjectButtonClick } = useAddNewSubject(
+        newSubjectIdRef.current,
+        setNewSubjectListData,
+    );
 
     return (
         <StyledGradeCalculator>
@@ -65,7 +41,9 @@ const GradeCalculator = () => {
                     <GradeCalculatorItem
                         id={item.id}
                         key={`subject ${index}`}
-                        grades={isSpecialSubject ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D', 'E']}
+                        achievementLevels={
+                            isSpecialSubject ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D', 'E']
+                        }
                         subjectListData={subjectListData}
                         setSubjectListData={setSubjectListData}
                     />
@@ -76,7 +54,7 @@ const GradeCalculator = () => {
                 <NewGradeCalculatorItem
                     id={item.id}
                     key={`new-subject ${index}`}
-                    grades={['A', 'B', 'C', 'D', 'E']}
+                    achievementLevels={['A', 'B', 'C', 'D', 'E']}
                     newSubjectListData={newSubjectListData}
                     setNewSubjectListData={setNewSubjectListData}
                 />

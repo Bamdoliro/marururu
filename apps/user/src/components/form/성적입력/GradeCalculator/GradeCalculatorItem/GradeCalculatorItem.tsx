@@ -5,25 +5,22 @@ import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import { SubjectDataType } from '../GradeCalculator';
+import { useCaculatorItemHandler } from './GradeCalculatorItem.hooks';
 
 interface PropsType {
     id: number;
     subjectListData: SubjectDataType[];
-    grades: string[];
+    achievementLevels: string[];
     setSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>;
 }
 
-const GradeCalculatorItem = ({ id, subjectListData, grades, setSubjectListData }: PropsType) => {
-    const handleCaculatorItemDataChange = (data: string, name: string) => {
-        setSubjectListData((prev) => {
-            const updatedData = [...prev];
-            updatedData[id] = {
-                ...updatedData[id],
-                [name]: data,
-            };
-            return updatedData;
-        });
-    };
+const GradeCalculatorItem = ({
+    id,
+    subjectListData,
+    achievementLevels,
+    setSubjectListData,
+}: PropsType) => {
+    const { handleCaculatorItemDataChange } = useCaculatorItemHandler(id, setSubjectListData);
 
     return (
         <StyledGradeCalculatorItem>
@@ -34,7 +31,7 @@ const GradeCalculatorItem = ({ id, subjectListData, grades, setSubjectListData }
                 <Dropdown
                     value={subjectListData[id].grade2_1}
                     size="SMALL"
-                    data={grades}
+                    data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
                     name="grade2_1"
@@ -44,17 +41,17 @@ const GradeCalculatorItem = ({ id, subjectListData, grades, setSubjectListData }
                 <Dropdown
                     value={subjectListData[id].grade2_2}
                     size="SMALL"
-                    data={grades}
+                    data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
-                    name="grade2_1"
+                    name="grade2_2"
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
                     value={subjectListData[id].grade3_1}
                     size="SMALL"
-                    data={grades}
+                    data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
                     name="grade3_1"

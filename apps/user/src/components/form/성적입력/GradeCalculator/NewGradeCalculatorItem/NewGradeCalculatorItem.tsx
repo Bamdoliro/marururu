@@ -5,36 +5,24 @@ import { flex } from '@maru/utils';
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { SubjectDataType } from '../GradeCalculator';
 import styled from 'styled-components';
+import { useNewSubjectItemHandler } from './NewGradeCalculatorItem.hooks';
 
 interface PropsType {
     id: number;
-    grades: string[];
+    achievementLevels: string[];
     newSubjectListData: SubjectDataType[];
     setNewSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>;
 }
 
 const NewGradeCalculatorItem = ({
     id,
-    grades,
+    achievementLevels,
     newSubjectListData,
     setNewSubjectListData,
 }: PropsType) => {
     const newSubjectIndex = newSubjectListData.findIndex((item) => item.id === id);
-
-    const handleNewCaculatorItemDataChange = (data: string, name: string) => {
-        setNewSubjectListData((prev) => {
-            const updatedData = [...prev];
-            updatedData[newSubjectIndex] = {
-                ...updatedData[newSubjectIndex],
-                [name]: data,
-            };
-            return updatedData;
-        });
-    };
-
-    const handleDeleteNewSubjectButtonClick = (id: number) => {
-        setNewSubjectListData((prev) => prev.filter((item) => item.id !== id));
-    };
+    const { handleDeleteNewSubjectItemButtonClick, handleNewCaculatorItemDataChange } =
+        useNewSubjectItemHandler(setNewSubjectListData, newSubjectIndex);
 
     return (
         <StyledNewGradeCalculatorItem>
@@ -51,7 +39,7 @@ const NewGradeCalculatorItem = ({
                 <Dropdown
                     value={newSubjectListData[newSubjectIndex].grade2_1}
                     size="SMALL"
-                    data={grades}
+                    data={achievementLevels}
                     width={80}
                     name="grade2_1"
                     onChange={handleNewCaculatorItemDataChange}
@@ -61,7 +49,7 @@ const NewGradeCalculatorItem = ({
                 <Dropdown
                     value={newSubjectListData[newSubjectIndex].grade2_2}
                     size="SMALL"
-                    data={grades}
+                    data={achievementLevels}
                     width={80}
                     name="grade2_2"
                     onChange={handleNewCaculatorItemDataChange}
@@ -71,7 +59,7 @@ const NewGradeCalculatorItem = ({
                 <Dropdown
                     value={newSubjectListData[newSubjectIndex].grade3_1}
                     size="SMALL"
-                    data={grades}
+                    data={achievementLevels}
                     width={80}
                     name="grade3_1"
                     onChange={handleNewCaculatorItemDataChange}
@@ -79,7 +67,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={123} height="100%">
                 <Button
-                    onClick={() => handleDeleteNewSubjectButtonClick(id)}
+                    onClick={() => handleDeleteNewSubjectItemButtonClick(id)}
                     option="DELETE"
                     size="SMALL">
                     삭제
