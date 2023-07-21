@@ -2,6 +2,7 @@
 
 import { useForm } from '@/hooks';
 import { 지원자정보, 보호자정보, 출신학교및학력 } from '@/components/form';
+import 성적입력 from '@/components/form/성적입력/성적입력';
 
 const FormPage = () => {
     const { formStep, onMoveForm } = useForm();
@@ -21,7 +22,12 @@ const FormPage = () => {
                 />
             )}
             {formStep === '전형 선택' && <div />}
-            {formStep === '성적 입력' && <div />}
+            {formStep === '성적 입력' && (
+                <성적입력
+                    onPrevious={() => onMoveForm('전형 선택')}
+                    onNext={() => onMoveForm('자기소개서')}
+                />
+            )}
             {formStep === '자기소개서' && <div />}
         </div>
     );
