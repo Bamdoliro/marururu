@@ -10,7 +10,7 @@ interface PropsType {
     onNext: () => void;
 }
 
-const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'];
+const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
 
 const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
     const [fieldStep, setFieldStep] = useState('성적 입력');
