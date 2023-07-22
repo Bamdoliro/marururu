@@ -22,7 +22,10 @@ const FormPage = () => {
             )}
             {formStep === '전형 선택' && <div />}
             {formStep === '성적 입력' && (
-                <성적입력 onNext={() => console.log('helo')} onPrevious={() => console.log('sd')} />
+                <성적입력
+                    onPrevious={() => onMoveForm('전형 선택')}
+                    onNext={() => onMoveForm('자기소개서')}
+                />
             )}
             {formStep === '자기소개서' && <div />}
         </div>
