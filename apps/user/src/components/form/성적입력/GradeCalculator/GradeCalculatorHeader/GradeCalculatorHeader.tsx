@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const GradeCalculatorHeader = () => {
     return (
         <StyledGradeCalculatorHeader>
-            <Row alignItems="center">
+            <Row>
                 <Th width={123} height={100}>
                     과목
                 </Th>

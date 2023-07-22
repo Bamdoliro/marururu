@@ -3,7 +3,7 @@ import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 import { subjectListInitialData } from '@/constants/form/지원자정보';
 import styled from 'styled-components';
@@ -22,11 +22,7 @@ const GradeCalculator = () => {
         useState<SubjectDataType[]>(subjectListInitialData);
     const [newSubjectListData, setNewSubjectListData] = useState<SubjectDataType[]>([]);
 
-    const newSubjectIdRef = useRef(0);
-    const { handleAddNewSubjectButtonClick } = useAddNewSubject(
-        newSubjectIdRef.current,
-        setNewSubjectListData,
-    );
+    const { handleAddNewSubjectButtonClick } = useAddNewSubject(setNewSubjectListData);
 
     return (
         <StyledGradeCalculator>
