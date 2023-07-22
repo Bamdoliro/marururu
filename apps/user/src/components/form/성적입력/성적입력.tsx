@@ -3,6 +3,7 @@ import GradeCalculator from './GradeCalculator/GradeCalculator';
 import GradePreview from './GradePreview/GradePreview';
 import AttendanceCalculator from './AttendanceCalculator/AttendanceCalculator';
 import VolunteerCalculator from './VolunteerCalculator/VolunteerCalculator';
+import CertificateCalculator from './CertificateCalculator/CertificateCalculator';
 
 interface PropsType {
     onPrevious: () => void;
@@ -15,7 +16,8 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
             <GradePreview />
             {/* <GradeCalculator /> */}
             {/* <AttendanceCalculator /> */}
-            <VolunteerCalculator />
+            {/* <VolunteerCalculator /> */}
+            <CertificateCalculator />
         </FormLayout>
     );
 };

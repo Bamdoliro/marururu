@@ -16,14 +16,14 @@ const Radio = ({ content, value, name, defaultChecked, onChange }: RadioPropsTyp
                     onChange={onChange}
                 />
                 <RadioBox></RadioBox>
-                <Content>{content}</Content>
+                {content && <Content>{content}</Content>}
             </Label>
         </StyledRadio>
     );
 };
 
 const StyledRadio = styled.div`
-    padding-right: 40px;
+    /* padding-right: 40px; */
 `;
 
 const RadioBox = styled.div`
@@ -66,6 +66,7 @@ const Label = styled.label`
 const Content = styled.p`
     ${font.p2};
     color: ${color.gray900};
+    margin-right: 40px;
 `;
 
 export default Radio;
