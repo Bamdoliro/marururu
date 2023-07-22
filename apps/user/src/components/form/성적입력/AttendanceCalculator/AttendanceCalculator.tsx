@@ -1,4 +1,4 @@
-import { Input, Row, Td, Th } from '@maru/ui';
+import { NumberInput, Row, Td, Th } from '@maru/ui';
 import { styled } from 'styled-components';
 
 const AttendanceCalculator = () => {
@@ -26,16 +26,16 @@ const AttendanceCalculator = () => {
                     1학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
             </Row>
             <Row>
@@ -43,16 +43,16 @@ const AttendanceCalculator = () => {
                     2학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
             </Row>
             <Row>
@@ -60,16 +60,16 @@ const AttendanceCalculator = () => {
                     3학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
                 <Td width="100%" height={56}>
-                    <Input width="80px" placeholder="0" textAlign="center" />
+                    <NumberInput />
                 </Td>
             </Row>
         </Table>
