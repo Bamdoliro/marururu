@@ -22,7 +22,7 @@ const AttendanceCalculator = () => {
                 </Th>
             </Row>
             <Row>
-                <Td width="100%" height={56}>
+                <Td width="100%" height={56} option="SECONDARY">
                     1학년
                 </Td>
                 <Td width="100%" height={56}>
@@ -39,7 +39,7 @@ const AttendanceCalculator = () => {
                 </Td>
             </Row>
             <Row>
-                <Td width="100%" height={56}>
+                <Td width="100%" height={56} option="SECONDARY">
                     2학년
                 </Td>
                 <Td width="100%" height={56}>
@@ -56,7 +56,7 @@ const AttendanceCalculator = () => {
                 </Td>
             </Row>
             <Row>
-                <Td width="100%" height={56}>
+                <Td width="100%" height={56} option="SECONDARY">
                     3학년
                 </Td>
                 <Td width="100%" height={56}>
