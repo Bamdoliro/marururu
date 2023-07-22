@@ -2,6 +2,7 @@ import { FormLayout } from '@/layouts';
 import GradeCalculator from './GradeCalculator/GradeCalculator';
 import GradePreview from './GradePreview/GradePreview';
 import AttendanceCalculator from './AttendanceCalculator/AttendanceCalculator';
+import VolunteerCalculator from './VolunteerCalculator/VolunteerCalculator';
 
 interface PropsType {
     onPrevious: () => void;
@@ -13,7 +14,8 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
         <FormLayout title="성적 입력">
             <GradePreview />
             {/* <GradeCalculator /> */}
-            <AttendanceCalculator />
+            {/* <AttendanceCalculator /> */}
+            <VolunteerCalculator />
         </FormLayout>
     );
 };
