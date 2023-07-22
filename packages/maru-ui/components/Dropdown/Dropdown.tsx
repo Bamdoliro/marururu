@@ -15,6 +15,7 @@ interface PropsType {
     value?: string;
     onChange: (value: string, name: string) => void;
     name: string;
+    placeholder?: string;
 }
 
 const Dropdown = ({
@@ -25,24 +26,25 @@ const Dropdown = ({
     value = '',
     onChange,
     name,
+    placeholder,
 }: PropsType) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpened, setIsOpened] = useState(false);
 
     const handleMenuButtonClick = (data: string) => {
         onChange(data, name);
-        setIsOpen(false);
+        setIsOpened(false);
     };
 
-    const handleToggleButtonClick = () => setIsOpen((prev) => !prev);
+    const handleToggleButtonClick = () => setIsOpened((prev) => !prev);
 
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpen={isOpen}>
-                <SelectedItemText>{value}</SelectedItemText>
-                {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}
+            <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpened={isOpened}>
+                <SelectedItemText isSelected={!!value}>{value || placeholder}</SelectedItemText>
+                {isOpened ? <TopArrowIcon /> : <BottomArrowIcon />}
             </StyledDropdown>
-            <DropdownListBox isOpen={isOpen}>
+            <DropdownListBox isOpened={isOpened}>
                 <DropdownList>
                     {data?.map((item, index) => (
                         <DropdownItem
@@ -65,7 +67,7 @@ const Label = styled.p`
     padding-bottom: 8px;
 `;
 
-const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>`
+const StyledDropdown = styled.div<{ isOpened: boolean; size: DropdownSizeOption }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -74,8 +76,8 @@ const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>
     border-radius: 6px;
     cursor: pointer;
 
-    ${({ isOpen }) =>
-        isOpen
+    ${(props) =>
+        props.isOpened
             ? css`
                   border: 1px solid ${color.maruDefault};
                   outline: 2px solid rgba(20, 112, 255, 0.25);
@@ -96,14 +98,14 @@ const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>
               `}
 `;
 
-const SelectedItemText = styled.p`
+const SelectedItemText = styled.p<{ isSelected: boolean }>`
     ${font.p2}
-    color: ${color.gray500};
+    color: ${(props) => (props.isSelected ? color.gray900 : color.gray500)};
 `;
 
-const DropdownListBox = styled.div<{ isOpen: boolean }>`
+const DropdownListBox = styled.div<{ isOpened: boolean }>`
     position: relative;
-    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+    display: ${({ isOpened }) => (isOpened ? 'block' : 'none')};
 `;
 
 const DropdownList = styled.div`
