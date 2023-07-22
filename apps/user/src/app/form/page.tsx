@@ -1,8 +1,7 @@
 'use client';
 
 import { useForm } from '@/hooks';
-import { 지원자정보, 보호자정보, 출신학교및학력 } from '@/components/form';
-import 성적입력 from '@/components/form/성적입력/성적입력';
+import { 지원자정보, 보호자정보, 출신학교및학력, 성적입력 } from '@/components/form';
 
 const FormPage = () => {
     const { formStep, onMoveForm } = useForm();

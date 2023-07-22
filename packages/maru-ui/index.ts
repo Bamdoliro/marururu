@@ -10,6 +10,8 @@ export { default as SearchInput } from './components/Input/SearchInput';
 export { default as TimeLimitInput } from './components/Input/TimeLimitInput';
 export { default as RadioGroup } from './components/Radio/RadioGroup';
 export { default as Radio } from './components/Radio/Radio';
+export { default as Td } from './components/Table/Td';
+export { default as Th } from './components/Table/Th';
 
 // type
 export type { default as IconPropsType } from './Icons/Icon.type';

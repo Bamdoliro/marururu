@@ -1,39 +1,53 @@
 import { CSSProperties, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import styled, { css } from 'styled-components';
 import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
+import styled, { css } from 'styled-components';
+
+type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
 interface PropsType {
     label?: string;
     data: string[];
     width?: CSSProperties['width'];
-    placeholder?: string;
+    size?: DropdownSizeOption;
+    value?: string;
+    onChange: (value: string, name: string) => void;
+    name: string;
 }
 
-const Dropdown = ({ label, data, width = '320px', placeholder }: PropsType) => {
+const Dropdown = ({
+    label,
+    data,
+    width = '320px',
+    size = 'MEDIUM',
+    value = '',
+    onChange,
+    name,
+}: PropsType) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(placeholder);
 
-    const clickedMenu = (item: string) => {
-        setSelectedItem(item);
+    const handleMenuButtonClick = (data: string) => {
+        onChange(data, name);
         setIsOpen(false);
     };
 
-    const clickToggle = () => setIsOpen((prev) => !prev);
+    const handleToggleButtonClick = () => setIsOpen((prev) => !prev);
 
     return (
         <div style={{ width }}>
-            <Label>{label}</Label>
-            <StyledDropdown onClick={clickToggle} isOpen={isOpen}>
-                <SelectedItemText>{selectedItem}</SelectedItemText>
+            {label && <Label>{label}</Label>}
+            <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpen={isOpen}>
+                <SelectedItemText>{value}</SelectedItemText>
                 {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}
             </StyledDropdown>
             <DropdownListBox isOpen={isOpen}>
                 <DropdownList>
                     {data?.map((item, index) => (
-                        <DropdownItem key={`dropdown ${index}`} onClick={() => clickedMenu(item)}>
+                        <DropdownItem
+                            key={`dropdown ${index}`}
+                            onClick={() => handleMenuButtonClick(item)}>
                             {item}
                         </DropdownItem>
                     ))}
@@ -51,15 +65,11 @@ const Label = styled.p`
     padding-bottom: 8px;
 `;
 
-const StyledDropdown = styled.div<{ isOpen: boolean }>`
+const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    height: 48px;
     width: 100%;
-    padding: 10px 16px;
-
     background-color: ${color.white};
     border-radius: 6px;
     cursor: pointer;
@@ -73,6 +83,17 @@ const StyledDropdown = styled.div<{ isOpen: boolean }>`
             : css`
                   border: 1px solid ${color.gray400};
               `};
+
+    ${(props) =>
+        props.size === 'MEDIUM'
+            ? css`
+                  height: 48px;
+                  padding: 10px 16px;
+              `
+            : css`
+                  height: 40px;
+                  padding: 10px 10px 10px 16px;
+              `}
 `;
 
 const SelectedItemText = styled.p`

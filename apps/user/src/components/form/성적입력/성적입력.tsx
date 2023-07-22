@@ -1,9 +1,11 @@
 import { FormLayout } from '@/layouts';
+import GradeCalculator from './GradeCalculator/GradeCalculator';
+import GradePreview from './GradePreview/GradePreview';
 import { color, font } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 interface PropsType {
     onPrevious: () => void;
@@ -22,7 +24,7 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
                 <br />
                 *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
             </Desc>
-            <div>모의 성적 계산</div>
+            <GradePreview />
             <NavigationBar>
                 {FIELD_DATA.map((item) => (
                     <Button
@@ -41,7 +43,7 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
                         <br />
                         *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
                     </Desc>
-                    <div>성적 입력 테이블</div>
+                    <GradeCalculator />
                 </>
             )}
             {fieldStep === '출결상황' && (
