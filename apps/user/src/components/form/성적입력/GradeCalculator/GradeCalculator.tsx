@@ -24,6 +24,12 @@ const GradeCalculator = () => {
 
     const { handleAddNewSubjectButtonClick } = useAddNewSubject(setNewSubjectListData);
 
+    const footerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (newSubjectListData.length) footerRef.current?.scrollIntoView();
+    }, [newSubjectListData]);
+
     return (
         <StyledGradeCalculator>
             <GradeCalculatorHeader />
@@ -55,7 +61,7 @@ const GradeCalculator = () => {
                     setNewSubjectListData={setNewSubjectListData}
                 />
             ))}
-            <GradeCalculatorFooter>
+            <GradeCalculatorFooter ref={footerRef}>
                 <Button onClick={handleAddNewSubjectButtonClick} icon="ADD_ICON" size="SMALL">
                     과목추가
                 </Button>
