@@ -6,6 +6,7 @@ import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import { styled } from 'styled-components';
+import FormController from '../FormController/FormController';
 
 interface PropsType {
     onPrevious: () => void;
@@ -72,6 +73,7 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
                     <div>자격증 입력 테이블</div>
                 </>
             )}
+            <FormController onPrevious={onPrevious} onNext={onNext} />
         </FormLayout>
     );
 };
