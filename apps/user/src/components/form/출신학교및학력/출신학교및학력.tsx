@@ -1,7 +1,7 @@
 import { ButtonInput, Input } from '@maru/ui';
 import { RadioGroup } from '@maru/ui';
 import { styled } from 'styled-components';
-import SchoolSearchModal from './SchoolSearchModal/SchoolSearchModal';
+import FindSchoolModal from './FindSchoolModal/FindSchoolModal';
 import useModal from '@maru/hooks/src/useModal';
 import { useState } from 'react';
 import { FormLayout } from '@/layouts';
@@ -83,7 +83,7 @@ const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
             </Styled출신학교및학력>
             <FormController onPrevious={onPrevious} onNext={onNext} />
             {isOpen && (
-                <SchoolSearchModal closeModal={closeModal} setAppliedSchool={setAppliedSchool} />
+                <FindSchoolModal closeModal={closeModal} setAppliedSchool={setAppliedSchool} />
             )}
         </FormLayout>
     );
