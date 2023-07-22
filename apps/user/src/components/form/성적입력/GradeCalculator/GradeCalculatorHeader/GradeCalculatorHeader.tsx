@@ -5,11 +5,11 @@ import styled from 'styled-components';
 const GradeCalculatorHeader = () => {
     return (
         <StyledGradeCalculatorHeader>
-            <Row alignItems="center">
+            <Row>
                 <Th width={123} height={100}>
                     과목
                 </Th>
-                <Column width={379}>
+                <Column width={380}>
                     <Th width="100%" height={50}>
                         2학년
                     </Th>
@@ -22,7 +22,7 @@ const GradeCalculatorHeader = () => {
                         </Th>
                     </Row>
                 </Column>
-                <Column width={190.5}>
+                <Column width={190}>
                     <Th width="100%" height={50}>
                         3학년
                     </Th>
