@@ -41,5 +41,5 @@ const FormControllerBar = styled.div`
 const StyledFormController = styled.div`
     ${flex({ alignItems: 'center' })}
     gap: 24px;
-    width: 331px;
+    width: 324px;
 `;
