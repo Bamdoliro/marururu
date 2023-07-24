@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
-import { SubjectDataType } from '../GradeCalculator';
+import { Subject } from '@/types/form';
 
 export const useNewSubjectItemHandler = (
-    setNewSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>,
+    setNewSubjectListData: Dispatch<SetStateAction<Subject[]>>,
     newSubjectIndex: number,
 ) => {
     const handleDeleteNewSubjectItemButtonClick = (id: number) => {

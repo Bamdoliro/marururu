@@ -8,19 +8,11 @@ import styled from 'styled-components';
 import { useAddNewSubject } from './GradeCalculator.hooks';
 import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
-
-export interface SubjectDataType {
-    id: number;
-    subjectName: string;
-    grade2_1: string;
-    grade2_2: string;
-    grade3_1: string;
-}
+import { Subject } from '@/types/form';
 
 const GradeCalculator = () => {
-    const [subjectListData, setSubjectListData] =
-        useState<SubjectDataType[]>(subjectListInitialData);
-    const [newSubjectListData, setNewSubjectListData] = useState<SubjectDataType[]>([]);
+    const [subjectListData, setSubjectListData] = useState<Subject[]>(subjectListInitialData);
+    const [newSubjectListData, setNewSubjectListData] = useState<Subject[]>([]);
 
     const { handleAddNewSubjectButtonClick } = useAddNewSubject(setNewSubjectListData);
 

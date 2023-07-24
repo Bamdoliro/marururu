@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
-import { SubjectDataType } from '../GradeCalculator';
+import { Subject } from '@/types/form';
 
 export const useCaculatorItemHandler = (
     id: number,
-    setSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>,
+    setSubjectListData: Dispatch<SetStateAction<Subject[]>>,
 ) => {
     const handleCaculatorItemDataChange = (data: string, name: string) => {
         setSubjectListData((prev) => {

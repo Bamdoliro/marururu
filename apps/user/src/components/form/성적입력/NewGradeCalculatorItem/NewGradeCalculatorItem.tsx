@@ -3,15 +3,15 @@ import { Button, Td } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { SubjectDataType } from '../GradeCalculator';
+import { Subject } from '@/types/form';
 import styled from 'styled-components';
 import { useNewSubjectItemHandler } from './NewGradeCalculatorItem.hooks';
 
 interface PropsType {
     id: number;
     achievementLevels: string[];
-    newSubjectListData: SubjectDataType[];
-    setNewSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>;
+    newSubjectListData: Subject[];
+    setNewSubjectListData: Dispatch<SetStateAction<Subject[]>>;
 }
 
 const NewGradeCalculatorItem = ({

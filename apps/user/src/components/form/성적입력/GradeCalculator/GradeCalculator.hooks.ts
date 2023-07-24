@@ -1,9 +1,7 @@
 import { Dispatch, SetStateAction, useRef } from 'react';
-import { SubjectDataType } from './GradeCalculator';
+import { Subject } from '@/types/form';
 
-export const useAddNewSubject = (
-    setNewSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>,
-) => {
+export const useAddNewSubject = (setNewSubjectListData: Dispatch<SetStateAction<Subject[]>>) => {
     const newSubjectIdRef = useRef(0);
 
     const handleAddNewSubjectButtonClick = () => {
