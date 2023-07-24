@@ -1,4 +1,4 @@
-import { useState, useCallback, ChangeEvent, useMemo } from 'react';
+import { useState, useCallback, useMemo, ChangeEventHandler } from 'react';
 import debounce from 'lodash/debounce';
 
 interface PropsType {
@@ -29,8 +29,8 @@ const useInput = ({ initialValue = '', useDebounce = false, debounceTimeout = 15
         [handleSetDebounceValue, useDebounce],
     );
 
-    const onChange = useCallback(
-        (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = useCallback(
+        (e) => {
             handleSetValue(e.target.value);
         },
         [handleSetValue],

@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { schoolList } from './api';
 import KEY from '@/constants/key';
 
-const useFormSchoolListQuery = (name: string) => {
+const useSchoolListQuery = (name: string) => {
     return useQuery({
         queryKey: [
             KEY.FORM_SCHOOL_LIST,
@@ -12,4 +12,4 @@ const useFormSchoolListQuery = (name: string) => {
     });
 };
 
-export default useFormSchoolListQuery;
+export default useSchoolListQuery;
