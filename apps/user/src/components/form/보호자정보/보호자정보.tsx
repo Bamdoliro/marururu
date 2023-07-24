@@ -37,7 +37,7 @@ const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
                     <Input label="상세 주소" width="100%" />
                 </Column>
             </Styled보호자정보>
-            <FormController onPrevious={onPrevious} onNext={onNext} />
+            <FormController onPrevious={onPrevious} onNext={onNext} step="보호자 정보" />
             {isOpenFindAddressModal && (
                 <FindAddressModal
                     closeModal={() => setIsOpenFindAddressModal(false)}

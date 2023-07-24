@@ -1,9 +1,9 @@
 import { Header } from '@/components/common/';
 import { color, font } from '@maru/theme';
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { ReactNode } from 'react';
 import { ProgressBar } from '@/components/form';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import FormController from '@/components/form/FormController/FormController';
 
 interface PropsType {
     children: ReactNode;
@@ -28,6 +28,8 @@ const FormLayout = ({ children, title }: PropsType) => {
 export default FormLayout;
 
 const StyledFormLayout = styled.section`
+    ${flex({ flexDirection: 'column' })}
+    gap: 72px;
     width: 100vw;
     height: 100vh;
     background-color: ${color.white};

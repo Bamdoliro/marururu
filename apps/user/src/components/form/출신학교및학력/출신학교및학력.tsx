@@ -81,7 +81,7 @@ const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
                     width="100%"
                 />
             </Styled출신학교및학력>
-            <FormController onPrevious={onPrevious} onNext={onNext} />
+            <FormController onPrevious={onPrevious} onNext={onNext} step="출신학교 및 학력" />
             {isOpen && (
                 <FindSchoolModal closeModal={closeModal} setAppliedSchool={setAppliedSchool} />
             )}

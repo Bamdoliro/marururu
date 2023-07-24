@@ -64,7 +64,7 @@ export default Dropdown;
 const Label = styled.p`
     ${font.context}
     color: ${color.gray700};
-    padding-bottom: 8px;
+    margin-bottom: 8px;
 `;
 
 const StyledDropdown = styled.div<{ isOpened: boolean; size: DropdownSizeOption }>`
