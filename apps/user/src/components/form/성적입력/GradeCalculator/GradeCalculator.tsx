@@ -5,7 +5,6 @@ import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeade
 import { useEffect, useRef, useState } from 'react';
 import { subjectListInitialData } from '@/constants/form/지원자정보';
 import styled from 'styled-components';
-import { useAddNewSubject } from './GradeCalculator.hooks';
 import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
 import { Subject } from '@/types/form';
@@ -14,10 +13,19 @@ const GradeCalculator = () => {
     const [subjectListData, setSubjectListData] = useState<Subject[]>(subjectListInitialData);
     const [newSubjectListData, setNewSubjectListData] = useState<Subject[]>([]);
 
-    const { handleAddNewSubjectButtonClick } = useAddNewSubject(setNewSubjectListData);
+    const newSubjectIdRef = useRef(0);
+    const handleAddNewSubjectButtonClick = () => {
+        const newSubject = {
+            id: newSubjectIdRef.current++,
+            subjectName: '',
+            grade2_1: 'A',
+            grade2_2: 'A',
+            grade3_1: 'A',
+        };
+        setNewSubjectListData((prev) => [...prev, newSubject]);
+    };
 
     const footerRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         if (newSubjectListData.length) footerRef.current?.scrollIntoView();
     }, [newSubjectListData]);

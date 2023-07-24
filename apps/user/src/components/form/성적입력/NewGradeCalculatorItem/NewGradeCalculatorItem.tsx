@@ -2,10 +2,9 @@ import { color, font } from '@maru/theme';
 import { Button, Td } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Subject } from '@/types/form';
 import styled from 'styled-components';
-import { useNewSubjectItemHandler } from './NewGradeCalculatorItem.hooks';
 
 interface PropsType {
     id: number;
@@ -21,8 +20,21 @@ const NewGradeCalculatorItem = ({
     setNewSubjectListData,
 }: PropsType) => {
     const newSubjectIndex = newSubjectListData.findIndex((item) => item.id === id);
-    const { handleDeleteNewSubjectItemButtonClick, handleNewCaculatorItemDataChange } =
-        useNewSubjectItemHandler(setNewSubjectListData, newSubjectIndex);
+
+    const handleDeleteNewSubjectItemButtonClick = (id: number) => {
+        setNewSubjectListData((prev) => prev.filter((item) => item.id !== id));
+    };
+
+    const handleNewCaculatorItemDataChange = (data: string, name: string) => {
+        setNewSubjectListData((prev) => {
+            const updatedData = [...prev];
+            updatedData[newSubjectIndex] = {
+                ...updatedData[newSubjectIndex],
+                [name]: data,
+            };
+            return updatedData;
+        });
+    };
 
     return (
         <StyledNewGradeCalculatorItem>

@@ -1,9 +1,9 @@
 import { RadioGroup } from '@maru/ui';
 import { styled } from 'styled-components';
-import useHandleAdmissionsChange from './전형선택.hooks';
 import { flex } from '@maru/utils';
 import { FormLayout } from '@/layouts';
 import FormController from '../FormController/FormController';
+import { ChangeEventHandler, useState } from 'react';
 
 interface PropsType {
     onPrevious: () => void;
@@ -11,7 +11,40 @@ interface PropsType {
 }
 
 const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
-    const { admissions, handleAdmissions } = useHandleAdmissionsChange();
+    const [admissions, setAdmissions] = useState({
+        입학전형선택: '',
+        특별전형선택: '',
+        기회균등전형선택: '',
+        사회다양성전형선택: '',
+    });
+
+    const handleAdmissionsDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { name, value } = e.target;
+
+        switch (name) {
+            case '특별전형선택':
+                setAdmissions({
+                    ...admissions,
+                    특별전형선택: value,
+                    기회균등전형선택: '',
+                    사회다양성전형선택: '',
+                });
+                break;
+            case '입학전형선택':
+                setAdmissions({
+                    입학전형선택: value,
+                    특별전형선택: '',
+                    기회균등전형선택: '',
+                    사회다양성전형선택: '',
+                });
+                break;
+            default:
+                setAdmissions({
+                    ...admissions,
+                    [name]: value,
+                });
+        }
+    };
 
     return (
         <FormLayout title="전형 선택">
@@ -20,7 +53,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                     label="입학 전형 선택"
                     name="입학전형선택"
                     list={['일반전형', '특별전형']}
-                    onChange={handleAdmissions}
+                    onChange={handleAdmissionsDataChange}
                 />
                 {admissions.입학전형선택 === '특별전형' && (
                     <RadioGroup
@@ -32,7 +65,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '사회다양성전형',
                             '특례입학대상자전형',
                         ]}
-                        onChange={handleAdmissions}
+                        onChange={handleAdmissionsDataChange}
                     />
                 )}
                 {admissions.특별전형선택 === '기회균등전형' && (
@@ -46,7 +79,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '한부모가정',
                             '북한이탈청소년',
                         ]}
-                        onChange={handleAdmissions}
+                        onChange={handleAdmissionsDataChange}
                     />
                 )}
                 {admissions.특별전형선택 === '사회다양성전형' && (
@@ -60,7 +93,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '한부모가정',
                             '북한이탈청소년',
                         ]}
-                        onChange={handleAdmissions}
+                        onChange={handleAdmissionsDataChange}
                     />
                 )}
             </Styled전형선택>

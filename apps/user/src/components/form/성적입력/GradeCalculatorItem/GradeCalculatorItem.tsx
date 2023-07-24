@@ -4,7 +4,6 @@ import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import { Subject } from '@/types/form';
-import { useCaculatorItemHandler } from './GradeCalculatorItem.hooks';
 
 interface PropsType {
     id: number;
@@ -19,7 +18,16 @@ const GradeCalculatorItem = ({
     achievementLevels,
     setSubjectListData,
 }: PropsType) => {
-    const { handleCaculatorItemDataChange } = useCaculatorItemHandler(id, setSubjectListData);
+    const handleCaculatorItemDataChange = (data: string, name: string) => {
+        setSubjectListData((prev) => {
+            const updatedData = [...prev];
+            updatedData[id] = {
+                ...updatedData[id],
+                [name]: data,
+            };
+            return updatedData;
+        });
+    };
 
     return (
         <StyledGradeCalculatorItem>
