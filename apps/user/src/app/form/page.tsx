@@ -21,9 +21,19 @@ const FormPage = () => {
                     onNext={() => onMoveForm('전형 선택')}
                 />
             )}
-            {formStep === '전형 선택' && <전형선택 />}
+            {formStep === '전형 선택' && (
+                <전형선택
+                    onPrevious={() => onMoveForm('출신학교 및 학력')}
+                    onNext={() => onMoveForm('성적 입력')}
+                />
+            )}
             {formStep === '성적 입력' && <div />}
-            {formStep === '자기소개서' && <자기소개서 />}
+            {formStep === '자기소개서' && (
+                <자기소개서
+                    onPrevious={() => onMoveForm('성적 입력')}
+                    onNext={() => alert('작성완료')}
+                />
+            )}
         </div>
     );
 };

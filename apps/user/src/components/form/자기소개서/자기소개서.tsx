@@ -4,8 +4,14 @@ import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import FormController from '../FormController/FormController';
 
-const 자기소개서 = () => {
+interface PropsType {
+    onPrevious: () => void;
+    onNext: () => void;
+}
+
+const 자기소개서 = ({ onPrevious, onNext }: PropsType) => {
     const {
         value: introduce,
         onChange: handleIntroduceDataChange,
@@ -42,6 +48,7 @@ const 자기소개서 = () => {
                     />
                 </Column>
             </Styled자기소개서>
+            <FormController onPrevious={onPrevious} onNext={onNext} step="자기소개서" />
         </FormLayout>
     );
 };
