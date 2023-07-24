@@ -1,29 +1,22 @@
+import useSchoolListQuery from '@/services/form/출신학교및학력/queries';
+import { useInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
-import { css, styled } from 'styled-components';
-import Close from '@maru/ui/Icons/Close';
-import { useInput } from '@maru/hooks';
-import { Dispatch, SetStateAction, useEffect } from 'react';
-import useFormSchoolListQuery from '@/services/form/출신학교및학력/queries';
 import Check from '@maru/ui/Icons/Check';
-import useSchoolModalHandler from './FindSchoolModal.hooks';
+import Close from '@maru/ui/Icons/Close';
+import { Dispatch, SetStateAction } from 'react';
+import { css, styled } from 'styled-components';
+import useSchoolModalHandler, { SchoolPropsType } from './FindSchoolModal.hooks';
 
 interface PropsType {
     closeModal: () => void;
     setAppliedSchool: Dispatch<SetStateAction<SchoolPropsType>>;
 }
 
-interface SchoolPropsType {
-    schoolName: string;
-    schoolRegion: string;
-    schoolPhone: string;
-    schoolCode: string;
-}
-
 const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
     const { value, onChange, debouncedValue } = useInput({ initialValue: '', useDebounce: true });
 
-    const schoolListQuery = useFormSchoolListQuery(debouncedValue);
+    const schoolListQuery = useSchoolListQuery(debouncedValue);
 
     const { selectedSchool, handleSchoolSelect, closeSchoolModal, onComplete } =
         useSchoolModalHandler(closeModal, setAppliedSchool);
@@ -44,34 +37,31 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                         />
                     </Column>
                     <SchoolList>
-                        {schoolListQuery.data?.schoolInfo?.[1].row.map(
+                        {schoolListQuery.data?.dataList.map(
                             ({
-                                SCHUL_NM: schoolName,
-                                ORG_RDNMA: schoolRegion,
-                                ORG_TELNO: schoolPhone,
-                                SD_SCHUL_CODE: schoolCode,
+                                name,
+                                location,
+                                code,
                             }: {
-                                SCHUL_NM: string;
-                                ORG_RDNMA: string;
-                                ORG_TELNO: string;
-                                SD_SCHUL_CODE: string;
+                                name: string;
+                                location: string;
+                                code: string;
                             }) => (
                                 <SchoolItem
-                                    key={schoolCode}
-                                    selected={selectedSchool.schoolCode === schoolCode}
+                                    key={code}
+                                    selected={selectedSchool.code === code}
                                     onClick={() =>
                                         handleSchoolSelect({
-                                            schoolName,
-                                            schoolRegion,
-                                            schoolPhone,
-                                            schoolCode,
+                                            name,
+                                            location,
+                                            code,
                                         })
                                     }>
                                     <SchoolName>
-                                        {selectedSchool.schoolCode === schoolCode && <Check />}
-                                        {schoolName}
+                                        {selectedSchool.code === code && <Check />}
+                                        {name}
                                     </SchoolName>
-                                    <SchoolRegion>{schoolRegion}</SchoolRegion>
+                                    <SchoolRegion>{location}</SchoolRegion>
                                 </SchoolItem>
                             ),
                         )}

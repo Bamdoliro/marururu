@@ -1,11 +1,10 @@
-import { ButtonInput, Input } from '@maru/ui';
-import { RadioGroup } from '@maru/ui';
-import { styled } from 'styled-components';
-import FindSchoolModal from './FindSchoolModal/FindSchoolModal';
-import useModal from '@maru/hooks/src/useModal';
-import { useState } from 'react';
 import { FormLayout } from '@/layouts';
+import useModal from '@maru/hooks/src/useModal';
+import { ButtonInput, Input, RadioGroup } from '@maru/ui';
+import { useState } from 'react';
+import { styled } from 'styled-components';
 import FormController from '../FormController/FormController';
+import FindSchoolModal from './FindSchoolModal/FindSchoolModal';
 
 interface PropsType {
     onPrevious: () => void;
@@ -15,10 +14,9 @@ interface PropsType {
 const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
     const { isOpen, openModal, closeModal } = useModal();
     const [appliedSchool, setAppliedSchool] = useState({
-        schoolName: '',
-        schoolRegion: '',
-        schoolPhone: '',
-        schoolCode: '',
+        name: '',
+        location: '',
+        code: '',
     });
 
     return (
@@ -33,7 +31,7 @@ const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
                 <ButtonInput
                     name="almaMater"
                     label="출신학교"
-                    value={appliedSchool.schoolName}
+                    value={appliedSchool.name}
                     buttonText="검색"
                     handleInputButtonClick={openModal}
                     placeholder="클릭하여 검색하기"
@@ -49,7 +47,7 @@ const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
                 <ButtonInput
                     name="regions"
                     label="지역"
-                    value={appliedSchool.schoolRegion}
+                    value={appliedSchool.location}
                     buttonText="검색"
                     handleInputButtonClick={() => {}}
                     placeholder="도로명 주소"
@@ -64,7 +62,6 @@ const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
                 <Input
                     name="schoolContact"
                     label="학교 연락처"
-                    value={appliedSchool.schoolPhone}
                     placeholder="뭐시기 뭐시기"
                     width="100%"
                 />

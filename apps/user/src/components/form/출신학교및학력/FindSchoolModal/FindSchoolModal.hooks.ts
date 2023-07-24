@@ -1,10 +1,9 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-interface SchoolPropsType {
-    schoolName: string;
-    schoolRegion: string;
-    schoolPhone: string;
-    schoolCode: string;
+export interface SchoolPropsType {
+    name: string;
+    location: string;
+    code: string;
 }
 
 const useSchoolModalHandler = (
@@ -12,10 +11,9 @@ const useSchoolModalHandler = (
     setAppliedSchool: Dispatch<SetStateAction<SchoolPropsType>>,
 ) => {
     const [selectedSchool, setSelectedSchool] = useState({
-        schoolName: '',
-        schoolRegion: '',
-        schoolPhone: '',
-        schoolCode: '',
+        name: '',
+        location: '',
+        code: '',
     });
 
     const handleSchoolSelect = (school: SchoolPropsType) => {
@@ -23,7 +21,7 @@ const useSchoolModalHandler = (
     };
 
     const closeSchoolModal = () => {
-        setSelectedSchool({ schoolName: '', schoolRegion: '', schoolPhone: '', schoolCode: '' });
+        setSelectedSchool({ name: '', location: '', code: '' });
         closeModal();
     };
 
