@@ -67,4 +67,6 @@ export default 전형선택;
 const Styled전형선택 = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 48px;
+    width: 100%;
+    height: 100%;
 `;

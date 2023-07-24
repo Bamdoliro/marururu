@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm } from '@/hooks';
-import { 지원자정보, 보호자정보, 출신학교및학력 } from '@/components/form';
+import { 지원자정보, 보호자정보, 출신학교및학력, 자기소개서 } from '@/components/form';
 import 전형선택 from '@/components/form/전형선택/전형선택';
 
 const FormPage = () => {
@@ -23,7 +23,7 @@ const FormPage = () => {
             )}
             {formStep === '전형 선택' && <전형선택 />}
             {formStep === '성적 입력' && <div />}
-            {formStep === '자기소개서' && <div />}
+            {formStep === '자기소개서' && <자기소개서 />}
         </div>
     );
 };

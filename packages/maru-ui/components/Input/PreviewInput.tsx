@@ -73,5 +73,5 @@ const Input = styled.input`
 const Label = styled.p`
     ${font.context}
     color: ${color.gray700};
-    padding-bottom: 8px;
+    margin-bottom: 8px;
 `;

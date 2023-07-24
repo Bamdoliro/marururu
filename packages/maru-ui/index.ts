@@ -8,6 +8,7 @@ export { default as ButtonInput } from './components/Input/ButtonInput';
 export { default as PreviewInput } from './components/Input/PreviewInput';
 export { default as SearchInput } from './components/Input/SearchInput';
 export { default as TimeLimitInput } from './components/Input/TimeLimitInput';
+export { default as Textarea } from './components/Textarea/Textarea';
 export { default as RadioGroup } from './components/Radio/RadioGroup';
 export { default as Radio } from './components/Radio/Radio';
 
