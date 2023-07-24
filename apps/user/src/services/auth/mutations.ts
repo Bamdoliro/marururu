@@ -2,7 +2,7 @@ import {
     joinUser,
     joinUserParamsType,
     loginUser,
-    loginUserParamsType,
+    Login,
     requestEmail,
     requestEmailParamsType,
 } from './api';
@@ -14,7 +14,7 @@ import TOKEN from '@/constants/token';
 import ROUTES from '@/constants/routes';
 
 /** 로그인 */
-export const useLoginUserMutation = ({ email, password }: loginUserParamsType) => {
+export const useLoginUserMutation = ({ email, password }: Login) => {
     const router = useRouter();
 
     return useMutation(() => loginUser({ email, password }), {

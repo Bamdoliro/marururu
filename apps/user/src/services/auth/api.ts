@@ -1,12 +1,12 @@
 import { maru } from '@/apis/instance/instance';
 
 // 로그인
-export interface loginUserParamsType {
+export interface Login {
     email: string;
     password: string;
 }
 
-export const loginUser = async ({ email, password }: loginUserParamsType) => {
+export const loginUser = async ({ email, password }: Login) => {
     const { data } = await maru.post('/auth', { email, password });
     return data;
 };
