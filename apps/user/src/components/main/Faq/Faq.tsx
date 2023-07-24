@@ -2,7 +2,7 @@ import { RightArrowIcon } from '../../common/Icons';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { useMainFaqListQuery } from '@/services/main/queries';
-import QuestionItem from './FaqItem';
+import QuestionItem from '../FaqItem/FaqItem';
 import ROUTES from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';

@@ -1,13 +1,13 @@
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
-import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
-import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
+import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeader';
 import { useEffect, useRef, useState } from 'react';
-import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 import { subjectListInitialData } from '@/constants/form/지원자정보';
 import styled from 'styled-components';
 import { useAddNewSubject } from './GradeCalculator.hooks';
+import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
+import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
 
 export interface SubjectDataType {
     id: number;
