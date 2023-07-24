@@ -7,11 +7,11 @@ import { subjectListInitialData } from '@/constants/form/지원자정보';
 import styled from 'styled-components';
 import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
-import { Subject } from '@/types/form';
+import { SubjectType } from '@/types/form';
 
 const GradeCalculator = () => {
-    const [subjectListData, setSubjectListData] = useState<Subject[]>(subjectListInitialData);
-    const [newSubjectListData, setNewSubjectListData] = useState<Subject[]>([]);
+    const [subjectListData, setSubjectListData] = useState<SubjectType[]>(subjectListInitialData);
+    const [newSubjectListData, setNewSubjectListData] = useState<SubjectType[]>([]);
 
     const newSubjectIdRef = useRef(0);
     const handleAddNewSubjectButtonClick = () => {

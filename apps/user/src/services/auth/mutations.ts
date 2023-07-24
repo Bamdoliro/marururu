@@ -1,4 +1,4 @@
-import { loginUser, Login, requestEmail, Join, joinUser } from './api';
+import { loginUser, LoginType, requestEmail, JoinType, joinUser } from './api';
 import { Storage } from '@/apis/storage/storage';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
@@ -7,7 +7,7 @@ import TOKEN from '@/constants/token';
 import ROUTES from '@/constants/routes';
 
 /** 로그인 */
-export const useLoginUserMutation = ({ email, password }: Login) => {
+export const useLoginUserMutation = ({ email, password }: LoginType) => {
     const router = useRouter();
 
     return useMutation(() => loginUser({ email, password }), {
@@ -24,7 +24,7 @@ export const useLoginUserMutation = ({ email, password }: Login) => {
 };
 
 /** 회원가입 */
-export const useJoinUserMutation = ({ email, code, password }: Join) => {
+export const useJoinUserMutation = ({ email, code, password }: JoinType) => {
     const router = useRouter();
 
     return useMutation(() => joinUser({ email, code, password }), {

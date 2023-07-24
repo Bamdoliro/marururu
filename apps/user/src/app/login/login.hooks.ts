@@ -1,11 +1,11 @@
-import { Login } from '@/services/auth/api';
+import { LoginType } from '@/services/auth/api';
 import { useLoginUserMutation } from '@/services/auth/mutations';
 import { useRouter } from 'next/navigation';
 import ROUTES from '@/constants/routes';
 import { ChangeEventHandler, useState } from 'react';
 
 export const useInput = () => {
-    const [loginUserData, setLoginUserData] = useState<Login>({
+    const [loginUserData, setLoginUserData] = useState<LoginType>({
         email: '',
         password: '',
     });
@@ -24,7 +24,7 @@ export const useCTAButton = () => {
     return { handleGoSingUpPageButtonClick };
 };
 
-export const useLogin = (loginUserData: Login) => {
+export const useLogin = (loginUserData: LoginType) => {
     const loginUserMutation = useLoginUserMutation(loginUserData);
 
     const handleLoginButtonClick = () => {
