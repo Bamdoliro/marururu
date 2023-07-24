@@ -3,8 +3,14 @@ import { styled } from 'styled-components';
 import useHandleAdmissionsChange from './전형선택.hooks';
 import { flex } from '@maru/utils';
 import { FormLayout } from '@/layouts';
+import FormController from '../FormController/FormController';
 
-const 전형선택 = () => {
+interface PropsType {
+    onPrevious: () => void;
+    onNext: () => void;
+}
+
+const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
     const { admissions, handleAdmissions } = useHandleAdmissionsChange();
 
     return (
@@ -58,6 +64,7 @@ const 전형선택 = () => {
                     />
                 )}
             </Styled전형선택>
+            <FormController onPrevious={onPrevious} onNext={onNext} step="전형 선택" />
         </FormLayout>
     );
 };
@@ -67,4 +74,6 @@ export default 전형선택;
 const Styled전형선택 = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 48px;
+    width: 100%;
+    height: 100%;
 `;

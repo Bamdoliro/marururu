@@ -41,7 +41,6 @@ const StyledProgressBar = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
     padding: 0px 205px;
-    margin-bottom: 61px;
     &::before {
         position: absolute;
         content: '';

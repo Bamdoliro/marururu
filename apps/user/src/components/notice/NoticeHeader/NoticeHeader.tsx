@@ -26,7 +26,7 @@ const StyledNoticeHeader = styled.div`
     width: 100%;
     height: 80px;
     border-bottom: 1px solid ${color.gray300};
-    padding-bottom: 8px;
+    margin-bottom: 8px;
 `;
 
 const Title = styled.p`
