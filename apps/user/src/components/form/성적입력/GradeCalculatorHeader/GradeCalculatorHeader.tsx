@@ -1,5 +1,4 @@
-import { Th } from '@maru/ui';
-import { Column, Row } from '@maru/ui';
+import { Column, Row, Th } from '@maru/ui';
 import styled from 'styled-components';
 
 const GradeCalculatorHeader = () => {

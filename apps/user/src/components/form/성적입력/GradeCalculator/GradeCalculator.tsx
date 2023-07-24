@@ -1,31 +1,31 @@
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
-import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
-import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
+import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeader';
 import { useEffect, useRef, useState } from 'react';
-import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 import { subjectListInitialData } from '@/constants/form/지원자정보';
 import styled from 'styled-components';
-import { useAddNewSubject } from './GradeCalculator.hooks';
-
-export interface SubjectDataType {
-    id: number;
-    subjectName: string;
-    grade2_1: string;
-    grade2_2: string;
-    grade3_1: string;
-}
+import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
+import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
+import { SubjectType } from '@/types/form';
 
 const GradeCalculator = () => {
-    const [subjectListData, setSubjectListData] =
-        useState<SubjectDataType[]>(subjectListInitialData);
-    const [newSubjectListData, setNewSubjectListData] = useState<SubjectDataType[]>([]);
+    const [subjectListData, setSubjectListData] = useState<SubjectType[]>(subjectListInitialData);
+    const [newSubjectListData, setNewSubjectListData] = useState<SubjectType[]>([]);
 
-    const { handleAddNewSubjectButtonClick } = useAddNewSubject(setNewSubjectListData);
+    const newSubjectIdRef = useRef(0);
+    const handleAddNewSubjectButtonClick = () => {
+        const newSubject = {
+            id: newSubjectIdRef.current++,
+            subjectName: '',
+            grade2_1: 'A',
+            grade2_2: 'A',
+            grade3_1: 'A',
+        };
+        setNewSubjectListData((prev) => [...prev, newSubject]);
+    };
 
     const footerRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         if (newSubjectListData.length) footerRef.current?.scrollIntoView();
     }, [newSubjectListData]);

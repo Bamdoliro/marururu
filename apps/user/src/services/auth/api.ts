@@ -1,35 +1,30 @@
 import { maru } from '@/apis/instance/instance';
 
 // 로그인
-export interface loginUserParamsType {
+export interface LoginType {
     email: string;
     password: string;
 }
 
-export const loginUser = async ({ email, password }: loginUserParamsType) => {
+export const loginUser = async ({ email, password }: LoginType) => {
     const { data } = await maru.post('/auth', { email, password });
     return data;
 };
 
 // 회원가입
-export interface joinUserParamsType {
+export interface JoinType {
     email: string;
     code: string;
     password: string;
-    repassword?: string;
+    password_confirm?: string;
 }
 
-export const joinUser = async ({ email, code, password }: joinUserParamsType) => {
+export const joinUser = async ({ email, code, password }: JoinType) => {
     const { data } = await maru.post('/user', { email, code, password });
     return data;
 };
 
-// 이메일 요청
-export interface requestEmailParamsType {
-    email: string;
-}
-
-export const requestEmail = async ({ email }: requestEmailParamsType) => {
+export const requestEmail = async (email: string) => {
     const { data } = await maru.post(`/user/verification?email=${email}`);
     return data;
 };

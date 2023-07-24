@@ -1,17 +1,15 @@
-import { color, font } from '@maru/theme';
-import { Button, Td } from '@maru/ui';
+import { Td } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
-import { SubjectDataType } from '../GradeCalculator';
-import { useCaculatorItemHandler } from './GradeCalculatorItem.hooks';
+import { SubjectType } from '@/types/form';
 
 interface PropsType {
     id: number;
-    subjectListData: SubjectDataType[];
+    subjectListData: SubjectType[];
     achievementLevels: string[];
-    setSubjectListData: Dispatch<SetStateAction<SubjectDataType[]>>;
+    setSubjectListData: Dispatch<SetStateAction<SubjectType[]>>;
 }
 
 const GradeCalculatorItem = ({
@@ -20,7 +18,16 @@ const GradeCalculatorItem = ({
     achievementLevels,
     setSubjectListData,
 }: PropsType) => {
-    const { handleCaculatorItemDataChange } = useCaculatorItemHandler(id, setSubjectListData);
+    const handleCaculatorItemDataChange = (data: string, name: string) => {
+        setSubjectListData((prev) => {
+            const updatedData = [...prev];
+            updatedData[id] = {
+                ...updatedData[id],
+                [name]: data,
+            };
+            return updatedData;
+        });
+    };
 
     return (
         <StyledGradeCalculatorItem>
