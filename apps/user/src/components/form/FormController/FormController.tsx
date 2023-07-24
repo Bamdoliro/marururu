@@ -1,22 +1,34 @@
+import { FormStepType } from '@/store/form/form';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 interface PropsType {
-    onPrevious: () => void;
+    onPrevious?: () => void;
     onNext: () => void;
+    step: FormStepType;
 }
 
-const FormController = ({ onPrevious, onNext }: PropsType) => {
+const FormController = ({ onPrevious, onNext, step }: PropsType) => {
     return (
         <FormControllerBar>
             <StyledFormController>
-                <Button width="50%" option="SECONDARY" onClick={onPrevious}>
-                    이전
-                </Button>
-                <Button width="50%" onClick={onNext}>
-                    다음
-                </Button>
+                {step === '지원자 정보' ? (
+                    <FormControllerBar>
+                        <Button width={150} onClick={onNext}>
+                            다음
+                        </Button>
+                    </FormControllerBar>
+                ) : (
+                    <>
+                        <Button width="50%" option="SECONDARY" onClick={onPrevious}>
+                            이전
+                        </Button>
+                        <Button width="50%" onClick={onNext}>
+                            {step === '자기소개서' ? <p>작성 완료</p> : <p>다음</p>}
+                        </Button>
+                    </>
+                )}
             </StyledFormController>
         </FormControllerBar>
     );

@@ -1,9 +1,8 @@
 import { RadioGroup } from '@maru/ui';
-import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import { FormLayout } from '@/layouts';
 import FormController from '../FormController/FormController';
-import { ChangeEventHandler, useState } from 'react';
+import { styled } from 'styled-components';
 
 interface PropsType {
     onPrevious: () => void;
@@ -97,7 +96,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                     />
                 )}
             </Styled전형선택>
-            <FormController onPrevious={onPrevious} onNext={onNext} />
+            <FormController onPrevious={onPrevious} onNext={onNext} step="전형 선택" />
         </FormLayout>
     );
 };
@@ -107,4 +106,6 @@ export default 전형선택;
 const Styled전형선택 = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 48px;
+    width: 100%;
+    height: 100%;
 `;
