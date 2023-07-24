@@ -19,7 +19,7 @@ const VolunteerCalculator = () => {
                 </Td>
                 <Td width={654} height={56}>
                     <NumberInput />
-                    <Paragraph>시간</Paragraph>
+                    <Hour>시간</Hour>
                 </Td>
             </Row>
             <Row>
@@ -28,7 +28,7 @@ const VolunteerCalculator = () => {
                 </Td>
                 <Td width={654} height={56}>
                     <NumberInput />
-                    <Paragraph>시간</Paragraph>
+                    <Hour>시간</Hour>
                 </Td>
             </Row>
             <Row>
@@ -37,7 +37,7 @@ const VolunteerCalculator = () => {
                 </Td>
                 <Td width={654} height={56}>
                     <NumberInput />
-                    <Paragraph>시간</Paragraph>
+                    <Hour>시간</Hour>
                 </Td>
             </Row>
         </Table>
@@ -50,7 +50,7 @@ const Table = styled.div`
     overflow: hidden;
 `;
 
-const Paragraph = styled.p`
+const Hour = styled.p`
     ${font.p2}
     color: ${color.gray900};
     margin-left: 8px;
