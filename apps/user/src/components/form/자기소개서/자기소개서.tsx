@@ -1,23 +1,46 @@
 import { FormLayout } from '@/layouts';
+import { useInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
-import { Textarea } from '@maru/ui';
+import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 
 const 자기소개서 = () => {
-    const [value, setValue] = useState('');
+    const {
+        value: introduce,
+        onChange: handleIntroduceDataChange,
+        debouncedValue: introduceDebounced,
+    } = useInput({
+        initialValue: '',
+        useDebounce: true,
+    });
+    const {
+        value: studyPlan,
+        onChange: handleStudyPlanDataChange,
+        debouncedValue: studyPlanDebounced,
+    } = useInput({
+        initialValue: '',
+        useDebounce: true,
+    });
 
     return (
         <FormLayout title="자기소개서">
             <Styled자기소개서>
                 <Desc>*자기소개서와 학업계획서는 자동저장됩니다.</Desc>
-                <Textarea
-                    limit={1500}
-                    label="자기소개서"
-                    value={value}
-                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value)}
-                />
+                <Column gap={64}>
+                    <Textarea
+                        limit={1500}
+                        label="자기소개서"
+                        value={introduce}
+                        onChange={handleIntroduceDataChange}
+                    />
+                    <Textarea
+                        limit={1500}
+                        label="학업계획서"
+                        value={studyPlan}
+                        onChange={handleStudyPlanDataChange}
+                    />
+                </Column>
             </Styled자기소개서>
         </FormLayout>
     );
@@ -34,4 +57,5 @@ const Styled자기소개서 = styled.div`
 const Desc = styled.p`
     ${font.p3}
     color: ${color.red};
+    margin-bottom: 24px;
 `;
