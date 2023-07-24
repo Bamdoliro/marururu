@@ -3,7 +3,7 @@ import { font, color } from '@maru/theme';
 import styled, { css } from 'styled-components';
 import { CSSProperties, ReactNode } from 'react';
 
-export type TableOptionType = 'PRIMARY' | 'SECONDARY';
+type TableOptionType = 'PRIMARY' | 'SECONDARY';
 
 export interface PropsType {
     children: ReactNode;

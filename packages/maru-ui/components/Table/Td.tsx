@@ -1,29 +1,41 @@
 import { flex } from '@maru/utils';
 import { font, color } from '@maru/theme';
 import { CSSProperties, ReactNode } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type TableOptionType = 'PRIMARY' | 'SECONDARY';
 
 export interface PropsType {
     children: ReactNode;
     width: CSSProperties['width'];
     height: CSSProperties['height'];
+    option?: TableOptionType;
 }
 
-const Td = ({ children, width, height }: PropsType) => {
-    return <StyledTd style={{ width, height }}>{children}</StyledTd>;
+const Td = ({ children, width, height, option = 'PRIMARY' }: PropsType) => {
+    return (
+        <StyledTd style={{ width, height }} option={option}>
+            {children}
+        </StyledTd>
+    );
 };
 
 export default Td;
 
-const StyledTd = styled.div`
-    ${font.btn2}
+const StyledTd = styled.div<{ option?: TableOptionType }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
-    background-color: ${color.white};
+
     color: ${color.gray900};
     border: 0.5px solid ${color.gray300};
 
-    &:first-child {
-        ${font.p2}
-        background-color: ${color.gray50};
-    }
+    ${(props) =>
+        props.option === 'PRIMARY'
+            ? css`
+                  ${font.btn2}
+                  background-color: ${color.white};
+              `
+            : css`
+                  ${font.p2}
+                  background-color: ${color.gray50};
+              `}
 `;
