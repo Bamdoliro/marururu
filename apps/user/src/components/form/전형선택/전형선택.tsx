@@ -2,6 +2,7 @@ import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { FormLayout } from '@/layouts';
 import FormController from '../FormController/FormController';
+import { useState, ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
 
 interface PropsType {

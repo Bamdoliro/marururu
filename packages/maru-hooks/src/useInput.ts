@@ -29,15 +29,14 @@ const useInput = ({ initialValue = '', useDebounce = false, debounceTimeout = 15
         [handleSetDebounceValue, useDebounce],
     );
 
-    const handleInputDataChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> =
-        useCallback(
-            (e) => {
-                handleSetValue(e.target.value);
-            },
-            [handleSetValue],
-        );
+    const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = useCallback(
+        (e) => {
+            handleSetValue(e.target.value);
+        },
+        [handleSetValue],
+    );
 
-    return { value, setValue, handleInputDataChange, debouncedValue };
+    return { value, setValue, onChange, debouncedValue };
 };
 
 export default useInput;

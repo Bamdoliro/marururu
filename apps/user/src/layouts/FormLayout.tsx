@@ -2,7 +2,6 @@ import { Header } from '@/components/common/';
 import { color, font } from '@maru/theme';
 import { ReactNode } from 'react';
 import { ProgressBar } from '@/components/form';
-import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -28,8 +27,6 @@ const FormLayout = ({ children, title }: PropsType) => {
 export default FormLayout;
 
 const StyledFormLayout = styled.section`
-    ${flex({ flexDirection: 'column' })}
-    gap: 72px;
     width: 100vw;
     height: 100vh;
     background-color: ${color.white};
@@ -48,5 +45,5 @@ const Title = styled.p`
 const ContentBox = styled.div`
     width: 100%;
     height: 100%;
-    padding-top: 40px;
+    margin-top: 40px;
 `;

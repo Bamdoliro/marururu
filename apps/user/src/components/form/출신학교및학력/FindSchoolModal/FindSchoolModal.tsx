@@ -26,7 +26,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
         schoolPhone: '',
         schoolCode: '',
     });
-    const { value, handleInputDataChange, debouncedValue } = useInput({
+    const { value, onChange, debouncedValue } = useInput({
         initialValue: '',
         useDebounce: true,
     });
@@ -63,7 +63,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                         </Row>
                         <SearchInput
                             value={value}
-                            onChange={handleInputDataChange}
+                            onChange={onChange}
                             placeholder="학교 이름을 입력해주세요."
                         />
                     </Column>
