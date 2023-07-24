@@ -1,49 +1,13 @@
-import { joinUserParamsType } from '@/services/auth/api';
+import { Join } from '@/services/auth/api';
 import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
-import { ChangeEventHandler, SetStateAction, Dispatch, useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 
-export const useSignUp = () => {
-    const [joinUserData, setJoinUserData] = useState<joinUserParamsType>({
-        email: '',
-        code: '',
-        password: '',
-        repassword: '',
-    });
-
-    const { handleJoinUserData, handleJoinButtonClick, setCheckTermsAgree } = useJoin(
-        joinUserData,
-        setJoinUserData,
-    );
-    const { handleRequestEmailButtonClick } = useRequestEmail(joinUserData);
-
-    return {
-        handleJoinUserData,
-        handleJoinButtonClick,
-        handleRequestEmailButtonClick,
-        setCheckTermsAgree,
-    };
-};
-
-const useJoin = (
-    joinUserData: joinUserParamsType,
-    setJoinUserData: Dispatch<SetStateAction<joinUserParamsType>>,
-) => {
-    /**
-     * 이용약관 동의를 했으면 true
-     * 이용약관 동의를 하지 않았으면 false
-     */
-    const [checkTermsAgree, setCheckTermsAgree] = useState(false);
-
+export const useJoin = (joinUserData: Join, termsAgree: boolean) => {
     const joinUserMutation = useJoinUserMutation(joinUserData);
 
-    const handleJoinUserData: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-        setJoinUserData({ ...joinUserData, [name]: value });
-    };
-
     const handleJoinButtonClick = () => {
-        if (joinUserData.password === joinUserData.repassword) {
-            if (checkTermsAgree === true) {
+        if (joinUserData.password === joinUserData.password_confirm) {
+            if (termsAgree) {
                 joinUserMutation.mutate();
             } else {
                 alert('이용약관 동의를 해주세요');
@@ -53,18 +17,31 @@ const useJoin = (
         }
     };
 
-    return {
-        handleJoinUserData,
-        handleJoinButtonClick,
-        setCheckTermsAgree,
-    };
+    return { handleJoinButtonClick };
 };
 
-const useRequestEmail = (joinUserData: joinUserParamsType) => {
-    const requestEmailMutation = useRequestEmailMutation(joinUserData);
+export const useRequestEmail = (email: string) => {
+    const requestEmailMutation = useRequestEmailMutation(email);
+
     const handleRequestEmailButtonClick = () => {
         requestEmailMutation.mutate();
     };
 
     return { handleRequestEmailButtonClick };
+};
+
+export const useInput = () => {
+    const [joinUserData, setJoinUserData] = useState<Join>({
+        email: '',
+        code: '',
+        password: '',
+        password_confirm: '',
+    });
+
+    const handleJoinUserDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { name, value } = e.target;
+        setJoinUserData({ ...joinUserData, [name]: value });
+    };
+
+    return { joinUserData, handleJoinUserDataChange };
 };

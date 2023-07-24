@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import useTerms from './Terms.hook';
 
 interface PropsType {
-    setCheckTermsAgree: Dispatch<SetStateAction<boolean>>;
+    setTermsAgree: Dispatch<SetStateAction<boolean>>;
 }
 
-const Terms = ({ setCheckTermsAgree }: PropsType) => {
+const Terms = ({ setTermsAgree }: PropsType) => {
     const { allCheck, checkOne, checkTwo, allCheckEvent, checkOneEvent, checkTwoEvent } =
-        useTerms(setCheckTermsAgree);
+        useTerms(setTermsAgree);
 
     return (
         <StyledTerms>

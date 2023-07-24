@@ -1,11 +1,4 @@
-import {
-    joinUser,
-    joinUserParamsType,
-    loginUser,
-    Login,
-    requestEmail,
-    requestEmailParamsType,
-} from './api';
+import { loginUser, Login, requestEmail, Join, joinUser } from './api';
 import { Storage } from '@/apis/storage/storage';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
@@ -31,7 +24,7 @@ export const useLoginUserMutation = ({ email, password }: Login) => {
 };
 
 /** 회원가입 */
-export const useJoinUserMutation = ({ email, code, password }: joinUserParamsType) => {
+export const useJoinUserMutation = ({ email, code, password }: Join) => {
     const router = useRouter();
 
     return useMutation(() => joinUser({ email, code, password }), {
@@ -46,8 +39,8 @@ export const useJoinUserMutation = ({ email, code, password }: joinUserParamsTyp
 };
 
 /** 이메일 인증번호 요청 */
-export const useRequestEmailMutation = ({ email }: requestEmailParamsType) => {
-    return useMutation(() => requestEmail({ email }), {
+export const useRequestEmailMutation = (email: string) => {
+    return useMutation(() => requestEmail(email), {
         onError: (err) => {
             axiosErrorTemplate(err);
         },

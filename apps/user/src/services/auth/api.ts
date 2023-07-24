@@ -12,24 +12,19 @@ export const loginUser = async ({ email, password }: Login) => {
 };
 
 // 회원가입
-export interface joinUserParamsType {
+export interface Join {
     email: string;
     code: string;
     password: string;
-    repassword?: string;
+    password_confirm?: string;
 }
 
-export const joinUser = async ({ email, code, password }: joinUserParamsType) => {
+export const joinUser = async ({ email, code, password }: Join) => {
     const { data } = await maru.post('/user', { email, code, password });
     return data;
 };
 
-// 이메일 요청
-export interface requestEmailParamsType {
-    email: string;
-}
-
-export const requestEmail = async ({ email }: requestEmailParamsType) => {
+export const requestEmail = async (email: string) => {
     const { data } = await maru.post(`/user/verification?email=${email}`);
     return data;
 };
