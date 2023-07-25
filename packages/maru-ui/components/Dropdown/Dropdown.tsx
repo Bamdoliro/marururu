@@ -1,39 +1,55 @@
 import { CSSProperties, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import styled, { css } from 'styled-components';
 import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
+import styled, { css } from 'styled-components';
+
+type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
 interface PropsType {
     label?: string;
     data: string[];
     width?: CSSProperties['width'];
+    size?: DropdownSizeOption;
+    value?: string;
+    onChange: (value: string, name: string) => void;
+    name: string;
     placeholder?: string;
 }
 
-const Dropdown = ({ label, data, width = '320px', placeholder }: PropsType) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(placeholder);
+const Dropdown = ({
+    label,
+    data,
+    width = '320px',
+    size = 'MEDIUM',
+    value = '',
+    onChange,
+    name,
+    placeholder,
+}: PropsType) => {
+    const [isOpened, setIsOpened] = useState(false);
 
-    const clickedMenu = (item: string) => {
-        setSelectedItem(item);
-        setIsOpen(false);
+    const handleMenuButtonClick = (data: string) => {
+        onChange(data, name);
+        setIsOpened(false);
     };
 
-    const clickToggle = () => setIsOpen((prev) => !prev);
+    const handleToggleButtonClick = () => setIsOpened((prev) => !prev);
 
     return (
         <div style={{ width }}>
-            <Label>{label}</Label>
-            <StyledDropdown onClick={clickToggle} isOpen={isOpen}>
-                <SelectedItemText>{selectedItem}</SelectedItemText>
-                {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}
+            {label && <Label>{label}</Label>}
+            <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpened={isOpened}>
+                <SelectedItemText isSelected={!!value}>{value || placeholder}</SelectedItemText>
+                {isOpened ? <TopArrowIcon /> : <BottomArrowIcon />}
             </StyledDropdown>
-            <DropdownListBox isOpen={isOpen}>
+            <DropdownListBox isOpened={isOpened}>
                 <DropdownList>
                     {data?.map((item, index) => (
-                        <DropdownItem key={`dropdown ${index}`} onClick={() => clickedMenu(item)}>
+                        <DropdownItem
+                            key={`dropdown ${index}`}
+                            onClick={() => handleMenuButtonClick(item)}>
                             {item}
                         </DropdownItem>
                     ))}
@@ -51,21 +67,17 @@ const Label = styled.p`
     margin-bottom: 8px;
 `;
 
-const StyledDropdown = styled.div<{ isOpen: boolean }>`
+const StyledDropdown = styled.div<{ isOpened: boolean; size: DropdownSizeOption }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    height: 48px;
     width: 100%;
-    padding: 10px 16px;
-
     background-color: ${color.white};
     border-radius: 6px;
     cursor: pointer;
 
-    ${({ isOpen }) =>
-        isOpen
+    ${(props) =>
+        props.isOpened
             ? css`
                   border: 1px solid ${color.maruDefault};
                   outline: 2px solid rgba(20, 112, 255, 0.25);
@@ -73,16 +85,27 @@ const StyledDropdown = styled.div<{ isOpen: boolean }>`
             : css`
                   border: 1px solid ${color.gray400};
               `};
+
+    ${(props) =>
+        props.size === 'MEDIUM'
+            ? css`
+                  height: 48px;
+                  padding: 10px 16px;
+              `
+            : css`
+                  height: 40px;
+                  padding: 10px 10px 10px 16px;
+              `}
 `;
 
-const SelectedItemText = styled.p`
+const SelectedItemText = styled.p<{ isSelected: boolean }>`
     ${font.p2}
-    color: ${color.gray500};
+    color: ${(props) => (props.isSelected ? color.gray900 : color.gray500)};
 `;
 
-const DropdownListBox = styled.div<{ isOpen: boolean }>`
+const DropdownListBox = styled.div<{ isOpened: boolean }>`
     position: relative;
-    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+    display: ${({ isOpened }) => (isOpened ? 'block' : 'none')};
 `;
 
 const DropdownList = styled.div`

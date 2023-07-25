@@ -6,7 +6,7 @@ interface RadioPropsType extends InputHTMLAttributes<HTMLInputElement> {}
 
 const Radio = ({ content, value, name, defaultChecked, onChange }: RadioPropsType) => {
     return (
-        <StyledRadio>
+        <div>
             <Label>
                 <Input
                     type="radio"
@@ -15,18 +15,15 @@ const Radio = ({ content, value, name, defaultChecked, onChange }: RadioPropsTyp
                     defaultChecked={defaultChecked}
                     onChange={onChange}
                 />
-                <RadioBox></RadioBox>
-                <Content>{content}</Content>
+                <RadioSelectIcon />
+                {content && <Content>{content}</Content>}
             </Label>
-        </StyledRadio>
+        </div>
     );
 };
 
-const StyledRadio = styled.div`
-    padding-right: 40px;
-`;
-
-const RadioBox = styled.div`
+/* TODO : 이거 나중에 아이콘으로 교체해야하는데 생각 좀 해봐야할 듯 */
+const RadioSelectIcon = styled.div`
     position: relative;
     width: 20px;
     height: 20px;
@@ -38,11 +35,11 @@ const RadioBox = styled.div`
 const Input = styled.input`
     display: none;
 
-    &:checked + ${RadioBox} {
+    &:checked + ${RadioSelectIcon} {
         border: 2px solid ${color.maruDefault};
     }
 
-    &:checked + ${RadioBox}::after {
+    &:checked + ${RadioSelectIcon}::after {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -66,6 +63,7 @@ const Label = styled.label`
 const Content = styled.p`
     ${font.p2};
     color: ${color.gray900};
+    margin-right: 40px;
 `;
 
 export default Radio;

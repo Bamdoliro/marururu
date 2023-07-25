@@ -1,5 +1,5 @@
 import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
-import { ChangeEvent, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
+import { ChangeEventHandler, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
 
 export const useUploadProfileImageFile = (setProfileImage: Dispatch<SetStateAction<string>>) => {
     const uploadProfileImageMutation = useUploadProfileImageMutation(setProfileImage);
@@ -20,7 +20,7 @@ export const useOpenUploadImageFile = () => {
 };
 
 export const useImageFileChange = (uploadProfileImageFile: (image: FormData) => void) => {
-    const handleImageFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { files } = e.target;
         if (!files || files.length === 0) return;
         const formData = new FormData();

@@ -12,24 +12,20 @@ interface PropsType {
 const FormController = ({ onPrevious, onNext, step }: PropsType) => {
     return (
         <FormControllerBar>
-            <StyledFormController>
-                {step === '지원자 정보' ? (
-                    <FormControllerBar>
-                        <Button width={150} onClick={onNext}>
-                            다음
-                        </Button>
-                    </FormControllerBar>
-                ) : (
-                    <>
-                        <Button width="50%" option="SECONDARY" onClick={onPrevious}>
-                            이전
-                        </Button>
-                        <Button width="50%" onClick={onNext}>
-                            {step === '자기소개서' ? <p>작성 완료</p> : <p>다음</p>}
-                        </Button>
-                    </>
-                )}
-            </StyledFormController>
+            {step === '지원자 정보' ? (
+                <Button width={150} onClick={onNext}>
+                    다음
+                </Button>
+            ) : (
+                <StyledFormController>
+                    <Button width="50%" option="SECONDARY" onClick={onPrevious}>
+                        이전
+                    </Button>
+                    <Button width="50%" onClick={onNext}>
+                        {step === '자기소개서' ? <p>작성 완료</p> : <p>다음</p>}
+                    </Button>
+                </StyledFormController>
+            )}
         </FormControllerBar>
     );
 };
@@ -45,5 +41,5 @@ const FormControllerBar = styled.div`
 const StyledFormController = styled.div`
     ${flex({ alignItems: 'center' })}
     gap: 24px;
-    width: 331px;
+    width: 324px;
 `;

@@ -4,22 +4,50 @@ import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import Check from '@maru/ui/Icons/Check';
 import Close from '@maru/ui/Icons/Close';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { css, styled } from 'styled-components';
-import useSchoolModalHandler, { SchoolPropsType } from './FindSchoolModal.hooks';
+
+interface SchoolType {
+    name: string;
+    location: string;
+    code: string;
+}
 
 interface PropsType {
     closeModal: () => void;
-    setAppliedSchool: Dispatch<SetStateAction<SchoolPropsType>>;
+    setAppliedSchool: Dispatch<SetStateAction<SchoolType>>;
 }
 
-const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
-    const { value, onChange, debouncedValue } = useInput({ initialValue: '', useDebounce: true });
+const FindSchoolModal = ({ closeModal, setAppliedSchool }: PropsType) => {
+    const [selectedSchool, setSelectedSchool] = useState<SchoolType>({
+        name: '',
+        location: '',
+        code: '',
+    });
+    const { value, onChange, debouncedValue } = useInput({
+        initialValue: '',
+        useDebounce: true,
+    });
 
     const schoolListQuery = useSchoolListQuery(debouncedValue);
 
-    const { selectedSchool, handleSchoolSelect, closeSchoolModal, onComplete } =
-        useSchoolModalHandler(closeModal, setAppliedSchool);
+    const handleSchoolSelect = (school: SchoolType) => {
+        setSelectedSchool(school);
+    };
+
+    const handleCompleteFindSchool = () => {
+        setAppliedSchool(selectedSchool);
+        closeModal();
+    };
+
+    const closeSchoolModal = () => {
+        setSelectedSchool({
+            name: '',
+            location: '',
+            code: '',
+        });
+        closeModal();
+    };
 
     return (
         <Background>
@@ -38,15 +66,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                     </Column>
                     <SchoolList>
                         {schoolListQuery.data?.dataList.map(
-                            ({
-                                name,
-                                location,
-                                code,
-                            }: {
-                                name: string;
-                                location: string;
-                                code: string;
-                            }) => (
+                            ({ name, location, code }: SchoolType) => (
                                 <SchoolItem
                                     key={code}
                                     selected={selectedSchool.code === code}
@@ -71,7 +91,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                     <Button option="SECONDARY" size="SMALL" onClick={closeSchoolModal}>
                         취소
                     </Button>
-                    <Button size="SMALL" onClick={onComplete}>
+                    <Button size="SMALL" onClick={handleCompleteFindSchool}>
                         완료
                     </Button>
                 </Row>
@@ -80,7 +100,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
     );
 };
 
-export default SchoolSearchModal;
+export default FindSchoolModal;
 
 const Background = styled.div`
     position: fixed;

@@ -12,7 +12,7 @@ interface PropsType {
 const FindAddressModal = ({ closeModal, setAddress }: PropsType) => {
     const findAddressModalRef = useOutsideClick(closeModal);
 
-    const onCompleteFindAddress = ({ address }: { address: string }) => {
+    const handleCompleteFindAddress = ({ address }: { address: string }) => {
         setAddress(address);
         closeModal();
     };
@@ -21,7 +21,7 @@ const FindAddressModal = ({ closeModal, setAddress }: PropsType) => {
         <Background>
             <StyledFindAddressModal ref={findAddressModalRef}>
                 <DaumPostcode
-                    onComplete={onCompleteFindAddress}
+                    onComplete={handleCompleteFindAddress}
                     style={{ width: '100%', height: '100%' }}
                 />
             </StyledFindAddressModal>
