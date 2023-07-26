@@ -1,5 +1,5 @@
 import { color, font } from '@maru/theme';
-import { ChangeEventHandler, InputHTMLAttributes, ReactNode } from 'react';
+import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
 import Radio from './Radio';
 
@@ -17,6 +17,7 @@ const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
             <RadioListBox>
                 {list.map((item) => (
                     <Radio
+                        key={typeof item === 'string' ? item : item.value}
                         value={typeof item === 'string' ? item : item.value}
                         content={typeof item === 'string' ? item : item.content}
                         name={name}

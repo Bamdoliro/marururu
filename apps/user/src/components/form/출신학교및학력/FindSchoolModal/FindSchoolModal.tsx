@@ -1,30 +1,28 @@
+import useSchoolListQuery from '@/services/form/출신학교및학력/queries';
+import { useInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
-import { css, styled } from 'styled-components';
-import Close from '@maru/ui/Icons/Close';
-import { useInput } from '@maru/hooks';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import useSchoolListQuery from '@/services/form/출신학교및학력/queries';
 import Check from '@maru/ui/Icons/Check';
+import Close from '@maru/ui/Icons/Close';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { css, styled } from 'styled-components';
 
-interface School {
-    schoolName: string;
-    schoolRegion: string;
-    schoolPhone: string;
-    schoolCode: string;
+interface SchoolType {
+    name: string;
+    location: string;
+    code: string;
 }
 
 interface PropsType {
     closeModal: () => void;
-    setAppliedSchool: Dispatch<SetStateAction<School>>;
+    setAppliedSchool: Dispatch<SetStateAction<SchoolType>>;
 }
 
-const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
-    const [selectedSchool, setSelectedSchool] = useState<School>({
-        schoolName: '',
-        schoolRegion: '',
-        schoolPhone: '',
-        schoolCode: '',
+const FindSchoolModal = ({ closeModal, setAppliedSchool }: PropsType) => {
+    const [selectedSchool, setSelectedSchool] = useState<SchoolType>({
+        name: '',
+        location: '',
+        code: '',
     });
     const { value, onChange, debouncedValue } = useInput({
         initialValue: '',
@@ -33,7 +31,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
 
     const schoolListQuery = useSchoolListQuery(debouncedValue);
 
-    const handleSchoolSelect = (school: School) => {
+    const handleSchoolSelect = (school: SchoolType) => {
         setSelectedSchool(school);
     };
 
@@ -44,10 +42,9 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
 
     const closeSchoolModal = () => {
         setSelectedSchool({
-            schoolName: '',
-            schoolRegion: '',
-            schoolPhone: '',
-            schoolCode: '',
+            name: '',
+            location: '',
+            code: '',
         });
         closeModal();
     };
@@ -68,34 +65,23 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                         />
                     </Column>
                     <SchoolList>
-                        {schoolListQuery.data?.schoolInfo?.[1].row.map(
-                            ({
-                                SCHUL_NM: schoolName,
-                                ORG_RDNMA: schoolRegion,
-                                ORG_TELNO: schoolPhone,
-                                SD_SCHUL_CODE: schoolCode,
-                            }: {
-                                SCHUL_NM: string;
-                                ORG_RDNMA: string;
-                                ORG_TELNO: string;
-                                SD_SCHUL_CODE: string;
-                            }) => (
+                        {schoolListQuery.data?.dataList.map(
+                            ({ name, location, code }: SchoolType) => (
                                 <SchoolItem
-                                    key={schoolCode}
-                                    selected={selectedSchool.schoolCode === schoolCode}
+                                    key={code}
+                                    selected={selectedSchool.code === code}
                                     onClick={() =>
                                         handleSchoolSelect({
-                                            schoolName,
-                                            schoolRegion,
-                                            schoolPhone,
-                                            schoolCode,
+                                            name,
+                                            location,
+                                            code,
                                         })
                                     }>
                                     <SchoolName>
-                                        {selectedSchool.schoolCode === schoolCode && <Check />}
-                                        {schoolName}
+                                        {selectedSchool.code === code && <Check />}
+                                        {name}
                                     </SchoolName>
-                                    <SchoolRegion>{schoolRegion}</SchoolRegion>
+                                    <SchoolRegion>{location}</SchoolRegion>
                                 </SchoolItem>
                             ),
                         )}
@@ -114,7 +100,7 @@ const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
     );
 };
 
-export default SchoolSearchModal;
+export default FindSchoolModal;
 
 const Background = styled.div`
     position: fixed;
