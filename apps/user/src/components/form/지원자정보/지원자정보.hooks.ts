@@ -2,7 +2,7 @@ import { Date } from '@/utils/formatDate';
 import formatDate from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 
-interface UserInfo {
+export interface UserInfo {
     identificationPictureUri: string;
     name: string;
     phoneNumber: string;
@@ -37,5 +37,9 @@ export const useInput = () => {
         }));
     }, [date]);
 
-    return { userInfo, setUserInfo, handleUserInfoDataChange, date, setDate };
+    useEffect(() => {
+        console.log(userInfo);
+    }, [userInfo]);
+
+    return { setUserInfo, handleUserInfoDataChange, date, setDate };
 };

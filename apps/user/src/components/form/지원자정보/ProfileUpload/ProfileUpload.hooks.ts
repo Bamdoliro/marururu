@@ -1,33 +1,42 @@
 import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
-import { ChangeEventHandler, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
-
-export const useProfileImageState = () => {
-    const [profileImage, setProfileImage] = useState('');
-
-    return { profileImage, setProfileImage };
-};
+import { ChangeEventHandler, DragEvent, useRef, useState } from 'react';
 
 export const useUploadProfileImageFile = () => {
-    const { setProfileImage } = useProfileImageState();
+    const [profileImage, setProfileImage] = useState('');
+
+    // image file open
+    const imageFileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleImageUploadButtonClick = () => {
+        imageFileInputRef.current?.click();
+    };
+
+    // api 통신
     const uploadProfileImageMutation = useUploadProfileImageMutation(setProfileImage);
 
     const uploadProfileImageFile = (image: FormData) => {
         uploadProfileImageMutation.mutate(image);
     };
 
-    return { uploadProfileImageFile };
-};
-
-export const useOpenUploadImageFile = () => {
-    const imageFileInputRef = useRef<HTMLInputElement>(null);
-    const handleImageUploadButtonClick = () => {
-        imageFileInputRef.current?.click();
+    // data hanlding
+    const handleImageFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { files } = e.target;
+        if (!files || files.length === 0) return;
+        const formData = new FormData();
+        formData.append('image', files[0]);
+        uploadProfileImageFile(formData);
     };
-    return { imageFileInputRef, handleImageUploadButtonClick };
+
+    return {
+        profileImage,
+        uploadProfileImageFile,
+        imageFileInputRef,
+        handleImageUploadButtonClick,
+        handleImageFileDataChange,
+    };
 };
 
-export const useImageFileDragAndDrop = () => {
-    const { uploadProfileImageFile } = useUploadProfileImageFile();
+export const useImageFileDragAndDrop = (uploadProfileImageFile: (image: FormData) => void) => {
     const [isDragging, setIsDragging] = useState(false);
 
     const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
@@ -57,18 +66,4 @@ export const useImageFileDragAndDrop = () => {
     };
 
     return { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop };
-};
-
-export const useInput = () => {
-    const { uploadProfileImageFile } = useUploadProfileImageFile();
-
-    const handleImageFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { files } = e.target;
-        if (!files || files.length === 0) return;
-        const formData = new FormData();
-        formData.append('image', files[0]);
-        uploadProfileImageFile(formData);
-    };
-
-    return { handleImageFileDataChange };
 };

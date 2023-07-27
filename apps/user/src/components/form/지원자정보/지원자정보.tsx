@@ -5,20 +5,19 @@ import { FormLayout } from '@/layouts';
 import FormController from '../FormController/FormController';
 import { useInput } from './지원자정보.hooks';
 import styled from 'styled-components';
-import { useEffect } from 'react';
 
 interface PropsType {
     onNext: () => void;
 }
 
 const 지원자정보 = ({ onNext }: PropsType) => {
-    const { userInfo, handleUserInfoDataChange, date, setDate } = useInput();
+    const { setUserInfo, handleUserInfoDataChange, date, setDate } = useInput();
 
     return (
         <FormLayout title="지원자 정보">
             <Styled지원자정보>
                 <Row width="100%" justifyContent="space-between">
-                    <ProfileUpload />
+                    <ProfileUpload setUserInfo={setUserInfo} />
                     <Column gap={30} width={492}>
                         <Input
                             label="성명"

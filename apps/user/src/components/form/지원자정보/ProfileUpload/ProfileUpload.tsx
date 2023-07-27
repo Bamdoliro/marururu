@@ -1,19 +1,28 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import {
-    useInput,
-    useImageFileDragAndDrop,
-    useOpenUploadImageFile,
-    useProfileImageState,
-} from './ProfileUpload.hooks';
+import { useImageFileDragAndDrop, useUploadProfileImageFile } from './ProfileUpload.hooks';
 import styled from 'styled-components';
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import { UserInfo } from '../지원자정보.hooks';
 
-const ProfileUpload = () => {
-    const { profileImage } = useProfileImageState();
+interface PropsType {
+    setUserInfo: Dispatch<SetStateAction<UserInfo>>;
+}
 
-    const { imageFileInputRef, handleImageUploadButtonClick } = useOpenUploadImageFile();
-    const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } = useImageFileDragAndDrop();
-    const { handleImageFileDataChange } = useInput();
+const ProfileUpload = ({ setUserInfo }: PropsType) => {
+    const {
+        profileImage,
+        uploadProfileImageFile,
+        imageFileInputRef,
+        handleImageUploadButtonClick,
+        handleImageFileDataChange,
+    } = useUploadProfileImageFile();
+    const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } =
+        useImageFileDragAndDrop(uploadProfileImageFile);
+
+    useEffect(() => {
+        setUserInfo((prev) => ({ ...prev, identificationPictureUri: profileImage }));
+    }, [profileImage]);
 
     return (
         <StyledProfileUpload>
