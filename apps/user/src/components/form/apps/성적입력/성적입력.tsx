@@ -9,7 +9,7 @@ import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import FormController from '../FormController/FormController';
+import FormController from '../common/FormController/FormController';
 
 interface PropsType {
     onPrevious: () => void;

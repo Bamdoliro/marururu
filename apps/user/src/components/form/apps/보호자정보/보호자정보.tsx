@@ -2,7 +2,7 @@ import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useState } from 'react';
 import FindAddressModal from './FindAddressModal/FindAddressModal';
 import styled from 'styled-components';
-import FormController from '../FormController/FormController';
+import FormController from '../../common/FormController/FormController';
 import { FormLayout } from '@/layouts';
 
 interface PropsType {

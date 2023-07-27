@@ -3,7 +3,7 @@ import useModal from '@maru/hooks/src/useModal';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import FormController from '../FormController/FormController';
+import FormController from '../common/FormController/FormController';
 import FindSchoolModal from './FindSchoolModal/FindSchoolModal';
 
 interface PropsType {

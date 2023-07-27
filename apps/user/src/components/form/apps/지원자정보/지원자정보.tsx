@@ -2,7 +2,7 @@ import { Column, Input, Row, RadioGroup } from '@maru/ui';
 import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import ProfileUpload from './ProfileUpload/ProfileUpload';
 import { FormLayout } from '@/layouts';
-import FormController from '../FormController/FormController';
+import FormController from '../common/FormController/FormController';
 import { useInput } from './지원자정보.hooks';
 import styled from 'styled-components';
 

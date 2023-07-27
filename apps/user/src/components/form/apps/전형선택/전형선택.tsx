@@ -1,7 +1,7 @@
 import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { FormLayout } from '@/layouts';
-import FormController from '../FormController/FormController';
+import FormController from '../common/FormController/FormController';
 import { useAdmissionsState, useInput } from './전형선택.hooks';
 import { styled } from 'styled-components';
 
