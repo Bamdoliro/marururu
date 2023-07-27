@@ -1,22 +1,19 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
 import {
-    useImageFileChange,
+    useInput,
     useImageFileDragAndDrop,
     useOpenUploadImageFile,
-    useUploadProfileImageFile,
+    useProfileImageState,
 } from './ProfileUpload.hooks';
 import styled from 'styled-components';
-import { useState } from 'react';
 
 const ProfileUpload = () => {
-    const [profileImage, setProfileImage] = useState('');
+    const { profileImage } = useProfileImageState();
 
-    const { uploadProfileImageFile } = useUploadProfileImageFile(setProfileImage);
     const { imageFileInputRef, handleImageUploadButtonClick } = useOpenUploadImageFile();
-    const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } =
-        useImageFileDragAndDrop(uploadProfileImageFile);
-    const { handleImageFileChange } = useImageFileChange(uploadProfileImageFile);
+    const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } = useImageFileDragAndDrop();
+    const { handleImageFileDataChange } = useInput();
 
     return (
         <StyledProfileUpload>
@@ -49,7 +46,7 @@ const ProfileUpload = () => {
                 type="file"
                 ref={imageFileInputRef}
                 accept=".png, .jpg, .jpeg"
-                onChange={handleImageFileChange}
+                onChange={handleImageFileDataChange}
                 hidden
             />
         </StyledProfileUpload>

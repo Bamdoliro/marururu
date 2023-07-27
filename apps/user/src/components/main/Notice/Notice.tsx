@@ -2,7 +2,7 @@ import { RightArrowIcon } from '../../common/Icons';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { useMainNoticeListQuery } from '@/services/main/queries';
-import NoticeItem from '../NoticeItem/NoticeItem';
+import NoticeItem from './NoticeItem/NoticeItem';
 import ROUTES from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';

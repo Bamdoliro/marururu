@@ -1,53 +1,40 @@
 import useSchoolListQuery from '@/services/form/출신학교및학력/queries';
-import { useInput } from '@maru/hooks';
+import { School } from '@/types/form';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import Check from '@maru/ui/Icons/Check';
 import Close from '@maru/ui/Icons/Close';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { css, styled } from 'styled-components';
-
-interface SchoolType {
-    name: string;
-    location: string;
-    code: string;
-}
+import {
+    useSchoolState,
+    useCTAButton,
+    useSchoolSearchWordState,
+    useCompleteFindSchoolButton,
+} from './FindSchoolModal.hooks';
 
 interface PropsType {
     closeModal: () => void;
-    setAppliedSchool: Dispatch<SetStateAction<SchoolType>>;
+    setAppliedSchool: Dispatch<SetStateAction<School>>;
 }
 
 const FindSchoolModal = ({ closeModal, setAppliedSchool }: PropsType) => {
-    const [selectedSchool, setSelectedSchool] = useState<SchoolType>({
-        name: '',
-        location: '',
-        code: '',
-    });
-    const { value, onChange, debouncedValue } = useInput({
-        initialValue: '',
-        useDebounce: true,
-    });
+    const { school, setSchool } = useSchoolState();
+    const { schoolSearchWord, handleSchoolSearchWordChange, debouncedSchoolSearchWord } =
+        useSchoolSearchWordState();
 
-    const schoolListQuery = useSchoolListQuery(debouncedValue);
-
-    const handleSchoolSelect = (school: SchoolType) => {
-        setSelectedSchool(school);
-    };
-
-    const handleCompleteFindSchool = () => {
-        setAppliedSchool(selectedSchool);
-        closeModal();
-    };
+    const { handleSchoolSelectButtonClick } = useCTAButton();
+    const { handleCompleteFindSchoolButtonClick } = useCompleteFindSchoolButton(
+        setAppliedSchool,
+        closeModal,
+    );
 
     const closeSchoolModal = () => {
-        setSelectedSchool({
-            name: '',
-            location: '',
-            code: '',
-        });
+        setSchool({ name: '', location: '', code: '' });
         closeModal();
     };
+
+    const schoolListQuery = useSchoolListQuery(debouncedSchoolSearchWord);
 
     return (
         <Background>
@@ -59,39 +46,31 @@ const FindSchoolModal = ({ closeModal, setAppliedSchool }: PropsType) => {
                             <Close cursor="pointer" onClick={closeSchoolModal} />
                         </Row>
                         <SearchInput
-                            value={value}
-                            onChange={onChange}
+                            value={schoolSearchWord}
+                            onChange={handleSchoolSearchWordChange}
                             placeholder="학교 이름을 입력해주세요."
                         />
                     </Column>
                     <SchoolList>
-                        {schoolListQuery.data?.dataList.map(
-                            ({ name, location, code }: SchoolType) => (
-                                <SchoolItem
-                                    key={code}
-                                    selected={selectedSchool.code === code}
-                                    onClick={() =>
-                                        handleSchoolSelect({
-                                            name,
-                                            location,
-                                            code,
-                                        })
-                                    }>
-                                    <SchoolName>
-                                        {selectedSchool.code === code && <Check />}
-                                        {name}
-                                    </SchoolName>
-                                    <SchoolRegion>{location}</SchoolRegion>
-                                </SchoolItem>
-                            ),
-                        )}
+                        {schoolListQuery.data?.dataList.map((item: School) => (
+                            <SchoolItem
+                                key={item.code}
+                                selected={school.code === item.code}
+                                onClick={() => handleSchoolSelectButtonClick(item)}>
+                                <SchoolName>
+                                    {school.code === item.code && <Check />}
+                                    {item.name}
+                                </SchoolName>
+                                <SchoolRegion>{item.location}</SchoolRegion>
+                            </SchoolItem>
+                        ))}
                     </SchoolList>
                 </Column>
                 <Row gap="16px" justifyContent="flex-end">
                     <Button option="SECONDARY" size="SMALL" onClick={closeSchoolModal}>
                         취소
                     </Button>
-                    <Button size="SMALL" onClick={handleCompleteFindSchool}>
+                    <Button size="SMALL" onClick={handleCompleteFindSchoolButtonClick}>
                         완료
                     </Button>
                 </Row>

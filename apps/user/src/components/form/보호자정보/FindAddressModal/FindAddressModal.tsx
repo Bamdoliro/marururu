@@ -2,6 +2,7 @@ import DaumPostcode from 'react-daum-postcode';
 import { useOutsideClick } from '@maru/hooks';
 import { SetStateAction, Dispatch } from 'react';
 import { flex } from '@maru/utils';
+import { Address } from '@/types/form';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -12,7 +13,7 @@ interface PropsType {
 const FindAddressModal = ({ closeModal, setAddress }: PropsType) => {
     const findAddressModalRef = useOutsideClick(closeModal);
 
-    const handleCompleteFindAddress = ({ address }: { address: string }) => {
+    const handleCompleteFindAddress = ({ address }: Address) => {
         setAddress(address);
         closeModal();
     };

@@ -10,7 +10,7 @@ export const useUploadProfileImageMutation = (
             setProfileImage(res.data.data.url);
         },
         onError: (err) => {
-            alert('사진 사이즈를 규격에 맞게 넣어주세요');
+            console.log(err);
         },
     });
 };

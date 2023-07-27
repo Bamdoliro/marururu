@@ -3,23 +3,18 @@ import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
-import { SubjectType } from '@/types/form';
+import { Subject } from '@/types/form';
 
 interface PropsType {
     id: number;
-    subjectListData: SubjectType[];
+    subjectList: Subject[];
+    setSubjectList: Dispatch<SetStateAction<Subject[]>>;
     achievementLevels: string[];
-    setSubjectListData: Dispatch<SetStateAction<SubjectType[]>>;
 }
 
-const GradeCalculatorItem = ({
-    id,
-    subjectListData,
-    achievementLevels,
-    setSubjectListData,
-}: PropsType) => {
+const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevels }: PropsType) => {
     const handleCaculatorItemDataChange = (data: string, name: string) => {
-        setSubjectListData((prev) => {
+        setSubjectList((prev) => {
             const updatedData = [...prev];
             updatedData[id] = {
                 ...updatedData[id],
@@ -28,15 +23,14 @@ const GradeCalculatorItem = ({
             return updatedData;
         });
     };
-
     return (
         <StyledGradeCalculatorItem>
             <Td width={123} height="100%">
-                {subjectListData[id].subjectName}
+                {subjectList[id].subjectName}
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectListData[id].grade2_1}
+                    value={subjectList[id].grade2_1}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -46,7 +40,7 @@ const GradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectListData[id].grade2_2}
+                    value={subjectList[id].grade2_2}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -56,7 +50,7 @@ const GradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectListData[id].grade3_1}
+                    value={subjectList[id].grade3_1}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}

@@ -2,39 +2,26 @@ import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeader';
-import { useEffect, useRef, useState } from 'react';
-import { subjectListInitialData } from '@/constants/form/지원자정보';
 import styled from 'styled-components';
 import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
-import { SubjectType } from '@/types/form';
+import {
+    useSubjectListState,
+    useAddNewSubjectButton,
+    useScrollIntoView,
+} from './GradeCalculator.hooks';
 
 const GradeCalculator = () => {
-    const [subjectListData, setSubjectListData] = useState<SubjectType[]>(subjectListInitialData);
-    const [newSubjectListData, setNewSubjectListData] = useState<SubjectType[]>([]);
-
-    const newSubjectIdRef = useRef(0);
-    const handleAddNewSubjectButtonClick = () => {
-        const newSubject = {
-            id: newSubjectIdRef.current++,
-            subjectName: '',
-            grade2_1: 'A',
-            grade2_2: 'A',
-            grade3_1: 'A',
-        };
-        setNewSubjectListData((prev) => [...prev, newSubject]);
-    };
-
-    const footerRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        if (newSubjectListData.length) footerRef.current?.scrollIntoView();
-    }, [newSubjectListData]);
+    const { subjectList, setSubjectList, newSubjectList, setNewSubjectList } =
+        useSubjectListState();
+    const { handleAddNewSubjectButtonClick } = useAddNewSubjectButton();
+    const { footerRef } = useScrollIntoView();
 
     return (
         <StyledGradeCalculator>
             <GradeCalculatorHeader />
             {/* 기존 과목 item */}
-            {subjectListData.map((item, index) => {
+            {subjectList.map((item, index) => {
                 const isSpecialSubject =
                     item.subjectName === '미술' ||
                     item.subjectName === '음악' ||
@@ -46,19 +33,19 @@ const GradeCalculator = () => {
                         achievementLevels={
                             isSpecialSubject ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D', 'E']
                         }
-                        subjectListData={subjectListData}
-                        setSubjectListData={setSubjectListData}
+                        subjectList={subjectList}
+                        setSubjectList={setSubjectList}
                     />
                 );
             })}
             {/* 사용자가 과목을 추가했을때 나타나는 item */}
-            {newSubjectListData.map((item, index) => (
+            {newSubjectList.map((item, index) => (
                 <NewGradeCalculatorItem
                     id={item.id}
                     key={`new-subject ${index}`}
                     achievementLevels={['A', 'B', 'C', 'D', 'E']}
-                    newSubjectListData={newSubjectListData}
-                    setNewSubjectListData={setNewSubjectListData}
+                    newSubjectList={newSubjectList}
+                    setNewSubjectList={setNewSubjectList}
                 />
             ))}
             <GradeCalculatorFooter ref={footerRef}>

@@ -1,7 +1,14 @@
 import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
 import { ChangeEventHandler, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
 
-export const useUploadProfileImageFile = (setProfileImage: Dispatch<SetStateAction<string>>) => {
+export const useProfileImageState = () => {
+    const [profileImage, setProfileImage] = useState('');
+
+    return { profileImage, setProfileImage };
+};
+
+export const useUploadProfileImageFile = () => {
+    const { setProfileImage } = useProfileImageState();
     const uploadProfileImageMutation = useUploadProfileImageMutation(setProfileImage);
 
     const uploadProfileImageFile = (image: FormData) => {
@@ -19,19 +26,8 @@ export const useOpenUploadImageFile = () => {
     return { imageFileInputRef, handleImageUploadButtonClick };
 };
 
-export const useImageFileChange = (uploadProfileImageFile: (image: FormData) => void) => {
-    const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { files } = e.target;
-        if (!files || files.length === 0) return;
-        const formData = new FormData();
-        formData.append('image', files[0]);
-        uploadProfileImageFile(formData);
-    };
-
-    return { handleImageFileChange };
-};
-
-export const useImageFileDragAndDrop = (uploadProfileImageFile: (image: FormData) => void) => {
+export const useImageFileDragAndDrop = () => {
+    const { uploadProfileImageFile } = useUploadProfileImageFile();
     const [isDragging, setIsDragging] = useState(false);
 
     const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
@@ -61,4 +57,18 @@ export const useImageFileDragAndDrop = (uploadProfileImageFile: (image: FormData
     };
 
     return { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop };
+};
+
+export const useInput = () => {
+    const { uploadProfileImageFile } = useUploadProfileImageFile();
+
+    const handleImageFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { files } = e.target;
+        if (!files || files.length === 0) return;
+        const formData = new FormData();
+        formData.append('image', files[0]);
+        uploadProfileImageFile(formData);
+    };
+
+    return { handleImageFileDataChange };
 };
