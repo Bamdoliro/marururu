@@ -1,4 +1,4 @@
-import { formDataAtomState } from '@/store/form/form';
+import { formDataAtomState } from '@/store/form';
 import { useRecoilState } from 'recoil';
 
 const useFormState = () => {
