@@ -1,4 +1,4 @@
-import { subjectListInitialData } from '@/constants/form/지원자정보';
+import { subjectListInitialData } from '@/constants/form';
 import { Subject } from '@/types/form';
 import { useEffect, useRef, useState } from 'react';
 

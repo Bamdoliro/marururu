@@ -1,5 +1,5 @@
 import { color, font } from '@maru/theme';
-import { ChangeEventHandler } from 'react';
+import { ChangeEvent } from 'react';
 import { styled } from 'styled-components';
 import Radio from './Radio';
 
@@ -7,7 +7,7 @@ interface RadioGroupPropsType {
     label: string;
     list: { value?: string; content: string }[] | string[];
     name: string;
-    onChange?: ChangeEventHandler;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
