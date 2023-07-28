@@ -6,20 +6,21 @@ import Check from '@maru/ui/Icons/Check';
 import Close from '@maru/ui/Icons/Close';
 import { Dispatch, SetStateAction } from 'react';
 import { css, styled } from 'styled-components';
-import useSchoolModalHandler, { SchoolPropsType } from './FindSchoolModal.hooks';
+import { EducationInfo } from '../출신학교및학력.hooks';
+import useSchoolModalHandler from './FindSchoolModal.hooks';
 
 interface PropsType {
     closeModal: () => void;
-    setAppliedSchool: Dispatch<SetStateAction<SchoolPropsType>>;
+    setEducationInfo: Dispatch<SetStateAction<EducationInfo>>;
 }
 
-const SchoolSearchModal = ({ closeModal, setAppliedSchool }: PropsType) => {
+const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
     const { value, onChange, debouncedValue } = useInput({ initialValue: '', useDebounce: true });
 
     const schoolListQuery = useSchoolListQuery(debouncedValue);
 
     const { selectedSchool, handleSchoolSelect, closeSchoolModal, onComplete } =
-        useSchoolModalHandler(closeModal, setAppliedSchool);
+        useSchoolModalHandler(closeModal, setEducationInfo);
 
     return (
         <Background>

@@ -13,7 +13,7 @@ interface PropsType {
 
 const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
     const [isOpenFindAddressModal, setIsOpenFindAddressModal] = useState(false);
-    const { parentInfo, setParentInfo, handleParentInfoChange } = useInput();
+    const { parentInfo, setParentInfo, handleParentInfoDataChange } = useInput();
 
     const openFindAddressModal = () => {
         setIsOpenFindAddressModal(true);
@@ -26,13 +26,13 @@ const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
                     <Row gap={48} alignItems="center">
                         <Input
                             name="name"
-                            onChange={handleParentInfoChange}
+                            onChange={handleParentInfoDataChange}
                             label="성명"
                             width="100%"
                         />
                         <Input
                             name="phoneNumber"
-                            onChange={handleParentInfoChange}
+                            onChange={handleParentInfoDataChange}
                             label="전화번호"
                             placeholder="- 없이 입력"
                             width="100%"
@@ -48,7 +48,7 @@ const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
                     />
                     <Input
                         name="detailAddress"
-                        onChange={handleParentInfoChange}
+                        onChange={handleParentInfoDataChange}
                         label="상세 주소"
                         width="100%"
                     />

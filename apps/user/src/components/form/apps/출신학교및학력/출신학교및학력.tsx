@@ -1,10 +1,10 @@
 import { FormLayout } from '@/layouts';
 import useModal from '@maru/hooks/src/useModal';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
-import { useState } from 'react';
 import { styled } from 'styled-components';
 import FormController from '../../common/FormController/FormController';
 import FindSchoolModal from './FindSchoolModal/FindSchoolModal';
+import useInput from './출신학교및학력.hooks';
 
 interface PropsType {
     onPrevious: () => void;
@@ -13,26 +13,26 @@ interface PropsType {
 
 const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
     const { isOpen, openModal, closeModal } = useModal();
-    const [appliedSchool, setAppliedSchool] = useState({
-        name: '',
-        location: '',
-        code: '',
-    });
+    const { educationInfo, setEducationInfo, handleEducationInfoDataChange } = useInput();
 
     return (
         <FormLayout title="출신학교 및 학력">
             <Styled출신학교및학력>
                 <RadioGroup
                     label="졸업 구분"
-                    name="gradurationStatus"
-                    list={['졸업 예정', '졸업', '고입 검정']}
-                    onChange={() => {}}
+                    name="graduationType"
+                    list={[
+                        { value: 'EXPECTED', content: '졸업 예정' },
+                        { value: 'GRADUATED', content: '졸업' },
+                        { value: 'QUALIFICATION_EXAMINATION', content: '고입 검정' },
+                    ]}
+                    onChange={handleEducationInfoDataChange}
                 />
                 <div></div>
                 <ButtonInput
-                    name="almaMater"
+                    name="schoolName"
                     label="출신학교"
-                    value={appliedSchool.name}
+                    value={educationInfo.schoolName}
                     buttonText="검색"
                     handleInputButtonClick={openModal}
                     placeholder="클릭하여 검색하기"
@@ -40,48 +40,53 @@ const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
                 />
                 <div></div>
                 <Input
-                    name="gradurationYear"
+                    name="graduationYear"
                     label="졸업 년도, 합격 년도"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
+                    onChange={handleEducationInfoDataChange}
                 />
                 <ButtonInput
-                    name="regions"
+                    name="schoolLocation"
                     label="지역"
-                    value={appliedSchool.location}
+                    value={educationInfo.schoolLocation}
                     buttonText="검색"
                     handleInputButtonClick={() => {}}
                     placeholder="도로명 주소"
                     readOnly
                 />
                 <Input
-                    name="neisNumber"
+                    name="schoolCode"
                     label="학교 나이스번호"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
+                    onChange={handleEducationInfoDataChange}
                 />
                 <Input
-                    name="schoolContact"
+                    name="teacherPhoneNumber"
                     label="학교 연락처"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
+                    onChange={handleEducationInfoDataChange}
                 />
                 <Input
                     name="teacherName"
                     label="작성 교사 이름"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
+                    onChange={handleEducationInfoDataChange}
                 />
                 <Input
-                    name="teacherContact"
+                    name="teacherMobilePhoneNumber"
                     label="작성 교사 연락처"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
+                    onChange={handleEducationInfoDataChange}
                 />
             </Styled출신학교및학력>
             <FormController onPrevious={onPrevious} onNext={onNext} step="출신학교 및 학력" />
             {isOpen && (
-                <FindSchoolModal closeModal={closeModal} setAppliedSchool={setAppliedSchool} />
+                <FindSchoolModal closeModal={closeModal} setEducationInfo={setEducationInfo} />
             )}
         </FormLayout>
     );

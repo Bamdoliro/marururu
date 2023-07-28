@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
+import { EducationInfo } from '../출신학교및학력.hooks';
 
-export interface SchoolPropsType {
+interface School {
     name: string;
     location: string;
     code: string;
@@ -8,7 +9,7 @@ export interface SchoolPropsType {
 
 const useSchoolModalHandler = (
     closeModal: () => void,
-    setAppliedSchool: Dispatch<SetStateAction<SchoolPropsType>>,
+    setEducationInfo: Dispatch<SetStateAction<EducationInfo>>,
 ) => {
     const [selectedSchool, setSelectedSchool] = useState({
         name: '',
@@ -16,7 +17,7 @@ const useSchoolModalHandler = (
         code: '',
     });
 
-    const handleSchoolSelect = (school: SchoolPropsType) => {
+    const handleSchoolSelect = (school: School) => {
         setSelectedSchool(school);
     };
 
@@ -26,7 +27,14 @@ const useSchoolModalHandler = (
     };
 
     const onComplete = () => {
-        setAppliedSchool(selectedSchool);
+        const { name, location, code } = selectedSchool;
+
+        setEducationInfo((prev) => ({
+            ...prev,
+            schoolName: name,
+            schoolLocation: location,
+            schoolCode: code,
+        }));
         closeModal();
     };
 

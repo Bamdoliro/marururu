@@ -17,14 +17,14 @@ const useInput = () => {
         detailAddress: '',
     });
 
-    const handleParentInfoChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleParentInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setParentInfo({ ...parentInfo, [name]: value });
     };
 
     useEffect(() => console.log(parentInfo), [parentInfo]);
 
-    return { parentInfo, setParentInfo, handleParentInfoChange };
+    return { parentInfo, setParentInfo, handleParentInfoDataChange };
 };
 
 export default useInput;
