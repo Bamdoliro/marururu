@@ -1,9 +1,10 @@
+import { FormLayout } from '@/layouts';
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useState } from 'react';
-import FindAddressModal from './FindAddressModal/FindAddressModal';
 import styled from 'styled-components';
 import FormController from '../../common/FormController/FormController';
-import { FormLayout } from '@/layouts';
+import FindAddressModal from './FindAddressModal/FindAddressModal';
+import useInput from './보호자정보.hooks';
 
 interface PropsType {
     onPrevious: () => void;
@@ -12,7 +13,7 @@ interface PropsType {
 
 const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
     const [isOpenFindAddressModal, setIsOpenFindAddressModal] = useState(false);
-    const [address, setAddress] = useState('');
+    const { parentInfo, setParentInfo, handleParentInfoChange } = useInput();
 
     const openFindAddressModal = () => {
         setIsOpenFindAddressModal(true);
@@ -23,25 +24,41 @@ const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
             <Styled보호자정보>
                 <Column gap={30}>
                     <Row gap={48} alignItems="center">
-                        <Input label="성명" width="100%" />
-                        <Input label="전화번호" placeholder="- 없이 입력" width="100%" />
+                        <Input
+                            name="name"
+                            onChange={handleParentInfoChange}
+                            label="성명"
+                            width="100%"
+                        />
+                        <Input
+                            name="phoneNumber"
+                            onChange={handleParentInfoChange}
+                            label="전화번호"
+                            placeholder="- 없이 입력"
+                            width="100%"
+                        />
                     </Row>
                     <ButtonInput
                         label="주소"
                         buttonText="검색"
                         handleInputButtonClick={openFindAddressModal}
                         width="100%"
-                        value={address}
+                        value={parentInfo.address}
                         readOnly
                     />
-                    <Input label="상세 주소" width="100%" />
+                    <Input
+                        name="detailAddress"
+                        onChange={handleParentInfoChange}
+                        label="상세 주소"
+                        width="100%"
+                    />
                 </Column>
             </Styled보호자정보>
             <FormController onPrevious={onPrevious} onNext={onNext} step="보호자 정보" />
             {isOpenFindAddressModal && (
                 <FindAddressModal
                     closeModal={() => setIsOpenFindAddressModal(false)}
-                    setAddress={setAddress}
+                    setParentInfo={setParentInfo}
                 />
             )}
         </FormLayout>

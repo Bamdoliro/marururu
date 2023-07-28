@@ -1,20 +1,20 @@
-import DaumPostcode from 'react-daum-postcode';
 import { useOutsideClick } from '@maru/hooks';
-import { SetStateAction, Dispatch } from 'react';
 import { flex } from '@maru/utils';
-import { Address } from '@/types/form';
+import { Dispatch, SetStateAction } from 'react';
+import DaumPostcode, { Address } from 'react-daum-postcode';
 import styled from 'styled-components';
+import { ParentInfo } from '../보호자정보.hooks';
 
 interface PropsType {
-    setAddress: Dispatch<SetStateAction<string>>;
+    setParentInfo: Dispatch<SetStateAction<ParentInfo>>;
     closeModal: () => void;
 }
 
-const FindAddressModal = ({ closeModal, setAddress }: PropsType) => {
+const FindAddressModal = ({ closeModal, setParentInfo }: PropsType) => {
     const findAddressModalRef = useOutsideClick(closeModal);
 
-    const handleCompleteFindAddress = ({ address }: Address) => {
-        setAddress(address);
+    const handleCompleteFindAddress = ({ address, zonecode }: Address) => {
+        setParentInfo((prev) => ({ ...prev, address, zoneCode: zonecode }));
         closeModal();
     };
 
