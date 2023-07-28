@@ -1,15 +1,15 @@
 import { FormLayout } from '@/layouts';
-import GradeCalculator from './GradeCalculator/GradeCalculator';
-import GradePreview from './GradePreview/GradePreview';
-import AttendanceCalculator from './AttendanceCalculator/AttendanceCalculator';
-import VolunteerCalculator from './VolunteerCalculator/VolunteerCalculator';
-import CertificateCalculator from './CertificateCalculator/CertificateCalculator';
 import { color, font } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import FormController from '../common/FormController/FormController';
+import FormController from '../../common/FormController/FormController';
+import AttendanceCalculator from './AttendanceCalculator/AttendanceCalculator';
+import CertificateCalculator from './CertificateCalculator/CertificateCalculator';
+import GradeCalculator from './GradeCalculator/GradeCalculator';
+import GradePreview from './GradePreview/GradePreview';
+import VolunteerCalculator from './VolunteerCalculator/VolunteerCalculator';
 
 interface PropsType {
     onPrevious: () => void;
@@ -77,7 +77,7 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
                     <CertificateCalculator />
                 </>
             )}
-            <FormController onPrevious={onPrevious} onNext={onNext} />
+            <FormController onPrevious={onPrevious} onNext={onNext} step="성적 입력" />
         </FormLayout>
     );
 };

@@ -3,7 +3,7 @@ import useModal from '@maru/hooks/src/useModal';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import FormController from '../common/FormController/FormController';
+import FormController from '../../common/FormController/FormController';
 import FindSchoolModal from './FindSchoolModal/FindSchoolModal';
 
 interface PropsType {
@@ -26,6 +26,7 @@ const 출신학교및학력 = ({ onPrevious, onNext }: PropsType) => {
                     label="졸업 구분"
                     name="gradurationStatus"
                     list={['졸업 예정', '졸업', '고입 검정']}
+                    onChange={() => {}}
                 />
                 <div></div>
                 <ButtonInput

@@ -4,7 +4,7 @@ import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import FormController from '../common/FormController/FormController';
+import FormController from '../../common/FormController/FormController';
 
 interface PropsType {
     onPrevious: () => void;

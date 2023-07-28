@@ -1,10 +1,10 @@
-import { Column, Input, Row, RadioGroup } from '@maru/ui';
-import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
-import ProfileUpload from './ProfileUpload/ProfileUpload';
 import { FormLayout } from '@/layouts';
-import FormController from '../common/FormController/FormController';
-import { useInput } from './지원자정보.hooks';
+import { Column, Input, RadioGroup, Row } from '@maru/ui';
+import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
 import styled from 'styled-components';
+import FormController from '../../common/FormController/FormController';
+import ProfileUpload from './ProfileUpload/ProfileUpload';
+import { useInput } from './지원자정보.hooks';
 
 interface PropsType {
     onNext: () => void;
