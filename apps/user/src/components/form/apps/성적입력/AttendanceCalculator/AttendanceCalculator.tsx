@@ -1,7 +1,14 @@
 import { NumberInput, Row, Td, Th } from '@maru/ui';
 import { styled } from 'styled-components';
+import useInput from './AttendanceCalculator.hooks';
 
 const AttendanceCalculator = () => {
+    const {
+        handleAttendance1InfoDataChange,
+        handleAttendance2InfoDataChange,
+        handleAttendance3InfoDataChange,
+    } = useInput();
+
     return (
         <Table>
             <Row>
@@ -26,16 +33,22 @@ const AttendanceCalculator = () => {
                     1학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput name="absenceCount" onChange={handleAttendance1InfoDataChange} />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput name="latenessCount" onChange={handleAttendance1InfoDataChange} />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput
+                        name="earlyLeaveCount"
+                        onChange={handleAttendance1InfoDataChange}
+                    />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput
+                        name="classAbsenceCount"
+                        onChange={handleAttendance1InfoDataChange}
+                    />
                 </Td>
             </Row>
             <Row>
@@ -43,16 +56,22 @@ const AttendanceCalculator = () => {
                     2학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput name="absenceCount" onChange={handleAttendance2InfoDataChange} />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput name="latenessCount" onChange={handleAttendance2InfoDataChange} />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput
+                        name="earlyLeaveCount"
+                        onChange={handleAttendance2InfoDataChange}
+                    />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput
+                        name="classAbsenceCount"
+                        onChange={handleAttendance2InfoDataChange}
+                    />
                 </Td>
             </Row>
             <Row>
@@ -60,16 +79,22 @@ const AttendanceCalculator = () => {
                     3학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput name="absenceCount" onChange={handleAttendance3InfoDataChange} />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput name="latenessCount" onChange={handleAttendance3InfoDataChange} />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput
+                        name="earlyLeaveCount"
+                        onChange={handleAttendance3InfoDataChange}
+                    />
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput />
+                    <NumberInput
+                        name="classAbsenceCount"
+                        onChange={handleAttendance3InfoDataChange}
+                    />
                 </Td>
             </Row>
         </Table>
