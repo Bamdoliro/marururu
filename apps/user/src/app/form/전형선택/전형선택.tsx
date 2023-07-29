@@ -1,7 +1,7 @@
 import { FormLayout } from '@/layouts';
 import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useAdmissionsState } from './전형선택.hooks';
+import { useFormTypeState } from './전형선택.hooks';
 import { FormController } from '@/components/form';
 import { styled } from 'styled-components';
 
@@ -11,7 +11,7 @@ interface PropsType {
 }
 
 const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
-    const { admissions, handleAdmissionsDataChange } = useAdmissionsState();
+    const { choiceFormType, handleChoiceFormTypeDataChange } = useFormTypeState();
 
     return (
         <FormLayout title="전형 선택">
@@ -20,9 +20,9 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                     label="입학 전형 선택"
                     name="입학전형선택"
                     list={['일반전형', '특별전형']}
-                    onChange={handleAdmissionsDataChange}
+                    onChange={handleChoiceFormTypeDataChange}
                 />
-                {admissions.입학전형선택 === '특별전형' && (
+                {choiceFormType.입학전형선택 === '특별전형' && (
                     <RadioGroup
                         label="특별 전형 선택"
                         name="특별전형선택"
@@ -32,10 +32,10 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '사회다양성전형',
                             '특례입학대상자전형',
                         ]}
-                        onChange={handleAdmissionsDataChange}
+                        onChange={handleChoiceFormTypeDataChange}
                     />
                 )}
-                {admissions.특별전형선택 === '기회균등전형' && (
+                {choiceFormType.특별전형선택 === '기회균등전형' && (
                     <RadioGroup
                         label="기회 균등 전형 선택"
                         name="기회균등전형선택"
@@ -46,10 +46,10 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '한부모가정',
                             '북한이탈주민',
                         ]}
-                        onChange={handleAdmissionsDataChange}
+                        onChange={handleChoiceFormTypeDataChange}
                     />
                 )}
-                {admissions.특별전형선택 === '사회다양성전형' && (
+                {choiceFormType.특별전형선택 === '사회다양성전형' && (
                     <RadioGroup
                         label="사회다양성 전형 선택"
                         name="사회다양성전형선택"
@@ -60,7 +60,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '한부모가정',
                             '북한이탈주민',
                         ]}
-                        onChange={handleAdmissionsDataChange}
+                        onChange={handleChoiceFormTypeDataChange}
                     />
                 )}
             </Styled전형선택>
