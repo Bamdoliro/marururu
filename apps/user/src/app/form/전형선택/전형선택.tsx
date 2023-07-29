@@ -1,7 +1,7 @@
 import { FormLayout } from '@/layouts';
 import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useFormTypeState } from './전형선택.hooks';
+import { useInput } from './전형선택.hooks';
 import { FormController } from '@/components/form';
 import { styled } from 'styled-components';
 
@@ -11,7 +11,7 @@ interface PropsType {
 }
 
 const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
-    const { choiceFormType, handleChoiceFormTypeDataChange } = useFormTypeState();
+    const { choiceFormType, handleChoiceFormTypeDataChange } = useInput();
 
     return (
         <FormLayout title="전형 선택">

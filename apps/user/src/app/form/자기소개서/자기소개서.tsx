@@ -2,7 +2,7 @@ import { FormLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { use자기소개서State } from './자기소개서.hooks';
+import { useInput } from './자기소개서.hooks';
 import { FormController } from '@/components/form';
 import styled from 'styled-components';
 
@@ -13,7 +13,7 @@ interface PropsType {
 
 const 자기소개서 = ({ onPrevious, onNext }: PropsType) => {
     const { introduce, handleIntroduceDataChange, studyPlan, handleStudyPlanDataChange } =
-        use자기소개서State();
+        useInput();
 
     return (
         <FormLayout title="자기소개서">

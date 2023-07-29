@@ -1,22 +1,16 @@
-import { useInput } from '@maru/hooks';
+import { useDebounceInput } from '@maru/hooks';
 
-export const use자기소개서State = () => {
+export const useInput = () => {
     const {
         value: introduce,
         onChange: handleIntroduceDataChange,
         debouncedValue: debouncedIntroduce,
-    } = useInput({
-        initialValue: '',
-        useDebounce: true,
-    });
+    } = useDebounceInput({ initialValue: '' });
     const {
         value: studyPlan,
         onChange: handleStudyPlanDataChange,
         debouncedValue: debouncedStudyPlan,
-    } = useInput({
-        initialValue: '',
-        useDebounce: true,
-    });
+    } = useDebounceInput({ initialValue: '' });
 
     return { introduce, handleIntroduceDataChange, studyPlan, handleStudyPlanDataChange };
 };
