@@ -1,14 +1,7 @@
 'use client';
 
 import { useFormStep } from '@/hooks';
-import {
-    지원자정보,
-    보호자정보,
-    출신학교및학력,
-    전형선택,
-    성적입력,
-    자기소개서,
-} from '@/components/form';
+import { 지원자정보, 보호자정보, 출신학교및학력, 전형선택, 성적입력, 자기소개서 } from '.';
 
 const FormPage = () => {
     const { formStep, setFormStep } = useFormStep();

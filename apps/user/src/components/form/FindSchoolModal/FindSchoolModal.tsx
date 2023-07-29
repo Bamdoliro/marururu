@@ -1,12 +1,12 @@
 import useSchoolListQuery from '@/services/form/출신학교및학력/queries';
-import { useInput } from '@maru/hooks';
+import { useDebounceInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import Check from '@maru/ui/Icons/Check';
 import Close from '@maru/ui/Icons/Close';
 import { Dispatch, SetStateAction } from 'react';
 import { css, styled } from 'styled-components';
-import { EducationInfo } from '../출신학교및학력.hooks';
+import { EducationInfo } from '../../../app/form/출신학교및학력/출신학교및학력.hooks';
 import useSchoolModalHandler from './FindSchoolModal.hooks';
 
 interface PropsType {
@@ -15,7 +15,7 @@ interface PropsType {
 }
 
 const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
-    const { value, onChange, debouncedValue } = useInput({ initialValue: '', useDebounce: true });
+    const { value, onChange, debouncedValue } = useDebounceInput({ initialValue: '' });
 
     const schoolListQuery = useSchoolListQuery(debouncedValue);
 

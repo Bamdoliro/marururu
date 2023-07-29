@@ -1,10 +1,10 @@
 import { FormLayout } from '@/layouts';
-import { useInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useInput } from './자기소개서.hooks';
+import { FormController } from '@/components/form';
 import styled from 'styled-components';
-import FormController from '../../common/FormController/FormController';
 
 interface PropsType {
     onPrevious: () => void;
@@ -12,22 +12,8 @@ interface PropsType {
 }
 
 const 자기소개서 = ({ onPrevious, onNext }: PropsType) => {
-    const {
-        value: introduce,
-        onChange: handleIntroduceDataChange,
-        debouncedValue: introduceDebounced,
-    } = useInput({
-        initialValue: '',
-        useDebounce: true,
-    });
-    const {
-        value: studyPlan,
-        onChange: handleStudyPlanDataChange,
-        debouncedValue: studyPlanDebounced,
-    } = useInput({
-        initialValue: '',
-        useDebounce: true,
-    });
+    const { introduce, handleIntroduceDataChange, studyPlan, handleStudyPlanDataChange } =
+        useInput();
 
     return (
         <FormLayout title="자기소개서">

@@ -37,9 +37,5 @@ export const useInput = () => {
         }));
     }, [date]);
 
-    useEffect(() => {
-        console.log(userInfo);
-    }, [userInfo]);
-
     return { setUserInfo, handleUserInfoDataChange, date, setDate };
 };

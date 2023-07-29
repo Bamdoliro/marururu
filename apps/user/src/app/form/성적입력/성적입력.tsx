@@ -3,13 +3,15 @@ import { color, font } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
+import {
+    FormController,
+    GradePreview,
+    GradeCalculator,
+    AttendanceCalculator,
+    VolunteerCalculator,
+    CertificateCalculator,
+} from '@/components/form';
 import { styled } from 'styled-components';
-import FormController from '../../common/FormController/FormController';
-import AttendanceCalculator from './AttendanceCalculator/AttendanceCalculator';
-import CertificateCalculator from './CertificateCalculator/CertificateCalculator';
-import GradeCalculator from './GradeCalculator/GradeCalculator';
-import GradePreview from './GradePreview/GradePreview';
-import VolunteerCalculator from './VolunteerCalculator/VolunteerCalculator';
 
 interface PropsType {
     onPrevious: () => void;

@@ -3,11 +3,10 @@ import debounce from 'lodash/debounce';
 
 interface PropsType {
     initialValue?: string;
-    useDebounce?: boolean;
     debounceTimeout?: number;
 }
 
-const useInput = ({ initialValue = '', useDebounce = false, debounceTimeout = 150 }: PropsType) => {
+const useDebounceInput = ({ initialValue = '', debounceTimeout = 150 }: PropsType) => {
     const [value, setValue] = useState(initialValue);
     const [debouncedValue, setDebouncedValue] = useState(initialValue);
 
@@ -22,11 +21,9 @@ const useInput = ({ initialValue = '', useDebounce = false, debounceTimeout = 15
     const handleSetValue = useCallback(
         (value: string) => {
             setValue(value);
-            if (useDebounce) {
-                handleSetDebounceValue(value);
-            }
+            handleSetDebounceValue(value);
         },
-        [handleSetDebounceValue, useDebounce],
+        [handleSetDebounceValue],
     );
 
     const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = useCallback(
@@ -39,4 +36,4 @@ const useInput = ({ initialValue = '', useDebounce = false, debounceTimeout = 15
     return { value, setValue, onChange, debouncedValue };
 };
 
-export default useInput;
+export default useDebounceInput;

@@ -1,10 +1,9 @@
 import { FormLayout } from '@/layouts';
 import useModal from '@maru/hooks/src/useModal';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
-import { styled } from 'styled-components';
-import FormController from '../../common/FormController/FormController';
-import FindSchoolModal from './FindSchoolModal/FindSchoolModal';
 import useInput from './출신학교및학력.hooks';
+import { FormController, FindSchoolModal } from '@/components/form';
+import { styled } from 'styled-components';
 
 interface PropsType {
     onPrevious: () => void;

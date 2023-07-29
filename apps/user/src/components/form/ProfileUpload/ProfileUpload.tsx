@@ -3,7 +3,7 @@ import { Button, Column } from '@maru/ui';
 import { useImageFileDragAndDrop, useUploadProfileImageFile } from './ProfileUpload.hooks';
 import styled from 'styled-components';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { UserInfo } from '../지원자정보.hooks';
+import { UserInfo } from '../../../app/form/지원자정보/지원자정보.hooks';
 
 interface PropsType {
     setUserInfo: Dispatch<SetStateAction<UserInfo>>;

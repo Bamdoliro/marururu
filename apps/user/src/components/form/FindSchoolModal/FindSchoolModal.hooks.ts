@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { EducationInfo } from '../출신학교및학력.hooks';
+import { EducationInfo } from '../../../app/form/출신학교및학력/출신학교및학력.hooks';
 
 interface School {
     name: string;
