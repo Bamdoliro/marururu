@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useInput from './보호자정보.hooks';
 import { FormController, FindAddressModal } from '@/components/form';
 import styled from 'styled-components';
+import useModal from '@maru/hooks/src/useModal';
 
 interface PropsType {
     onPrevious: () => void;
@@ -11,12 +12,8 @@ interface PropsType {
 }
 
 const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
-    const [isOpenFindAddressModal, setIsOpenFindAddressModal] = useState(false);
+    const { isOpen, openModal, closeModal } = useModal();
     const { parentInfo, setParentInfo, handleParentInfoDataChange } = useInput();
-
-    const openFindAddressModal = () => {
-        setIsOpenFindAddressModal(true);
-    };
 
     return (
         <FormLayout title="보호자 정보">
@@ -40,7 +37,7 @@ const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
                     <ButtonInput
                         label="주소"
                         buttonText="검색"
-                        handleInputButtonClick={openFindAddressModal}
+                        handleInputButtonClick={openModal}
                         width="100%"
                         value={parentInfo.address}
                         readOnly
@@ -54,12 +51,7 @@ const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
                 </Column>
             </Styled보호자정보>
             <FormController onPrevious={onPrevious} onNext={onNext} step="보호자 정보" />
-            {isOpenFindAddressModal && (
-                <FindAddressModal
-                    closeModal={() => setIsOpenFindAddressModal(false)}
-                    setParentInfo={setParentInfo}
-                />
-            )}
+            {isOpen && <FindAddressModal closeModal={closeModal} setParentInfo={setParentInfo} />}
         </FormLayout>
     );
 };
