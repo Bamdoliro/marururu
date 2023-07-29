@@ -6,7 +6,7 @@ import Check from '@maru/ui/Icons/Check';
 import Close from '@maru/ui/Icons/Close';
 import { Dispatch, SetStateAction } from 'react';
 import { css, styled } from 'styled-components';
-import { EducationInfo } from '../출신학교및학력.hooks';
+import { EducationInfo } from '../../../app/form/출신학교및학력/출신학교및학력.hooks';
 import useSchoolModalHandler from './FindSchoolModal.hooks';
 
 interface PropsType {

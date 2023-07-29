@@ -1,10 +1,8 @@
 import { FormLayout } from '@/layouts';
-import { Column, Input, RadioGroup, Row } from '@maru/ui';
-import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
-import styled from 'styled-components';
-import FormController from '../../common/FormController/FormController';
-import ProfileUpload from './ProfileUpload/ProfileUpload';
+import { Column, Input, RadioGroup, Row, Dropdown } from '@maru/ui';
 import { useInput } from './지원자정보.hooks';
+import { ProfileUpload, FormController } from '@/components/form';
+import styled from 'styled-components';
 
 interface PropsType {
     onNext: () => void;

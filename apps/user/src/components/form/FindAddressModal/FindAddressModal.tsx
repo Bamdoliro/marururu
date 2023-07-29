@@ -3,7 +3,7 @@ import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import DaumPostcode, { Address } from 'react-daum-postcode';
 import styled from 'styled-components';
-import { ParentInfo } from '../보호자정보.hooks';
+import { ParentInfo } from '../../../app/form/보호자정보/보호자정보.hooks';
 
 interface PropsType {
     setParentInfo: Dispatch<SetStateAction<ParentInfo>>;

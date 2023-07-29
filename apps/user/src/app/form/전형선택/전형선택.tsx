@@ -1,9 +1,9 @@
 import { FormLayout } from '@/layouts';
 import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useAdmissionsState } from './전형선택.hooks';
+import { FormController } from '@/components/form';
 import { styled } from 'styled-components';
-import FormController from '../../common/FormController/FormController';
-import { useAdmissionsState, useInput } from './전형선택.hooks';
 
 interface PropsType {
     onPrevious: () => void;
@@ -11,8 +11,7 @@ interface PropsType {
 }
 
 const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
-    const { admissions } = useAdmissionsState();
-    const { handleAdmissionsDataChange } = useInput();
+    const { admissions, handleAdmissionsDataChange } = useAdmissionsState();
 
     return (
         <FormLayout title="전형 선택">

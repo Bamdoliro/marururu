@@ -1,10 +1,9 @@
 import { FormLayout } from '@/layouts';
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useState } from 'react';
-import styled from 'styled-components';
-import FormController from '../../common/FormController/FormController';
-import FindAddressModal from './FindAddressModal/FindAddressModal';
 import useInput from './보호자정보.hooks';
+import { FormController, FindAddressModal } from '@/components/form';
+import styled from 'styled-components';
 
 interface PropsType {
     onPrevious: () => void;

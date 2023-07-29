@@ -1,11 +1,10 @@
 import { FormLayout } from '@/layouts';
-import { useInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
-import styled from 'styled-components';
-import FormController from '../../common/FormController/FormController';
 import { use자기소개서State } from './자기소개서.hooks';
+import { FormController } from '@/components/form';
+import styled from 'styled-components';
 
 interface PropsType {
     onPrevious: () => void;

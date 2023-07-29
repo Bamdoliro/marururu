@@ -8,12 +8,6 @@ export const useAdmissionsState = () => {
         사회다양성전형선택: '',
     });
 
-    return { admissions, setAdmissions };
-};
-
-export const useInput = () => {
-    const { admissions, setAdmissions } = useAdmissionsState();
-
     const handleAdmissionsDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
 
@@ -42,5 +36,5 @@ export const useInput = () => {
         }
     };
 
-    return { handleAdmissionsDataChange };
+    return { admissions, handleAdmissionsDataChange };
 };
