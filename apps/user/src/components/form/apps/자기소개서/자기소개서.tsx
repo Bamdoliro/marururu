@@ -5,6 +5,7 @@ import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import FormController from '../../common/FormController/FormController';
+import { use자기소개서State } from './자기소개서.hooks';
 
 interface PropsType {
     onPrevious: () => void;
@@ -12,22 +13,8 @@ interface PropsType {
 }
 
 const 자기소개서 = ({ onPrevious, onNext }: PropsType) => {
-    const {
-        value: introduce,
-        onChange: handleIntroduceDataChange,
-        debouncedValue: introduceDebounced,
-    } = useInput({
-        initialValue: '',
-        useDebounce: true,
-    });
-    const {
-        value: studyPlan,
-        onChange: handleStudyPlanDataChange,
-        debouncedValue: studyPlanDebounced,
-    } = useInput({
-        initialValue: '',
-        useDebounce: true,
-    });
+    const { introduce, handleIntroduceDataChange, studyPlan, handleStudyPlanDataChange } =
+        use자기소개서State();
 
     return (
         <FormLayout title="자기소개서">
