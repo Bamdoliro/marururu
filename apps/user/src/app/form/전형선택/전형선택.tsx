@@ -27,7 +27,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                         label="특별 전형 선택"
                         name="특별전형선택"
                         list={[
-                            '마이스터인재정형',
+                            '마이스터인재전형',
                             '기회균등전형',
                             '사회다양성전형',
                             '특례입학대상자전형',
@@ -40,11 +40,11 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                         label="기회 균등 전형 선택"
                         name="기회균등전형선택"
                         list={[
-                            '국민기초생활수급권자',
+                            '국가기초생활수급권자',
                             '차상위계층',
                             '국가보훈자녀',
                             '한부모가정',
-                            '북한이탈청소년',
+                            '북한이탈주민',
                         ]}
                         onChange={handleAdmissionsDataChange}
                     />
@@ -58,7 +58,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '차상위계층',
                             '국가보훈자녀',
                             '한부모가정',
-                            '북한이탈청소년',
+                            '북한이탈주민',
                         ]}
                         onChange={handleAdmissionsDataChange}
                     />
