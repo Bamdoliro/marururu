@@ -7,3 +7,4 @@ export { default as 자기소개서 } from './자기소개서/자기소개서';
 
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
 export { default as FormController } from './FormController/FormController';
+export { default as CompleteAlaram } from './CompleteAlaram/CompleteAlaram';

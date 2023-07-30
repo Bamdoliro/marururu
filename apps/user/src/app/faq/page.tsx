@@ -12,7 +12,7 @@ const FaqPage = () => {
     const faqListQuery = useFaqListQuery();
 
     return (
-        <AppLayout style={{ padding: '0px 207px' }}>
+        <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
             <StyledFaqPage>
                 <Title>자주 묻는 질문</Title>
                 <CategoryFilter />

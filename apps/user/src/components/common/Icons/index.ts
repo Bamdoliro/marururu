@@ -9,3 +9,5 @@ export { default as LeftArrowIcon } from './LeftArrow';
 export { default as LogoIcon } from './Logo';
 export { default as RightArrowIcon } from './RightArrow';
 export { default as TopArrowIcon } from './TopArrow';
+export { default as CheckCircleIcon } from './CheckCircle';
+export { default as CancelCircleIcon } from './CancelCircle';

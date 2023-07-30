@@ -16,7 +16,10 @@ if (process.env.NODE_ENV === 'development') {
 
 const Home = () => {
     return (
-        <AppLayout style={{ padding: '0px 100px', marginBottom: '250px' }}>
+        <AppLayout
+            header={true}
+            footer={true}
+            style={{ padding: '0px 100px', marginBottom: '250px' }}>
             <StyledMainPage>
                 <Row gap="48px" height="451px" width="100%" justifyContent="center">
                     <Dday />
