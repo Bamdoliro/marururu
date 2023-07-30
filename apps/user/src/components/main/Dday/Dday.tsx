@@ -50,7 +50,7 @@ export default Dday;
 
 const StyledDday = styled.div`
     width: 702px;
-    height: 436px;
+    height: 100%;
     border-radius: 32px;
     padding: 60px;
     overflow: hidden;
