@@ -1,4 +1,13 @@
-export const subjectListInitialData = [
+export const subjectListInitialData = ['국어', '사회', '역사', '도덕', ...].reduce(
+    (subjectInitialData, currentSubjectName, index) => 
+        [...subjectInitialData, {
+            id: index,
+            subjectName: currentSubjectName,
+            achievementLevel21: 'A',
+            achievementLevel22: 'A',
+            achievementLevel31: 'A',
+        }]
+)
     {
         id: 0,
         subjectName: '국어',
