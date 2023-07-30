@@ -1,9 +1,89 @@
 'use client';
 
+import { CancelCircleIcon, CheckCircleIcon } from '@/components/common/Icons';
 import { CompleteAlaram } from '@/components/form';
+import { AppLayout } from '@/layouts';
+import { font, color } from '@maru/theme';
+import { Button, Column, Row } from '@maru/ui';
+import { flex } from '@maru/utils';
+import styled from 'styled-components';
 
 const FormCompletePage = () => {
-    return <CompleteAlaram />;
+    const complete = true;
+
+    return (
+        <AppLayout header={true} style={{ padding: '0px 312px' }}>
+            <StyledFormCompletePage>
+                <Row gap={8} style={{ marginBottom: '55px' }} alignItems="center">
+                    {complete ? <CheckCircleIcon size={64} /> : <CancelCircleIcon size={64} />}
+                    <AlertMessage>
+                        {complete ? (
+                            <p>원서를 모두 작성했어요</p>
+                        ) : (
+                            <p>아직 작성하지 않은 곳이 있어요</p>
+                        )}
+                    </AlertMessage>
+                </Row>
+                <Column gap={12}>
+                    <Desc>
+                        지원확인 및 수험표 발행을 하셔야 인터넷 원서 접수가 완료되며 수험번호가
+                        부여됩니다.
+                    </Desc>
+                    <StressDesc>
+                        수험번호 부여 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로
+                        <br />
+                        처리되며 입학원서는 수정이 불가능합니다.
+                    </StressDesc>
+                    <Desc>면밀히 검토하시고 확인해 주십시오.</Desc>
+                </Column>
+                <Column gap={16} style={{ margin: '48px 0px' }} alignItems="flex-start">
+                    <CheckButton>[ 입학원서 확인하기 ]</CheckButton>
+                    <CheckButton>[ 성적일람표 확인하기 ]</CheckButton>
+                    <CheckButton>[ 자기소개서 및 학업계획서 확인하기 ]</CheckButton>
+                </Column>
+                <Column gap={24}>
+                    <Question>지원하시겠습니까?</Question>
+                    <Row gap={16}>
+                        <Button option="SECONDARY" size="LARGE">
+                            다시 한번 확인할게요
+                        </Button>
+                        <Button size="LARGE">지원확인 및 수험표 발행</Button>
+                    </Row>
+                </Column>
+            </StyledFormCompletePage>
+        </AppLayout>
+    );
 };
 
 export default FormCompletePage;
+
+const StyledFormCompletePage = styled.div`
+    ${flex({ flexDirection: 'column' })}
+    width: 100%;
+    height: 100%;
+`;
+
+const AlertMessage = styled.p`
+    ${font.H1}
+    color: ${color.gray900};
+`;
+
+const Desc = styled.p`
+    ${font.p1}
+    color: ${color.gray900};
+`;
+
+const StressDesc = styled.p`
+    ${font.H4}
+    color: ${color.red};
+`;
+
+const CheckButton = styled.button`
+    ${font.btn2}
+    color: ${color.gray600};
+`;
+
+const Question = styled.p`
+    ${font.H3}
+    color: ${color.black};
+`;
