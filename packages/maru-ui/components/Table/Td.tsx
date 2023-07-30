@@ -38,4 +38,9 @@ const StyledTd = styled.div<{ option?: TableOptionType }>`
                   ${font.p2}
                   background-color: ${color.gray50};
               `}
+
+    &:first-child {
+        ${font.p2}
+        background-color: ${color.gray50};
+    }
 `;
