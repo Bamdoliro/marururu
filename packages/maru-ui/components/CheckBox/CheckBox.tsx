@@ -2,10 +2,10 @@ import { color, font } from '@maru/theme';
 import { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-const CheckBox = ({ onChange, content }: InputHTMLAttributes<HTMLInputElement>) => {
+const CheckBox = ({ name, value, onChange, content }: InputHTMLAttributes<HTMLInputElement>) => {
     return (
         <Label>
-            <Input type="checkbox" onChange={onChange} />
+            <Input type="checkbox" name={name} value={value} onChange={onChange} />
             {content && <Content>{content}</Content>}
         </Label>
     );

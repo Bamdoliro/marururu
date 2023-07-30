@@ -1,7 +1,9 @@
-import { Column, Radio, Row, Td, Th } from '@maru/ui';
+import { CheckBox, Column, Row, Td, Th } from '@maru/ui';
 import { styled } from 'styled-components';
+import useInput from './CertificateCalculator.hooks';
 
 const CertificateCalculator = () => {
+    const { handleCertificatesInfoDataChange } = useInput();
     return (
         <Table>
             <Row>
@@ -30,7 +32,10 @@ const CertificateCalculator = () => {
                         4점
                     </Td>
                     <Td width={80} height={56}>
-                        <Radio name="certificate" />
+                        <CheckBox
+                            value="정보처리기능사, 정보기기운용기능사, 전자계산기기능사"
+                            onChange={handleCertificatesInfoDataChange}
+                        />
                     </Td>
                 </Row>
                 <Row>
@@ -46,7 +51,10 @@ const CertificateCalculator = () => {
                                 1급(3점)
                             </Td>
                             <Td width={80} height={56}>
-                                <Radio name="certificate" />
+                                <CheckBox
+                                    value="컴퓨터활용능력 1급"
+                                    onChange={handleCertificatesInfoDataChange}
+                                />
                             </Td>
                         </Row>
                         <Row>
@@ -54,7 +62,10 @@ const CertificateCalculator = () => {
                                 2급(2점)
                             </Td>
                             <Td width={80} height={56}>
-                                <Radio name="certificate" />
+                                <CheckBox
+                                    value="컴퓨터활용능력 2급"
+                                    onChange={handleCertificatesInfoDataChange}
+                                />
                             </Td>
                         </Row>
                         <Row>
@@ -62,7 +73,10 @@ const CertificateCalculator = () => {
                                 3급(1점)
                             </Td>
                             <Td width={80} height={56}>
-                                <Radio name="certificate" />
+                                <CheckBox
+                                    value="컴퓨터활용능력 3급"
+                                    onChange={handleCertificatesInfoDataChange}
+                                />
                             </Td>
                         </Row>
                     </Column>
