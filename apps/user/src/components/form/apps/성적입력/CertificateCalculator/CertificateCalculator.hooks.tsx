@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 
 const useInput = () => {
     const [certificatesInfo, setCertificatesInfo] = useState<string[]>([]);
@@ -11,8 +11,6 @@ const useInput = () => {
             setCertificatesInfo(certificatesInfo.filter((certificate) => certificate !== value));
         }
     };
-
-    useEffect(() => console.log(certificatesInfo), [certificatesInfo]);
 
     return { handleCertificatesInfoDataChange };
 };

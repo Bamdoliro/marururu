@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 
 interface Voluteer {
     volunteerTime1: number;
@@ -17,8 +17,6 @@ const useInput = () => {
         const { name, value } = e.target;
         setVolunteerInfo({ ...volunteerInfo, [name]: +value });
     };
-
-    useEffect(() => console.log(volunteerInfo), [volunteerInfo]);
 
     return { handleVolunteerInfoDataChange };
 };

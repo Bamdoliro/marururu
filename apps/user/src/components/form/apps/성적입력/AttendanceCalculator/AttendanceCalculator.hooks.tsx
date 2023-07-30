@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 
 interface Attendance {
     absenceCount: number;
@@ -40,7 +40,7 @@ const useInput = () => {
 
         const updatedAttendance1: Attendance = {
             ...attendanceInfo.attendance1,
-            [name]: +value,
+            [name]: Number(value),
         };
 
         setAttendanceInfo({
@@ -54,7 +54,7 @@ const useInput = () => {
 
         const updatedAttendance2: Attendance = {
             ...attendanceInfo.attendance2,
-            [name]: +value,
+            [name]: Number(value),
         };
 
         setAttendanceInfo({
@@ -68,7 +68,7 @@ const useInput = () => {
 
         const updatedAttendance3: Attendance = {
             ...attendanceInfo.attendance3,
-            [name]: +value,
+            [name]: Number(value),
         };
 
         setAttendanceInfo({
@@ -76,10 +76,6 @@ const useInput = () => {
             attendance3: updatedAttendance3,
         });
     };
-
-    useEffect(() => {
-        console.log(attendanceInfo);
-    }, [attendanceInfo]);
 
     return {
         handleAttendance1InfoDataChange,

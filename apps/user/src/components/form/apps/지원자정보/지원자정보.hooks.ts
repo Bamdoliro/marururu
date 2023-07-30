@@ -1,5 +1,4 @@
-import { Date } from '@/utils/formatDate';
-import formatDate from '@/utils/formatDate';
+import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 
 export interface UserInfo {
@@ -36,10 +35,6 @@ export const useInput = () => {
             birthday: formatDate(date),
         }));
     }, [date]);
-
-    useEffect(() => {
-        console.log(userInfo);
-    }, [userInfo]);
 
     return { setUserInfo, handleUserInfoDataChange, date, setDate };
 };

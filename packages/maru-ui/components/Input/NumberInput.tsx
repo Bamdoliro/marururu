@@ -2,14 +2,21 @@ import { color, font } from '@maru/theme';
 import { styled } from 'styled-components';
 import { InputPropsType } from './Input.type';
 
-const NumberInput = ({ name, width = '80px', textAlign = 'center', onChange }: InputPropsType) => {
+const NumberInput = ({
+    name,
+    width = '80px',
+    textAlign = 'center',
+    onChange,
+    placeholder,
+}: InputPropsType) => {
     return (
         <StyledNumberInput
             name={name}
             style={{ width, textAlign }}
             onChange={onChange}
             type="number"
-            placeholder="0"
+            defaultValue={0}
+            placeholder={placeholder}
         />
     );
 };

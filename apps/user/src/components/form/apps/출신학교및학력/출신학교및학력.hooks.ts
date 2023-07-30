@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 
 export interface EducationInfo {
     graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION' | '';
@@ -27,8 +27,6 @@ const useInput = () => {
         const { name, value } = e.target;
         setEducationInfo((prev) => ({ ...prev, [name]: value }));
     };
-
-    useEffect(() => console.log(educationInfo), [educationInfo]);
 
     return { educationInfo, setEducationInfo, handleEducationInfoDataChange };
 };

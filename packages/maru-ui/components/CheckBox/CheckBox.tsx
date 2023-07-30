@@ -1,13 +1,11 @@
-import { color, font } from '@maru/theme';
 import { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-const CheckBox = ({ name, value, onChange, content }: InputHTMLAttributes<HTMLInputElement>) => {
+const CheckBox = ({ name, value, onChange }: InputHTMLAttributes<HTMLInputElement>) => {
     return (
-        <Label>
+        <StyledCheckBox>
             <Input type="checkbox" name={name} value={value} onChange={onChange} />
-            {content && <Content>{content}</Content>}
-        </Label>
+        </StyledCheckBox>
     );
 };
 
@@ -18,14 +16,11 @@ const Input = styled.input`
     height: 18px;
 `;
 
-const Label = styled.label`
+const StyledCheckBox = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 3px;
+    width: 24px;
     height: 24px;
-`;
-
-const Content = styled.p`
-    ${font.btn3};
-    color: ${color.gray500};
 `;
