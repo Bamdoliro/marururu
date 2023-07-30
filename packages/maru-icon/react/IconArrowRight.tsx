@@ -1,19 +1,15 @@
-import type { IconPropsType } from '@maru/ui';
+import React from 'react';
+import type { SVGProps } from 'react';
 
-const RightArrowIcon = ({ color, size }: IconPropsType) => {
+const IconArrowRight = (props: SVGProps<SVGSVGElement>) => {
     return (
-        <svg
-            width={size}
-            height={size}
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path
                 d="M4.88317 14.45C4.74984 14.3278 4.68317 14.1749 4.68317 13.9913C4.68317 13.8082 4.74984 13.65 4.88317 13.5166L9.88317 8.49998L4.8665 3.46665C4.73317 3.34442 4.6665 3.19154 4.6665 3.00798C4.6665 2.82487 4.73873 2.66665 4.88317 2.53331C5.00539 2.39998 5.15828 2.33331 5.34184 2.33331C5.52495 2.33331 5.68317 2.39998 5.8165 2.53331L11.3498 8.08331C11.4165 8.13887 11.4638 8.20265 11.4918 8.27465C11.5194 8.34709 11.5332 8.4222 11.5332 8.49998C11.5332 8.57776 11.5194 8.65265 11.4918 8.72465C11.4638 8.79709 11.4165 8.86109 11.3498 8.91665L5.79984 14.4666C5.67761 14.6 5.52761 14.6666 5.34984 14.6666C5.17206 14.6666 5.0165 14.5944 4.88317 14.45Z"
-                fill={color}
+                fill="currentColor"
             />
         </svg>
     );
 };
 
-export default RightArrowIcon;
+export default IconArrowRight;

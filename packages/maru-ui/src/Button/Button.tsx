@@ -1,10 +1,8 @@
 import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import { ButtonIconType, ButtonOptionType, ButtonSizeType } from './Button.type';
 import { getButtonSize, getButtonStyle, getButtonPadding } from './Button.style';
-import styled from 'styled-components';
-import AddIcon from '../../Icons/Add';
-import ShortcutsIcon from '../../Icons/Shortcuts';
 import { flex } from '@maru/utils';
+import styled from 'styled-components';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
@@ -24,9 +22,9 @@ const Button = ({
 }: PropsType) => {
     return (
         <StyledButton style={{ width }} onClick={onClick} option={option} icon={icon} size={size}>
-            {icon === 'ADD_ICON' && <AddIcon />}
+            {icon === 'ADD_ICON' && <IconAdd />}
             {children}
-            {icon === 'SHORTCUTS_ICON' && <ShortcutsIcon />}
+            {icon === 'SHORTCUTS_ICON' && <IconShortcuts />}
         </StyledButton>
     );
 };

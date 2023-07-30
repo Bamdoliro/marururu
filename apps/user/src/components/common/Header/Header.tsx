@@ -7,7 +7,7 @@ import { Button, Row } from '@maru/ui';
 import Profile from './Profile';
 import ROUTES from '@/constants/routes';
 import TOKEN from '@/constants/token';
-import { LogoIcon } from '../Icons';
+import Image from 'next/image';
 
 const HEADER_DATA = [
     {
@@ -44,7 +44,14 @@ const Header = () => {
     return (
         <StyledHeader>
             <HeaderBar>
-                <LogoIcon cursor="pointer" onClick={() => router.push(ROUTES.MAIN)} />
+                <Image
+                    src="/svg/logo.svg"
+                    style={{ cursor: 'pointer' }}
+                    width={107}
+                    height={72}
+                    onClick={() => router.push(ROUTES.MAIN)}
+                    alt="logo"
+                />
                 {loginStatus ? (
                     <Profile name="밤돌이로" />
                 ) : (

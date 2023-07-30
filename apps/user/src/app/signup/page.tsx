@@ -22,7 +22,7 @@ const SignUpPage = () => {
         <BaseLayout>
             <StyledSignUpPage>
                 <Image
-                    src="/assets/ColaboLogo.svg"
+                    src="/svg/colabo_logo.svg"
                     style={{ margin: '0 auto' }}
                     width={477}
                     height={290}

@@ -1,0 +1,15 @@
+export { default as IconAdd } from './react/IconAdd';
+export { default as IconAnswer } from './react/IconAnswer';
+export { default as IconArrowBottom } from './react/IconArrowBottom';
+export { default as IconArrowDropdown } from './react/IconArrowDropdown';
+export { default as IconArrowLeft } from './react/IconArrowLeft';
+export { default as IconArrowRight } from './react/IconArrowRight';
+export { default as IconArrowTop } from './react/IconArrowTop';
+export { default as IconFaq } from './react/IconFaq';
+export { default as IconInvisibleEye } from './react/IconInvisibleEye';
+export { default as IconVisibleEye } from './react/IconVisibleEye';
+export { default as IconSearch } from './react/IconSearch';
+export { default as IconShortcuts } from './react/IconShortcuts';
+export { default as IconRoundInstagram } from './react/IconRoundInstagram';
+export { default as IconRoundGray } from './react/IconRoundGray';
+export { default as IconRoundBamdoliro } from './react/IconRoundBamdoliro';

@@ -1,6 +1,6 @@
 'use client';
 
-import { LeftArrowIcon } from '@/components/common/Icons';
+import { IconArrowLeft } from '@maru/icon';
 import ROUTES from '@/constants/routes';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
@@ -16,7 +16,7 @@ const NoticeDetailPage = () => {
         <AppLayout style={{ padding: '0px 207px' }}>
             <StyledNoticeDetailPage>
                 <Link onClick={() => router.push(ROUTES.NOTICE)} gap="2px">
-                    <LeftArrowIcon color={color.gray600} size={24} />
+                    <IconArrowLeft color={color.gray600} width={24} height={24} />
                     <Path>공지사항</Path>
                 </Link>
                 <ContentsBox>

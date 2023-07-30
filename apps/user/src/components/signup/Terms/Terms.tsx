@@ -1,4 +1,4 @@
-import { RightArrowIcon } from '../../common/Icons';
+import { IconArrowRight } from '@maru/icon';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
@@ -64,7 +64,7 @@ const Terms = ({ setTermsAgree }: PropsType) => {
                 />
                 <label htmlFor="agreement1">개인정보 수집 이용동의</label>
                 <AgreementLink>
-                    [ 필수 ] <RightArrowIcon color={color.maruDefault} size={16} />
+                    [ 필수 ] <IconArrowRight color={color.maruDefault} />
                 </AgreementLink>
             </Agreement>
             <Agreement>
@@ -76,7 +76,7 @@ const Terms = ({ setTermsAgree }: PropsType) => {
                 />
                 <label htmlFor="agreement2">약관 전체동의</label>
                 <AgreementLink>
-                    [ 필수 ] <RightArrowIcon color={color.maruDefault} size={16} />
+                    [ 필수 ] <IconArrowRight color={color.maruDefault} />
                 </AgreementLink>
             </Agreement>
         </StyledTerms>

@@ -1,10 +1,10 @@
 import ROUTES from '@/constants/routes';
 import { useRouter } from 'next/navigation';
-import styled from 'styled-components';
-import { RightArrowIcon } from '../../common/Icons';
+import { IconArrowRight } from '@maru/icon';
 import { Column } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import styled from 'styled-components';
 
 interface PropsType {
     id: number;
@@ -21,7 +21,7 @@ const NoticeItem = ({ id, title, date }: PropsType) => {
                 <Title>{title}</Title>
                 <Date>{date}</Date>
             </Column>
-            <RightArrowIcon color={color.gray600} size={24} />
+            <IconArrowRight color={color.gray600} />
         </StyledNoticeItem>
     );
 };

@@ -1,6 +1,4 @@
-import { GrayLogoIcon } from '../Icons';
-import { BamdoliroLogoIcon } from '../Icons';
-import { InstagramLogoIcon } from '../Icons';
+import { IconRoundBamdoliro, IconRoundGray, IconRoundInstagram } from '@maru/icon';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { Column, Row, Link } from '@maru/ui';
@@ -14,7 +12,7 @@ const Footer = () => {
     return (
         <StyledFooter>
             <InfoBox>
-                <GrayLogoIcon />
+                <IconRoundGray width={36} height={36} />
                 <Column gap="20px">
                     <ContentBox>
                         <p>주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)</p>
@@ -40,8 +38,8 @@ const Footer = () => {
                     </Column>
                 </NavigationBox>
                 <Row gap="16px" alignItems="center">
-                    <InstagramLogoIcon cursor="pointer" />
-                    <BamdoliroLogoIcon cursor="pointer" />
+                    <IconRoundInstagram cursor="pointer" width={36} height={36} />
+                    <IconRoundBamdoliro cursor="pointer" width={36} height={36} />
                 </Row>
             </Row>
         </StyledFooter>
