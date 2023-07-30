@@ -1,9 +1,42 @@
 import { NumberInput, Row, Td, Th } from '@maru/ui';
+import { ChangeEventHandler, useState } from 'react';
 import { styled } from 'styled-components';
-import useInput from './AttendanceCalculator.hooks';
 
 const AttendanceCalculator = () => {
-    const { handleAttendanceInfoDataChange } = useInput();
+    const [attendanceInfo, setAttendanceInfo] = useState({
+        attendance1: {
+            absenceCount: 0,
+            latenessCount: 0,
+            earlyLeaveCount: 0,
+            classAbsenceCount: 0,
+        },
+        attendance2: {
+            absenceCount: 0,
+            latenessCount: 0,
+            earlyLeaveCount: 0,
+            classAbsenceCount: 0,
+        },
+        attendance3: {
+            absenceCount: 0,
+            latenessCount: 0,
+            earlyLeaveCount: 0,
+            classAbsenceCount: 0,
+        },
+    });
+
+    const handleAttendanceInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { name, value } = e.target;
+
+        const [attendanceName, countName] = name.split('-');
+
+        setAttendanceInfo({
+            ...attendanceInfo,
+            [attendanceName]: {
+                ...attendanceInfo.attendance1,
+                [countName]: Number(value),
+            },
+        });
+    };
 
     return (
         <Table>

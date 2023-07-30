@@ -1,9 +1,19 @@
 import { CheckBox, Column, Row, Td, Th } from '@maru/ui';
+import { ChangeEventHandler, useState } from 'react';
 import { styled } from 'styled-components';
-import useInput from './CertificateCalculator.hooks';
 
 const CertificateCalculator = () => {
-    const { handleCertificatesInfoDataChange } = useInput();
+    const [certificatesInfo, setCertificatesInfo] = useState<string[]>([]);
+
+    const handleCertificatesInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { checked, value } = e.target;
+        if (checked) {
+            setCertificatesInfo([...certificatesInfo, value]);
+        } else {
+            setCertificatesInfo(certificatesInfo.filter((certificate) => certificate !== value));
+        }
+    };
+
     return (
         <Table>
             <Row>

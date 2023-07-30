@@ -1,10 +1,19 @@
 import { color, font } from '@maru/theme';
 import { NumberInput, Row, Td, Th } from '@maru/ui';
+import { ChangeEventHandler, useState } from 'react';
 import { styled } from 'styled-components';
-import useInput from './VolunteerCalculator.hooks';
 
 const VolunteerCalculator = () => {
-    const { handleVolunteerInfoDataChange } = useInput();
+    const [volunteerInfo, setVolunteerInfo] = useState({
+        volunteerTime1: 0,
+        volunteerTime2: 0,
+        volunteerTime3: 0,
+    });
+
+    const handleVolunteerInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { name, value } = e.target;
+        setVolunteerInfo({ ...volunteerInfo, [name]: +value });
+    };
 
     return (
         <Table>
