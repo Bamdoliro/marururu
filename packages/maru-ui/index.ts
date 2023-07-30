@@ -1,6 +1,6 @@
 export { default as Button } from './components/Button/Button';
 export { default as CheckBox } from './components/CheckBox/CheckBox';
-export { default as DropdownMenu } from './components/Dropdown/Dropdown';
+export { default as Dropdown } from './components/Dropdown/Dropdown';
 export { default as Column } from './components/Flex/Column';
 export { default as Row } from './components/Flex/Row';
 export { default as ButtonInput } from './components/Input/ButtonInput';
