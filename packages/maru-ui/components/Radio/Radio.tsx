@@ -58,6 +58,10 @@ const Label = styled.label`
     align-items: center;
     gap: 8px;
     height: 26px;
+
+    &:hover ${RadioSelectIcon} {
+        border-color: ${color.gray600};
+    }
 `;
 
 const Content = styled.p`
