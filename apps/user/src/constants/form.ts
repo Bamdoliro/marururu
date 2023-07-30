@@ -1,95 +1,21 @@
-export const subjectListInitialData = ['국어', '사회', '역사', '도덕', ...].reduce(
-    (subjectInitialData, currentSubjectName, index) => 
-        [...subjectInitialData, {
-            id: index,
-            subjectName: currentSubjectName,
-            achievementLevel21: 'A',
-            achievementLevel22: 'A',
-            achievementLevel31: 'A',
-        }]
-)
-    {
-        id: 0,
-        subjectName: '국어',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 1,
-        subjectName: '사회',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 2,
-        subjectName: '역사',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 3,
-        subjectName: '도덕',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 4,
-        subjectName: '수학',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 5,
-        subjectName: '과학',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 6,
-        subjectName: '기술가정',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 7,
-        subjectName: '영어',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 8,
-        subjectName: '체육',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 9,
-        subjectName: '음악',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 10,
-        subjectName: '미술',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-    {
-        id: 11,
-        subjectName: '정보',
-        achievementLevel21: 'A',
-        achievementLevel22: 'A',
-        achievementLevel31: 'A',
-    },
-];
+// 수정된 코드
+export const subjectListInitialData = [
+    '국어',
+    '사회',
+    '역사',
+    '도덕',
+    '수학',
+    '과학',
+    '기술가정',
+    '영어',
+    '체육',
+    '음악',
+    '미술',
+    '정보',
+].map((currentSubjectName, index) => ({
+    id: index,
+    subjectName: currentSubjectName,
+    achievementLevel21: 'A',
+    achievementLevel22: 'A',
+    achievementLevel31: 'A',
+}));

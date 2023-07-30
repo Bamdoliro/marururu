@@ -38,7 +38,7 @@ const NewGradeCalculatorItem = ({
 
     return (
         <StyledNewGradeCalculatorItem>
-            <Td width={123} height="100%">
+            <Td option="SECONDARY" width={123} height="100%">
                 <NewSubjectInput
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         handleNewCaculatorItemDataChange(e.target.value, 'subjectName')

@@ -25,7 +25,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
     };
     return (
         <StyledGradeCalculatorItem>
-            <Td width={123} height="100%">
+            <Td option="SECONDARY" width={123} height="100%">
                 {subjectList[id].subjectName}
             </Td>
             <Td width={190} height="100%">
