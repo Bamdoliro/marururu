@@ -30,32 +30,32 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].grade2_1}
+                    value={subjectList[id].achievementLevel21}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
-                    name="grade2_1"
+                    name="achievementLevel21"
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].grade2_2}
+                    value={subjectList[id].achievementLevel22}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
-                    name="grade2_2"
+                    name="achievementLevel22"
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].grade3_1}
+                    value={subjectList[id].achievementLevel31}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
-                    name="grade3_1"
+                    name="achievementLevel31"
                 />
             </Td>
             <Td width={123} height="100%">

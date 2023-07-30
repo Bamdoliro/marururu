@@ -49,31 +49,31 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].grade2_1}
+                    value={newSubjectList[newSubjectIndex].achievementLevel21}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    name="grade2_1"
+                    name="achievementLevel21"
                     onChange={handleNewCaculatorItemDataChange}
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].grade2_2}
+                    value={newSubjectList[newSubjectIndex].achievementLevel22}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    name="grade2_2"
+                    name="achievementLevel22"
                     onChange={handleNewCaculatorItemDataChange}
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].grade3_1}
+                    value={newSubjectList[newSubjectIndex].achievementLevel31}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    name="grade3_1"
+                    name="achievementLevel31"
                     onChange={handleNewCaculatorItemDataChange}
                 />
             </Td>
