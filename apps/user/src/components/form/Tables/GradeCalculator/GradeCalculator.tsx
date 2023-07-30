@@ -30,6 +30,10 @@ const GradeCalculator = () => {
         if (newSubjectList.length) footerRef.current?.scrollIntoView();
     }, [newSubjectList]);
 
+    useEffect(() => {
+        console.log(newSubjectList);
+    }, [newSubjectList]);
+
     return (
         <StyledGradeCalculator>
             <GradeCalculatorHeader />
@@ -44,7 +48,9 @@ const GradeCalculator = () => {
                         id={item.id}
                         key={`subject ${index}`}
                         achievementLevels={
-                            isSpecialSubject ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D', 'E']
+                            isSpecialSubject
+                                ? ['없음', 'A', 'B', 'C']
+                                : ['없음', 'A', 'B', 'C', 'D', 'E']
                         }
                         subjectList={subjectList}
                         setSubjectList={setSubjectList}
@@ -56,7 +62,7 @@ const GradeCalculator = () => {
                 <NewGradeCalculatorItem
                     id={item.id}
                     key={`new-subject ${index}`}
-                    achievementLevels={['A', 'B', 'C', 'D', 'E']}
+                    achievementLevels={['없음', 'A', 'B', 'C', 'D', 'E']}
                     newSubjectList={newSubjectList}
                     setNewSubjectList={setNewSubjectList}
                 />

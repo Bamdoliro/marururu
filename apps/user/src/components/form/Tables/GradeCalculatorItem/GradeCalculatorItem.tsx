@@ -18,7 +18,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
             const updatedData = [...prev];
             updatedData[id] = {
                 ...updatedData[id],
-                [name]: data,
+                [name]: data === '없음' ? null : data,
             };
             return updatedData;
         });
@@ -30,7 +30,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].achievementLevel21}
+                    value={subjectList[id].achievementLevel21 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -40,7 +40,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].achievementLevel22}
+                    value={subjectList[id].achievementLevel22 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -50,7 +50,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].achievementLevel31}
+                    value={subjectList[id].achievementLevel31 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}

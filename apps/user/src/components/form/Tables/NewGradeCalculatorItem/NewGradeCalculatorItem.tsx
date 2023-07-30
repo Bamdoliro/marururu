@@ -30,7 +30,7 @@ const NewGradeCalculatorItem = ({
             const updatedData = [...prev];
             updatedData[newSubjectIndex] = {
                 ...updatedData[newSubjectIndex],
-                [name]: data,
+                [name]: data === '없음' ? null : data,
             };
             return updatedData;
         });
@@ -49,7 +49,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].achievementLevel21}
+                    value={newSubjectList[newSubjectIndex].achievementLevel21 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -59,7 +59,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].achievementLevel22}
+                    value={newSubjectList[newSubjectIndex].achievementLevel22 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -69,7 +69,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].achievementLevel31}
+                    value={newSubjectList[newSubjectIndex].achievementLevel31 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -100,7 +100,7 @@ const StyledNewGradeCalculatorItem = styled.div`
 const NewSubjectInput = styled.input`
     ${font.p2}
     color: ${color.gray900};
-    background-color: ${color.gray100};
+    background-color: ${color.white};
     width: 74px;
     text-align: center;
     &:-webkit-input-placeholder {
