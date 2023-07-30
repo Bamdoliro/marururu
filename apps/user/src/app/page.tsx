@@ -18,7 +18,7 @@ const Home = () => {
     return (
         <AppLayout style={{ padding: '0px 100px', marginBottom: '250px' }}>
             <StyledMainPage>
-                <Row gap="48px" height="451px" width="100%" justifyContent="center">
+                <Row gap="48px" height="450px" width="100%" justifyContent="center">
                     <Dday />
                     <Schedule />
                 </Row>
