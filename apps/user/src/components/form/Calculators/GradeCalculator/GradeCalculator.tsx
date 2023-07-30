@@ -2,20 +2,37 @@ import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeader';
-import styled from 'styled-components';
 import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
-import {
-    useSubjectListState,
-    useAddNewSubjectButton,
-    useScrollIntoView,
-} from './GradeCalculator.hooks';
+import { subjectListInitialData } from '@/constants/form';
+import { Subject } from '@/types/form';
+import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
 const GradeCalculator = () => {
-    const { subjectList, setSubjectList, newSubjectList, setNewSubjectList } =
-        useSubjectListState();
-    const { handleAddNewSubjectButtonClick } = useAddNewSubjectButton();
-    const { footerRef } = useScrollIntoView();
+    const [subjectList, setSubjectList] = useState<Subject[]>(subjectListInitialData);
+    const [newSubjectList, setNewSubjectList] = useState<Subject[]>([]);
+    const footerRef = useRef<HTMLDivElement>(null);
+
+    const newSubjectIdRef = useRef(0);
+    const handleAddNewSubjectButtonClick = () => {
+        const newSubject = {
+            id: newSubjectIdRef.current++,
+            subjectName: '',
+            achievementLevel21: 'A',
+            achievementLevel22: 'A',
+            achievementLevel31: 'A',
+        };
+        setNewSubjectList((prev) => [...prev, newSubject]);
+    };
+
+    useEffect(() => {
+        if (newSubjectList.length) footerRef.current?.scrollIntoView();
+    }, [newSubjectList]);
+
+    useEffect(() => {
+        console.log(newSubjectList);
+    }, [newSubjectList]);
 
     return (
         <StyledGradeCalculator>
@@ -31,7 +48,9 @@ const GradeCalculator = () => {
                         id={item.id}
                         key={`subject ${index}`}
                         achievementLevels={
-                            isSpecialSubject ? ['A', 'B', 'C'] : ['A', 'B', 'C', 'D', 'E']
+                            isSpecialSubject
+                                ? ['없음', 'A', 'B', 'C']
+                                : ['없음', 'A', 'B', 'C', 'D', 'E']
                         }
                         subjectList={subjectList}
                         setSubjectList={setSubjectList}
@@ -43,7 +62,7 @@ const GradeCalculator = () => {
                 <NewGradeCalculatorItem
                     id={item.id}
                     key={`new-subject ${index}`}
-                    achievementLevels={['A', 'B', 'C', 'D', 'E']}
+                    achievementLevels={['없음', 'A', 'B', 'C', 'D', 'E']}
                     newSubjectList={newSubjectList}
                     setNewSubjectList={setNewSubjectList}
                 />

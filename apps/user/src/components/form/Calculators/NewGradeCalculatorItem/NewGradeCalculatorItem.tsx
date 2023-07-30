@@ -30,7 +30,7 @@ const NewGradeCalculatorItem = ({
             const updatedData = [...prev];
             updatedData[newSubjectIndex] = {
                 ...updatedData[newSubjectIndex],
-                [name]: data,
+                [name]: data === '없음' ? null : data,
             };
             return updatedData;
         });
@@ -38,7 +38,7 @@ const NewGradeCalculatorItem = ({
 
     return (
         <StyledNewGradeCalculatorItem>
-            <Td width={123} height="100%">
+            <Td option="SECONDARY" width={123} height="100%">
                 <NewSubjectInput
                     onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         handleNewCaculatorItemDataChange(e.target.value, 'subjectName')
@@ -49,31 +49,31 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].grade2_1}
+                    value={newSubjectList[newSubjectIndex].achievementLevel21 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    name="grade2_1"
+                    name="achievementLevel21"
                     onChange={handleNewCaculatorItemDataChange}
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].grade2_2}
+                    value={newSubjectList[newSubjectIndex].achievementLevel22 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    name="grade2_2"
+                    name="achievementLevel22"
                     onChange={handleNewCaculatorItemDataChange}
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].grade3_1}
+                    value={newSubjectList[newSubjectIndex].achievementLevel31 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    name="grade3_1"
+                    name="achievementLevel31"
                     onChange={handleNewCaculatorItemDataChange}
                 />
             </Td>
@@ -100,7 +100,7 @@ const StyledNewGradeCalculatorItem = styled.div`
 const NewSubjectInput = styled.input`
     ${font.p2}
     color: ${color.gray900};
-    background-color: ${color.gray100};
+    background-color: ${color.gray50};
     width: 74px;
     text-align: center;
     &:-webkit-input-placeholder {

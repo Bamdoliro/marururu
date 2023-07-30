@@ -18,44 +18,44 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
             const updatedData = [...prev];
             updatedData[id] = {
                 ...updatedData[id],
-                [name]: data,
+                [name]: data === '없음' ? null : data,
             };
             return updatedData;
         });
     };
     return (
         <StyledGradeCalculatorItem>
-            <Td width={123} height="100%">
+            <Td option="SECONDARY" width={123} height="100%">
                 {subjectList[id].subjectName}
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].grade2_1}
+                    value={subjectList[id].achievementLevel21 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
-                    name="grade2_1"
+                    name="achievementLevel21"
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].grade2_2}
+                    value={subjectList[id].achievementLevel22 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
-                    name="grade2_2"
+                    name="achievementLevel22"
                 />
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={subjectList[id].grade3_1}
+                    value={subjectList[id].achievementLevel31 ?? '없음'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
                     onChange={handleCaculatorItemDataChange}
-                    name="grade3_1"
+                    name="achievementLevel31"
                 />
             </Td>
             <Td width={123} height="100%">

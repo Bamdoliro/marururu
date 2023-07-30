@@ -28,8 +28,6 @@ const useInput = () => {
         setEducationInfo((prev) => ({ ...prev, [name]: value }));
     };
 
-    useEffect(() => console.log(educationInfo), [educationInfo]);
-
     return { educationInfo, setEducationInfo, handleEducationInfoDataChange };
 };
 

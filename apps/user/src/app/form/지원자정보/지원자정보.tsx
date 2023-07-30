@@ -9,13 +9,13 @@ interface PropsType {
 }
 
 const 지원자정보 = ({ onNext }: PropsType) => {
-    const { setUserInfo, handleUserInfoDataChange, date, setDate } = useInput();
+    const { userInfo, setUserInfo, handleUserInfoDataChange, date, setDate } = useInput();
 
     return (
         <FormLayout title="지원자 정보">
             <Styled지원자정보>
                 <Row width="100%" justifyContent="space-between">
-                    <ProfileUpload setUserInfo={setUserInfo} />
+                    <ProfileUpload userInfo={userInfo} setUserInfo={setUserInfo} />
                     <Column gap={30} width={492}>
                         <Input
                             label="성명"

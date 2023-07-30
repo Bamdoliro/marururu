@@ -22,8 +22,6 @@ const useInput = () => {
         setParentInfo({ ...parentInfo, [name]: value });
     };
 
-    useEffect(() => console.log(parentInfo), [parentInfo]);
-
     return { parentInfo, setParentInfo, handleParentInfoDataChange };
 };
 

@@ -9,9 +9,9 @@ export type FormStep =
 export interface Subject {
     id: number;
     subjectName: string;
-    grade2_1: string;
-    grade2_2: string;
-    grade3_1: string;
+    achievementLevel21: string;
+    achievementLevel22: string;
+    achievementLevel31: string;
 }
 
 export interface Address {

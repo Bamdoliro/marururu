@@ -1,34 +1,79 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { useImageFileDragAndDrop, useUploadProfileImageFile } from './ProfileUpload.hooks';
-import styled from 'styled-components';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import {
+    ChangeEventHandler,
+    Dispatch,
+    SetStateAction,
+    useEffect,
+    useState,
+    useRef,
+    DragEvent,
+} from 'react';
 import { UserInfo } from '../../../app/form/지원자정보/지원자정보.hooks';
+import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
+import styled from 'styled-components';
 
 interface PropsType {
+    userInfo: UserInfo;
     setUserInfo: Dispatch<SetStateAction<UserInfo>>;
 }
 
-const ProfileUpload = ({ setUserInfo }: PropsType) => {
-    const {
-        profileImage,
-        uploadProfileImageFile,
-        imageFileInputRef,
-        handleImageUploadButtonClick,
-        handleImageFileDataChange,
-    } = useUploadProfileImageFile();
-    const { isDragging, onDragEnter, onDragLeave, onDragOver, onDrop } =
-        useImageFileDragAndDrop(uploadProfileImageFile);
+const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
+    const [isDragging, setIsDragging] = useState(false);
+    const imageFileInputRef = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        setUserInfo((prev) => ({ ...prev, identificationPictureUri: profileImage }));
-    }, [profileImage]);
+    // 클릭시 이미지 업로드 파일 열기
+    const handleImageUploadButtonClick = () => {
+        imageFileInputRef.current?.click();
+    };
+
+    // Mutation
+    const uploadProfileImageMutation = useUploadProfileImageMutation(setUserInfo);
+    const uploadProfileImageFile = (image: FormData) => {
+        uploadProfileImageMutation.mutate(image);
+    };
+
+    // 이미지 데이터 핸들링
+    const handleImageFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { files } = e.target;
+        if (!files || files.length === 0) return;
+        const formData = new FormData();
+        formData.append('image', files[0]);
+        uploadProfileImageFile(formData);
+    };
+
+    // 드래그 앤 드랍
+    const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(true);
+    };
+    const onDragLeave = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(false);
+    };
+    const onDragOver = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.dataTransfer.files) {
+            setIsDragging(true);
+        }
+    };
+    const onDrop = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const formData = new FormData();
+        formData.append('image', e.dataTransfer.files[0]);
+        uploadProfileImageFile(formData);
+        setIsDragging(false);
+    };
 
     return (
         <StyledProfileUpload>
             <Title>증명사진</Title>
-            {profileImage ? (
-                <ImagePreview src={profileImage} alt="profile-image" />
+            {userInfo.identificationPictureUri ? (
+                <ImagePreview src={userInfo.identificationPictureUri} alt="profile-image" />
             ) : (
                 <ImageUploadBox
                     onDragEnter={onDragEnter}
@@ -45,7 +90,7 @@ const ProfileUpload = ({ setUserInfo }: PropsType) => {
                     </Column>
                 </ImageUploadBox>
             )}
-            {profileImage && (
+            {userInfo.identificationPictureUri && (
                 <Button size="SMALL" onClick={handleImageUploadButtonClick}>
                     재업로드
                 </Button>
