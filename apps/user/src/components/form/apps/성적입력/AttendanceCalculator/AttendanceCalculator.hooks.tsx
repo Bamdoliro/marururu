@@ -35,52 +35,22 @@ const useInput = () => {
         },
     });
 
-    const handleAttendance1InfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleAttendanceInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
 
-        const updatedAttendance1: Attendance = {
-            ...attendanceInfo.attendance1,
-            [name]: Number(value),
-        };
+        const [attendanceName, countName] = name.split('-');
 
         setAttendanceInfo({
             ...attendanceInfo,
-            attendance1: updatedAttendance1,
-        });
-    };
-
-    const handleAttendance2InfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-
-        const updatedAttendance2: Attendance = {
-            ...attendanceInfo.attendance2,
-            [name]: Number(value),
-        };
-
-        setAttendanceInfo({
-            ...attendanceInfo,
-            attendance2: updatedAttendance2,
-        });
-    };
-
-    const handleAttendance3InfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-
-        const updatedAttendance3: Attendance = {
-            ...attendanceInfo.attendance3,
-            [name]: Number(value),
-        };
-
-        setAttendanceInfo({
-            ...attendanceInfo,
-            attendance3: updatedAttendance3,
+            [attendanceName]: {
+                ...attendanceInfo.attendance1,
+                [countName]: Number(value),
+            },
         });
     };
 
     return {
-        handleAttendance1InfoDataChange,
-        handleAttendance2InfoDataChange,
-        handleAttendance3InfoDataChange,
+        handleAttendanceInfoDataChange,
     };
 };
 

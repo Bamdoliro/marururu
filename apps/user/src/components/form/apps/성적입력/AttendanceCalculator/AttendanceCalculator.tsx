@@ -3,11 +3,7 @@ import { styled } from 'styled-components';
 import useInput from './AttendanceCalculator.hooks';
 
 const AttendanceCalculator = () => {
-    const {
-        handleAttendance1InfoDataChange,
-        handleAttendance2InfoDataChange,
-        handleAttendance3InfoDataChange,
-    } = useInput();
+    const { handleAttendanceInfoDataChange } = useInput();
 
     return (
         <Table>
@@ -33,21 +29,27 @@ const AttendanceCalculator = () => {
                     1학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput name="absenceCount" onChange={handleAttendance1InfoDataChange} />
-                </Td>
-                <Td width="100%" height={56}>
-                    <NumberInput name="latenessCount" onChange={handleAttendance1InfoDataChange} />
-                </Td>
-                <Td width="100%" height={56}>
                     <NumberInput
-                        name="earlyLeaveCount"
-                        onChange={handleAttendance1InfoDataChange}
+                        name="attendance1-absenceCount"
+                        onChange={handleAttendanceInfoDataChange}
                     />
                 </Td>
                 <Td width="100%" height={56}>
                     <NumberInput
-                        name="classAbsenceCount"
-                        onChange={handleAttendance1InfoDataChange}
+                        name="attendance1-latenessCount"
+                        onChange={handleAttendanceInfoDataChange}
+                    />
+                </Td>
+                <Td width="100%" height={56}>
+                    <NumberInput
+                        name="attendance1-earlyLeaveCount"
+                        onChange={handleAttendanceInfoDataChange}
+                    />
+                </Td>
+                <Td width="100%" height={56}>
+                    <NumberInput
+                        name="attendance1-classAbsenceCount"
+                        onChange={handleAttendanceInfoDataChange}
                     />
                 </Td>
             </Row>
@@ -56,21 +58,27 @@ const AttendanceCalculator = () => {
                     2학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput name="absenceCount" onChange={handleAttendance2InfoDataChange} />
-                </Td>
-                <Td width="100%" height={56}>
-                    <NumberInput name="latenessCount" onChange={handleAttendance2InfoDataChange} />
-                </Td>
-                <Td width="100%" height={56}>
                     <NumberInput
-                        name="earlyLeaveCount"
-                        onChange={handleAttendance2InfoDataChange}
+                        name="attendance2-absenceCount"
+                        onChange={handleAttendanceInfoDataChange}
                     />
                 </Td>
                 <Td width="100%" height={56}>
                     <NumberInput
-                        name="classAbsenceCount"
-                        onChange={handleAttendance2InfoDataChange}
+                        name="attendance2-latenessCount"
+                        onChange={handleAttendanceInfoDataChange}
+                    />
+                </Td>
+                <Td width="100%" height={56}>
+                    <NumberInput
+                        name="attendance2-earlyLeaveCount"
+                        onChange={handleAttendanceInfoDataChange}
+                    />
+                </Td>
+                <Td width="100%" height={56}>
+                    <NumberInput
+                        name="attendance2-classAbsenceCount"
+                        onChange={handleAttendanceInfoDataChange}
                     />
                 </Td>
             </Row>
@@ -79,21 +87,27 @@ const AttendanceCalculator = () => {
                     3학년
                 </Td>
                 <Td width="100%" height={56}>
-                    <NumberInput name="absenceCount" onChange={handleAttendance3InfoDataChange} />
-                </Td>
-                <Td width="100%" height={56}>
-                    <NumberInput name="latenessCount" onChange={handleAttendance3InfoDataChange} />
-                </Td>
-                <Td width="100%" height={56}>
                     <NumberInput
-                        name="earlyLeaveCount"
-                        onChange={handleAttendance3InfoDataChange}
+                        name="attendance3-absenceCount"
+                        onChange={handleAttendanceInfoDataChange}
                     />
                 </Td>
                 <Td width="100%" height={56}>
                     <NumberInput
-                        name="classAbsenceCount"
-                        onChange={handleAttendance3InfoDataChange}
+                        name="attendance3-latenessCount"
+                        onChange={handleAttendanceInfoDataChange}
+                    />
+                </Td>
+                <Td width="100%" height={56}>
+                    <NumberInput
+                        name="attendance3-earlyLeaveCount"
+                        onChange={handleAttendanceInfoDataChange}
+                    />
+                </Td>
+                <Td width="100%" height={56}>
+                    <NumberInput
+                        name="attendance3-classAbsenceCount"
+                        onChange={handleAttendanceInfoDataChange}
                     />
                 </Td>
             </Row>
