@@ -2,20 +2,33 @@ import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeader';
-import styled from 'styled-components';
 import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
-import {
-    useSubjectListState,
-    useAddNewSubjectButton,
-    useScrollIntoView,
-} from './GradeCalculator.hooks';
+import { subjectListInitialData } from '@/constants/form';
+import { Subject } from '@/types/form';
+import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
 const GradeCalculator = () => {
-    const { subjectList, setSubjectList, newSubjectList, setNewSubjectList } =
-        useSubjectListState();
-    const { handleAddNewSubjectButtonClick } = useAddNewSubjectButton();
-    const { footerRef } = useScrollIntoView();
+    const [subjectList, setSubjectList] = useState<Subject[]>(subjectListInitialData);
+    const [newSubjectList, setNewSubjectList] = useState<Subject[]>([]);
+    const footerRef = useRef<HTMLDivElement>(null);
+
+    const newSubjectIdRef = useRef(0);
+    const handleAddNewSubjectButtonClick = () => {
+        const newSubject = {
+            id: newSubjectIdRef.current++,
+            subjectName: '',
+            grade2_1: 'A',
+            grade2_2: 'A',
+            grade3_1: 'A',
+        };
+        setNewSubjectList((prev) => [...prev, newSubject]);
+    };
+
+    useEffect(() => {
+        if (newSubjectList.length) footerRef.current?.scrollIntoView();
+    }, [newSubjectList]);
 
     return (
         <StyledGradeCalculator>

@@ -37,5 +37,5 @@ export const useInput = () => {
         }));
     }, [date]);
 
-    return { setUserInfo, handleUserInfoDataChange, date, setDate };
+    return { userInfo, setUserInfo, handleUserInfoDataChange, date, setDate };
 };

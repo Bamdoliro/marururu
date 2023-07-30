@@ -12,8 +12,12 @@ interface PropsType {
 }
 
 const 자기소개서 = ({ onPrevious, onNext }: PropsType) => {
-    const { introduce, handleIntroduceDataChange, studyPlan, handleStudyPlanDataChange } =
-        useInput();
+    const {
+        coverLetter,
+        handleCoverLetterDataChange,
+        statementOfPurpose,
+        handleStatementOfPurposeDataChange,
+    } = useInput();
 
     return (
         <FormLayout title="자기소개서">
@@ -23,14 +27,14 @@ const 자기소개서 = ({ onPrevious, onNext }: PropsType) => {
                     <Textarea
                         limit={1500}
                         label="자기소개서"
-                        value={introduce}
-                        onChange={handleIntroduceDataChange}
+                        value={coverLetter}
+                        onChange={handleCoverLetterDataChange}
                     />
                     <Textarea
                         limit={1500}
                         label="학업계획서"
-                        value={studyPlan}
-                        onChange={handleStudyPlanDataChange}
+                        value={statementOfPurpose}
+                        onChange={handleStatementOfPurposeDataChange}
                     />
                 </Column>
             </Styled자기소개서>

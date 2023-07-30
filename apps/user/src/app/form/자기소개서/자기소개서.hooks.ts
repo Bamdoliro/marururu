@@ -2,15 +2,20 @@ import { useDebounceInput } from '@maru/hooks';
 
 export const useInput = () => {
     const {
-        value: introduce,
-        onChange: handleIntroduceDataChange,
-        debouncedValue: debouncedIntroduce,
+        value: coverLetter,
+        onChange: handleCoverLetterDataChange,
+        debouncedValue: debouncedCoverLetter,
     } = useDebounceInput({ initialValue: '' });
     const {
-        value: studyPlan,
-        onChange: handleStudyPlanDataChange,
-        debouncedValue: debouncedStudyPlan,
+        value: statementOfPurpose,
+        onChange: handleStatementOfPurposeDataChange,
+        debouncedValue: debouncedStatementOfPurpose,
     } = useDebounceInput({ initialValue: '' });
 
-    return { introduce, handleIntroduceDataChange, studyPlan, handleStudyPlanDataChange };
+    return {
+        coverLetter,
+        handleCoverLetterDataChange,
+        statementOfPurpose,
+        handleStatementOfPurposeDataChange,
+    };
 };
