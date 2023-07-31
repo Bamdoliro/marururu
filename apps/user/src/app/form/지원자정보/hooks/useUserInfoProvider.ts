@@ -8,7 +8,7 @@ export interface UserInfo {
     gender: string;
 }
 
-const userInfoAtomState = atom({
+const userInfoAtomState = atom<UserInfo>({
     key: 'user-info',
     default: {
         identificationPictureUri: '',

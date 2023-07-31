@@ -8,12 +8,7 @@ const FormPage = () => {
     return (
         <div>
             {formStep === '지원자 정보' && <지원자정보 />}
-            {formStep === '보호자 정보' && (
-                <보호자정보
-                    onPrevious={() => setFormStep('지원자 정보')}
-                    onNext={() => setFormStep('출신학교 및 학력')}
-                />
-            )}
+            {formStep === '보호자 정보' && <보호자정보 />}
             {formStep === '출신학교 및 학력' && (
                 <출신학교및학력
                     onPrevious={() => setFormStep('보호자 정보')}

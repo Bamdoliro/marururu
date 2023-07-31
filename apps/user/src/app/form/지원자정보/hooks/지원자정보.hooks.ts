@@ -12,7 +12,7 @@ export interface UserInfo {
 }
 
 export const useInput = () => {
-    const { userInfo, setUserInfo } = useUserInfoProvider();
+    const { setUserInfo } = useUserInfoProvider();
     const [date, setDate] = useState<Date>({
         year: '',
         month: '',
@@ -21,7 +21,7 @@ export const useInput = () => {
 
     const handleUserInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
-        setUserInfo({ ...userInfo, [name]: value });
+        setUserInfo((prev) => ({ ...prev, [name]: value }));
     };
 
     useEffect(() => {
