@@ -36,11 +36,11 @@ export const useInput = () => {
 
 export const useCTAButton = () => {
     const { userInfo } = useUserInfoProvider();
-    const { form, setForm } = useFormState();
+    const { setForm } = useFormState();
     const { setFormStep } = useFormStep();
 
     const handleNextButtonClick = () => {
-        setForm({ ...form, application: userInfo });
+        setForm((prev) => ({ ...prev, application: userInfo }));
         setFormStep('보호자 정보');
     };
 

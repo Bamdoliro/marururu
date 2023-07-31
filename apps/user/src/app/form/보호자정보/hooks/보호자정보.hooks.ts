@@ -15,12 +15,12 @@ export const useInput = () => {
 
 export const useCTAButton = () => {
     const { parentInfo } = useParentInfoProvider();
-    const { form, setForm } = useFormState();
+    const { setForm } = useFormState();
     const { setFormStep } = useFormStep();
 
     const handleNextButtonClick = () => {
-        setForm({ ...form, parent: parentInfo });
-        console.log(form);
+        setForm((prev) => ({ ...prev, parent: parentInfo }));
+        setFormStep('출신학교 및 학력');
     };
 
     const handlePreviousButtonClick = () => {

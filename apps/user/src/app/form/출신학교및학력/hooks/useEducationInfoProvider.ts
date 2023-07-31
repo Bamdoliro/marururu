@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from 'react';
+import { atom, useRecoilState } from 'recoil';
 
 export interface EducationInfo {
     graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION' | '';
@@ -11,8 +11,9 @@ export interface EducationInfo {
     teacherMobilePhoneNumber: string;
 }
 
-const useInput = () => {
-    const [educationInfo, setEducationInfo] = useState<EducationInfo>({
+const educationInfoAtomState = atom<EducationInfo>({
+    key: 'education-info',
+    default: {
         graduationType: '',
         graduationYear: '',
         schoolName: '',
@@ -21,14 +22,11 @@ const useInput = () => {
         teacherName: '',
         teacherPhoneNumber: '',
         teacherMobilePhoneNumber: '',
-    });
+    },
+});
 
-    const handleEducationInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-        setEducationInfo((prev) => ({ ...prev, [name]: value }));
-    };
+export const useEducationInfoProvider = () => {
+    const [educationInfo, setEducationInfo] = useRecoilState(educationInfoAtomState);
 
-    return { educationInfo, setEducationInfo, handleEducationInfoDataChange };
+    return { educationInfo, setEducationInfo };
 };
-
-export default useInput;
