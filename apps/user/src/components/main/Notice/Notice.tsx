@@ -16,7 +16,7 @@ const Notice = () => {
         <StyledNotice>
             <Link onClick={() => router.push(ROUTES.NOTICE)} gap="8px">
                 <Title>공지사항</Title>
-                <IconArrowRight color={color.gray900} />
+                <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
             <NoticeList>
                 {mainNoticeListQuery.data?.map((item) => (

@@ -11,7 +11,7 @@ const Profile = ({ name }: PropsType) => {
     return (
         <StyledProfile>
             <Name>{name} 님</Name>
-            <IconArrowDropdown width={24} height={24} />
+            <IconArrowDropdown color={color.gray600} width={24} height={24} />
         </StyledProfile>
     );
 };

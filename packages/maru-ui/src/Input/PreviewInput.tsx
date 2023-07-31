@@ -31,9 +31,21 @@ const PreviewInput = ({
                     value={value}
                 />
                 {isPreview ? (
-                    <IconVisibleEye cursor="pointer" onClick={togglePreview} />
+                    <IconVisibleEye
+                        color={color.gray500}
+                        width={24}
+                        height={24}
+                        cursor="pointer"
+                        onClick={togglePreview}
+                    />
                 ) : (
-                    <IconInvisibleEye cursor="pointer" onClick={togglePreview} />
+                    <IconInvisibleEye
+                        color={color.gray500}
+                        width={24}
+                        height={24}
+                        cursor="pointer"
+                        onClick={togglePreview}
+                    />
                 )}
             </StyledPreviewInput>
             {msg && <Message>{msg}</Message>}

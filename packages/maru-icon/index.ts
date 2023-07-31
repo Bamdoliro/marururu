@@ -10,8 +10,5 @@ export { default as IconInvisibleEye } from './react/IconInvisibleEye';
 export { default as IconVisibleEye } from './react/IconVisibleEye';
 export { default as IconSearch } from './react/IconSearch';
 export { default as IconShortcuts } from './react/IconShortcuts';
-export { default as IconRoundInstagram } from './react/IconRoundInstagram';
-export { default as IconMaruGrayLogo } from './react/IconMaruGrayLogo';
-export { default as IconRoundBamdoliro } from './react/IconRoundBamdoliro';
 export { default as IconClose } from './react/IconClose';
 export { default as IconCheck } from './react/IconCheck';

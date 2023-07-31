@@ -21,7 +21,7 @@ const NoticeItem = ({ id, title, date }: PropsType) => {
                 <Title>{title}</Title>
                 <Date>{date}</Date>
             </Column>
-            <IconArrowRight color={color.gray600} />
+            <IconArrowRight color={color.gray600} width={24} height={24} />
         </StyledNoticeItem>
     );
 };

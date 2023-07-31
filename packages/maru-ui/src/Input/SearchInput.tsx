@@ -14,7 +14,7 @@ const SearchInput = ({
 }: InputPropsType) => {
     return (
         <StyledSearchInput>
-            <IconSearch cursor="pointer" />
+            <IconSearch color={color.gray400} width={24} height={24} cursor="pointer" />
             <Input
                 style={{ width }}
                 onChange={onChange}

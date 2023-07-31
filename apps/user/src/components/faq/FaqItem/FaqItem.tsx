@@ -17,15 +17,23 @@ const FaqItem = ({ question, answer }: PropsType) => {
         <StyledFaqItem>
             <QuestionBox onClick={() => setIsOpen((prev) => !prev)}>
                 <Row gap="12px" alignItems="center">
-                    <IconFaq color={color.gray400} />
+                    <IconFaq
+                        color={isOpen ? color.maruDefault : color.gray400}
+                        width={24}
+                        height={24}
+                    />
                     <Question>{question}</Question>
                 </Row>
-                {isOpen ? <IconArrowTop /> : <IconArrowBottom />}
+                {isOpen ? (
+                    <IconArrowTop color={color.gray600} width={24} height={24} />
+                ) : (
+                    <IconArrowBottom color={color.gray600} width={24} height={24} />
+                )}
             </QuestionBox>
             {isOpen && (
                 <AnswerBox>
                     <Row gap="12px" alignItems="center">
-                        <IconAnswer />
+                        <IconAnswer color={color.gray400} width={24} height={24} />
                         <Answer>{answer}</Answer>
                     </Row>
                 </AnswerBox>

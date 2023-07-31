@@ -16,7 +16,7 @@ const Faq = () => {
         <StyledFaq>
             <Link onClick={() => router.push(ROUTES.FAQ)} gap="8px">
                 <Title>자주묻는 질문</Title>
-                <IconArrowRight color={color.gray900} />
+                <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
             <QuestionList>
                 {mainFaqListQuery.data?.map((item) => (

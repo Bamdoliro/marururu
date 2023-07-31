@@ -47,7 +47,13 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                     <Column gap={16}>
                         <Row justifyContent="space-between">
                             <Title>학교 검색</Title>
-                            <IconClose cursor="pointer" onClick={closeSchoolModal} />
+                            <IconClose
+                                color={color.gray600}
+                                width={24}
+                                height={24}
+                                cursor="pointer"
+                                onClick={closeSchoolModal}
+                            />
                         </Row>
                         <SearchInput
                             value={schoolSearchQuery}
@@ -62,7 +68,13 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                                 selected={selectedSchool.code === code}
                                 onClick={() => setSelectedSchool({ name, location, code })}>
                                 <SchoolName>
-                                    {selectedSchool.code === code && <IconCheck />}
+                                    {selectedSchool.code === code && (
+                                        <IconCheck
+                                            color={color.maruDefault}
+                                            width={24}
+                                            height={24}
+                                        />
+                                    )}
                                     {name}
                                 </SchoolName>
                                 <SchoolRegion>{location}</SchoolRegion>

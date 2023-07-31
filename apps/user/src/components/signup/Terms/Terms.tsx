@@ -64,7 +64,7 @@ const Terms = ({ setTermsAgree }: PropsType) => {
                 />
                 <label htmlFor="agreement1">개인정보 수집 이용동의</label>
                 <AgreementLink>
-                    [ 필수 ] <IconArrowRight color={color.maruDefault} />
+                    [ 필수 ] <IconArrowRight color={color.maruDefault} width={12} height={12} />
                 </AgreementLink>
             </Agreement>
             <Agreement>
@@ -76,7 +76,7 @@ const Terms = ({ setTermsAgree }: PropsType) => {
                 />
                 <label htmlFor="agreement2">약관 전체동의</label>
                 <AgreementLink>
-                    [ 필수 ] <IconArrowRight color={color.maruDefault} />
+                    [ 필수 ] <IconArrowRight color={color.maruDefault} width={12} height={12} />
                 </AgreementLink>
             </Agreement>
         </StyledTerms>
@@ -99,6 +99,7 @@ const Agreement = styled.div`
 `;
 
 const AgreementLink = styled.div`
+    ${flex({ alignItems: 'center' })}
     ${font.btn3};
     color: ${color.maruDefault};
     display: flex;

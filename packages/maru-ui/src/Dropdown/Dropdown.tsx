@@ -43,7 +43,11 @@ const Dropdown = ({
             {label && <Label>{label}</Label>}
             <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpen={isOpen}>
                 <SelectedItemText isSelected={!!value}>{value || placeholder}</SelectedItemText>
-                {isOpen ? <IconArrowTop /> : <IconArrowBottom />}
+                {isOpen ? (
+                    <IconArrowTop color={color.gray600} width={24} height={24} />
+                ) : (
+                    <IconArrowBottom color={color.gray600} width={24} height={24} />
+                )}
             </StyledDropdown>
             <DropdownListBox ref={dropdownRef} isOpen={isOpen}>
                 <DropdownList>
