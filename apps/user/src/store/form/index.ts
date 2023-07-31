@@ -8,5 +8,12 @@ export const formStepAtomState = atom<FormStep>({
 
 export const formDataAtomState = atom({
     key: 'form-data',
-    default: {},
+    default: {
+        application: {},
+        parent: {},
+        education: {},
+        grade: {},
+        document: {},
+        type: 'REGULAR',
+    },
 });

@@ -30,9 +30,11 @@ const GradeCalculator = () => {
         if (newSubjectList.length) footerRef.current?.scrollIntoView();
     }, [newSubjectList]);
 
-    useEffect(() => {
-        console.log(newSubjectList);
-    }, [newSubjectList]);
+    // newSubjectList랑 subjectList를 id 요소를 빼고 합칩니다.
+    const studentSubjectList = [
+        ...subjectList.map(({ id, ...rest }) => rest),
+        ...newSubjectList.map(({ id, ...rest }) => rest),
+    ];
 
     return (
         <StyledGradeCalculator>
