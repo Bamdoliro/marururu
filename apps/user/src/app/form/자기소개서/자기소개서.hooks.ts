@@ -1,11 +1,11 @@
-import { useFormState, useFormStep } from '@/hooks';
+import { useFormProvider, useFormStepProvider } from '../form.provider';
 import { useDebounceInput } from '@maru/hooks';
 
 export const useFormSubmitAction = (
     debouncedCoverLetter: string,
     debouncedStatementOfPurpose: string,
 ) => {
-    const { form, setForm } = useFormState();
+    const { form, setForm } = useFormProvider();
 
     setForm((prev) => ({
         ...prev,
@@ -46,7 +46,7 @@ export const useInput = () => {
 };
 
 export const useCTAButton = () => {
-    const { setFormStep } = useFormStep();
+    const { setFormStep } = useFormStepProvider();
 
     const handlePreviousButtonClick = () => {
         setFormStep('성적 입력');

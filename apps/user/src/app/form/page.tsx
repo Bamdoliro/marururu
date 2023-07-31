@@ -1,8 +1,16 @@
 'use client';
 
-import { 지원자정보, 보호자정보, 출신학교및학력, 전형선택, 성적입력, 자기소개서 } from '.';
+import 지원자정보 from './지원자정보/지원자정보';
+import 보호자정보 from './보호자정보/보호자정보';
+import 출신학교및학력 from './출신학교및학력/출신학교및학력';
+import 전형선택 from './전형선택/전형선택';
+import 성적입력 from './성적입력/성적입력';
+import 자기소개서 from './자기소개서/자기소개서';
+import { useFormStepProvider } from './form.provider';
 
 const FormPage = () => {
+    const { formStep } = useFormStepProvider();
+
     return (
         <div>
             {formStep === '지원자 정보' && <지원자정보 />}

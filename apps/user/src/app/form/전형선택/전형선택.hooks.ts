@@ -1,5 +1,5 @@
-import { useFormState, useFormStep } from '@/hooks';
-import { ChangeEventHandler, useState } from 'react';
+import { useFormProvider, useFormStepProvider } from '../form.provider';
+import { ChangeEventHandler } from 'react';
 import { useChoiceFormTypeProvider, useFormTypeProvider } from './전형선택.provider';
 
 const FormType = {
@@ -37,8 +37,8 @@ export const useInput = () => {
 
 export const useCTAButton = () => {
     const { formType } = useFormTypeProvider();
-    const { setForm } = useFormState();
-    const { setFormStep } = useFormStep();
+    const { setForm } = useFormProvider();
+    const { setFormStep } = useFormStepProvider();
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, type: formType }));

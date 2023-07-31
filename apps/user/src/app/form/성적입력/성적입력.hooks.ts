@@ -1,4 +1,4 @@
-import { useFormState, useFormStep } from '@/hooks';
+import { useFormProvider, useFormStepProvider } from '../form.provider';
 import {
     useStudentSubjectListProvider,
     useAttendanceInfoProvider,
@@ -12,8 +12,8 @@ export const useCTAButton = () => {
     const { volunteerInfo } = useVolunteerInfoProvider();
     const { certificateListInfo } = useCertificateListInfoProvider();
 
-    const { setForm } = useFormState();
-    const { setFormStep } = useFormStep();
+    const { setForm } = useFormProvider();
+    const { setFormStep } = useFormStepProvider();
 
     const handleNextButtonClick = () => {
         const studentSubjectList = [

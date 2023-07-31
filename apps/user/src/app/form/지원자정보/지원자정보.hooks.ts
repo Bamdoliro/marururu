@@ -1,4 +1,4 @@
-import { useFormState, useFormStep } from '@/hooks';
+import { useFormProvider, useFormStepProvider } from '../form.provider';
 import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { useUserInfoProvider } from './지원자정보.provider';
@@ -28,8 +28,8 @@ export const useInput = () => {
 
 export const useCTAButton = () => {
     const { userInfo } = useUserInfoProvider();
-    const { setForm } = useFormState();
-    const { setFormStep } = useFormStep();
+    const { setForm } = useFormProvider();
+    const { setFormStep } = useFormStepProvider();
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, application: userInfo }));

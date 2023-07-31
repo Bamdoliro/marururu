@@ -1,5 +1,5 @@
-import { useFormState, useFormStep } from '@/hooks';
-import { ChangeEventHandler, useState } from 'react';
+import { useFormProvider, useFormStepProvider } from '../form.provider';
+import { ChangeEventHandler } from 'react';
 import { useEducationInfoProvider } from './출신학교및학력.provider';
 
 export const useInput = () => {
@@ -15,8 +15,8 @@ export const useInput = () => {
 
 export const useCTAButton = () => {
     const { educationInfo } = useEducationInfoProvider();
-    const { setFormStep } = useFormStep();
-    const { setForm } = useFormState();
+    const { setFormStep } = useFormStepProvider();
+    const { setForm } = useFormProvider();
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, education: educationInfo }));
