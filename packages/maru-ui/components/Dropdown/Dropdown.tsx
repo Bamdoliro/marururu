@@ -4,6 +4,7 @@ import { flex } from '@maru/utils';
 import TopArrowIcon from '../../Icons/TopArrow';
 import BottomArrowIcon from '../../Icons/BottomArrow';
 import styled, { css } from 'styled-components';
+import { useOutsideClick } from '@maru/hooks';
 
 type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
@@ -28,23 +29,24 @@ const Dropdown = ({
     name,
     placeholder,
 }: PropsType) => {
-    const [isOpened, setIsOpened] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useOutsideClick(() => setIsOpen(false));
 
     const handleMenuButtonClick = (data: string) => {
         onChange(data, name);
-        setIsOpened(false);
+        setIsOpen(false);
     };
 
-    const handleToggleButtonClick = () => setIsOpened((prev) => !prev);
+    const handleToggleButtonClick = () => setIsOpen((prev) => !prev);
 
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpened={isOpened}>
+            <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpen={isOpen}>
                 <SelectedItemText isSelected={!!value}>{value || placeholder}</SelectedItemText>
-                {isOpened ? <TopArrowIcon /> : <BottomArrowIcon />}
+                {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}
             </StyledDropdown>
-            <DropdownListBox isOpened={isOpened}>
+            <DropdownListBox ref={dropdownRef} isOpen={isOpen}>
                 <DropdownList>
                     {data?.map((item, index) => (
                         <DropdownItem
@@ -67,7 +69,7 @@ const Label = styled.p`
     margin-bottom: 8px;
 `;
 
-const StyledDropdown = styled.div<{ isOpened: boolean; size: DropdownSizeOption }>`
+const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -77,7 +79,7 @@ const StyledDropdown = styled.div<{ isOpened: boolean; size: DropdownSizeOption 
     cursor: pointer;
 
     ${(props) =>
-        props.isOpened
+        props.isOpen
             ? css`
                   border: 1px solid ${color.maruDefault};
                   outline: 2px solid rgba(20, 112, 255, 0.25);
@@ -103,9 +105,9 @@ const SelectedItemText = styled.p<{ isSelected: boolean }>`
     color: ${(props) => (props.isSelected ? color.gray900 : color.gray500)};
 `;
 
-const DropdownListBox = styled.div<{ isOpened: boolean }>`
+const DropdownListBox = styled.div<{ isOpen: boolean }>`
     position: relative;
-    display: ${({ isOpened }) => (isOpened ? 'block' : 'none')};
+    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
 `;
 
 const DropdownList = styled.div`

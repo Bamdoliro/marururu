@@ -68,7 +68,7 @@ const SignUpPage = () => {
                             <PreviewInput
                                 label="비밀번호 재확인"
                                 width="100%"
-                                name="repassword"
+                                name="password_confirm"
                                 onChange={handleJoinUserDataChange}
                             />
                         </Column>

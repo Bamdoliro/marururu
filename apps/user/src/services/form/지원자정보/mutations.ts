@@ -1,16 +1,15 @@
+import { UserInfo } from '@/app/form/지원자정보/지원자정보.hooks';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
 import { uploadProfileImage } from './api';
 
-export const useUploadProfileImageMutation = (
-    setProfileImage: Dispatch<SetStateAction<string>>,
-) => {
+export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateAction<UserInfo>>) => {
     return useMutation((image: FormData) => uploadProfileImage(image), {
         onSuccess: (res) => {
-            setProfileImage(res.data.data.url);
+            setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.data.url }));
         },
         onError: (err) => {
-            alert('사진 사이즈를 규격에 맞게 넣어주세요');
+            console.log(err);
         },
     });
 };
