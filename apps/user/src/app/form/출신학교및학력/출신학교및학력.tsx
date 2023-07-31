@@ -2,8 +2,8 @@ import { FormLayout } from '@/layouts';
 import useModal from '@maru/hooks/src/useModal';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
 import { FormController, FindSchoolModal } from '@/components/form';
-import { useEducationInfoProvider } from './hooks/useEducationInfoProvider';
-import { useCTAButton, useInput } from './hooks/출신학교및학력.hooks';
+import { useEducationInfoProvider } from './출신학교및학력.provider';
+import { useCTAButton, useInput } from './출신학교및학력.hooks';
 import { styled } from 'styled-components';
 
 const 출신학교및학력 = () => {

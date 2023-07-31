@@ -1,11 +1,11 @@
 import { FormLayout } from '@/layouts';
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useState } from 'react';
-import { useInput, useCTAButton } from './hooks/보호자정보.hooks';
+import { useInput, useCTAButton } from './보호자정보.hooks';
 import { FormController, FindAddressModal } from '@/components/form';
-import styled from 'styled-components';
+import { useParentInfoProvider } from './보호자정보.provider';
 import useModal from '@maru/hooks/src/useModal';
-import { useParentInfoProvider } from './hooks/useParentInfoProvider';
+import styled from 'styled-components';
 
 const 보호자정보 = () => {
     const { parentInfo, setParentInfo } = useParentInfoProvider();

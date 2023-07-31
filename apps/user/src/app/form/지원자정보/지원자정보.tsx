@@ -1,8 +1,8 @@
 import { FormLayout } from '@/layouts';
 import { Column, Input, RadioGroup, Row, Dropdown } from '@maru/ui';
-import { useInput, useCTAButton } from './hooks/지원자정보.hooks';
+import { useInput, useCTAButton } from './지원자정보.hooks';
 import { ProfileUpload, FormController } from '@/components/form';
-import { useUserInfoProvider } from './hooks/useUserInfoProvider';
+import { useUserInfoProvider } from './지원자정보.provider';
 import styled from 'styled-components';
 
 const 지원자정보 = () => {

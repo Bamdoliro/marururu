@@ -1,6 +1,6 @@
 import { useFormState, useFormStep } from '@/hooks';
 import { ChangeEventHandler, useState } from 'react';
-import { useParentInfoProvider } from './useParentInfoProvider';
+import { useParentInfoProvider } from './보호자정보.provider';
 
 export const useInput = () => {
     const { setParentInfo } = useParentInfoProvider();

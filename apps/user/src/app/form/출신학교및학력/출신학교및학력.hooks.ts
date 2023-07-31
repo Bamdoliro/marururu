@@ -1,6 +1,6 @@
 import { useFormState, useFormStep } from '@/hooks';
 import { ChangeEventHandler, useState } from 'react';
-import { useEducationInfoProvider } from './useEducationInfoProvider';
+import { useEducationInfoProvider } from './출신학교및학력.provider';
 
 export const useInput = () => {
     const { setEducationInfo } = useEducationInfoProvider();

@@ -1,6 +1,6 @@
 import { useFormState, useFormStep } from '@/hooks';
 import { ChangeEventHandler, useState } from 'react';
-import { useFormTypeProvider } from './useFormTypeProvider';
+import { useChoiceFormTypeProvider, useFormTypeProvider } from './전형선택.provider';
 
 const FormType = {
     일반전형: 'REGULAR',
@@ -23,12 +23,7 @@ const FormType = {
 
 export const useInput = () => {
     const { setFormType } = useFormTypeProvider();
-    const [choiceFormType, setChoiceFormType] = useState({
-        입학전형선택: '',
-        특별전형선택: '',
-        기회균등전형선택: '',
-        사회다양성전형선택: '',
-    });
+    const { setChoiceFormType } = useChoiceFormTypeProvider();
 
     const handleFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
@@ -37,7 +32,7 @@ export const useInput = () => {
         setFormType(FormType[value as keyof typeof FormType]);
     };
 
-    return { choiceFormType, handleFormTypeDataChange };
+    return { handleFormTypeDataChange };
 };
 
 export const useCTAButton = () => {

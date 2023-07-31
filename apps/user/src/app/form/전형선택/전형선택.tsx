@@ -1,12 +1,14 @@
 import { FormLayout } from '@/layouts';
 import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useInput, useCTAButton } from './hooks/전형선택.hooks';
+import { useInput, useCTAButton } from './전형선택.hooks';
 import { FormController } from '@/components/form';
+import { useChoiceFormTypeProvider } from './전형선택.provider';
 import { styled } from 'styled-components';
 
 const 전형선택 = () => {
-    const { choiceFormType, handleFormTypeDataChange } = useInput();
+    const { choiceFormType } = useChoiceFormTypeProvider();
+    const { handleFormTypeDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     return (
