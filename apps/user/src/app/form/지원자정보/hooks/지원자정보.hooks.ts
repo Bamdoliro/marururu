@@ -1,8 +1,7 @@
 import { useFormState, useFormStep } from '@/hooks';
 import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { userInfoAtomState } from './지원자정보.store';
+import { useUserInfoProvider } from './useUserInfoProvider';
 
 export interface UserInfo {
     identificationPictureUri: string;
@@ -13,7 +12,7 @@ export interface UserInfo {
 }
 
 export const useInput = () => {
-    const [userInfo, setUserInfo] = useRecoilState(userInfoAtomState);
+    const { userInfo, setUserInfo } = useUserInfoProvider();
     const [date, setDate] = useState<Date>({
         year: '',
         month: '',
@@ -36,7 +35,7 @@ export const useInput = () => {
 };
 
 export const useCTAButton = () => {
-    const userInfo = useRecoilValue(userInfoAtomState);
+    const { userInfo } = useUserInfoProvider();
     const { form, setForm } = useFormState();
     const { setFormStep } = useFormStep();
 

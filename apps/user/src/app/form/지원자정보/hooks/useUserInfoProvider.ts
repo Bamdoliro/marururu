@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, useRecoilState } from 'recoil';
 
 export interface UserInfo {
     identificationPictureUri: string;
@@ -8,7 +8,7 @@ export interface UserInfo {
     gender: string;
 }
 
-export const userInfoAtomState = atom({
+const userInfoAtomState = atom({
     key: 'user-info',
     default: {
         identificationPictureUri: '',
@@ -18,3 +18,9 @@ export const userInfoAtomState = atom({
         gender: '',
     },
 });
+
+export const useUserInfoProvider = () => {
+    const [userInfo, setUserInfo] = useRecoilState(userInfoAtomState);
+
+    return { userInfo, setUserInfo };
+};
