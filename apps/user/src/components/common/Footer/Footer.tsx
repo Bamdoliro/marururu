@@ -1,12 +1,10 @@
-import { GrayLogoIcon } from '../Icons';
-import { BamdoliroLogoIcon } from '../Icons';
-import { InstagramLogoIcon } from '../Icons';
-import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { Column, Row, Link } from '@maru/ui';
 import { font, color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import ROUTES from '@/constants/routes';
+import Image from 'next/image';
+import styled from 'styled-components';
 
 const Footer = () => {
     const router = useRouter();
@@ -14,7 +12,7 @@ const Footer = () => {
     return (
         <StyledFooter>
             <InfoBox>
-                <GrayLogoIcon />
+                <Image src="/svg/logo_gray.svg" width={107} height={32} alt="logo_gray" />
                 <Column gap="20px">
                     <ContentBox>
                         <p>주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)</p>
@@ -40,8 +38,18 @@ const Footer = () => {
                     </Column>
                 </NavigationBox>
                 <Row gap="16px" alignItems="center">
-                    <InstagramLogoIcon cursor="pointer" />
-                    <BamdoliroLogoIcon cursor="pointer" />
+                    <Image
+                        src="/svg/round_instagram.svg"
+                        width={36}
+                        height={36}
+                        alt="round_instagram"
+                    />
+                    <Image
+                        src="/svg/round_bamdoliro.svg"
+                        width={36}
+                        height={36}
+                        alt="round_bamdoliro"
+                    />
                 </Row>
             </Row>
         </StyledFooter>

@@ -1,5 +1,3 @@
-import { RightArrowIcon } from '../../common/Icons';
-import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { useMainNoticeListQuery } from '@/services/main/queries';
 import NoticeItem from './NoticeItem/NoticeItem';
@@ -7,6 +5,8 @@ import ROUTES from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { IconArrowRight } from '@maru/icon';
+import styled from 'styled-components';
 
 const Notice = () => {
     const router = useRouter();
@@ -16,7 +16,7 @@ const Notice = () => {
         <StyledNotice>
             <Link onClick={() => router.push(ROUTES.NOTICE)} gap="8px">
                 <Title>공지사항</Title>
-                <RightArrowIcon color={color.gray900} size={22} />
+                <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
             <NoticeList>
                 {mainNoticeListQuery.data?.map((item) => (

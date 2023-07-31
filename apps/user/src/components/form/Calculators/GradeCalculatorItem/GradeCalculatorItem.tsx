@@ -1,5 +1,4 @@
-import { Td } from '@maru/ui';
-import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
+import { Td, Dropdown } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';

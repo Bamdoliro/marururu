@@ -1,8 +1,8 @@
-import { FaqIcon } from '@/components/common/Icons';
 import { useRouter } from 'next/navigation';
-import { styled } from 'styled-components';
 import ROUTES from '@/constants/routes';
 import { font, color } from '@maru/theme';
+import { IconFaq } from '@maru/icon';
+import { styled } from 'styled-components';
 
 interface PropsType {
     id: number;
@@ -14,7 +14,7 @@ const FaqItem = ({ id, question }: PropsType) => {
 
     return (
         <StyledFaqItem onClick={() => router.push(`${ROUTES.FAQ}/${id}`)}>
-            <FaqIcon color={color.maruDefault} />
+            <IconFaq color={color.maruDefault} width={24} height={24} />
             <Faq>{question}</Faq>
         </StyledFaqItem>
     );
