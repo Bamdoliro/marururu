@@ -4,7 +4,7 @@ interface IconPropsType {
     onClick?: () => void;
     color?: string;
     cursor?: CSSProperties['cursor'];
-    size?: number;
+    size?: string | number;
 }
 
 export default IconPropsType;
