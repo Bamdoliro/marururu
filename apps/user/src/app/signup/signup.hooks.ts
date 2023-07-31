@@ -2,7 +2,7 @@ import { JoinType } from '@/services/auth/api';
 import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, useState } from 'react';
 
-export const useJoin = (joinUserData: JoinType, termsAgree: boolean) => {
+export const useJoinAction = (joinUserData: JoinType, termsAgree: boolean) => {
     const joinUserMutation = useJoinUserMutation(joinUserData);
 
     const handleJoinButtonClick = () => {

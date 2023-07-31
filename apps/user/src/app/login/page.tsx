@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { BaseLayout } from '@/layouts';
-import { useCTAButton, useInput, useLogin } from './login.hooks';
+import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
@@ -12,7 +12,7 @@ import styled from 'styled-components';
 const LoginPage = () => {
     const { handleGoSingUpPageButtonClick } = useCTAButton();
     const { loginUserData, handleLoginUserDataChange } = useInput();
-    const { handleLoginButtonClick } = useLogin(loginUserData);
+    const { handleLoginButtonClick } = useLoginAction(loginUserData);
 
     return (
         <BaseLayout backgroundColor={color.gray100}>
