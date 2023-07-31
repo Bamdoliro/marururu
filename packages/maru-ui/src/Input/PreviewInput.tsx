@@ -2,10 +2,9 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { InputPropsType } from './Input.type';
 import { useState } from 'react';
-import styled from 'styled-components';
-import VisibleEyeIcon from '../../Icons/VisibleEye';
-import InvisibleEyeIcon from '../../Icons/InvisibleEye';
 import Message from './Message';
+import { IconInvisibleEye, IconVisibleEye } from '@maru/icon';
+import styled from 'styled-components';
 
 const PreviewInput = ({
     width = '320px',
@@ -32,9 +31,9 @@ const PreviewInput = ({
                     value={value}
                 />
                 {isPreview ? (
-                    <VisibleEyeIcon cursor="pointer" onClick={togglePreview} />
+                    <IconVisibleEye cursor="pointer" onClick={togglePreview} />
                 ) : (
-                    <InvisibleEyeIcon cursor="pointer" onClick={togglePreview} />
+                    <IconInvisibleEye cursor="pointer" onClick={togglePreview} />
                 )}
             </StyledPreviewInput>
             {msg && <Message>{msg}</Message>}

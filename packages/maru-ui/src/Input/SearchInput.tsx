@@ -1,7 +1,7 @@
+import { IconSearch } from '@maru/icon';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import SearchIcon from '../../Icons/Search';
 import { InputPropsType } from './Input.type';
 
 const SearchInput = ({
@@ -14,7 +14,7 @@ const SearchInput = ({
 }: InputPropsType) => {
     return (
         <StyledSearchInput>
-            <SearchIcon cursor="pointer" />
+            <IconSearch cursor="pointer" />
             <Input
                 style={{ width }}
                 onChange={onChange}

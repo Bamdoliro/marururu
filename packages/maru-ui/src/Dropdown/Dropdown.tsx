@@ -1,8 +1,7 @@
 import { CSSProperties, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import TopArrowIcon from '../../Icons/TopArrow';
-import BottomArrowIcon from '../../Icons/BottomArrow';
+import { IconArrowTop, IconArrowBottom } from '@maru/icon';
 import styled, { css } from 'styled-components';
 import { useOutsideClick } from '@maru/hooks';
 
@@ -44,7 +43,7 @@ const Dropdown = ({
             {label && <Label>{label}</Label>}
             <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpen={isOpen}>
                 <SelectedItemText isSelected={!!value}>{value || placeholder}</SelectedItemText>
-                {isOpen ? <TopArrowIcon /> : <BottomArrowIcon />}
+                {isOpen ? <IconArrowTop /> : <IconArrowBottom />}
             </StyledDropdown>
             <DropdownListBox ref={dropdownRef} isOpen={isOpen}>
                 <DropdownList>

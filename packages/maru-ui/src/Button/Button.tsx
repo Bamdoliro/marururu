@@ -2,6 +2,7 @@ import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import { ButtonIconType, ButtonOptionType, ButtonSizeType } from './Button.type';
 import { getButtonSize, getButtonStyle, getButtonPadding } from './Button.style';
 import { flex } from '@maru/utils';
+import { IconAdd, IconShortcuts } from '@maru/icon';
 import styled from 'styled-components';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
