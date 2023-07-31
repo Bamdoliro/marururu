@@ -1,17 +1,13 @@
 import { FormLayout } from '@/layouts';
 import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useInput } from './전형선택.hooks';
+import { useInput, useCTAButton } from './hooks/전형선택.hooks';
 import { FormController } from '@/components/form';
 import { styled } from 'styled-components';
 
-interface PropsType {
-    onPrevious: () => void;
-    onNext: () => void;
-}
-
-const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
-    const { choiceFormType, handleChoiceFormTypeDataChange } = useInput();
+const 전형선택 = () => {
+    const { choiceFormType, handleFormTypeDataChange } = useInput();
+    const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     return (
         <FormLayout title="전형 선택">
@@ -20,7 +16,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                     label="입학 전형 선택"
                     name="입학전형선택"
                     list={['일반전형', '특별전형']}
-                    onChange={handleChoiceFormTypeDataChange}
+                    onChange={handleFormTypeDataChange}
                 />
                 {choiceFormType.입학전형선택 === '특별전형' && (
                     <RadioGroup
@@ -32,7 +28,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '사회다양성전형',
                             '특례입학대상자전형',
                         ]}
-                        onChange={handleChoiceFormTypeDataChange}
+                        onChange={handleFormTypeDataChange}
                     />
                 )}
                 {choiceFormType.특별전형선택 === '기회균등전형' && (
@@ -46,7 +42,7 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '한부모가정',
                             '북한이탈주민',
                         ]}
-                        onChange={handleChoiceFormTypeDataChange}
+                        onChange={handleFormTypeDataChange}
                     />
                 )}
                 {choiceFormType.특별전형선택 === '사회다양성전형' && (
@@ -60,11 +56,15 @@ const 전형선택 = ({ onPrevious, onNext }: PropsType) => {
                             '한부모가정',
                             '북한이탈주민',
                         ]}
-                        onChange={handleChoiceFormTypeDataChange}
+                        onChange={handleFormTypeDataChange}
                     />
                 )}
             </Styled전형선택>
-            <FormController onPrevious={onPrevious} onNext={onNext} step="전형 선택" />
+            <FormController
+                onPrevious={handlePreviousButtonClick}
+                onNext={handleNextButtonClick}
+                step="전형 선택"
+            />
         </FormLayout>
     );
 };

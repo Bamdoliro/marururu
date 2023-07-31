@@ -3,14 +3,6 @@ import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { useUserInfoProvider } from './useUserInfoProvider';
 
-export interface UserInfo {
-    identificationPictureUri: string;
-    name: string;
-    phoneNumber: string;
-    birthday: string;
-    gender: string;
-}
-
 export const useInput = () => {
     const { setUserInfo } = useUserInfoProvider();
     const [date, setDate] = useState<Date>({

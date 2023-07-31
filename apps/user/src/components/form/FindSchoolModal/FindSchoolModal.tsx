@@ -4,7 +4,7 @@ import { useDebounceInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import { useState, Dispatch, SetStateAction } from 'react';
-import { EducationInfo } from '../../../app/form/출신학교및학력/출신학교및학력.hooks';
+import { EducationInfo } from '@/app/form/출신학교및학력/hooks/useEducationInfoProvider';
 import { IconCheck, IconClose } from '@maru/icon';
 import { css, styled } from 'styled-components';
 

@@ -1,4 +1,6 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { useFormState, useFormStep } from '@/hooks';
+import { ChangeEventHandler, useState } from 'react';
+import { useFormTypeProvider } from './useFormTypeProvider';
 
 const FormType = {
     일반전형: 'REGULAR',
@@ -14,14 +16,13 @@ const FormType = {
     소년소녀가장: 'TEEN_HOUSEHOLDER',
     다자녀가정자녀: 'MULTI_CHILDREN',
     농어촌지역출신자: 'FARMING_AND_FISHING',
-
     // NONE을 감지하면 alert를 띄웁니다.
     기회균등전형: 'NONE',
     사회다양성전형: 'NONE',
 } as const;
 
 export const useInput = () => {
-    const [formType, setFormType] = useState('');
+    const { setFormType } = useFormTypeProvider();
     const [choiceFormType, setChoiceFormType] = useState({
         입학전형선택: '',
         특별전형선택: '',
@@ -29,12 +30,29 @@ export const useInput = () => {
         사회다양성전형선택: '',
     });
 
-    const handleChoiceFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
 
         setChoiceFormType((prev) => ({ ...prev, [name]: value }));
         setFormType(FormType[value as keyof typeof FormType]);
     };
 
-    return { choiceFormType, handleChoiceFormTypeDataChange };
+    return { choiceFormType, handleFormTypeDataChange };
+};
+
+export const useCTAButton = () => {
+    const { formType } = useFormTypeProvider();
+    const { setForm } = useFormState();
+    const { setFormStep } = useFormStep();
+
+    const handleNextButtonClick = () => {
+        setForm((prev) => ({ ...prev, type: formType }));
+        setFormStep('성적 입력');
+    };
+
+    const handlePreviousButtonClick = () => {
+        setFormStep('출신학교 및 학력');
+    };
+
+    return { handleNextButtonClick, handlePreviousButtonClick };
 };

@@ -9,7 +9,7 @@ import {
     useRef,
     DragEvent,
 } from 'react';
-import { UserInfo } from '../../../app/form/지원자정보/hooks/지원자정보.hooks';
+import { UserInfo } from '@/app/form/지원자정보/hooks/useUserInfoProvider';
 import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
 import styled from 'styled-components';
 
