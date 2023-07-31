@@ -1,5 +1,4 @@
-import { Date } from '@/utils/formatDate';
-import formatDate from '@/utils/formatDate';
+import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 
 export interface UserInfo {

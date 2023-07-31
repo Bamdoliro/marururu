@@ -1,8 +1,20 @@
 import { color, font } from '@maru/theme';
 import { NumberInput, Row, Td, Th } from '@maru/ui';
+import { ChangeEventHandler, useState } from 'react';
 import { styled } from 'styled-components';
 
 const VolunteerCalculator = () => {
+    const [volunteerInfo, setVolunteerInfo] = useState({
+        volunteerTime1: 0,
+        volunteerTime2: 0,
+        volunteerTime3: 0,
+    });
+
+    const handleVolunteerInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { name, value } = e.target;
+        setVolunteerInfo({ ...volunteerInfo, [name]: +value });
+    };
+
     return (
         <Table>
             <Row>
@@ -18,7 +30,7 @@ const VolunteerCalculator = () => {
                     1학년
                 </Td>
                 <Td width={654} height={56}>
-                    <NumberInput />
+                    <NumberInput name="volunteerTime1" onChange={handleVolunteerInfoDataChange} />
                     <Hour>시간</Hour>
                 </Td>
             </Row>
@@ -27,7 +39,7 @@ const VolunteerCalculator = () => {
                     1학년
                 </Td>
                 <Td width={654} height={56}>
-                    <NumberInput />
+                    <NumberInput name="volunteerTime2" onChange={handleVolunteerInfoDataChange} />
                     <Hour>시간</Hour>
                 </Td>
             </Row>
@@ -36,7 +48,7 @@ const VolunteerCalculator = () => {
                     1학년
                 </Td>
                 <Td width={654} height={56}>
-                    <NumberInput />
+                    <NumberInput name="volunteerTime3" onChange={handleVolunteerInfoDataChange} />
                     <Hour>시간</Hour>
                 </Td>
             </Row>
