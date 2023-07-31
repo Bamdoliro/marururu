@@ -3,10 +3,9 @@ import { School } from '@/types/form';
 import { useDebounceInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
-import Check from '@maru/ui/Icons/Check';
-import Close from '@maru/ui/Icons/Close';
 import { useState, Dispatch, SetStateAction } from 'react';
 import { EducationInfo } from '../../../app/form/출신학교및학력/출신학교및학력.hooks';
+import { IconCheck, IconClose } from '@maru/icon';
 import { css, styled } from 'styled-components';
 
 interface PropsType {
@@ -48,7 +47,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                     <Column gap={16}>
                         <Row justifyContent="space-between">
                             <Title>학교 검색</Title>
-                            <Close cursor="pointer" onClick={closeSchoolModal} />
+                            <IconClose cursor="pointer" onClick={closeSchoolModal} />
                         </Row>
                         <SearchInput
                             value={schoolSearchQuery}
@@ -63,7 +62,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                                 selected={selectedSchool.code === code}
                                 onClick={() => setSelectedSchool({ name, location, code })}>
                                 <SchoolName>
-                                    {selectedSchool.code === code && <Check />}
+                                    {selectedSchool.code === code && <IconCheck />}
                                     {name}
                                 </SchoolName>
                                 <SchoolRegion>{location}</SchoolRegion>

@@ -1,6 +1,5 @@
 import { color, font } from '@maru/theme';
-import { Button, Td } from '@maru/ui';
-import Dropdown from '@maru/ui/components/Dropdown/Dropdown';
+import { Button, Td, Dropdown } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { Subject } from '@/types/form';

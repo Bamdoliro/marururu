@@ -1,4 +1,4 @@
-import { IconRoundBamdoliro, IconRoundGray, IconRoundInstagram } from '@maru/icon';
+import { IconRoundBamdoliro, IconMaruGrayLogo, IconRoundInstagram } from '@maru/icon';
 import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { Column, Row, Link } from '@maru/ui';
@@ -12,7 +12,7 @@ const Footer = () => {
     return (
         <StyledFooter>
             <InfoBox>
-                <IconRoundGray width={36} height={36} />
+                <IconMaruGrayLogo width={36} height={36} />
                 <Column gap="20px">
                     <ContentBox>
                         <p>주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)</p>
