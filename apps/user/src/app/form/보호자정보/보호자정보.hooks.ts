@@ -1,3 +1,4 @@
+import { useFormState } from '@/hooks';
 import { ChangeEventHandler, useState } from 'react';
 
 export interface ParentInfo {
@@ -8,7 +9,7 @@ export interface ParentInfo {
     detailAddress: string;
 }
 
-const useInput = () => {
+export const useInput = () => {
     const [parentInfo, setParentInfo] = useState<ParentInfo>({
         name: '',
         phoneNumber: '',
@@ -25,4 +26,13 @@ const useInput = () => {
     return { parentInfo, setParentInfo, handleParentInfoDataChange };
 };
 
-export default useInput;
+export const useNextButton = (parentInfo: ParentInfo) => {
+    const { form, setForm } = useFormState();
+
+    const handleNextButtonClick = () => {
+        setForm({ ...form, parent: parentInfo });
+        console.log(form);
+    };
+
+    return { handleNextButtonClick };
+};

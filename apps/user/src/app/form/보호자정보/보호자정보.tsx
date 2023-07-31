@@ -1,7 +1,7 @@
 import { FormLayout } from '@/layouts';
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useState } from 'react';
-import useInput from './보호자정보.hooks';
+import { useInput, useNextButton } from './보호자정보.hooks';
 import { FormController, FindAddressModal } from '@/components/form';
 import styled from 'styled-components';
 import useModal from '@maru/hooks/src/useModal';
@@ -14,6 +14,7 @@ interface PropsType {
 const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
     const { isOpen, openModal, closeModal } = useModal();
     const { parentInfo, setParentInfo, handleParentInfoDataChange } = useInput();
+    const { handleNextButtonClick } = useNextButton(parentInfo);
 
     return (
         <FormLayout title="보호자 정보">
@@ -50,7 +51,11 @@ const 보호자정보 = ({ onPrevious, onNext }: PropsType) => {
                     />
                 </Column>
             </Styled보호자정보>
-            <FormController onPrevious={onPrevious} onNext={onNext} step="보호자 정보" />
+            <FormController
+                onPrevious={onPrevious}
+                onNext={handleNextButtonClick}
+                step="보호자 정보"
+            />
             {isOpen && <FindAddressModal closeModal={closeModal} setParentInfo={setParentInfo} />}
         </FormLayout>
     );

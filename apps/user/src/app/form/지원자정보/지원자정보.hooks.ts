@@ -1,5 +1,8 @@
+import { useFormState, useFormStep } from '@/hooks';
 import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userInfoAtomState } from './지원자정보.store';
 
 export interface UserInfo {
     identificationPictureUri: string;
@@ -10,18 +13,11 @@ export interface UserInfo {
 }
 
 export const useInput = () => {
+    const [userInfo, setUserInfo] = useRecoilState(userInfoAtomState);
     const [date, setDate] = useState<Date>({
         year: '',
         month: '',
         day: '',
-    });
-
-    const [userInfo, setUserInfo] = useState<UserInfo>({
-        identificationPictureUri: '',
-        name: '',
-        phoneNumber: '',
-        birthday: '',
-        gender: '',
     });
 
     const handleUserInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -36,5 +32,18 @@ export const useInput = () => {
         }));
     }, [date]);
 
-    return { userInfo, setUserInfo, handleUserInfoDataChange, date, setDate };
+    return { handleUserInfoDataChange, date, setDate };
+};
+
+export const useCTAButton = () => {
+    const userInfo = useRecoilValue(userInfoAtomState);
+    const { form, setForm } = useFormState();
+    const { setFormStep } = useFormStep();
+
+    const handleNextButtonClick = () => {
+        setForm({ ...form, application: userInfo });
+        setFormStep('보호자 정보');
+    };
+
+    return { handleNextButtonClick };
 };

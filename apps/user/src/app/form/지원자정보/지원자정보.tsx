@@ -1,15 +1,15 @@
 import { FormLayout } from '@/layouts';
 import { Column, Input, RadioGroup, Row, Dropdown } from '@maru/ui';
-import { useInput } from './지원자정보.hooks';
+import { useInput, useCTAButton } from './지원자정보.hooks';
 import { ProfileUpload, FormController } from '@/components/form';
+import { useRecoilState } from 'recoil';
+import { userInfoAtomState } from './지원자정보.store';
 import styled from 'styled-components';
 
-interface PropsType {
-    onNext: () => void;
-}
-
-const 지원자정보 = ({ onNext }: PropsType) => {
-    const { userInfo, setUserInfo, handleUserInfoDataChange, date, setDate } = useInput();
+const 지원자정보 = () => {
+    const [userInfo, setUserInfo] = useRecoilState(userInfoAtomState);
+    const { handleUserInfoDataChange, date, setDate } = useInput();
+    const { handleNextButtonClick } = useCTAButton();
 
     return (
         <FormLayout title="지원자 정보">
@@ -71,7 +71,7 @@ const 지원자정보 = ({ onNext }: PropsType) => {
                     </Column>
                 </Row>
             </Styled지원자정보>
-            <FormController onNext={onNext} step="지원자 정보" />
+            <FormController onNext={handleNextButtonClick} step="지원자 정보" />
         </FormLayout>
     );
 };

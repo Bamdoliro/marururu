@@ -7,7 +7,7 @@ const FormPage = () => {
     const { formStep, setFormStep } = useFormStep();
     return (
         <div>
-            {formStep === '지원자 정보' && <지원자정보 onNext={() => setFormStep('보호자 정보')} />}
+            {formStep === '지원자 정보' && <지원자정보 />}
             {formStep === '보호자 정보' && (
                 <보호자정보
                     onPrevious={() => setFormStep('지원자 정보')}
