@@ -23,3 +23,22 @@ export interface School {
     location: string;
     code: string;
 }
+
+export interface Attendance {
+    absenceCount: number;
+    latenessCount: number;
+    earlyLeaveCount: number;
+    classAbsenceCount: number;
+}
+
+export interface AttendanceInfo {
+    attendance1: Attendance;
+    attendance2: Attendance;
+    attendance3: Attendance;
+}
+
+export interface VolunteerInfo {
+    volunteerTime1: number;
+    volunteerTime2: number;
+    volunteerTime3: number;
+}

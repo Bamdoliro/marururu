@@ -12,15 +12,23 @@ import {
     CertificateCalculator,
 } from '@/components/form';
 import { styled } from 'styled-components';
-
-interface PropsType {
-    onPrevious: () => void;
-    onNext: () => void;
-}
+import {
+    useAttendanceInfoProvider,
+    useCertificateListInfoProvider,
+    useStudentSubjectListProvider,
+    useVolunteerInfoProvider,
+} from './성적입력.provider';
+import { useCTAButton } from './성적입력.hooks';
 
 const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
 
-const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
+const 성적입력 = () => {
+    const { subjectList, setSubjectList, newSubjectList, setNewSubjectList } =
+        useStudentSubjectListProvider();
+    const { attendanceInfo, setAttendanceInfo } = useAttendanceInfoProvider();
+    const { volunteerInfo, setVolunteerInfo } = useVolunteerInfoProvider();
+    const { certificateListInfo, setCertificateListInfo } = useCertificateListInfoProvider();
+    const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
     const [fieldStep, setFieldStep] = useState('성적 입력');
 
     return (
@@ -50,7 +58,12 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
                         <br />
                         *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
                     </Desc>
-                    <GradeCalculator />
+                    <GradeCalculator
+                        subjectList={subjectList}
+                        setSubjectList={setSubjectList}
+                        newSubjectList={newSubjectList}
+                        setNewSubjectList={setNewSubjectList}
+                    />
                 </>
             )}
             {fieldStep === '출결상황' && (
@@ -59,7 +72,10 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
                         *2023.09.30까지의 출결상황을 기재해주세요. 졸업생은 졸업일 기준으로
                         기재해주세요.
                     </Desc>
-                    <AttendanceCalculator />
+                    <AttendanceCalculator
+                        attendanceInfo={attendanceInfo}
+                        setAttendanceInfo={setAttendanceInfo}
+                    />
                 </>
             )}
             {fieldStep === '봉사시간' && (
@@ -68,7 +84,10 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
                         *2023.09.30까지의 봉사시간을 기재해주세요. 졸업생은 졸업일 기준으로
                         기재해주세요.
                     </Desc>
-                    <VolunteerCalculator />
+                    <VolunteerCalculator
+                        volunteerInfo={volunteerInfo}
+                        setVolunteerInfo={setVolunteerInfo}
+                    />
                 </>
             )}
             {fieldStep === '자격증' && (
@@ -76,10 +95,17 @@ const 성적입력 = ({ onPrevious, onNext }: PropsType) => {
                     <Desc style={{ marginBottom: 16 }}>
                         *자격증을 중복 소지하고 있을 경우, 최고 수준의 자격증 1개만 인정함
                     </Desc>
-                    <CertificateCalculator />
+                    <CertificateCalculator
+                        certificateListInfo={certificateListInfo}
+                        setCertificateListInfo={setCertificateListInfo}
+                    />
                 </>
             )}
-            <FormController onPrevious={onPrevious} onNext={onNext} step="성적 입력" />
+            <FormController
+                onPrevious={handlePreviousButtonClick}
+                onNext={handleNextButtonClick}
+                step="성적 입력"
+            />
         </FormLayout>
     );
 };

@@ -1,16 +1,21 @@
 import { CheckBox, Column, Row, Td, Th } from '@maru/ui';
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 import { styled } from 'styled-components';
 
-const CertificateCalculator = () => {
-    const [certificatesInfo, setCertificatesInfo] = useState<string[]>([]);
+interface PropsType {
+    certificateListInfo: string[];
+    setCertificateListInfo: Dispatch<SetStateAction<string[]>>;
+}
 
-    const handleCertificatesInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: PropsType) => {
+    const handleCertificateListInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { checked, value } = e.target;
         if (checked) {
-            setCertificatesInfo([...certificatesInfo, value]);
+            setCertificateListInfo([...certificateListInfo, value]);
         } else {
-            setCertificatesInfo(certificatesInfo.filter((certificate) => certificate !== value));
+            setCertificateListInfo(
+                certificateListInfo.filter((certificate) => certificate !== value),
+            );
         }
     };
 
@@ -44,7 +49,7 @@ const CertificateCalculator = () => {
                     <Td width={80} height={56}>
                         <CheckBox
                             value="정보처리기능사, 정보기기운용기능사, 전자계산기기능사"
-                            onChange={handleCertificatesInfoDataChange}
+                            onChange={handleCertificateListInfoDataChange}
                         />
                     </Td>
                 </Row>
@@ -63,7 +68,7 @@ const CertificateCalculator = () => {
                             <Td width={80} height={56}>
                                 <CheckBox
                                     value="컴퓨터활용능력 1급"
-                                    onChange={handleCertificatesInfoDataChange}
+                                    onChange={handleCertificateListInfoDataChange}
                                 />
                             </Td>
                         </Row>
@@ -74,7 +79,7 @@ const CertificateCalculator = () => {
                             <Td width={80} height={56}>
                                 <CheckBox
                                     value="컴퓨터활용능력 2급"
-                                    onChange={handleCertificatesInfoDataChange}
+                                    onChange={handleCertificateListInfoDataChange}
                                 />
                             </Td>
                         </Row>
@@ -85,7 +90,7 @@ const CertificateCalculator = () => {
                             <Td width={80} height={56}>
                                 <CheckBox
                                     value="컴퓨터활용능력 3급"
-                                    onChange={handleCertificatesInfoDataChange}
+                                    onChange={handleCertificateListInfoDataChange}
                                 />
                             </Td>
                         </Row>

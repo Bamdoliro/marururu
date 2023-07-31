@@ -1,15 +1,15 @@
+import { VolunteerInfo } from '@/types/form';
 import { color, font } from '@maru/theme';
 import { NumberInput, Row, Td, Th } from '@maru/ui';
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 import { styled } from 'styled-components';
 
-const VolunteerCalculator = () => {
-    const [volunteerInfo, setVolunteerInfo] = useState({
-        volunteerTime1: 0,
-        volunteerTime2: 0,
-        volunteerTime3: 0,
-    });
+interface PropsType {
+    volunteerInfo: VolunteerInfo;
+    setVolunteerInfo: Dispatch<SetStateAction<VolunteerInfo>>;
+}
 
+const VolunteerCalculator = ({ volunteerInfo, setVolunteerInfo }: PropsType) => {
     const handleVolunteerInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setVolunteerInfo({ ...volunteerInfo, [name]: +value });

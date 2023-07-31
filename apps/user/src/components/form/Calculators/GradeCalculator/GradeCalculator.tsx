@@ -4,14 +4,23 @@ import { flex } from '@maru/utils';
 import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeader';
 import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
-import { subjectListInitialData } from '@/constants/form';
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 import { Subject } from '@/types/form';
-import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-const GradeCalculator = () => {
-    const [subjectList, setSubjectList] = useState<Subject[]>(subjectListInitialData);
-    const [newSubjectList, setNewSubjectList] = useState<Subject[]>([]);
+interface PropsType {
+    subjectList: Subject[];
+    setSubjectList: Dispatch<SetStateAction<Subject[]>>;
+    newSubjectList: Subject[];
+    setNewSubjectList: Dispatch<SetStateAction<Subject[]>>;
+}
+
+const GradeCalculator = ({
+    subjectList,
+    setSubjectList,
+    newSubjectList,
+    setNewSubjectList,
+}: PropsType) => {
     const footerRef = useRef<HTMLDivElement>(null);
 
     const newSubjectIdRef = useRef(0);
@@ -29,12 +38,6 @@ const GradeCalculator = () => {
     useEffect(() => {
         if (newSubjectList.length) footerRef.current?.scrollIntoView();
     }, [newSubjectList]);
-
-    // newSubjectList랑 subjectList를 id 요소를 빼고 합칩니다.
-    const studentSubjectList = [
-        ...subjectList.map(({ id, ...rest }) => rest),
-        ...newSubjectList.map(({ id, ...rest }) => rest),
-    ];
 
     return (
         <StyledGradeCalculator>

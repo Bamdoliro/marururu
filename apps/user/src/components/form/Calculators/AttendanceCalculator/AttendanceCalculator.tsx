@@ -1,32 +1,16 @@
+import { AttendanceInfo } from '@/types/form';
 import { NumberInput, Row, Td, Th } from '@maru/ui';
-import { ChangeEventHandler, useState } from 'react';
+import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 import { styled } from 'styled-components';
 
-const AttendanceCalculator = () => {
-    const [attendanceInfo, setAttendanceInfo] = useState({
-        attendance1: {
-            absenceCount: 0,
-            latenessCount: 0,
-            earlyLeaveCount: 0,
-            classAbsenceCount: 0,
-        },
-        attendance2: {
-            absenceCount: 0,
-            latenessCount: 0,
-            earlyLeaveCount: 0,
-            classAbsenceCount: 0,
-        },
-        attendance3: {
-            absenceCount: 0,
-            latenessCount: 0,
-            earlyLeaveCount: 0,
-            classAbsenceCount: 0,
-        },
-    });
+interface PropsType {
+    attendanceInfo: AttendanceInfo;
+    setAttendanceInfo: Dispatch<SetStateAction<AttendanceInfo>>;
+}
 
+const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) => {
     const handleAttendanceInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
-
         const [attendanceName, countName] = name.split('-');
 
         setAttendanceInfo({
