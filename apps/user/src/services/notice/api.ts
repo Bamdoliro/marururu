@@ -1,7 +1,11 @@
-import axios from "axios";
+import { maru } from '@/apis/instance/instance';
 
-// 테스트 공지사항 리스트
 export const noticeList = async () => {
-  const { data } = await axios.get("/notice/list");
-  return data;
+    const { data } = await maru.get('/notice');
+    return data.dataList;
+};
+
+export const noticeDetail = async (id: number) => {
+    const { data } = await maru.get(`/notice/${id}`);
+    return data.data;
 };
