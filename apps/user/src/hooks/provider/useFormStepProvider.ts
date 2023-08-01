@@ -1,4 +1,6 @@
+import { useFormProvider } from '@/app/form/form.provider';
 import { FormStep } from '@/types/form';
+import { useEffect } from 'react';
 import { useRecoilState, atom } from 'recoil';
 
 const formStepAtomState = atom<FormStep>({
@@ -8,6 +10,11 @@ const formStepAtomState = atom<FormStep>({
 
 export const useFormStepProvider = () => {
     const [formStep, setFormStep] = useRecoilState(formStepAtomState);
+    const { form } = useFormProvider();
+
+    useEffect(() => {
+        console.log(form);
+    }, [formStep]);
 
     return { formStep, setFormStep };
 };

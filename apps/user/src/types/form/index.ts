@@ -7,7 +7,7 @@ export type FormStep =
     | '자기소개서';
 
 export interface Form {
-    application: UserInfo;
+    applicant: UserInfo;
     parent: ParentInfo;
     education: EducationInfo;
     grade: {

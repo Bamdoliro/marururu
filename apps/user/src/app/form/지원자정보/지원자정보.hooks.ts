@@ -33,7 +33,7 @@ export const useCTAButton = () => {
     const { setFormStep } = useFormStepProvider();
 
     const handleNextButtonClick = () => {
-        setForm((prev) => ({ ...prev, application: userInfo }));
+        setForm((prev) => ({ ...prev, applicant: userInfo }));
         setFormStep('보호자 정보');
     };
 

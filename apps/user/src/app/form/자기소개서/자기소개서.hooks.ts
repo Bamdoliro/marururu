@@ -18,6 +18,8 @@ export const useFormSubmitAction = (
                 statementOfPurpose: debouncedStatementOfPurpose,
             },
         }));
+
+        console.log(form);
         submitDraftFormMutation.mutate();
     };
 

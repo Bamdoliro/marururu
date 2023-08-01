@@ -4,7 +4,7 @@ import { useRecoilState, atom } from 'recoil';
 const formDataAtomState = atom<Form>({
     key: 'form-data',
     default: {
-        application: {} as UserInfo,
+        applicant: {} as UserInfo,
         parent: {} as ParentInfo,
         education: {} as EducationInfo,
         grade: {
