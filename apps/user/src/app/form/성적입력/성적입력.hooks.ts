@@ -24,10 +24,12 @@ export const useCTAButton = () => {
 
         setForm((prev) => ({
             ...prev,
-            grade: { subjectList: studentSubjectList },
-            attendanceInfo,
-            volunteerInfo,
-            certificateListInfo,
+            grade: {
+                subjectList: studentSubjectList,
+                attendanceInfo,
+                volunteerInfo,
+                certificateListInfo,
+            },
         }));
         setFormStep('자기소개서');
     };

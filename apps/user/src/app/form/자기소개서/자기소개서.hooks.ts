@@ -8,15 +8,14 @@ export const useFormSubmitAction = (
 ) => {
     const { form, setForm } = useFormProvider();
 
-    setForm((prev) => ({
-        ...prev,
-        document: {
-            coverLetter: debouncedCoverLetter,
-            statementOfPurpose: debouncedStatementOfPurpose,
-        },
-    }));
-
     const handleFormSubmitButtonClick = () => {
+        setForm((prev) => ({
+            ...prev,
+            document: {
+                coverLetter: debouncedCoverLetter,
+                statementOfPurpose: debouncedStatementOfPurpose,
+            },
+        }));
         console.log(form);
         alert('완료!');
     };
