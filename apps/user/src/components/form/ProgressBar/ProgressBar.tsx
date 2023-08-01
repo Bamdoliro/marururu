@@ -1,14 +1,24 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
+import { FormStep } from '@/types/form';
 import styled from 'styled-components';
 
-const PROGRESS_BAR_DATA = [
+const PROGRESS_BAR_DISPLAY_DATA = [
     '지원자 정보',
     '보호자 정보',
     '출신학교 및 학력',
     '전형 선택',
     '성적 입력',
+    '자기소개서',
+] as const;
+
+const PROGRESS_BAR_DATA = [
+    '지원자정보',
+    '보호자정보',
+    '출신학교및학력',
+    '전형선택',
+    '성적입력',
     '자기소개서',
 ] as const;
 
@@ -21,7 +31,7 @@ const ProgressBar = () => {
 
     return (
         <StyledProgressBar>
-            {PROGRESS_BAR_DATA.map((item, index) => (
+            {PROGRESS_BAR_DISPLAY_DATA.map((item, index) => (
                 <Circle
                     key={`progress ${index}`}
                     name={item}
