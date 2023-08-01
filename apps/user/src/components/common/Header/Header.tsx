@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { Button, Row } from '@maru/ui';
-import Profile from './Profile';
+import Profile from './Profile/Profile';
 import ROUTES from '@/constants/routes';
 import TOKEN from '@/constants/token';
 import Image from 'next/image';

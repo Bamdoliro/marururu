@@ -8,7 +8,7 @@ import { flex } from '@maru/utils';
 import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput } from '@maru/ui';
 import { useTimer } from '@maru/hooks';
 import styled from 'styled-components';
-import { useInput, useRequestEmail, useJoin } from './signup.hooks';
+import { useInput, useRequestEmail, useJoinAction } from './signup.hooks';
 import { useState } from 'react';
 
 const SignUpPage = () => {
@@ -16,7 +16,7 @@ const SignUpPage = () => {
     const { requestEmailEnabled, startTimer, timerTime, setTimerTime } = useTimer();
     const { joinUserData, handleJoinUserDataChange } = useInput();
     const { handleRequestEmailButtonClick } = useRequestEmail(joinUserData.email);
-    const { handleJoinButtonClick } = useJoin(joinUserData, termsAgree);
+    const { handleJoinButtonClick } = useJoinAction(joinUserData, termsAgree);
 
     return (
         <AppLayout header={true} footer={true}>

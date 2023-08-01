@@ -1,34 +1,32 @@
-import { ChangeEventHandler, useState } from 'react';
+import { useFormState } from '../form.state';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { ChangeEventHandler } from 'react';
+import { useEducationInfoState } from './출신학교및학력.state';
 
-export interface EducationInfo {
-    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION' | '';
-    graduationYear: string;
-    schoolName: string;
-    schoolLocation: string;
-    schoolCode: string;
-    teacherName: string;
-    teacherPhoneNumber: string;
-    teacherMobilePhoneNumber: string;
-}
-
-const useInput = () => {
-    const [educationInfo, setEducationInfo] = useState<EducationInfo>({
-        graduationType: '',
-        graduationYear: '',
-        schoolName: '',
-        schoolLocation: '',
-        schoolCode: '',
-        teacherName: '',
-        teacherPhoneNumber: '',
-        teacherMobilePhoneNumber: '',
-    });
+export const useInput = () => {
+    const { setEducationInfo } = useEducationInfoState();
 
     const handleEducationInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         setEducationInfo((prev) => ({ ...prev, [name]: value }));
     };
 
-    return { educationInfo, setEducationInfo, handleEducationInfoDataChange };
+    return { handleEducationInfoDataChange };
 };
 
-export default useInput;
+export const useCTAButton = () => {
+    const { educationInfo } = useEducationInfoState();
+    const { setFormStep } = useFormStepState();
+    const { setForm } = useFormState();
+
+    const handleNextButtonClick = () => {
+        setForm((prev) => ({ ...prev, education: educationInfo }));
+        setFormStep('전형선택');
+    };
+
+    const handlePreviousButtonClick = () => {
+        setFormStep('보호자정보');
+    };
+
+    return { handleNextButtonClick, handlePreviousButtonClick };
+};

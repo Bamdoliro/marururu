@@ -2,7 +2,7 @@ import { useOutsideClick } from '@maru/hooks';
 import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import DaumPostcode, { Address } from 'react-daum-postcode';
-import { ParentInfo } from '../../../app/form/보호자정보/보호자정보.hooks';
+import { ParentInfo } from '@/types/form';
 import styled from 'styled-components';
 
 interface PropsType {

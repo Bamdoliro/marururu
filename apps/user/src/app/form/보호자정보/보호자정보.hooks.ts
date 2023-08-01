@@ -1,28 +1,32 @@
-import { ChangeEventHandler, useState } from 'react';
+import { useFormState } from '../form.state';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { ChangeEventHandler } from 'react';
+import { useParentInfoState } from './보호자정보.state';
 
-export interface ParentInfo {
-    name: string;
-    phoneNumber: string;
-    zoneCode: string;
-    address: string;
-    detailAddress: string;
-}
-
-const useInput = () => {
-    const [parentInfo, setParentInfo] = useState<ParentInfo>({
-        name: '',
-        phoneNumber: '',
-        zoneCode: '',
-        address: '',
-        detailAddress: '',
-    });
+export const useInput = () => {
+    const { setParentInfo } = useParentInfoState();
 
     const handleParentInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
-        setParentInfo({ ...parentInfo, [name]: value });
+        setParentInfo((prev) => ({ ...prev, [name]: value }));
     };
 
-    return { parentInfo, setParentInfo, handleParentInfoDataChange };
+    return { handleParentInfoDataChange };
 };
 
-export default useInput;
+export const useCTAButton = () => {
+    const { parentInfo } = useParentInfoState();
+    const { setForm } = useFormState();
+    const { setFormStep } = useFormStepState();
+
+    const handleNextButtonClick = () => {
+        setForm((prev) => ({ ...prev, parent: parentInfo }));
+        setFormStep('출신학교및학력');
+    };
+
+    const handlePreviousButtonClick = () => {
+        setFormStep('지원자정보');
+    };
+
+    return { handleNextButtonClick, handlePreviousButtonClick };
+};

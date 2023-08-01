@@ -2,22 +2,24 @@ import { FormLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useInput } from './자기소개서.hooks';
+import { useCTAButton, useFormSubmitAction, useInput } from './자기소개서.hooks';
 import { FormController } from '@/components/form';
 import styled from 'styled-components';
 
-interface PropsType {
-    onPrevious: () => void;
-    onNext: () => void;
-}
-
-const 자기소개서 = ({ onPrevious, onNext }: PropsType) => {
+const 자기소개서 = () => {
     const {
         coverLetter,
+        debouncedCoverLetter,
         handleCoverLetterDataChange,
         statementOfPurpose,
+        debouncedStatementOfPurpose,
         handleStatementOfPurposeDataChange,
     } = useInput();
+    const { handlePreviousButtonClick } = useCTAButton();
+    const { handleFormSubmitButtonClick } = useFormSubmitAction(
+        debouncedCoverLetter,
+        debouncedStatementOfPurpose,
+    );
 
     return (
         <FormLayout title="자기소개서">
@@ -38,7 +40,11 @@ const 자기소개서 = ({ onPrevious, onNext }: PropsType) => {
                     />
                 </Column>
             </Styled자기소개서>
-            <FormController onPrevious={onPrevious} onNext={onNext} step="자기소개서" />
+            <FormController
+                onPrevious={handlePreviousButtonClick}
+                onNext={handleFormSubmitButtonClick}
+                step="자기소개서"
+            />
         </FormLayout>
     );
 };

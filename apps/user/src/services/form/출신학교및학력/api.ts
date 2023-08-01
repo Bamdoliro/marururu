@@ -1,7 +1,7 @@
 import { maru } from '@/apis/instance/instance';
 
-export const getSchoolList = async (name: string) => {
-    const { data } = await maru.get(`/school?q=${name}`);
+export const getSchoolList = async (school: string) => {
+    const { data } = await maru.get(`/school?q=${school}`);
 
-    return data;
+    return data.dataList;
 };

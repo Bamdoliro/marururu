@@ -1,32 +1,20 @@
+import { useFormState } from '../form.state';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
-
-export interface UserInfo {
-    identificationPictureUri: string;
-    name: string;
-    phoneNumber: string;
-    birthday: string;
-    gender: string;
-}
+import { useUserInfoState } from './지원자정보.state';
 
 export const useInput = () => {
+    const { setUserInfo } = useUserInfoState();
     const [date, setDate] = useState<Date>({
         year: '',
         month: '',
         day: '',
     });
 
-    const [userInfo, setUserInfo] = useState<UserInfo>({
-        identificationPictureUri: '',
-        name: '',
-        phoneNumber: '',
-        birthday: '',
-        gender: '',
-    });
-
     const handleUserInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
-        setUserInfo({ ...userInfo, [name]: value });
+        setUserInfo((prev) => ({ ...prev, [name]: value }));
     };
 
     useEffect(() => {
@@ -36,5 +24,18 @@ export const useInput = () => {
         }));
     }, [date]);
 
-    return { userInfo, setUserInfo, handleUserInfoDataChange, date, setDate };
+    return { handleUserInfoDataChange, date, setDate };
+};
+
+export const useCTAButton = () => {
+    const { userInfo } = useUserInfoState();
+    const { setForm } = useFormState();
+    const { setFormStep } = useFormStepState();
+
+    const handleNextButtonClick = () => {
+        setForm((prev) => ({ ...prev, applicant: userInfo }));
+        setFormStep('보호자정보');
+    };
+
+    return { handleNextButtonClick };
 };

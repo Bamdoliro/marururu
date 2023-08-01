@@ -4,6 +4,7 @@ import { getButtonSize, getButtonStyle, getButtonPadding } from './Button.style'
 import { flex } from '@maru/utils';
 import { IconAdd, IconShortcuts } from '@maru/icon';
 import styled from 'styled-components';
+import { color } from '@maru/theme';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
@@ -23,9 +24,11 @@ const Button = ({
 }: PropsType) => {
     return (
         <StyledButton style={{ width }} onClick={onClick} option={option} icon={icon} size={size}>
-            {icon === 'ADD_ICON' && <IconAdd />}
+            {icon === 'ADD_ICON' && <IconAdd color={color.white} width={24} height={24} />}
             {children}
-            {icon === 'SHORTCUTS_ICON' && <IconShortcuts />}
+            {icon === 'SHORTCUTS_ICON' && (
+                <IconShortcuts color={color.white} width={24} height={24} />
+            )}
         </StyledButton>
     );
 };
