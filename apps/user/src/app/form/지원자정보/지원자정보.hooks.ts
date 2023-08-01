@@ -1,16 +1,12 @@
-import { useFormState } from '../form.state';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import formatDate, { Date } from '@/utils/formatDate';
-import { ChangeEventHandler, useEffect, useState } from 'react';
-import { useUserInfoState } from './지원자정보.state';
+import formatDate from '@/utils/formatDate';
+import { ChangeEventHandler, useEffect } from 'react';
+import { useFormState } from '../form.state';
+import { useUserDate, useUserInfoState } from './지원자정보.state';
 
 export const useInput = () => {
     const { setUserInfo } = useUserInfoState();
-    const [date, setDate] = useState<Date>({
-        year: '',
-        month: '',
-        day: '',
-    });
+    const { date, setDate } = useUserDate();
 
     const handleUserInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
