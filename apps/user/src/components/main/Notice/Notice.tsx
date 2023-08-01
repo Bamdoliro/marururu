@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { useMainNoticeListQuery } from '@/services/main/queries';
+import { useNoticeListQuery } from '@/services/notice/queries';
 import NoticeItem from './NoticeItem/NoticeItem';
 import ROUTES from '@/constants/routes';
 import { Link } from '@maru/ui';
@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 const Notice = () => {
     const router = useRouter();
-    const mainNoticeListQuery = useMainNoticeListQuery();
+    const { data: noticeListQuery } = useNoticeListQuery();
 
     return (
         <StyledNotice>
@@ -19,7 +19,7 @@ const Notice = () => {
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
             <NoticeList>
-                {mainNoticeListQuery.data?.map((item) => (
+                {noticeListQuery?.splice(0, 3).map((item) => (
                     <NoticeItem key={item.id} id={item.id} title={item.title} />
                 ))}
             </NoticeList>
