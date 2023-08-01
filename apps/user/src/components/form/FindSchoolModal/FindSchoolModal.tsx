@@ -1,12 +1,17 @@
 import useSchoolListQuery from '@/services/form/출신학교및학력/queries';
-import { School } from '@/types/form';
 import { useDebounceInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import { useState, Dispatch, SetStateAction } from 'react';
-import { EducationInfo } from '@/app/form/출신학교및학력/출신학교및학력.provider';
+import { EducationInfo } from '@/types/form';
 import { IconCheck, IconClose } from '@maru/icon';
 import { css, styled } from 'styled-components';
+
+interface School {
+    name: string;
+    location: string;
+    code: string;
+}
 
 interface PropsType {
     closeModal: () => void;

@@ -1,12 +1,5 @@
+import { UserInfo } from '@/types/form';
 import { atom, useRecoilState } from 'recoil';
-
-export interface UserInfo {
-    identificationPictureUri: string;
-    name: string;
-    phoneNumber: string;
-    birthday: string;
-    gender: string;
-}
 
 const userInfoAtomState = atom<UserInfo>({
     key: 'user-info',

@@ -1,6 +1,9 @@
 import { maru } from '@/apis/instance/instance';
+import { authorization } from '@/apis/token';
+import { Form } from '@/types/form';
 
-const submitDraftForm = async () => {
-    const { data } = await maru.post('/form');
+export const submitDraftForm = async (formData: Form) => {
+    const { data } = await maru.post('/form', formData, authorization());
+
     return { data };
 };

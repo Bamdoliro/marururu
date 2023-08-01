@@ -1,12 +1,5 @@
+import { ParentInfo } from '@/types/form';
 import { atom, useRecoilState } from 'recoil';
-
-export interface ParentInfo {
-    name: string;
-    phoneNumber: string;
-    zoneCode: string;
-    address: string;
-    detailAddress: string;
-}
 
 const parentInfoAtomState = atom<ParentInfo>({
     key: 'parent-info',

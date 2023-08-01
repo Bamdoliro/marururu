@@ -1,15 +1,5 @@
+import { EducationInfo } from '@/types/form';
 import { atom, useRecoilState } from 'recoil';
-
-export interface EducationInfo {
-    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION' | '';
-    graduationYear: string;
-    schoolName: string;
-    schoolLocation: string;
-    schoolCode: string;
-    teacherName: string;
-    teacherPhoneNumber: string;
-    teacherMobilePhoneNumber: string;
-}
 
 const educationInfoAtomState = atom<EducationInfo>({
     key: 'education-info',

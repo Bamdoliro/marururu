@@ -1,12 +1,14 @@
 import { useFormProvider } from '../form.provider';
 import { useFormStepProvider } from '@/provider/useFormStepProvider';
 import { useDebounceInput } from '@maru/hooks';
+import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 
 export const useFormSubmitAction = (
     debouncedCoverLetter: string,
     debouncedStatementOfPurpose: string,
 ) => {
     const { form, setForm } = useFormProvider();
+    const submitDraftFormMutation = useSubmitDraftFormMutation(form);
 
     const handleFormSubmitButtonClick = () => {
         setForm((prev) => ({
@@ -16,8 +18,7 @@ export const useFormSubmitAction = (
                 statementOfPurpose: debouncedStatementOfPurpose,
             },
         }));
-        console.log(form);
-        alert('완료!');
+        submitDraftFormMutation.mutate();
     };
 
     return { handleFormSubmitButtonClick };

@@ -1,4 +1,4 @@
-import { UserInfo } from '@/app/form/지원자정보/지원자정보.provider';
+import { UserInfo } from '@/types/form';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
 import { uploadProfileImage } from './api';
