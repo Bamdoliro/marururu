@@ -23,7 +23,10 @@ maru.interceptors.response.use(
         return response;
     },
     async (error) => {
-        const { status, code, message } = error.response.data;
+        const {
+            status,
+            data: { message, code },
+        } = error.response;
         if (message) {
             if (status === 401 && code === 'EXPIRED_TOKEN') {
                 refreshToken();
