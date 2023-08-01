@@ -7,4 +7,5 @@ export interface FlexPropsType {
     alignItems?: CSSProperties['alignItems'];
     width?: CSSProperties['width'];
     height?: CSSProperties['height'];
+    style?: CSSProperties;
 }

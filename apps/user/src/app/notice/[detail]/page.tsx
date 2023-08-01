@@ -13,7 +13,7 @@ const NoticeDetailPage = () => {
     const router = useRouter();
 
     return (
-        <AppLayout style={{ padding: '0px 207px' }}>
+        <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
             <StyledNoticeDetailPage>
                 <Link onClick={() => router.push(ROUTES.NOTICE)} gap="2px">
                     <IconArrowLeft color={color.gray600} width={24} height={24} />

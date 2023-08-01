@@ -11,7 +11,7 @@ const NoticePage = () => {
     const noticeListQuery = useNoticeListQuery();
 
     return (
-        <AppLayout style={{ padding: '0px 207px' }}>
+        <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
             <StyledNoticePage>
                 <Title>공지사항</Title>
                 <NoticeList>

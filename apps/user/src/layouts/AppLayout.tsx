@@ -5,17 +5,25 @@ import { CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface PropsType {
+    header?: boolean;
+    footer?: boolean;
     children: ReactNode;
     backgroundColor?: string;
     style?: CSSProperties;
 }
 
-const AppLayout = ({ children, backgroundColor = color.white, style }: PropsType) => {
+const AppLayout = ({
+    children,
+    backgroundColor = color.white,
+    style,
+    header = false,
+    footer = false,
+}: PropsType) => {
     return (
         <>
-            <Header />
+            {header && <Header />}
             <StyledAppLayout style={{ backgroundColor, ...style }}>{children}</StyledAppLayout>
-            <Footer />
+            {footer && <Footer />}
         </>
     );
 };
