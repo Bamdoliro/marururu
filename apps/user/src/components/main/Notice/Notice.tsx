@@ -10,7 +10,11 @@ import styled from 'styled-components';
 
 const Notice = () => {
     const router = useRouter();
-    const { data: noticeListQuery } = useNoticeListQuery();
+    const { data: mainNoticeList, isLoading } = useNoticeListQuery();
+
+    if (isLoading || mainNoticeList === undefined) {
+        return null;
+    }
 
     return (
         <StyledNotice>
@@ -19,7 +23,7 @@ const Notice = () => {
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
             <NoticeList>
-                {noticeListQuery?.splice(0, 3).map((item) => (
+                {mainNoticeList.splice(0, 3).map((item) => (
                     <NoticeItem key={item.id} id={item.id} title={item.title} />
                 ))}
             </NoticeList>
