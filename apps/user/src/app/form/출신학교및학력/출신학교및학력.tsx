@@ -2,12 +2,12 @@ import { FormLayout } from '@/layouts';
 import useModal from '@maru/hooks/src/useModal';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
 import { FormController, FindSchoolModal } from '@/components/form';
-import { useEducationInfoProvider } from './출신학교및학력.provider';
+import { useEducationInfoState } from './출신학교및학력.state';
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
 import { styled } from 'styled-components';
 
 const 출신학교및학력 = () => {
-    const { educationInfo, setEducationInfo } = useEducationInfoProvider();
+    const { educationInfo, setEducationInfo } = useEducationInfoState();
     const { isOpen, openModal, closeModal } = useModal();
     const { handleEducationInfoDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
@@ -84,7 +84,7 @@ const 출신학교및학력 = () => {
             <FormController
                 onPrevious={handlePreviousButtonClick}
                 onNext={handleNextButtonClick}
-                step="출신학교 및 학력"
+                step="출신학교및학력"
             />
             {isOpen && (
                 <FindSchoolModal closeModal={closeModal} setEducationInfo={setEducationInfo} />

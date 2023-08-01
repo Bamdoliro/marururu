@@ -3,11 +3,11 @@ import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useInput, useCTAButton } from './전형선택.hooks';
 import { FormController } from '@/components/form';
-import { useChoiceFormTypeProvider } from './전형선택.provider';
+import { useChoiceFormTypeState } from './전형선택.state';
 import { styled } from 'styled-components';
 
 const 전형선택 = () => {
-    const { choiceFormType } = useChoiceFormTypeProvider();
+    const { choiceFormType } = useChoiceFormTypeState();
     const { handleFormTypeDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
@@ -65,7 +65,7 @@ const 전형선택 = () => {
             <FormController
                 onPrevious={handlePreviousButtonClick}
                 onNext={handleNextButtonClick}
-                step="전형 선택"
+                step="전형선택"
             />
         </FormLayout>
     );

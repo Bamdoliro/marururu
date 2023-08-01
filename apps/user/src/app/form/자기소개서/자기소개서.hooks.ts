@@ -1,5 +1,5 @@
-import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
+import { useFormState } from '../form.state';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { useDebounceInput } from '@maru/hooks';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 
@@ -7,7 +7,7 @@ export const useFormSubmitAction = (
     debouncedCoverLetter: string,
     debouncedStatementOfPurpose: string,
 ) => {
-    const { form, setForm } = useFormProvider();
+    const { form, setForm } = useFormState();
     const submitDraftFormMutation = useSubmitDraftFormMutation(form);
 
     const handleFormSubmitButtonClick = () => {
@@ -49,10 +49,10 @@ export const useInput = () => {
 };
 
 export const useCTAButton = () => {
-    const { setFormStep } = useFormStepProvider();
+    const { setFormStep } = useFormStepState();
 
     const handlePreviousButtonClick = () => {
-        setFormStep('성적 입력');
+        setFormStep('성적입력');
     };
 
     return { handlePreviousButtonClick };

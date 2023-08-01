@@ -6,7 +6,7 @@ const formStepAtomState = atom<FormStep>({
     default: '지원자정보',
 });
 
-export const useFormStepProvider = () => {
+export const useFormStepState = () => {
     const [formStep, setFormStep] = useRecoilState(formStepAtomState);
 
     return { formStep, setFormStep };

@@ -15,7 +15,7 @@ const educationInfoAtomState = atom<EducationInfo>({
     },
 });
 
-export const useEducationInfoProvider = () => {
+export const useEducationInfoState = () => {
     const [educationInfo, setEducationInfo] = useRecoilState(educationInfoAtomState);
 
     return { educationInfo, setEducationInfo };

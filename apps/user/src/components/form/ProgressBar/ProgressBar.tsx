@@ -1,6 +1,6 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { FormStep } from '@/types/form';
 import styled from 'styled-components';
 
@@ -27,7 +27,7 @@ const PROGRESS_BAR_DATA = [
  */
 
 const ProgressBar = () => {
-    const { formStep, setFormStep } = useFormStepProvider();
+    const { formStep, setFormStep } = useFormStepState();
 
     return (
         <StyledProgressBar>

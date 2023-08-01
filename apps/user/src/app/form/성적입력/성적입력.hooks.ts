@@ -1,20 +1,20 @@
-import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
+import { useFormState } from '../form.state';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import {
-    useStudentSubjectListProvider,
-    useAttendanceInfoProvider,
-    useVolunteerInfoProvider,
-    useCertificateListInfoProvider,
-} from './성적입력.provider';
+    useStudentSubjectListState,
+    useAttendanceInfoState,
+    useVolunteerInfoState,
+    useCertificateListInfoState,
+} from './성적입력.state';
 
 export const useCTAButton = () => {
-    const { subjectList, newSubjectList } = useStudentSubjectListProvider();
-    const { attendanceInfo } = useAttendanceInfoProvider();
-    const { volunteerInfo } = useVolunteerInfoProvider();
-    const { certificateListInfo } = useCertificateListInfoProvider();
+    const { subjectList, newSubjectList } = useStudentSubjectListState();
+    const { attendanceInfo } = useAttendanceInfoState();
+    const { volunteerInfo } = useVolunteerInfoState();
+    const { certificateListInfo } = useCertificateListInfoState();
 
-    const { setForm } = useFormProvider();
-    const { setFormStep } = useFormStepProvider();
+    const { setForm } = useFormState();
+    const { setFormStep } = useFormStepState();
 
     const handleNextButtonClick = () => {
         const studentSubjectList = [
@@ -35,7 +35,7 @@ export const useCTAButton = () => {
     };
 
     const handlePreviousButtonClick = () => {
-        setFormStep('전형 선택');
+        setFormStep('전형선택');
     };
 
     return { handleNextButtonClick, handlePreviousButtonClick };

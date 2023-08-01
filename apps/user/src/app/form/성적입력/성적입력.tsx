@@ -13,21 +13,21 @@ import {
 } from '@/components/form';
 import { styled } from 'styled-components';
 import {
-    useAttendanceInfoProvider,
-    useCertificateListInfoProvider,
-    useStudentSubjectListProvider,
-    useVolunteerInfoProvider,
-} from './성적입력.provider';
+    useAttendanceInfoState,
+    useCertificateListInfoState,
+    useStudentSubjectListState,
+    useVolunteerInfoState,
+} from './성적입력.state';
 import { useCTAButton } from './성적입력.hooks';
 
 const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
 
 const 성적입력 = () => {
     const { subjectList, setSubjectList, newSubjectList, setNewSubjectList } =
-        useStudentSubjectListProvider();
-    const { attendanceInfo, setAttendanceInfo } = useAttendanceInfoProvider();
-    const { volunteerInfo, setVolunteerInfo } = useVolunteerInfoProvider();
-    const { certificateListInfo, setCertificateListInfo } = useCertificateListInfoProvider();
+        useStudentSubjectListState();
+    const { attendanceInfo, setAttendanceInfo } = useAttendanceInfoState();
+    const { volunteerInfo, setVolunteerInfo } = useVolunteerInfoState();
+    const { certificateListInfo, setCertificateListInfo } = useCertificateListInfoState();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
     const [fieldStep, setFieldStep] = useState('성적 입력');
 
@@ -104,7 +104,7 @@ const 성적입력 = () => {
             <FormController
                 onPrevious={handlePreviousButtonClick}
                 onNext={handleNextButtonClick}
-                step="성적 입력"
+                step="성적입력"
             />
         </FormLayout>
     );

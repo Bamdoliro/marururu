@@ -50,26 +50,26 @@ const certificateListInfoAtomState = atom<string[]>({
     default: [],
 });
 
-export const useStudentSubjectListProvider = () => {
+export const useStudentSubjectListState = () => {
     const [subjectList, setSubjectList] = useRecoilState(subjectListAtomState);
     const [newSubjectList, setNewSubjectList] = useRecoilState(newSubjectListAtomState);
 
     return { subjectList, setSubjectList, newSubjectList, setNewSubjectList };
 };
 
-export const useAttendanceInfoProvider = () => {
+export const useAttendanceInfoState = () => {
     const [attendanceInfo, setAttendanceInfo] = useRecoilState(attendanceInfoAtomState);
 
     return { attendanceInfo, setAttendanceInfo };
 };
 
-export const useVolunteerInfoProvider = () => {
+export const useVolunteerInfoState = () => {
     const [volunteerInfo, setVolunteerInfo] = useRecoilState(volunteerInfoAtomState);
 
     return { volunteerInfo, setVolunteerInfo };
 };
 
-export const useCertificateListInfoProvider = () => {
+export const useCertificateListInfoState = () => {
     const [certificateListInfo, setCertificateListInfo] = useRecoilState(
         certificateListInfoAtomState,
     );

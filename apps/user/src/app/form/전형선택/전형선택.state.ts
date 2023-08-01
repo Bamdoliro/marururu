@@ -15,13 +15,13 @@ const choiceFormTypeAtomState = atom({
     },
 });
 
-export const useFormTypeProvider = () => {
+export const useFormTypeState = () => {
     const [formType, setFormType] = useRecoilState(formTypeAtomState);
 
     return { formType, setFormType };
 };
 
-export const useChoiceFormTypeProvider = () => {
+export const useChoiceFormTypeState = () => {
     const [choiceFormType, setChoiceFormType] = useRecoilState(choiceFormTypeAtomState);
 
     return { choiceFormType, setChoiceFormType };

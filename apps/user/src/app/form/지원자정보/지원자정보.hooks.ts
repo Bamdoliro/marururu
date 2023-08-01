@@ -1,11 +1,11 @@
-import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
+import { useFormState } from '../form.state';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
-import { useUserInfoProvider } from './지원자정보.provider';
+import { useUserInfoState } from './지원자정보.state';
 
 export const useInput = () => {
-    const { setUserInfo } = useUserInfoProvider();
+    const { setUserInfo } = useUserInfoState();
     const [date, setDate] = useState<Date>({
         year: '',
         month: '',
@@ -28,13 +28,13 @@ export const useInput = () => {
 };
 
 export const useCTAButton = () => {
-    const { userInfo } = useUserInfoProvider();
-    const { setForm } = useFormProvider();
-    const { setFormStep } = useFormStepProvider();
+    const { userInfo } = useUserInfoState();
+    const { setForm } = useFormState();
+    const { setFormStep } = useFormStepState();
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, applicant: userInfo }));
-        setFormStep('보호자 정보');
+        setFormStep('보호자정보');
     };
 
     return { handleNextButtonClick };

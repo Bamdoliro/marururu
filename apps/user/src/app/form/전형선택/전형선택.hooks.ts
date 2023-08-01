@@ -1,7 +1,7 @@
-import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
+import { useFormState } from '../form.state';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { ChangeEventHandler } from 'react';
-import { useChoiceFormTypeProvider, useFormTypeProvider } from './전형선택.provider';
+import { useChoiceFormTypeState, useFormTypeState } from './전형선택.state';
 
 const FormType = {
     일반전형: 'REGULAR',
@@ -23,8 +23,8 @@ const FormType = {
 } as const;
 
 export const useInput = () => {
-    const { setFormType } = useFormTypeProvider();
-    const { setChoiceFormType } = useChoiceFormTypeProvider();
+    const { setFormType } = useFormTypeState();
+    const { setChoiceFormType } = useChoiceFormTypeState();
 
     const handleFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
@@ -37,17 +37,17 @@ export const useInput = () => {
 };
 
 export const useCTAButton = () => {
-    const { formType } = useFormTypeProvider();
-    const { setForm } = useFormProvider();
-    const { setFormStep } = useFormStepProvider();
+    const { formType } = useFormTypeState();
+    const { setForm } = useFormState();
+    const { setFormStep } = useFormStepState();
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, type: formType }));
-        setFormStep('성적 입력');
+        setFormStep('성적입력');
     };
 
     const handlePreviousButtonClick = () => {
-        setFormStep('출신학교 및 학력');
+        setFormStep('출신학교및학력');
     };
 
     return { handleNextButtonClick, handlePreviousButtonClick };

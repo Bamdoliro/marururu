@@ -2,11 +2,11 @@ import { FormLayout } from '@/layouts';
 import { Column, Input, RadioGroup, Row, Dropdown } from '@maru/ui';
 import { useInput, useCTAButton } from './지원자정보.hooks';
 import { ProfileUpload, FormController } from '@/components/form';
-import { useUserInfoProvider } from './지원자정보.provider';
+import { useUserInfoState } from './지원자정보.state';
 import styled from 'styled-components';
 
 const 지원자정보 = () => {
-    const { userInfo, setUserInfo } = useUserInfoProvider();
+    const { userInfo, setUserInfo } = useUserInfoState();
     const { handleUserInfoDataChange, date, setDate } = useInput();
     const { handleNextButtonClick } = useCTAButton();
 
@@ -70,7 +70,7 @@ const 지원자정보 = () => {
                     </Column>
                 </Row>
             </Styled지원자정보>
-            <FormController onNext={handleNextButtonClick} step="지원자 정보" />
+            <FormController onNext={handleNextButtonClick} step="지원자정보" />
         </FormLayout>
     );
 };

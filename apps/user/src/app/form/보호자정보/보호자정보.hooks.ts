@@ -1,10 +1,10 @@
-import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
+import { useFormState } from '../form.state';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { ChangeEventHandler } from 'react';
-import { useParentInfoProvider } from './보호자정보.provider';
+import { useParentInfoState } from './보호자정보.state';
 
 export const useInput = () => {
-    const { setParentInfo } = useParentInfoProvider();
+    const { setParentInfo } = useParentInfoState();
 
     const handleParentInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
@@ -15,17 +15,17 @@ export const useInput = () => {
 };
 
 export const useCTAButton = () => {
-    const { parentInfo } = useParentInfoProvider();
-    const { setForm } = useFormProvider();
-    const { setFormStep } = useFormStepProvider();
+    const { parentInfo } = useParentInfoState();
+    const { setForm } = useFormState();
+    const { setFormStep } = useFormStepState();
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, parent: parentInfo }));
-        setFormStep('출신학교 및 학력');
+        setFormStep('출신학교및학력');
     };
 
     const handlePreviousButtonClick = () => {
-        setFormStep('지원자 정보');
+        setFormStep('지원자정보');
     };
 
     return { handleNextButtonClick, handlePreviousButtonClick };

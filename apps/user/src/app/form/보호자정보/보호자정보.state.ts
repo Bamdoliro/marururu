@@ -12,7 +12,7 @@ const parentInfoAtomState = atom<ParentInfo>({
     },
 });
 
-export const useParentInfoProvider = () => {
+export const useParentInfoState = () => {
     const [parentInfo, setParentInfo] = useRecoilState(parentInfoAtomState);
 
     return { parentInfo, setParentInfo };
