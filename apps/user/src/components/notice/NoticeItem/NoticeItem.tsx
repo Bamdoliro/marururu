@@ -3,23 +3,23 @@ import { useRouter } from 'next/navigation';
 import { IconArrowRight } from '@maru/icon';
 import { Column } from '@maru/ui';
 import { color, font } from '@maru/theme';
-import { flex } from '@maru/utils';
+import { flex, formatCreatedAt } from '@maru/utils';
 import styled from 'styled-components';
 
 interface PropsType {
     id: number;
     title: string;
-    date: string;
+    createdAt: string;
 }
 
-const NoticeItem = ({ id, title, date }: PropsType) => {
+const NoticeItem = ({ id, title, createdAt }: PropsType) => {
     const router = useRouter();
 
     return (
         <StyledNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
             <Column gap="8px" height="55px">
                 <Title>{title}</Title>
-                <Date>{date}</Date>
+                <Date>{formatCreatedAt(createdAt)}</Date>
             </Column>
             <IconArrowRight color={color.gray600} width={24} height={24} />
         </StyledNoticeItem>

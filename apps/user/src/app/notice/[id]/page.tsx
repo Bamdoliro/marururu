@@ -3,14 +3,25 @@
 import { IconArrowLeft } from '@maru/icon';
 import ROUTES from '@/constants/routes';
 import { color, font } from '@maru/theme';
-import { flex } from '@maru/utils';
+import { flex, formatCreatedAt } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { Column, Link } from '@maru/ui';
 import { styled } from 'styled-components';
 import { AppLayout } from '@/layouts';
+import { useNoticeDetailQuery } from '@/services/notice/queries';
 
-const NoticeDetailPage = () => {
+interface PropsType {
+    params: { id: number };
+}
+
+const NoticeDetailPage = ({ params: { id } }: PropsType) => {
     const router = useRouter();
+
+    const { data: noticeDetail, isLoading } = useNoticeDetailQuery(id);
+
+    if (isLoading || noticeDetail === undefined) {
+        return null;
+    }
 
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
@@ -22,11 +33,11 @@ const NoticeDetailPage = () => {
                 <ContentsBox>
                     <NoticeHeader>
                         <Column gap="16px" height="72px">
-                            <Title>테스트이다</Title>
-                            <Date>2022.10.05</Date>
+                            <Title>{noticeDetail.title}</Title>
+                            <Date>{formatCreatedAt(noticeDetail.createdAt)}</Date>
                         </Column>
                     </NoticeHeader>
-                    <Content>이것은 테스트 입니다</Content>
+                    <Content>{noticeDetail.content}</Content>
                 </ContentsBox>
             </StyledNoticeDetailPage>
         </AppLayout>
