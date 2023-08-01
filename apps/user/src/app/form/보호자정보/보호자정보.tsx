@@ -1,10 +1,10 @@
+import { FindAddressModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { ButtonInput, Column, Input, Row } from '@maru/ui';
-import { useInput, useCTAButton } from './보호자정보.hooks';
-import { FormController, FindAddressModal } from '@/components/form';
-import { useParentInfoState } from './보호자정보.state';
 import useModal from '@maru/hooks/src/useModal';
+import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import styled from 'styled-components';
+import { useCTAButton, useInput } from './보호자정보.hooks';
+import { useParentInfoState } from './보호자정보.state';
 
 const 보호자정보 = () => {
     const { parentInfo, setParentInfo } = useParentInfoState();
@@ -19,12 +19,14 @@ const 보호자정보 = () => {
                     <Row gap={48} alignItems="center">
                         <Input
                             name="name"
+                            value={parentInfo.name}
                             onChange={handleParentInfoDataChange}
                             label="성명"
                             width="100%"
                         />
                         <Input
                             name="phoneNumber"
+                            value={parentInfo.phoneNumber}
                             onChange={handleParentInfoDataChange}
                             label="전화번호"
                             placeholder="- 없이 입력"
@@ -41,6 +43,7 @@ const 보호자정보 = () => {
                     />
                     <Input
                         name="detailAddress"
+                        value={parentInfo.detailAddress}
                         onChange={handleParentInfoDataChange}
                         label="상세 주소"
                         width="100%"
