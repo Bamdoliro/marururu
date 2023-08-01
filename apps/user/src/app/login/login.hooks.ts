@@ -1,10 +1,10 @@
-import { LoginType } from '@/services/auth/api';
+import { Login } from '@/services/auth/api';
 import { useLoginUserMutation } from '@/services/auth/mutations';
 import { useRouter } from 'next/navigation';
 import ROUTES from '@/constants/routes';
 import { ChangeEventHandler, useState } from 'react';
 
-export const useLoginAction = (loginUserData: LoginType) => {
+export const useLoginAction = (loginUserData: Login) => {
     const loginUserMutation = useLoginUserMutation(loginUserData);
 
     const handleLoginButtonClick = () => {
@@ -15,7 +15,7 @@ export const useLoginAction = (loginUserData: LoginType) => {
 };
 
 export const useInput = () => {
-    const [loginUserData, setLoginUserData] = useState<LoginType>({
+    const [loginUserData, setLoginUserData] = useState<Login>({
         email: '',
         password: '',
     });
