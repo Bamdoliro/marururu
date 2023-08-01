@@ -1,5 +1,5 @@
 import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/provider/useFormStepProvider';
+import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
 import { ChangeEventHandler } from 'react';
 import { useChoiceFormTypeProvider, useFormTypeProvider } from './전형선택.provider';
 

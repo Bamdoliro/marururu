@@ -6,7 +6,7 @@ import 출신학교및학력 from './출신학교및학력/출신학교및학력
 import 전형선택 from './전형선택/전형선택';
 import 성적입력 from './성적입력/성적입력';
 import 자기소개서 from './자기소개서/자기소개서';
-import { useFormStepProvider } from '@/provider/useFormStepProvider';
+import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
 
 const FormPage = () => {
     const { formStep } = useFormStepProvider();

@@ -1,5 +1,5 @@
 import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/provider/useFormStepProvider';
+import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
 import { ChangeEventHandler } from 'react';
 import { useParentInfoProvider } from './보호자정보.provider';
 

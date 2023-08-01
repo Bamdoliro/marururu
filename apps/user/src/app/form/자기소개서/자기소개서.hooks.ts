@@ -1,5 +1,5 @@
 import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/provider/useFormStepProvider';
+import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
 import { useDebounceInput } from '@maru/hooks';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 

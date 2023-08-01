@@ -1,5 +1,5 @@
 import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/provider/useFormStepProvider';
+import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
 import formatDate, { Date } from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { useUserInfoProvider } from './지원자정보.provider';

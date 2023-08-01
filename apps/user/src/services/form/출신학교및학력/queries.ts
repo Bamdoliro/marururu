@@ -6,6 +6,7 @@ const useSchoolListQuery = (name: string) => {
     return useQuery({
         queryKey: [KEY.FORM_SCHOOL_LIST, name],
         queryFn: () => getSchoolList(name),
+        initialData: [],
     });
 };
 

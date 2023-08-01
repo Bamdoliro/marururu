@@ -1,5 +1,5 @@
 import { useFormProvider } from '../form.provider';
-import { useFormStepProvider } from '@/provider/useFormStepProvider';
+import { useFormStepProvider } from '@/hooks/provider/useFormStepProvider';
 import {
     useStudentSubjectListProvider,
     useAttendanceInfoProvider,
@@ -26,9 +26,9 @@ export const useCTAButton = () => {
             ...prev,
             grade: {
                 subjectList: studentSubjectList,
-                attendanceInfo,
-                volunteerInfo,
-                certificateListInfo,
+                ...attendanceInfo,
+                ...volunteerInfo,
+                certificateList: certificateListInfo,
             },
         }));
         setFormStep('자기소개서');
