@@ -1,6 +1,6 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { useForm } from '@/hooks';
+import { useFormStep } from '@/hooks';
 import styled from 'styled-components';
 
 const PROGRESS_BAR_DATA = [
@@ -17,7 +17,7 @@ const PROGRESS_BAR_DATA = [
  */
 
 const ProgressBar = () => {
-    const { formStep, onMoveForm } = useForm();
+    const { formStep, setFormStep } = useFormStep();
 
     return (
         <StyledProgressBar>
@@ -26,7 +26,7 @@ const ProgressBar = () => {
                     key={`progress ${index}`}
                     name={item}
                     active={formStep === PROGRESS_BAR_DATA[index]}
-                    onClick={() => onMoveForm(PROGRESS_BAR_DATA[index])}>
+                    onClick={() => setFormStep(PROGRESS_BAR_DATA[index])}>
                     {index + 1}
                 </Circle>
             ))}

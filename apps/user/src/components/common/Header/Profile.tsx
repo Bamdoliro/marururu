@@ -1,4 +1,4 @@
-import { ArrowDropDownIcon } from '../Icons';
+import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -11,7 +11,7 @@ const Profile = ({ name }: PropsType) => {
     return (
         <StyledProfile>
             <Name>{name} 님</Name>
-            <ArrowDropDownIcon />
+            <IconArrowDropdown color={color.gray600} width={24} height={24} />
         </StyledProfile>
     );
 };

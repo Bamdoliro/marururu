@@ -1,4 +1,4 @@
-import { FormStepType } from '@/store/form/form';
+import { FormStep } from '@/types/form';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -6,7 +6,7 @@ import styled from 'styled-components';
 interface PropsType {
     onPrevious?: () => void;
     onNext: () => void;
-    step: FormStepType;
+    step: FormStep;
 }
 
 const FormController = ({ onPrevious, onNext, step }: PropsType) => {

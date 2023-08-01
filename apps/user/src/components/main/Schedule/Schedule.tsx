@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ScheduleItem from '../ScheduleItem/ScheduleItem';
+import ScheduleItem from './ScheduleItem/ScheduleItem';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 
@@ -43,9 +43,12 @@ export default Schedule;
 
 const StyledSchedule = styled.div`
     ${flex({ flexDirection: 'column' })}
-    gap: 16px;
-    width: 489px;
+    gap: 10px;
+    width: 492px;
     height: 100%;
+    padding: 40px 32px;
+    border: 1px solid ${color.gray300};
+    border-radius: 32px;
 `;
 
 const StyledScheduleList = styled.div`

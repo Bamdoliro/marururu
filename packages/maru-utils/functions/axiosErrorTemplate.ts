@@ -19,15 +19,16 @@ const errorMessages: { [key in ErrorStatusType]?: string } = {
 };
 
 const axiosErrorTemplate = (e: unknown, errorMessage?: string) => {
-    let pickErrorMessage = '';
-    if (isAxiosError(e)) {
-        const status = e.response?.status as unknown as ErrorStatusType;
-        const message = e.response?.data.message;
-        pickErrorMessage = message ?? errorMessages[status];
-    } else {
-        pickErrorMessage = '알 수 없는 오류가 발생하였습니다.';
-    }
-    pickErrorMessage && alert(pickErrorMessage);
+    // let pickErrorMessage = '';
+    // if (isAxiosError(e)) {
+    //     const status = e.response?.status as unknown as ErrorStatusType;
+    //     const message = e.response?.data.message;
+    //     pickErrorMessage = message ?? errorMessages[status];
+    // } else {
+    //     pickErrorMessage = '알 수 없는 오류가 발생하였습니다.';
+    // }
+    // pickErrorMessage && alert(pickErrorMessage);
+    console.log(e);
 };
 
 export default axiosErrorTemplate;

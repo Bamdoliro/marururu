@@ -1,12 +1,12 @@
-import { RightArrowIcon } from '../../common/Icons';
-import styled from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { useMainFaqListQuery } from '@/services/main/queries';
-import QuestionItem from '../FaqItem/FaqItem';
+import QuestionItem from './FaqItem/FaqItem';
 import ROUTES from '@/constants/routes';
 import { Link } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { IconArrowRight } from '@maru/icon';
+import styled from 'styled-components';
 
 const Faq = () => {
     const router = useRouter();
@@ -16,7 +16,7 @@ const Faq = () => {
         <StyledFaq>
             <Link onClick={() => router.push(ROUTES.FAQ)} gap="8px">
                 <Title>자주묻는 질문</Title>
-                <RightArrowIcon color={color.gray900} size={22} />
+                <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
             <QuestionList>
                 {mainFaqListQuery.data?.map((item) => (

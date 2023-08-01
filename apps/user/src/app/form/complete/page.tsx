@@ -1,7 +1,7 @@
 'use client';
 
-import { CancelCircleIcon, CheckCircleIcon } from '@/components/common/Icons';
 import { AppLayout } from '@/layouts';
+import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -19,9 +19,9 @@ const FormCompletePage = () => {
                     alignItems="center">
                     <CircleIconBox>
                         {complete ? (
-                            <CheckCircleIcon size="100%" />
+                            <IconCheckCircle width="100%" height="100%" />
                         ) : (
-                            <CancelCircleIcon size="100%" />
+                            <IconCancelCircle width="100%" height="100%" />
                         )}
                     </CircleIconBox>
                     <AlertMessage>

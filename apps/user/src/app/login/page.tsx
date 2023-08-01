@@ -4,9 +4,9 @@ import Image from 'next/image';
 import { AppLayout } from '@/layouts';
 import { useCTAButton, useInput, useLogin } from './login.hooks';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
-import { RightArrowIcon } from '@/components/common/Icons';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { IconArrowRight } from '@maru/icon';
 import styled from 'styled-components';
 
 const LoginPage = () => {
@@ -19,7 +19,7 @@ const LoginPage = () => {
             <StyledLoginPage>
                 <LoginBox>
                     <LoginBoxWrap>
-                        <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
+                        <Image src="/svg/logo.svg" width={232} height={70} alt="logo" />
                         <Column gap="36px" width="100%">
                             <Column gap="24px">
                                 <Input
@@ -41,7 +41,7 @@ const LoginPage = () => {
                                 </Button>
                                 <GoFindPasswordPageButton>
                                     비밀번호 찾기
-                                    <RightArrowIcon color={color.gray500} size={16} />
+                                    <IconArrowRight color={color.gray500} width={16} height={16} />
                                 </GoFindPasswordPageButton>
                             </Column>
                         </Column>

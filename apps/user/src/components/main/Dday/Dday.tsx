@@ -50,12 +50,12 @@ export default Dday;
 
 const StyledDday = styled.div`
     width: 702px;
-    height: 436px;
+    height: 100%;
     border-radius: 32px;
     padding: 60px;
     overflow: hidden;
 
-    background: rgba(0, 0, 0, 0.65) url('/assets/SchoolBackground.png');
+    background: rgba(0, 0, 0, 0.65) url('/images/school_background.png');
     background-repeat: no-repeat;
     background-position: center right;
     background-size: cover;

@@ -22,7 +22,7 @@ const SignUpPage = () => {
         <AppLayout header={true} footer={true}>
             <StyledSignUpPage>
                 <Image
-                    src="/assets/ColaboLogo.svg"
+                    src="/svg/colabo_logo.svg"
                     style={{ margin: '0 auto' }}
                     width={477}
                     height={290}
@@ -68,7 +68,7 @@ const SignUpPage = () => {
                             <PreviewInput
                                 label="비밀번호 재확인"
                                 width="100%"
-                                name="repassword"
+                                name="password_confirm"
                                 onChange={handleJoinUserDataChange}
                             />
                         </Column>
