@@ -8,9 +8,16 @@ import { useRouter } from 'next/navigation';
 import { Column, Link } from '@maru/ui';
 import { styled } from 'styled-components';
 import { AppLayout } from '@/layouts';
+import { useNoticeDetailQuery } from '@/services/notice/queries';
 
-const NoticeDetailPage = () => {
+interface PropsType {
+    params: { id: number };
+}
+
+const NoticeDetailPage = ({ params: { id } }: PropsType) => {
     const router = useRouter();
+
+    const { data: noticeDetailQuery } = useNoticeDetailQuery(id);
 
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
@@ -22,11 +29,11 @@ const NoticeDetailPage = () => {
                 <ContentsBox>
                     <NoticeHeader>
                         <Column gap="16px" height="72px">
-                            <Title>테스트이다</Title>
-                            <Date>2022.10.05</Date>
+                            <Title>{noticeDetailQuery?.title}</Title>
+                            <Date>{noticeDetailQuery?.createdAt}</Date>
                         </Column>
                     </NoticeHeader>
-                    <Content>이것은 테스트 입니다</Content>
+                    <Content>{noticeDetailQuery?.content}</Content>
                 </ContentsBox>
             </StyledNoticeDetailPage>
         </AppLayout>
