@@ -12,9 +12,5 @@ export const useFormStepProvider = () => {
     const [formStep, setFormStep] = useRecoilState(formStepAtomState);
     const { form } = useFormProvider();
 
-    useEffect(() => {
-        console.log(form);
-    }, [formStep]);
-
     return { formStep, setFormStep };
 };
