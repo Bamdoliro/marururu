@@ -1,4 +1,4 @@
-import useSchoolListQuery from '@/services/form/출신학교및학력/queries';
+import { useSchoolListQuery } from '@/services/form/출신학교및학력/queries';
 import { useDebounceInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
@@ -26,7 +26,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         debouncedValue: debouncedSchoolSearchQuery,
     } = useDebounceInput({ initialValue: '' });
 
-    const schoolListQuery = useSchoolListQuery(debouncedSchoolSearchQuery);
+    const { data: schoolListQuery } = useSchoolListQuery(debouncedSchoolSearchQuery);
 
     const handleCompleteSchoolSearch = () => {
         const { name, location, code } = selectedSchool;
@@ -67,7 +67,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                         />
                     </Column>
                     <SchoolList>
-                        {schoolListQuery.data?.dataList.map(({ name, location, code }: School) => (
+                        {schoolListQuery?.map(({ name, location, code }: School) => (
                             <SchoolItem
                                 key={code}
                                 selected={selectedSchool.code === code}
