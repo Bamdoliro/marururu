@@ -78,8 +78,8 @@ const circleIconAnimation = keyframes`
 
 const CircleIconBox = styled.div`
     width: 64px;
-    height: 64pxpx;
-    transform: translate(333px, 111px) scale(calc(150 / 64));
+    height: 64px;
+    transform: translate(368px, 155px) scale(calc(150 / 64));
 
     animation: ${circleIconAnimation} 0.75s ease-in-out 1.5s forwards;
 `;
@@ -94,7 +94,7 @@ const alertMessageAnimation = keyframes`
 const AlertMessage = styled.p`
     ${font.D2}
     color: ${color.gray900};
-    transform: translate(36px, 295px);
+    transform: translate(55.5px, 303px);
 
     animation: ${alertMessageAnimation} 0.75s ease-in-out 1.5s forwards;
 `;
