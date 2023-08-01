@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Terms from '@/components/signup/Terms/Terms';
-import { BaseLayout } from '@/layouts';
+import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput } from '@maru/ui';
@@ -19,7 +19,7 @@ const SignUpPage = () => {
     const { handleJoinButtonClick } = useJoin(joinUserData, termsAgree);
 
     return (
-        <BaseLayout>
+        <AppLayout header={true} footer={true}>
             <StyledSignUpPage>
                 <Image
                     src="/svg/colabo_logo.svg"
@@ -80,7 +80,7 @@ const SignUpPage = () => {
                     </SignUpBox>
                 </ContentBox>
             </StyledSignUpPage>
-        </BaseLayout>
+        </AppLayout>
     );
 };
 

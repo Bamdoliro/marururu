@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { BaseLayout } from '@/layouts';
+import { AppLayout } from '@/layouts';
 import { useCTAButton, useInput, useLogin } from './login.hooks';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { color, font } from '@maru/theme';
@@ -15,7 +15,7 @@ const LoginPage = () => {
     const { handleLoginButtonClick } = useLogin(loginUserData);
 
     return (
-        <BaseLayout backgroundColor={color.gray100}>
+        <AppLayout header={true} footer={true} backgroundColor={color.gray100}>
             <StyledLoginPage>
                 <LoginBox>
                     <LoginBoxWrap>
@@ -54,7 +54,7 @@ const LoginPage = () => {
                     </LoginBoxWrap>
                 </LoginBox>
             </StyledLoginPage>
-        </BaseLayout>
+        </AppLayout>
     );
 };
 

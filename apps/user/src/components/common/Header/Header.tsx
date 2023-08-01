@@ -9,29 +9,24 @@ import ROUTES from '@/constants/routes';
 import TOKEN from '@/constants/token';
 import Image from 'next/image';
 
-const HEADER_DATA = [
+const NAVIGATION_DATA = [
     {
-        id: 0,
         name: '홈',
         route: ROUTES.MAIN,
     },
     {
-        id: 1,
         name: '원서접수',
         route: ROUTES.FORM,
     },
     {
-        id: 2,
         name: '공지사항',
         route: ROUTES.NOTICE,
     },
     {
-        id: 3,
         name: '자주 묻는 질문',
         route: ROUTES.FAQ,
     },
     {
-        id: 4,
         name: '학교 소개',
         route: '/',
     },
@@ -72,9 +67,9 @@ const Header = () => {
                 )}
             </HeaderBar>
             <NavigationBar>
-                {HEADER_DATA.map((item) => (
+                {NAVIGATION_DATA.map((item, index) => (
                     <Button
-                        key={item.id}
+                        key={`navigation ${index}`}
                         option="HOVER_UNDERLINE"
                         size="LARGE"
                         onClick={() => router.push(item.route)}>
@@ -95,6 +90,7 @@ const StyledHeader = styled.div`
     background-color: ${color.white};
     margin-bottom: 44px;
     padding: 0px 100px;
+    border-bottom: 1px solid ${color.gray200};
 `;
 
 const HeaderBar = styled.div`
@@ -107,5 +103,4 @@ const NavigationBar = styled.div`
     width: 100%;
     height: 54px;
     background-color: ${color.white};
-    border-bottom: 1px solid ${color.gray200};
 `;
