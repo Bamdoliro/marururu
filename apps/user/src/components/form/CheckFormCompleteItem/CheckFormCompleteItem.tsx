@@ -1,4 +1,6 @@
+import { IconError } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
@@ -9,10 +11,18 @@ interface PropsType {
 }
 
 const CheckFormCompleteItem = ({ formStep, maxCompleteOfNumber, completeOfNumber }: PropsType) => {
+    const isFilledFormStep = maxCompleteOfNumber !== completeOfNumber;
+
     return (
         <StyledCheckFormCompleteItem>
-            <FormStep>{formStep}</FormStep>
-            <CompleteOfNumber>{`${completeOfNumber}/${maxCompleteOfNumber}`}</CompleteOfNumber>
+            <Row alignItems="center" gap={8}>
+                <FormStep>{formStep}</FormStep>
+                {isFilledFormStep && <IconError color={color.red} width={24} height={24} />}
+            </Row>
+            <CompleteOfNumber
+                isFilledFormStep={
+                    isFilledFormStep
+                }>{`${completeOfNumber}/${maxCompleteOfNumber}`}</CompleteOfNumber>
         </StyledCheckFormCompleteItem>
     );
 };
@@ -34,7 +44,7 @@ const FormStep = styled.p`
     color: ${color.gray900};
 `;
 
-const CompleteOfNumber = styled.p`
+const CompleteOfNumber = styled.p<{ isFilledFormStep: boolean }>`
     ${font.p2};
-    color: ${color.gray900};
+    color: ${(props) => (props.isFilledFormStep ? color.red : color.gray900)};
 `;

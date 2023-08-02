@@ -3,8 +3,11 @@ import { color, font } from '@maru/theme';
 import { Column } from '@maru/ui';
 import styled from 'styled-components';
 
-const CompleteAlaram = () => {
-    const complete = true;
+interface PropsType {
+    isFilledForm: boolean;
+}
+
+const CompleteAlaram = ({ isFilledForm }: PropsType) => {
     return (
         <Column
             style={{ marginTop: '173px' }}
@@ -12,13 +15,13 @@ const CompleteAlaram = () => {
             height="100%"
             gap={34}
             alignItems="center">
-            {complete ? (
+            {isFilledForm ? (
                 <IconCheckCircle width={150} height={150} />
             ) : (
                 <IconCancelCircle width={150} height={150} />
             )}
             <AlertMessage>
-                {complete ? <p>원서 초안 작성 완료</p> : <p>아직 작성하지 않은 곳이 있어요</p>}
+                {isFilledForm ? <p>원서 초안 작성 완료</p> : <p>아직 작성하지 않은 곳이 있어요</p>}
             </AlertMessage>
         </Column>
     );

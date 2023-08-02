@@ -33,7 +33,7 @@ const 완료 = () => {
     return (
         <AppLayout header={true}>
             {isShowCompleteAlaram ? (
-                <CompleteAlaram />
+                <CompleteAlaram isFilledForm={isFilledForm} />
             ) : (
                 <Styled완료>
                     <Row gap={8} style={{ marginBottom: '55px' }} alignItems="center">
