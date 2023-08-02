@@ -41,18 +41,6 @@ export const getButtonStyle = {
             background-color: ${color.red};
         }
     `,
-    LINK_TEXT: css`
-        border-radius: 0;
-        padding: 0;
-        color: ${color.gray500};
-        text-decoration-line: underline;
-        text-decoration-color: ${color.gray500};
-        text-underline-position: under;
-        &:hover {
-            color: ${color.maruDefault};
-            text-decoration-color: ${color.maruDefault};
-        }
-    `,
     DISABLED: css`
         background-color: ${color.gray700};
         color: ${color.white};
