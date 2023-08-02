@@ -9,19 +9,19 @@ interface PropsType {
     title: string;
 }
 
-const NoticeItem = ({ id, title }: PropsType) => {
+const MainNoticeItem = ({ id, title }: PropsType) => {
     const router = useRouter();
 
     return (
-        <StyledNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
+        <StyledMainNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
             <Title>{title}</Title>
-        </StyledNoticeItem>
+        </StyledMainNoticeItem>
     );
 };
 
-export default NoticeItem;
+export default MainNoticeItem;
 
-const StyledNoticeItem = styled.div`
+const StyledMainNoticeItem = styled.div`
     ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 64px;

@@ -13,6 +13,8 @@ const MainFaq = () => {
     const router = useRouter();
     const { data: mainFaqList } = useFaqListQuery('TOP_QUESTION');
 
+    if (!mainFaqList) return null;
+
     return (
         <StyledMainFaq>
             <Link onClick={() => router.push(ROUTES.FAQ)} gap="8px">

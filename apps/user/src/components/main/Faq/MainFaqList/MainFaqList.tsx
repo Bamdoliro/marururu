@@ -9,7 +9,7 @@ interface PropsType {
 const MainFaqList = ({ mainFaqList }: PropsType) => {
     return (
         <StyledMainFaqList>
-            {mainFaqList.map((item) => (
+            {mainFaqList.splice(0, 3).map((item) => (
                 <MainFaqItem title={item.title} />
             ))}
         </StyledMainFaqList>
