@@ -1,35 +1,42 @@
 'use client';
 
 import CheckFormCompleteItem from '@/components/form/CheckFormCompleteItem/CheckFormCompleteItem';
+import CompleteAlaram from '@/components/form/CompleteAlaram/CompleteAlaram';
 import { AppLayout } from '@/layouts';
+import { useInterval } from '@maru/hooks';
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const FormCompletePage = () => {
     const complete = true;
+    const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
+
+    useInterval(() => {
+        setIsShowCompleteAlaram(false);
+    }, 1000);
 
     return (
         <AppLayout header={true}>
-            <StyledFormCompletePage>
-                <Row
-                    gap={8}
-                    style={{ marginBottom: '55px', position: 'relative', height: 64 }}
-                    alignItems="center">
-                    <CircleIconBox>
-                        {complete ? (
-                            <IconCheckCircle width="100%" height="100%" />
-                        ) : (
-                            <IconCancelCircle width="100%" height="100%" />
-                        )}
-                    </CircleIconBox>
-                    <AlertMessage>
-                        {complete ? '원서 초안 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
-                    </AlertMessage>
-                </Row>
-                <FormCompleteContent>
+            {isShowCompleteAlaram ? (
+                <CompleteAlaram />
+            ) : (
+                <StyledFormCompletePage>
+                    <Row gap={8} style={{ marginBottom: '55px' }} alignItems="center">
+                        <CircleIconBox>
+                            {complete ? (
+                                <IconCheckCircle width="100%" height="100%" />
+                            ) : (
+                                <IconCancelCircle width="100%" height="100%" />
+                            )}
+                        </CircleIconBox>
+                        <AlertMessage>
+                            {complete ? '원서 초안 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
+                        </AlertMessage>
+                    </Row>
                     <Column gap={12}>
                         <Desc>
                             {complete ? (
@@ -104,8 +111,8 @@ const FormCompletePage = () => {
                             </Row>
                         </Column>
                     )}
-                </FormCompleteContent>
-            </StyledFormCompletePage>
+                </StyledFormCompletePage>
+            )}
         </AppLayout>
     );
 };
@@ -119,47 +126,14 @@ const StyledFormCompletePage = styled.div`
     margin: 0 auto;
 `;
 
-const circleIconAnimation = keyframes`
-    to {
-        transform: translate(0, 0) scale(1);
-    }
-`;
-
 const CircleIconBox = styled.div`
     width: 64px;
     height: 64px;
-    transform: translate(368px, 155px) scale(calc(150 / 64));
-
-    animation: ${circleIconAnimation} 0.75s ease-in-out 1.5s forwards;
-`;
-
-const alertMessageAnimation = keyframes`
-    to {
-        ${font.H1};
-        transform: translate(0, 0);
-    }
 `;
 
 const AlertMessage = styled.p`
-    ${font.D2}
+    ${font.H1}
     color: ${color.gray900};
-    transform: translate(55.5px, 303px);
-
-    animation: ${alertMessageAnimation} 0.75s ease-in-out 1.5s forwards;
-`;
-
-const formCompleteContentAnimation = keyframes`
-    to {
-        opacity: 1;
-        visibility: visible;
-    }
-`;
-
-const FormCompleteContent = styled.div`
-    visibility: hidden;
-    opacity: 0;
-
-    animation: ${formCompleteContentAnimation} 0.75s ease-in-out 1.5s forwards;
 `;
 
 const Desc = styled.p`
