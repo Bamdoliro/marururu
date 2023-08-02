@@ -1,45 +1,65 @@
 'use client';
 
 import CheckFormCompleteItem from '@/components/form/CheckFormCompleteItem/CheckFormCompleteItem';
+import CompleteAlaram from '@/components/form/CompleteAlaram/CompleteAlaram';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { AppLayout } from '@/layouts';
+import { useInterval } from '@maru/hooks';
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
-import styled, { keyframes } from 'styled-components';
+import { useState } from 'react';
+import { useCheckFilledForm } from './완료.hooks';
+import styled from 'styled-components';
 
-const FormCompletePage = () => {
-    const complete = true;
+const 완료 = () => {
+    const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
+    const { setFormStep } = useFormStepState();
+
+    const {
+        applicantFieldCount,
+        parentFieldCount,
+        educationFieldCount,
+        typeFieldCount,
+        documentFieldCount,
+        isFilledForm,
+    } = useCheckFilledForm();
+
+    useInterval(() => {
+        setIsShowCompleteAlaram(false);
+    }, 1000);
 
     return (
         <AppLayout header={true}>
-            <StyledFormCompletePage>
-                <Row
-                    gap={8}
-                    style={{ marginBottom: '55px', position: 'relative', height: 64 }}
-                    alignItems="center">
-                    <CircleIconBox>
-                        {complete ? (
-                            <IconCheckCircle width="100%" height="100%" />
-                        ) : (
-                            <IconCancelCircle width="100%" height="100%" />
-                        )}
-                    </CircleIconBox>
-                    <AlertMessage>
-                        {complete ? '원서 초안 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
-                    </AlertMessage>
-                </Row>
-                <FormCompleteContent>
+            {isShowCompleteAlaram ? (
+                <CompleteAlaram isFilledForm={isFilledForm} />
+            ) : (
+                <Styled완료>
+                    <Row gap={8} style={{ marginBottom: '55px' }} alignItems="center">
+                        <CircleIconBox>
+                            {isFilledForm ? (
+                                <IconCheckCircle width="100%" height="100%" />
+                            ) : (
+                                <IconCancelCircle width="100%" height="100%" />
+                            )}
+                        </CircleIconBox>
+                        <AlertMessage>
+                            {isFilledForm
+                                ? '원서 초안 작성 완료'
+                                : '아직 작성하지 않은 곳이 있어요'}
+                        </AlertMessage>
+                    </Row>
                     <Column gap={12}>
                         <Desc>
-                            {complete ? (
+                            {isFilledForm ? (
                                 <p>원서 접수에 필요한 초안을 모두 작성하셨습니다.</p>
                             ) : (
                                 <p>원서 작성 중 입력하지 않은 곳이 있습니다.</p>
                             )}
                         </Desc>
                         <StressDesc>
-                            {complete ? (
+                            {isFilledForm ? (
                                 <p>
                                     원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에
                                     응시한 것으로 처리되며
@@ -53,7 +73,7 @@ const FormCompletePage = () => {
                             )}
                         </StressDesc>
                         <Desc>
-                            {complete ? (
+                            {isFilledForm ? (
                                 <p>잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.</p>
                             ) : (
                                 <p>또한 잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.</p>
@@ -62,104 +82,80 @@ const FormCompletePage = () => {
                     </Column>
                     <CheckFormCompleteBox>
                         <CheckFormCompleteItem
+                            onClick={() => setFormStep('지원자정보')}
                             formStep="지원자 정보"
                             maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            completeOfNumber={applicantFieldCount}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
+                            onClick={() => setFormStep('보호자정보')}
+                            formStep="보호자 정보"
                             maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            completeOfNumber={parentFieldCount}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
-                            maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            onClick={() => setFormStep('출신학교및학력')}
+                            formStep="출신학교 및 학력"
+                            maxCompleteOfNumber={8}
+                            completeOfNumber={educationFieldCount}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
-                            maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            onClick={() => setFormStep('전형선택')}
+                            formStep="전형 선택"
+                            maxCompleteOfNumber={1}
+                            completeOfNumber={typeFieldCount}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
-                            maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            onClick={() => setFormStep('성적입력')}
+                            formStep="성적 입력"
+                            maxCompleteOfNumber={4}
+                            completeOfNumber={4}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
-                            maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            onClick={() => setFormStep('자기소개서')}
+                            formStep="자기소개서 및 학업계획서"
+                            maxCompleteOfNumber={2}
+                            completeOfNumber={documentFieldCount}
                         />
                     </CheckFormCompleteBox>
 
-                    {complete && (
+                    {isFilledForm && (
                         <Column gap={24}>
                             <Question>제출하시겠습니까?</Question>
                             <Row gap={16}>
-                                <Button option="SECONDARY" size="LARGE">
+                                <Button
+                                    onClick={() => setFormStep('지원자정보')}
+                                    option="SECONDARY"
+                                    size="LARGE">
                                     다시 한번 확인하기
                                 </Button>
                                 <Button size="LARGE">원서 초안 제출하기</Button>
                             </Row>
                         </Column>
                     )}
-                </FormCompleteContent>
-            </StyledFormCompletePage>
+                </Styled완료>
+            )}
         </AppLayout>
     );
 };
 
-export default FormCompletePage;
+export default 완료;
 
-const StyledFormCompletePage = styled.div`
+const Styled완료 = styled.div`
     ${flex({ flexDirection: 'column' })}
     max-width: 800px;
     height: 100%;
     margin: 0 auto;
 `;
 
-const circleIconAnimation = keyframes`
-    to {
-        transform: translate(0, 0) scale(1);
-    }
-`;
-
 const CircleIconBox = styled.div`
     width: 64px;
     height: 64px;
-    transform: translate(368px, 155px) scale(calc(150 / 64));
-
-    animation: ${circleIconAnimation} 0.75s ease-in-out 1.5s forwards;
-`;
-
-const alertMessageAnimation = keyframes`
-    to {
-        ${font.H1};
-        transform: translate(0, 0);
-    }
 `;
 
 const AlertMessage = styled.p`
-    ${font.D2}
+    ${font.H1}
     color: ${color.gray900};
-    transform: translate(55.5px, 303px);
-
-    animation: ${alertMessageAnimation} 0.75s ease-in-out 1.5s forwards;
-`;
-
-const formCompleteContentAnimation = keyframes`
-    to {
-        opacity: 1;
-        visibility: visible;
-    }
-`;
-
-const FormCompleteContent = styled.div`
-    visibility: hidden;
-    opacity: 0;
-
-    animation: ${formCompleteContentAnimation} 0.75s ease-in-out 1.5s forwards;
 `;
 
 const Desc = styled.p`

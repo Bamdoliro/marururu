@@ -4,7 +4,8 @@ export type FormStep =
     | '출신학교및학력'
     | '전형선택'
     | '성적입력'
-    | '자기소개서';
+    | '자기소개서'
+    | '완료';
 
 export interface Form {
     applicant: UserInfo;
