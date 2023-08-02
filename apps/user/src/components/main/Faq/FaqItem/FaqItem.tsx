@@ -5,17 +5,16 @@ import { IconFaq } from '@maru/icon';
 import { styled } from 'styled-components';
 
 interface PropsType {
-    id: number;
-    question: string;
+    title: string;
 }
 
-const FaqItem = ({ id, question }: PropsType) => {
+const FaqItem = ({ title }: PropsType) => {
     const router = useRouter();
 
     return (
-        <StyledFaqItem onClick={() => router.push(`${ROUTES.FAQ}/${id}`)}>
+        <StyledFaqItem onClick={() => router.push(ROUTES.FAQ)}>
             <IconFaq color={color.maruDefault} width={24} height={24} />
-            <Faq>{question}</Faq>
+            <Faq>{title}</Faq>
         </StyledFaqItem>
     );
 };

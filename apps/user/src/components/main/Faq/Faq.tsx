@@ -1,5 +1,4 @@
 import { useRouter } from 'next/navigation';
-import { useMainFaqListQuery } from '@/services/main/queries';
 import QuestionItem from './FaqItem/FaqItem';
 import ROUTES from '@/constants/routes';
 import { Link } from '@maru/ui';
@@ -7,10 +6,15 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { IconArrowRight } from '@maru/icon';
 import styled from 'styled-components';
+import { useFaqListQuery } from '@/services/faq/queries';
 
 const Faq = () => {
     const router = useRouter();
-    const mainFaqListQuery = useMainFaqListQuery();
+    const { data: mainFaqList, isLoading } = useFaqListQuery('TOP_QUESTION');
+
+    if (isLoading || mainFaqList === undefined) {
+        return null;
+    }
 
     return (
         <StyledFaq>
@@ -19,8 +23,8 @@ const Faq = () => {
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
             <QuestionList>
-                {mainFaqListQuery.data?.map((item) => (
-                    <QuestionItem key={item.id} id={item.id} question={item.question} />
+                {mainFaqList.splice(0, 3).map((item) => (
+                    <QuestionItem title={item.title} />
                 ))}
             </QuestionList>
         </StyledFaq>

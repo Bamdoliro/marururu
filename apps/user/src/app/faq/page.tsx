@@ -9,7 +9,11 @@ import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 const FaqPage = () => {
-    const faqListQuery = useFaqListQuery();
+    const { data: faqList, isLoading } = useFaqListQuery('TOP_QUESTION');
+
+    if (isLoading || faqList === undefined) {
+        return null;
+    }
 
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
@@ -17,8 +21,8 @@ const FaqPage = () => {
                 <Title>자주 묻는 질문</Title>
                 <CategoryFilter />
                 <FaqList>
-                    {faqListQuery.data?.map((item) => (
-                        <FaqItem key={item.id} question={item.question} answer={item.answer} />
+                    {faqList.map((item) => (
+                        <FaqItem title={item.title} content={item.content} />
                     ))}
                 </FaqList>
             </StyledFaqPage>
