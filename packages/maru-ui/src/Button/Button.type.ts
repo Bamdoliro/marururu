@@ -4,7 +4,6 @@ export type ButtonOptionType =
     | 'TERTIARY'
     | 'QUATERNARY'
     | 'DELETE'
-    | 'LINK_TEXT'
     | 'DISABLED';
 
 export type ButtonIconType = 'NONE' | 'ADD_ICON' | 'SHORTCUTS_ICON';

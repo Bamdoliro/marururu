@@ -20,7 +20,7 @@ export default UnderLineButton;
 
 const HoverStateBox = styled.div`
     ${font.btn1}
-    padding: 10px 12px;
+    padding: 8px 12px;
     border-radius: 6px;
 `;
 
