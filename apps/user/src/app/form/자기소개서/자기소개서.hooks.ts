@@ -9,6 +9,7 @@ export const useFormSubmitAction = (
     debouncedStatementOfPurpose: string,
 ) => {
     const { form, setForm } = useFormState();
+    const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
     const { setFormStep } = useFormStepState();
     const submitDraftFormMutation = useSubmitDraftFormMutation(form);
 
@@ -21,7 +22,7 @@ export const useFormSubmitAction = (
             },
         }));
         setFormStep('완료');
-        // submitDraftFormMutation.mutate();
+        submitDraftFormMutate();
     };
 
     return { handleFormSubmitButtonClick };

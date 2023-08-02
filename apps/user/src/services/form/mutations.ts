@@ -1,9 +1,11 @@
-import { Form } from '@/types/form';
+import { Form, UserInfo } from '@/types/form';
+import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
-import { submitDraftForm } from './api';
+import { submitDraftForm, uploadProfileImage } from './api';
 
 export const useSubmitDraftFormMutation = (formData: Form) => {
-    return useMutation(() => submitDraftForm(formData), {
+    const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
+        mutationFn: () => submitDraftForm(formData),
         onSuccess: (res) => {
             console.log(res);
             alert('성공!');
@@ -13,4 +15,20 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
             alert('실패!');
         },
     });
+
+    return { submitDraftFormMutate, restMutation };
+};
+
+export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateAction<UserInfo>>) => {
+    const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
+        mutationFn: (image: FormData) => uploadProfileImage(image),
+        onSuccess: (res) => {
+            setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.data.url }));
+        },
+        onError: (err) => {
+            console.log(err);
+        },
+    });
+
+    return { uploadProfileImageMutate, ...restMutation };
 };

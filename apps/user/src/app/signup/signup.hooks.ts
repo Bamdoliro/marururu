@@ -3,12 +3,12 @@ import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mu
 import { ChangeEventHandler, useState } from 'react';
 
 export const useJoinAction = (joinUserData: Join, termsAgree: boolean) => {
-    const joinUserMutation = useJoinUserMutation(joinUserData);
+    const { joinUserMutate } = useJoinUserMutation(joinUserData);
 
     const handleJoinButtonClick = () => {
         if (joinUserData.password === joinUserData.password_confirm) {
             if (termsAgree) {
-                joinUserMutation.mutate();
+                joinUserMutate();
             } else {
                 alert('이용약관 동의를 해주세요');
             }
@@ -21,10 +21,10 @@ export const useJoinAction = (joinUserData: Join, termsAgree: boolean) => {
 };
 
 export const useRequestEmail = (email: string) => {
-    const requestEmailMutation = useRequestEmailMutation(email);
+    const { requestEmailMutate } = useRequestEmailMutation(email);
 
     const handleRequestEmailButtonClick = () => {
-        requestEmailMutation.mutate();
+        requestEmailMutate();
     };
 
     return { handleRequestEmailButtonClick };
