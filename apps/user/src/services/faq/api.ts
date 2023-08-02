@@ -1,3 +1,4 @@
+import { maru } from '@/apis/instance/instance';
 import axios from 'axios';
 
 // 테스트 카테고리 리스트
@@ -7,6 +8,6 @@ export const faqCategoryList = async () => {
 };
 
 export const faqList = async (category: string) => {
-    const { data } = await axios.get(`/question?category=${category}`);
-    return data.dataList;
+    const { data } = await maru.get(`/question?category=${category}`);
+    return data;
 };

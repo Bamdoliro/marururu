@@ -8,20 +8,20 @@ interface PropsType {
     title: string;
 }
 
-const FaqItem = ({ title }: PropsType) => {
+const MainFaqItem = ({ title }: PropsType) => {
     const router = useRouter();
 
     return (
-        <StyledFaqItem onClick={() => router.push(ROUTES.FAQ)}>
+        <StyledMainFaqItem onClick={() => router.push(ROUTES.FAQ)}>
             <IconFaq color={color.maruDefault} width={24} height={24} />
-            <Faq>{title}</Faq>
-        </StyledFaqItem>
+            <Question>{title}</Question>
+        </StyledMainFaqItem>
     );
 };
 
-export default FaqItem;
+export default MainFaqItem;
 
-const StyledFaqItem = styled.div`
+const StyledMainFaqItem = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
@@ -31,7 +31,7 @@ const StyledFaqItem = styled.div`
     cursor: pointer;
 `;
 
-const Faq = styled.a`
+const Question = styled.a`
     ${font.p1}
     color: ${color.gray750};
     // 일정 길이 넘어가면 ... 처리

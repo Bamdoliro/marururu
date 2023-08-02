@@ -17,15 +17,12 @@ export const useFaqCategoryListQuery = () => {
 };
 
 // FAQ 리스트
-interface FaqList {
-    title: string;
-    content: string;
-}
-
 export const useFaqListQuery = (category: string) => {
-    return useQuery<FaqList[]>({
+    const { data, ...restQuery } = useQuery({
         queryKey: [KEY.FAQ_LIST] as const,
         queryFn: () => faqList(category),
         initialData: [],
     });
+
+    return { data: data?.dataList, ...restQuery };
 };
