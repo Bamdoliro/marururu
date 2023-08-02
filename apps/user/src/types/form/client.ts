@@ -34,6 +34,13 @@ export interface EducationInfo {
     teacherMobilePhoneNumber: string;
 }
 
+export interface StudentSubject {
+    subjectName: string;
+    achievementLevel21: string;
+    achievementLevel22: string;
+    achievementLevel31: string;
+}
+
 export interface Subject {
     id: number;
     subjectName: string;
@@ -59,12 +66,6 @@ export interface VolunteerInfo {
     volunteerTime1: number;
     volunteerTime2: number;
     volunteerTime3: number;
-}
-
-export interface SchoolList {
-    code: string;
-    name: string;
-    location: string;
 }
 
 export interface School {

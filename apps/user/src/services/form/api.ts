@@ -23,6 +23,5 @@ export const postUploadProfileImage = async (image: FormData) => {
 
 export const getSchoolList = async (school: string) => {
     const { data } = await maru.get<GetSchoolListRes>(`/school?q=${school}`);
-
     return data;
 };

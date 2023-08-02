@@ -1,11 +1,11 @@
-import { Attendance, EducationInfo, ParentInfo, School, Subject, UserInfo } from './client';
+import { Attendance, EducationInfo, ParentInfo, School, StudentSubject, UserInfo } from './client';
 
 export interface PostFormReq {
     applicant: UserInfo;
     parent: ParentInfo;
     education: EducationInfo;
     grade: {
-        subjectList: Subject[];
+        subjectList: StudentSubject[];
         attendance1: Attendance;
         attendance2: Attendance;
         attendance3: Attendance;
