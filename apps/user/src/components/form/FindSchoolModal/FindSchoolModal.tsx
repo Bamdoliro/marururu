@@ -1,12 +1,12 @@
-import { useSchoolListQuery } from '@/services/form/출신학교및학력/queries';
+import { useSchoolListQuery } from '@/services/form/queries';
 import { useDebounceInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import { useState, Dispatch, SetStateAction } from 'react';
 import { EducationInfo } from '@/types/form';
-import { IconCheck, IconClose } from '@maru/icon';
-import { css, styled } from 'styled-components';
 import SchoolList from './SchoolList/SchoolList';
+import { IconClose } from '@maru/icon';
+import styled from 'styled-components';
 
 interface PropsType {
     closeModal: () => void;
