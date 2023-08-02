@@ -1,50 +1,54 @@
-import { Storage } from '@/apis/storage';
-import { useRouter } from 'next/navigation';
+import { Storage } from '@/apis/storage/storage';
+import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { Button, Row } from '@maru/ui';
-import Profile from './Profile';
+import { Button, Row, UnderLineButton } from '@maru/ui';
+import Profile from './Profile/Profile';
 import ROUTES from '@/constants/routes';
 import TOKEN from '@/constants/token';
-import { LogoIcon } from '../Icons';
+import Image from 'next/image';
+import { useState } from 'react';
 
-const HEADER_DATA = [
+const NAVIGATION_DATA = [
     {
-        id: 0,
         name: '홈',
         route: ROUTES.MAIN,
     },
     {
-        id: 1,
         name: '원서접수',
         route: ROUTES.FORM,
     },
     {
-        id: 2,
         name: '공지사항',
         route: ROUTES.NOTICE,
     },
     {
-        id: 3,
         name: '자주 묻는 질문',
         route: ROUTES.FAQ,
     },
     {
-        id: 4,
         name: '학교 소개',
-        route: '/',
+        route: '',
     },
 ];
 
 const Header = () => {
     const router = useRouter();
     const loginStatus = Storage.getItem(TOKEN.ACCESS);
+    const pathName = usePathname();
 
     return (
         <StyledHeader>
             <HeaderBar>
-                <LogoIcon cursor="pointer" onClick={() => router.push(ROUTES.MAIN)} />
+                <Image
+                    src="/svg/logo.svg"
+                    style={{ cursor: 'pointer' }}
+                    width={107}
+                    height={72}
+                    onClick={() => router.push(ROUTES.MAIN)}
+                    alt="logo"
+                />
                 {loginStatus ? (
                     <Profile name="밤돌이로" />
                 ) : (
@@ -65,14 +69,13 @@ const Header = () => {
                 )}
             </HeaderBar>
             <NavigationBar>
-                {HEADER_DATA.map((item) => (
-                    <Button
-                        key={item.id}
-                        option="HOVER_UNDERLINE"
-                        size="LARGE"
+                {NAVIGATION_DATA.map((item, index) => (
+                    <UnderLineButton
+                        key={`navigation ${index}`}
+                        active={item.route === pathName}
                         onClick={() => router.push(item.route)}>
                         {item.name}
-                    </Button>
+                    </UnderLineButton>
                 ))}
             </NavigationBar>
         </StyledHeader>
@@ -88,6 +91,7 @@ const StyledHeader = styled.div`
     background-color: ${color.white};
     margin-bottom: 44px;
     padding: 0px 100px;
+    border-bottom: 1px solid ${color.gray200};
 `;
 
 const HeaderBar = styled.div`
@@ -100,5 +104,4 @@ const NavigationBar = styled.div`
     width: 100%;
     height: 54px;
     background-color: ${color.white};
-    border-bottom: 1px solid ${color.gray200};
 `;

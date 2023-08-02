@@ -1,10 +1,10 @@
 'use client';
 
-import { NotFoundIcon } from '@/components/common/Icons';
 import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 
@@ -12,9 +12,9 @@ const NotFound = () => {
     const router = useRouter();
 
     return (
-        <AppLayout>
+        <AppLayout header>
             <StyledNotFound>
-                <NotFoundIcon />
+                <Image src="/svg/not_found.svg" alt="not-found" width={389} height={155} />
                 <Title>페이지를 찾을 수 없습니다</Title>
                 <Desc>
                     요청하신 페이지가 사라졌거나, 잘못된 경로를 이용하셨어요.

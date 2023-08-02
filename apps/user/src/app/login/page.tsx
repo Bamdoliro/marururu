@@ -1,61 +1,60 @@
 'use client';
 
 import Image from 'next/image';
-import { BaseLayout } from '@/layouts';
-import { useLogin } from './login.hooks';
-import { useRouter } from 'next/navigation';
-import ROUTES from '@/constants/routes';
+import { useCTAButton, useInput, useLoginAction } from './login.hooks';
+import { AppLayout } from '@/layouts';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
-import { RightArrowIcon } from '@/components/common/Icons';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { IconArrowRight } from '@maru/icon';
 import styled from 'styled-components';
 
 const LoginPage = () => {
-    const router = useRouter();
-    const { handleLoginUserData, handleLoginButtonClick } = useLogin();
+    const { handleGoSingUpPageButtonClick } = useCTAButton();
+    const { loginUserData, handleLoginUserDataChange } = useInput();
+    const { handleLoginButtonClick } = useLoginAction(loginUserData);
 
     return (
-        <BaseLayout backgroundColor={color.gray100}>
+        <AppLayout backgroundColor={color.gray100}>
             <StyledLoginPage>
                 <LoginBox>
                     <LoginBoxWrap>
-                        <Image src="/assets/Logo.svg" width={232} height={70} alt="logo" />
+                        <Image src="/svg/logo.svg" width={232} height={70} alt="logo" />
                         <Column gap="36px" width="100%">
                             <Column gap="24px">
                                 <Input
                                     label="아이디"
                                     width="100%"
                                     name="email"
-                                    onChange={handleLoginUserData}
+                                    onChange={handleLoginUserDataChange}
                                 />
                                 <PreviewInput
                                     label="비밀번호"
                                     width="100%"
                                     name="password"
-                                    onChange={handleLoginUserData}
+                                    onChange={handleLoginUserDataChange}
                                 />
                             </Column>
                             <Column gap="16px" alignItems="flex-end">
                                 <Button width="100%" onClick={handleLoginButtonClick}>
                                     로그인
                                 </Button>
-                                <FindPasswordLink>
+                                <GoFindPasswordPageButton>
                                     비밀번호 찾기
-                                    <RightArrowIcon color={color.gray500} size={16} />
-                                </FindPasswordLink>
+                                    <IconArrowRight color={color.gray500} width={16} height={16} />
+                                </GoFindPasswordPageButton>
                             </Column>
                         </Column>
-                        <SignUp>
+                        <GoSignUpPageButtonBox>
                             회원이 아니신가요?
-                            <SignUpLink onClick={() => router.push(ROUTES.SIGNUP)}>
+                            <GoSignUpPageButton onClick={handleGoSingUpPageButtonClick}>
                                 회원가입
-                            </SignUpLink>
-                        </SignUp>
+                            </GoSignUpPageButton>
+                        </GoSignUpPageButtonBox>
                     </LoginBoxWrap>
                 </LoginBox>
             </StyledLoginPage>
-        </BaseLayout>
+        </AppLayout>
     );
 };
 
@@ -81,7 +80,7 @@ const LoginBoxWrap = styled.div`
     width: 446px;
 `;
 
-const FindPasswordLink = styled.a`
+const GoFindPasswordPageButton = styled.a`
     ${font.p2}
     color: ${color.gray500};
     cursor: pointer;
@@ -92,14 +91,14 @@ const FindPasswordLink = styled.a`
     }
 `;
 
-const SignUp = styled.div`
+const GoSignUpPageButtonBox = styled.div`
     ${font.p2}
     color: ${color.gray500};
     ${flex({ alignItems: 'center' })}
     gap: 8px;
 `;
 
-const SignUpLink = styled.a`
+const GoSignUpPageButton = styled.a`
     ${font.p2}
     color: ${color.gray500};
     text-decoration-line: underline;

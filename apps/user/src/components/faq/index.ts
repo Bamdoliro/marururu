@@ -1,2 +1,2 @@
-export { default as FaqItem } from './FaqItem/FaqItem';
+export { default as FaqList } from './FaqList/FaqList';
 export { default as CategoryFilter } from './CategoryFilter/CategoryFilter';

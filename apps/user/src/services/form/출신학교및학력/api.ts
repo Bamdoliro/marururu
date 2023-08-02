@@ -1,9 +1,7 @@
-import axios from 'axios';
+import { maru } from '@/apis/instance/instance';
 
-export const schoolList = async (name: string) => {
-    const { data } = await axios.get(
-        `${process.env.NEXT_PUBLIC_SCHOOL_LIST_API!}&SCHUL_NM=${name}`,
-    );
+export const getSchoolList = async (school: string) => {
+    const { data } = await maru.get(`/school?q=${school}`);
 
     return data;
 };

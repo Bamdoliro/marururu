@@ -1,5 +1,5 @@
 import TOKEN from '@/constants/token';
-import { Storage } from '../storage';
+import { Storage } from '../storage/storage';
 
 const authorization = () => {
     return {

@@ -1,15 +1,13 @@
-import { useQuery } from 'react-query';
-import { schoolList } from './api';
 import KEY from '@/constants/key';
+import { useQuery } from 'react-query';
+import { getSchoolList } from './api';
 
-const useFormSchoolListQuery = (name: string) => {
-    return useQuery({
-        queryKey: [
-            KEY.FORM_SCHOOL_LIST,
-            name.replaceAll(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ 0-9]/gim, ''),
-        ],
-        queryFn: () => schoolList(name),
+export const useSchoolListQuery = (school: string) => {
+    const { data, ...restQuery } = useQuery({
+        queryKey: [KEY.FORM_SCHOOL_LIST, school],
+        queryFn: () => getSchoolList(school),
+        initialData: [],
     });
-};
 
-export default useFormSchoolListQuery;
+    return { data: data?.dataList, ...restQuery };
+};

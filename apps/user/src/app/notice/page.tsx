@@ -1,6 +1,6 @@
 'use client';
 
-import { NoticeItem } from '@/components/notice';
+import { NoticeList } from '@/components/notice';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { useNoticeListQuery } from '@/services/notice/queries';
@@ -8,22 +8,15 @@ import { AppLayout } from '@/layouts';
 import styled from 'styled-components';
 
 const NoticePage = () => {
-    const noticeListQuery = useNoticeListQuery();
+    const { data: noticeListData } = useNoticeListQuery();
+
+    if (!noticeListData) return null;
 
     return (
-        <AppLayout style={{ padding: '0px 207px' }}>
+        <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
             <StyledNoticePage>
                 <Title>공지사항</Title>
-                <NoticeList>
-                    {noticeListQuery.data?.map((item) => (
-                        <NoticeItem
-                            key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            date={item.date}
-                        />
-                    ))}
-                </NoticeList>
+                <NoticeList noticeListData={noticeListData} />
             </StyledNoticePage>
         </AppLayout>
     );
@@ -41,10 +34,4 @@ const StyledNoticePage = styled.div`
 const Title = styled.p`
     ${font.H2}
     color: ${color.gray900};
-`;
-
-const NoticeList = styled.div`
-    ${flex({ flexDirection: 'column' })}
-    gap: 20px;
-    width: 100%;
 `;

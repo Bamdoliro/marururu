@@ -2,28 +2,27 @@
 
 import Image from 'next/image';
 import Terms from '@/components/signup/Terms/Terms';
-import { BaseLayout } from '@/layouts';
-import { useSignUp } from './signup.hooks';
+import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput } from '@maru/ui';
 import { useTimer } from '@maru/hooks';
 import styled from 'styled-components';
+import { useInput, useRequestEmail, useJoinAction } from './signup.hooks';
+import { useState } from 'react';
 
 const SignUpPage = () => {
-    const {
-        handleJoinUserData,
-        handleRequestEmailButtonClick,
-        handleJoinButtonClick,
-        setCheckTermsAgree,
-    } = useSignUp();
+    const [termsAgree, setTermsAgree] = useState(false);
     const { requestEmailEnabled, startTimer, timerTime, setTimerTime } = useTimer();
+    const { joinUserData, handleJoinUserDataChange } = useInput();
+    const { handleRequestEmailButtonClick } = useRequestEmail(joinUserData.email);
+    const { handleJoinButtonClick } = useJoinAction(joinUserData, termsAgree);
 
     return (
-        <BaseLayout>
+        <AppLayout header={true} footer={true}>
             <StyledSignUpPage>
                 <Image
-                    src="/assets/ColaboLogo.svg"
+                    src="/svg/colabo_logo.svg"
                     style={{ margin: '0 auto' }}
                     width={477}
                     height={290}
@@ -44,7 +43,7 @@ const SignUpPage = () => {
                                 placeholder="이메일"
                                 width="100%"
                                 name="email"
-                                onChange={handleJoinUserData}
+                                onChange={handleJoinUserDataChange}
                                 enabled={requestEmailEnabled}
                             />
                             {requestEmailEnabled && (
@@ -54,7 +53,7 @@ const SignUpPage = () => {
                                     maxLength={6}
                                     msg="발송된 이메일의 인증번호를 입력해주세요."
                                     name="code"
-                                    onChange={handleJoinUserData}
+                                    onChange={handleJoinUserDataChange}
                                     timerTime={timerTime}
                                     setTimerTime={setTimerTime}
                                 />
@@ -64,24 +63,24 @@ const SignUpPage = () => {
                                 width="100%"
                                 msg="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
                                 name="password"
-                                onChange={handleJoinUserData}
+                                onChange={handleJoinUserDataChange}
                             />
                             <PreviewInput
                                 label="비밀번호 재확인"
                                 width="100%"
-                                name="repassword"
-                                onChange={handleJoinUserData}
+                                name="password_confirm"
+                                onChange={handleJoinUserDataChange}
                             />
                         </Column>
                         {/* 이용약관 동의 */}
-                        <Terms setCheckTermsAgree={setCheckTermsAgree} />
+                        <Terms setTermsAgree={setTermsAgree} />
                         <Button width="100%" onClick={handleJoinButtonClick}>
                             회원가입
                         </Button>
                     </SignUpBox>
                 </ContentBox>
             </StyledSignUpPage>
-        </BaseLayout>
+        </AppLayout>
     );
 };
 

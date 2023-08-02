@@ -1,7 +1,7 @@
 import { useFaqCategoryListQuery } from '@/services/faq/queries';
 import { useState } from 'react';
 import styled from 'styled-components';
-import Category from './Category';
+import Category from './Category/Category';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 
