@@ -4,10 +4,14 @@ import { Storage } from '@/apis/storage/storage';
 import TOKEN from '@/constants/token';
 import { GetSchoolListRes, PostFormReq } from '@/types/form/remote';
 
+export const postSubmitFinalForm = async (formUrl: string) => {
+    const { data } = await maru.patch('/form', { formUrl });
+    return data;
+};
+
 export const postSubmitDraftForm = async (formData: PostFormReq) => {
     const { data } = await maru.post('/form', formData, authorization());
-
-    return { data };
+    return data;
 };
 
 export const postUploadProfileImage = async (image: FormData) => {
@@ -17,8 +21,7 @@ export const postUploadProfileImage = async (image: FormData) => {
             'Content-Type': 'multipart/form-data',
         },
     });
-
-    return { data };
+    return data;
 };
 
 export const getSchoolList = async (school: string) => {
