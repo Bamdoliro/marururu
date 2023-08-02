@@ -1,6 +1,6 @@
 import { FormLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
-import { Button } from '@maru/ui';
+import { UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import {
@@ -42,12 +42,9 @@ const 성적입력 = () => {
 
             <NavigationBar>
                 {FIELD_DATA.map((item) => (
-                    <Button
-                        option="HOVER_UNDERLINE"
-                        size="LARGE"
-                        onClick={() => setFieldStep(item)}>
+                    <UnderLineButton active={item === fieldStep} onClick={() => setFieldStep(item)}>
                         {item}
-                    </Button>
+                    </UnderLineButton>
                 ))}
             </NavigationBar>
 

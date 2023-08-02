@@ -15,6 +15,7 @@ export { default as Td } from './src/Table/Td';
 export { default as Th } from './src/Table/Th';
 export { default as Textarea } from './src/Textarea/Textarea';
 export { default as CheckBox } from './src/CheckBox/CheckBox';
+export { default as UnderLineButton } from './src/Button/UnderLineButton';
 
 // type
 export type { ButtonOptionType } from './src/Button/Button.type';

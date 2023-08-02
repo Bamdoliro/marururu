@@ -53,25 +53,6 @@ export const getButtonStyle = {
             text-decoration-color: ${color.maruDefault};
         }
     `,
-    HOVER_UNDERLINE: css`
-        position: relative;
-        background-color: ${color.white};
-        color: ${color.gray900};
-        border-radius: 0;
-        &::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: ${color.maruDefault};
-            transform: scaleX(0);
-        }
-        &:hover::before {
-            transform: scaleX(1);
-        }
-    `,
     DISABLED: css`
         background-color: ${color.gray700};
         color: ${color.white};
