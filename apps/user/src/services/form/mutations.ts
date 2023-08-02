@@ -1,11 +1,12 @@
-import { Form, UserInfo } from '@/types/form';
+import { UserInfo } from '@/types/form/client';
+import { PostFormReq } from '@/types/form/remote';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
-import { submitDraftForm, uploadProfileImage } from './api';
+import { postSubmitDraftForm, postUploadProfileImage } from './api';
 
-export const useSubmitDraftFormMutation = (formData: Form) => {
+export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
-        mutationFn: () => submitDraftForm(formData),
+        mutationFn: () => postSubmitDraftForm(formData),
         onSuccess: (res) => {
             console.log(res);
             alert('성공!');
@@ -21,7 +22,7 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
 
 export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateAction<UserInfo>>) => {
     const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
-        mutationFn: (image: FormData) => uploadProfileImage(image),
+        mutationFn: (image: FormData) => postUploadProfileImage(image),
         onSuccess: (res) => {
             setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.data.url }));
         },

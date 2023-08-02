@@ -1,4 +1,4 @@
-import { School } from '@/types/form';
+import { School } from '@/types/form/client';
 import { IconCheck } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Dispatch, SetStateAction } from 'react';

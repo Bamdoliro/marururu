@@ -3,7 +3,7 @@ import { useDebounceInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import { useState, Dispatch, SetStateAction } from 'react';
-import { EducationInfo } from '@/types/form';
+import { EducationInfo } from '@/types/form/client';
 import SchoolList from './SchoolList/SchoolList';
 import { IconClose } from '@maru/icon';
 import styled from 'styled-components';

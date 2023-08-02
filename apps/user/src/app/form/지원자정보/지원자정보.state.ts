@@ -1,4 +1,4 @@
-import { UserInfo } from '@/types/form';
+import { UserInfo } from '@/types/form/client';
 import { atom, useRecoilState } from 'recoil';
 
 const userInfoAtomState = atom<UserInfo>({

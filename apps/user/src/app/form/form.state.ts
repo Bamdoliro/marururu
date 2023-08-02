@@ -1,7 +1,8 @@
-import { Attendance, EducationInfo, Form, ParentInfo, UserInfo } from '@/types/form';
+import { Attendance, EducationInfo, ParentInfo, UserInfo } from '@/types/form/client';
+import { PostFormReq } from '@/types/form/remote';
 import { useRecoilState, atom } from 'recoil';
 
-const formDataAtomState = atom<Form>({
+const formDataAtomState = atom<PostFormReq>({
     key: 'form-data',
     default: {
         applicant: {} as UserInfo,

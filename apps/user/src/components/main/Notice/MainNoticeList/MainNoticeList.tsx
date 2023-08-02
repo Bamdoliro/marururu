@@ -1,12 +1,12 @@
-import { NoticeList } from '@/types/notice';
-import styled from 'styled-components';
 import MainNoticeItem from './MainNoticeItem/MainNoticeItem';
+import { useNoticeListQuery } from '@/services/notice/queries';
+import styled from 'styled-components';
 
-interface PropsType {
-    mainNoticeListData: NoticeList[];
-}
+const MainNoticeList = () => {
+    const { data: mainNoticeListData } = useNoticeListQuery();
 
-const MainNoticeList = ({ mainNoticeListData }: PropsType) => {
+    if (!mainNoticeListData) return null;
+
     return (
         <StyledMainNoticeList>
             {mainNoticeListData.splice(0, 3).map(({ id, title }) => (

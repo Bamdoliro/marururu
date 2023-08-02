@@ -1,4 +1,4 @@
-export interface NoticeList {
+export interface Notice {
     id: number;
     title: string;
     createdAt: string;

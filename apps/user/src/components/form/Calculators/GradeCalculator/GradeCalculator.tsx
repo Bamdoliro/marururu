@@ -5,7 +5,7 @@ import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeade
 import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
-import { Subject } from '@/types/form';
+import { Subject } from '@/types/form/client';
 import styled from 'styled-components';
 
 interface PropsType {
