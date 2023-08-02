@@ -1,12 +1,11 @@
-import { SchoolList } from '@/types/form';
-import { IconCheck } from '@maru/icon';
-import { Dispatch, SetStateAction } from 'react';
 import { School } from '@/types/form';
+import { IconCheck } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 
 interface PropsType {
-    schoolListData: SchoolList[];
+    schoolListData: School[];
     selectedSchool: School;
     setSelectedSchool: Dispatch<SetStateAction<School>>;
 }
