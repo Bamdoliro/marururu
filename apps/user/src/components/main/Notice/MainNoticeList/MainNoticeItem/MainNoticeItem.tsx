@@ -1,30 +1,28 @@
 import { useRouter } from 'next/navigation';
+import { styled } from 'styled-components';
 import ROUTES from '@/constants/routes';
 import { font, color } from '@maru/theme';
-import { IconFaq } from '@maru/icon';
-import { styled } from 'styled-components';
+import { flex } from '@maru/utils';
 
 interface PropsType {
     id: number;
-    question: string;
+    title: string;
 }
 
-const FaqItem = ({ id, question }: PropsType) => {
+const MainNoticeItem = ({ id, title }: PropsType) => {
     const router = useRouter();
 
     return (
-        <StyledFaqItem onClick={() => router.push(`${ROUTES.FAQ}/${id}`)}>
-            <IconFaq color={color.maruDefault} width={24} height={24} />
-            <Faq>{question}</Faq>
-        </StyledFaqItem>
+        <StyledMainNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
+            <Title>{title}</Title>
+        </StyledMainNoticeItem>
     );
 };
 
-export default FaqItem;
+export default MainNoticeItem;
 
-const StyledFaqItem = styled.div`
-    display: flex;
-    align-items: center;
+const StyledMainNoticeItem = styled.div`
+    ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 64px;
     padding: 0px 16px;
@@ -32,12 +30,11 @@ const StyledFaqItem = styled.div`
     cursor: pointer;
 `;
 
-const Faq = styled.a`
+const Title = styled.a`
     ${font.p1}
     color: ${color.gray750};
     // 일정 길이 넘어가면 ... 처리
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 12px;
 `;

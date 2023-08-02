@@ -6,12 +6,7 @@ import { useState, Dispatch, SetStateAction } from 'react';
 import { EducationInfo } from '@/types/form';
 import { IconCheck, IconClose } from '@maru/icon';
 import { css, styled } from 'styled-components';
-
-interface School {
-    name: string;
-    location: string;
-    code: string;
-}
+import SchoolList from './SchoolList/SchoolList';
 
 interface PropsType {
     closeModal: () => void;
@@ -26,7 +21,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         debouncedValue: debouncedSchoolSearchQuery,
     } = useDebounceInput({ initialValue: '' });
 
-    const { data: schoolListQuery } = useSchoolListQuery(debouncedSchoolSearchQuery);
+    const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
 
     const handleCompleteSchoolSearch = () => {
         const { name, location, code } = selectedSchool;
@@ -44,6 +39,8 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         setSelectedSchool({ name: '', location: '', code: '' });
         closeModal();
     };
+
+    if (!schoolListData) return null;
 
     return (
         <Background>
@@ -66,27 +63,12 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                             placeholder="학교 이름을 입력해주세요."
                         />
                     </Column>
-                    <SchoolList>
-                        {schoolListQuery?.map(({ name, location, code }: School) => (
-                            <SchoolItem
-                                key={code}
-                                selected={selectedSchool.code === code}
-                                onClick={() => setSelectedSchool({ name, location, code })}>
-                                <SchoolName>
-                                    {selectedSchool.code === code && (
-                                        <IconCheck
-                                            color={color.maruDefault}
-                                            width={24}
-                                            height={24}
-                                        />
-                                    )}
-                                    {name}
-                                </SchoolName>
-                                <SchoolRegion>{location}</SchoolRegion>
-                            </SchoolItem>
-                        ))}
-                    </SchoolList>
                 </Column>
+                <SchoolList
+                    schoolListData={schoolListData}
+                    selectedSchool={selectedSchool}
+                    setSelectedSchool={setSelectedSchool}
+                />
                 <Row gap={16} justifyContent="flex-end">
                     <Button option="SECONDARY" size="SMALL" onClick={closeSchoolModal}>
                         취소
@@ -131,43 +113,4 @@ const StyledSchoolSearchModal = styled.div`
 const Title = styled.p`
     ${font.H2}
     color: ${color.gray900};
-`;
-
-const SchoolList = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    height: 225px;
-    overflow: auto;
-`;
-
-const SchoolItem = styled.div<{ selected: boolean }>`
-    display: flex;
-    height: 56px;
-    padding: 15px 16px;
-    border-radius: 6px;
-    background: ${color.gray50};
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-
-    ${({ selected }) =>
-        selected &&
-        css`
-            padding: 15px 15px;
-            border: 1px solid ${color.maruDefault};
-        `}
-`;
-
-const SchoolName = styled.p`
-    ${font.p2}
-    color: ${color.gray900};
-    display: flex;
-    align-items: center;
-    gap: 4px;
-`;
-
-const SchoolRegion = styled.p`
-    ${font.caption}
-    color: ${color.gray600};
 `;

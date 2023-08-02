@@ -4,7 +4,8 @@ export type FormStep =
     | '출신학교및학력'
     | '전형선택'
     | '성적입력'
-    | '자기소개서';
+    | '자기소개서'
+    | '완료';
 
 export interface Form {
     applicant: UserInfo;
@@ -79,4 +80,16 @@ export interface VolunteerInfo {
     volunteerTime1: number;
     volunteerTime2: number;
     volunteerTime3: number;
+}
+
+export interface SchoolList {
+    code: string;
+    name: string;
+    location: string;
+}
+
+export interface School {
+    name: string;
+    location: string;
+    code: string;
 }

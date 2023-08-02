@@ -2,6 +2,7 @@ import { useFormState } from '../form.state';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { useDebounceInput } from '@maru/hooks';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
+import { useRouter } from 'next/router';
 
 export const useFormSubmitAction = (
     debouncedCoverLetter: string,
@@ -9,6 +10,8 @@ export const useFormSubmitAction = (
 ) => {
     const { form, setForm } = useFormState();
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
+    const { setFormStep } = useFormStepState();
+    const submitDraftFormMutation = useSubmitDraftFormMutation(form);
 
     const handleFormSubmitButtonClick = () => {
         setForm((prev) => ({
@@ -18,7 +21,7 @@ export const useFormSubmitAction = (
                 statementOfPurpose: debouncedStatementOfPurpose,
             },
         }));
-
+        setFormStep('완료');
         submitDraftFormMutate();
     };
 
