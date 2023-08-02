@@ -28,9 +28,9 @@ const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
     };
 
     // Mutation
-    const uploadProfileImageMutation = useUploadProfileImageMutation(setUserInfo);
+    const { uploadProfileImageMutate } = useUploadProfileImageMutation(setUserInfo);
     const uploadProfileImageFile = (image: FormData) => {
-        uploadProfileImageMutation.mutate(image);
+        uploadProfileImageMutate(image);
     };
 
     // 이미지 데이터 핸들링

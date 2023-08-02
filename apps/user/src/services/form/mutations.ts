@@ -3,7 +3,8 @@ import { useMutation } from 'react-query';
 import { submitDraftForm } from './api';
 
 export const useSubmitDraftFormMutation = (formData: Form) => {
-    return useMutation(() => submitDraftForm(formData), {
+    const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
+        mutationFn: () => submitDraftForm(formData),
         onSuccess: (res) => {
             console.log(res);
             alert('성공!');
@@ -13,4 +14,6 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
             alert('실패!');
         },
     });
+
+    return { submitDraftFormMutate, restMutation };
 };

@@ -5,10 +5,10 @@ import ROUTES from '@/constants/routes';
 import { ChangeEventHandler, useState } from 'react';
 
 export const useLoginAction = (loginUserData: Login) => {
-    const loginUserMutation = useLoginUserMutation(loginUserData);
+    const { loginUserMutate } = useLoginUserMutation(loginUserData);
 
     const handleLoginButtonClick = () => {
-        loginUserMutation.mutate();
+        loginUserMutate();
     };
 
     return { handleLoginButtonClick };
