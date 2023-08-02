@@ -15,23 +15,20 @@ import { useFormState } from '../form.state';
 import { useCheckFilledForm } from './완료.hooks';
 
 const 완료 = () => {
-    const complete = true;
-    const { form } = useFormState();
+    const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
     const { setFormStep } = useFormStepState();
     const {
-        filledApplicantFieldsCount,
-        filledParentFieldsCount,
-        filledEducationFieldsCount,
-        filledTypeFieldsCount,
-        filledDocumentFieldsCount,
+        applicantFieldCount,
+        parentFieldCount,
+        educationFieldCount,
+        typeFieldCount,
+        documentFieldCount,
+        isFilledForm,
     } = useCheckFilledForm();
-    const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
 
     useInterval(() => {
         setIsShowCompleteAlaram(false);
     }, 1000);
-
-    console.log(form);
 
     return (
         <AppLayout header={true}>
@@ -41,26 +38,28 @@ const 완료 = () => {
                 <Styled완료>
                     <Row gap={8} style={{ marginBottom: '55px' }} alignItems="center">
                         <CircleIconBox>
-                            {complete ? (
+                            {isFilledForm ? (
                                 <IconCheckCircle width="100%" height="100%" />
                             ) : (
                                 <IconCancelCircle width="100%" height="100%" />
                             )}
                         </CircleIconBox>
                         <AlertMessage>
-                            {complete ? '원서 초안 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
+                            {isFilledForm
+                                ? '원서 초안 작성 완료'
+                                : '아직 작성하지 않은 곳이 있어요'}
                         </AlertMessage>
                     </Row>
                     <Column gap={12}>
                         <Desc>
-                            {complete ? (
+                            {isFilledForm ? (
                                 <p>원서 접수에 필요한 초안을 모두 작성하셨습니다.</p>
                             ) : (
                                 <p>원서 작성 중 입력하지 않은 곳이 있습니다.</p>
                             )}
                         </Desc>
                         <StressDesc>
-                            {complete ? (
+                            {isFilledForm ? (
                                 <p>
                                     원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에
                                     응시한 것으로 처리되며
@@ -74,7 +73,7 @@ const 완료 = () => {
                             )}
                         </StressDesc>
                         <Desc>
-                            {complete ? (
+                            {isFilledForm ? (
                                 <p>잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.</p>
                             ) : (
                                 <p>또한 잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.</p>
@@ -85,22 +84,22 @@ const 완료 = () => {
                         <CheckFormCompleteItem
                             formStep="지원자 정보"
                             maxCompleteOfNumber={5}
-                            completeOfNumber={filledApplicantFieldsCount}
+                            completeOfNumber={applicantFieldCount}
                         />
                         <CheckFormCompleteItem
                             formStep="보호자 정보"
                             maxCompleteOfNumber={5}
-                            completeOfNumber={filledParentFieldsCount}
+                            completeOfNumber={parentFieldCount}
                         />
                         <CheckFormCompleteItem
                             formStep="출신학교 및 학력"
                             maxCompleteOfNumber={8}
-                            completeOfNumber={filledEducationFieldsCount}
+                            completeOfNumber={educationFieldCount}
                         />
                         <CheckFormCompleteItem
                             formStep="전형 선택"
                             maxCompleteOfNumber={1}
-                            completeOfNumber={filledTypeFieldsCount}
+                            completeOfNumber={typeFieldCount}
                         />
                         <CheckFormCompleteItem
                             formStep="성적 입력"
@@ -110,11 +109,11 @@ const 완료 = () => {
                         <CheckFormCompleteItem
                             formStep="자기소개서 및 학업계획서"
                             maxCompleteOfNumber={2}
-                            completeOfNumber={filledDocumentFieldsCount}
+                            completeOfNumber={documentFieldCount}
                         />
                     </CheckFormCompleteBox>
 
-                    {complete && (
+                    {isFilledForm && (
                         <Column gap={24}>
                             <Question>제출하시겠습니까?</Question>
                             <Row gap={16}>
