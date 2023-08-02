@@ -1,12 +1,12 @@
+import { Subject } from '@/types/form';
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
-import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeader';
-import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
-import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
 import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
-import { Subject } from '@/types/form';
 import styled from 'styled-components';
+import GradeCalculatorHeader from '../GradeCalculatorHeader/GradeCalculatorHeader';
+import GradeCalculatorItem from '../GradeCalculatorItem/GradeCalculatorItem';
+import NewGradeCalculatorItem from '../NewGradeCalculatorItem/NewGradeCalculatorItem';
 
 interface PropsType {
     subjectList: Subject[];
@@ -35,8 +35,12 @@ const GradeCalculator = ({
         setNewSubjectList((prev) => [...prev, newSubject]);
     };
 
+    const isMount = useRef(true);
+
     useEffect(() => {
-        if (newSubjectList.length) footerRef.current?.scrollIntoView();
+        if (isMount.current) {
+            isMount.current = false;
+        } else if (newSubjectList.length) footerRef.current?.scrollIntoView();
     }, [newSubjectList]);
 
     return (

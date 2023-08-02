@@ -55,7 +55,7 @@ export interface EducationInfo {
 }
 
 export interface Subject {
-    id?: number;
+    id: number;
     subjectName: string;
     achievementLevel21: string;
     achievementLevel22: string;
