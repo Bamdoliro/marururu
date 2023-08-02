@@ -2,6 +2,7 @@
 
 import CheckFormCompleteItem from '@/components/form/CheckFormCompleteItem/CheckFormCompleteItem';
 import CompleteAlaram from '@/components/form/CompleteAlaram/CompleteAlaram';
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { AppLayout } from '@/layouts';
 import { useInterval } from '@maru/hooks';
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
@@ -9,19 +10,28 @@ import { color, font } from '@maru/theme';
 import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { useCheckEmptyForm } from './완료.hooks';
+import styled from 'styled-components';
+import { useFormState } from '../form.state';
+import { useCheckFilledForm } from './완료.hooks';
 
 const 완료 = () => {
     const complete = true;
-    const { filledApplicantFieldsCount } = useCheckEmptyForm();
+    const { form } = useFormState();
+    const { setFormStep } = useFormStepState();
+    const {
+        filledApplicantFieldsCount,
+        filledParentFieldsCount,
+        filledEducationFieldsCount,
+        filledTypeFieldsCount,
+        filledDocumentFieldsCount,
+    } = useCheckFilledForm();
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
-
-    console.log(filledApplicantFieldsCount);
 
     useInterval(() => {
         setIsShowCompleteAlaram(false);
     }, 1000);
+
+    console.log(form);
 
     return (
         <AppLayout header={true}>
@@ -75,32 +85,32 @@ const 완료 = () => {
                         <CheckFormCompleteItem
                             formStep="지원자 정보"
                             maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            completeOfNumber={filledApplicantFieldsCount}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
+                            formStep="보호자 정보"
                             maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            completeOfNumber={filledParentFieldsCount}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
-                            maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            formStep="출신학교 및 학력"
+                            maxCompleteOfNumber={8}
+                            completeOfNumber={filledEducationFieldsCount}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
-                            maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            formStep="전형 선택"
+                            maxCompleteOfNumber={1}
+                            completeOfNumber={filledTypeFieldsCount}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
-                            maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            formStep="성적 입력"
+                            maxCompleteOfNumber={4}
+                            completeOfNumber={4}
                         />
                         <CheckFormCompleteItem
-                            formStep="지원자 정보"
-                            maxCompleteOfNumber={5}
-                            completeOfNumber={5}
+                            formStep="자기소개서 및 학업계획서"
+                            maxCompleteOfNumber={2}
+                            completeOfNumber={filledDocumentFieldsCount}
                         />
                     </CheckFormCompleteBox>
 
@@ -108,7 +118,10 @@ const 완료 = () => {
                         <Column gap={24}>
                             <Question>제출하시겠습니까?</Question>
                             <Row gap={16}>
-                                <Button option="SECONDARY" size="LARGE">
+                                <Button
+                                    onClick={() => setFormStep('지원자정보')}
+                                    option="SECONDARY"
+                                    size="LARGE">
                                     다시 한번 확인하기
                                 </Button>
                                 <Button size="LARGE">원서 초안 제출하기</Button>

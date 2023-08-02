@@ -12,7 +12,7 @@ const CheckFormCompleteItem = ({ formStep, maxCompleteOfNumber, completeOfNumber
     return (
         <StyledCheckFormCompleteItem>
             <FormStep>{formStep}</FormStep>
-            <CompleteOfNumber>{`${maxCompleteOfNumber}/${completeOfNumber}`}</CompleteOfNumber>
+            <CompleteOfNumber>{`${completeOfNumber}/${maxCompleteOfNumber}`}</CompleteOfNumber>
         </StyledCheckFormCompleteItem>
     );
 };
