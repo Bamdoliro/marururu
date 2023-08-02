@@ -1,8 +1,8 @@
-import { Join } from '@/services/auth/api';
+import { PostJoinAuthReq } from '@/types/auth/remote';
 import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
 import { ChangeEventHandler, useState } from 'react';
 
-export const useJoinAction = (joinUserData: Join, termsAgree: boolean) => {
+export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean) => {
     const { joinUserMutate } = useJoinUserMutation(joinUserData);
 
     const handleJoinButtonClick = () => {
@@ -31,7 +31,7 @@ export const useRequestEmail = (email: string) => {
 };
 
 export const useInput = () => {
-    const [joinUserData, setJoinUserData] = useState<Join>({
+    const [joinUserData, setJoinUserData] = useState<PostJoinAuthReq>({
         email: '',
         code: '',
         password: '',

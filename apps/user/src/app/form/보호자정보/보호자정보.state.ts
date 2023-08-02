@@ -1,4 +1,4 @@
-import { ParentInfo } from '@/types/form';
+import { ParentInfo } from '@/types/form/client';
 import { atom, useRecoilState } from 'recoil';
 
 const parentInfoAtomState = atom<ParentInfo>({

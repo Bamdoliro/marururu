@@ -7,27 +7,6 @@ export type FormStep =
     | '자기소개서'
     | '완료';
 
-export interface Form {
-    applicant: UserInfo;
-    parent: ParentInfo;
-    education: EducationInfo;
-    grade: {
-        subjectList: Subject[];
-        attendance1: Attendance;
-        attendance2: Attendance;
-        attendance3: Attendance;
-        volunteerTime1: number;
-        volunteerTime2: number;
-        volunteerTime3: number;
-        certificateList: string[];
-    };
-    document: {
-        coverLetter: string;
-        statementOfPurpose: string;
-    };
-    type: string;
-}
-
 export interface UserInfo {
     identificationPictureUri: string;
     name: string;
@@ -55,8 +34,15 @@ export interface EducationInfo {
     teacherMobilePhoneNumber: string;
 }
 
+export interface StudentSubject {
+    subjectName: string;
+    achievementLevel21: string;
+    achievementLevel22: string;
+    achievementLevel31: string;
+}
+
 export interface Subject {
-    id?: number;
+    id: number;
     subjectName: string;
     achievementLevel21: string;
     achievementLevel22: string;
@@ -80,12 +66,6 @@ export interface VolunteerInfo {
     volunteerTime1: number;
     volunteerTime2: number;
     volunteerTime3: number;
-}
-
-export interface SchoolList {
-    code: string;
-    name: string;
-    location: string;
 }
 
 export interface School {

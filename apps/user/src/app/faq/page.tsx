@@ -2,19 +2,16 @@
 
 import { CategoryFilter, FaqList } from '@/components/faq';
 import { AppLayout } from '@/layouts';
-import { useFaqListQuery } from '@/services/faq/queries';
 import { color, font } from '@maru/theme';
 import styled from 'styled-components';
 
 const FaqPage = () => {
-    const { data: faqListData } = useFaqListQuery('TOP_QUESTION');
-
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
             <StyledFaqPage>
                 <Title>자주 묻는 질문</Title>
                 <CategoryFilter />
-                <FaqList faqListData={faqListData} />
+                <FaqList />
             </StyledFaqPage>
         </AppLayout>
     );

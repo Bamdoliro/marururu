@@ -1,13 +1,13 @@
-import { NoticeList } from '@/types/notice';
 import { flex } from '@maru/utils';
 import NoticeItem from './NoticeItem/NoticeItem';
+import { useNoticeListQuery } from '@/services/notice/queries';
 import styled from 'styled-components';
 
-interface PropsType {
-    noticeListData: NoticeList[];
-}
+const NoticeList = () => {
+    const { data: noticeListData } = useNoticeListQuery();
 
-const NoticeList = ({ noticeListData }: PropsType) => {
+    if (!noticeListData) return null;
+
     return (
         <StyledNoticeList>
             {noticeListData.map(({ id, title, createdAt }) => (

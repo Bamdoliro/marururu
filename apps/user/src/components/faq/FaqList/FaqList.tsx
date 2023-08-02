@@ -1,13 +1,13 @@
 import { flex } from '@maru/utils';
 import FaqItem from './FaqItem/FaqItem';
-import { FaqList } from '@/types/faq';
+import { useFaqListQuery } from '@/services/faq/queries';
 import styled from 'styled-components';
 
-interface PropsType {
-    faqListData: FaqList[];
-}
+const FaqList = () => {
+    const { data: faqListData } = useFaqListQuery('TOP_QUESTION');
 
-const FaqList = ({ faqListData }: PropsType) => {
+    if (!faqListData) return null;
+
     return (
         <StyledFaqList>
             {faqListData.map(({ title, content }) => (

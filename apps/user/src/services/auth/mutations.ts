@@ -1,17 +1,17 @@
-import { loginUser, Login, requestEmail, Join, joinUser } from './api';
+import { postLoginUser, postRequestEmail, postJoinUser } from './api';
 import { Storage } from '@/apis/storage/storage';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
 import { axiosErrorTemplate } from '@maru/utils';
 import TOKEN from '@/constants/token';
 import ROUTES from '@/constants/routes';
+import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 
-/** 로그인 */
-export const useLoginUserMutation = ({ email, password }: Login) => {
+export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     const router = useRouter();
 
     const { mutate: loginUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => loginUser({ email, password }),
+        mutationFn: () => postLoginUser({ email, password }),
         onSuccess: (res) => {
             const { accessToken, refreshToken } = res.data;
             Storage.setItem(TOKEN.ACCESS, accessToken);
@@ -26,12 +26,11 @@ export const useLoginUserMutation = ({ email, password }: Login) => {
     return { loginUserMutate, ...restMutation };
 };
 
-/** 회원가입 */
-export const useJoinUserMutation = ({ email, code, password }: Join) => {
+export const useJoinUserMutation = ({ email, code, password }: PostJoinAuthReq) => {
     const router = useRouter();
 
     const { mutate: joinUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => joinUser({ email, code, password }),
+        mutationFn: () => postJoinUser({ email, code, password }),
         onSuccess: () => {
             alert('회원가입 성공');
             router.push(ROUTES.LOGIN);
@@ -44,10 +43,9 @@ export const useJoinUserMutation = ({ email, code, password }: Join) => {
     return { joinUserMutate, ...restMutation };
 };
 
-/** 이메일 인증번호 요청 */
 export const useRequestEmailMutation = (email: string) => {
     const { mutate: requestEmailMutate, ...restMutation } = useMutation({
-        mutationFn: () => requestEmail(email),
+        mutationFn: () => postRequestEmail(email),
         onError: (err) => {
             axiosErrorTemplate(err);
         },

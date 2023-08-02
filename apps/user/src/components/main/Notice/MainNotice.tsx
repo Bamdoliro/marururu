@@ -10,9 +10,6 @@ import styled from 'styled-components';
 
 const MainNotice = () => {
     const router = useRouter();
-    const { data: mainNoticeListData } = useNoticeListQuery();
-
-    if (!mainNoticeListData) return null;
 
     return (
         <StyledMainNotice>
@@ -20,7 +17,7 @@ const MainNotice = () => {
                 <Title>공지사항</Title>
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
-            <MainNoticeList mainNoticeListData={mainNoticeListData} />
+            <MainNoticeList />
         </StyledMainNotice>
     );
 };

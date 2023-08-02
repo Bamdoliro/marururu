@@ -1,12 +1,12 @@
-import { FaqList } from '@/types/faq';
 import MainFaqItem from './MainFaqItem/MainFaqItem';
+import { useFaqListQuery } from '@/services/faq/queries';
 import styled from 'styled-components';
 
-interface PropsType {
-    mainFaqListData: FaqList[];
-}
+const MainFaqList = () => {
+    const { data: mainFaqListData } = useFaqListQuery('TOP_QUESTION');
 
-const MainFaqList = ({ mainFaqListData }: PropsType) => {
+    if (!mainFaqListData) return null;
+
     return (
         <StyledMainFaqList>
             {mainFaqListData.splice(0, 3).map(({ title }) => (

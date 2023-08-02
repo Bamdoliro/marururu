@@ -1,16 +1,16 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import { Form } from '@/types/form';
 import { Storage } from '@/apis/storage/storage';
 import TOKEN from '@/constants/token';
+import { GetSchoolListRes, PostFormReq } from '@/types/form/remote';
 
-export const submitDraftForm = async (formData: Form) => {
+export const postSubmitDraftForm = async (formData: PostFormReq) => {
     const { data } = await maru.post('/form', formData, authorization());
 
     return { data };
 };
 
-export const uploadProfileImage = async (image: FormData) => {
+export const postUploadProfileImage = async (image: FormData) => {
     const { data } = await maru.post('/form/identification-picture', image, {
         headers: {
             Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
@@ -21,8 +21,7 @@ export const uploadProfileImage = async (image: FormData) => {
     return { data };
 };
 
-export const schoolList = async (school: string) => {
-    const { data } = await maru.get(`/school?q=${school}`);
-
-    return data.dataList;
+export const getSchoolList = async (school: string) => {
+    const { data } = await maru.get<GetSchoolListRes>(`/school?q=${school}`);
+    return data;
 };

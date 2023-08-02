@@ -1,7 +1,7 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
 import { ChangeEventHandler, Dispatch, SetStateAction, useState, useRef, DragEvent } from 'react';
-import { UserInfo } from '@/types/form';
+import { UserInfo } from '@/types/form/client';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
 import styled from 'styled-components';
 

@@ -3,20 +3,15 @@
 import { NoticeList } from '@/components/notice';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { useNoticeListQuery } from '@/services/notice/queries';
 import { AppLayout } from '@/layouts';
 import styled from 'styled-components';
 
 const NoticePage = () => {
-    const { data: noticeListData } = useNoticeListQuery();
-
-    if (!noticeListData) return null;
-
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
             <StyledNoticePage>
                 <Title>공지사항</Title>
-                <NoticeList noticeListData={noticeListData} />
+                <NoticeList />
             </StyledNoticePage>
         </AppLayout>
     );

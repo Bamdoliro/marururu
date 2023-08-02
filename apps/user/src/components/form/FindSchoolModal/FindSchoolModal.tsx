@@ -3,7 +3,7 @@ import { useDebounceInput } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, SearchInput } from '@maru/ui';
 import { useState, Dispatch, SetStateAction } from 'react';
-import { EducationInfo } from '@/types/form';
+import { EducationInfo } from '@/types/form/client';
 import SchoolList from './SchoolList/SchoolList';
 import { IconClose } from '@maru/icon';
 import styled from 'styled-components';
@@ -21,8 +21,6 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         debouncedValue: debouncedSchoolSearchQuery,
     } = useDebounceInput({ initialValue: '' });
 
-    const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
-
     const handleCompleteSchoolSearch = () => {
         const { name, location, code } = selectedSchool;
 
@@ -39,8 +37,6 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         setSelectedSchool({ name: '', location: '', code: '' });
         closeModal();
     };
-
-    if (!schoolListData) return null;
 
     return (
         <Background>
@@ -65,9 +61,9 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                     </Column>
                 </Column>
                 <SchoolList
-                    schoolListData={schoolListData}
                     selectedSchool={selectedSchool}
                     setSelectedSchool={setSelectedSchool}
+                    debouncedSchoolSearchQuery={debouncedSchoolSearchQuery}
                 />
                 <Row gap={16} justifyContent="flex-end">
                     <Button option="SECONDARY" size="SMALL" onClick={closeSchoolModal}>

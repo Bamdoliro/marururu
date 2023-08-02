@@ -1,4 +1,4 @@
-import { AttendanceInfo } from '@/types/form';
+import { AttendanceInfo } from '@/types/form/client';
 import { NumberInput, Row, Td, Th } from '@maru/ui';
 import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 import { styled } from 'styled-components';

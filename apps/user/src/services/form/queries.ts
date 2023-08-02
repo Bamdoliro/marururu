@@ -1,12 +1,12 @@
 import KEY from '@/constants/key';
-import { School } from '@/types/form';
 import { useQuery } from 'react-query';
-import { schoolList } from './api';
+import { getSchoolList } from './api';
 
 export const useSchoolListQuery = (school: string) => {
-    return useQuery<School[]>({
+    const { data, ...restQuery } = useQuery({
         queryKey: [KEY.FORM_SCHOOL_LIST, school],
-        queryFn: () => schoolList(school),
-        initialData: [],
+        queryFn: () => getSchoolList(school),
     });
+
+    return { data: data?.dataList, ...restQuery };
 };

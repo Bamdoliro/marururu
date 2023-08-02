@@ -1,30 +1,17 @@
 import { maru } from '@/apis/instance/instance';
+import { PostLoginAuthReq, PostJoinAuthReq } from '@/types/auth/remote';
 
-// 로그인
-export interface Login {
-    email: string;
-    password: string;
-}
-
-export const loginUser = async ({ email, password }: Login) => {
+export const postLoginUser = async ({ email, password }: PostLoginAuthReq) => {
     const { data } = await maru.post('/auth', { email, password });
     return data;
 };
 
-// 회원가입
-export interface Join {
-    email: string;
-    code: string;
-    password: string;
-    password_confirm?: string;
-}
-
-export const joinUser = async ({ email, code, password }: Join) => {
+export const postJoinUser = async ({ email, code, password }: PostJoinAuthReq) => {
     const { data } = await maru.post('/user', { email, code, password });
     return data;
 };
 
-export const requestEmail = async (email: string) => {
+export const postRequestEmail = async (email: string) => {
     const { data } = await maru.post(`/user/verification?email=${email}`);
     return data;
 };

@@ -1,4 +1,4 @@
-export interface FaqList {
+export interface Faq {
     title: string;
     content: string;
 }

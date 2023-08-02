@@ -1,16 +1,24 @@
-import { School } from '@/types/form';
+import { useSchoolListQuery } from '@/services/form/queries';
+import { School } from '@/types/form/client';
 import { IconCheck } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 
 interface PropsType {
-    schoolListData: School[];
     selectedSchool: School;
     setSelectedSchool: Dispatch<SetStateAction<School>>;
+    debouncedSchoolSearchQuery: string;
 }
 
-const SchoolList = ({ schoolListData, selectedSchool, setSelectedSchool }: PropsType) => {
+const SchoolList = ({
+    selectedSchool,
+    setSelectedSchool,
+    debouncedSchoolSearchQuery,
+}: PropsType) => {
+    const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
+
+    if (!schoolListData) return null;
     return (
         <StyledSchoolList>
             {schoolListData.map(({ name, location, code }: School) => (

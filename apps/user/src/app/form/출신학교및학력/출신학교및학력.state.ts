@@ -1,4 +1,4 @@
-import { EducationInfo } from '@/types/form';
+import { EducationInfo } from '@/types/form/client';
 import { atom, useRecoilState } from 'recoil';
 
 const educationInfoAtomState = atom<EducationInfo>({
