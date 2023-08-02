@@ -1,5 +1,4 @@
 const KEY = {
-    MAIN_NOTICE_LIST: 'useMainNoticeList',
     NOTICE_LIST: 'useNoticeList',
     NOTICE_DETAIL: 'useNoticeDetail',
     FAQ_CATEGORY_LIST: 'useFaqCategoryListQuery',

@@ -80,3 +80,15 @@ export interface VolunteerInfo {
     volunteerTime2: number;
     volunteerTime3: number;
 }
+
+export interface SchoolList {
+    code: string;
+    name: string;
+    location: string;
+}
+
+export interface School {
+    name: string;
+    location: string;
+    code: string;
+}

@@ -1,1 +1,2 @@
-export { default as NoticeItem } from './NoticeItem/NoticeItem';
+export { default as NoticeDetailContent } from './NoticeDetailContent/NoticeDetailContent';
+export { default as NoticeList } from './NoticeList/NoticeList';
