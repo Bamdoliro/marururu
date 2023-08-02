@@ -1,5 +1,6 @@
 'use client';
 
+import CheckFormCompleteItem from '@/components/form/CheckFormCompleteItem/CheckFormCompleteItem';
 import { AppLayout } from '@/layouts';
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
 import { color, font } from '@maru/theme';
@@ -11,7 +12,7 @@ const FormCompletePage = () => {
     const complete = true;
 
     return (
-        <AppLayout header>
+        <AppLayout header={true}>
             <StyledFormCompletePage>
                 <Row
                     gap={8}
@@ -25,37 +26,85 @@ const FormCompletePage = () => {
                         )}
                     </CircleIconBox>
                     <AlertMessage>
-                        {complete ? '원서를 모두 작성했어요' : '아직 작성하지 않은 곳이 있어요'}
+                        {complete ? '원서 초안 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
                     </AlertMessage>
                 </Row>
-                <Content>
+                <FormCompleteContent>
                     <Column gap={12}>
                         <Desc>
-                            지원확인 및 수험표 발행을 하셔야 인터넷 원서 접수가 완료되며 수험번호가
-                            부여됩니다.
+                            {complete ? (
+                                <p>원서 접수에 필요한 초안을 모두 작성하셨습니다.</p>
+                            ) : (
+                                <p>원서 작성 중 입력하지 않은 곳이 있습니다.</p>
+                            )}
                         </Desc>
                         <StressDesc>
-                            수험번호 부여 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로
-                            <br />
-                            처리되며 입학원서는 수정이 불가능합니다.
+                            {complete ? (
+                                <p>
+                                    원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에
+                                    응시한 것으로 처리되며
+                                    <br />더 이상 입학원서 수정이 불가능합니다.
+                                </p>
+                            ) : (
+                                <p>
+                                    원서 작성 중 입력하지 않은 곳이 있다면 초안을 제출할 수
+                                    없습니다.
+                                </p>
+                            )}
                         </StressDesc>
-                        <Desc>면밀히 검토하시고 확인해 주십시오.</Desc>
+                        <Desc>
+                            {complete ? (
+                                <p>잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.</p>
+                            ) : (
+                                <p>또한 잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.</p>
+                            )}
+                        </Desc>
                     </Column>
-                    <Column gap={16} style={{ margin: '48px 0px' }} alignItems="flex-start">
-                        <CheckButton>[ 입학원서 확인하기 ]</CheckButton>
-                        <CheckButton>[ 성적일람표 확인하기 ]</CheckButton>
-                        <CheckButton>[ 자기소개서 및 학업계획서 확인하기 ]</CheckButton>
-                    </Column>
-                    <Column gap={24}>
-                        <Question>지원하시겠습니까?</Question>
-                        <Row gap={16}>
-                            <Button option="SECONDARY" size="LARGE">
-                                다시 한번 확인할게요
-                            </Button>
-                            <Button size="LARGE">지원확인 및 수험표 발행</Button>
-                        </Row>
-                    </Column>
-                </Content>
+                    <CheckFormCompleteBox>
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                    </CheckFormCompleteBox>
+
+                    {complete && (
+                        <Column gap={24}>
+                            <Question>제출하시겠습니까?</Question>
+                            <Row gap={16}>
+                                <Button option="SECONDARY" size="LARGE">
+                                    다시 한번 확인하기
+                                </Button>
+                                <Button size="LARGE">원서 초안 제출하기</Button>
+                            </Row>
+                        </Column>
+                    )}
+                </FormCompleteContent>
             </StyledFormCompletePage>
         </AppLayout>
     );
@@ -99,18 +148,18 @@ const AlertMessage = styled.p`
     animation: ${alertMessageAnimation} 0.75s ease-in-out 1.5s forwards;
 `;
 
-const contentAnimation = keyframes`
+const formCompleteContentAnimation = keyframes`
     to {
         opacity: 1;
         visibility: visible;
     }
 `;
 
-const Content = styled.div`
+const FormCompleteContent = styled.div`
     visibility: hidden;
     opacity: 0;
 
-    animation: ${contentAnimation} 0.75s ease-in-out 1.5s forwards;
+    animation: ${formCompleteContentAnimation} 0.75s ease-in-out 1.5s forwards;
 `;
 
 const Desc = styled.p`
@@ -123,9 +172,13 @@ const StressDesc = styled.p`
     color: ${color.red};
 `;
 
-const CheckButton = styled.button`
-    ${font.btn2}
-    color: ${color.gray600};
+const CheckFormCompleteBox = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    height: 248px;
+    margin: 48px 0px;
 `;
 
 const Question = styled.p`

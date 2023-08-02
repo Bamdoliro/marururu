@@ -15,7 +15,7 @@ const LoginPage = () => {
     const { handleLoginButtonClick } = useLoginAction(loginUserData);
 
     return (
-        <AppLayout header={true} footer={true} backgroundColor={color.gray100}>
+        <AppLayout backgroundColor={color.gray100}>
             <StyledLoginPage>
                 <LoginBox>
                     <LoginBoxWrap>
