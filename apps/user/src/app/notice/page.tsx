@@ -8,15 +8,15 @@ import { AppLayout } from '@/layouts';
 import styled from 'styled-components';
 
 const NoticePage = () => {
-    const { data: noticeList } = useNoticeListQuery();
+    const { data: noticeListData } = useNoticeListQuery();
 
-    if (!noticeList) return null;
+    if (!noticeListData) return null;
 
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
             <StyledNoticePage>
                 <Title>공지사항</Title>
-                <NoticeList noticeList={noticeList} />
+                <NoticeList noticeListData={noticeListData} />
             </StyledNoticePage>
         </AppLayout>
     );

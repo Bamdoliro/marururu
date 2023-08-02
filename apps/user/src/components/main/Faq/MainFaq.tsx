@@ -11,9 +11,9 @@ import MainFaqList from './MainFaqList/MainFaqList';
 
 const MainFaq = () => {
     const router = useRouter();
-    const { data: mainFaqList } = useFaqListQuery('TOP_QUESTION');
+    const { data: mainFaqListData } = useFaqListQuery('TOP_QUESTION');
 
-    if (!mainFaqList) return null;
+    if (!mainFaqListData) return null;
 
     return (
         <StyledMainFaq>
@@ -21,7 +21,7 @@ const MainFaq = () => {
                 <Title>자주묻는 질문</Title>
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
-            <MainFaqList mainFaqList={mainFaqList} />
+            <MainFaqList mainFaqListData={mainFaqListData} />
         </StyledMainFaq>
     );
 };

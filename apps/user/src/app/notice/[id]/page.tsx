@@ -18,9 +18,9 @@ interface PropsType {
 const NoticeDetailPage = ({ params: { id } }: PropsType) => {
     const router = useRouter();
 
-    const { data: noticeDetail } = useNoticeDetailQuery(id);
+    const { data: noticeDetailData } = useNoticeDetailQuery(id);
 
-    if (!noticeDetail) return null;
+    if (!noticeDetailData) return null;
 
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
@@ -29,7 +29,7 @@ const NoticeDetailPage = ({ params: { id } }: PropsType) => {
                     <IconArrowLeft color={color.gray600} width={24} height={24} />
                     <Path>공지사항</Path>
                 </Link>
-                <NoticeDetailContent noticeDetail={noticeDetail} />
+                <NoticeDetailContent noticeDetailData={noticeDetailData} />
             </StyledNoticeDetailPage>
         </AppLayout>
     );

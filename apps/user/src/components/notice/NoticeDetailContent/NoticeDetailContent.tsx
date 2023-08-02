@@ -5,19 +5,19 @@ import { styled } from 'styled-components';
 import { NoticeDetail } from '@/types/notice';
 
 interface PropsType {
-    noticeDetail: NoticeDetail;
+    noticeDetailData: NoticeDetail;
 }
 
-const NoticeDetailContent = ({ noticeDetail }: PropsType) => {
+const NoticeDetailContent = ({ noticeDetailData: { title, createdAt, content } }: PropsType) => {
     return (
         <StyledNoticeDetailContent>
             <NoticeHeader>
                 <Column gap="16px" height="72px">
-                    <Title>{noticeDetail.title}</Title>
-                    <Date>{formatCreatedAt(noticeDetail.createdAt)}</Date>
+                    <Title>{title}</Title>
+                    <Date>{formatCreatedAt(createdAt)}</Date>
                 </Column>
             </NoticeHeader>
-            <Content>{noticeDetail.content}</Content>
+            <Content>{content}</Content>
         </StyledNoticeDetailContent>
     );
 };

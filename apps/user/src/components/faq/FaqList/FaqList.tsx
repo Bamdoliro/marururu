@@ -4,14 +4,14 @@ import { FaqList } from '@/types/faq';
 import styled from 'styled-components';
 
 interface PropsType {
-    faqList: FaqList[];
+    faqListData: FaqList[];
 }
 
-const FaqList = ({ faqList }: PropsType) => {
+const FaqList = ({ faqListData }: PropsType) => {
     return (
         <StyledFaqList>
-            {faqList.map((item) => (
-                <FaqItem title={item.title} content={item.content} />
+            {faqListData.map(({ title, content }) => (
+                <FaqItem title={title} content={content} />
             ))}
         </StyledFaqList>
     );

@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import MainNoticeItem from './MainNoticeItem/MainNoticeItem';
 
 interface PropsType {
-    mainNoticeList: NoticeList[];
+    mainNoticeListData: NoticeList[];
 }
 
-const MainNoticeList = ({ mainNoticeList }: PropsType) => {
+const MainNoticeList = ({ mainNoticeListData }: PropsType) => {
     return (
         <StyledMainNoticeList>
-            {mainNoticeList.splice(0, 3).map((item) => (
-                <MainNoticeItem id={item.id} title={item.title} />
+            {mainNoticeListData.splice(0, 3).map(({ id, title }) => (
+                <MainNoticeItem id={id} title={title} />
             ))}
         </StyledMainNoticeList>
     );

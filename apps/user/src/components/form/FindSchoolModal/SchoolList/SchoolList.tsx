@@ -6,15 +6,15 @@ import { color, font } from '@maru/theme';
 import styled, { css } from 'styled-components';
 
 interface PropsType {
-    schoolList: SchoolList[];
+    schoolListData: SchoolList[];
     selectedSchool: School;
     setSelectedSchool: Dispatch<SetStateAction<School>>;
 }
 
-const SchoolList = ({ schoolList, selectedSchool, setSelectedSchool }: PropsType) => {
+const SchoolList = ({ schoolListData, selectedSchool, setSelectedSchool }: PropsType) => {
     return (
         <StyledSchoolList>
-            {schoolList.map(({ name, location, code }: School) => (
+            {schoolListData.map(({ name, location, code }: School) => (
                 <SchoolItem
                     key={code}
                     selected={selectedSchool.code === code}

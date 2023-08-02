@@ -4,14 +4,14 @@ import NoticeItem from './NoticeItem/NoticeItem';
 import styled from 'styled-components';
 
 interface PropsType {
-    noticeList: NoticeList[];
+    noticeListData: NoticeList[];
 }
 
-const NoticeList = ({ noticeList }: PropsType) => {
+const NoticeList = ({ noticeListData }: PropsType) => {
     return (
         <StyledNoticeList>
-            {noticeList.map((item) => (
-                <NoticeItem id={item.id} title={item.title} createdAt={item.createdAt} />
+            {noticeListData.map(({ id, title, createdAt }) => (
+                <NoticeItem id={id} title={title} createdAt={createdAt} />
             ))}
         </StyledNoticeList>
     );

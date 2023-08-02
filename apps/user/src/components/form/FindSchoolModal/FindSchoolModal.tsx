@@ -21,7 +21,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         debouncedValue: debouncedSchoolSearchQuery,
     } = useDebounceInput({ initialValue: '' });
 
-    const { data: schoolList } = useSchoolListQuery(debouncedSchoolSearchQuery);
+    const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
 
     const handleCompleteSchoolSearch = () => {
         const { name, location, code } = selectedSchool;
@@ -39,6 +39,8 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         setSelectedSchool({ name: '', location: '', code: '' });
         closeModal();
     };
+
+    if (!schoolListData) return null;
 
     return (
         <Background>
@@ -63,7 +65,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                     </Column>
                 </Column>
                 <SchoolList
-                    schoolList={schoolList}
+                    schoolListData={schoolListData}
                     selectedSchool={selectedSchool}
                     setSelectedSchool={setSelectedSchool}
                 />

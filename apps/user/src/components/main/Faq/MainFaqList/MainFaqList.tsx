@@ -3,14 +3,14 @@ import MainFaqItem from './MainFaqItem/MainFaqItem';
 import styled from 'styled-components';
 
 interface PropsType {
-    mainFaqList: FaqList[];
+    mainFaqListData: FaqList[];
 }
 
-const MainFaqList = ({ mainFaqList }: PropsType) => {
+const MainFaqList = ({ mainFaqListData }: PropsType) => {
     return (
         <StyledMainFaqList>
-            {mainFaqList.splice(0, 3).map((item) => (
-                <MainFaqItem title={item.title} />
+            {mainFaqListData.splice(0, 3).map(({ title }) => (
+                <MainFaqItem title={title} />
             ))}
         </StyledMainFaqList>
     );
