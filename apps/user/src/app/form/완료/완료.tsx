@@ -10,10 +10,14 @@ import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { useCheckEmptyForm } from './완료.hooks';
 
-const FormCompletePage = () => {
+const 완료 = () => {
     const complete = true;
+    const { filledApplicantFieldsCount } = useCheckEmptyForm();
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
+
+    console.log(filledApplicantFieldsCount);
 
     useInterval(() => {
         setIsShowCompleteAlaram(false);
@@ -24,7 +28,7 @@ const FormCompletePage = () => {
             {isShowCompleteAlaram ? (
                 <CompleteAlaram />
             ) : (
-                <StyledFormCompletePage>
+                <Styled완료>
                     <Row gap={8} style={{ marginBottom: '55px' }} alignItems="center">
                         <CircleIconBox>
                             {complete ? (
@@ -111,15 +115,15 @@ const FormCompletePage = () => {
                             </Row>
                         </Column>
                     )}
-                </StyledFormCompletePage>
+                </Styled완료>
             )}
         </AppLayout>
     );
 };
 
-export default FormCompletePage;
+export default 완료;
 
-const StyledFormCompletePage = styled.div`
+const Styled완료 = styled.div`
     ${flex({ flexDirection: 'column' })}
     max-width: 800px;
     height: 100%;
