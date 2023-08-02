@@ -8,13 +8,19 @@ interface PropsType {
     formStep: string;
     maxCompleteOfNumber: number;
     completeOfNumber: number;
+    onClick: () => void;
 }
 
-const CheckFormCompleteItem = ({ formStep, maxCompleteOfNumber, completeOfNumber }: PropsType) => {
+const CheckFormCompleteItem = ({
+    formStep,
+    maxCompleteOfNumber,
+    completeOfNumber,
+    onClick,
+}: PropsType) => {
     const isFilledFormStep = maxCompleteOfNumber !== completeOfNumber;
 
     return (
-        <StyledCheckFormCompleteItem>
+        <StyledCheckFormCompleteItem onClick={onClick}>
             <Row alignItems="center" gap={8}>
                 <FormStep>{formStep}</FormStep>
                 {isFilledFormStep && <IconError color={color.red} width={24} height={24} />}
@@ -37,6 +43,7 @@ const StyledCheckFormCompleteItem = styled.div`
     border: 1px solid ${color.gray200};
     background-color: ${color.white};
     border-radius: 12px;
+    cursor: pointer;
 `;
 
 const FormStep = styled.p`
