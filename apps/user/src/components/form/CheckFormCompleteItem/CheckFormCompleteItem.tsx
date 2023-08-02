@@ -4,14 +4,15 @@ import styled from 'styled-components';
 
 interface PropsType {
     formStep: string;
-    completeOfNumber: string;
+    maxCompleteOfNumber: number;
+    completeOfNumber: number;
 }
 
-const CheckFormCompleteItem = ({ formStep, completeOfNumber }: PropsType) => {
+const CheckFormCompleteItem = ({ formStep, maxCompleteOfNumber, completeOfNumber }: PropsType) => {
     return (
         <StyledCheckFormCompleteItem>
             <FormStep>{formStep}</FormStep>
-            <CompleteOfNumber>{completeOfNumber}</CompleteOfNumber>
+            <CompleteOfNumber>{`${maxCompleteOfNumber}/${completeOfNumber}`}</CompleteOfNumber>
         </StyledCheckFormCompleteItem>
     );
 };

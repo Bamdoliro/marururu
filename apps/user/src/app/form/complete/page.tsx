@@ -61,12 +61,36 @@ const FormCompletePage = () => {
                         </Desc>
                     </Column>
                     <CheckFormCompleteBox>
-                        <CheckFormCompleteItem formStep="지원자 정보" completeOfNumber="5/5" />
-                        <CheckFormCompleteItem formStep="지원자 정보" completeOfNumber="5/5" />
-                        <CheckFormCompleteItem formStep="지원자 정보" completeOfNumber="5/5" />
-                        <CheckFormCompleteItem formStep="지원자 정보" completeOfNumber="5/5" />
-                        <CheckFormCompleteItem formStep="지원자 정보" completeOfNumber="5/5" />
-                        <CheckFormCompleteItem formStep="지원자 정보" completeOfNumber="5/5" />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
+                        <CheckFormCompleteItem
+                            formStep="지원자 정보"
+                            maxCompleteOfNumber={5}
+                            completeOfNumber={5}
+                        />
                     </CheckFormCompleteBox>
 
                     {complete && (
