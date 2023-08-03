@@ -1,14 +1,14 @@
 import { FormLayout } from '@/layouts';
-import useModal from '@maru/hooks/src/useModal';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
 import { FormController, FindSchoolModal } from '@/components/form';
 import { useEducationInfoState } from './출신학교및학력.state';
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
+import { useBoolean } from '@maru/hooks';
 import { styled } from 'styled-components';
 
 const 출신학교및학력 = () => {
     const { educationInfo, setEducationInfo } = useEducationInfoState();
-    const { isOpen, openModal, closeModal } = useModal();
+    const { value: isOpen, setTrue: openModal, setFalse: closeModal } = useBoolean();
     const { handleEducationInfoDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
