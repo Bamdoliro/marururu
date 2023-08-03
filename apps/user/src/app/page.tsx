@@ -5,7 +5,7 @@ import { Schedule } from '@/components/main';
 import initMockAPI from '@/mocks';
 import { Dday } from '@/components/main';
 import { Faq } from '@/components/main';
-import { Modal, Row } from '@maru/ui';
+import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { AppLayout } from '@/layouts';
 import styled from 'styled-components';
@@ -30,7 +30,6 @@ const Home = () => {
                     <Faq />
                 </Row>
             </StyledMainPage>
-            <Modal title="hi" content="hi" />
         </AppLayout>
     );
 };
