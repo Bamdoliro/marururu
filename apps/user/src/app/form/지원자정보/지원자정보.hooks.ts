@@ -1,6 +1,6 @@
 import { useFormState } from '../form.state';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import formatDate, { Date } from '@/utils/formatDate';
+import formatDate, { Date } from '@/utils/functions/formatDate';
 import { ChangeEventHandler, useEffect, useState } from 'react';
 import { useUserInfoState } from './지원자정보.state';
 
