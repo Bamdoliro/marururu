@@ -1,6 +1,6 @@
 import { useModalState } from '@/hooks/state/useModalState';
 
-const GlobalModal = () => {
+const ModalProvider = () => {
     const { modal } = useModalState();
 
     const provide = () => {
@@ -11,4 +11,4 @@ const GlobalModal = () => {
     return <>{provide()}</>;
 };
 
-export default GlobalModal;
+export default ModalProvider;
