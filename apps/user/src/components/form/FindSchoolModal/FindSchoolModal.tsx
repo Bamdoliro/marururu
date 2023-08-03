@@ -21,7 +21,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         debouncedValue: debouncedSchoolSearchQuery,
     } = useDebounceInput({ initialValue: '' });
 
-    const handleCompleteSchoolSearch = () => {
+    const handleEducationInfoDataChange = () => {
         const { name, location, code } = selectedSchool;
 
         setEducationInfo((prev) => ({
@@ -33,13 +33,13 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
         closeModal();
     };
 
-    const closeSchoolModal = () => {
+    const handleCloseSchoolModalButtonClick = () => {
         setSelectedSchool({ name: '', location: '', code: '' });
         closeModal();
     };
 
     return (
-        <Background>
+        <DIM>
             <StyledSchoolSearchModal>
                 <Column gap={24}>
                     <Column gap={16}>
@@ -50,7 +50,7 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                                 width={24}
                                 height={24}
                                 cursor="pointer"
-                                onClick={closeSchoolModal}
+                                onClick={handleCloseSchoolModalButtonClick}
                             />
                         </Row>
                         <SearchInput
@@ -66,21 +66,24 @@ const SchoolSearchModal = ({ closeModal, setEducationInfo }: PropsType) => {
                     debouncedSchoolSearchQuery={debouncedSchoolSearchQuery}
                 />
                 <Row gap={16} justifyContent="flex-end">
-                    <Button option="SECONDARY" size="SMALL" onClick={closeSchoolModal}>
+                    <Button
+                        option="SECONDARY"
+                        size="SMALL"
+                        onClick={handleCloseSchoolModalButtonClick}>
                         취소
                     </Button>
-                    <Button size="SMALL" onClick={handleCompleteSchoolSearch}>
+                    <Button size="SMALL" onClick={handleEducationInfoDataChange}>
                         완료
                     </Button>
                 </Row>
             </StyledSchoolSearchModal>
-        </Background>
+        </DIM>
     );
 };
 
 export default SchoolSearchModal;
 
-const Background = styled.div`
+const DIM = styled.div`
     position: fixed;
     top: 0;
     left: 0;
