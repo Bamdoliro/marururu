@@ -6,6 +6,8 @@ import useDocumentInfoState from './자기소개서.state';
 
 export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: string) => {
     const { form, setForm } = useFormState();
+    const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
+    const { setFormStep } = useFormStepState();
     const submitDraftFormMutation = useSubmitDraftFormMutation(form);
 
     const handleFormSubmitButtonClick = () => {
@@ -16,9 +18,8 @@ export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: str
                 statementOfPurpose,
             },
         }));
-
-        console.log(form);
-        submitDraftFormMutation.mutate();
+        setFormStep('완료');
+        submitDraftFormMutate();
     };
 
     return { handleFormSubmitButtonClick };

@@ -1,16 +1,8 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import {
-    ChangeEventHandler,
-    Dispatch,
-    SetStateAction,
-    useEffect,
-    useState,
-    useRef,
-    DragEvent,
-} from 'react';
-import { UserInfo } from '@/types/form';
-import { useUploadProfileImageMutation } from '@/services/form/지원자정보/mutations';
+import { ChangeEventHandler, Dispatch, SetStateAction, useState, useRef, DragEvent } from 'react';
+import { UserInfo } from '@/types/form/client';
+import { useUploadProfileImageMutation } from '@/services/form/mutations';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -28,9 +20,9 @@ const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
     };
 
     // Mutation
-    const uploadProfileImageMutation = useUploadProfileImageMutation(setUserInfo);
+    const { uploadProfileImageMutate } = useUploadProfileImageMutation(setUserInfo);
     const uploadProfileImageFile = (image: FormData) => {
-        uploadProfileImageMutation.mutate(image);
+        uploadProfileImageMutate(image);
     };
 
     // 이미지 데이터 핸들링

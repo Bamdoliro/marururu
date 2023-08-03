@@ -2,7 +2,7 @@ import { Td, Dropdown } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
-import { Subject } from '@/types/form';
+import { Subject } from '@/types/form/client';
 
 interface PropsType {
     id: number;

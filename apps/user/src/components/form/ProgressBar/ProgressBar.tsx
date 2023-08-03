@@ -1,7 +1,7 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { FormStep } from '@/types/form';
+import { FormStep } from '@/types/form/client';
 import styled from 'styled-components';
 
 const PROGRESS_BAR_DISPLAY_DATA = [

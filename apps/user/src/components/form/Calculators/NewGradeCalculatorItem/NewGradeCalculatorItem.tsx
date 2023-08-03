@@ -2,7 +2,7 @@ import { color, font } from '@maru/theme';
 import { Button, Td, Dropdown } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { Subject } from '@/types/form';
+import { Subject } from '@/types/form/client';
 import styled from 'styled-components';
 
 interface PropsType {

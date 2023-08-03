@@ -1,21 +1,21 @@
-import { Login } from '@/services/auth/api';
+import { PostLoginAuthReq } from '@/types/auth/remote';
 import { useLoginUserMutation } from '@/services/auth/mutations';
 import { useRouter } from 'next/navigation';
 import ROUTES from '@/constants/routes';
 import { ChangeEventHandler, useState } from 'react';
 
-export const useLoginAction = (loginUserData: Login) => {
-    const loginUserMutation = useLoginUserMutation(loginUserData);
+export const useLoginAction = (loginUserData: PostLoginAuthReq) => {
+    const { loginUserMutate } = useLoginUserMutation(loginUserData);
 
     const handleLoginButtonClick = () => {
-        loginUserMutation.mutate();
+        loginUserMutate();
     };
 
     return { handleLoginButtonClick };
 };
 
 export const useInput = () => {
-    const [loginUserData, setLoginUserData] = useState<Login>({
+    const [loginUserData, setLoginUserData] = useState<PostLoginAuthReq>({
         email: '',
         password: '',
     });

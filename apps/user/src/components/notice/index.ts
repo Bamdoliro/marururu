@@ -1,1 +1,1 @@
-export { default as NoticeItem } from './NoticeItem/NoticeItem';
+export { default as NoticeList } from './NoticeList/NoticeList';

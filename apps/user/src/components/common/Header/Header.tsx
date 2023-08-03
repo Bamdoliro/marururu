@@ -1,13 +1,14 @@
 import { Storage } from '@/apis/storage/storage';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { Button, Row } from '@maru/ui';
+import { Button, Row, UnderLineButton } from '@maru/ui';
 import Profile from './Profile/Profile';
 import ROUTES from '@/constants/routes';
 import TOKEN from '@/constants/token';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const NAVIGATION_DATA = [
     {
@@ -28,13 +29,14 @@ const NAVIGATION_DATA = [
     },
     {
         name: '학교 소개',
-        route: '/',
+        route: '',
     },
 ];
 
 const Header = () => {
     const router = useRouter();
     const loginStatus = Storage.getItem(TOKEN.ACCESS);
+    const pathName = usePathname();
 
     return (
         <StyledHeader>
@@ -68,13 +70,12 @@ const Header = () => {
             </HeaderBar>
             <NavigationBar>
                 {NAVIGATION_DATA.map((item, index) => (
-                    <Button
+                    <UnderLineButton
                         key={`navigation ${index}`}
-                        option="HOVER_UNDERLINE"
-                        size="LARGE"
+                        active={item.route === pathName}
                         onClick={() => router.push(item.route)}>
                         {item.name}
-                    </Button>
+                    </UnderLineButton>
                 ))}
             </NavigationBar>
         </StyledHeader>

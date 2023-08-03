@@ -1,11 +1,11 @@
 import { flex } from '@maru/utils';
-import { ReactNode } from 'react';
+import { ReactNode, CSSProperties } from 'react';
 import styled from 'styled-components';
 
 interface PropsType {
     children: ReactNode;
     onClick: () => void;
-    gap?: string;
+    gap?: CSSProperties['gap'];
 }
 
 const Link = ({ children, gap, onClick }: PropsType) => {

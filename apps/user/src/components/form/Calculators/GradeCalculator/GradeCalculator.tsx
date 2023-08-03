@@ -1,4 +1,4 @@
-import { Subject } from '@/types/form';
+import { Subject } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';

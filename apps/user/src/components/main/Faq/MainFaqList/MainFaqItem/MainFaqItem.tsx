@@ -1,28 +1,29 @@
 import { useRouter } from 'next/navigation';
-import { styled } from 'styled-components';
 import ROUTES from '@/constants/routes';
 import { font, color } from '@maru/theme';
-import { flex } from '@maru/utils';
+import { IconFaq } from '@maru/icon';
+import { styled } from 'styled-components';
 
 interface PropsType {
-    id: number;
     title: string;
 }
 
-const NoticeItem = ({ id, title }: PropsType) => {
+const MainFaqItem = ({ title }: PropsType) => {
     const router = useRouter();
 
     return (
-        <StyledNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
-            <Title>{title}</Title>
-        </StyledNoticeItem>
+        <StyledMainFaqItem onClick={() => router.push(ROUTES.FAQ)}>
+            <IconFaq color={color.maruDefault} width={24} height={24} />
+            <Question>{title}</Question>
+        </StyledMainFaqItem>
     );
 };
 
-export default NoticeItem;
+export default MainFaqItem;
 
-const StyledNoticeItem = styled.div`
-    ${flex({ alignItems: 'center' })}
+const StyledMainFaqItem = styled.div`
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 64px;
     padding: 0px 16px;
@@ -30,11 +31,12 @@ const StyledNoticeItem = styled.div`
     cursor: pointer;
 `;
 
-const Title = styled.a`
+const Question = styled.a`
     ${font.p1}
     color: ${color.gray750};
     // 일정 길이 넘어가면 ... 처리
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: 12px;
 `;

@@ -6,11 +6,11 @@ import { Row } from '@maru/ui';
 import { useState } from 'react';
 
 interface PropsType {
-    question: string;
-    answer: string;
+    title: string;
+    content: string;
 }
 
-const FaqItem = ({ question, answer }: PropsType) => {
+const FaqItem = ({ content, title }: PropsType) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -22,7 +22,7 @@ const FaqItem = ({ question, answer }: PropsType) => {
                         width={24}
                         height={24}
                     />
-                    <Question>{question}</Question>
+                    <Question>{title}</Question>
                 </Row>
                 {isOpen ? (
                     <IconArrowTop color={color.gray600} width={24} height={24} />
@@ -34,7 +34,7 @@ const FaqItem = ({ question, answer }: PropsType) => {
                 <AnswerBox>
                     <Row gap="12px" alignItems="center">
                         <IconAnswer color={color.gray400} width={24} height={24} />
-                        <Answer>{answer}</Answer>
+                        <Answer>{content}</Answer>
                     </Row>
                 </AnswerBox>
             )}

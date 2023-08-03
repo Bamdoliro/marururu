@@ -3,12 +3,13 @@
 import { IconArrowLeft } from '@maru/icon';
 import ROUTES from '@/constants/routes';
 import { color, font } from '@maru/theme';
-import { flex, formatCreatedAt } from '@maru/utils';
+import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
-import { Column, Link } from '@maru/ui';
-import { styled } from 'styled-components';
+import { Link, Column } from '@maru/ui';
 import { AppLayout } from '@/layouts';
 import { useNoticeDetailQuery } from '@/services/notice/queries';
+import { formatCreatedAt } from '@maru/utils';
+import styled from 'styled-components';
 
 interface PropsType {
     params: { id: number };
@@ -17,11 +18,9 @@ interface PropsType {
 const NoticeDetailPage = ({ params: { id } }: PropsType) => {
     const router = useRouter();
 
-    const { data: noticeDetail, isLoading } = useNoticeDetailQuery(id);
+    const { data: noticeDetailData } = useNoticeDetailQuery(id);
 
-    if (isLoading || noticeDetail === undefined) {
-        return null;
-    }
+    if (!noticeDetailData) return null;
 
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
@@ -30,15 +29,15 @@ const NoticeDetailPage = ({ params: { id } }: PropsType) => {
                     <IconArrowLeft color={color.gray600} width={24} height={24} />
                     <Path>공지사항</Path>
                 </Link>
-                <ContentsBox>
+                <NoticeDetailContent>
                     <NoticeHeader>
                         <Column gap="16px" height="72px">
-                            <Title>{noticeDetail.title}</Title>
-                            <Date>{formatCreatedAt(noticeDetail.createdAt)}</Date>
+                            <Title>{noticeDetailData.title}</Title>
+                            <Date>{formatCreatedAt(noticeDetailData.createdAt)}</Date>
                         </Column>
                     </NoticeHeader>
-                    <Content>{noticeDetail.content}</Content>
-                </ContentsBox>
+                    <Content>{noticeDetailData.content}</Content>
+                </NoticeDetailContent>
             </StyledNoticeDetailPage>
         </AppLayout>
     );
@@ -58,7 +57,7 @@ const Path = styled.p`
     color: ${color.gray900};
 `;
 
-const ContentsBox = styled.div`
+const NoticeDetailContent = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 24px;
     padding: 0px 7px;

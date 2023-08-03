@@ -1,4 +1,4 @@
-import { FormStep } from '@/types/form';
+import { FormStep } from '@/types/form/client';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -12,7 +12,7 @@ interface PropsType {
 const FormController = ({ onPrevious, onNext, step }: PropsType) => {
     return (
         <FormControllerBar>
-            {step === '지원자 정보' ? (
+            {step === '지원자정보' ? (
                 <Button width={150} onClick={onNext}>
                     다음
                 </Button>

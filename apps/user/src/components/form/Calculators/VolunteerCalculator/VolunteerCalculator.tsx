@@ -1,4 +1,4 @@
-import { VolunteerInfo } from '@/types/form';
+import { VolunteerInfo } from '@/types/form/client';
 import { color, font } from '@maru/theme';
 import { NumberInput, Row, Td, Th } from '@maru/ui';
 import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';

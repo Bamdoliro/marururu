@@ -1,5 +1,5 @@
 import { subjectListInitialData } from '@/constants/form';
-import { AttendanceInfo, Subject, VolunteerInfo } from '@/types/form';
+import { AttendanceInfo, Subject, VolunteerInfo } from '@/types/form/client';
 import { atom, useRecoilState } from 'recoil';
 
 const subjectListAtomState = atom<Subject[]>({
