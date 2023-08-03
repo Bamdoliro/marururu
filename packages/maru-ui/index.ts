@@ -16,8 +16,8 @@ export { default as Th } from './src/Table/Th';
 export { default as Textarea } from './src/Textarea/Textarea';
 export { default as CheckBox } from './src/CheckBox/CheckBox';
 export { default as UnderLineButton } from './src/Button/UnderLineButton';
+export { default as Confirm } from './src/Confirm/Confirm';
 export { default as Modal } from './src/Modal/Modal';
-export { default as CustomModal } from './src/Modal/CustomModal';
 
 // type
 export type { ButtonOptionType } from './src/Button/Button.type';
