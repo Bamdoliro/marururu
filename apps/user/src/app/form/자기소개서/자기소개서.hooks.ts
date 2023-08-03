@@ -1,12 +1,10 @@
-import { useFormState } from '../form.state';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { useDebounceInput } from '@maru/hooks';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
+import { ChangeEventHandler } from 'react';
+import { useFormState } from '../form.state';
+import useDocumentInfoState from './자기소개서.state';
 
-export const useFormSubmitAction = (
-    debouncedCoverLetter: string,
-    debouncedStatementOfPurpose: string,
-) => {
+export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: string) => {
     const { form, setForm } = useFormState();
     const submitDraftFormMutation = useSubmitDraftFormMutation(form);
 
@@ -14,8 +12,8 @@ export const useFormSubmitAction = (
         setForm((prev) => ({
             ...prev,
             document: {
-                coverLetter: debouncedCoverLetter,
-                statementOfPurpose: debouncedStatementOfPurpose,
+                coverLetter,
+                statementOfPurpose,
             },
         }));
 
@@ -27,24 +25,15 @@ export const useFormSubmitAction = (
 };
 
 export const useInput = () => {
-    const {
-        value: coverLetter,
-        onChange: handleCoverLetterDataChange,
-        debouncedValue: debouncedCoverLetter,
-    } = useDebounceInput({ initialValue: '' });
-    const {
-        value: statementOfPurpose,
-        onChange: handleStatementOfPurposeDataChange,
-        debouncedValue: debouncedStatementOfPurpose,
-    } = useDebounceInput({ initialValue: '' });
+    const { setDocumentInfo } = useDocumentInfoState();
+
+    const handleDocumentInfoDataChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+        const { name, value } = e.target;
+        setDocumentInfo((prev) => ({ ...prev, [name]: value }));
+    };
 
     return {
-        coverLetter,
-        debouncedCoverLetter,
-        handleCoverLetterDataChange,
-        statementOfPurpose,
-        debouncedStatementOfPurpose,
-        handleStatementOfPurposeDataChange,
+        handleDocumentInfoDataChange,
     };
 };
 

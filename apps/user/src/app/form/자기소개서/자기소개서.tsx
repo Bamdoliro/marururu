@@ -1,24 +1,19 @@
+import { FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useCTAButton, useFormSubmitAction, useInput } from './자기소개서.hooks';
-import { FormController } from '@/components/form';
 import styled from 'styled-components';
+import { useCTAButton, useFormSubmitAction, useInput } from './자기소개서.hooks';
+import useDocumentInfoState from './자기소개서.state';
 
 const 자기소개서 = () => {
-    const {
-        coverLetter,
-        debouncedCoverLetter,
-        handleCoverLetterDataChange,
-        statementOfPurpose,
-        debouncedStatementOfPurpose,
-        handleStatementOfPurposeDataChange,
-    } = useInput();
+    const { documentInfo } = useDocumentInfoState();
+    const { handleDocumentInfoDataChange } = useInput();
     const { handlePreviousButtonClick } = useCTAButton();
     const { handleFormSubmitButtonClick } = useFormSubmitAction(
-        debouncedCoverLetter,
-        debouncedStatementOfPurpose,
+        documentInfo.coverLetter,
+        documentInfo.statementOfPurpose,
     );
 
     return (
@@ -27,16 +22,18 @@ const 자기소개서 = () => {
                 <Desc>*자기소개서와 학업계획서는 자동저장됩니다.</Desc>
                 <Column gap={64}>
                     <Textarea
+                        name="coverLetter"
                         limit={1500}
                         label="자기소개서"
-                        value={coverLetter}
-                        onChange={handleCoverLetterDataChange}
+                        value={documentInfo.coverLetter}
+                        onChange={handleDocumentInfoDataChange}
                     />
                     <Textarea
+                        name="statementOfPurpose"
                         limit={1500}
                         label="학업계획서"
-                        value={statementOfPurpose}
-                        onChange={handleStatementOfPurposeDataChange}
+                        value={documentInfo.statementOfPurpose}
+                        onChange={handleDocumentInfoDataChange}
                     />
                 </Column>
             </Styled자기소개서>
