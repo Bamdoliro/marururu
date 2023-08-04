@@ -7,10 +7,11 @@ interface RadioGroupPropsType {
     label: string;
     list: { value?: string; content: string }[] | string[];
     name: string;
+    value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
+const RadioGroup = ({ label, list, name, value, onChange }: RadioGroupPropsType) => {
     return (
         <div>
             <Label>{label}</Label>
@@ -21,6 +22,9 @@ const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
                             key={typeof item === 'string' ? item : item.value}
                             value={typeof item === 'string' ? item : item.value}
                             name={name}
+                            defaultChecked={
+                                typeof item === 'string' ? value === item : value === item.value
+                            }
                             onChange={onChange}
                         />
                         <Content>{typeof item === 'string' ? item : item.content}</Content>

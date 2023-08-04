@@ -12,8 +12,23 @@ const userInfoAtomState = atom<UserInfo>({
     },
 });
 
+const dateAtomState = atom({
+    key: 'date',
+    default: {
+        year: '',
+        month: '',
+        day: '',
+    },
+});
+
 export const useUserInfoState = () => {
     const [userInfo, setUserInfo] = useRecoilState(userInfoAtomState);
 
     return { userInfo, setUserInfo };
+};
+
+export const useUserDate = () => {
+    const [date, setDate] = useRecoilState(dateAtomState);
+
+    return { date, setDate };
 };

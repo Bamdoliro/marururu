@@ -1,9 +1,9 @@
+import { FormController, ProfileUpload } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { Column, Input, RadioGroup, Row, Dropdown } from '@maru/ui';
-import { useInput, useCTAButton } from './지원자정보.hooks';
-import { ProfileUpload, FormController } from '@/components/form';
-import { useUserInfoState } from './지원자정보.state';
+import { Column, Dropdown, Input, RadioGroup, Row } from '@maru/ui';
 import styled from 'styled-components';
+import { useCTAButton, useInput } from './지원자정보.hooks';
+import { useUserInfoState } from './지원자정보.state';
 
 const 지원자정보 = () => {
     const { userInfo, setUserInfo } = useUserInfoState();
@@ -18,6 +18,7 @@ const 지원자정보 = () => {
                     <Column gap={30} width={492}>
                         <Input
                             label="성명"
+                            value={userInfo.name}
                             onChange={handleUserInfoDataChange}
                             name="name"
                             width="100%"
@@ -55,6 +56,7 @@ const 지원자정보 = () => {
                         <Row gap={40} alignItems="flex-end">
                             <RadioGroup
                                 label="성별"
+                                value={userInfo.gender}
                                 onChange={handleUserInfoDataChange}
                                 name="gender"
                                 list={['남자', '여자']}
@@ -62,6 +64,7 @@ const 지원자정보 = () => {
                         </Row>
                         <Input
                             label="전화번호"
+                            value={userInfo.phoneNumber}
                             onChange={handleUserInfoDataChange}
                             name="phoneNumber"
                             placeholder="- 없이 입력해주세요"
