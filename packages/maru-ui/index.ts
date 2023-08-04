@@ -18,6 +18,7 @@ export { default as CheckBox } from './src/CheckBox/CheckBox';
 export { default as UnderLineButton } from './src/Button/UnderLineButton';
 export { default as Confirm } from './src/Confirm/Confirm';
 export { default as Modal } from './src/Modal/Modal';
+export { default as Text } from './src/Text/Text';
 
 // type
 export type { ButtonOptionType } from './src/Button/Button.type';

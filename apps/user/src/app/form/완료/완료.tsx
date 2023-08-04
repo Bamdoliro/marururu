@@ -8,14 +8,16 @@ import { color, font } from '@maru/theme';
 import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
-import { useCheckFilledForm } from './완료.hooks';
+import { useCheckFilledForm, useCTAButton } from './완료.hooks';
 import { CompleteAlaram, CheckFormComplete } from '@/components/form';
 import styled from 'styled-components';
+import { useModal } from '@/hooks';
 
 const 완료 = () => {
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
     const { setFormStep } = useFormStepState();
-
+    const { openModal } = useModal();
+    const { handleAgainCheckFormButtonClick } = useCTAButton();
     const {
         applicantFieldCount,
         parentFieldCount,
@@ -123,7 +125,7 @@ const 완료 = () => {
                             <Question>제출하시겠습니까?</Question>
                             <Row gap={16}>
                                 <Button
-                                    onClick={() => setFormStep('지원자정보')}
+                                    onClick={handleAgainCheckFormButtonClick}
                                     option="SECONDARY"
                                     size="LARGE">
                                     다시 한번 확인하기

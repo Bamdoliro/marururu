@@ -5,11 +5,12 @@ import Button from '../Button/Button';
 import Column from '../Flex/Column';
 import Row from '../Flex/Row';
 import styled from 'styled-components';
+import { ReactNode } from 'react';
 
 interface PropsType {
     title: string;
     desc?: string;
-    content: string;
+    content: ReactNode;
     onClose: () => void;
     onConfirm: () => void;
 }

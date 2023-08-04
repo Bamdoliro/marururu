@@ -4,8 +4,8 @@ import { useModalState } from './state/useModalState';
 const useModal = () => {
     const { setModal } = useModalState();
 
-    const openModal = (component: ReactNode) => {
-        setModal(component);
+    const openModal = (modal: ReactNode) => {
+        setModal(modal);
     };
 
     const closeModal = () => {
