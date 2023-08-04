@@ -52,7 +52,11 @@ const 보호자정보 = () => {
                 onNext={handleNextButtonClick}
                 step="보호자정보"
             />
-            {isOpen && <FindAddressModal closeModal={closeModal} setParentInfo={setParentInfo} />}
+            <FindAddressModal
+                isOpen={isOpen}
+                closeModal={closeModal}
+                setParentInfo={setParentInfo}
+            />
         </FormLayout>
     );
 };

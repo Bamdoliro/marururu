@@ -1,7 +1,5 @@
 'use client';
 
-import CheckFormCompleteItem from '@/components/form/CheckFormCompleteItem/CheckFormCompleteItem';
-import CompleteAlaram from '@/components/form/CompleteAlaram/CompleteAlaram';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { AppLayout } from '@/layouts';
 import { useInterval } from '@maru/hooks';
@@ -11,6 +9,7 @@ import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import { useCheckFilledForm } from './완료.hooks';
+import { CompleteAlaram, CheckFormComplete } from '@/components/form';
 import styled from 'styled-components';
 
 const 완료 = () => {
@@ -81,37 +80,37 @@ const 완료 = () => {
                         </Desc>
                     </Column>
                     <CheckFormCompleteBox>
-                        <CheckFormCompleteItem
+                        <CheckFormComplete
                             onClick={() => setFormStep('지원자정보')}
                             formStep="지원자 정보"
                             maxCompleteOfNumber={5}
                             completeOfNumber={applicantFieldCount}
                         />
-                        <CheckFormCompleteItem
+                        <CheckFormComplete
                             onClick={() => setFormStep('보호자정보')}
                             formStep="보호자 정보"
                             maxCompleteOfNumber={5}
                             completeOfNumber={parentFieldCount}
                         />
-                        <CheckFormCompleteItem
+                        <CheckFormComplete
                             onClick={() => setFormStep('출신학교및학력')}
                             formStep="출신학교 및 학력"
                             maxCompleteOfNumber={8}
                             completeOfNumber={educationFieldCount}
                         />
-                        <CheckFormCompleteItem
+                        <CheckFormComplete
                             onClick={() => setFormStep('전형선택')}
                             formStep="전형 선택"
                             maxCompleteOfNumber={1}
                             completeOfNumber={typeFieldCount}
                         />
-                        <CheckFormCompleteItem
+                        <CheckFormComplete
                             onClick={() => setFormStep('성적입력')}
                             formStep="성적 입력"
                             maxCompleteOfNumber={4}
                             completeOfNumber={4}
                         />
-                        <CheckFormCompleteItem
+                        <CheckFormComplete
                             onClick={() => setFormStep('자기소개서')}
                             formStep="자기소개서 및 학업계획서"
                             maxCompleteOfNumber={2}
