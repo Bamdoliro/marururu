@@ -4,7 +4,6 @@ import { styled } from 'styled-components';
 interface RadioPropsType extends InputHTMLAttributes<HTMLInputElement> {}
 
 const Radio = ({ value, name, defaultChecked, onChange }: RadioPropsType) => {
-    defaultChecked && console.log(value);
     return (
         <StyledRadio>
             <Input

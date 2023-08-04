@@ -37,20 +37,23 @@ export const useInput = () => {
                 사회다양성전형선택: '',
                 [name]: value,
             }));
-        } else if (name === '특별전형선택') {
+            setFormType(FormType[value as keyof typeof FormType]);
+            return;
+        }
+        if (name === '특별전형선택') {
             setChoiceFormType((prev) => ({
                 ...prev,
                 기회균등전형선택: '',
                 사회다양성전형선택: '',
                 [name]: value,
             }));
-        } else {
-            setChoiceFormType((prev) => ({
-                ...prev,
-                [name]: value,
-            }));
+            setFormType(FormType[value as keyof typeof FormType]);
+            return;
         }
-
+        setChoiceFormType((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
         setFormType(FormType[value as keyof typeof FormType]);
     };
 

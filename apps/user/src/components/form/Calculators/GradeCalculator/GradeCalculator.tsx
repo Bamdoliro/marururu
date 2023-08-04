@@ -40,7 +40,9 @@ const GradeCalculator = ({
     useEffect(() => {
         if (isMount.current) {
             isMount.current = false;
-        } else if (newSubjectList.length) footerRef.current?.scrollIntoView();
+            return;
+        }
+        if (newSubjectList.length) footerRef.current?.scrollIntoView();
     }, [newSubjectList]);
 
     return (
