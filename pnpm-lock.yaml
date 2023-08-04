@@ -44,6 +44,9 @@ importers:
       '@toss/react':
         specifier: ^1.5.0
         version: 1.5.0(react@18.2.0)
+      '@toss/use-overlay':
+        specifier: ^1.3.6
+        version: 1.3.6(react@18.2.0)
       dayjs:
         specifier: ^1.11.8
         version: 1.11.8
@@ -1800,6 +1803,15 @@ packages:
     resolution: {integrity: sha512-9xSwlICHbA1Ibm4Hp+WJZMkwUsW4mMX4QRGNklwE45xxQxQako1svIflPrugxaOZXnLygkb8nYYBaRtICzwoaw==}
     dependencies:
       '@babel/runtime': 7.22.5
+    dev: false
+
+  /@toss/use-overlay@1.3.6(react@18.2.0):
+    resolution: {integrity: sha512-KErtqMzogwiJAV9XU65LVpr6AYDpfrK0kKPHQ0b/CC2SLN0IofuPw9bzS9Ad0dDpsyb7D1mIH4uAKwskd7os2g==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18
+    dependencies:
+      '@types/react': 18.2.13
+      react: 18.2.0
     dev: false
 
   /@toss/utils@1.4.4:

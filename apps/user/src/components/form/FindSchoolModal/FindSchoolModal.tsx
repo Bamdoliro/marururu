@@ -3,14 +3,14 @@ import { Column, Modal, SearchInput } from '@maru/ui';
 import { useState, Dispatch, SetStateAction } from 'react';
 import { EducationInfo } from '@/types/form/client';
 import SchoolList from './SchoolList/SchoolList';
-import useModal from '@/hooks/useModal';
 
 interface PropsType {
+    isOpen: boolean;
+    onClose: () => void;
     setEducationInfo: Dispatch<SetStateAction<EducationInfo>>;
 }
 
-const FindSchoolModal = ({ setEducationInfo }: PropsType) => {
-    const { closeModal } = useModal();
+const FindSchoolModal = ({ isOpen, onClose, setEducationInfo }: PropsType) => {
     const [selectedSchool, setSelectedSchool] = useState({ name: '', location: '', code: '' });
     const {
         value: schoolSearchQuery,
@@ -26,16 +26,17 @@ const FindSchoolModal = ({ setEducationInfo }: PropsType) => {
             schoolLocation: location,
             schoolCode: code,
         }));
-        closeModal();
+        onClose();
     };
 
     const handleCloseModalButtonClick = () => {
         setSelectedSchool({ name: '', location: '', code: '' });
-        closeModal();
+        onClose();
     };
 
     return (
         <Modal
+            isOpen={isOpen}
             style={{ overflow: 'hidden' }}
             width={600}
             height={500}

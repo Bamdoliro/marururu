@@ -10,16 +10,26 @@ import Column from '../Flex/Column';
 interface PropsType {
     title: string;
     children: ReactNode;
+    isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
-    style: CSSProperties;
-    height: CSSProperties['height'];
-    width: CSSProperties['width'];
+    style?: CSSProperties;
+    height?: CSSProperties['height'];
+    width?: CSSProperties['width'];
 }
 
-const Modal = ({ title, children, onClose, onConfirm, style, height, width }: PropsType) => {
+const Modal = ({
+    title,
+    children,
+    isOpen,
+    onClose,
+    onConfirm,
+    style,
+    height,
+    width,
+}: PropsType) => {
     return (
-        <BlurBackground>
+        <BlurBackground isOpen={isOpen}>
             <StyledModal style={{ width, height, ...style }}>
                 <Row
                     style={{ marginBottom: 20 }}
@@ -50,13 +60,13 @@ const Modal = ({ title, children, onClose, onConfirm, style, height, width }: Pr
 
 export default Modal;
 
-const BlurBackground = styled.div`
+const BlurBackground = styled.div<{ isOpen: boolean }>`
+    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
