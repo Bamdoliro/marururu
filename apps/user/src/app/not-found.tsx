@@ -12,7 +12,7 @@ const NotFound = () => {
     const router = useRouter();
 
     return (
-        <AppLayout header={true} footer={true}>
+        <AppLayout header footer>
             <StyledNotFound>
                 <Image src="/svg/not_found.svg" alt="not-found" width={389} height={155} />
                 <Title>페이지를 찾을 수 없습니다</Title>
