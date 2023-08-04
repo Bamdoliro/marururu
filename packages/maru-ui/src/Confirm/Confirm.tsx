@@ -11,6 +11,7 @@ interface PropsType {
     title: string;
     desc?: string;
     content: ReactNode;
+    isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
     confirmButtonText?: string;
@@ -21,13 +22,14 @@ const Confirm = ({
     title,
     desc,
     content,
+    isOpen,
     onClose,
     onConfirm,
     confirmButtonText = '확인',
     closeButtonText = '취소',
 }: PropsType) => {
     return (
-        <BlurBackground>
+        <BlurBackground isOpen={isOpen}>
             <StyledConfirm>
                 <Column
                     style={{ paddingBottom: 20, borderBottom: `1px solid ${color.gray200}` }}
@@ -65,11 +67,11 @@ const Confirm = ({
 
 export default Confirm;
 
-const BlurBackground = styled.div`
+const BlurBackground = styled.div<{ isOpen: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
+    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     width: 100vw;

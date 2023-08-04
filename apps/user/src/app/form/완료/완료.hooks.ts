@@ -1,7 +1,5 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { useModal } from '@/hooks';
 import { useEffect, useState } from 'react';
-import { Confirm } from '@maru/ui';
 import { useFormState } from '../form.state';
 
 export const useCheckFilledForm = () => {

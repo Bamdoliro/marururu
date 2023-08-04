@@ -6,3 +6,4 @@ export { default as ProfileUploader } from './ProfileUploader/ProfileUploader';
 export { default as ProgressBar } from './ProgressBar/ProgressBar';
 export { default as CompleteAlaram } from './CompleteAlaram/CompleteAlaram';
 export { default as CheckFormComplete } from './CheckFormComplete/CheckFormComplete';
+export { default as DraftFormConfirm } from './DraftFormConfirm/DraftFormConfirm';

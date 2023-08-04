@@ -4,16 +4,18 @@ import { FormController, FindSchoolModal } from '@/components/form';
 import { useEducationInfoState } from './출신학교및학력.state';
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
 import { styled } from 'styled-components';
-import useModal from '@/hooks/useModal';
+import { useOverlay } from '@toss/use-overlay';
 
 const 출신학교및학력 = () => {
+    const overlay = useOverlay();
     const { educationInfo, setEducationInfo } = useEducationInfoState();
-    const { openModal } = useModal();
     const { handleEducationInfoDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
-    const handleOpenModalButtonClick = () => {
-        openModal(<FindSchoolModal setEducationInfo={setEducationInfo} />);
+    const openFindSchoolModal = () => {
+        overlay.open(({ isOpen, close }) => (
+            <FindSchoolModal isOpen={isOpen} onClose={close} setEducationInfo={setEducationInfo} />
+        ));
     };
 
     return (
@@ -35,7 +37,7 @@ const 출신학교및학력 = () => {
                     label="출신학교"
                     value={educationInfo.schoolName}
                     buttonText="검색"
-                    onClick={handleOpenModalButtonClick}
+                    onClick={openFindSchoolModal}
                     placeholder="클릭하여 검색하기"
                     readOnly
                 />
