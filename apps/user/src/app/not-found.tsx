@@ -21,7 +21,7 @@ const NotFound = () => {
                     <br />
                     걱정 마세요, 최고의 탐험가도 때로는 길을 잃을 때가 있죠.
                 </Desc>
-                <Button width="100%" onClick={() => router.back()}>
+                <Button width="fit-content" onClick={() => router.back()}>
                     이전 페이지로 돌아가기
                 </Button>
             </StyledNotFound>
