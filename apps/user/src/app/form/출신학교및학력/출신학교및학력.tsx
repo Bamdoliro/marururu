@@ -1,16 +1,20 @@
 import { FormLayout } from '@/layouts';
-import useModal from '@maru/hooks/src/useModal';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
 import { FormController, FindSchoolModal } from '@/components/form';
 import { useEducationInfoState } from './출신학교및학력.state';
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
 import { styled } from 'styled-components';
+import useModal from '@/hooks/useModal';
 
 const 출신학교및학력 = () => {
     const { educationInfo, setEducationInfo } = useEducationInfoState();
-    const { isOpen, openModal, closeModal } = useModal();
+    const { openModal } = useModal();
     const { handleEducationInfoDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+
+    const handleOpenModalButtonClick = () => {
+        openModal(<FindSchoolModal setEducationInfo={setEducationInfo} />);
+    };
 
     return (
         <FormLayout title="출신학교 및 학력">
@@ -31,7 +35,7 @@ const 출신학교및학력 = () => {
                     label="출신학교"
                     value={educationInfo.schoolName}
                     buttonText="검색"
-                    handleInputButtonClick={openModal}
+                    onClick={handleOpenModalButtonClick}
                     placeholder="클릭하여 검색하기"
                     readOnly
                 />
@@ -48,7 +52,7 @@ const 출신학교및학력 = () => {
                     label="지역"
                     value={educationInfo.schoolLocation}
                     buttonText="검색"
-                    handleInputButtonClick={() => {}}
+                    onClick={() => {}}
                     placeholder="도로명 주소"
                     readOnly
                 />
@@ -86,9 +90,6 @@ const 출신학교및학력 = () => {
                 onNext={handleNextButtonClick}
                 step="출신학교및학력"
             />
-            {isOpen && (
-                <FindSchoolModal closeModal={closeModal} setEducationInfo={setEducationInfo} />
-            )}
         </FormLayout>
     );
 };

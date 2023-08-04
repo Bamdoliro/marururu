@@ -2,6 +2,7 @@
 
 import { RecoilRoot } from 'recoil';
 import { GlobalStyle } from '@maru/theme';
+import { ModalProvider } from '@/utils';
 import { ReactNode } from 'react';
 
 interface PropsType {
@@ -11,8 +12,9 @@ interface PropsType {
 const Provider = ({ children }: PropsType) => {
     return (
         <RecoilRoot>
-            {children}
             <GlobalStyle />
+            {children}
+            <ModalProvider />
         </RecoilRoot>
     );
 };

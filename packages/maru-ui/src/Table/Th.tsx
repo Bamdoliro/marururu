@@ -1,9 +1,8 @@
 import { flex } from '@maru/utils';
 import { font, color } from '@maru/theme';
-import styled, { css } from 'styled-components';
+import { TableOptionType } from './Table.type';
 import { CSSProperties, ReactNode } from 'react';
-
-type TableOptionType = 'PRIMARY' | 'SECONDARY';
+import styled, { css } from 'styled-components';
 
 export interface PropsType {
     children: ReactNode;

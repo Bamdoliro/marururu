@@ -3,14 +3,14 @@ import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
 import Radio from './Radio';
 
-interface RadioGroupPropsType {
+interface PropsType {
     label: string;
     list: { value?: string; content: string }[] | string[];
     name: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const RadioGroup = ({ label, list, name, onChange }: RadioGroupPropsType) => {
+const RadioGroup = ({ label, list, name, onChange }: PropsType) => {
     return (
         <div>
             <Label>{label}</Label>

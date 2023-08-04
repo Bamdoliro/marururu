@@ -8,9 +8,10 @@ import styled from 'styled-components';
 interface PropsType {
     setParentInfo: Dispatch<SetStateAction<ParentInfo>>;
     closeModal: () => void;
+    isOpen: boolean;
 }
 
-const FindAddressModal = ({ closeModal, setParentInfo }: PropsType) => {
+const FindAddressModal = ({ isOpen, closeModal, setParentInfo }: PropsType) => {
     const findAddressModalRef = useOutsideClick(closeModal);
 
     const handleCompleteFindAddress = ({ address, zonecode }: Address) => {
@@ -18,21 +19,21 @@ const FindAddressModal = ({ closeModal, setParentInfo }: PropsType) => {
         closeModal();
     };
 
-    return (
-        <Background>
+    return isOpen ? (
+        <BlurBackground>
             <StyledFindAddressModal ref={findAddressModalRef}>
                 <DaumPostcode
                     onComplete={handleCompleteFindAddress}
                     style={{ width: '100%', height: '100%' }}
                 />
             </StyledFindAddressModal>
-        </Background>
-    );
+        </BlurBackground>
+    ) : null;
 };
 
 export default FindAddressModal;
 
-const Background = styled.div`
+const BlurBackground = styled.div`
     position: fixed;
     top: 0;
     left: 0;
