@@ -29,6 +29,8 @@ export const useInput = () => {
     const handleFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
 
+        setFormType(FormType[value as keyof typeof FormType]);
+
         if (name === '입학전형선택') {
             setChoiceFormType((prev) => ({
                 ...prev,
@@ -37,7 +39,6 @@ export const useInput = () => {
                 사회다양성전형선택: '',
                 [name]: value,
             }));
-            setFormType(FormType[value as keyof typeof FormType]);
             return;
         }
         if (name === '특별전형선택') {
@@ -47,14 +48,12 @@ export const useInput = () => {
                 사회다양성전형선택: '',
                 [name]: value,
             }));
-            setFormType(FormType[value as keyof typeof FormType]);
             return;
         }
         setChoiceFormType((prev) => ({
             ...prev,
             [name]: value,
         }));
-        setFormType(FormType[value as keyof typeof FormType]);
     };
 
     return { handleFormTypeDataChange };
