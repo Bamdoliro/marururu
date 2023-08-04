@@ -16,7 +16,7 @@ const 보호자정보 = () => {
         <FormLayout title="보호자 정보">
             <Styled보호자정보>
                 <Column gap={30}>
-                    <Row gap={48} alignItems="center">
+                    <Row gap={48}>
                         <Input
                             name="name"
                             value={parentInfo.name}
@@ -41,13 +41,23 @@ const 보호자정보 = () => {
                         value={parentInfo.address}
                         readOnly
                     />
-                    <Input
-                        name="detailAddress"
-                        value={parentInfo.detailAddress}
-                        onChange={handleParentInfoDataChange}
-                        label="상세 주소"
-                        width="100%"
-                    />
+                    <Row gap={48}>
+                        <Input
+                            name="detailAddress"
+                            value={parentInfo.detailAddress}
+                            onChange={handleParentInfoDataChange}
+                            label="상세 주소"
+                            width="100%"
+                        />
+                        <Input
+                            name="zoneCode"
+                            value={parentInfo.zoneCode}
+                            onChange={handleParentInfoDataChange}
+                            label="우편번호"
+                            width="100%"
+                            readOnly
+                        />
+                    </Row>
                 </Column>
             </Styled보호자정보>
             <FormController
