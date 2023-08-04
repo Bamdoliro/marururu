@@ -34,7 +34,13 @@ const Confirm = ({
                     gap={8}>
                     <Row justifyContent="space-between" alignItems="center">
                         <Title>{title}</Title>
-                        <IconClose color={color.gray600} width={36} height={36} cursor="pointer" />
+                        <IconClose
+                            onClick={onClose}
+                            color={color.gray600}
+                            width={36}
+                            height={36}
+                            cursor="pointer"
+                        />
                     </Row>
                     <Desc>{desc}</Desc>
                 </Column>
