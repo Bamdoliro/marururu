@@ -40,7 +40,7 @@ export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateActi
     const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
         mutationFn: (image: FormData) => postUploadProfileImage(image),
         onSuccess: (res) => {
-            setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.data.url }));
+            setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.url }));
         },
         onError: (err) => {
             console.log(err);

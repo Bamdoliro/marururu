@@ -13,9 +13,19 @@ interface PropsType {
     content: ReactNode;
     onClose: () => void;
     onConfirm: () => void;
+    confirmButtonText?: string;
+    closeButtonText?: string;
 }
 
-const Confirm = ({ title, desc, content, onClose, onConfirm }: PropsType) => {
+const Confirm = ({
+    title,
+    desc,
+    content,
+    onClose,
+    onConfirm,
+    confirmButtonText = '확인',
+    closeButtonText = '취소',
+}: PropsType) => {
     return (
         <BlurBackground>
             <StyledConfirm>
@@ -29,16 +39,17 @@ const Confirm = ({ title, desc, content, onClose, onConfirm }: PropsType) => {
                     <Desc>{desc}</Desc>
                 </Column>
                 <Column
+                    gap={8}
                     style={{ height: '100%', width: '100%', marginTop: 20 }}
                     alignItems="flex-start">
-                    <Content>{content}</Content>
+                    {content}
                 </Column>
                 <Row gap={16} justifyContent="flex-end">
                     <Button option="SECONDARY" size="SMALL" onClick={onClose}>
-                        취소
+                        {closeButtonText}
                     </Button>
                     <Button size="SMALL" onClick={onConfirm}>
-                        완료
+                        {confirmButtonText}
                     </Button>
                 </Row>
             </StyledConfirm>
@@ -79,9 +90,4 @@ const Title = styled.p`
 const Desc = styled.p`
     ${font.p3}
     color: ${color.gray600};
-`;
-
-const Content = styled.p`
-    ${font.p2}
-    color:${color.gray900};
 `;

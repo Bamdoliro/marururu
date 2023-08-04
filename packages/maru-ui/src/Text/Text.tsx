@@ -1,5 +1,5 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { font } from '@maru/theme';
+import { font, color } from '@maru/theme';
 import styled from 'styled-components';
 
 interface PropsType extends HTMLAttributes<HTMLSpanElement> {

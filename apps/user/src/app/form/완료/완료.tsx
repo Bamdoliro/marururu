@@ -5,7 +5,7 @@ import { AppLayout } from '@/layouts';
 import { useInterval } from '@maru/hooks';
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
 import { color, font } from '@maru/theme';
-import { Button, Column, Row } from '@maru/ui';
+import { Button, Column, Confirm, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import { useCheckFilledForm, useCTAButton } from './완료.hooks';
@@ -16,7 +16,7 @@ import { useModal } from '@/hooks';
 const 완료 = () => {
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
     const { setFormStep } = useFormStepState();
-    const { openModal } = useModal();
+    const { openModal, closeModal } = useModal();
     const { handleAgainCheckFormButtonClick } = useCTAButton();
     const {
         applicantFieldCount,
@@ -30,6 +30,28 @@ const 완료 = () => {
     useInterval(() => {
         setIsShowCompleteAlaram(false);
     }, 1000);
+
+    const handleSubmitDraftFormButtonClick = () => {
+        openModal(
+            <Confirm
+                title="원서 초안을 제출하시겠습니까?"
+                content={
+                    <>
+                        <Text color={color.red} fontType="p2">
+                            원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한
+                            것으로 처리되며 더 이상 입학원서 수정이 불가능합니다.
+                        </Text>
+                        <Text color={color.gray900} fontType="p2">
+                            잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.
+                        </Text>
+                    </>
+                }
+                onClose={closeModal}
+                onConfirm={() => alert('초안제출 완료')}
+                confirmButtonText="원서 초안 제출하기"
+            />,
+        );
+    };
 
     return (
         <AppLayout header={true}>
@@ -130,7 +152,9 @@ const 완료 = () => {
                                     size="LARGE">
                                     다시 한번 확인하기
                                 </Button>
-                                <Button size="LARGE">원서 초안 제출하기</Button>
+                                <Button onClick={handleSubmitDraftFormButtonClick} size="LARGE">
+                                    원서 초안 제출하기
+                                </Button>
                             </Row>
                         </Column>
                     )}
