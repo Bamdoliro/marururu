@@ -19,20 +19,20 @@ const FindAddressModal = ({ closeModal, setParentInfo }: PropsType) => {
     };
 
     return (
-        <Background>
+        <BlurBackground>
             <StyledFindAddressModal ref={findAddressModalRef}>
                 <DaumPostcode
                     onComplete={handleCompleteFindAddress}
                     style={{ width: '100%', height: '100%' }}
                 />
             </StyledFindAddressModal>
-        </Background>
+        </BlurBackground>
     );
 };
 
 export default FindAddressModal;
 
-const Background = styled.div`
+const BlurBackground = styled.div`
     position: fixed;
     top: 0;
     left: 0;

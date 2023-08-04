@@ -35,7 +35,7 @@ const SignUpPage = () => {
                             <ButtonInput
                                 label="이메일 인증"
                                 buttonText="인증"
-                                handleInputButtonClick={() => {
+                                onClick={() => {
                                     handleRequestEmailButtonClick();
                                     startTimer(300); // 5분
                                 }}

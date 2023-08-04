@@ -34,7 +34,7 @@ const 보호자정보 = () => {
                     <ButtonInput
                         label="주소"
                         buttonText="검색"
-                        handleInputButtonClick={openModal}
+                        onClick={openModal}
                         width="100%"
                         value={parentInfo.address}
                         readOnly

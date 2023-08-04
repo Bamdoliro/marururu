@@ -7,6 +7,7 @@ const useModal = () => {
     const openModal = (component: ReactNode) => {
         setModal(component);
     };
+
     const closeModal = () => {
         setModal(null);
     };

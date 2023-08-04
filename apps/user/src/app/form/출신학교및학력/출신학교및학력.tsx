@@ -35,7 +35,7 @@ const 출신학교및학력 = () => {
                     label="출신학교"
                     value={educationInfo.schoolName}
                     buttonText="검색"
-                    handleInputButtonClick={handleOpenModalButtonClick}
+                    onClick={handleOpenModalButtonClick}
                     placeholder="클릭하여 검색하기"
                     readOnly
                 />
@@ -52,7 +52,7 @@ const 출신학교및학력 = () => {
                     label="지역"
                     value={educationInfo.schoolLocation}
                     buttonText="검색"
-                    handleInputButtonClick={() => {}}
+                    onClick={() => {}}
                     placeholder="도로명 주소"
                     readOnly
                 />
