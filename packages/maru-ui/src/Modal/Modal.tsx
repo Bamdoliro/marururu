@@ -26,7 +26,7 @@ const Modal = ({ title, children, onClose, onConfirm, style, height, width }: Pr
                     justifyContent="space-between"
                     alignItems="center">
                     <Title>{title}</Title>
-                    <IconClose color={color.gray600} width={36} height={36} cursor="pointer" />
+                    <IconClose color={color.gray600} width={36} height={36} cursor="pointer" onClick={onClose} />
                 </Row>
                 <Column style={{ width: '100%', height: '100%' }}>{children}</Column>
                 <Row gap={16} justifyContent="flex-end">
