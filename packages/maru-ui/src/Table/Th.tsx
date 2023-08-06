@@ -1,19 +1,29 @@
 import { flex } from '@maru/utils';
 import { font, color } from '@maru/theme';
-import { TableOptionType } from './Table.type';
-import { CSSProperties, ReactNode } from 'react';
+import { TableOptionType, TablePropsType } from './Table.type';
 import styled, { css } from 'styled-components';
 
-export interface PropsType {
-    children: ReactNode;
-    width: CSSProperties['width'];
-    height: CSSProperties['height'];
-    option?: TableOptionType;
-}
-
-const Th = ({ children, width, height, option = 'PRIMARY' }: PropsType) => {
+const Th = ({
+    children,
+    width,
+    height,
+    option = 'PRIMARY',
+    borderTopLeftRadius,
+    borderTopRightRadius,
+    borderBottomLeftRadius,
+    borderBottomRightRadius,
+}: TablePropsType) => {
     return (
-        <StyledTh style={{ width, height }} option={option}>
+        <StyledTh
+            style={{
+                width,
+                height,
+                borderTopLeftRadius,
+                borderTopRightRadius,
+                borderBottomLeftRadius,
+                borderBottomRightRadius,
+            }}
+            option={option}>
             {children}
         </StyledTh>
     );

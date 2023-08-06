@@ -85,8 +85,6 @@ export default GradeCalculator;
 
 const StyledGradeCalculator = styled.div`
     width: 816px;
-    border-radius: 12px;
-    overflow: hidden;
 `;
 
 const GradeCalculatorFooter = styled.div`

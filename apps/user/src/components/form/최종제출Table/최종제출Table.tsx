@@ -6,16 +6,24 @@ const 최종제출Table = () => {
     return (
         <Table>
             <Tr>
-                <Th width="120px">안녕</Th>
-                <Th width="696px">안녕</Th>
+                <Th style={{ borderTopLeftRadius: '12px' }} width="120px">
+                    안녕
+                </Th>
+                <Th style={{ borderTopRightRadius: '12px' }} width="696px">
+                    안녕
+                </Th>
             </Tr>
             <Tr>
                 <Td width="120px">공동 제출</Td>
                 <Td width="696px">공동 제출</Td>
             </Tr>
             <Tr>
-                <Td width="120px">공동 제출</Td>
-                <Td width="696px">공동 제출</Td>
+                <Td style={{ borderBottomLeftRadius: '12px' }} width="120px">
+                    공동 제출
+                </Td>
+                <Td style={{ borderBottomRightRadius: '12px' }} width="696px">
+                    공동 제출
+                </Td>
             </Tr>
         </Table>
     );

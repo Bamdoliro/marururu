@@ -5,7 +5,7 @@ const GradeCalculatorHeader = () => {
     return (
         <StyledGradeCalculatorHeader>
             <Row>
-                <Th width={123} height={100}>
+                <Th borderTopLeftRadius={12} width={123} height={100}>
                     과목
                 </Th>
                 <Column width={380}>
@@ -29,7 +29,7 @@ const GradeCalculatorHeader = () => {
                         1학기
                     </Th>
                 </Column>
-                <Th width={123} height={100}>
+                <Th borderTopRightRadius={12} width={123} height={100}>
                     삭제
                 </Th>
             </Row>

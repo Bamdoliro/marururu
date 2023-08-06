@@ -22,7 +22,7 @@ const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: 
     return (
         <Table>
             <Row>
-                <Th width={416} height={56}>
+                <Th borderTopLeftRadius={12} width={416} height={56}>
                     자격증명
                 </Th>
                 <Th width={200} height={56}>
@@ -31,7 +31,7 @@ const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: 
                 <Th width={120} height={56}>
                     반영점수
                 </Th>
-                <Th width={80} height={56}>
+                <Th borderTopRightRadius={12} width={80} height={56}>
                     선택
                 </Th>
             </Row>
@@ -54,7 +54,7 @@ const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: 
                     </Td>
                 </Row>
                 <Row>
-                    <Td width={416} height={168}>
+                    <Td borderBottomLeftRadius={12} width={416} height={168}>
                         컴퓨터활용능력
                     </Td>
                     <Td width={200} height={168}>
@@ -87,7 +87,7 @@ const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: 
                             <Td width={120} height={56}>
                                 3급(1점)
                             </Td>
-                            <Td width={80} height={56}>
+                            <Td borderBottomRightRadius={12} width={80} height={56}>
                                 <CheckBox
                                     value="컴퓨터활용능력 3급"
                                     onChange={handleCertificateListInfoDataChange}
@@ -103,8 +103,6 @@ const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: 
 
 const Table = styled.div`
     width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
 `;
 
 export default CertificateCalculator;
