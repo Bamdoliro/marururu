@@ -1,7 +1,7 @@
 import { AppLayout } from '@/layouts';
 import { Button, Column, Row, Text } from '@maru/ui';
-import { color, font } from '@maru/theme';
-import { 최종제출Table } from '@/components/form';
+import { color } from '@maru/theme';
+import { FinalFormTable } from '@/components/form';
 import styled from 'styled-components';
 import { flex } from '@maru/utils';
 
@@ -29,10 +29,10 @@ const 최종제출 = () => {
                             선택된 파일 없음
                         </Text>
                     </Row>
-                    <최종제출Table />
+                    <FinalFormTable />
                 </ContentBox>
                 <SideBar>
-                    <Column style={{ position: 'sticky' }} gap={10}>
+                    <Column style={{ position: 'sticky', top: '0px' }} gap={10}>
                         <FormFinalSubmitInfoBox>as</FormFinalSubmitInfoBox>
                         <Button width="100%" size="LARGE">
                             원서 최종 제출

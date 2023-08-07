@@ -2,7 +2,7 @@ import { font, color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-const 최종제출Table = () => {
+const FinalFormTable = () => {
     return (
         <Table>
             <Tr>
@@ -29,7 +29,7 @@ const 최종제출Table = () => {
     );
 };
 
-export default 최종제출Table;
+export default FinalFormTable;
 
 const Table = styled.table`
     width: 816px;
