@@ -5,7 +5,8 @@ export type FormStep =
     | '전형선택'
     | '성적입력'
     | '자기소개서'
-    | '초안제출'
+    | '초안작성완료'
+    | '초안제출완료'
     | '최종제출';
 
 export interface UserInfo {
