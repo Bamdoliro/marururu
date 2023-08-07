@@ -1,3 +1,4 @@
+import { CompleteAlaram } from '@/components/form';
 import { AppLayout } from '@/layouts';
 import { useInterval } from '@maru/hooks';
 import { IconCheckCircle } from '@maru/icon';
@@ -16,28 +17,33 @@ const 초안제출완료 = () => {
 
     return (
         <AppLayout header>
-            <Styled초안제출완료>
-                <Row gap={8} alignItems="center">
-                    <IconCheckCircle width={64} height={64} />
-                    <Text fontType="H1" color={color.gray900}>
-                        원서 초안 제출 완료
-                    </Text>
-                </Row>
-                <Column gap={12}>
-                    <Text fontType="p1" color={color.gray900}>
-                        원서 초안을 제출 완료하셨습니다.
-                    </Text>
-                    <Text fontType="H4" color={color.red}>
-                        원서 초안과 기타 제출서류를 함께 제출해야 최종적으로 원서 제출이 완료됩니다.
-                    </Text>
-                </Column>
-                <Row gap={16}>
-                    <Button option="SECONDARY" size="LARGE">
-                        홈으로 돌아가기
-                    </Button>
-                    <Button size="LARGE">최종 제출 페이지로 이동하기</Button>
-                </Row>
-            </Styled초안제출완료>
+            {isShowCompleteAlaram ? (
+                <CompleteAlaram isComplete={isShowCompleteAlaram} />
+            ) : (
+                <Styled초안제출완료>
+                    <Row gap={8} alignItems="center">
+                        <IconCheckCircle width={64} height={64} />
+                        <Text fontType="H1" color={color.gray900}>
+                            원서 초안 제출 완료
+                        </Text>
+                    </Row>
+                    <Column gap={12}>
+                        <Text fontType="p1" color={color.gray900}>
+                            원서 초안을 제출 완료하셨습니다.
+                        </Text>
+                        <Text fontType="H4" color={color.red}>
+                            원서 초안과 기타 제출서류를 함께 제출해야 최종적으로 원서 제출이
+                            완료됩니다.
+                        </Text>
+                    </Column>
+                    <Row gap={16}>
+                        <Button option="SECONDARY" size="LARGE">
+                            홈으로 돌아가기
+                        </Button>
+                        <Button size="LARGE">최종 제출 페이지로 이동하기</Button>
+                    </Row>
+                </Styled초안제출완료>
+            )}
         </AppLayout>
     );
 };

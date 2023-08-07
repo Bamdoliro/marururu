@@ -38,7 +38,7 @@ const 초안작성완료 = () => {
     return (
         <AppLayout header>
             {isShowCompleteAlaram ? (
-                <CompleteAlaram isFilledForm={isFilledForm} />
+                <CompleteAlaram isComplete={isFilledForm} />
             ) : (
                 <Styled초안작성완료 isFilledForm={isFilledForm}>
                     <Row gap={8} alignItems="center">

@@ -5,10 +5,10 @@ import { Column, Text } from '@maru/ui';
 import styled from 'styled-components';
 
 interface PropsType {
-    isFilledForm: boolean;
+    isComplete: boolean;
 }
 
-const CompleteAlaram = ({ isFilledForm }: PropsType) => {
+const CompleteAlaram = ({ isComplete }: PropsType) => {
     const { formStep } = useFormStepState();
 
     return (
@@ -18,13 +18,13 @@ const CompleteAlaram = ({ isFilledForm }: PropsType) => {
             height="100%"
             gap={34}
             alignItems="center">
-            {isFilledForm ? (
+            {isComplete ? (
                 <IconCheckCircle width={150} height={150} />
             ) : (
                 <IconCancelCircle width={150} height={150} />
             )}
             {formStep === '초안작성완료' ? (
-                isFilledForm ? (
+                isComplete ? (
                     <Text fontType="D2" color={color.gray900}>
                         원서 초안 작성 완료
                     </Text>
