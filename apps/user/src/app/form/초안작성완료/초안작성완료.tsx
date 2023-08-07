@@ -8,12 +8,12 @@ import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
-import { useCheckFilledForm, useCTAButton } from './완료.hooks';
+import { useCheckFilledForm, useCTAButton } from './초안작성완료.hooks';
 import { CompleteAlaram, CheckFormComplete, DraftFormConfirm } from '@/components/form';
 import styled from 'styled-components';
 import { useOverlay } from '@toss/use-overlay';
 
-const 완료 = () => {
+const 초안작성완료 = () => {
     const overlay = useOverlay();
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
     const { setFormStep } = useFormStepState();
@@ -40,15 +40,13 @@ const 완료 = () => {
             {isShowCompleteAlaram ? (
                 <CompleteAlaram isFilledForm={isFilledForm} />
             ) : (
-                <Styled완료>
-                    <Row gap={8} style={{ marginBottom: '55px' }} alignItems="center">
-                        <CircleIconBox>
-                            {isFilledForm ? (
-                                <IconCheckCircle width="100%" height="100%" />
-                            ) : (
-                                <IconCancelCircle width="100%" height="100%" />
-                            )}
-                        </CircleIconBox>
+                <Styled초안작성완료 isFilledForm={isFilledForm}>
+                    <Row gap={8} alignItems="center">
+                        {isFilledForm ? (
+                            <IconCheckCircle width={64} height={64} />
+                        ) : (
+                            <IconCancelCircle width={64} height={64} />
+                        )}
                         <Text fontType="H1" color={color.gray900}>
                             {isFilledForm
                                 ? '원서 초안 작성 완료'
@@ -66,13 +64,13 @@ const 완료 = () => {
                             </Text>
                         )}
                         {isFilledForm ? (
-                            <Text fontType="p1" color={color.red}>
+                            <Text fontType="H4" color={color.red}>
                                 원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한
                                 것으로 처리되며
                                 <br />더 이상 입학원서 수정이 불가능합니다.
                             </Text>
                         ) : (
-                            <Text fontType="p1" color={color.red}>
+                            <Text fontType="H4" color={color.red}>
                                 원서 작성 중 입력하지 않은 곳이 있다면 초안을 제출할 수 없습니다.
                             </Text>
                         )}
@@ -143,24 +141,20 @@ const 완료 = () => {
                             </Row>
                         </Column>
                     )}
-                </Styled완료>
+                </Styled초안작성완료>
             )}
         </AppLayout>
     );
 };
 
-export default 완료;
+export default 초안작성완료;
 
-const Styled완료 = styled.div`
+const Styled초안작성완료 = styled.div<{ isFilledForm: boolean }>`
     ${flex({ flexDirection: 'column' })}
+    gap: ${(props) => (props.isFilledForm ? '48px' : '62px')};
     max-width: 800px;
     height: 100%;
     margin: 0 auto;
-`;
-
-const CircleIconBox = styled.div`
-    width: 64px;
-    height: 64px;
 `;
 
 const CheckFormCompleteBox = styled.div`
@@ -169,5 +163,4 @@ const CheckFormCompleteBox = styled.div`
     gap: 16px;
     width: 100%;
     height: 248px;
-    margin: 48px 0px;
 `;
