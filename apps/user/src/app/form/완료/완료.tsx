@@ -8,12 +8,12 @@ import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
-import { useCheckFilledForm, useCTAButton } from './초안제출.hooks';
+import { useCheckFilledForm, useCTAButton } from './완료.hooks';
 import { CompleteAlaram, CheckFormComplete, DraftFormConfirm } from '@/components/form';
 import styled from 'styled-components';
 import { useOverlay } from '@toss/use-overlay';
 
-const 초안제출 = () => {
+const 완료 = () => {
     const overlay = useOverlay();
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
     const { setFormStep } = useFormStepState();
@@ -40,7 +40,7 @@ const 초안제출 = () => {
             {isShowCompleteAlaram ? (
                 <CompleteAlaram isFilledForm={isFilledForm} />
             ) : (
-                <Styled초안제출>
+                <Styled완료>
                     <Row gap={8} style={{ marginBottom: '55px' }} alignItems="center">
                         <CircleIconBox>
                             {isFilledForm ? (
@@ -143,15 +143,15 @@ const 초안제출 = () => {
                             </Row>
                         </Column>
                     )}
-                </Styled초안제출>
+                </Styled완료>
             )}
         </AppLayout>
     );
 };
 
-export default 초안제출;
+export default 완료;
 
-const Styled초안제출 = styled.div`
+const Styled완료 = styled.div`
     ${flex({ flexDirection: 'column' })}
     max-width: 800px;
     height: 100%;
