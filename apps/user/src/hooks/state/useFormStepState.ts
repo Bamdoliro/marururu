@@ -3,7 +3,7 @@ import { useRecoilState, atom } from 'recoil';
 
 const formStepAtomState = atom<FormStep>({
     key: 'form-step',
-    default: '성적입력',
+    default: '최종제출',
 });
 
 export const useFormStepState = () => {
