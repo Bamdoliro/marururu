@@ -3,7 +3,12 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { color, font } from '@maru/theme';
 import { FinalFormTable } from '@/components/form';
 import { flex } from '@maru/utils';
-import { useFileUploadButton, useInput, useUploadFormDocumentAction } from './최종제출.hooks';
+import {
+    useExportFormAction,
+    useFileUploadButton,
+    useInput,
+    useUploadFormDocumentAction,
+} from './최종제출.hooks';
 import { useFormDocumentState } from './최종제출.state';
 import styled from 'styled-components';
 
@@ -11,6 +16,7 @@ const 최종제출 = () => {
     const { formDocument } = useFormDocumentState();
     const { fileInputRef, handleFileUploadButtonClick } = useFileUploadButton();
     const { handleUploadFormDocumentButtonClick } = useUploadFormDocumentAction();
+    const { handleExportFormButtonClick } = useExportFormAction();
     const { handleFileDataChange } = useInput();
 
     return (
@@ -29,9 +35,9 @@ const 최종제출 = () => {
                                 원서를 최종 제출됐을 경우 재업로드는 불가능합니다.
                             </Text>
                         </Column>
-                        <DraftFormPdfDownloadButton>
+                        <ExportFormButton onClick={handleExportFormButtonClick}>
                             [ 원서 초안 pdf 다운로드 ]
-                        </DraftFormPdfDownloadButton>
+                        </ExportFormButton>
                     </Column>
                     <Row gap={16} alignItems="center" style={{ margin: '72px 0 56px 0' }}>
                         <Button onClick={handleFileUploadButtonClick} size="SMALL">
@@ -101,7 +107,7 @@ const ContentBox = styled.div`
     height: 100%;
 `;
 
-const DraftFormPdfDownloadButton = styled.button`
+const ExportFormButton = styled.button`
     ${font.btn2};
     color: ${color.gray500};
 `;

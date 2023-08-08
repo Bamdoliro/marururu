@@ -14,6 +14,11 @@ export const postSubmitDraftForm = async (formData: PostFormReq) => {
     return data;
 };
 
+export const getExportForm = async () => {
+    const { data } = await maru.get('/form/export', authorization());
+    return data;
+};
+
 export const postUploadFormDocumnet = async (file: File) => {
     const { data } = await maru.post('/form/form-document', file, {
         headers: {

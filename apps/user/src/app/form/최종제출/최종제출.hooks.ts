@@ -1,6 +1,7 @@
 import { useUploadFormDocumentMutation } from '@/services/form/mutations';
 import { ChangeEventHandler, useRef } from 'react';
 import { useFormDocumentState } from './최종제출.state';
+import { useExportFormQuery } from '@/services/form/queries';
 
 export const useFileUploadButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -21,6 +22,16 @@ export const useUploadFormDocumentAction = () => {
     };
 
     return { handleUploadFormDocumentButtonClick };
+};
+
+export const useExportFormAction = () => {
+    const { data: exportFormData, refetch: exportFormDataRefetch } = useExportFormQuery();
+
+    const handleExportFormButtonClick = () => {
+        exportFormDataRefetch();
+    };
+
+    return { handleExportFormButtonClick };
 };
 
 export const useInput = () => {
