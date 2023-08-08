@@ -2,10 +2,16 @@ import { AppLayout } from '@/layouts';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { color } from '@maru/theme';
 import { FinalFormTable } from '@/components/form';
-import styled from 'styled-components';
 import { flex } from '@maru/utils';
+import { useFileUploadButton, useInput } from './최종제출.hooks';
+import { useFormDocumentState } from './최종제출.state';
+import styled from 'styled-components';
 
 const 최종제출 = () => {
+    const { formDocument } = useFormDocumentState();
+    const { fileInputRef, handleFileUploadButtonClick } = useFileUploadButton();
+    const { handleFileDataChange } = useInput();
+
     return (
         <AppLayout header style={{ padding: '58px 96px 0px' }}>
             <Styled최종제출>
@@ -24,10 +30,18 @@ const 최종제출 = () => {
                         </Column>
                     </Column>
                     <Row gap={16} alignItems="center">
-                        <Button size="SMALL">첨부파일 업로드</Button>
-                        <Text fontType="p2" color={color.gray900}>
-                            선택된 파일 없음
-                        </Text>
+                        <Button onClick={handleFileUploadButtonClick} size="SMALL">
+                            첨부파일 업로드
+                        </Button>
+                        {formDocument.file.name ? (
+                            <Text fontType="p2" color={color.gray900}>
+                                {formDocument.file.name}
+                            </Text>
+                        ) : (
+                            <Text fontType="p2" color={color.gray900}>
+                                선택된 파일 없음
+                            </Text>
+                        )}
                     </Row>
                     <FinalFormTable />
                 </ContentBox>
@@ -40,6 +54,13 @@ const 최종제출 = () => {
                     </Column>
                 </SideBar>
             </Styled최종제출>
+            <input
+                ref={fileInputRef}
+                onChange={handleFileDataChange}
+                type="file"
+                accept=".pdf"
+                hidden
+            />
         </AppLayout>
     );
 };

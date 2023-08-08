@@ -1,8 +1,7 @@
 import { useFormStepState } from '@/hooks';
 import { IconCancelCircle, IconCheck, IconCheckCircle, IconClose } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
-import styled from 'styled-components';
 
 interface PropsType {
     isComplete: boolean;
