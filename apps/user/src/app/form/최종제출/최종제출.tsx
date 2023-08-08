@@ -1,23 +1,38 @@
 import { AppLayout } from '@/layouts';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { color, font } from '@maru/theme';
-import { FinalFormTable } from '@/components/form';
+import { FinalFormConfirm, FinalFormTable } from '@/components/form';
 import { flex } from '@maru/utils';
 import {
     useExportFormAction,
     useFileUploadButton,
     useInput,
-    useUploadFormDocumentAction,
+    useSubmitFinalFormAction,
 } from './최종제출.hooks';
 import { useFormDocumentState } from './최종제출.state';
 import styled from 'styled-components';
+import { useOverlay } from '@toss/use-overlay';
 
 const 최종제출 = () => {
+    const overlay = useOverlay();
     const { formDocument } = useFormDocumentState();
     const { fileInputRef, handleFileUploadButtonClick } = useFileUploadButton();
-    const { handleUploadFormDocumentButtonClick } = useUploadFormDocumentAction();
     const { handleExportFormButtonClick } = useExportFormAction();
+    const { handleSubmitFinalFormButtonClick } = useSubmitFinalFormAction();
     const { handleFileDataChange } = useInput();
+
+    const openFinalFormConfirm = () => {
+        overlay.open(({ isOpen, close }) => (
+            <FinalFormConfirm
+                isOpen={isOpen}
+                onClose={close}
+                onConfirm={() => {
+                    handleSubmitFinalFormButtonClick();
+                    close();
+                }}
+            />
+        ));
+    };
 
     return (
         <AppLayout header style={{ padding: '58px 96px 0px' }}>
@@ -73,10 +88,7 @@ const 최종제출 = () => {
                                 </Text>
                             </Column>
                         </FormFinalSubmitInfoBox>
-                        <Button
-                            onClick={handleUploadFormDocumentButtonClick}
-                            width="100%"
-                            size="LARGE">
+                        <Button onClick={openFinalFormConfirm} width="100%" size="LARGE">
                             원서 최종 제출
                         </Button>
                     </Column>

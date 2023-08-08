@@ -1,5 +1,5 @@
 import { useFormStepState } from '@/hooks';
-import { UserInfo } from '@/types/form/client';
+import { FormDocument, UserInfo } from '@/types/form/client';
 import { PostFormReq } from '@/types/form/remote';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
@@ -45,11 +45,14 @@ export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
     return { submitDraftFormMutate, restMutation };
 };
 
-export const useUploadFormDocumentMutation = (file: File) => {
+export const useUploadFormDocumentMutation = (
+    setFormDocument: Dispatch<SetStateAction<FormDocument>>,
+) => {
     const { mutate: uploadFormDocumentMutate, ...restMutation } = useMutation({
-        mutationFn: () => postUploadFormDocumnet(file),
+        mutationFn: (file: File) => postUploadFormDocumnet(file),
         onSuccess: (res) => {
             console.log(res);
+            setFormDocument(res.url);
             alert('성공');
         },
         onError: (err) => {
