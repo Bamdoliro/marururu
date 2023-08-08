@@ -1,12 +1,13 @@
 import { HTMLAttributes, ReactNode } from 'react';
 import { font, color } from '@maru/theme';
 import styled from 'styled-components';
-type FontType: keyof typeof font;
+
+type Font = keyof typeof font;
 
 interface PropsType extends HTMLAttributes<HTMLSpanElement> {
     children: ReactNode;
     color?: string;
-    fontType: FontType;
+    fontType: Font;
 }
 
 const Text = ({ children, color, fontType }: PropsType) => {
@@ -19,6 +20,6 @@ const Text = ({ children, color, fontType }: PropsType) => {
 
 export default Text;
 
-const StyledText = styled.p<{ fontType: FontType }>`
+const StyledText = styled.p<{ fontType: Font }>`
     ${({ fontType }) => font[fontType]}
 `;
