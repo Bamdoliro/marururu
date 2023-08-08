@@ -1,3 +1,4 @@
+import { useUploadFormDocumentMutation } from '@/services/form/mutations';
 import { ChangeEventHandler, useRef } from 'react';
 import { useFormDocumentState } from './최종제출.state';
 
@@ -9,6 +10,17 @@ export const useFileUploadButton = () => {
     };
 
     return { fileInputRef, handleFileUploadButtonClick };
+};
+
+export const useUploadFormDocumentAction = () => {
+    const { formDocument } = useFormDocumentState();
+    const { uploadFormDocumentMutate } = useUploadFormDocumentMutation(formDocument.file);
+
+    const handleUploadFormDocumentButtonClick = () => {
+        uploadFormDocumentMutate();
+    };
+
+    return { handleUploadFormDocumentButtonClick };
 };
 
 export const useInput = () => {

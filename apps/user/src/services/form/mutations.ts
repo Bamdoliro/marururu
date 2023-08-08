@@ -3,7 +3,12 @@ import { UserInfo } from '@/types/form/client';
 import { PostFormReq } from '@/types/form/remote';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
-import { postSubmitDraftForm, postSubmitFinalForm, postUploadProfileImage } from './api';
+import {
+    postSubmitDraftForm,
+    postSubmitFinalForm,
+    postUploadFormDocumnet,
+    postUploadProfileImage,
+} from './api';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
     const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
@@ -38,6 +43,22 @@ export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
     });
 
     return { submitDraftFormMutate, restMutation };
+};
+
+export const useUploadFormDocumentMutation = (file: File) => {
+    const { mutate: uploadFormDocumentMutate, ...restMutation } = useMutation({
+        mutationFn: () => postUploadFormDocumnet(file),
+        onSuccess: (res) => {
+            console.log(res);
+            alert('성공');
+        },
+        onError: (err) => {
+            console.log(err);
+            alert('실패');
+        },
+    });
+
+    return { uploadFormDocumentMutate, ...restMutation };
 };
 
 export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateAction<UserInfo>>) => {

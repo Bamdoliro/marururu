@@ -14,6 +14,16 @@ export const postSubmitDraftForm = async (formData: PostFormReq) => {
     return data;
 };
 
+export const postUploadFormDocumnet = async (file: File) => {
+    const { data } = await maru.post('/form/form-document', file, {
+        headers: {
+            Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+    return data;
+};
+
 export const postUploadProfileImage = async (image: FormData) => {
     const { data } = await maru.post('/form/identification-picture', image, {
         headers: {

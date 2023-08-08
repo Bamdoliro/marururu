@@ -3,13 +3,14 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { color } from '@maru/theme';
 import { FinalFormTable } from '@/components/form';
 import { flex } from '@maru/utils';
-import { useFileUploadButton, useInput } from './최종제출.hooks';
+import { useFileUploadButton, useInput, useUploadFormDocumentAction } from './최종제출.hooks';
 import { useFormDocumentState } from './최종제출.state';
 import styled from 'styled-components';
 
 const 최종제출 = () => {
     const { formDocument } = useFormDocumentState();
     const { fileInputRef, handleFileUploadButtonClick } = useFileUploadButton();
+    const { handleUploadFormDocumentButtonClick } = useUploadFormDocumentAction();
     const { handleFileDataChange } = useInput();
 
     return (
@@ -48,7 +49,10 @@ const 최종제출 = () => {
                 <SideBar>
                     <Column style={{ position: 'sticky', top: '0px' }} gap={10}>
                         <FormFinalSubmitInfoBox>as</FormFinalSubmitInfoBox>
-                        <Button width="100%" size="LARGE">
+                        <Button
+                            onClick={handleUploadFormDocumentButtonClick}
+                            width="100%"
+                            size="LARGE">
                             원서 최종 제출
                         </Button>
                     </Column>

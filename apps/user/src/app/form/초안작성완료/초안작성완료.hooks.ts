@@ -3,15 +3,15 @@ import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useEffect, useState } from 'react';
 import { useFormState } from '../form.state';
 
-export const useDraftFormSubmitAction = () => {
+export const useSubmitDraftFormAction = () => {
     const { form } = useFormState();
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
 
-    const handleDraftFormSubmitButtonClick = () => {
+    const handleSubmitDraftFormButtonClick = () => {
         submitDraftFormMutate();
     };
 
-    return { handleDraftFormSubmitButtonClick };
+    return { handleSubmitDraftFormButtonClick };
 };
 
 export const useCheckFilledForm = () => {
