@@ -106,7 +106,7 @@ const SignUpBox = styled.div<{ enabled: boolean }>`
     ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
     width: 446px;
     height: ${(props) => (props.enabled ? '721px' : '592px')};
-    margin: 120px 0px;
+    margin: 120px 0;
 `;
 
 const Title = styled.p`

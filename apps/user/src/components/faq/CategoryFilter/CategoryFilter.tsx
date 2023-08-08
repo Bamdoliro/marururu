@@ -32,5 +32,5 @@ const StyledCategoryFilter = styled.div`
     width: 100%;
     ${flex({ alignItems: 'center' })}
     gap: 12px;
-    margin: 36px 0px 40px;
+    margin: 36px 0 40px;
 `;
