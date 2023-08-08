@@ -5,7 +5,7 @@ import { ChangeEventHandler, useEffect, useState } from 'react';
 import { useUserInfoState } from './지원자정보.state';
 
 export const useInput = () => {
-    const { userInfo, setUserInfo } = useUserInfoState();
+    const { setUserInfo } = useUserInfoState();
     const [date, setDate] = useState<Date>({
         year: '',
         month: '',
@@ -21,9 +21,8 @@ export const useInput = () => {
         setUserInfo((prev) => ({
             ...prev,
             birthday: formatDate(date),
-            gender: userInfo.gender === '남자' ? 'MALE' : 'FEMALE',
         }));
-    }, [date, userInfo.gender]);
+    }, [date]);
 
     return { handleUserInfoDataChange, date, setDate };
 };

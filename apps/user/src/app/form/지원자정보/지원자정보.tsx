@@ -57,7 +57,10 @@ const 지원자정보 = () => {
                                 label="성별"
                                 onChange={handleUserInfoDataChange}
                                 name="gender"
-                                list={['남자', '여자']}
+                                list={[
+                                    { content: '남자', value: 'MALE' },
+                                    { content: '여자', value: 'FEMALE' },
+                                ]}
                             />
                         </Row>
                         <Input
