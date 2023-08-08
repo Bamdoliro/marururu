@@ -7,9 +7,11 @@ import { Row, Button, Text, Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useCTAButton } from './초안제출완료.hooks';
 
 const 초안제출완료 = () => {
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
+    const { handleGoMainPageButtonClick, handleGo최종제출PageButtonClick } = useCTAButton();
 
     useInterval(() => {
         setIsShowCompleteAlaram(false);
@@ -37,10 +39,15 @@ const 초안제출완료 = () => {
                         </Text>
                     </Column>
                     <Row gap={16}>
-                        <Button option="SECONDARY" size="LARGE">
+                        <Button
+                            onClick={handleGoMainPageButtonClick}
+                            option="SECONDARY"
+                            size="LARGE">
                             홈으로 돌아가기
                         </Button>
-                        <Button size="LARGE">최종 제출 페이지로 이동하기</Button>
+                        <Button onClick={handleGo최종제출PageButtonClick} size="LARGE">
+                            최종 제출 페이지로 이동하기
+                        </Button>
                     </Row>
                 </Styled초안제출완료>
             )}
