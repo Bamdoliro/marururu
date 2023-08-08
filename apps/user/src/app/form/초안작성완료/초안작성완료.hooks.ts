@@ -1,6 +1,18 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useEffect, useState } from 'react';
 import { useFormState } from '../form.state';
+
+export const useDraftFormSubmitAction = () => {
+    const { form } = useFormState();
+    const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
+
+    const handleDraftFormSubmitButtonClick = () => {
+        submitDraftFormMutate();
+    };
+
+    return { handleDraftFormSubmitButtonClick };
+};
 
 export const useCheckFilledForm = () => {
     const { form } = useFormState();

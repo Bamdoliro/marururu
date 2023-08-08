@@ -4,9 +4,10 @@ import { Confirm, Text } from '@maru/ui';
 interface PropsType {
     isOpen: boolean;
     onClose: () => void;
+    onConfirm: () => void;
 }
 
-const DraftFormConfirm = ({ isOpen, onClose }: PropsType) => {
+const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: PropsType) => {
     return (
         <Confirm
             isOpen={isOpen}
@@ -23,7 +24,7 @@ const DraftFormConfirm = ({ isOpen, onClose }: PropsType) => {
                 </>
             }
             onClose={onClose}
-            onConfirm={() => alert('초안제출 완료')}
+            onConfirm={onConfirm}
             confirmButtonText="원서 초안 제출하기"
         />
     );

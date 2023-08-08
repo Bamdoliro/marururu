@@ -1,3 +1,4 @@
+import { useFormStepState } from '@/hooks';
 import { UserInfo } from '@/types/form/client';
 import { PostFormReq } from '@/types/form/remote';
 import { Dispatch, SetStateAction } from 'react';
@@ -21,10 +22,13 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
 };
 
 export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
+    const { setFormStep } = useFormStepState();
+
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
         mutationFn: () => postSubmitDraftForm(formData),
         onSuccess: (res) => {
             console.log(res);
+            setFormStep('초안제출완료');
             alert('성공!');
         },
         onError: (err) => {

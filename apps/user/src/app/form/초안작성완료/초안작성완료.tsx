@@ -8,7 +8,7 @@ import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
-import { useCheckFilledForm, useCTAButton } from './초안작성완료.hooks';
+import { useCheckFilledForm, useCTAButton, useDraftFormSubmitAction } from './초안작성완료.hooks';
 import { CompleteAlaram, CheckFormComplete, DraftFormConfirm } from '@/components/form';
 import styled from 'styled-components';
 import { useOverlay } from '@toss/use-overlay';
@@ -26,13 +26,23 @@ const 초안작성완료 = () => {
         documentFieldCount,
         isFilledForm,
     } = useCheckFilledForm();
+    const { handleDraftFormSubmitButtonClick } = useDraftFormSubmitAction();
 
     useInterval(() => {
         setIsShowCompleteAlaram(false);
     }, 1000);
 
     const openDraftFormConfrim = () => {
-        overlay.open(({ isOpen, close }) => <DraftFormConfirm isOpen={isOpen} onClose={close} />);
+        overlay.open(({ isOpen, close }) => (
+            <DraftFormConfirm
+                isOpen={isOpen}
+                onClose={close}
+                onConfirm={() => {
+                    handleDraftFormSubmitButtonClick();
+                    close();
+                }}
+            />
+        ));
     };
 
     return (
