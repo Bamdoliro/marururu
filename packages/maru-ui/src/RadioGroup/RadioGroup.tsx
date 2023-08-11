@@ -17,8 +17,8 @@ const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
         <div>
             <Label>{label}</Label>
             <RadioListBox>
-                {list.map((item) => (
-                    <label>
+                {list.map((item, index) => (
+                    <label key={`radio-group ${name} ${index}`}>
                         <Row gap={8} alignItems="center">
                             <Radio
                                 value={typeof item === 'string' ? item : item.value}

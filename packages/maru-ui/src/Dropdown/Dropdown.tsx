@@ -1,9 +1,9 @@
-import { CSSProperties, useState } from 'react';
+import { useBoolean, useOutsideClick } from '@maru/hooks';
+import { IconArrowBottom, IconArrowTop } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { IconArrowTop, IconArrowBottom } from '@maru/icon';
+import { CSSProperties } from 'react';
 import styled, { css } from 'styled-components';
-import { useBoolean, useOutsideClick } from '@maru/hooks';
 
 type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
@@ -43,15 +43,15 @@ const Dropdown = ({
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledDropdown size={size} onClick={handleToggleButtonClick} isOpen={isOpen}>
-                <SelectedItemText isSelected={!!value}>{value || placeholder}</SelectedItemText>
+            <StyledDropdown size={size} onClick={handleToggleButtonClick} $isOpen={isOpen}>
+                <SelectedItemText $isSelected={!!value}>{value || placeholder}</SelectedItemText>
                 {isOpen ? (
                     <IconArrowTop color={color.gray600} width={24} height={24} />
                 ) : (
                     <IconArrowBottom color={color.gray600} width={24} height={24} />
                 )}
             </StyledDropdown>
-            <DropdownListBox ref={dropdownRef} isOpen={isOpen}>
+            <DropdownListBox ref={dropdownRef} $isOpen={isOpen}>
                 <DropdownList>
                     {data?.map((item, index) => (
                         <DropdownItem
@@ -74,7 +74,7 @@ const Label = styled.p`
     margin-bottom: 8px;
 `;
 
-const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>`
+const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,7 +84,7 @@ const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>
     cursor: pointer;
 
     ${(props) =>
-        props.isOpen
+        props.$isOpen
             ? css`
                   border: 1px solid ${color.maruDefault};
                   outline: 2px solid rgba(20, 112, 255, 0.25);
@@ -105,14 +105,14 @@ const StyledDropdown = styled.div<{ isOpen: boolean; size: DropdownSizeOption }>
               `}
 `;
 
-const SelectedItemText = styled.p<{ isSelected: boolean }>`
+const SelectedItemText = styled.p<{ $isSelected: boolean }>`
     ${font.p2}
-    color: ${(props) => (props.isSelected ? color.gray900 : color.gray500)};
+    color: ${(props) => (props.$isSelected ? color.gray900 : color.gray500)};
 `;
 
-const DropdownListBox = styled.div<{ isOpen: boolean }>`
+const DropdownListBox = styled.div<{ $isOpen: boolean }>`
     position: relative;
-    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+    display: ${({ $isOpen: isOpen }) => (isOpen ? 'block' : 'none')};
 `;
 
 const DropdownList = styled.div`

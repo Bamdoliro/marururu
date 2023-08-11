@@ -1,7 +1,6 @@
+import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { FormStep } from '@/types/form/client';
 import styled from 'styled-components';
 
 const PROGRESS_BAR_DISPLAY_DATA = [
@@ -31,7 +30,7 @@ const ProgressBar = () => {
                 <Circle
                     key={`progress ${index}`}
                     name={item}
-                    active={formStep === PROGRESS_BAR_DATA[index]}
+                    $active={formStep === PROGRESS_BAR_DATA[index]}
                     onClick={() => setFormStep(PROGRESS_BAR_DATA[index])}>
                     {index + 1}
                 </Circle>
@@ -57,22 +56,22 @@ const StyledProgressBar = styled.div`
     }
 `;
 
-const Circle = styled.div<{ active: boolean; name: string }>`
+const Circle = styled.div<{ $active: boolean; name: string }>`
     z-index: 1;
     ${font.p1}
-    color: ${(props) => (props.active ? color.maruDefault : color.gray600)};
-    background-color: ${(props) => (props.active ? color.white : color.gray50)};
+    color: ${(props) => (props.$active ? color.maruDefault : color.gray600)};
+    background-color: ${(props) => (props.$active ? color.white : color.gray50)};
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     width: 44px;
     height: 44px;
-    border: 2px solid ${(props) => (props.active ? color.maruDefault : color.gray300)};
+    border: 2px solid ${(props) => (props.$active ? color.maruDefault : color.gray300)};
     cursor: pointer;
     &::after {
         ${font.context}
-        color: ${(props) => (props.active ? color.maruDefault : color.gray600)};
+        color: ${(props) => (props.$active ? color.maruDefault : color.gray600)};
         content: '${(props) => props.name}';
         position: absolute;
         top: calc(100% + 4px);

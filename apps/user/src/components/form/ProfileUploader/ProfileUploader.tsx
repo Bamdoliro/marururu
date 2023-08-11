@@ -72,7 +72,7 @@ const ProfileUploader = ({ userInfo, setUserInfo }: PropsType) => {
                     onDragLeave={onDragLeave}
                     onDragOver={onDragOver}
                     onDrop={onDrop}
-                    isDragging={isDragging}>
+                    $isDragging={isDragging}>
                     <Column gap={12} alignItems="center">
                         <Button size="SMALL" onClick={handleImageUploadButtonClick}>
                             파일 선택
@@ -111,14 +111,14 @@ const StyledProfileUploader = styled.div`
     gap: 8px;
 `;
 
-const ImageUploadBox = styled.div<{ isDragging: boolean }>`
+const ImageUploadBox = styled.div<{ $isDragging: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;
     width: 225px;
     height: 300px;
     border-radius: 6px;
-    border: 1px dashed ${(props) => (props.isDragging ? color.maruDefault : color.gray400)};
+    border: 1px dashed ${(props) => (props.$isDragging ? color.maruDefault : color.gray400)};
     background-color: ${color.gray50};
 `;
 

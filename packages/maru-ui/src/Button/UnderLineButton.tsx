@@ -1,7 +1,6 @@
 import { color, font } from '@maru/theme';
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-import styled from 'styled-components';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
@@ -10,7 +9,7 @@ interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const UnderLineButton = ({ children, onClick, active }: PropsType) => {
     return (
-        <StyledUnderLineButton onClick={onClick} active={active}>
+        <StyledUnderLineButton onClick={onClick} $active={active}>
             <HoverStateBox>{children}</HoverStateBox>
         </StyledUnderLineButton>
     );
@@ -24,7 +23,7 @@ const HoverStateBox = styled.div`
     border-radius: 6px;
 `;
 
-const StyledUnderLineButton = styled.button<{ active: boolean }>`
+const StyledUnderLineButton = styled.button<{ $active: boolean }>`
     padding: 0px 4px;
     height: 54px;
     position: relative;
@@ -46,7 +45,7 @@ const StyledUnderLineButton = styled.button<{ active: boolean }>`
         background-color: ${color.gray100};
     }
     ${(props) =>
-        props.active &&
+        props.$active &&
         css`
             &::before {
                 transform: scaleX(1);
