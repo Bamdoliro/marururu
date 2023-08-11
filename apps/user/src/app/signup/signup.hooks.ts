@@ -39,6 +39,7 @@ export const useInput = () => {
     const [joinUserData, setJoinUserData] = useState<PostJoinAuthReq>({
         email: '',
         code: '',
+        name: '',
         password: '',
         password_confirm: '',
     });
