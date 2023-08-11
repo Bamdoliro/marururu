@@ -79,5 +79,5 @@ export interface School {
 
 export interface FormDocument {
     file: File;
-    url: string;
+    formUrl: string;
 }

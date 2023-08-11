@@ -55,7 +55,7 @@ export const useUploadFormDocumentMutation = (
         mutationFn: (file: File) => postUploadFormDocumnet(file),
         onSuccess: (res) => {
             console.log(res);
-            setFormDocument(res.url);
+            setFormDocument((prev) => ({ ...prev, formUrl: res.url }));
             alert('성공');
         },
         onError: (err) => {

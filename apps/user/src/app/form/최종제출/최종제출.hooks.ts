@@ -18,7 +18,7 @@ export const useFileUploadButton = () => {
 
 export const useSubmitFinalFormAction = () => {
     const { formDocument } = useFormDocumentState();
-    const { submitFinalFormMutate } = useSubmitFinalFormMutation(formDocument.url);
+    const { submitFinalFormMutate } = useSubmitFinalFormMutation(formDocument.formUrl);
 
     const handleSubmitFinalFormButtonClick = () => {
         submitFinalFormMutate();
@@ -28,10 +28,16 @@ export const useSubmitFinalFormAction = () => {
 };
 
 export const useExportFormAction = () => {
-    const { refetch: exportFormDataRefetch } = useExportFormQuery();
+    const { data: exportFormData } = useExportFormQuery();
+
+    const pdfUrl = window.URL.createObjectURL(new Blob([exportFormData]));
 
     const handleExportFormButtonClick = () => {
-        exportFormDataRefetch();
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.setAttribute('download', '원서초안.pdf');
+        document.body.appendChild(link);
+        link.click();
     };
 
     return { handleExportFormButtonClick };
