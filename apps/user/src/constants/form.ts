@@ -24,3 +24,7 @@ export const subjectListInitialData: Subject[] = [
 
 export const REGULAR_TYPE_DEFAULT_SCORE = 80;
 export const SPECIAL_TYPE_DEFAULT_SCORE = 48;
+export const DEFAULT_ATTENDANCE_SCORE = 14;
+export const MAX_ABSENCE_COUNT = 18;
+export const MIN_ATTENDANCE_SCORE = 0;
+export const MAX_ATTENDANCE_SCORE = 18;

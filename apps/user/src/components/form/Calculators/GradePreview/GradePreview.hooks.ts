@@ -1,8 +1,18 @@
-import { useStudentSubjectListState } from '@/app/form/성적입력/성적입력.state';
+import {
+    useAttendanceInfoState,
+    useStudentSubjectListState,
+} from '@/app/form/성적입력/성적입력.state';
 import { useFormTypeState } from '@/app/form/전형선택/전형선택.state';
 import { useEducationInfoState } from '@/app/form/출신학교및학력/출신학교및학력.state';
-import { REGULAR_TYPE_DEFAULT_SCORE, SPECIAL_TYPE_DEFAULT_SCORE } from '@/constants/form';
-import { StudentSubject } from '@/types/form/client';
+import {
+    DEFAULT_ATTENDANCE_SCORE,
+    MAX_ABSENCE_COUNT,
+    MAX_ATTENDANCE_SCORE,
+    MIN_ATTENDANCE_SCORE,
+    REGULAR_TYPE_DEFAULT_SCORE,
+    SPECIAL_TYPE_DEFAULT_SCORE,
+} from '@/constants/form';
+import { Attendance, StudentSubject } from '@/types/form/client';
 
 const achievementScore = {
     A: 5,
@@ -12,7 +22,7 @@ const achievementScore = {
     E: 1,
 } as const;
 
-export const useGradeScoreData = () => {
+export const useGradeScore = () => {
     const { subjectList, newSubjectList } = useStudentSubjectListState();
 
     const allSubjectList = subjectList.concat(newSubjectList);
@@ -80,5 +90,41 @@ export const useGradeScoreData = () => {
     return {
         regularScore,
         specialScore,
+    };
+};
+
+export const useAttendanceScore = () => {
+    const { attendanceInfo } = useAttendanceInfoState();
+
+    const {
+        educationInfo: { graduationType },
+    } = useEducationInfoState();
+
+    if (graduationType === 'QUALIFICATION_EXAMINATION') {
+        return { score: DEFAULT_ATTENDANCE_SCORE };
+    }
+
+    const getAttendanceCount = (type: keyof Attendance) => {
+        return (
+            attendanceInfo.attendance1[type] +
+            attendanceInfo.attendance2[type] +
+            attendanceInfo.attendance3[type]
+        );
+    };
+
+    const absenceCount =
+        getAttendanceCount('absenceCount') +
+        (getAttendanceCount('latenessCount') +
+            getAttendanceCount('earlyLeaveCount') +
+            getAttendanceCount('classAbsenceCount')) /
+            3;
+
+    const score =
+        absenceCount > MAX_ABSENCE_COUNT
+            ? MIN_ATTENDANCE_SCORE
+            : MAX_ATTENDANCE_SCORE - absenceCount;
+
+    return {
+        score: Number(score.toFixed(3)),
     };
 };

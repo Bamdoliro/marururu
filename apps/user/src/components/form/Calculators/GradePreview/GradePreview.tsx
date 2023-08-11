@@ -1,11 +1,12 @@
 import { color, font } from '@maru/theme';
 import { Row, Td, Th } from '@maru/ui';
 import styled from 'styled-components';
-import { useGradeScoreData } from './GradePreview.hooks';
+import { useAttendanceScore, useGradeScore } from './GradePreview.hooks';
 
 // 모의 성적 계산
 const GradePreview = () => {
-    const { regularScore, specialScore } = useGradeScoreData();
+    const { regularScore, specialScore } = useGradeScore();
+    const { score } = useAttendanceScore();
 
     return (
         <StyledGradePreview>
@@ -39,7 +40,7 @@ const GradePreview = () => {
                         {regularScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {score}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
                         0
@@ -59,7 +60,7 @@ const GradePreview = () => {
                         {specialScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {score}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
                         0
