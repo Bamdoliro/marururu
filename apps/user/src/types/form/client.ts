@@ -76,19 +76,18 @@ export interface School {
     code: string;
 }
 
-export type Form =
-    | '일반전형'
-    | '특별전형'
-    | '마이스터인재전형'
-    | '특례입학대상자전형'
-    | '국가기초생활수급권자'
-    | '차상위계층'
-    | '국가보훈자녀'
-    | '한부모가정'
-    | '북한이탈주민'
-    | '다문화가정'
-    | '소년소녀가장'
-    | '다자녀가정자녀'
-    | '농어촌지역출신자'
-    | '기회균등전형'
-    | '사회다양성전형';
+export type FormType =
+    | 'REGULAR'
+    | 'SPECIAL'
+    | 'MEISTER_TALENT'
+    | 'SPECIAL_ADMISSION'
+    | 'NATIONAL_BASIC_LIVING'
+    | 'NEAR_POVERTY'
+    | 'NATIONAL_VETERANS'
+    | 'ONE_PARENT'
+    | 'FROM_NORTH_KOREA'
+    | 'MULTICULTURAL'
+    | 'TEEN_HOUSEHOLDER'
+    | 'MULTI_CHILDREN'
+    | 'FARMING_AND_FISHING'
+    | 'NONE';
