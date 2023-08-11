@@ -10,7 +10,7 @@ const userAtomState = atom<User>({
     },
 });
 
-export const useUserInfoState = () => {
+export const useUserState = () => {
     const [user, setUser] = useRecoilState(userAtomState);
 
     return { user, setUser };
