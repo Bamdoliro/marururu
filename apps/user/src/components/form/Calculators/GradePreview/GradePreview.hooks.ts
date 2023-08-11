@@ -1,14 +1,20 @@
 import {
     useAttendanceInfoState,
     useStudentSubjectListState,
+    useVolunteerInfoState,
 } from '@/app/form/성적입력/성적입력.state';
 import { useFormTypeState } from '@/app/form/전형선택/전형선택.state';
 import { useEducationInfoState } from '@/app/form/출신학교및학력/출신학교및학력.state';
 import {
     DEFAULT_ATTENDANCE_SCORE,
+    DEFAULT_VOLUNTEER_SCORE,
     MAX_ABSENCE_COUNT,
     MAX_ATTENDANCE_SCORE,
+    MAX_VOLUNTEER_SCORE,
+    MAX_VOLUNTEER_TIME,
     MIN_ATTENDANCE_SCORE,
+    MIN_VOLUNTEER_SCORE,
+    MIN_VOLUNTEER_TIME,
     REGULAR_TYPE_DEFAULT_SCORE,
     SPECIAL_TYPE_DEFAULT_SCORE,
 } from '@/constants/form';
@@ -125,6 +131,34 @@ export const useAttendanceScore = () => {
             : MAX_ATTENDANCE_SCORE - absenceCount;
 
     return {
-        score: Number(score.toFixed(3)),
+        score: Math.round(score),
+    };
+};
+
+export const useVolunteerScore = () => {
+    const {
+        volunteerInfo: { volunteerTime1, volunteerTime2, volunteerTime3 },
+    } = useVolunteerInfoState();
+
+    const {
+        educationInfo: { graduationType },
+    } = useEducationInfoState();
+
+    if (graduationType === 'QUALIFICATION_EXAMINATION') {
+        return { score: DEFAULT_VOLUNTEER_SCORE };
+    }
+
+    const totalVolunteerTime = volunteerTime1 + volunteerTime2 + volunteerTime3;
+
+    if (totalVolunteerTime < MIN_VOLUNTEER_TIME) {
+        return { score: MIN_VOLUNTEER_SCORE };
+    }
+
+    if (totalVolunteerTime > MAX_VOLUNTEER_TIME) {
+        return { score: MAX_VOLUNTEER_SCORE };
+    }
+
+    return {
+        score: Math.round(MAX_VOLUNTEER_SCORE - (MAX_VOLUNTEER_TIME - totalVolunteerTime) * 0.5),
     };
 };
