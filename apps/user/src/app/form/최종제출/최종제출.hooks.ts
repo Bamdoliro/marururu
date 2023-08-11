@@ -18,7 +18,7 @@ export const useFileUploadButton = () => {
 
 export const useSubmitFinalFormAction = () => {
     const { formDocument } = useFormDocumentState();
-    const { submitFinalFormMutate } = useSubmitFinalFormMutation(formDocument.url);
+    const { submitFinalFormMutate } = useSubmitFinalFormMutation(formDocument.formUrl);
 
     const handleSubmitFinalFormButtonClick = () => {
         submitFinalFormMutate();
@@ -28,11 +28,9 @@ export const useSubmitFinalFormAction = () => {
 };
 
 export const useExportFormAction = () => {
-    const { setFormDocument } = useFormDocumentState();
     const { data: exportFormData } = useExportFormQuery();
 
     const pdfUrl = window.URL.createObjectURL(new Blob([exportFormData]));
-    setFormDocument((prev) => ({ ...prev, url: pdfUrl }));
 
     const handleExportFormButtonClick = () => {
         const link = document.createElement('a');
