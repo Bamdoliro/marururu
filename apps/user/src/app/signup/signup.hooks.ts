@@ -25,6 +25,17 @@ export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean
     return { handleJoinButtonClick };
 };
 
+export const useTimer = () => {
+    const [timerTime, setTimerTime] = useState(0);
+
+    const requestEmailEnabled = timerTime !== 0;
+
+    const startTimer = (time: number) => {
+        setTimerTime(time);
+    };
+
+    return { requestEmailEnabled, startTimer, timerTime, setTimerTime };
+};
 export const useRequestEmail = (email: string) => {
     const { requestEmailMutate } = useRequestEmailMutation(email);
 

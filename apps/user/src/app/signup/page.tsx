@@ -6,8 +6,7 @@ import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput, Text, Input } from '@maru/ui';
-import { useTimer } from '@maru/hooks';
-import { useInput, useRequestEmail, useJoinAction } from './signup.hooks';
+import { useInput, useRequestEmail, useJoinAction, useTimer } from './signup.hooks';
 import { useState } from 'react';
 import styled from 'styled-components';
 
