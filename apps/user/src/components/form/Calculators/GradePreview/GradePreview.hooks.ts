@@ -21,7 +21,7 @@ import {
 } from '@/constants/form';
 import { Attendance, StudentSubject } from '@/types/form/client';
 
-const achievementScore = {
+const ACHIEVEMENT_SCORE = {
     A: 5,
     B: 4,
     C: 3,
@@ -38,7 +38,7 @@ export const useGradeScore = () => {
         return (
             allSubjectList.reduce((acc, subject) => {
                 const score = subject[achievementLevel];
-                return acc + (score ? achievementScore[score] : 0);
+                return acc + (score ? ACHIEVEMENT_SCORE[score] : 0);
             }, 0) / allSubjectList.filter((subject) => subject[achievementLevel] !== null).length
         );
     };
@@ -108,7 +108,7 @@ export const useAttendanceScore = () => {
     } = useEducationInfoState();
 
     if (graduationType === 'QUALIFICATION_EXAMINATION') {
-        return { score: DEFAULT_ATTENDANCE_SCORE };
+        return { attendanceScore: DEFAULT_ATTENDANCE_SCORE };
     }
 
     const getAttendanceCount = (type: keyof Attendance) => {
@@ -131,9 +131,7 @@ export const useAttendanceScore = () => {
             ? MIN_ATTENDANCE_SCORE
             : MAX_ATTENDANCE_SCORE - absenceCount;
 
-    return {
-        score: Math.round(score),
-    };
+    return { attendanceScore: Math.round(score) };
 };
 
 export const useVolunteerScore = () => {
@@ -146,33 +144,35 @@ export const useVolunteerScore = () => {
     } = useEducationInfoState();
 
     if (graduationType === 'QUALIFICATION_EXAMINATION') {
-        return { score: DEFAULT_VOLUNTEER_SCORE };
+        return { volunteerScore: DEFAULT_VOLUNTEER_SCORE };
     }
 
     const totalVolunteerTime = volunteerTime1 + volunteerTime2 + volunteerTime3;
 
     if (totalVolunteerTime < MIN_VOLUNTEER_TIME) {
-        return { score: MIN_VOLUNTEER_SCORE };
+        return { volunteerScore: MIN_VOLUNTEER_SCORE };
     }
 
     if (totalVolunteerTime > MAX_VOLUNTEER_TIME) {
-        return { score: MAX_VOLUNTEER_SCORE };
+        return { volunteerScore: MAX_VOLUNTEER_SCORE };
     }
 
     return {
-        score: Math.round(MAX_VOLUNTEER_SCORE - (MAX_VOLUNTEER_TIME - totalVolunteerTime) * 0.5),
+        volunteerScore: Math.round(
+            MAX_VOLUNTEER_SCORE - (MAX_VOLUNTEER_TIME - totalVolunteerTime) * 0.5,
+        ),
     };
 };
 
 export const useCertificateScore = () => {
     const { certificateListInfo } = useCertificateListInfoState();
-    let score = 0;
+    let certificateScore = 0;
 
     if (certificateListInfo.includes('정보처리기능사, 정보기기운용기능사, 전자계산기기능사'))
-        score += 4;
-    if (certificateListInfo.includes('컴퓨터활용능력 1급')) score += 3;
-    if (certificateListInfo.includes('컴퓨터활용능력 2급')) score += 2;
-    if (certificateListInfo.includes('컴퓨터활용능력 3급')) score += 1;
+        certificateScore += 4;
+    if (certificateListInfo.includes('컴퓨터활용능력 1급')) certificateScore += 3;
+    if (certificateListInfo.includes('컴퓨터활용능력 2급')) certificateScore += 2;
+    if (certificateListInfo.includes('컴퓨터활용능력 3급')) certificateScore += 1;
 
-    return { score };
+    return { certificateScore };
 };

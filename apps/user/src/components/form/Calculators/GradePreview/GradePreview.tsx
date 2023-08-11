@@ -11,9 +11,9 @@ import {
 // 모의 성적 계산
 const GradePreview = () => {
     const { regularScore, specialScore } = useGradeScore();
-    const { score: attendanceScore } = useAttendanceScore();
-    const { score: volunteerScore } = useVolunteerScore();
-    const { score: certificateScore } = useCertificateScore();
+    const { attendanceScore } = useAttendanceScore();
+    const { volunteerScore } = useVolunteerScore();
+    const { certificateScore } = useCertificateScore();
 
     return (
         <StyledGradePreview>
