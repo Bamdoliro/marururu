@@ -5,7 +5,7 @@ const KEY = {
     FAQ_LIST: 'useFaqListQuery',
     FORM_SCHOOL_LIST: 'useFormSchoolListQuery',
     EXPORT_FORM: 'useExportForm',
-    USER_INFO: 'useUserInfo',
+    USER: 'useUser',
 } as const;
 
 export default KEY;

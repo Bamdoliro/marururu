@@ -1,11 +1,11 @@
 import KEY from '@/constants/key';
 import { useQuery } from 'react-query';
-import { getUserInfo } from './api';
+import { getUser } from './api';
 
-export const useUserInfoQuery = () => {
+export const useUserQuery = () => {
     const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.USER_INFO] as const,
-        queryFn: () => getUserInfo(),
+        queryKey: [KEY.USER] as const,
+        queryFn: () => getUser(),
     });
 
     return { data: data?.data, ...restQuery };

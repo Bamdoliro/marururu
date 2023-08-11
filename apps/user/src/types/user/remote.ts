@@ -1,7 +1,5 @@
-export interface GetUserInfoRes {
-    data: {
-        email: string;
-        name: string;
-        authority: 'USER' | 'ADMIN';
-    };
+import { User } from './client';
+
+export interface GetUserRes {
+    data: User;
 }
