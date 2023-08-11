@@ -1,9 +1,10 @@
 import { color, font } from '@maru/theme';
 import { ChangeEventHandler } from 'react';
-import { styled } from 'styled-components';
 import Radio from './Radio';
+import Row from '../Flex/Row';
+import styled from 'styled-components';
 
-interface RadioGroupPropsType {
+interface PropsType {
     label: string;
     list: { value?: string; label: string }[] | string[];
     name: string;
@@ -11,13 +12,13 @@ interface RadioGroupPropsType {
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const RadioGroup = ({ label, list, name, value, onChange }: RadioGroupPropsType) => {
+const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
     return (
         <div>
             <Label>{label}</Label>
             <RadioListBox>
-                {list.map((item, idx) => (
-                    <RadioLabel key={`${name} ${idx}`}>
+                {list.map((item) => (
+                    <Row gap={8} alignItems="center">
                         <Radio
                             value={typeof item === 'string' ? item : item.value}
                             name={name}
@@ -26,13 +27,15 @@ const RadioGroup = ({ label, list, name, value, onChange }: RadioGroupPropsType)
                             }
                             onChange={onChange}
                         />
-                        <Content>{typeof item === 'string' ? item : item.label}</Content>
-                    </RadioLabel>
+                        <RadioLabel>{typeof item === 'string' ? item : item.label}</RadioLabel>
+                    </Row>
                 ))}
             </RadioListBox>
         </div>
     );
 };
+
+export default RadioGroup;
 
 const RadioListBox = styled.div`
     display: flex;
@@ -44,17 +47,9 @@ const Label = styled.p`
     margin-bottom: 12px;
 `;
 
-const RadioLabel = styled.label`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-`;
-
-const Content = styled.p`
+const RadioLabel = styled.p`
     ${font.p2};
     color: ${color.gray900};
     margin-right: 40px;
     height: 26px;
 `;
-
-export default RadioGroup;

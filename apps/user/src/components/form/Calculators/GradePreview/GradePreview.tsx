@@ -20,7 +20,7 @@ const GradePreview = () => {
             <Title>모의 성적 계산</Title>
             <Table>
                 <Row alignItems="center">
-                    <Th width="calc(100% / 6)" height={56}>
+                    <Th borderTopLeftRadius={12} width="calc(100% / 6)" height={56}>
                         전형
                     </Th>
                     <Th width="calc(100% / 6)" height={56}>
@@ -35,7 +35,7 @@ const GradePreview = () => {
                     <Th width="calc(100% / 6)" height={56}>
                         가산점
                     </Th>
-                    <Th width="calc(100% / 6)" height={56}>
+                    <Th borderTopRightRadius={12} width="calc(100% / 6)" height={56}>
                         총점
                     </Th>
                 </Row>
@@ -60,7 +60,11 @@ const GradePreview = () => {
                     </Td>
                 </Row>
                 <Row alignItems="center">
-                    <Td option="SECONDARY" width="calc(100% / 6)" height={56}>
+                    <Td
+                        borderBottomLeftRadius={12}
+                        option="SECONDARY"
+                        width="calc(100% / 6)"
+                        height={56}>
                         특별전형
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
@@ -75,7 +79,7 @@ const GradePreview = () => {
                     <Td width="calc(100% / 6)" height={56}>
                         {certificateScore}
                     </Td>
-                    <Td width="calc(100% / 6)" height={56}>
+                    <Td borderBottomRightRadius={12} width="calc(100% / 6)" height={56}>
                         {specialScore + attendanceScore + volunteerScore + certificateScore}
                     </Td>
                 </Row>
@@ -98,6 +102,4 @@ const Title = styled.p`
 
 const Table = styled.div`
     width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
 `;

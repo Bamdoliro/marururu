@@ -5,7 +5,9 @@ export type FormStep =
     | '전형선택'
     | '성적입력'
     | '자기소개서'
-    | '완료';
+    | '초안작성완료'
+    | '초안제출완료'
+    | '최종제출';
 
 export interface UserInfo {
     identificationPictureUri: string;
@@ -76,6 +78,7 @@ export interface School {
     code: string;
 }
 
+<<<<<<< HEAD
 export type FormType =
     | 'REGULAR'
     | 'SPECIAL'
@@ -91,3 +94,9 @@ export type FormType =
     | 'MULTI_CHILDREN'
     | 'FARMING_AND_FISHING'
     | 'NONE';
+=======
+export interface FormDocument {
+    file: File;
+    url: string;
+}
+>>>>>>> develop

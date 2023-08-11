@@ -3,6 +3,7 @@
 import { RecoilRoot } from 'recoil';
 import { GlobalStyle } from '@maru/theme';
 import { ReactNode } from 'react';
+import { OverlayProvider } from '@toss/use-overlay';
 
 interface PropsType {
     children: ReactNode;
@@ -10,10 +11,12 @@ interface PropsType {
 
 const Provider = ({ children }: PropsType) => {
     return (
-        <RecoilRoot>
-            {children}
-            <GlobalStyle />
-        </RecoilRoot>
+        <OverlayProvider>
+            <RecoilRoot>
+                <GlobalStyle />
+                {children}
+            </RecoilRoot>
+        </OverlayProvider>
     );
 };
 
