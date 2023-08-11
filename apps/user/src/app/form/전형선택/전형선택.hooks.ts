@@ -1,4 +1,5 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { Form } from '@/types/form/client';
 import { ChangeEventHandler } from 'react';
 import { useFormState } from '../form.state';
 import { useChoiceFormTypeState, useFormTypeState } from './전형선택.state';
@@ -29,7 +30,7 @@ export const useInput = () => {
     const handleFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
 
-        setFormType(FormType[value as keyof typeof FormType]);
+        setFormType(FormType[value as Form]);
 
         if (name === '입학전형선택') {
             setChoiceFormType((prev) => ({

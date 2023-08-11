@@ -1,5 +1,7 @@
+import { Subject } from '@/types/form/client';
+
 // 수정된 코드
-export const subjectListInitialData = [
+export const subjectListInitialData: Subject[] = [
     '국어',
     '사회',
     '역사',
@@ -19,3 +21,6 @@ export const subjectListInitialData = [
     achievementLevel22: 'A',
     achievementLevel31: 'A',
 }));
+
+export const REGULAR_TYPE_DEFAULT_SCORE = 80;
+export const SPECIAL_TYPE_DEFAULT_SCORE = 48;

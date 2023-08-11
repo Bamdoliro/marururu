@@ -34,19 +34,21 @@ export interface EducationInfo {
     teacherMobilePhoneNumber: string;
 }
 
+export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E' | null;
+
 export interface StudentSubject {
     subjectName: string;
-    achievementLevel21: string;
-    achievementLevel22: string;
-    achievementLevel31: string;
+    achievementLevel21: AchievementLevel;
+    achievementLevel22: AchievementLevel;
+    achievementLevel31: AchievementLevel;
 }
 
 export interface Subject {
     id: number;
     subjectName: string;
-    achievementLevel21: string;
-    achievementLevel22: string;
-    achievementLevel31: string;
+    achievementLevel21: AchievementLevel;
+    achievementLevel22: AchievementLevel;
+    achievementLevel31: AchievementLevel;
 }
 
 export interface AttendanceInfo {
@@ -73,3 +75,20 @@ export interface School {
     location: string;
     code: string;
 }
+
+export type Form =
+    | '일반전형'
+    | '특별전형'
+    | '마이스터인재전형'
+    | '특례입학대상자전형'
+    | '국가기초생활수급권자'
+    | '차상위계층'
+    | '국가보훈자녀'
+    | '한부모가정'
+    | '북한이탈주민'
+    | '다문화가정'
+    | '소년소녀가장'
+    | '다자녀가정자녀'
+    | '농어촌지역출신자'
+    | '기회균등전형'
+    | '사회다양성전형';
