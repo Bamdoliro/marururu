@@ -1,8 +1,8 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import formatDate from '@/utils/formatDate';
 import { ChangeEventHandler, useEffect } from 'react';
 import { useFormState } from '../form.state';
 import { useUserDate, useUserInfoState } from './지원자정보.state';
+import { formatDate } from '@/utils';
 
 export const useInput = () => {
     const { setUserInfo } = useUserInfoState();

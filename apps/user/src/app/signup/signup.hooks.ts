@@ -9,11 +9,16 @@ export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean
         if (joinUserData.password === joinUserData.password_confirm) {
             if (termsAgree) {
                 joinUserMutate();
-            } else {
-                alert('이용약관 동의를 해주세요');
+                return;
             }
-        } else {
+            if (!termsAgree) {
+                alert('이용약관 동의를 해주세요');
+                return;
+            }
+        }
+        if (joinUserData.password !== joinUserData.password_confirm) {
             alert('비밀번호를 한번만 확인해주세요');
+            return;
         }
     };
 

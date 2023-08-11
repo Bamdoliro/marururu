@@ -18,10 +18,10 @@ const VolunteerCalculator = ({ volunteerInfo, setVolunteerInfo }: PropsType) => 
     return (
         <Table>
             <Row>
-                <Th width={162} height={56}>
+                <Th borderTopLeftRadius={12} width={162} height={56}>
                     학년
                 </Th>
-                <Th width={654} height={56}>
+                <Th borderTopRightRadius={12} width={654} height={56}>
                     봉사시간
                 </Th>
             </Row>
@@ -44,10 +44,10 @@ const VolunteerCalculator = ({ volunteerInfo, setVolunteerInfo }: PropsType) => 
                 </Td>
             </Row>
             <Row>
-                <Td width={162} height={56} option="SECONDARY">
+                <Td borderBottomLeftRadius={12} width={162} height={56} option="SECONDARY">
                     1학년
                 </Td>
-                <Td width={654} height={56}>
+                <Td borderBottomRightRadius={12} width={654} height={56}>
                     <NumberInput name="volunteerTime3" onChange={handleVolunteerInfoDataChange} />
                     <Hour>시간</Hour>
                 </Td>
@@ -58,8 +58,6 @@ const VolunteerCalculator = ({ volunteerInfo, setVolunteerInfo }: PropsType) => 
 
 const Table = styled.div`
     width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
 `;
 
 const Hour = styled.p`

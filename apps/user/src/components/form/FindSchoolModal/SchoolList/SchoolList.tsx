@@ -46,6 +46,7 @@ const StyledSchoolList = styled.div`
     flex-direction: column;
     gap: 8px;
     height: 225px;
+    margin-top: 24px;
     overflow: auto;
 `;
 

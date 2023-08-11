@@ -10,7 +10,7 @@ interface PropsType {
     setUserInfo: Dispatch<SetStateAction<UserInfo>>;
 }
 
-const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
+const ProfileUploader = ({ userInfo, setUserInfo }: PropsType) => {
     const [isDragging, setIsDragging] = useState(false);
     const imageFileInputRef = useRef<HTMLInputElement>(null);
 
@@ -62,7 +62,7 @@ const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
     };
 
     return (
-        <StyledProfileUpload>
+        <StyledProfileUploader>
             <Title>증명사진</Title>
             {userInfo.identificationPictureUri ? (
                 <ImagePreview src={userInfo.identificationPictureUri} alt="profile-image" />
@@ -99,13 +99,13 @@ const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
                 onChange={handleImageFileDataChange}
                 hidden
             />
-        </StyledProfileUpload>
+        </StyledProfileUploader>
     );
 };
 
-export default ProfileUpload;
+export default ProfileUploader;
 
-const StyledProfileUpload = styled.div`
+const StyledProfileUploader = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;

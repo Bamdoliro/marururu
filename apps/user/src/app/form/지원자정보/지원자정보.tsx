@@ -1,6 +1,6 @@
-import { FormController, ProfileUpload } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { Column, Dropdown, Input, RadioGroup, Row } from '@maru/ui';
+import { Column, Input, RadioGroup, Row, Dropdown } from '@maru/ui';
+import { ProfileUploader, FormController } from '@/components/form';
 import styled from 'styled-components';
 import { useCTAButton, useInput } from './지원자정보.hooks';
 import { useUserInfoState } from './지원자정보.state';
@@ -14,7 +14,7 @@ const 지원자정보 = () => {
         <FormLayout title="지원자 정보">
             <Styled지원자정보>
                 <Row width="100%" justifyContent="space-between">
-                    <ProfileUpload userInfo={userInfo} setUserInfo={setUserInfo} />
+                    <ProfileUploader userInfo={userInfo} setUserInfo={setUserInfo} />
                     <Column gap={30} width={492}>
                         <Input
                             label="성명"
@@ -59,7 +59,10 @@ const 지원자정보 = () => {
                                 value={userInfo.gender}
                                 onChange={handleUserInfoDataChange}
                                 name="gender"
-                                list={['남자', '여자']}
+                                list={[
+                                    { content: '남자', value: 'MALE' },
+                                    { content: '여자', value: 'FEMALE' },
+                                ]}
                             />
                         </Row>
                         <Input

@@ -12,7 +12,7 @@ const NotFound = () => {
     const router = useRouter();
 
     return (
-        <AppLayout header>
+        <AppLayout header footer>
             <StyledNotFound>
                 <Image src="/svg/not_found.svg" alt="not-found" width={389} height={155} />
                 <Title>페이지를 찾을 수 없습니다</Title>
@@ -21,7 +21,7 @@ const NotFound = () => {
                     <br />
                     걱정 마세요, 최고의 탐험가도 때로는 길을 잃을 때가 있죠.
                 </Desc>
-                <Button width="max-content" onClick={() => router.back()}>
+                <Button width="fit-content" onClick={() => router.back()}>
                     이전 페이지로 돌아가기
                 </Button>
             </StyledNotFound>
