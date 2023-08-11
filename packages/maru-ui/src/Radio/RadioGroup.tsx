@@ -11,11 +11,7 @@ interface PropsType {
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-<<<<<<< HEAD
-const RadioGroup = ({ label, list, name, value, onChange }: RadioGroupPropsType) => {
-=======
-const RadioGroup = ({ label, list, name, onChange }: PropsType) => {
->>>>>>> feat/#196
+const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
     return (
         <div>
             <Label>{label}</Label>
