@@ -1,17 +1,21 @@
-import { flex } from '@maru/utils';
-import FaqItem from './FaqItem/FaqItem';
 import { useFaqListQuery } from '@/services/faq/queries';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import FaqItem from './FaqItem/FaqItem';
 
-const FaqList = () => {
-    const { data: faqListData } = useFaqListQuery('TOP_QUESTION');
+interface PropsType {
+    category: string;
+}
+
+const FaqList = ({ category }: PropsType) => {
+    const { data: faqListData } = useFaqListQuery(category);
 
     if (!faqListData) return null;
 
     return (
         <StyledFaqList>
-            {faqListData.map(({ title, content }) => (
-                <FaqItem title={title} content={content} />
+            {faqListData.map(({ title, content }, index) => (
+                <FaqItem key={`faq ${index}`} title={title} content={content} />
             ))}
         </StyledFaqList>
     );

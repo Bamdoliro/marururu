@@ -6,37 +6,40 @@ import { ParentInfo } from '@/types/form/client';
 import styled from 'styled-components';
 
 interface PropsType {
+    isOpen: boolean;
+    onClose: () => void;
     setParentInfo: Dispatch<SetStateAction<ParentInfo>>;
-    closeModal: () => void;
 }
 
-const FindAddressModal = ({ closeModal, setParentInfo }: PropsType) => {
-    const findAddressModalRef = useOutsideClick(closeModal);
+const FindAddressModal = ({ isOpen, onClose, setParentInfo }: PropsType) => {
+    const findAddressModalRef = useOutsideClick(onClose);
 
     const handleCompleteFindAddress = ({ address, zonecode }: Address) => {
         setParentInfo((prev) => ({ ...prev, address, zoneCode: zonecode }));
-        closeModal();
+        onClose();
     };
 
     return (
-        <Background>
+        <BlurBackground isOpen={isOpen}>
             <StyledFindAddressModal ref={findAddressModalRef}>
                 <DaumPostcode
                     onComplete={handleCompleteFindAddress}
                     style={{ width: '100%', height: '100%' }}
                 />
             </StyledFindAddressModal>
-        </Background>
+        </BlurBackground>
     );
 };
 
 export default FindAddressModal;
 
-const Background = styled.div`
+const BlurBackground = styled.div<{ isOpen: boolean }>`
+    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
-    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);

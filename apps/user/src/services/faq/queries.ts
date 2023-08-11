@@ -1,19 +1,6 @@
 import { useQuery } from 'react-query';
 import KEY from '@/constants/key';
-import { faqCategoryList, getFaqList } from './api';
-
-interface FaqCategoryListType {
-    id: number;
-    category: string;
-}
-
-export const useFaqCategoryListQuery = () => {
-    return useQuery<FaqCategoryListType[]>({
-        queryKey: [KEY.FAQ_CATEGORY_LIST] as const,
-        queryFn: () => faqCategoryList(),
-        initialData: [],
-    });
-};
+import { getFaqList } from './api';
 
 export const useFaqListQuery = (category: string) => {
     const { data, ...restQuery } = useQuery({

@@ -1,10 +1,10 @@
+import { FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useInput, useCTAButton } from './전형선택.hooks';
-import { FormController } from '@/components/form';
-import { useChoiceFormTypeState } from './전형선택.state';
 import { styled } from 'styled-components';
+import { useCTAButton, useInput } from './전형선택.hooks';
+import { useChoiceFormTypeState } from './전형선택.state';
 
 const 전형선택 = () => {
     const { choiceFormType } = useChoiceFormTypeState();
@@ -17,47 +17,71 @@ const 전형선택 = () => {
                 <RadioGroup
                     label="입학 전형 선택"
                     name="입학전형선택"
-                    list={['일반전형', '특별전형']}
+                    list={[
+                        {
+                            value: 'REGULAR',
+                            label: '일반전형',
+                        },
+                        {
+                            value: 'SPECIAL',
+                            label: '특별전형',
+                        },
+                    ]}
+                    value={choiceFormType.입학전형선택}
                     onChange={handleFormTypeDataChange}
                 />
-                {choiceFormType.입학전형선택 === '특별전형' && (
+                {choiceFormType.입학전형선택 === 'SPECIAL' && (
                     <RadioGroup
                         label="특별 전형 선택"
                         name="특별전형선택"
                         list={[
-                            '마이스터인재전형',
-                            '기회균등전형',
-                            '사회다양성전형',
-                            '특례입학대상자전형',
+                            {
+                                value: 'MEISTER_TALENT',
+                                label: '마이스터인재전형',
+                            },
+                            {
+                                value: 'EQUAL_OPPORTUNITY',
+                                label: '기회균등전형',
+                            },
+                            {
+                                value: 'SOCIAL_DIVERSITY',
+                                label: '사회다양성전형',
+                            },
+                            {
+                                value: 'SPECIAL_ADMISSION',
+                                label: '특례입학대상자전형',
+                            },
                         ]}
+                        value={choiceFormType.특별전형선택}
                         onChange={handleFormTypeDataChange}
                     />
                 )}
-                {choiceFormType.특별전형선택 === '기회균등전형' && (
+                {choiceFormType.특별전형선택 === 'EQUAL_OPPORTUNITY' && (
                     <RadioGroup
                         label="기회 균등 전형 선택"
                         name="기회균등전형선택"
                         list={[
-                            '국가기초생활수급권자',
-                            '차상위계층',
-                            '국가보훈자녀',
-                            '한부모가정',
-                            '북한이탈주민',
+                            { value: 'NATIONAL_BASIC_LIVING', label: '국가기초생활수급권자' },
+                            { value: 'NEAR_POVERTY', label: '차상위계층' },
+                            { value: 'NATIONAL_VETERANS', label: '국가보훈자녀' },
+                            { value: 'ONE_PARENT', label: '한부모가정' },
+                            { value: 'FROM_NORTH_KOREA', label: '북한이탈주민' },
                         ]}
+                        value={choiceFormType.기회균등전형선택}
                         onChange={handleFormTypeDataChange}
                     />
                 )}
-                {choiceFormType.특별전형선택 === '사회다양성전형' && (
+                {choiceFormType.특별전형선택 === 'SOCIAL_DIVERSITY' && (
                     <RadioGroup
                         label="사회다양성 전형 선택"
                         name="사회다양성전형선택"
                         list={[
-                            '다문화가정',
-                            '차상위계층',
-                            '국가보훈자녀',
-                            '한부모가정',
-                            '북한이탈주민',
+                            { value: 'MULTICULTURAL', label: '다문화가정' },
+                            { value: 'TEEN_HOUSEHOLDER', label: '소년소녀가장' },
+                            { value: 'MULTI_CHILDREN', label: '다자녀가정자녀' },
+                            { value: 'FARMING_AND_FISHING', label: '농어촌지역출신자' },
                         ]}
+                        value={choiceFormType.사회다양성전형선택}
                         onChange={handleFormTypeDataChange}
                     />
                 )}

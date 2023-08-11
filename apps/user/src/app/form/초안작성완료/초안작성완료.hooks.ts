@@ -1,5 +1,18 @@
+import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useEffect, useState } from 'react';
 import { useFormState } from '../form.state';
+
+export const useSubmitDraftFormAction = () => {
+    const { form } = useFormState();
+    const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
+
+    const handleSubmitDraftFormButtonClick = () => {
+        submitDraftFormMutate();
+    };
+
+    return { handleSubmitDraftFormButtonClick };
+};
 
 export const useCheckFilledForm = () => {
     const { form } = useFormState();
@@ -51,4 +64,14 @@ export const useCheckFilledForm = () => {
         documentFieldCount,
         isFilledForm,
     };
+};
+
+export const useCTAButton = () => {
+    const { setFormStep } = useFormStepState();
+
+    const handleAgainCheckFormButtonClick = () => {
+        setFormStep('지원자정보');
+    };
+
+    return { handleAgainCheckFormButtonClick };
 };

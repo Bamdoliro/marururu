@@ -1,22 +1,34 @@
-import { useFaqCategoryListQuery } from '@/services/faq/queries';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 import Category from './Category/Category';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 
-const CategoryFilter = () => {
+const FAQ_CATEGORY_LIST = [
+    { id: 0, category: '질문 TOP', value: 'TOP_QUESTION' },
+    { id: 1, category: '입학 과정', value: 'ADMISSION_PROCESS' },
+    { id: 2, category: '학교 생활', value: 'SCHOOL_LIFE' },
+    { id: 3, category: '관련 제출 서류', value: 'SUBMIT_DOCUMENT' },
+] as const;
+
+interface PropsType {
+    setCategory: Dispatch<SetStateAction<string>>;
+}
+
+const CategoryFilter = ({ setCategory }: PropsType) => {
     const [selectedCategory, setSelectedCategory] = useState(0);
-    const faqCategoryListQuery = useFaqCategoryListQuery();
 
     return (
         <StyledCategoryFilter>
-            {faqCategoryListQuery.data?.map((item) => (
+            {FAQ_CATEGORY_LIST.map(({ id, value, category }) => (
                 <Category
-                    key={item.id}
-                    isSelected={selectedCategory === item.id}
-                    onClick={() => setSelectedCategory(item.id)}>
-                    {item.category}
+                    key={id}
+                    isSelected={selectedCategory === id}
+                    onClick={() => {
+                        setCategory(value);
+                        setSelectedCategory(id);
+                    }}>
+                    {category}
                 </Category>
             ))}
         </StyledCategoryFilter>
@@ -32,5 +44,5 @@ const StyledCategoryFilter = styled.div`
     width: 100%;
     ${flex({ alignItems: 'center' })}
     gap: 12px;
-    margin: 36px 0px 40px;
+    margin: 36px 0 40px;
 `;

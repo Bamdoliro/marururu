@@ -6,9 +6,9 @@ import styled from 'styled-components';
 
 interface ButtonInputPropsType extends InputPropsType {
     buttonText: string;
-    handleInputButtonClick: () => void;
     enabled?: boolean;
     buttonWidth?: string;
+    onClick: () => void;
 }
 
 const ButtonInput = ({
@@ -20,7 +20,7 @@ const ButtonInput = ({
     type = 'text',
     onChange,
     buttonText,
-    handleInputButtonClick,
+    onClick,
     enabled = false,
     readOnly,
 }: ButtonInputPropsType) => {
@@ -37,7 +37,7 @@ const ButtonInput = ({
                     placeholder={placeholder}
                     readOnly={readOnly}
                 />
-                <Button onClick={handleInputButtonClick} enabled={enabled}>
+                <Button onClick={onClick} enabled={enabled}>
                     {buttonText}
                 </Button>
             </StyledButtonInput>

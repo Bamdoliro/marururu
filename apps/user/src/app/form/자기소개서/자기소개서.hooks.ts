@@ -1,52 +1,38 @@
-import { useFormState } from '../form.state';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { useDebounceInput } from '@maru/hooks';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
-import { useRouter } from 'next/router';
+import { ChangeEventHandler } from 'react';
+import { useFormState } from '../form.state';
+import useDocumentInfoState from './자기소개서.state';
 
-export const useFormSubmitAction = (
-    debouncedCoverLetter: string,
-    debouncedStatementOfPurpose: string,
-) => {
+export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: string) => {
     const { form, setForm } = useFormState();
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
     const { setFormStep } = useFormStepState();
-    const submitDraftFormMutation = useSubmitDraftFormMutation(form);
 
     const handleFormSubmitButtonClick = () => {
         setForm((prev) => ({
             ...prev,
             document: {
-                coverLetter: debouncedCoverLetter,
-                statementOfPurpose: debouncedStatementOfPurpose,
+                coverLetter,
+                statementOfPurpose,
             },
         }));
-        setFormStep('완료');
-        submitDraftFormMutate();
+        setFormStep('초안작성완료');
     };
 
     return { handleFormSubmitButtonClick };
 };
 
 export const useInput = () => {
-    const {
-        value: coverLetter,
-        onChange: handleCoverLetterDataChange,
-        debouncedValue: debouncedCoverLetter,
-    } = useDebounceInput({ initialValue: '' });
-    const {
-        value: statementOfPurpose,
-        onChange: handleStatementOfPurposeDataChange,
-        debouncedValue: debouncedStatementOfPurpose,
-    } = useDebounceInput({ initialValue: '' });
+    const { setDocumentInfo } = useDocumentInfoState();
+
+    const handleDocumentInfoDataChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+        const { name, value } = e.target;
+        setDocumentInfo((prev) => ({ ...prev, [name]: value }));
+    };
 
     return {
-        coverLetter,
-        debouncedCoverLetter,
-        handleCoverLetterDataChange,
-        statementOfPurpose,
-        debouncedStatementOfPurpose,
-        handleStatementOfPurposeDataChange,
+        handleDocumentInfoDataChange,
     };
 };
 

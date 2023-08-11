@@ -1,8 +1,8 @@
+import { useUploadProfileImageMutation } from '@/services/form/mutations';
+import { UserInfo } from '@/types/form/client';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { ChangeEventHandler, Dispatch, SetStateAction, useState, useRef, DragEvent } from 'react';
-import { UserInfo } from '@/types/form/client';
-import { useUploadProfileImageMutation } from '@/services/form/mutations';
+import { ChangeEventHandler, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -10,7 +10,7 @@ interface PropsType {
     setUserInfo: Dispatch<SetStateAction<UserInfo>>;
 }
 
-const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
+const ProfileUploader = ({ userInfo, setUserInfo }: PropsType) => {
     const [isDragging, setIsDragging] = useState(false);
     const imageFileInputRef = useRef<HTMLInputElement>(null);
 
@@ -62,7 +62,7 @@ const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
     };
 
     return (
-        <StyledProfileUpload>
+        <StyledProfileUploader>
             <Title>증명사진</Title>
             {userInfo.identificationPictureUri ? (
                 <ImagePreview src={userInfo.identificationPictureUri} alt="profile-image" />
@@ -87,7 +87,11 @@ const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
                     재업로드
                 </Button>
             )}
-            <Desc>20MB 이하, 3x4 cm 증명사진</Desc>
+            <Desc>
+                20MB 이하, 3개월 이내의
+                <br />
+                3x4 cm 증명사진
+            </Desc>
             <input
                 type="file"
                 ref={imageFileInputRef}
@@ -95,13 +99,13 @@ const ProfileUpload = ({ userInfo, setUserInfo }: PropsType) => {
                 onChange={handleImageFileDataChange}
                 hidden
             />
-        </StyledProfileUpload>
+        </StyledProfileUploader>
     );
 };
 
-export default ProfileUpload;
+export default ProfileUploader;
 
-const StyledProfileUpload = styled.div`
+const StyledProfileUploader = styled.div`
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -137,4 +141,6 @@ const Title = styled.p`
 const Desc = styled.p`
     ${font.p2}
     color: ${color.gray500};
+    margin: 0 auto;
+    text-align: center;
 `;

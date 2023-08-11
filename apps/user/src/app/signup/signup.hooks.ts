@@ -9,17 +9,33 @@ export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean
         if (joinUserData.password === joinUserData.password_confirm) {
             if (termsAgree) {
                 joinUserMutate();
-            } else {
-                alert('이용약관 동의를 해주세요');
+                return;
             }
-        } else {
+            if (!termsAgree) {
+                alert('이용약관 동의를 해주세요');
+                return;
+            }
+        }
+        if (joinUserData.password !== joinUserData.password_confirm) {
             alert('비밀번호를 한번만 확인해주세요');
+            return;
         }
     };
 
     return { handleJoinButtonClick };
 };
 
+export const useTimer = () => {
+    const [timerTime, setTimerTime] = useState(0);
+
+    const requestEmailEnabled = timerTime !== 0;
+
+    const startTimer = (time: number) => {
+        setTimerTime(time);
+    };
+
+    return { requestEmailEnabled, startTimer, timerTime, setTimerTime };
+};
 export const useRequestEmail = (email: string) => {
     const { requestEmailMutate } = useRequestEmailMutation(email);
 
@@ -34,6 +50,7 @@ export const useInput = () => {
     const [joinUserData, setJoinUserData] = useState<PostJoinAuthReq>({
         email: '',
         code: '',
+        name: '',
         password: '',
         password_confirm: '',
     });

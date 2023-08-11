@@ -28,6 +28,7 @@
     "@maru/ui": "workspace:*",
     "@maru/utils": "workspace:*",
     "@toss/react": "^1.5.0",
+    "@toss/use-overlay": "^1.3.6",
     "dayjs": "^1.11.8",
     "next": "13.4.6",
     "react": "18.2.0",

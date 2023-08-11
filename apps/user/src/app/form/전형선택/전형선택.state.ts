@@ -1,8 +1,9 @@
+import { FormType } from '@/types/form/client';
 import { atom, useRecoilState } from 'recoil';
 
-const formTypeAtomState = atom({
+const formTypeAtomState = atom<FormType>({
     key: 'form-type',
-    default: '',
+    default: 'NONE',
 });
 
 const choiceFormTypeAtomState = atom({

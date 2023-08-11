@@ -14,7 +14,7 @@ const FormController = ({ onPrevious, onNext, step }: PropsType) => {
         <FormControllerBar>
             {step === '지원자정보' ? (
                 <Button width={150} onClick={onNext}>
-                    다음
+                    다음 단계
                 </Button>
             ) : (
                 <StyledFormController>

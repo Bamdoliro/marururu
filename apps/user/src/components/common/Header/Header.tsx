@@ -8,7 +8,7 @@ import Profile from './Profile/Profile';
 import ROUTES from '@/constants/routes';
 import TOKEN from '@/constants/token';
 import Image from 'next/image';
-import { useState } from 'react';
+import useUser from '@/hooks/useUser';
 
 const NAVIGATION_DATA = [
     {
@@ -31,12 +31,12 @@ const NAVIGATION_DATA = [
         name: '학교 소개',
         route: '',
     },
-];
+] as const;
 
 const Header = () => {
     const router = useRouter();
-    const loginStatus = Storage.getItem(TOKEN.ACCESS);
     const pathName = usePathname();
+    const { isLogined } = useUser();
 
     return (
         <StyledHeader>
@@ -49,7 +49,7 @@ const Header = () => {
                     onClick={() => router.push(ROUTES.MAIN)}
                     alt="logo"
                 />
-                {loginStatus ? (
+                {isLogined ? (
                     <Profile name="밤돌이로" />
                 ) : (
                     <Row gap="10px" alignItems="center">
@@ -69,12 +69,12 @@ const Header = () => {
                 )}
             </HeaderBar>
             <NavigationBar>
-                {NAVIGATION_DATA.map((item, index) => (
+                {NAVIGATION_DATA.map(({ route, name }, index) => (
                     <UnderLineButton
                         key={`navigation ${index}`}
-                        active={item.route === pathName}
-                        onClick={() => router.push(item.route)}>
-                        {item.name}
+                        active={route === pathName}
+                        onClick={() => router.push(route)}>
+                        {name}
                     </UnderLineButton>
                 ))}
             </NavigationBar>

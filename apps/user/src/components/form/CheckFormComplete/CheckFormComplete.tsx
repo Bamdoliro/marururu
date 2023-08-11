@@ -11,7 +11,7 @@ interface PropsType {
     onClick: () => void;
 }
 
-const CheckFormCompleteItem = ({
+const CheckFormComplete = ({
     formStep,
     maxCompleteOfNumber,
     completeOfNumber,
@@ -20,7 +20,7 @@ const CheckFormCompleteItem = ({
     const isFilledFormStep = maxCompleteOfNumber !== completeOfNumber;
 
     return (
-        <StyledCheckFormCompleteItem onClick={onClick}>
+        <StyledCheckFormComplete onClick={onClick}>
             <Row alignItems="center" gap={8}>
                 <FormStep>{formStep}</FormStep>
                 {isFilledFormStep && <IconError color={color.red} width={24} height={24} />}
@@ -29,13 +29,13 @@ const CheckFormCompleteItem = ({
                 isFilledFormStep={
                     isFilledFormStep
                 }>{`${completeOfNumber}/${maxCompleteOfNumber}`}</CompleteOfNumber>
-        </StyledCheckFormCompleteItem>
+        </StyledCheckFormComplete>
     );
 };
 
-export default CheckFormCompleteItem;
+export default CheckFormComplete;
 
-const StyledCheckFormCompleteItem = styled.div`
+const StyledCheckFormComplete = styled.div`
     ${flex({ justifyContent: 'space-between', alignItems: 'center' })}
     width: calc(50% - 8px);
     height: 72px;
