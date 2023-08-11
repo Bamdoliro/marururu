@@ -25,7 +25,7 @@ const GradeCalculator = ({
 
     const newSubjectIdRef = useRef(0);
     const handleAddNewSubjectButtonClick = () => {
-        const newSubject = {
+        const newSubject: Subject = {
             id: newSubjectIdRef.current++,
             subjectName: '',
             achievementLevel21: 'A',

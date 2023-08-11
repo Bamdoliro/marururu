@@ -1,9 +1,20 @@
 import { color, font } from '@maru/theme';
-import { Row, Th, Td } from '@maru/ui';
+import { Row, Td, Th } from '@maru/ui';
 import styled from 'styled-components';
+import {
+    useAttendanceScore,
+    useCertificateScore,
+    useGradeScore,
+    useVolunteerScore,
+} from './GradePreview.hooks';
 
 // 모의 성적 계산
 const GradePreview = () => {
+    const { regularScore, specialScore } = useGradeScore();
+    const { attendanceScore } = useAttendanceScore();
+    const { volunteerScore } = useVolunteerScore();
+    const { certificateScore } = useCertificateScore();
+
     return (
         <StyledGradePreview>
             <Title>모의 성적 계산</Title>
@@ -33,19 +44,19 @@ const GradePreview = () => {
                         일반전형
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {regularScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {attendanceScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {volunteerScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {certificateScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {regularScore + attendanceScore + volunteerScore + certificateScore}
                     </Td>
                 </Row>
                 <Row alignItems="center">
@@ -57,19 +68,19 @@ const GradePreview = () => {
                         특별전형
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {specialScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {attendanceScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {volunteerScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        0
+                        {certificateScore}
                     </Td>
                     <Td borderBottomRightRadius={12} width="calc(100% / 6)" height={56}>
-                        0
+                        {specialScore + attendanceScore + volunteerScore + certificateScore}
                     </Td>
                 </Row>
             </Table>

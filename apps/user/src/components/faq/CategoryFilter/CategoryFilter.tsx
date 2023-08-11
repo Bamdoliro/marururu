@@ -1,4 +1,3 @@
-import { useFaqCategoryListQuery } from '@/services/faq/queries';
 import { Dispatch, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 import Category from './Category/Category';

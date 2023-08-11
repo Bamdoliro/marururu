@@ -37,19 +37,21 @@ export interface EducationInfo {
     teacherMobilePhoneNumber: string;
 }
 
+export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E' | null;
+
 export interface StudentSubject {
     subjectName: string;
-    achievementLevel21: string;
-    achievementLevel22: string;
-    achievementLevel31: string;
+    achievementLevel21: AchievementLevel;
+    achievementLevel22: AchievementLevel;
+    achievementLevel31: AchievementLevel;
 }
 
 export interface Subject {
     id: number;
     subjectName: string;
-    achievementLevel21: string;
-    achievementLevel22: string;
-    achievementLevel31: string;
+    achievementLevel21: AchievementLevel;
+    achievementLevel22: AchievementLevel;
+    achievementLevel31: AchievementLevel;
 }
 
 export interface AttendanceInfo {
@@ -77,7 +79,25 @@ export interface School {
     code: string;
 }
 
+<<<<<<< HEAD
+export type FormType =
+    | 'REGULAR'
+    | 'SPECIAL'
+    | 'MEISTER_TALENT'
+    | 'SPECIAL_ADMISSION'
+    | 'NATIONAL_BASIC_LIVING'
+    | 'NEAR_POVERTY'
+    | 'NATIONAL_VETERANS'
+    | 'ONE_PARENT'
+    | 'FROM_NORTH_KOREA'
+    | 'MULTICULTURAL'
+    | 'TEEN_HOUSEHOLDER'
+    | 'MULTI_CHILDREN'
+    | 'FARMING_AND_FISHING'
+    | 'NONE';
+=======
 export interface FormDocument {
     file: File;
     formUrl: string;
 }
+>>>>>>> develop

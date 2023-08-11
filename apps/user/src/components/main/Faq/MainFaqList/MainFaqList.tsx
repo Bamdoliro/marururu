@@ -1,6 +1,6 @@
-import MainFaqItem from './MainFaqItem/MainFaqItem';
 import { useFaqListQuery } from '@/services/faq/queries';
 import styled from 'styled-components';
+import MainFaqItem from './MainFaqItem/MainFaqItem';
 
 const MainFaqList = () => {
     const { data: mainFaqListData } = useFaqListQuery('TOP_QUESTION');
@@ -9,8 +9,8 @@ const MainFaqList = () => {
 
     return (
         <StyledMainFaqList>
-            {mainFaqListData.splice(0, 3).map(({ title }) => (
-                <MainFaqItem title={title} />
+            {mainFaqListData.splice(0, 3).map(({ title }, index) => (
+                <MainFaqItem key={`main-faq ${index}`} title={title} />
             ))}
         </StyledMainFaqList>
     );

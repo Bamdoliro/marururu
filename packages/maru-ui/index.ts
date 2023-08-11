@@ -10,7 +10,7 @@ export { default as SearchInput } from './src/Input/SearchInput';
 export { default as TimeLimitInput } from './src/Input/TimeLimitInput';
 export { default as Link } from './src/Link/Link';
 export { default as Radio } from './src/Radio/Radio';
-export { default as RadioGroup } from './src/Radio/RadioGroup';
+export { default as RadioGroup } from './src/RadioGroup/RadioGroup';
 export { default as Td } from './src/Table/Td';
 export { default as Th } from './src/Table/Th';
 export { default as Textarea } from './src/Textarea/Textarea';

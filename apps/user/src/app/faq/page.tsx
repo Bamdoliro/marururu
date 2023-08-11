@@ -12,8 +12,8 @@ const FaqPage = () => {
     return (
         <AppLayout header footer style={{ padding: '0px 207px' }}>
             <StyledFaqPage>
-                <Title>자주 묻는 질문</Title>
                 <CategoryFilter setCategory={setCategory} />
+                <Title>자주 묻는 질문</Title>
                 <FaqList category={category} />
             </StyledFaqPage>
         </AppLayout>

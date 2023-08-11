@@ -1,7 +1,7 @@
-import { flex } from '@maru/utils';
-import NoticeItem from './NoticeItem/NoticeItem';
 import { useNoticeListQuery } from '@/services/notice/queries';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import NoticeItem from './NoticeItem/NoticeItem';
 
 const NoticeList = () => {
     const { data: noticeListData } = useNoticeListQuery();
@@ -11,7 +11,7 @@ const NoticeList = () => {
     return (
         <StyledNoticeList>
             {noticeListData.map(({ id, title, createdAt }) => (
-                <NoticeItem id={id} title={title} createdAt={createdAt} />
+                <NoticeItem key={id} id={id} title={title} createdAt={createdAt} />
             ))}
         </StyledNoticeList>
     );
