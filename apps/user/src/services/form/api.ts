@@ -15,7 +15,7 @@ export const postSubmitDraftForm = async (formData: PostFormReq) => {
 };
 
 export const getExportForm = async () => {
-    const { data } = await maru.get('/form/export', authorization());
+    const { data } = await maru.get('/form/export', { ...authorization(), responseType: 'blob' });
     return data;
 };
 

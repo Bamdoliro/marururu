@@ -15,8 +15,8 @@ export const useExportFormQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.EXPORT_FORM],
         queryFn: () => getExportForm(),
-        enabled: false,
+        enabled: true,
     });
 
-    return { data: data, ...restQuery };
+    return { data, ...restQuery };
 };
