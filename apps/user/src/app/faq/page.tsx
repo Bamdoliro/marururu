@@ -3,15 +3,18 @@
 import { CategoryFilter, FaqList } from '@/components/faq';
 import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const FaqPage = () => {
+    const [category, setCategory] = useState('TOP_QUESTION');
+
     return (
-        <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
+        <AppLayout header footer style={{ padding: '0px 207px' }}>
             <StyledFaqPage>
                 <Title>자주 묻는 질문</Title>
-                <CategoryFilter />
-                <FaqList />
+                <CategoryFilter setCategory={setCategory} />
+                <FaqList category={category} />
             </StyledFaqPage>
         </AppLayout>
     );

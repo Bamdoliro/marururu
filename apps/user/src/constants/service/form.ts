@@ -1,5 +1,5 @@
 // 수정된 코드
-export const subjectListInitialData = [
+export const SUBJECT_LIST_DATA = [
     '국어',
     '사회',
     '역사',

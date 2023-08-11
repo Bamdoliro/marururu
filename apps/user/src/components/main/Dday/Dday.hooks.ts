@@ -6,7 +6,7 @@ import {
     최종_합격_발표,
     제출_마감_날짜,
     제출_시작_날짜,
-} from '@/constants/submitTime';
+} from '@/constants/service/submitTime';
 import type { ButtonOptionType } from '@maru/ui';
 import { formatDay } from '@/utils';
 import isBetween from 'dayjs/plugin/isBetween';
