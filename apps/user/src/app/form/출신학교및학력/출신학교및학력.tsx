@@ -1,13 +1,10 @@
 import { FindSchoolModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
-import { styled } from 'styled-components';
-<<<<<<< HEAD
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
 import { useEducationInfoState } from './출신학교및학력.state';
-=======
 import { useOverlay } from '@toss/use-overlay';
->>>>>>> feat/#196
+import styled from 'styled-components';
 
 const 출신학교및학력 = () => {
     const overlay = useOverlay();
@@ -28,9 +25,9 @@ const 출신학교및학력 = () => {
                     label="졸업 구분"
                     name="graduationType"
                     list={[
-                        { value: 'EXPECTED', content: '졸업 예정' },
-                        { value: 'GRADUATED', content: '졸업' },
-                        { value: 'QUALIFICATION_EXAMINATION', content: '고입 검정' },
+                        { option: '졸업 예정', value: 'EXPECTED' },
+                        { option: '졸업', value: 'GRADUATED' },
+                        { option: '고입 검정', value: 'QUALIFICATION_EXAMINATION' },
                     ]}
                     value={educationInfo.graduationType}
                     onChange={handleEducationInfoDataChange}

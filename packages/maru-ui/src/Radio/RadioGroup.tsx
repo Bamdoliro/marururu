@@ -1,11 +1,12 @@
 import { color, font } from '@maru/theme';
 import { ChangeEventHandler } from 'react';
-import { styled } from 'styled-components';
 import Radio from './Radio';
+import Row from '../Flex/Row';
+import styled from 'styled-components';
 
 interface PropsType {
     label: string;
-    list: { value?: string; content: string }[] | string[];
+    list: { value?: string; option: string }[] | string[];
     name: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
@@ -17,7 +18,7 @@ const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
             <Label>{label}</Label>
             <RadioListBox>
                 {list.map((item) => (
-                    <RadioLabel>
+                    <Row gap={8} alignItems="center">
                         <Radio
                             key={typeof item === 'string' ? item : item.value}
                             value={typeof item === 'string' ? item : item.value}
@@ -27,8 +28,8 @@ const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
                             }
                             onChange={onChange}
                         />
-                        <Content>{typeof item === 'string' ? item : item.content}</Content>
-                    </RadioLabel>
+                        <Option>{typeof item === 'string' ? item : item.option}</Option>
+                    </Row>
                 ))}
             </RadioListBox>
         </div>
@@ -45,13 +46,7 @@ const Label = styled.p`
     margin-bottom: 12px;
 `;
 
-const RadioLabel = styled.label`
-    display: flex;
-    align-items: center;
-    gap: 8px;
-`;
-
-const Content = styled.p`
+const Option = styled.p`
     ${font.p2};
     color: ${color.gray900};
     margin-right: 40px;
