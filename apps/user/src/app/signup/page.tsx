@@ -5,11 +5,10 @@ import Terms from '@/components/signup/Terms/Terms';
 import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput } from '@maru/ui';
-import { useTimer } from '@maru/hooks';
-import styled from 'styled-components';
-import { useInput, useRequestEmail, useJoinAction } from './signup.hooks';
+import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput, Text, Input } from '@maru/ui';
+import { useInput, useRequestEmail, useJoinAction, useTimer } from './signup.hooks';
 import { useState } from 'react';
+import styled from 'styled-components';
 
 const SignUpPage = () => {
     const [termsAgree, setTermsAgree] = useState(false);
@@ -19,7 +18,7 @@ const SignUpPage = () => {
     const { handleJoinButtonClick } = useJoinAction(joinUserData, termsAgree);
 
     return (
-        <AppLayout header={true} footer={true}>
+        <AppLayout>
             <StyledSignUpPage>
                 <Image
                     src="/svg/colabo_logo.svg"
@@ -30,8 +29,17 @@ const SignUpPage = () => {
                 />
                 <ContentBox>
                     <SignUpBox enabled={requestEmailEnabled}>
-                        <Column gap="24px">
-                            <Title>회원가입</Title>
+                        <Column gap={24}>
+                            <Text fontType="H2" color={color.gray900}>
+                                회원가입
+                            </Text>
+                            <Input
+                                label="이름"
+                                width="100%"
+                                name="name"
+                                placeholder="이름을 입력해주세요."
+                                onChange={handleJoinUserDataChange}
+                            />
                             <ButtonInput
                                 label="이메일 인증"
                                 buttonText="인증"
@@ -103,13 +111,9 @@ const ContentBox = styled.div`
 `;
 
 const SignUpBox = styled.div<{ enabled: boolean }>`
-    ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
+    ${flex({ flexDirection: 'column' })};
+    gap: 36px;
+    height: max-content;
     width: 446px;
-    height: ${(props) => (props.enabled ? '721px' : '592px')};
     margin: 120px 0;
-`;
-
-const Title = styled.p`
-    ${font.H2}
-    color: ${color.gray900};
 `;

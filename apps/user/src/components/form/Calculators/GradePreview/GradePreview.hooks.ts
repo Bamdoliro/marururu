@@ -18,7 +18,7 @@ import {
     MIN_VOLUNTEER_TIME,
     REGULAR_TYPE_DEFAULT_SCORE,
     SPECIAL_TYPE_DEFAULT_SCORE,
-} from '@/constants/form';
+} from '@/constants/service/form';
 import { Attendance, StudentSubject } from '@/types/form/client';
 
 const ACHIEVEMENT_SCORE = {

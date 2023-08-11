@@ -5,7 +5,7 @@ const formDocumentAtomState = atom<FormDocument>({
     key: 'form-document',
     default: {
         file: new File([], ''),
-        url: '',
+        formUrl: '',
     },
 });
 

@@ -1,4 +1,4 @@
-import { SUBJECT_LIST_DATA } from '@/constants/form';
+import { SUBJECT_LIST_DATA } from '@/constants/service/form';
 import { AttendanceInfo, Subject, VolunteerInfo } from '@/types/form/client';
 import { atom, useRecoilState } from 'recoil';
 

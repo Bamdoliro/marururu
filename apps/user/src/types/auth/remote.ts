@@ -6,6 +6,7 @@ export interface PostLoginAuthReq {
 export interface PostJoinAuthReq {
     email: string;
     code: string;
+    name: string;
     password: string;
     password_confirm?: string;
 }

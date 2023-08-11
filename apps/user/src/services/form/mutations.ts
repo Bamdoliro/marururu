@@ -11,10 +11,13 @@ import {
 } from './api';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
+    const { setFormStep } = useFormStepState();
+
     const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
         mutationFn: () => postSubmitFinalForm(formUrl),
         onSuccess: (res) => {
             console.log(res);
+            setFormStep('최종제출완료');
             alert('성공!');
         },
         onError: (err) => {
@@ -52,7 +55,7 @@ export const useUploadFormDocumentMutation = (
         mutationFn: (file: File) => postUploadFormDocumnet(file),
         onSuccess: (res) => {
             console.log(res);
-            setFormDocument(res.url);
+            setFormDocument((prev) => ({ ...prev, formUrl: res.url }));
             alert('성공');
         },
         onError: (err) => {
