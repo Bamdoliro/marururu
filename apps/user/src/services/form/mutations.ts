@@ -4,6 +4,7 @@ import { PostFormReq } from '@/types/form/remote';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from 'react-query';
 import {
+    postSaveForm,
     postSubmitDraftForm,
     postSubmitFinalForm,
     postUploadFormDocumnet,
@@ -46,6 +47,22 @@ export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
     });
 
     return { submitDraftFormMutate, restMutation };
+};
+
+export const useSaveFormMutation = () => {
+    const { mutate: saveFormMutate, ...restMutation } = useMutation({
+        mutationFn: (formData: PostFormReq) => postSaveForm(formData),
+        onSuccess: (res) => {
+            console.log(res);
+            alert('성공');
+        },
+        onError: (err) => {
+            console.log(err);
+            alert('실패');
+        },
+    });
+
+    return { saveFormMutate, ...restMutation };
 };
 
 export const useUploadFormDocumentMutation = (
