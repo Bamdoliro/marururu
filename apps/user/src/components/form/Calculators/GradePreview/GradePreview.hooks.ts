@@ -1,5 +1,6 @@
 import {
     useAttendanceInfoState,
+    useCertificateListInfoState,
     useStudentSubjectListState,
     useVolunteerInfoState,
 } from '@/app/form/성적입력/성적입력.state';
@@ -161,4 +162,17 @@ export const useVolunteerScore = () => {
     return {
         score: Math.round(MAX_VOLUNTEER_SCORE - (MAX_VOLUNTEER_TIME - totalVolunteerTime) * 0.5),
     };
+};
+
+export const useCertificateScore = () => {
+    const { certificateListInfo } = useCertificateListInfoState();
+    let score = 0;
+
+    if (certificateListInfo.includes('정보처리기능사, 정보기기운용기능사, 전자계산기기능사'))
+        score += 4;
+    if (certificateListInfo.includes('컴퓨터활용능력 1급')) score += 3;
+    if (certificateListInfo.includes('컴퓨터활용능력 2급')) score += 2;
+    if (certificateListInfo.includes('컴퓨터활용능력 3급')) score += 1;
+
+    return { score };
 };
