@@ -20,22 +20,16 @@ export const getExportForm = async () => {
 };
 
 export const postUploadFormDocumnet = async (file: File) => {
-    const { data } = await maru.post('/form/form-document', file, {
-        headers: {
-            Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+    const { data } = await maru.post('/form/form-document', file, authorization.FormData());
     return data;
 };
 
 export const postUploadProfileImage = async (image: FormData) => {
-    const { data } = await maru.post('/form/identification-picture', image, {
-        headers: {
-            Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+    const { data } = await maru.post(
+        '/form/identification-picture',
+        image,
+        authorization.FormData(),
+    );
     return data;
 };
 
