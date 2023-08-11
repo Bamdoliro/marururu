@@ -1,8 +1,8 @@
 import { color, font } from '@maru/theme';
 import { ChangeEventHandler } from 'react';
-import Radio from '../Radio/Radio';
-import Row from '../Flex/Row';
 import styled from 'styled-components';
+import Row from '../Flex/Row';
+import Radio from '../Radio/Radio';
 
 interface PropsType {
     label: string;
@@ -18,17 +18,19 @@ const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
             <Label>{label}</Label>
             <RadioListBox>
                 {list.map((item) => (
-                    <Row gap={8} alignItems="center">
-                        <Radio
-                            value={typeof item === 'string' ? item : item.value}
-                            name={name}
-                            defaultChecked={
-                                typeof item === 'string' ? value === item : value === item.value
-                            }
-                            onChange={onChange}
-                        />
-                        <RadioLabel>{typeof item === 'string' ? item : item.label}</RadioLabel>
-                    </Row>
+                    <label>
+                        <Row gap={8} alignItems="center">
+                            <Radio
+                                value={typeof item === 'string' ? item : item.value}
+                                name={name}
+                                defaultChecked={
+                                    typeof item === 'string' ? value === item : value === item.value
+                                }
+                                onChange={onChange}
+                            />
+                            <RadioLabel>{typeof item === 'string' ? item : item.label}</RadioLabel>
+                        </Row>
+                    </label>
                 ))}
             </RadioListBox>
         </div>
