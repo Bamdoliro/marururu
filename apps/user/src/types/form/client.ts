@@ -7,7 +7,8 @@ export type FormStep =
     | '자기소개서'
     | '초안작성완료'
     | '초안제출완료'
-    | '최종제출';
+    | '최종제출'
+    | '최종제출완료';
 
 export interface UserInfo {
     identificationPictureUri: string;

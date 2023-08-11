@@ -11,10 +11,13 @@ import {
 } from './api';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
+    const { setFormStep } = useFormStepState();
+
     const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
         mutationFn: () => postSubmitFinalForm(formUrl),
         onSuccess: (res) => {
             console.log(res);
+            setFormStep('최종제출완료');
             alert('성공!');
         },
         onError: (err) => {
