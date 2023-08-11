@@ -20,7 +20,10 @@ const 초안제출완료 = () => {
     return (
         <AppLayout header>
             {isShowCompleteAlaram ? (
-                <CompleteAlaram isComplete={isShowCompleteAlaram} />
+                <CompleteAlaram
+                    isComplete={isShowCompleteAlaram}
+                    completeText="원서 초안 제출 완료"
+                />
             ) : (
                 <Styled초안제출완료>
                     <Row gap={8} alignItems="center">
