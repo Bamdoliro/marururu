@@ -1,7 +1,7 @@
 import { Subject } from '@/types/form/client';
 
 // 수정된 코드
-export const subjectListInitialData: Subject[] = [
+export const SUBJECT_LIST_DATA: Subject[] = [
     '국어',
     '사회',
     '역사',

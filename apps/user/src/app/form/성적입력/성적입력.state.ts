@@ -1,10 +1,10 @@
-import { subjectListInitialData } from '@/constants/form';
+import { SUBJECT_LIST_DATA } from '@/constants/form';
 import { AttendanceInfo, Subject, VolunteerInfo } from '@/types/form/client';
 import { atom, useRecoilState } from 'recoil';
 
 const subjectListAtomState = atom<Subject[]>({
     key: 'subject-list',
-    default: [...subjectListInitialData],
+    default: [...SUBJECT_LIST_DATA],
 });
 
 const newSubjectListAtomState = atom<Subject[]>({

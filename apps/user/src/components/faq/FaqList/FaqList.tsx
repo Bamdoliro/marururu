@@ -3,8 +3,12 @@ import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import FaqItem from './FaqItem/FaqItem';
 
-const FaqList = () => {
-    const { data: faqListData } = useFaqListQuery('TOP_QUESTION');
+interface PropsType {
+    category: string;
+}
+
+const FaqList = ({ category }: PropsType) => {
+    const { data: faqListData } = useFaqListQuery(category);
 
     if (!faqListData) return null;
 
