@@ -38,7 +38,7 @@ const useUser = () => {
                             </>
                         }
                         onClose={() => {
-                            router.push('/');
+                            router.push(ROUTES.MAIN);
                             close();
                         }}
                         onConfirm={() => router.push(ROUTES.LOGIN)}
