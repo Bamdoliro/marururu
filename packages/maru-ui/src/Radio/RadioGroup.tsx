@@ -16,8 +16,8 @@ const RadioGroup = ({ label, list, name, value, onChange }: RadioGroupPropsType)
         <div>
             <Label>{label}</Label>
             <RadioListBox>
-                {list.map((item) => (
-                    <RadioLabel>
+                {list.map((item, idx) => (
+                    <RadioLabel key={`${name} ${idx}`}>
                         <Radio
                             key={typeof item === 'string' ? item : item.value}
                             value={typeof item === 'string' ? item : item.value}

@@ -1,6 +1,6 @@
-import MainNoticeItem from './MainNoticeItem/MainNoticeItem';
 import { useNoticeListQuery } from '@/services/notice/queries';
 import styled from 'styled-components';
+import MainNoticeItem from './MainNoticeItem/MainNoticeItem';
 
 const MainNoticeList = () => {
     const { data: mainNoticeListData } = useNoticeListQuery();
@@ -9,8 +9,8 @@ const MainNoticeList = () => {
 
     return (
         <StyledMainNoticeList>
-            {mainNoticeListData.splice(0, 3).map(({ id, title }) => (
-                <MainNoticeItem id={id} title={title} />
+            {mainNoticeListData.splice(0, 3).map(({ id, title }, index) => (
+                <MainNoticeItem key={`main-notice ${index}`} id={id} title={title} />
             ))}
         </StyledMainNoticeList>
     );

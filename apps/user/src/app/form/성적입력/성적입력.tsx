@@ -1,24 +1,24 @@
+import {
+    AttendanceCalculator,
+    CertificateCalculator,
+    FormController,
+    GradeCalculator,
+    GradePreview,
+    VolunteerCalculator,
+} from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
-import {
-    FormController,
-    GradePreview,
-    GradeCalculator,
-    AttendanceCalculator,
-    VolunteerCalculator,
-    CertificateCalculator,
-} from '@/components/form';
 import { styled } from 'styled-components';
+import { useCTAButton } from './성적입력.hooks';
 import {
     useAttendanceInfoState,
     useCertificateListInfoState,
     useStudentSubjectListState,
     useVolunteerInfoState,
 } from './성적입력.state';
-import { useCTAButton } from './성적입력.hooks';
 
 const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
 
@@ -41,8 +41,11 @@ const 성적입력 = () => {
             <GradePreview />
 
             <NavigationBar>
-                {FIELD_DATA.map((item) => (
-                    <UnderLineButton active={item === fieldStep} onClick={() => setFieldStep(item)}>
+                {FIELD_DATA.map((item, index) => (
+                    <UnderLineButton
+                        key={`field-data ${index}`}
+                        active={item === fieldStep}
+                        onClick={() => setFieldStep(item)}>
                         {item}
                     </UnderLineButton>
                 ))}
