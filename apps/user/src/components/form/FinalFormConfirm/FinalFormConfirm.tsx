@@ -15,11 +15,11 @@ const FinalFormConfirm = ({ isOpen, onClose, onConfirm }: PropsType) => {
             content={
                 <>
                     <Text color={color.red} fontType="p2">
-                        원서 최종 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로
-                        처리되며 더 이상 입학원서 수정이 불가능합니다.
+                        모든 제출서류를 업로드하셨다면 원서를 최종 제출 해주세요.
                     </Text>
                     <Text color={color.gray900} fontType="p2">
-                        잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.
+                        원서 최종 제출 시 모든 원서 제출 절차가 완료 되며
+                        <br /> 더이상 모든 서류에 대해 수정이 불가능합니다.
                     </Text>
                 </>
             }
