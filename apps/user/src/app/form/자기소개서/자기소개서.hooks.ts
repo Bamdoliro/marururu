@@ -8,7 +8,6 @@ export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: str
     const { form, setForm } = useFormState();
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
     const { setFormStep } = useFormStepState();
-    const submitDraftFormMutation = useSubmitDraftFormMutation(form);
 
     const handleFormSubmitButtonClick = () => {
         setForm((prev) => ({
@@ -18,8 +17,7 @@ export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: str
                 statementOfPurpose,
             },
         }));
-        setFormStep('완료');
-        submitDraftFormMutate();
+        setFormStep('초안작성완료');
     };
 
     return { handleFormSubmitButtonClick };

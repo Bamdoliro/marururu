@@ -27,8 +27,7 @@
         "next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",
-        ".next/types/**/*.ts",
-        "../../packages/maru-hooks/src/useModal.ts"
+        ".next/types/**/*.ts"
     ],
     "exclude": ["node_modules"]
 }

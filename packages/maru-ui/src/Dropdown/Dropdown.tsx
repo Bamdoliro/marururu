@@ -3,7 +3,7 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { IconArrowTop, IconArrowBottom } from '@maru/icon';
 import styled, { css } from 'styled-components';
-import { useOutsideClick } from '@maru/hooks';
+import { useBoolean, useOutsideClick } from '@maru/hooks';
 
 type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
@@ -28,15 +28,17 @@ const Dropdown = ({
     name,
     placeholder,
 }: PropsType) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useOutsideClick(() => setIsOpen(false));
+    const {
+        value: isOpen,
+        setFalse: closeDropdown,
+        toggle: handleToggleButtonClick,
+    } = useBoolean();
+    const dropdownRef = useOutsideClick(closeDropdown);
 
     const handleMenuButtonClick = (data: string) => {
         onChange(data, name);
-        setIsOpen(false);
+        closeDropdown();
     };
-
-    const handleToggleButtonClick = () => setIsOpen((prev) => !prev);
 
     return (
         <div style={{ width }}>

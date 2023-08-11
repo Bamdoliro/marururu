@@ -25,7 +25,7 @@ const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) 
     return (
         <Table>
             <Row>
-                <Th width="100%" height={56}>
+                <Th borderTopLeftRadius={12} width="100%" height={56}>
                     학년
                 </Th>
                 <Th width="100%" height={56}>
@@ -37,7 +37,7 @@ const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) 
                 <Th width="100%" height={56}>
                     미인정 조퇴
                 </Th>
-                <Th width="100%" height={56}>
+                <Th borderTopRightRadius={12} width="100%" height={56}>
                     미인정 결과
                 </Th>
             </Row>
@@ -100,7 +100,7 @@ const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) 
                 </Td>
             </Row>
             <Row>
-                <Td width="100%" height={56} option="SECONDARY">
+                <Td borderBottomLeftRadius={12} width="100%" height={56} option="SECONDARY">
                     3학년
                 </Td>
                 <Td width="100%" height={56}>
@@ -121,7 +121,7 @@ const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) 
                         onChange={handleAttendanceInfoDataChange}
                     />
                 </Td>
-                <Td width="100%" height={56}>
+                <Td borderBottomRightRadius={12} width="100%" height={56}>
                     <NumberInput
                         name="attendance3-classAbsenceCount"
                         onChange={handleAttendanceInfoDataChange}
@@ -134,8 +134,6 @@ const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) 
 
 const Table = styled.div`
     width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
 `;
 
 export default AttendanceCalculator;

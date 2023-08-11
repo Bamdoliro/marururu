@@ -1,9 +1,9 @@
 import { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-interface RadioPropsType extends InputHTMLAttributes<HTMLInputElement> {}
+interface PropsType extends InputHTMLAttributes<HTMLInputElement> {}
 
-const Radio = ({ value, name, defaultChecked, onChange }: RadioPropsType) => {
+const Radio = ({ value, name, defaultChecked, onChange }: PropsType) => {
     return (
         <StyledRadio>
             <Input
