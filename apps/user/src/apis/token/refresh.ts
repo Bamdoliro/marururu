@@ -7,7 +7,7 @@ const refreshToken = async () => {
     try {
         const { data } = await maru.patch('/auth', null, {
             headers: {
-                'Refresh-Token': `${Storage.getItem('refresh-token')}`,
+                'Refresh-Token': `${Storage.getItem(TOKEN.REFRESH)}`,
             },
         });
         Storage.setItem(TOKEN.ACCESS, data.accessToken);
