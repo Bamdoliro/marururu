@@ -18,7 +18,7 @@ export interface PostFormReq {
         coverLetter: string;
         statementOfPurpose: string;
     };
-    type: string;
+    type: string | null;
 }
 
 export interface GetSchoolListRes {

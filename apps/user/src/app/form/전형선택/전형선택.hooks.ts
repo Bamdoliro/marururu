@@ -1,4 +1,5 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { useSaveFormMutation } from '@/services/form/mutations';
 import { FormType } from '@/types/form/client';
 import { ChangeEventHandler } from 'react';
 import { useFormState } from '../form.state';
@@ -43,12 +44,14 @@ export const useInput = () => {
 
 export const useCTAButton = () => {
     const { formType } = useFormTypeState();
-    const { setForm } = useFormState();
+    const { form, setForm } = useFormState();
+    const { saveFormMutate } = useSaveFormMutation();
     const { setFormStep } = useFormStepState();
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, type: formType }));
         setFormStep('성적입력');
+        saveFormMutate(form);
     };
 
     const handlePreviousButtonClick = () => {

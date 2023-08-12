@@ -22,7 +22,7 @@ const formDataAtomState = atom<PostFormReq>({
             coverLetter: '',
             statementOfPurpose: '',
         },
-        type: '',
+        type: null,
     },
 });
 

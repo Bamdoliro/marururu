@@ -27,13 +27,12 @@ export const useInput = () => {
 export const useCTAButton = () => {
     const { userInfo } = useUserInfoState();
     const { form, setForm } = useFormState();
-    const { setFormStep } = useFormStepState();
     const { saveFormMutate } = useSaveFormMutation();
+    const { setFormStep } = useFormStepState();
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, applicant: userInfo }));
         setFormStep('보호자정보');
-        console.log(form);
         saveFormMutate(form);
     };
 
