@@ -1,8 +1,10 @@
+import { useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useLogoutUserAction } from './Profile.hooks';
 
 interface PropsType {
     name: string;
@@ -11,9 +13,13 @@ interface PropsType {
 const Profile = ({ name }: PropsType) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const menuListBoxRef = useOutsideClick(() => setIsMenuOpen(false));
+
     const toggleMenuOpen = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    const { handleLogoutButtonClick } = useLogoutUserAction();
 
     return (
         <StyledProfile>
@@ -22,7 +28,7 @@ const Profile = ({ name }: PropsType) => {
                 <IconArrowDropdown color={color.gray600} width={24} height={24} />
             </MenuButton>
             {isMenuOpen && (
-                <MenuListBox>
+                <MenuListBox ref={menuListBoxRef}>
                     <MenuList>
                         <NameMenu>
                             <Name>{name}</Name>
@@ -30,7 +36,7 @@ const Profile = ({ name }: PropsType) => {
                         </NameMenu>
                         <Menu>프로필</Menu>
                         <Menu>이어서 원서 작성하기</Menu>
-                        <Menu>로그아웃</Menu>
+                        <Menu onClick={handleLogoutButtonClick}>로그아웃</Menu>
                     </MenuList>
                 </MenuListBox>
             )}
@@ -60,6 +66,7 @@ const Name = styled.p`
 const MenuListBox = styled.div`
     position: relative;
     display: flex;
+    z-index: 2;
 `;
 
 const MenuList = styled.div`
