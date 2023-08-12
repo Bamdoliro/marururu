@@ -3,7 +3,7 @@ import { Column, Modal, SearchInput } from '@maru/ui';
 import { useState, Dispatch, SetStateAction, Suspense } from 'react';
 import { EducationInfo } from '@/types/form/client';
 import SchoolList from './SchoolList/SchoolList';
-import { Loading } from '@/components/common';
+import { Loader } from '@/components/common';
 
 interface PropsType {
     isOpen: boolean;
@@ -38,7 +38,7 @@ const FindSchoolModal = ({ isOpen, onClose, setEducationInfo }: PropsType) => {
     return (
         <Modal
             isOpen={isOpen}
-            style={{ overflow: 'hidden' }}
+            style={{ position: 'relative', overflow: 'hidden' }}
             width={600}
             height={500}
             title="학교 검색"
@@ -51,7 +51,7 @@ const FindSchoolModal = ({ isOpen, onClose, setEducationInfo }: PropsType) => {
                     placeholder="학교 이름을 입력해주세요."
                 />
             </Column>
-            <Suspense fallback={<Loading />}>
+            <Suspense fallback={<Loader />}>
                 <SchoolList
                     selectedSchool={selectedSchool}
                     setSelectedSchool={setSelectedSchool}

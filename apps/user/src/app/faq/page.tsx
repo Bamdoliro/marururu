@@ -1,6 +1,6 @@
 'use client';
 
-import { Loading } from '@/components/common';
+import { Loader } from '@/components/common';
 import { CategoryFilter, FaqList } from '@/components/faq';
 import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
@@ -15,7 +15,7 @@ const FaqPage = () => {
             <StyledFaqPage>
                 <CategoryFilter setCategory={setCategory} />
                 <Title>자주 묻는 질문</Title>
-                <Suspense fallback={<Loading />}>
+                <Suspense fallback={<Loader />}>
                     <FaqList category={category} />
                 </Suspense>
             </StyledFaqPage>
@@ -26,6 +26,7 @@ const FaqPage = () => {
 export default FaqPage;
 
 const StyledFaqPage = styled.div`
+    position: relative;
     width: 100%;
     height: 100%;
 `;

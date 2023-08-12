@@ -1,4 +1,3 @@
-import { Loading } from '@/components/common';
 import { useFaqListQuery } from '@/services/faq/queries';
 import styled from 'styled-components';
 import MainFaqItem from './MainFaqItem/MainFaqItem';

@@ -1,4 +1,3 @@
-import { Loading } from '@/components/common';
 import { useNoticeListQuery } from '@/services/notice/queries';
 import MainNoticeItem from './MainNoticeItem/MainNoticeItem';
 import styled from 'styled-components';
@@ -18,6 +17,7 @@ const MainNoticeList = () => {
 export default MainNoticeList;
 
 const StyledMainNoticeList = styled.div`
+    position: relative;
     width: 100%;
     height: 100%;
     overflow-y: auto;

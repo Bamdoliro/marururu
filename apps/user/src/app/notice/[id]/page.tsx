@@ -10,7 +10,7 @@ import { AppLayout } from '@/layouts';
 import styled from 'styled-components';
 import { NoticeDetailContent } from '@/components/notice';
 import { Suspense } from 'react';
-import { Loading } from '@/components/common';
+import { Loader } from '@/components/common';
 
 interface PropsType {
     params: { id: number };
@@ -26,7 +26,7 @@ const NoticeDetailPage = ({ params: { id } }: PropsType) => {
                     <IconArrowLeft color={color.gray600} width={24} height={24} />
                     <Path>공지사항</Path>
                 </Link>
-                <Suspense fallback={<Loading />}>
+                <Suspense fallback={<Loader />}>
                     <NoticeDetailContent id={id} />
                 </Suspense>
             </StyledNoticeDetailPage>
@@ -37,6 +37,7 @@ const NoticeDetailPage = ({ params: { id } }: PropsType) => {
 export default NoticeDetailPage;
 
 const StyledNoticeDetailPage = styled.div`
+    position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 36px;
     width: 100%;

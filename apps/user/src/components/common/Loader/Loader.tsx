@@ -2,7 +2,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { color } from '@maru/theme';
 import styled from 'styled-components';
 
-const Loading = () => {
+const Loader = () => {
     return (
         <SpinnerBox>
             <ClipLoader color={color.maruDefault} />
@@ -10,7 +10,7 @@ const Loading = () => {
     );
 };
 
-export default Loading;
+export default Loader;
 
 const SpinnerBox = styled.div`
     position: fixed;
