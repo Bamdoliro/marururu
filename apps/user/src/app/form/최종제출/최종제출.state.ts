@@ -4,7 +4,7 @@ import { atom, useRecoilState } from 'recoil';
 const formDocumentAtomState = atom<FormDocument>({
     key: 'form-document',
     default: {
-        file: new File([], ''),
+        fileName: '',
         formUrl: '',
     },
 });

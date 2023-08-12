@@ -117,6 +117,6 @@ export type FormType =
     | 'NONE';
 
 export interface FormDocument {
-    file: File;
+    fileName: string;
     formUrl: string;
 }

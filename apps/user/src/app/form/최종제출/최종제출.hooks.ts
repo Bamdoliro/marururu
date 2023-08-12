@@ -49,10 +49,12 @@ export const useInput = () => {
 
     const handleFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { files } = e.target;
-        if (files && files[0]) {
-            setFormDocument((prev) => ({ ...prev, file: files[0] }));
-            uploadFormDocumentMutate(files[0]);
-        }
+        if (!files || files.length === 0) return;
+        const formData = new FormData();
+        formData.append('file', files[0]);
+
+        setFormDocument((prev) => ({ ...prev, fileName: files[0].name }));
+        uploadFormDocumentMutate(formData);
     };
 
     return { handleFileDataChange };

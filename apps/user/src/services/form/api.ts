@@ -4,7 +4,7 @@ import { Form } from '@/types/form/client';
 import { GetSchoolListRes, GetSaveFormRes } from '@/types/form/remote';
 
 export const postSubmitFinalForm = async (formUrl: string) => {
-    const { data } = await maru.patch('/form', { formUrl });
+    const { data } = await maru.patch('/form', formUrl, authorization());
     return data;
 };
 
@@ -28,7 +28,7 @@ export const postSaveForm = async (formData: Form) => {
     return data;
 };
 
-export const postUploadFormDocumnet = async (file: File) => {
+export const postUploadFormDocumnet = async (file: FormData) => {
     const { data } = await maru.post('/form/form-document', file, authorization.FormData());
     return data;
 };

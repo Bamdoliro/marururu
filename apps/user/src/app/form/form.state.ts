@@ -30,6 +30,14 @@ const formDataAtomState = atom<Form>({
 
 export const useFormState = () => {
     const [form, setForm] = useRecoilState(formDataAtomState);
+    const { data: saveFormData } = useSaveFormQuery();
+
+    useEffect(() => {
+        if (saveFormData) {
+            setForm((prev) => ({ ...prev, ...saveFormData }));
+            console.log(saveFormData);
+        }
+    }, []);
 
     return { form, setForm };
 };
