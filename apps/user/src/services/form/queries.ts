@@ -2,7 +2,7 @@ import { Storage } from '@/apis/storage/storage';
 import KEY from '@/constants/key';
 import TOKEN from '@/constants/token';
 import { useQuery } from '@tanstack/react-query';
-import { getExportForm, getSchoolList } from './api';
+import { getExportForm, getSaveForm, getSchoolList } from './api';
 
 export const useSchoolListQuery = (school: string) => {
     const { data, ...restQuery } = useQuery({
@@ -21,4 +21,13 @@ export const useExportFormQuery = () => {
     });
 
     return { data, ...restQuery };
+};
+
+export const useSaveFormQuery = () => {
+    const { data, ...restQuery } = useQuery({
+        queryKey: [KEY.SAVE_FORM],
+        queryFn: () => getSaveForm(),
+    });
+
+    return { data: data?.data, ...restQuery };
 };

@@ -1,3 +1,24 @@
+export interface Form {
+    applicant: UserInfo;
+    parent: ParentInfo;
+    education: EducationInfo;
+    grade: {
+        subjectList: StudentSubject[];
+        attendance1: Attendance;
+        attendance2: Attendance;
+        attendance3: Attendance;
+        volunteerTime1: number;
+        volunteerTime2: number;
+        volunteerTime3: number;
+        certificateList: string[];
+    };
+    document: {
+        coverLetter: string;
+        statementOfPurpose: string;
+    };
+    type: string | null;
+}
+
 export type FormStep =
     | '지원자정보'
     | '보호자정보'

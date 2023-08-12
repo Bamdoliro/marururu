@@ -5,6 +5,7 @@ const KEY = {
     FAQ_LIST: 'useFaqListQuery',
     FORM_SCHOOL_LIST: 'useFormSchoolListQuery',
     EXPORT_FORM: 'useExportForm',
+    SAVE_FORM: 'useSaveForm',
     USER: 'useUser',
 } as const;
 

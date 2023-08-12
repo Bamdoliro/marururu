@@ -1,8 +1,8 @@
 import { Attendance, EducationInfo, ParentInfo, UserInfo } from '@/types/form/client';
-import { PostFormReq } from '@/types/form/remote';
+import { Form } from '@/types/form/client';
 import { useRecoilState, atom } from 'recoil';
 
-const formDataAtomState = atom<PostFormReq>({
+const formDataAtomState = atom<Form>({
     key: 'form-data',
     default: {
         applicant: {} as UserInfo,
@@ -22,7 +22,7 @@ const formDataAtomState = atom<PostFormReq>({
             coverLetter: '',
             statementOfPurpose: '',
         },
-        type: null,
+        type: 'REGULAR',
     },
 });
 

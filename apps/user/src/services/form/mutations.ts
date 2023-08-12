@@ -1,6 +1,6 @@
 import { useFormStepState } from '@/hooks';
 import { FormDocument, UserInfo } from '@/types/form/client';
-import { PostFormReq } from '@/types/form/remote';
+import { Form } from '@/types/form/client';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import {
@@ -30,7 +30,7 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
     return { submitFinalFormMutate, ...restQuery };
 };
 
-export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
+export const useSubmitDraftFormMutation = (formData: Form) => {
     const { setFormStep } = useFormStepState();
 
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
