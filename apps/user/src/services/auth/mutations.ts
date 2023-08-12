@@ -6,9 +6,14 @@ import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 import { axiosErrorTemplate } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { deleteLogoutUser, postJoinUser, postLoginUser, postRequestEmail } from './api';
+import { useSaveFormQuery } from '../form/queries';
+import { useEffect } from 'react';
+import { useFormState } from '@/app/form/form.state';
 
 export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     const router = useRouter();
+    const { setForm } = useFormState();
+    const { data: saveFormData } = useSaveFormQuery();
 
     const { mutate: loginUserMutate, ...restMutation } = useMutation({
         mutationFn: () => postLoginUser({ email, password }),
@@ -16,6 +21,14 @@ export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
             const { accessToken, refreshToken } = res.data;
             Storage.setItem(TOKEN.ACCESS, accessToken);
             Storage.setItem(TOKEN.REFRESH, refreshToken);
+
+            useEffect(() => {
+                if (saveFormData) {
+                    setForm((prev) => ({ ...prev, ...saveFormData }));
+                    console.log(saveFormData);
+                }
+            }, []);
+
             router.push(ROUTES.MAIN);
         },
         onError: (err) => {
