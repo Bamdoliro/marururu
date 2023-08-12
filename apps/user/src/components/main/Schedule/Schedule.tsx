@@ -42,7 +42,6 @@ const Schedule = () => {
 export default Schedule;
 
 const StyledSchedule = styled.div`
-    position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 10px;
     width: 492px;
