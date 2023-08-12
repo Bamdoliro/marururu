@@ -33,9 +33,9 @@ const Profile = ({ name }: PropsType) => {
                             <Name>{name}</Name>
                             <NickName>@happyhappyhappy</NickName>
                         </NameMenu>
-                        <Menu>프로필</Menu>
-                        <Menu>이어서 원서 작성하기</Menu>
-                        <Menu onClick={handleLogoutButtonClick}>로그아웃</Menu>
+                        <MenuItem>프로필</MenuItem>
+                        <MenuItem>이어서 원서 작성하기</MenuItem>
+                        <MenuItem onClick={handleLogoutButtonClick}>로그아웃</MenuItem>
                     </MenuList>
                 </MenuListBox>
             )}
@@ -91,7 +91,7 @@ const NickName = styled.p`
     color: ${color.gray600};
 `;
 
-const Menu = styled.button`
+const MenuItem = styled.button`
     ${font.p2}
     ${flex({ alignItems: 'center' })}
     width: 100%;

@@ -35,7 +35,7 @@ const Dropdown = ({
     } = useBoolean();
     const dropdownRef = useOutsideClick(closeDropdown);
 
-    const handleDropdownItemClick = (data: string) => {
+    const handleDropdownItemButtonClick = (data: string) => {
         onChange(data, name);
         closeDropdown();
     };
@@ -56,7 +56,7 @@ const Dropdown = ({
                     {data?.map((item, index) => (
                         <DropdownItem
                             key={`dropdown ${index}`}
-                            onClick={() => handleDropdownItemClick(item)}>
+                            onClick={() => handleDropdownItemButtonClick(item)}>
                             {item}
                         </DropdownItem>
                     ))}
