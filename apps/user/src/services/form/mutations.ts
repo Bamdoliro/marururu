@@ -2,7 +2,7 @@ import { useFormStepState } from '@/hooks';
 import { FormDocument, UserInfo } from '@/types/form/client';
 import { PostFormReq } from '@/types/form/remote';
 import { Dispatch, SetStateAction } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import {
     postSaveForm,
     postSubmitDraftForm,
@@ -46,7 +46,7 @@ export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
         },
     });
 
-    return { submitDraftFormMutate, restMutation };
+    return { submitDraftFormMutate, ...restMutation };
 };
 
 export const useSaveFormMutation = () => {

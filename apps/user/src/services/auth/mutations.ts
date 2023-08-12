@@ -1,11 +1,11 @@
-import { postLoginUser, postRequestEmail, postJoinUser } from './api';
 import { Storage } from '@/apis/storage/storage';
-import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
-import { axiosErrorTemplate } from '@maru/utils';
+import { useMutation } from '@tanstack/react-query';
 import TOKEN from '@/constants/token';
 import ROUTES from '@/constants/routes';
 import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
+import { axiosErrorTemplate } from '@maru/utils';
+import { useRouter } from 'next/navigation';
+import { deleteLogoutUser, postJoinUser, postLoginUser, postRequestEmail } from './api';
 
 export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     const router = useRouter();
@@ -26,11 +26,11 @@ export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     return { loginUserMutate, ...restMutation };
 };
 
-export const useJoinUserMutation = ({ email, code, password }: PostJoinAuthReq) => {
+export const useJoinUserMutation = ({ email, name, code, password }: PostJoinAuthReq) => {
     const router = useRouter();
 
     const { mutate: joinUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => postJoinUser({ email, code, password }),
+        mutationFn: () => postJoinUser({ email, name, code, password }),
         onSuccess: () => {
             alert('회원가입 성공');
             router.push(ROUTES.LOGIN);
@@ -51,5 +51,20 @@ export const useRequestEmailMutation = (email: string) => {
         },
     });
 
-    return { requestEmailMutate, restMutation };
+    return { requestEmailMutate, ...restMutation };
+};
+
+export const useLogoutUserMutation = () => {
+    const { mutate: logoutUserMutate, ...restMutation } = useMutation({
+        mutationFn: deleteLogoutUser,
+        onSuccess: () => {
+            localStorage.clear();
+            window.location.href = ROUTES.MAIN;
+        },
+        onError: (err) => {
+            axiosErrorTemplate(err);
+        },
+    });
+
+    return { logoutUserMutate, ...restMutation };
 };

@@ -6,15 +6,13 @@ import NoticeItem from './NoticeItem/NoticeItem';
 const NoticeList = () => {
     const { data: noticeListData } = useNoticeListQuery();
 
-    if (!noticeListData) return null;
-
-    return (
+    return noticeListData ? (
         <StyledNoticeList>
             {noticeListData.map(({ id, title, createdAt }) => (
                 <NoticeItem key={id} id={id} title={title} createdAt={createdAt} />
             ))}
         </StyledNoticeList>
-    );
+    ) : null;
 };
 
 export default NoticeList;

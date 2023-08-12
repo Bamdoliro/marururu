@@ -6,7 +6,6 @@ import { flex } from '@maru/utils';
 import { Button, Row, UnderLineButton } from '@maru/ui';
 import Profile from './Profile/Profile';
 import ROUTES from '@/constants/routes';
-import TOKEN from '@/constants/token';
 import Image from 'next/image';
 import useUser from '@/hooks/useUser';
 

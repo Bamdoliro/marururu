@@ -18,8 +18,7 @@ const SchoolList = ({
 }: PropsType) => {
     const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
 
-    if (!schoolListData) return null;
-    return (
+    return schoolListData ? (
         <StyledSchoolList>
             {schoolListData.map(({ name, location, code }: School) => (
                 <SchoolItem
@@ -36,7 +35,7 @@ const SchoolList = ({
                 </SchoolItem>
             ))}
         </StyledSchoolList>
-    );
+    ) : null;
 };
 
 export default SchoolList;
