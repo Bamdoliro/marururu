@@ -1,9 +1,9 @@
+import { useLogoutUserMutation } from '@/services/auth/mutations';
 import { useBoolean, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useLogoutUserAction } from './Profile.hooks';
 
 interface PropsType {
     name: string;
@@ -14,7 +14,11 @@ const Profile = ({ name }: PropsType) => {
 
     const menuListBoxRef = useOutsideClick(closeMenu);
 
-    const { handleLogoutButtonClick } = useLogoutUserAction();
+    const { logoutUserMutate } = useLogoutUserMutation();
+
+    const handleLogoutButtonClick = () => {
+        logoutUserMutate();
+    };
 
     return (
         <StyledProfile ref={menuListBoxRef}>
@@ -42,9 +46,7 @@ const Profile = ({ name }: PropsType) => {
 export default Profile;
 
 const StyledProfile = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    ${flex({ flexDirection: 'column', alignItems: 'flex-end' })}
 `;
 
 const MenuButton = styled.button`
@@ -77,8 +79,7 @@ const MenuList = styled.div`
 `;
 
 const NameMenu = styled.div`
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     height: 72px;
     padding: 0px 24px;
     gap: 16px;
@@ -92,8 +93,7 @@ const NickName = styled.p`
 
 const Menu = styled.button`
     ${font.p2}
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 48px;
     padding: 9px 24px;
