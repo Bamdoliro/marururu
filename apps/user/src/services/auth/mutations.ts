@@ -5,7 +5,7 @@ import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 import { axiosErrorTemplate } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { useMutation } from 'react-query';
-import { deleteUser, postJoinUser, postLoginUser, postRequestEmail } from './api';
+import { deleteLogoutUser, postJoinUser, postLoginUser, postRequestEmail } from './api';
 
 export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     const router = useRouter();
@@ -51,16 +51,20 @@ export const useRequestEmailMutation = (email: string) => {
         },
     });
 
-    return { requestEmailMutate, restMutation };
+    return { requestEmailMutate, ...restMutation };
 };
 
 export const useLogoutUserMutation = () => {
     const { mutate: logoutUserMutate, ...restMutation } = useMutation({
-        mutationFn: deleteUser,
+        mutationFn: deleteLogoutUser,
+        onSuccess: () => {
+            localStorage.clear();
+            window.location.href = ROUTES.MAIN;
+        },
         onError: (err) => {
             axiosErrorTemplate(err);
         },
     });
 
-    return { logoutUserMutate, restMutation };
+    return { logoutUserMutate, ...restMutation };
 };

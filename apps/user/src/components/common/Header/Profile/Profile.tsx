@@ -1,8 +1,7 @@
-import { useOutsideClick } from '@maru/hooks';
+import { useBoolean, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { useState } from 'react';
 import styled from 'styled-components';
 import { useLogoutUserAction } from './Profile.hooks';
 
@@ -11,24 +10,20 @@ interface PropsType {
 }
 
 const Profile = ({ name }: PropsType) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBoolean();
 
-    const menuListBoxRef = useOutsideClick(() => setIsMenuOpen(false));
-
-    const toggleMenuOpen = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    const menuListBoxRef = useOutsideClick(closeMenu);
 
     const { handleLogoutButtonClick } = useLogoutUserAction();
 
     return (
-        <StyledProfile>
+        <StyledProfile ref={menuListBoxRef}>
             <MenuButton onClick={toggleMenuOpen}>
                 <Name>{name} 님</Name>
                 <IconArrowDropdown color={color.gray600} width={24} height={24} />
             </MenuButton>
             {isMenuOpen && (
-                <MenuListBox ref={menuListBoxRef}>
+                <MenuListBox>
                     <MenuList>
                         <NameMenu>
                             <Name>{name}</Name>

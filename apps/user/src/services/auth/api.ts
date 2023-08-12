@@ -17,6 +17,6 @@ export const postRequestEmail = async (email: string) => {
     return data;
 };
 
-export const deleteUser = async () => {
+export const deleteLogoutUser = async () => {
     await maru.delete('/auth', authorization());
 };
