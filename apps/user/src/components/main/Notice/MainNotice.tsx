@@ -7,6 +7,8 @@ import { flex } from '@maru/utils';
 import { IconArrowRight } from '@maru/icon';
 import MainNoticeList from './MainNoticeList/MainNoticeList';
 import styled from 'styled-components';
+import { Suspense } from 'react';
+import { Loading } from '@/components/common';
 
 const MainNotice = () => {
     const router = useRouter();
@@ -17,7 +19,9 @@ const MainNotice = () => {
                 <Title>공지사항</Title>
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
-            <MainNoticeList />
+            <Suspense fallback={<Loading />}>
+                <MainNoticeList />
+            </Suspense>
         </StyledMainNotice>
     );
 };

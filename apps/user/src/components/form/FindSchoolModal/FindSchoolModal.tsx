@@ -1,8 +1,9 @@
 import { useDebounceInput } from '@maru/hooks';
 import { Column, Modal, SearchInput } from '@maru/ui';
-import { useState, Dispatch, SetStateAction } from 'react';
+import { useState, Dispatch, SetStateAction, Suspense } from 'react';
 import { EducationInfo } from '@/types/form/client';
 import SchoolList from './SchoolList/SchoolList';
+import { Loading } from '@/components/common';
 
 interface PropsType {
     isOpen: boolean;
@@ -50,11 +51,13 @@ const FindSchoolModal = ({ isOpen, onClose, setEducationInfo }: PropsType) => {
                     placeholder="학교 이름을 입력해주세요."
                 />
             </Column>
-            <SchoolList
-                selectedSchool={selectedSchool}
-                setSelectedSchool={setSelectedSchool}
-                debouncedSchoolSearchQuery={debouncedSchoolSearchQuery}
-            />
+            <Suspense fallback={<Loading />}>
+                <SchoolList
+                    selectedSchool={selectedSchool}
+                    setSelectedSchool={setSelectedSchool}
+                    debouncedSchoolSearchQuery={debouncedSchoolSearchQuery}
+                />
+            </Suspense>
         </Modal>
     );
 };

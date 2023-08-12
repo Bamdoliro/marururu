@@ -6,6 +6,8 @@ import { flex } from '@maru/utils';
 import { IconArrowRight } from '@maru/icon';
 import MainFaqList from './MainFaqList/MainFaqList';
 import styled from 'styled-components';
+import { Suspense } from 'react';
+import { Loading } from '@/components/common';
 
 const MainFaq = () => {
     const router = useRouter();
@@ -16,7 +18,9 @@ const MainFaq = () => {
                 <Title>자주묻는 질문</Title>
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </Link>
-            <MainFaqList />
+            <Suspense fallback={<Loading />}>
+                <MainFaqList />
+            </Suspense>
         </StyledMainFaq>
     );
 };

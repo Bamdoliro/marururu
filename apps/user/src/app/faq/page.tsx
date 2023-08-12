@@ -1,9 +1,10 @@
 'use client';
 
+import { Loading } from '@/components/common';
 import { CategoryFilter, FaqList } from '@/components/faq';
 import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import styled from 'styled-components';
 
 const FaqPage = () => {
@@ -14,7 +15,9 @@ const FaqPage = () => {
             <StyledFaqPage>
                 <CategoryFilter setCategory={setCategory} />
                 <Title>자주 묻는 질문</Title>
-                <FaqList category={category} />
+                <Suspense fallback={<Loading />}>
+                    <FaqList category={category} />
+                </Suspense>
             </StyledFaqPage>
         </AppLayout>
     );

@@ -10,20 +10,19 @@ interface PropsType {
 const FaqList = ({ category }: PropsType) => {
     const { data: faqListData } = useFaqListQuery(category);
 
-    if (!faqListData) return null;
-
-    return (
+    return faqListData ? (
         <StyledFaqList>
             {faqListData.map(({ title, content }, index) => (
                 <FaqItem key={`faq ${index}`} title={title} content={content} />
             ))}
         </StyledFaqList>
-    );
+    ) : null;
 };
 
 export default FaqList;
 
 const StyledFaqList = styled.div`
+    position: relative;
     ${flex({ flexDirection: 'column' })}
     width: 100%;
 `;

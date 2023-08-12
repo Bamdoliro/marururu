@@ -24,7 +24,7 @@ const SCHEDULE_DATA = [
         date: '11월 2일 (목)',
         plan: '최종 합격자 발표',
     },
-];
+] as const;
 
 const Schedule = () => {
     return (
