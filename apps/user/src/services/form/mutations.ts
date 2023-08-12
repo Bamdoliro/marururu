@@ -45,7 +45,7 @@ export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
         },
     });
 
-    return { submitDraftFormMutate, restMutation };
+    return { submitDraftFormMutate, ...restMutation };
 };
 
 export const useUploadFormDocumentMutation = (

@@ -1,11 +1,11 @@
 import { IconClose } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { ReactNode } from 'react';
+import styled from 'styled-components';
 import Button from '../Button/Button';
 import Column from '../Flex/Column';
 import Row from '../Flex/Row';
-import styled from 'styled-components';
-import { ReactNode } from 'react';
 
 interface PropsType {
     title: string;
@@ -29,7 +29,7 @@ const Confirm = ({
     closeButtonText = '취소',
 }: PropsType) => {
     return (
-        <BlurBackground isOpen={isOpen}>
+        <BlurBackground $isOpen={isOpen}>
             <StyledConfirm>
                 <Column
                     style={{ paddingBottom: 20, borderBottom: `1px solid ${color.gray200}` }}
@@ -67,11 +67,11 @@ const Confirm = ({
 
 export default Confirm;
 
-const BlurBackground = styled.div<{ isOpen: boolean }>`
+const BlurBackground = styled.div<{ $isOpen: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
-    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+    display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     width: 100vw;

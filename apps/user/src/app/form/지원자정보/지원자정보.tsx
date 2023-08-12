@@ -1,6 +1,6 @@
+import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { Column, Input, RadioGroup, Row, Dropdown } from '@maru/ui';
-import { ProfileUploader, FormController } from '@/components/form';
+import { Column, Dropdown, Input, RadioGroup, Row } from '@maru/ui';
 import styled from 'styled-components';
 import { useCTAButton, useInput } from './지원자정보.hooks';
 import { useUserInfoState } from './지원자정보.state';
@@ -60,8 +60,8 @@ const 지원자정보 = () => {
                                 onChange={handleUserInfoDataChange}
                                 name="gender"
                                 list={[
-                                    { option: '남자', value: 'MALE' },
-                                    { option: '여자', value: 'FEMALE' },
+                                    { label: '남자', value: 'MALE' },
+                                    { label: '여자', value: 'FEMALE' },
                                 ]}
                             />
                         </Row>
