@@ -12,9 +12,7 @@ interface PropsType {
 const NoticeDetailContent = ({ id }: PropsType) => {
     const { data: noticeDetailData } = useNoticeDetailQuery(id);
 
-    if (!noticeDetailData) return null;
-
-    return (
+    return noticeDetailData ? (
         <StyledNoticeDetailContent>
             <NoticeHeader>
                 <Column gap="16px" height="72px">
@@ -24,7 +22,7 @@ const NoticeDetailContent = ({ id }: PropsType) => {
             </NoticeHeader>
             <Content>{noticeDetailData.content}</Content>
         </StyledNoticeDetailContent>
-    );
+    ) : null;
 };
 
 export default NoticeDetailContent;
