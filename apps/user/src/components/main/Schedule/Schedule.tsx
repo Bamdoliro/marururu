@@ -24,7 +24,7 @@ const SCHEDULE_DATA = [
         date: '11월 2일 (목)',
         plan: '최종 합격자 발표',
     },
-];
+] as const;
 
 const Schedule = () => {
     return (
@@ -42,6 +42,7 @@ const Schedule = () => {
 export default Schedule;
 
 const StyledSchedule = styled.div`
+    position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 10px;
     width: 492px;

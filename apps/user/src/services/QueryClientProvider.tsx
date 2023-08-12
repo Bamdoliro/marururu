@@ -1,8 +1,8 @@
 'use client';
 
 import { ReactNode, useState } from 'react';
-import { QueryClient, QueryClientProvider as MaruQueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClient, QueryClientProvider as MaruQueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 interface PropsType {
     children: ReactNode;
@@ -15,6 +15,7 @@ const QueryClientProvider = ({ children }: PropsType) => {
                 defaultOptions: {
                     queries: {
                         refetchOnWindowFocus: false,
+                        suspense: true,
                     },
                 },
             }),

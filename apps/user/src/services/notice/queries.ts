@@ -1,6 +1,6 @@
 import { getNoticeDetail, getNoticeList } from './api';
 import KEY from '@/constants/key';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export const useNoticeListQuery = () => {
     const { data, ...restQuery } = useQuery({

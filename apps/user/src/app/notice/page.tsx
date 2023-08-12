@@ -5,13 +5,17 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { AppLayout } from '@/layouts';
 import styled from 'styled-components';
+import { Suspense } from 'react';
+import { Loader } from '@/components/common';
 
 const NoticePage = () => {
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
             <StyledNoticePage>
                 <Title>공지사항</Title>
-                <NoticeList />
+                <Suspense fallback={<Loader />}>
+                    <NoticeList />
+                </Suspense>
             </StyledNoticePage>
         </AppLayout>
     );
@@ -20,6 +24,7 @@ const NoticePage = () => {
 export default NoticePage;
 
 const StyledNoticePage = styled.div`
+    position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 48px;
     width: 100%;

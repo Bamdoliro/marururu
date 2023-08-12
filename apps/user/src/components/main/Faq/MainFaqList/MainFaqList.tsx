@@ -5,15 +5,13 @@ import MainFaqItem from './MainFaqItem/MainFaqItem';
 const MainFaqList = () => {
     const { data: mainFaqListData } = useFaqListQuery('TOP_QUESTION');
 
-    if (!mainFaqListData) return null;
-
-    return (
+    return mainFaqListData ? (
         <StyledMainFaqList>
-            {mainFaqListData.splice(0, 3).map(({ title }, index) => (
+            {mainFaqListData.slice(0, 3).map(({ title }, index) => (
                 <MainFaqItem key={`main-faq ${index}`} title={title} />
             ))}
         </StyledMainFaqList>
-    );
+    ) : null;
 };
 
 export default MainFaqList;
