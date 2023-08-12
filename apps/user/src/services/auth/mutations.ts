@@ -1,7 +1,7 @@
 import { postLoginUser, postRequestEmail, postJoinUser } from './api';
 import { Storage } from '@/apis/storage/storage';
 import { useRouter } from 'next/navigation';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import { axiosErrorTemplate } from '@maru/utils';
 import TOKEN from '@/constants/token';
 import ROUTES from '@/constants/routes';
@@ -26,11 +26,11 @@ export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     return { loginUserMutate, ...restMutation };
 };
 
-export const useJoinUserMutation = ({ email, code, password }: PostJoinAuthReq) => {
+export const useJoinUserMutation = ({ name, email, code, password }: PostJoinAuthReq) => {
     const router = useRouter();
 
     const { mutate: joinUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => postJoinUser({ email, code, password }),
+        mutationFn: () => postJoinUser({ name, email, code, password }),
         onSuccess: () => {
             alert('회원가입 성공');
             router.push(ROUTES.LOGIN);

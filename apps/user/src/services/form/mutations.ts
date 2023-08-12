@@ -2,7 +2,7 @@ import { useFormStepState } from '@/hooks';
 import { FormDocument, UserInfo } from '@/types/form/client';
 import { PostFormReq } from '@/types/form/remote';
 import { Dispatch, SetStateAction } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import {
     postSubmitDraftForm,
     postSubmitFinalForm,

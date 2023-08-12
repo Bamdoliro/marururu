@@ -79,7 +79,6 @@ export interface School {
     code: string;
 }
 
-<<<<<<< HEAD
 export type FormType =
     | 'REGULAR'
     | 'SPECIAL'
@@ -95,9 +94,8 @@ export type FormType =
     | 'MULTI_CHILDREN'
     | 'FARMING_AND_FISHING'
     | 'NONE';
-=======
+
 export interface FormDocument {
     file: File;
     formUrl: string;
 }
->>>>>>> develop

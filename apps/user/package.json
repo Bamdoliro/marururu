@@ -27,6 +27,8 @@
     "@maru/theme": "workspace:*",
     "@maru/ui": "workspace:*",
     "@maru/utils": "workspace:*",
+    "@tanstack/react-query": "^4.32.6",
+    "@tanstack/react-query-devtools": "^4.32.6",
     "@toss/react": "^1.5.0",
     "@toss/use-overlay": "^1.3.6",
     "dayjs": "^1.11.8",
@@ -34,7 +36,6 @@
     "react": "18.2.0",
     "react-daum-postcode": "^3.1.3",
     "react-dom": "18.2.0",
-    "react-query": "^3.39.3",
     "react-spinners": "^0.13.8",
     "recoil": "^0.7.7"
   }
