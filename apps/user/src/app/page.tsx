@@ -1,25 +1,18 @@
 'use client';
 
-import { Notice } from '@/components/main';
-import { Schedule } from '@/components/main';
-import initMockAPI from '@/mocks';
-import { Dday } from '@/components/main';
-import { Faq } from '@/components/main';
+import { Dday, Faq, Notice, Schedule } from '@/components/main';
+import { AppLayout } from '@/layouts';
 import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { AppLayout } from '@/layouts';
 import styled from 'styled-components';
 
 if (process.env.NODE_ENV === 'development') {
-    initMockAPI();
+    // initMockAPI();
 }
 
 const Home = () => {
     return (
-        <AppLayout
-            header={true}
-            footer={true}
-            style={{ padding: '0px 100px', marginBottom: '250px' }}>
+        <AppLayout header footer style={{ padding: '0px 100px', marginBottom: '250px' }}>
             <StyledMainPage>
                 <Row gap="48px" height="450px" width="100%" justifyContent="center">
                     <Dday />
