@@ -36,7 +36,7 @@ export const useFormState = () => {
         if (saveFormData) {
             setForm(saveFormData);
         }
-    }, [saveFormData]);
+    }, []);
 
     console.log(form);
 
