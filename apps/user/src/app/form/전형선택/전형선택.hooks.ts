@@ -1,6 +1,7 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { FormType } from '@/types/form/client';
+import { PreviewInput } from '@maru/ui';
 import { ChangeEventHandler } from 'react';
 import { useFormState } from '../form.state';
 import { useChoiceFormTypeState, useFormTypeState } from './전형선택.state';
@@ -51,7 +52,7 @@ export const useCTAButton = () => {
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, type: formType }));
         setFormStep('성적입력');
-        saveFormMutate(form);
+        saveFormMutate({ ...form, type: formType });
     };
 
     const handlePreviousButtonClick = () => {

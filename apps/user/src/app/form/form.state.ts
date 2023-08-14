@@ -34,11 +34,9 @@ export const useFormState = () => {
 
     useEffect(() => {
         if (saveFormData) {
-            setForm(saveFormData);
+            setForm((prev) => ({ ...prev, ...saveFormData }));
         }
-    }, []);
-
-    console.log(form);
+    }, [saveFormData]);
 
     return { form, setForm };
 };

@@ -24,7 +24,7 @@ export const useCTAButton = () => {
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, parent: parentInfo }));
         setFormStep('출신학교및학력');
-        saveFormMutate(form);
+        saveFormMutate({ ...form, parent: parentInfo });
     };
 
     const handlePreviousButtonClick = () => {

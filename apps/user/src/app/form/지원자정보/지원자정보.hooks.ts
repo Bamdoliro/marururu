@@ -24,10 +24,8 @@ export const useCTAButton = () => {
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, applicant: userInfo }));
         setFormStep('보호자정보');
-        saveFormMutate(form);
+        saveFormMutate({ ...form, applicant: userInfo });
     };
-
-    console.log(form);
 
     return { handleNextButtonClick };
 };

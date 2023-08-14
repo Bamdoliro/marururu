@@ -34,7 +34,15 @@ export const useCTAButton = () => {
             },
         }));
         setFormStep('자기소개서');
-        saveFormMutate(form);
+        saveFormMutate({
+            ...form,
+            grade: {
+                subjectList: studentSubjectList,
+                ...attendanceInfo,
+                ...volunteerInfo,
+                certificateList: certificateListInfo,
+            },
+        });
     };
 
     const handlePreviousButtonClick = () => {

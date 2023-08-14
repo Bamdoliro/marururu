@@ -18,7 +18,13 @@ export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: str
             },
         }));
         setFormStep('초안작성완료');
-        saveFormMutate(form);
+        saveFormMutate({
+            ...form,
+            document: {
+                coverLetter,
+                statementOfPurpose,
+            },
+        });
     };
 
     return { handleFormSubmitButtonClick };
