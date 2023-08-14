@@ -1,16 +1,16 @@
 'use client';
 
+import { Loader } from '@/components/common';
 import { NoticeList } from '@/components/notice';
+import { AppLayout } from '@/layouts';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { AppLayout } from '@/layouts';
-import styled from 'styled-components';
 import { Suspense } from 'react';
-import { Loader } from '@/components/common';
+import styled from 'styled-components';
 
 const NoticePage = () => {
     return (
-        <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
+        <AppLayout header={true} footer={true} style={{ padding: '0px 207px', marginTop: 82 }}>
             <StyledNoticePage>
                 <Title>공지사항</Title>
                 <Suspense fallback={<Loader />}>
@@ -32,6 +32,6 @@ const StyledNoticePage = styled.div`
 `;
 
 const Title = styled.p`
-    ${font.H2}
+    ${font.H1}
     color: ${color.gray900};
 `;
