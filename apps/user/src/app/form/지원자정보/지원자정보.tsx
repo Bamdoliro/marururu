@@ -3,11 +3,12 @@ import { FormLayout } from '@/layouts';
 import { Column, Dropdown, Input, RadioGroup, Row } from '@maru/ui';
 import styled from 'styled-components';
 import { useCTAButton, useInput } from './지원자정보.hooks';
-import { useUserInfoState } from './지원자정보.state';
+import { useUserInfoState, useUserInfoDateState } from './지원자정보.state';
 
 const 지원자정보 = () => {
     const { userInfo, setUserInfo } = useUserInfoState();
-    const { handleUserInfoDataChange, date, setDate } = useInput();
+    const { date, setDate } = useUserInfoDateState();
+    const { handleUserInfoDataChange } = useInput();
     const { handleNextButtonClick } = useCTAButton();
 
     return (

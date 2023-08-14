@@ -1,4 +1,4 @@
-import { useSaveFormQuery } from '@/services/form/queries';
+import { useExportFormQuery, useSaveFormQuery } from '@/services/form/queries';
 import { Attendance, EducationInfo, ParentInfo, UserInfo } from '@/types/form/client';
 import { Form } from '@/types/form/client';
 import { useEffect } from 'react';
@@ -34,10 +34,11 @@ export const useFormState = () => {
 
     useEffect(() => {
         if (saveFormData) {
-            setForm((prev) => ({ ...prev, ...saveFormData }));
-            console.log(saveFormData);
+            setForm(saveFormData);
         }
     }, [saveFormData]);
+
+    console.log(form);
 
     return { form, setForm };
 };

@@ -6,9 +6,6 @@ import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 import { axiosErrorTemplate } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { deleteLogoutUser, postJoinUser, postLoginUser, postRequestEmail } from './api';
-import { useSaveFormQuery } from '../form/queries';
-import { useEffect } from 'react';
-import { useFormState } from '@/app/form/form.state';
 
 export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     const router = useRouter();

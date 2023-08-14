@@ -1,4 +1,6 @@
 import { UserInfo } from '@/types/form/client';
+import { formatDate } from '@/utils';
+import { useEffect } from 'react';
 import { atom, useRecoilState } from 'recoil';
 
 const userInfoAtomState = atom<UserInfo>({
@@ -27,8 +29,16 @@ export const useUserInfoState = () => {
     return { userInfo, setUserInfo };
 };
 
-export const useUserDate = () => {
+export const useUserInfoDateState = () => {
     const [date, setDate] = useRecoilState(dateAtomState);
+    const { setUserInfo } = useUserInfoState();
+
+    useEffect(() => {
+        setUserInfo((prev) => ({
+            ...prev,
+            birthday: formatDate(date),
+        }));
+    }, [date]);
 
     return { date, setDate };
 };

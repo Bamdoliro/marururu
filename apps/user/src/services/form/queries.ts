@@ -19,6 +19,7 @@ export const useExportFormQuery = () => {
         queryKey: [KEY.EXPORT_FORM],
         queryFn: () => getExportForm(),
         retry: 1,
+        suspense: false,
     });
 
     return { data, ...restQuery };
@@ -28,6 +29,8 @@ export const useSaveFormQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.SAVE_FORM],
         queryFn: () => getSaveForm(),
+        suspense: false,
+        retry: 1,
     });
 
     return { data: data?.data, ...restQuery };
