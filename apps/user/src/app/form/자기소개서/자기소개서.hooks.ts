@@ -1,13 +1,13 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { useSubmitDraftFormMutation } from '@/services/form/mutations';
+import { useSaveFormMutation } from '@/services/form/mutations';
 import { ChangeEventHandler } from 'react';
 import { useFormState } from '../form.state';
 import useDocumentInfoState from './자기소개서.state';
 
 export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: string) => {
     const { form, setForm } = useFormState();
-    const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
     const { setFormStep } = useFormStepState();
+    const { saveFormMutate } = useSaveFormMutation();
 
     const handleFormSubmitButtonClick = () => {
         setForm((prev) => ({
@@ -18,6 +18,7 @@ export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: str
             },
         }));
         setFormStep('초안작성완료');
+        saveFormMutate(form);
     };
 
     return { handleFormSubmitButtonClick };

@@ -25,19 +25,19 @@ export const useCheckFilledForm = () => {
     const [documentFieldCount, setDocumentFieldCount] = useState(0);
 
     useEffect(() => {
-        const filledApplicantFieldsCount = Object.values(form.applicant).filter(
-            (value) => !!value,
-        ).length;
-        const filledParentFieldsCount = Object.values(form.parent).filter(
-            (value) => !!value,
-        ).length;
-        const filledEducationFieldsCount = Object.values(form.education).filter(
-            (value) => !!value,
-        ).length;
+        const filledApplicantFieldsCount = form.applicant
+            ? Object.values(form.applicant).filter((value) => !!value).length
+            : 0;
+        const filledParentFieldsCount = form.parent
+            ? Object.values(form.parent).filter((value) => !!value).length
+            : 0;
+        const filledEducationFieldsCount = form.education
+            ? Object.values(form.education).filter((value) => !!value).length
+            : 0;
         const filledTypeFieldsCount = form.type !== '' ? 1 : 0;
-        const filledDocumentFieldsCount = Object.values(form.document).filter(
-            (value) => !!value,
-        ).length;
+        const filledDocumentFieldsCount = form.document
+            ? Object.values(form.document).filter((value) => !!value).length
+            : 0;
 
         if (
             filledApplicantFieldsCount === 5 &&

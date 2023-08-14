@@ -13,7 +13,7 @@ const 초안제출완료 = () => {
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
     const { handleGoMainPageButtonClick, handleGo최종제출PageButtonClick } = useCTAButton();
 
-    useInterval(() => {
+    setTimeout(() => {
         setIsShowCompleteAlaram(false);
     }, 1000);
 

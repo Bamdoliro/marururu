@@ -1,9 +1,10 @@
 import { useFormStepState } from '@/hooks';
 import { FormDocument, UserInfo } from '@/types/form/client';
-import { PostFormReq } from '@/types/form/remote';
+import { Form } from '@/types/form/client';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import {
+    postSaveForm,
     postSubmitDraftForm,
     postSubmitFinalForm,
     postUploadFormDocumnet,
@@ -29,7 +30,7 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
     return { submitFinalFormMutate, ...restQuery };
 };
 
-export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
+export const useSubmitDraftFormMutation = (formData: Form) => {
     const { setFormStep } = useFormStepState();
 
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
@@ -48,14 +49,30 @@ export const useSubmitDraftFormMutation = (formData: PostFormReq) => {
     return { submitDraftFormMutate, ...restMutation };
 };
 
+export const useSaveFormMutation = () => {
+    const { mutate: saveFormMutate, ...restMutation } = useMutation({
+        mutationFn: (formData: Form) => postSaveForm(formData),
+        onSuccess: (res) => {
+            console.log(res);
+            alert('성공');
+        },
+        onError: (err) => {
+            console.log(err);
+            alert('실패');
+        },
+    });
+
+    return { saveFormMutate, ...restMutation };
+};
+
 export const useUploadFormDocumentMutation = (
     setFormDocument: Dispatch<SetStateAction<FormDocument>>,
 ) => {
     const { mutate: uploadFormDocumentMutate, ...restMutation } = useMutation({
-        mutationFn: (file: File) => postUploadFormDocumnet(file),
+        mutationFn: (file: FormData) => postUploadFormDocumnet(file),
         onSuccess: (res) => {
             console.log(res);
-            setFormDocument((prev) => ({ ...prev, formUrl: res.url }));
+            setFormDocument((prev) => ({ ...prev, formUrl: res.data.url }));
             alert('성공');
         },
         onError: (err) => {
@@ -71,6 +88,7 @@ export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateActi
     const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
         mutationFn: (image: FormData) => postUploadProfileImage(image),
         onSuccess: (res) => {
+            console.log(res);
             setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.url }));
         },
         onError: (err) => {

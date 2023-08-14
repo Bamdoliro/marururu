@@ -28,7 +28,7 @@ const 초안작성완료 = () => {
     } = useCheckFilledForm();
     const { handleSubmitDraftFormButtonClick } = useSubmitDraftFormAction();
 
-    useInterval(() => {
+    setTimeout(() => {
         setIsShowCompleteAlaram(false);
     }, 1000);
 

@@ -1,15 +1,14 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import { Storage } from '@/apis/storage/storage';
-import TOKEN from '@/constants/token';
-import { GetSchoolListRes, PostFormReq } from '@/types/form/remote';
+import { Form } from '@/types/form/client';
+import { GetSchoolListRes, GetSaveFormRes } from '@/types/form/remote';
 
 export const postSubmitFinalForm = async (formUrl: string) => {
-    const { data } = await maru.patch('/form', { formUrl });
+    const { data } = await maru.patch('/form', formUrl, authorization());
     return data;
 };
 
-export const postSubmitDraftForm = async (formData: PostFormReq) => {
+export const postSubmitDraftForm = async (formData: Form) => {
     const { data } = await maru.post('/form', formData, authorization());
     return data;
 };
@@ -19,7 +18,17 @@ export const getExportForm = async () => {
     return data;
 };
 
-export const postUploadFormDocumnet = async (file: File) => {
+export const getSaveForm = async () => {
+    const { data } = await maru.get<GetSaveFormRes>('/form/draft', authorization());
+    return data;
+};
+
+export const postSaveForm = async (formData: Form) => {
+    const { data } = await maru.post('/form/draft', formData, authorization());
+    return data;
+};
+
+export const postUploadFormDocumnet = async (file: FormData) => {
     const { data } = await maru.post('/form/form-document', file, authorization.FormData());
     return data;
 };

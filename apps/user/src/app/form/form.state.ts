@@ -1,8 +1,10 @@
+import { useExportFormQuery, useSaveFormQuery } from '@/services/form/queries';
 import { Attendance, EducationInfo, ParentInfo, UserInfo } from '@/types/form/client';
-import { PostFormReq } from '@/types/form/remote';
+import { Form } from '@/types/form/client';
+import { useEffect } from 'react';
 import { useRecoilState, atom } from 'recoil';
 
-const formDataAtomState = atom<PostFormReq>({
+const formDataAtomState = atom<Form>({
     key: 'form-data',
     default: {
         applicant: {} as UserInfo,
@@ -22,12 +24,21 @@ const formDataAtomState = atom<PostFormReq>({
             coverLetter: '',
             statementOfPurpose: '',
         },
-        type: '',
+        type: 'REGULAR',
     },
 });
 
 export const useFormState = () => {
     const [form, setForm] = useRecoilState(formDataAtomState);
+    const { data: saveFormData } = useSaveFormQuery();
+
+    useEffect(() => {
+        if (saveFormData) {
+            setForm(saveFormData);
+        }
+    }, []);
+
+    console.log(form);
 
     return { form, setForm };
 };

@@ -58,9 +58,9 @@ const 최종제출 = () => {
                         <Button onClick={handleFileUploadButtonClick} size="SMALL">
                             첨부파일 업로드
                         </Button>
-                        {formDocument.file.name ? (
+                        {formDocument.fileName ? (
                             <Text fontType="p2" color={color.gray900}>
-                                {formDocument.file.name}
+                                {formDocument.fileName}
                             </Text>
                         ) : (
                             <Text fontType="p2" color={color.gray900}>

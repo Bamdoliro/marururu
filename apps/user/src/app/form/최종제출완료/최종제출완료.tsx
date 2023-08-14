@@ -1,6 +1,5 @@
 import { CompleteAlaram } from '@/components/form';
 import { AppLayout } from '@/layouts';
-import { useState } from 'react';
 
 const 최종제출완료 = () => {
     return (

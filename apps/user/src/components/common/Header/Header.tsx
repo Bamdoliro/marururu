@@ -1,13 +1,12 @@
-import { Storage } from '@/apis/storage/storage';
+import ROUTES from '@/constants/routes';
+import useUser from '@/hooks/useUser';
+import { color } from '@maru/theme';
+import { Button, Row, UnderLineButton } from '@maru/ui';
+import { flex } from '@maru/utils';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import { color } from '@maru/theme';
-import { flex } from '@maru/utils';
-import { Button, Row, UnderLineButton } from '@maru/ui';
 import Profile from './Profile/Profile';
-import ROUTES from '@/constants/routes';
-import Image from 'next/image';
-import useUser from '@/hooks/useUser';
 
 const NAVIGATION_DATA = [
     {

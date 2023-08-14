@@ -6,6 +6,7 @@ import {
     useVolunteerInfoState,
     useCertificateListInfoState,
 } from './성적입력.state';
+import { useSaveFormMutation } from '@/services/form/mutations';
 
 export const useCTAButton = () => {
     const { subjectList, newSubjectList } = useStudentSubjectListState();
@@ -13,7 +14,8 @@ export const useCTAButton = () => {
     const { volunteerInfo } = useVolunteerInfoState();
     const { certificateListInfo } = useCertificateListInfoState();
 
-    const { setForm } = useFormState();
+    const { form, setForm } = useFormState();
+    const { saveFormMutate } = useSaveFormMutation();
     const { setFormStep } = useFormStepState();
 
     const handleNextButtonClick = () => {
@@ -32,6 +34,7 @@ export const useCTAButton = () => {
             },
         }));
         setFormStep('자기소개서');
+        saveFormMutate(form);
     };
 
     const handlePreviousButtonClick = () => {
