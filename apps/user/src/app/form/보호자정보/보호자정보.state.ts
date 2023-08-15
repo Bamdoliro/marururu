@@ -4,11 +4,11 @@ import { atom, useRecoilState } from 'recoil';
 const parentInfoAtomState = atom<ParentInfo>({
     key: 'parent-info',
     default: {
-        name: null,
-        phoneNumber: null,
-        zoneCode: null,
-        address: null,
-        detailAddress: null,
+        name: '',
+        phoneNumber: '',
+        zoneCode: '',
+        address: '',
+        detailAddress: '',
     },
 });
 

@@ -6,11 +6,11 @@ import { atom, useRecoilState } from 'recoil';
 const userInfoAtomState = atom<UserInfo>({
     key: 'user-info',
     default: {
-        identificationPictureUri: null,
-        name: null,
-        phoneNumber: null,
-        birthday: null,
-        gender: null,
+        identificationPictureUri: '',
+        name: '',
+        phoneNumber: '',
+        birthday: '',
+        gender: 'MALE',
     },
 });
 

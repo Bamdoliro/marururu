@@ -3,7 +3,7 @@ import { atom, useRecoilState } from 'recoil';
 
 const formTypeAtomState = atom<FormType>({
     key: 'form-type',
-    default: null,
+    default: 'REGULAR',
 });
 
 const choiceFormTypeAtomState = atom({
