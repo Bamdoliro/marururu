@@ -10,20 +10,19 @@ import {
     postUploadFormDocumnet,
     postUploadProfileImage,
 } from './api';
+import { Axios, AxiosError, AxiosResponse } from 'axios';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
     const { setFormStep } = useFormStepState();
 
     const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
         mutationFn: () => postSubmitFinalForm(formUrl),
-        onSuccess: (res) => {
+        onSuccess: (res: AxiosResponse) => {
             console.log(res);
             setFormStep('최종제출완료');
-            alert('성공!');
         },
-        onError: (err) => {
-            console.log(err);
-            alert('실패!');
+        onError: (err: AxiosError) => {
+            console.error(err);
         },
     });
 
@@ -35,14 +34,12 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
 
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
         mutationFn: () => postSubmitDraftForm(formData),
-        onSuccess: (res) => {
+        onSuccess: (res: AxiosResponse) => {
             console.log(res);
             setFormStep('초안제출완료');
-            alert('성공!');
         },
-        onError: (err) => {
-            console.log(err);
-            alert('실패!');
+        onError: (err: AxiosError) => {
+            console.error(err);
         },
     });
 
@@ -52,13 +49,11 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
 export const useSaveFormMutation = () => {
     const { mutate: saveFormMutate, ...restMutation } = useMutation({
         mutationFn: (formData: Form) => postSaveForm(formData),
-        onSuccess: (res) => {
+        onSuccess: (res: AxiosResponse) => {
             console.log(res);
-            alert('성공');
         },
-        onError: (err) => {
-            console.log(err);
-            alert('실패');
+        onError: (err: AxiosError) => {
+            console.error(err);
         },
     });
 
@@ -70,14 +65,12 @@ export const useUploadFormDocumentMutation = (
 ) => {
     const { mutate: uploadFormDocumentMutate, ...restMutation } = useMutation({
         mutationFn: (file: FormData) => postUploadFormDocumnet(file),
-        onSuccess: (res) => {
+        onSuccess: (res: AxiosResponse) => {
             console.log(res);
             setFormDocument((prev) => ({ ...prev, formUrl: res.data.url }));
-            alert('성공');
         },
-        onError: (err) => {
-            console.log(err);
-            alert('실패');
+        onError: (err: AxiosError) => {
+            alert(err.message);
         },
     });
 
@@ -87,12 +80,12 @@ export const useUploadFormDocumentMutation = (
 export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateAction<UserInfo>>) => {
     const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
         mutationFn: (image: FormData) => postUploadProfileImage(image),
-        onSuccess: (res) => {
+        onSuccess: (res: AxiosResponse) => {
             console.log(res);
             setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.url }));
         },
-        onError: (err) => {
-            console.log(err);
+        onError: (err: AxiosError) => {
+            alert(err.message);
         },
     });
 
