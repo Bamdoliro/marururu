@@ -9,10 +9,8 @@ import styled from 'styled-components';
 const Profile = () => {
     const { user } = useUser();
     const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBoolean();
-
-    const menuListBoxRef = useOutsideClick(closeMenu);
-
     const { logoutUserMutate } = useLogoutUserMutation();
+    const menuListBoxRef = useOutsideClick(closeMenu);
 
     const handleLogoutButtonClick = () => {
         logoutUserMutate();

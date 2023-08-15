@@ -47,7 +47,7 @@ const useUser = () => {
                 ));
             }
         }
-    }, [isLoading, router, userData]);
+    }, [isLoading, router, userData, pathName]);
 
     return { user, isLogined: !!userData };
 };
