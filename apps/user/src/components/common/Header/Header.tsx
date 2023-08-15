@@ -48,7 +48,7 @@ const Header = () => {
                     alt="logo"
                 />
                 {isLogined ? (
-                    <Profile name="밤돌이로" />
+                    <Profile />
                 ) : (
                     <Row gap="10px" alignItems="center">
                         <Button
