@@ -32,19 +32,19 @@ export type FormStep =
     | '최종제출완료';
 
 export interface UserInfo {
-    identificationPictureUri: string;
-    name: string;
-    phoneNumber: string;
-    birthday: string;
-    gender: string;
+    identificationPictureUri: string | null;
+    name: string | null;
+    phoneNumber: string | null;
+    birthday: string | null;
+    gender: string | null;
 }
 
 export interface ParentInfo {
-    name: string;
-    phoneNumber: string;
-    zoneCode: string;
-    address: string;
-    detailAddress: string;
+    name: string | null;
+    phoneNumber: string | null;
+    zoneCode: string | null;
+    address: string | null;
+    detailAddress: string | null;
 }
 
 export interface EducationInfo {
@@ -114,7 +114,7 @@ export type FormType =
     | 'TEEN_HOUSEHOLDER'
     | 'MULTI_CHILDREN'
     | 'FARMING_AND_FISHING'
-    | 'NONE';
+    | null;
 
 export interface FormDocument {
     fileName: string;
