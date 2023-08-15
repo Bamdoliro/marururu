@@ -11,10 +11,10 @@ const FaqPage = () => {
     const [category, setCategory] = useState('TOP_QUESTION');
 
     return (
-        <AppLayout header footer style={{ padding: '0px 207px' }}>
+        <AppLayout header footer style={{ padding: '0px 207px', marginTop: 82 }}>
             <StyledFaqPage>
-                <CategoryFilter setCategory={setCategory} />
                 <Title>자주 묻는 질문</Title>
+                <CategoryFilter setCategory={setCategory} />
                 <Suspense fallback={<Loader />}>
                     <FaqList category={category} />
                 </Suspense>
@@ -32,6 +32,6 @@ const StyledFaqPage = styled.div`
 `;
 
 const Title = styled.p`
-    ${font.H2}
+    ${font.H1}
     color: ${color.gray900};
 `;

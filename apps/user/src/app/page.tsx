@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const Home = () => {
     return (
-        <AppLayout header footer style={{ padding: '0px 100px', marginBottom: '250px' }}>
+        <AppLayout header footer style={{ padding: '0px 100px', marginTop: 52 }}>
             <StyledMainPage>
                 <Row gap="48px" height="450px" width="100%" justifyContent="center">
                     <Dday />

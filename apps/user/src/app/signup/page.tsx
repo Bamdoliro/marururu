@@ -1,14 +1,14 @@
 'use client';
 
-import Image from 'next/image';
 import Terms from '@/components/signup/Terms/Terms';
 import { AppLayout } from '@/layouts';
-import { color, font } from '@maru/theme';
+import { color } from '@maru/theme';
+import { Button, ButtonInput, Column, Input, PreviewInput, Text, TimeLimitInput } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ButtonInput, PreviewInput, Button, Column, TimeLimitInput, Text, Input } from '@maru/ui';
-import { useInput, useRequestEmail, useJoinAction, useTimer } from './signup.hooks';
+import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useInput, useJoinAction, useRequestEmail, useTimer } from './signup.hooks';
 
 const SignUpPage = () => {
     const [termsAgree, setTermsAgree] = useState(false);
@@ -113,7 +113,6 @@ const ContentBox = styled.div`
 const SignUpBox = styled.div<{ enabled: boolean }>`
     ${flex({ flexDirection: 'column' })};
     gap: 36px;
-    height: max-content;
     width: 446px;
     margin: 120px 0;
 `;

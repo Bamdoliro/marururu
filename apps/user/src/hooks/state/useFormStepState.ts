@@ -1,9 +1,9 @@
 import { FormStep } from '@/types/form/client';
-import { useRecoilState, atom } from 'recoil';
+import { atom, useRecoilState } from 'recoil';
 
 const formStepAtomState = atom<FormStep>({
     key: 'form-step',
-    default: '지원자정보',
+    default: '초안작성완료',
 });
 
 export const useFormStepState = () => {
