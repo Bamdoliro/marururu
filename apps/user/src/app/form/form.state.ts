@@ -69,7 +69,30 @@ export const useFormState = () => {
 
     useEffect(() => {
         if (saveFormData) {
-            setForm((prev) => ({ ...prev, ...saveFormData }));
+            setForm((prev) => ({
+                ...prev,
+                applicant: {
+                    ...prev.applicant,
+                    ...(saveFormData.applicant || {}),
+                },
+                parent: {
+                    ...prev.parent,
+                    ...(saveFormData.parent || {}),
+                },
+                education: {
+                    ...prev.education,
+                    ...(saveFormData.education || {}),
+                },
+                grade: {
+                    ...prev.grade,
+                    ...(saveFormData.grade || {}),
+                },
+                document: {
+                    ...prev.document,
+                    ...(saveFormData.document || {}),
+                },
+                type: saveFormData.type || prev.type,
+            }));
         }
     }, [saveFormData]);
 
