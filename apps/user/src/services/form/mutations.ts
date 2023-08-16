@@ -84,12 +84,15 @@ export const useUploadFormDocumentMutation = (
     return { uploadFormDocumentMutate, ...restMutation };
 };
 
-export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateAction<UserInfo>>) => {
+export const useUploadProfileImageMutation = (setForm: Dispatch<SetStateAction<Form>>) => {
     const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
         mutationFn: (image: FormData) => postUploadProfileImage(image),
         onSuccess: (res) => {
             console.log(res);
-            setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.url }));
+            setForm((prev) => ({
+                ...prev,
+                applicant: { ...prev.applicant, identificationPictureUri: res.data.url },
+            }));
         },
         onError: (err) => {
             console.log(err);

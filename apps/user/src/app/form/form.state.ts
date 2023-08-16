@@ -1,7 +1,7 @@
 import { useSaveFormQuery } from '@/services/form/queries';
 import { Form } from '@/types/form/client';
 import { ChangeEventHandler, useEffect } from 'react';
-import { useRecoilState, atom } from 'recoil';
+import { useRecoilState, atom, useSetRecoilState } from 'recoil';
 
 const formDataAtomState = atom<Form>({
     key: 'form-data',
@@ -73,17 +73,19 @@ export const useFormState = () => {
         }
     }, [saveFormData]);
 
+    useEffect(() => {
+        console.log(form);
+    }, [form]);
+
     return { form, setForm };
 };
 
 export const useFormInput = () => {
-    const [form, setForm] = useRecoilState(formDataAtomState);
-
+    const setForm = useSetRecoilState(formDataAtomState);
     const handleFormDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
-        setForm(prev => ({...prev, [name]: value})
-    }
+        setForm((prev) => ({ ...prev, [name]: value }));
+    };
 
-    return {handleFormDataChange}
-
+    return { handleFormDataChange };
 };

@@ -1,23 +1,34 @@
+import { useFormState } from '@/app/form/form.state';
 import { Date } from '@/types/common/client';
-import { Form } from '@/types/form/client';
+import { formatDate } from '@/utils';
 import { Row, Dropdown } from '@maru/ui';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-interface PropsType {
-    form: Form;
-    date: Date;
-    setDate: Dispatch<SetStateAction<Date>>;
-}
-
-const DateBox = ({ form, date, setDate }: PropsType) => {
-    const [birthday, setBirthday] = useState<string[]>([]);
+const DateBox = () => {
+    const { form, setForm } = useFormState();
+    const [date, setDate] = useState<Date>({
+        year: '',
+        month: '',
+        day: '',
+    });
 
     useEffect(() => {
-        if (form.applicant?.birthday) {
-            const birthdayArray = form.applicant.birthday.split('-');
-            setBirthday(birthdayArray);
+        if (form.applicant.birthday) {
+            const date = form.applicant.birthday.split('-');
+            setDate({
+                year: date[0],
+                month: date[1],
+                day: date[2],
+            });
         }
-    }, [form.applicant?.birthday]);
+    }, [form.applicant.birthday]);
+
+    useEffect(() => {
+        setForm((prev) => ({
+            ...prev,
+            applicant: { ...prev.applicant, birthday: formatDate(date) },
+        }));
+    }, [date]);
 
     return (
         <Row gap={16} alignItems="flex-end">
@@ -26,7 +37,7 @@ const DateBox = ({ form, date, setDate }: PropsType) => {
                 onChange={(data: string, name: string) =>
                     setDate((prev) => ({ ...prev, [name]: data }))
                 }
-                value={birthday[0] ?? date.year}
+                value={date.year}
                 name="year"
                 data={['2006', '2007']}
                 placeholder="년"
@@ -35,7 +46,7 @@ const DateBox = ({ form, date, setDate }: PropsType) => {
                 onChange={(data: string, name: string) =>
                     setDate((prev) => ({ ...prev, [name]: data }))
                 }
-                value={birthday[1] ?? date.month}
+                value={date.month}
                 name="month"
                 data={['1']}
                 placeholder="월"
@@ -44,7 +55,7 @@ const DateBox = ({ form, date, setDate }: PropsType) => {
                 onChange={(data: string, name: string) =>
                     setDate((prev) => ({ ...prev, [name]: data }))
                 }
-                value={birthday[2] ?? date.day}
+                value={date.day}
                 name="day"
                 data={['2']}
                 placeholder="일"

@@ -1,31 +1,28 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { ChangeEventHandler, useEffect } from 'react';
 import { useFormState } from '../form.state';
-import { useUserInfoState } from './지원자정보.state';
 import { useSaveFormMutation } from '@/services/form/mutations';
-
-export const useInput = () => {
-    const { setUserInfo } = useUserInfoState();
-
-    const handleUserInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-        setUserInfo((prev) => ({ ...prev, [name]: value }));
-    };
-
-    return { handleUserInfoDataChange };
-};
+import { ChangeEventHandler } from 'react';
 
 export const useCTAButton = () => {
-    const { userInfo } = useUserInfoState();
-    const { form, setForm } = useFormState();
+    const { form } = useFormState();
     const { saveFormMutate } = useSaveFormMutation();
     const { setFormStep } = useFormStepState();
 
     const handleNextButtonClick = () => {
-        setForm((prev) => ({ ...prev, applicant: userInfo }));
         setFormStep('보호자정보');
-        saveFormMutate({ ...form, applicant: userInfo });
+        saveFormMutate({ ...form, applicant: form.applicant });
     };
 
     return { handleNextButtonClick };
+};
+
+export const useInput = () => {
+    const { setForm } = useFormState();
+
+    const handle지원자정보DataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({ ...prev, applicant: { ...prev.applicant, [name]: value } }));
+    };
+
+    return { handle지원자정보DataChange };
 };
