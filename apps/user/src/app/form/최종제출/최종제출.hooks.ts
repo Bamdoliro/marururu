@@ -2,9 +2,9 @@ import {
     useSubmitFinalFormMutation,
     useUploadFormDocumentMutation,
 } from '@/services/form/mutations';
-import { ChangeEventHandler, useRef } from 'react';
-import { useFormDocumentState } from './최종제출.state';
 import { useExportFormQuery } from '@/services/form/queries';
+import { ChangeEventHandler, useRef } from 'react';
+import { useFormDocumentState } from '../../../stores/form/최종제출.state';
 
 export const useFileUploadButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);

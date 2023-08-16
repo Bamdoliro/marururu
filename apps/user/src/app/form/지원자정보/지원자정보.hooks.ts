@@ -1,8 +1,8 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { ChangeEventHandler, useEffect } from 'react';
-import { useFormState } from '../form.state';
-import { useUserInfoState } from './지원자정보.state';
 import { useSaveFormMutation } from '@/services/form/mutations';
+import { ChangeEventHandler } from 'react';
+import { useUserInfoState } from '../../../stores/form/지원자정보.state';
+import { useFormState } from '../form.state';
 
 export const useInput = () => {
     const { setUserInfo } = useUserInfoState();

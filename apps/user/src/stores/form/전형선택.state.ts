@@ -9,7 +9,7 @@ const formTypeAtomState = atom<FormType>({
 const choiceFormTypeAtomState = atom({
     key: 'choice-form-type',
     default: {
-        입학전형선택: '',
+        입학전형선택: 'REGULAR',
         특별전형선택: '',
         기회균등전형선택: '',
         사회다양성전형선택: '',

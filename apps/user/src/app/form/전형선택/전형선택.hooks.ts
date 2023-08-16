@@ -2,8 +2,8 @@ import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { FormType } from '@/types/form/client';
 import { ChangeEventHandler } from 'react';
+import { useChoiceFormTypeState, useFormTypeState } from '../../../stores/form/전형선택.state';
 import { useFormState } from '../form.state';
-import { useChoiceFormTypeState, useFormTypeState } from './전형선택.state';
 
 export const useInput = () => {
     const { setFormType } = useFormTypeState();

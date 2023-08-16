@@ -1,12 +1,4 @@
 import {
-    useAttendanceInfoState,
-    useCertificateListInfoState,
-    useStudentSubjectListState,
-    useVolunteerInfoState,
-} from '@/app/form/성적입력/성적입력.state';
-import { useFormTypeState } from '@/app/form/전형선택/전형선택.state';
-import { useEducationInfoState } from '@/app/form/출신학교및학력/출신학교및학력.state';
-import {
     DEFAULT_ATTENDANCE_SCORE,
     DEFAULT_VOLUNTEER_SCORE,
     MAX_ABSENCE_COUNT,
@@ -19,6 +11,14 @@ import {
     REGULAR_TYPE_DEFAULT_SCORE,
     SPECIAL_TYPE_DEFAULT_SCORE,
 } from '@/constants/service/form';
+import {
+    useAttendanceInfoState,
+    useCertificateListInfoState,
+    useStudentSubjectListState,
+    useVolunteerInfoState,
+} from '@/stores/form/성적입력.state';
+import { useFormTypeState } from '@/stores/form/전형선택.state';
+import { useEducationInfoState } from '@/stores/form/출신학교및학력.state';
 import { Attendance, StudentSubject } from '@/types/form/client';
 
 const ACHIEVEMENT_SCORE = {

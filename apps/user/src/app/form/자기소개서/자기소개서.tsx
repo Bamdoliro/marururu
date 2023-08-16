@@ -4,8 +4,8 @@ import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import useDocumentInfoState from '../../../stores/form/자기소개서.state';
 import { useCTAButton, useFormSubmitAction, useInput } from './자기소개서.hooks';
-import useDocumentInfoState from './자기소개서.state';
 
 const 자기소개서 = () => {
     const { documentInfo } = useDocumentInfoState();

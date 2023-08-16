@@ -2,8 +2,8 @@ import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { Column, Dropdown, Input, RadioGroup, Row } from '@maru/ui';
 import styled from 'styled-components';
+import { useUserInfoDateState, useUserInfoState } from '../../../stores/form/지원자정보.state';
 import { useCTAButton, useInput } from './지원자정보.hooks';
-import { useUserInfoState, useUserInfoDateState } from './지원자정보.state';
 
 const 지원자정보 = () => {
     const { userInfo, setUserInfo } = useUserInfoState();

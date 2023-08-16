@@ -1,10 +1,10 @@
 import { FindSchoolModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
-import { useCTAButton, useInput } from './출신학교및학력.hooks';
-import { useEducationInfoState } from './출신학교및학력.state';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
+import { useEducationInfoState } from '../../../stores/form/출신학교및학력.state';
+import { useCTAButton, useInput } from './출신학교및학력.hooks';
 
 const 출신학교및학력 = () => {
     const overlay = useOverlay();

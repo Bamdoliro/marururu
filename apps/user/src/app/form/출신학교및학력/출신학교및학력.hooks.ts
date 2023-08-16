@@ -1,8 +1,8 @@
-import { useFormState } from '../form.state';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { ChangeEventHandler } from 'react';
-import { useEducationInfoState } from './출신학교및학력.state';
 import { useSaveFormMutation } from '@/services/form/mutations';
+import { ChangeEventHandler } from 'react';
+import { useEducationInfoState } from '../../../stores/form/출신학교및학력.state';
+import { useFormState } from '../form.state';
 
 export const useInput = () => {
     const { setEducationInfo } = useEducationInfoState();

@@ -195,6 +195,7 @@ const CompleteAlarmBox = styled.div`
         to {
             transform: translateY(-300px);
             opacity: 0;
+            display: none;
         }
     }
 `;

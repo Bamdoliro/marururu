@@ -1,12 +1,12 @@
-import { useFormState } from '../form.state';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import {
-    useStudentSubjectListState,
-    useAttendanceInfoState,
-    useVolunteerInfoState,
-    useCertificateListInfoState,
-} from './성적입력.state';
 import { useSaveFormMutation } from '@/services/form/mutations';
+import {
+    useAttendanceInfoState,
+    useCertificateListInfoState,
+    useStudentSubjectListState,
+    useVolunteerInfoState,
+} from '../../../stores/form/성적입력.state';
+import { useFormState } from '../form.state';
 
 export const useCTAButton = () => {
     const { subjectList, newSubjectList } = useStudentSubjectListState();

@@ -1,10 +1,10 @@
 import { FindAddressModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
-import { useInput, useCTAButton } from './보호자정보.hooks';
-import { useParentInfoState } from './보호자정보.state';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
+import { useParentInfoState } from '../../../stores/form/보호자정보.state';
+import { useCTAButton, useInput } from './보호자정보.hooks';
 
 const 보호자정보 = () => {
     const overlay = useOverlay();
