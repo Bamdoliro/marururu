@@ -1,3 +1,4 @@
+import useUser from '@/hooks/useUser';
 import { useLogoutUserMutation } from '@/services/auth/mutations';
 import { useBoolean, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
@@ -5,16 +6,11 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-interface PropsType {
-    name: string;
-}
-
-const Profile = ({ name }: PropsType) => {
+const Profile = () => {
+    const { user } = useUser();
     const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBoolean();
-
-    const menuListBoxRef = useOutsideClick(closeMenu);
-
     const { logoutUserMutate } = useLogoutUserMutation();
+    const menuListBoxRef = useOutsideClick(closeMenu);
 
     const handleLogoutButtonClick = () => {
         logoutUserMutate();
@@ -23,15 +19,15 @@ const Profile = ({ name }: PropsType) => {
     return (
         <StyledProfile ref={menuListBoxRef}>
             <MenuButton onClick={toggleMenuOpen}>
-                <Name>{name} 님</Name>
+                <Name>{user.name} 님</Name>
                 <IconArrowDropdown color={color.gray600} width={24} height={24} />
             </MenuButton>
             {isMenuOpen && (
                 <MenuListBox>
                     <MenuList>
                         <NameMenu>
-                            <Name>{name}</Name>
-                            <NickName>@happyhappyhappy</NickName>
+                            <Name>{user.name}</Name>
+                            <NickName>@{user.email.split('@')[0]}</NickName>
                         </NameMenu>
                         <MenuItem>프로필</MenuItem>
                         <MenuItem>이어서 원서 작성하기</MenuItem>
@@ -47,6 +43,7 @@ export default Profile;
 
 const StyledProfile = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'flex-end' })}
+    min-width: 240px;
 `;
 
 const MenuButton = styled.button`
@@ -61,12 +58,14 @@ const Name = styled.p`
 `;
 
 const MenuListBox = styled.div`
+    width: 100%;
     position: relative;
     display: flex;
     z-index: 2;
 `;
 
 const MenuList = styled.div`
+    width: 100%;
     position: absolute;
     top: 0;
     right: 0;

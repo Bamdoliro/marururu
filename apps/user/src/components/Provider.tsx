@@ -11,12 +11,12 @@ interface PropsType {
 
 const Provider = ({ children }: PropsType) => {
     return (
-        <OverlayProvider>
-            <RecoilRoot>
+        <RecoilRoot>
+            <OverlayProvider>
                 <GlobalStyle />
                 {children}
-            </RecoilRoot>
-        </OverlayProvider>
+            </OverlayProvider>
+        </RecoilRoot>
     );
 };
 
