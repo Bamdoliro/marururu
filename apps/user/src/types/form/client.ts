@@ -1,22 +1,22 @@
 export interface Form {
-    applicant: UserInfo | null;
-    parent: ParentInfo | null;
-    education: EducationInfo | null;
+    applicant: UserInfo;
+    parent: ParentInfo;
+    education: EducationInfo;
     grade: {
-        subjectList: StudentSubject[] | null;
-        attendance1: Attendance | null;
-        attendance2: Attendance | null;
-        attendance3: Attendance | null;
-        volunteerTime1: number | null;
-        volunteerTime2: number | null;
-        volunteerTime3: number | null;
-        certificateList: string[] | null;
+        subjectList: StudentSubject[];
+        attendance1: Attendance;
+        attendance2: Attendance;
+        attendance3: Attendance;
+        volunteerTime1: number;
+        volunteerTime2: number;
+        volunteerTime3: number;
+        certificateList: string[];
     };
     document: {
-        coverLetter: string | null;
-        statementOfPurpose: string | null;
+        coverLetter: string;
+        statementOfPurpose: string;
     };
-    type: FormType | null;
+    type: FormType;
 }
 
 export type FormStep =
@@ -58,7 +58,7 @@ export interface EducationInfo {
     teacherMobilePhoneNumber: string;
 }
 
-export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E' | null;
+export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
 
 export interface StudentSubject {
     subjectName: string;
