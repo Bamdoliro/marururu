@@ -1,4 +1,12 @@
+import { GlobalStyle } from '@maru/theme';
+import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import type { Preview } from '@storybook/react';
+
+export const decorators = [
+    withThemeFromJSXProvider({
+        GlobalStyles: GlobalStyle, // Adds your GlobalStyle component to all stories
+    }),
+];
 
 const preview: Preview = {
     parameters: {
