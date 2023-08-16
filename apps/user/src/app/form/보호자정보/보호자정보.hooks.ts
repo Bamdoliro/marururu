@@ -1,10 +1,9 @@
 import { ChangeEventHandler } from 'react';
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useFormSetStore, useFormStepSetStore, useFormValueStore } from '@/store';
+import { useFormSetStore, useFormStepSetStore } from '@/store';
 
 export const useCTAButton = () => {
     const { saveFormMutate } = useSaveFormMutation();
-    const form = useFormValueStore();
     const setFormStep = useFormStepSetStore();
 
     const handleNextButtonClick = () => {

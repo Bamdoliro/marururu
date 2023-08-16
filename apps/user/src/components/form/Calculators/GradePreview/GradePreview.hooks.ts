@@ -11,9 +11,8 @@ import {
     MIN_VOLUNTEER_TIME,
     REGULAR_TYPE_DEFAULT_SCORE,
     SPECIAL_TYPE_DEFAULT_SCORE,
-    SUBJECT_LIST_DATA,
 } from '@/constants/service/form';
-import { useFormValueStore, useNewSubjectValueStore } from '@/store';
+import { useFormValueStore, useNewSubjectValueStore, useSubjectValueStore } from '@/store';
 import { Attendance, StudentSubject } from '@/types/form/client';
 
 const ACHIEVEMENT_SCORE = {
@@ -27,15 +26,17 @@ const ACHIEVEMENT_SCORE = {
 export const useGradeScore = () => {
     const form = useFormValueStore();
     const newSubjectList = useNewSubjectValueStore();
+    const subjectList = useSubjectValueStore();
 
-    const allSubjectList = SUBJECT_LIST_DATA.concat(newSubjectList);
+    const studentSubjectList = subjectList.concat(newSubjectList);
 
     const getScoreOf = (achievementLevel: keyof Omit<StudentSubject, 'subjectName'>) => {
         return (
-            allSubjectList.reduce((acc, subject) => {
+            studentSubjectList.reduce((acc, subject) => {
                 const score = subject[achievementLevel];
                 return acc + (score ? ACHIEVEMENT_SCORE[score] : 0);
-            }, 0) / allSubjectList.filter((subject) => subject[achievementLevel] !== null).length
+            }, 0) /
+            studentSubjectList.filter((subject) => subject[achievementLevel] !== null).length
         );
     };
 

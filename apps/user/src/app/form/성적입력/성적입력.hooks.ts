@@ -1,22 +1,24 @@
-import { SUBJECT_LIST_DATA } from '@/constants/service/form';
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useFormSetStore, useFormStepSetStore, useNewSubjectValueStore } from '@/store';
+import {
+    useFormSetStore,
+    useFormStepSetStore,
+    useNewSubjectValueStore,
+    useSubjectValueStore,
+} from '@/store';
 
 export const useCTAButton = () => {
     const setForm = useFormSetStore();
     const setFormStep = useFormStepSetStore();
     const newSubjectList = useNewSubjectValueStore();
+    const subjectList = useSubjectValueStore();
     const { saveFormMutate } = useSaveFormMutation();
 
-    const studentSubjectList = [...SUBJECT_LIST_DATA, ...newSubjectList].map(
-        ({ id, ...rest }) => rest,
-    );
+    const studentSubjectList = [...subjectList, ...newSubjectList].map(({ id, ...rest }) => rest);
 
     const handleNextButtonClick = () => {
         setForm((prev) => ({
             ...prev,
             grade: {
-                ...prev.grade,
                 subjectList: studentSubjectList,
                 attendance1: prev.grade.attendance1,
                 attendance2: prev.grade.attendance2,

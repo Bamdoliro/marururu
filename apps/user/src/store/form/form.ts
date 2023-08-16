@@ -1,4 +1,3 @@
-import { SUBJECT_LIST_DATA } from '@/constants/service/form';
 import { Form } from '@/types/form/client';
 import { useRecoilState, atom, useSetRecoilState, useRecoilValue } from 'recoil';
 
@@ -30,7 +29,7 @@ const formDataAtomState = atom<Form>({
             teacherMobilePhoneNumber: '',
         },
         grade: {
-            subjectList: [...SUBJECT_LIST_DATA],
+            subjectList: [],
             attendance1: {
                 absenceCount: 0,
                 latenessCount: 0,
