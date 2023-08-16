@@ -16,7 +16,7 @@ export interface Form {
         coverLetter: string | null;
         statementOfPurpose: string | null;
     };
-    type: string | null;
+    type: FormType | null;
 }
 
 export type FormStep =

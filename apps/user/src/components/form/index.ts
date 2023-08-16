@@ -9,3 +9,4 @@ export { default as CheckFormComplete } from './CheckFormComplete/CheckFormCompl
 export { default as DraftFormConfirm } from './DraftFormConfirm/DraftFormConfirm';
 export { default as FinalFormConfirm } from './FinalFormConfirm/FinalFormConfirm';
 export { default as FinalFormTable } from './FinalFormTable/FinalFormTable';
+export { default as DateBox } from './DateBox/DateBox';

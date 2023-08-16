@@ -1,11 +1,14 @@
 import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { Column, Dropdown, Input, RadioGroup, Row } from '@maru/ui';
-import styled from 'styled-components';
+import { Column, Input, RadioGroup, Row } from '@maru/ui';
+import { useFormState } from '../form.state';
 import { useCTAButton, useInput } from './지원자정보.hooks';
 import { useUserInfoState, useUserInfoDateState } from './지원자정보.state';
+import { DateBox } from '@/components/form';
+import styled from 'styled-components';
 
 const 지원자정보 = () => {
+    const { form } = useFormState();
     const { userInfo, setUserInfo } = useUserInfoState();
     const { date, setDate } = useUserInfoDateState();
     const { handleUserInfoDataChange } = useInput();
@@ -19,45 +22,16 @@ const 지원자정보 = () => {
                     <Column gap={30} width={492}>
                         <Input
                             label="성명"
-                            value={userInfo.name}
+                            value={form.applicant?.name}
                             onChange={handleUserInfoDataChange}
                             name="name"
                             width="100%"
                         />
-                        <Row gap={16} alignItems="flex-end">
-                            <Dropdown
-                                label="생년월일"
-                                onChange={(data: string, name: string) =>
-                                    setDate((prev) => ({ ...prev, [name]: data }))
-                                }
-                                value={date.year}
-                                name="year"
-                                data={['2006', '2007']}
-                                placeholder="년"
-                            />
-                            <Dropdown
-                                onChange={(data: string, name: string) =>
-                                    setDate((prev) => ({ ...prev, [name]: data }))
-                                }
-                                value={date.month}
-                                name="month"
-                                data={['1']}
-                                placeholder="월"
-                            />
-                            <Dropdown
-                                onChange={(data: string, name: string) =>
-                                    setDate((prev) => ({ ...prev, [name]: data }))
-                                }
-                                value={date.day}
-                                name="day"
-                                data={['2']}
-                                placeholder="일"
-                            />
-                        </Row>
+                        <DateBox form={form} date={date} setDate={setDate} />
                         <Row gap={40} alignItems="flex-end">
                             <RadioGroup
                                 label="성별"
-                                value={userInfo.gender}
+                                value={form.applicant?.gender}
                                 onChange={handleUserInfoDataChange}
                                 name="gender"
                                 list={[
@@ -68,7 +42,7 @@ const 지원자정보 = () => {
                         </Row>
                         <Input
                             label="전화번호"
-                            value={userInfo.phoneNumber}
+                            value={form.applicant?.phoneNumber}
                             onChange={handleUserInfoDataChange}
                             name="phoneNumber"
                             placeholder="- 없이 입력해주세요"

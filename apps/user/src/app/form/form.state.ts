@@ -1,5 +1,4 @@
-import { useExportFormQuery, useSaveFormQuery } from '@/services/form/queries';
-import { Attendance, EducationInfo, ParentInfo, UserInfo } from '@/types/form/client';
+import { useSaveFormQuery } from '@/services/form/queries';
 import { Form } from '@/types/form/client';
 import { useEffect } from 'react';
 import { useRecoilState, atom } from 'recoil';
@@ -35,8 +34,13 @@ export const useFormState = () => {
     useEffect(() => {
         if (saveFormData) {
             setForm((prev) => ({ ...prev, ...saveFormData }));
+            console.log(saveFormData);
         }
     }, [saveFormData]);
+
+    useEffect(() => {
+        console.log(form);
+    }, [form]);
 
     return { form, setForm };
 };

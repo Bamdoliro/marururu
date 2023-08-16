@@ -1,3 +1,4 @@
+import { Date } from '@/types/common/client';
 import { UserInfo } from '@/types/form/client';
 import { formatDate } from '@/utils';
 import { useEffect } from 'react';
@@ -14,7 +15,7 @@ const userInfoAtomState = atom<UserInfo>({
     },
 });
 
-const dateAtomState = atom({
+const dateAtomState = atom<Date>({
     key: 'date',
     default: {
         year: '',
