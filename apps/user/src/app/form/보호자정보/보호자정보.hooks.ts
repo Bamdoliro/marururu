@@ -1,16 +1,15 @@
-import { useFormState } from '../form.state';
-import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { ChangeEventHandler } from 'react';
 import { useSaveFormMutation } from '@/services/form/mutations';
+import { useFormSetStore, useFormStepSetStore, useFormValueStore } from '@/store';
 
 export const useCTAButton = () => {
     const { saveFormMutate } = useSaveFormMutation();
-    const { form } = useFormState();
-    const { setFormStep } = useFormStepState();
+    const form = useFormValueStore();
+    const setFormStep = useFormStepSetStore();
 
     const handleNextButtonClick = () => {
         setFormStep('출신학교및학력');
-        saveFormMutate({ ...form, parent: form.parent });
+        saveFormMutate();
     };
 
     const handlePreviousButtonClick = () => {
@@ -21,7 +20,7 @@ export const useCTAButton = () => {
 };
 
 export const useInput = () => {
-    const { setForm } = useFormState();
+    const setForm = useFormSetStore();
 
     const handle보호자정보DataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;

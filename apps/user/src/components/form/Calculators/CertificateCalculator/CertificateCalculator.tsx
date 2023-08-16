@@ -1,12 +1,12 @@
-import { useFormState } from '@/app/form/form.state';
+import { useFormStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { CheckBox, Column, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
 
 const CertificateCalculator = () => {
-    const { form, setForm } = useFormState();
+    const [form, setForm] = useFormStore();
 
     const handleCertificateListInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { checked, value } = e.target;

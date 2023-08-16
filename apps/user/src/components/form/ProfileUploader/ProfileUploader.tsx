@@ -1,12 +1,12 @@
-import { useFormState } from '@/app/form/form.state';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
+import { useFormStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
 import { ChangeEventHandler, DragEvent, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const ProfileUploader = () => {
-    const { form, setForm } = useFormState();
+    const [form, setForm] = useFormStore();
     const [isDragging, setIsDragging] = useState(false);
     const imageFileInputRef = useRef<HTMLInputElement>(null);
 

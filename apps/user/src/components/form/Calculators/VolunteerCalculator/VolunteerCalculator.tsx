@@ -1,4 +1,4 @@
-import { useFormState } from '@/app/form/form.state';
+import { useFormStore } from '@/store';
 import { VolunteerInfo } from '@/types/form/client';
 import { color, font } from '@maru/theme';
 import { Column, NumberInput, Row, Td, Th } from '@maru/ui';
@@ -7,7 +7,7 @@ import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 import { styled } from 'styled-components';
 
 const VolunteerCalculator = () => {
-    const { form, setForm } = useFormState();
+    const [form, setForm] = useFormStore();
 
     const handleVolunteerInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;

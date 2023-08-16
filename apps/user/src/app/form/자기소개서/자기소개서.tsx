@@ -4,11 +4,11 @@ import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useFormState } from '../form.state';
+import { useFormValueStore } from '@/store';
 import { useCTAButton, useFormSubmitAction, useInput } from './자기소개서.hooks';
 
 const 자기소개서 = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
     const { handle자기소개서DataChange } = useInput();
     const { handlePreviousButtonClick } = useCTAButton();
     const { handleFormSubmitButtonClick } = useFormSubmitAction();

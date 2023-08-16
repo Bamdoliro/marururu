@@ -1,5 +1,4 @@
-import { useFormStepState } from '@/hooks';
-import { FormDocument, UserInfo } from '@/types/form/client';
+import { FormDocument } from '@/types/form/client';
 import { Form } from '@/types/form/client';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from '@tanstack/react-query';
@@ -10,9 +9,10 @@ import {
     postUploadFormDocumnet,
     postUploadProfileImage,
 } from './api';
+import { useFormStepSetStore, useFormValueStore } from '@/store';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useFormStepSetStore();
 
     const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
         mutationFn: () => postSubmitFinalForm(formUrl),
@@ -31,7 +31,7 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
 };
 
 export const useSubmitDraftFormMutation = (formData: Form) => {
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useFormStepSetStore();
 
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
         mutationFn: () => postSubmitDraftForm(formData),
@@ -50,8 +50,10 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
 };
 
 export const useSaveFormMutation = () => {
+    const form = useFormValueStore();
+
     const { mutate: saveFormMutate, ...restMutation } = useMutation({
-        mutationFn: (formData: Form) => postSaveForm(formData),
+        mutationFn: () => postSaveForm(form),
         onSuccess: (res) => {
             console.log(res);
             alert('성공');

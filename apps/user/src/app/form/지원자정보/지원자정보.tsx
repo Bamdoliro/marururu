@@ -1,13 +1,13 @@
 import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { Column, Input, RadioGroup, Row } from '@maru/ui';
-import { useFormState } from '../form.state';
 import { useCTAButton, useInput } from './지원자정보.hooks';
 import { DateBox } from '@/components/form';
 import styled from 'styled-components';
+import { useFormValueStore } from '@/store';
 
 const 지원자정보 = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
     const { handle지원자정보DataChange } = useInput();
     const { handleNextButtonClick } = useCTAButton();
 

@@ -1,11 +1,10 @@
-import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { useSaveFormMutation } from '@/services/form/mutations';
+import { useFormSetStore, useFormStepSetStore, useFormStore } from '@/store';
 import { ChangeEventHandler } from 'react';
-import { useFormState } from '../form.state';
 
 export const useFormSubmitAction = () => {
-    const { form, setForm } = useFormState();
-    const { setFormStep } = useFormStepState();
+    const [form, setForm] = useFormStore();
+    const setFormStep = useFormStepSetStore();
     const { saveFormMutate } = useSaveFormMutation();
 
     const handleFormSubmitButtonClick = () => {
@@ -17,20 +16,14 @@ export const useFormSubmitAction = () => {
             },
         }));
         setFormStep('초안작성완료');
-        saveFormMutate({
-            ...form,
-            document: {
-                coverLetter: form.document.coverLetter,
-                statementOfPurpose: form.document.statementOfPurpose,
-            },
-        });
+        saveFormMutate();
     };
 
     return { handleFormSubmitButtonClick };
 };
 
 export const useCTAButton = () => {
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useFormStepSetStore();
 
     const handlePreviousButtonClick = () => {
         setFormStep('성적입력');
@@ -40,7 +33,7 @@ export const useCTAButton = () => {
 };
 
 export const useInput = () => {
-    const { setForm } = useFormState();
+    const setForm = useFormSetStore();
 
     const handle자기소개서DataChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
         const { name, value } = e.target;

@@ -1,5 +1,3 @@
-import { useFormState } from '@/app/form/form.state';
-import { useStudentSubjectListState } from '@/app/form/성적입력/성적입력.state';
 import { useFormTypeState } from '@/app/form/전형선택/전형선택.state';
 import {
     DEFAULT_ATTENDANCE_SCORE,
@@ -13,7 +11,9 @@ import {
     MIN_VOLUNTEER_TIME,
     REGULAR_TYPE_DEFAULT_SCORE,
     SPECIAL_TYPE_DEFAULT_SCORE,
+    SUBJECT_LIST_DATA,
 } from '@/constants/service/form';
+import { useFormValueStore, useNewSubjectValueStore } from '@/store';
 import { Attendance, StudentSubject } from '@/types/form/client';
 
 const ACHIEVEMENT_SCORE = {
@@ -25,9 +25,10 @@ const ACHIEVEMENT_SCORE = {
 } as const;
 
 export const useGradeScore = () => {
-    const { subjectList, newSubjectList } = useStudentSubjectListState();
+    const form = useFormValueStore();
+    const newSubjectList = useNewSubjectValueStore();
 
-    const allSubjectList = subjectList.concat(newSubjectList);
+    const allSubjectList = SUBJECT_LIST_DATA.concat(newSubjectList);
 
     const getScoreOf = (achievementLevel: keyof Omit<StudentSubject, 'subjectName'>) => {
         return (
@@ -37,8 +38,6 @@ export const useGradeScore = () => {
             }, 0) / allSubjectList.filter((subject) => subject[achievementLevel] !== null).length
         );
     };
-
-    const { form } = useFormState();
 
     const calculateRegularScore = () => {
         if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
@@ -87,14 +86,11 @@ export const useGradeScore = () => {
     const specialScore =
         formType === 'SPECIAL_ADMISSION' ? calculateRegularScore() : calculateSpecialScore();
 
-    return {
-        regularScore,
-        specialScore,
-    };
+    return { regularScore, specialScore };
 };
 
 export const useAttendanceScore = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
 
     if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
         return { attendanceScore: DEFAULT_ATTENDANCE_SCORE };
@@ -124,7 +120,7 @@ export const useAttendanceScore = () => {
 };
 
 export const useVolunteerScore = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
 
     if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
         return { volunteerScore: DEFAULT_VOLUNTEER_SCORE };
@@ -149,7 +145,7 @@ export const useVolunteerScore = () => {
 };
 
 export const useCertificateScore = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
     let certificateScore = 0;
 
     if (form.grade.certificateList.includes('정보처리기능사, 정보기기운용기능사, 전자계산기기능사'))

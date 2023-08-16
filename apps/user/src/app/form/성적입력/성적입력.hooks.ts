@@ -1,24 +1,22 @@
-import { useFormState } from '../form.state';
-import { useFormStepState } from '@/hooks/state/useFormStepState';
-import { useStudentSubjectListState } from './성적입력.state';
+import { SUBJECT_LIST_DATA } from '@/constants/service/form';
 import { useSaveFormMutation } from '@/services/form/mutations';
+import { useFormSetStore, useFormStepSetStore, useNewSubjectValueStore } from '@/store';
 
 export const useCTAButton = () => {
-    const { subjectList, newSubjectList } = useStudentSubjectListState();
-
-    const { form, setForm } = useFormState();
+    const setForm = useFormSetStore();
+    const setFormStep = useFormStepSetStore();
+    const newSubjectList = useNewSubjectValueStore();
     const { saveFormMutate } = useSaveFormMutation();
-    const { setFormStep } = useFormStepState();
+
+    const studentSubjectList = [...SUBJECT_LIST_DATA, ...newSubjectList].map(
+        ({ id, ...rest }) => rest,
+    );
 
     const handleNextButtonClick = () => {
-        const studentSubjectList = [
-            ...subjectList.map(({ id, ...rest }) => rest),
-            ...newSubjectList.map(({ id, ...rest }) => rest),
-        ];
-
         setForm((prev) => ({
             ...prev,
             grade: {
+                ...prev.grade,
                 subjectList: studentSubjectList,
                 attendance1: prev.grade.attendance1,
                 attendance2: prev.grade.attendance2,
@@ -30,19 +28,7 @@ export const useCTAButton = () => {
             },
         }));
         setFormStep('자기소개서');
-        saveFormMutate({
-            ...form,
-            grade: {
-                subjectList: studentSubjectList,
-                attendance1: form.grade.attendance1,
-                attendance2: form.grade.attendance2,
-                attendance3: form.grade.attendance3,
-                volunteerTime1: form.grade.volunteerTime1,
-                volunteerTime2: form.grade.volunteerTime2,
-                volunteerTime3: form.grade.volunteerTime3,
-                certificateList: form.grade.certificateList,
-            },
-        });
+        saveFormMutate();
     };
 
     const handlePreviousButtonClick = () => {

@@ -4,11 +4,11 @@ import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useInput, useCTAButton } from './보호자정보.hooks';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
-import { useFormState } from '../form.state';
+import { useFormValueStore } from '@/store';
 
 const 보호자정보 = () => {
     const overlay = useOverlay();
-    const { form } = useFormState();
+    const form = useFormValueStore();
     const { handle보호자정보DataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 

@@ -4,11 +4,11 @@ import { ButtonInput, Input, RadioGroup } from '@maru/ui';
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
-import { useFormState } from '../form.state';
+import { useFormValueStore } from '@/store';
 
 const 출신학교및학력 = () => {
     const overlay = useOverlay();
-    const { form } = useFormState();
+    const form = useFormValueStore();
     const { handle출신학교및학력DataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 

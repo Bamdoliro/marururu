@@ -1,13 +1,12 @@
-import { useFormState } from '@/app/form/form.state';
-import { AttendanceInfo } from '@/types/form/client';
+import { useFormStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Column, NumberInput, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
 
 const AttendanceCalculator = () => {
-    const { form, setForm } = useFormState();
+    const [form, setForm] = useFormStore();
 
     const handleAttendanceInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;

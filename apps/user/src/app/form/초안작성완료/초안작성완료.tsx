@@ -1,6 +1,5 @@
 'use client';
 
-import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { AppLayout } from '@/layouts';
 import { useInterval } from '@maru/hooks';
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
@@ -12,11 +11,12 @@ import { useCheckFilledForm, useCTAButton, useSubmitDraftFormAction } from './�
 import { CompleteAlaram, CheckFormComplete, DraftFormConfirm } from '@/components/form';
 import styled from 'styled-components';
 import { useOverlay } from '@toss/use-overlay';
+import { useFormStepSetStore } from '@/store';
 
 const 초안작성완료 = () => {
     const overlay = useOverlay();
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useFormStepSetStore();
     const { handleAgainCheckFormButtonClick } = useCTAButton();
     const {
         applicantFieldCount,

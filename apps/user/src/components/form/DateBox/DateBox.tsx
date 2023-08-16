@@ -1,11 +1,11 @@
-import { useFormState } from '@/app/form/form.state';
+import { useFormStore } from '@/store';
 import { Date } from '@/types/common/client';
 import { formatDate } from '@/utils';
 import { Row, Dropdown } from '@maru/ui';
 import { useEffect, useState } from 'react';
 
 const DateBox = () => {
-    const { form, setForm } = useFormState();
+    const [form, setForm] = useFormStore();
     const [date, setDate] = useState<Date>({
         year: '',
         month: '',

@@ -14,13 +14,10 @@ import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import { useCTAButton } from './성적입력.hooks';
-import { useStudentSubjectListState } from './성적입력.state';
 
 const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
 
 const 성적입력 = () => {
-    const { subjectList, setSubjectList, newSubjectList, setNewSubjectList } =
-        useStudentSubjectListState();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
     const [fieldStep, setFieldStep] = useState('성적 입력');
 

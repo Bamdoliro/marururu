@@ -6,12 +6,12 @@ import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import { useEffect, useRef } from 'react';
-import { useStudentSubjectListState } from '@/app/form/성적입력/성적입력.state';
 import styled from 'styled-components';
+import { useNewSubjectStore } from '@/store';
 
 const GradeCalculator = () => {
-    const { newSubjectList, setNewSubjectList, subjectList, setSubjectList } =
-        useStudentSubjectListState();
+    const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
+    const [subjectList, setSubjectList] = useNewSubjectStore();
     const footerRef = useRef<HTMLDivElement>(null);
 
     const newSubjectIdRef = useRef(0);

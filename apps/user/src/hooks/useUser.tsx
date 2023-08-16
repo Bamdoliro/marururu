@@ -1,18 +1,21 @@
 import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
-import { useUserState } from './state/useUserState';
+import { useFormSetStore, useUserStore } from '@/store';
 import { useEffect } from 'react';
 import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
 import ROUTES from '@/constants/routes';
 import { color } from '@maru/theme';
+import { useSaveFormQuery } from '@/services/form/queries';
 
 const useUser = () => {
     const router = useRouter();
     const pathName = usePathname();
     const overlay = useOverlay();
-    const { user, setUser } = useUserState();
+    const [user, setUser] = useUserStore();
+    const setForm = useFormSetStore();
     const { data: userData, isLoading } = useUserQuery();
+    const { data: saveFormData } = useSaveFormQuery();
 
     useEffect(() => {
         if (userData) setUser(userData);
@@ -48,6 +51,36 @@ const useUser = () => {
             }
         }
     }, [isLoading, router, userData]);
+
+    // 원서 저장 불러오기
+    useEffect(() => {
+        if (saveFormData) {
+            setForm((prev) => ({
+                ...prev,
+                applicant: {
+                    ...prev.applicant,
+                    ...(saveFormData.applicant || {}),
+                },
+                parent: {
+                    ...prev.parent,
+                    ...(saveFormData.parent || {}),
+                },
+                education: {
+                    ...prev.education,
+                    ...(saveFormData.education || {}),
+                },
+                grade: {
+                    ...prev.grade,
+                    ...(saveFormData.grade || {}),
+                },
+                document: {
+                    ...prev.document,
+                    ...(saveFormData.document || {}),
+                },
+                type: saveFormData.type || prev.type,
+            }));
+        }
+    }, [saveFormData]);
 
     return { user, isLogined: !!userData };
 };

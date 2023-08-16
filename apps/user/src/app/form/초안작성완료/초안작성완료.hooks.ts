@@ -1,10 +1,9 @@
-import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { useFormStepSetStore, useFormValueStore } from '@/store';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useEffect, useState } from 'react';
-import { useFormState } from '../form.state';
 
 export const useSubmitDraftFormAction = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
 
     const handleSubmitDraftFormButtonClick = () => {
@@ -15,7 +14,7 @@ export const useSubmitDraftFormAction = () => {
 };
 
 export const useCheckFilledForm = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
     const [isFilledForm, setIsFilledForm] = useState(false);
 
     const [applicantFieldCount, setApplicantFieldCount] = useState(0);
@@ -34,7 +33,7 @@ export const useCheckFilledForm = () => {
         const filledEducationFieldsCount = form.education
             ? Object.values(form.education).filter((value) => !!value).length
             : 0;
-        const filledTypeFieldsCount = form.type !== '' ? 1 : 0;
+        const filledTypeFieldsCount = form.type ? 1 : 0;
         const filledDocumentFieldsCount = form.document
             ? Object.values(form.document).filter((value) => !!value).length
             : 0;
@@ -67,7 +66,7 @@ export const useCheckFilledForm = () => {
 };
 
 export const useCTAButton = () => {
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useFormStepSetStore();
 
     const handleAgainCheckFormButtonClick = () => {
         setFormStep('지원자정보');
