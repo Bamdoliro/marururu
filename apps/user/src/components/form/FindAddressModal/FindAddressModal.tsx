@@ -4,23 +4,24 @@ import { Dispatch, SetStateAction } from 'react';
 import DaumPostcode, { Address } from 'react-daum-postcode';
 import { ParentInfo } from '@/types/form/client';
 import styled from 'styled-components';
+import { useFormState } from '@/app/form/form.state';
 
 interface PropsType {
     isOpen: boolean;
     onClose: () => void;
-    setParentInfo: Dispatch<SetStateAction<ParentInfo>>;
 }
 
-const FindAddressModal = ({ isOpen, onClose, setParentInfo }: PropsType) => {
+const FindAddressModal = ({ isOpen, onClose }: PropsType) => {
+    const { setForm } = useFormState();
     const findAddressModalRef = useOutsideClick(onClose);
 
     const handleCompleteFindAddress = ({ address, zonecode }: Address) => {
-        setParentInfo((prev) => ({ ...prev, address, zoneCode: zonecode }));
+        setForm((prev) => ({ ...prev, parent: { ...prev.parent, address, zoneCode: zonecode } }));
         onClose();
     };
 
     return (
-        <BlurBackground isOpen={isOpen}>
+        <BlurBackground $isOpen={isOpen}>
             <StyledFindAddressModal ref={findAddressModalRef}>
                 <DaumPostcode
                     onComplete={handleCompleteFindAddress}
@@ -33,13 +34,13 @@ const FindAddressModal = ({ isOpen, onClose, setParentInfo }: PropsType) => {
 
 export default FindAddressModal;
 
-const BlurBackground = styled.div<{ isOpen: boolean }>`
-    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
-    align-items: center;
-    justify-content: center;
+const BlurBackground = styled.div<{ $isOpen: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
+    display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
+    align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
