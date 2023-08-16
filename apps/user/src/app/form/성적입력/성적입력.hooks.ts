@@ -1,18 +1,10 @@
 import { useFormState } from '../form.state';
 import { useFormStepState } from '@/hooks/state/useFormStepState';
-import {
-    useStudentSubjectListState,
-    useAttendanceInfoState,
-    useVolunteerInfoState,
-    useCertificateListInfoState,
-} from './성적입력.state';
+import { useStudentSubjectListState } from './성적입력.state';
 import { useSaveFormMutation } from '@/services/form/mutations';
 
 export const useCTAButton = () => {
     const { subjectList, newSubjectList } = useStudentSubjectListState();
-    const { attendanceInfo } = useAttendanceInfoState();
-    const { volunteerInfo } = useVolunteerInfoState();
-    const { certificateListInfo } = useCertificateListInfoState();
 
     const { form, setForm } = useFormState();
     const { saveFormMutate } = useSaveFormMutation();
@@ -28,9 +20,13 @@ export const useCTAButton = () => {
             ...prev,
             grade: {
                 subjectList: studentSubjectList,
-                ...attendanceInfo,
-                ...volunteerInfo,
-                certificateList: certificateListInfo,
+                attendance1: prev.grade.attendance1,
+                attendance2: prev.grade.attendance2,
+                attendance3: prev.grade.attendance3,
+                volunteerTime1: prev.grade.volunteerTime1,
+                volunteerTime2: prev.grade.volunteerTime2,
+                volunteerTime3: prev.grade.volunteerTime3,
+                certificateList: prev.grade.certificateList,
             },
         }));
         setFormStep('자기소개서');
@@ -38,9 +34,13 @@ export const useCTAButton = () => {
             ...form,
             grade: {
                 subjectList: studentSubjectList,
-                ...attendanceInfo,
-                ...volunteerInfo,
-                certificateList: certificateListInfo,
+                attendance1: form.grade.attendance1,
+                attendance2: form.grade.attendance2,
+                attendance3: form.grade.attendance3,
+                volunteerTime1: form.grade.volunteerTime1,
+                volunteerTime2: form.grade.volunteerTime2,
+                volunteerTime3: form.grade.volunteerTime3,
+                certificateList: form.grade.certificateList,
             },
         });
     };

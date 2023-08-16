@@ -5,22 +5,13 @@ import { flex } from '@maru/utils';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useStudentSubjectListState } from '@/app/form/성적입력/성적입력.state';
 import styled from 'styled-components';
 
-interface PropsType {
-    subjectList: Subject[];
-    setSubjectList: Dispatch<SetStateAction<Subject[]>>;
-    newSubjectList: Subject[];
-    setNewSubjectList: Dispatch<SetStateAction<Subject[]>>;
-}
-
-const GradeCalculator = ({
-    subjectList,
-    setSubjectList,
-    newSubjectList,
-    setNewSubjectList,
-}: PropsType) => {
+const GradeCalculator = () => {
+    const { newSubjectList, setNewSubjectList, subjectList, setSubjectList } =
+        useStudentSubjectListState();
     const footerRef = useRef<HTMLDivElement>(null);
 
     const newSubjectIdRef = useRef(0);

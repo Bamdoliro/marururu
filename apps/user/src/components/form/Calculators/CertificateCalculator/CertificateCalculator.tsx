@@ -1,23 +1,30 @@
+import { useFormState } from '@/app/form/form.state';
 import { color, font } from '@maru/theme';
 import { CheckBox, Column, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 import { styled } from 'styled-components';
 
-interface PropsType {
-    certificateListInfo: string[];
-    setCertificateListInfo: Dispatch<SetStateAction<string[]>>;
-}
+const CertificateCalculator = () => {
+    const { form, setForm } = useFormState();
 
-const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: PropsType) => {
     const handleCertificateListInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { checked, value } = e.target;
         if (checked) {
-            setCertificateListInfo([...certificateListInfo, value]);
+            setForm((prev) => ({
+                ...prev,
+                grade: { ...prev.grade, certificateList: [...prev.grade.certificateList, value] },
+            }));
         } else {
-            setCertificateListInfo(
-                certificateListInfo.filter((certificate) => certificate !== value),
-            );
+            setForm((prev) => ({
+                ...prev,
+                grade: {
+                    ...prev.grade,
+                    certificateList: prev.grade.certificateList.filter(
+                        (certificate) => certificate !== value,
+                    ),
+                },
+            }));
         }
     };
 
@@ -73,6 +80,9 @@ const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: 
                                 </Td>
                                 <Td width={80} height={56}>
                                     <CheckBox
+                                        checked={form.grade.certificateList.includes(
+                                            '컴퓨터활용능력 1급',
+                                        )}
                                         value="컴퓨터활용능력 1급"
                                         onChange={handleCertificateListInfoDataChange}
                                     />
@@ -84,6 +94,9 @@ const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: 
                                 </Td>
                                 <Td width={80} height={56}>
                                     <CheckBox
+                                        checked={form.grade.certificateList.includes(
+                                            '컴퓨터활용능력 2급',
+                                        )}
                                         value="컴퓨터활용능력 2급"
                                         onChange={handleCertificateListInfoDataChange}
                                     />
@@ -95,6 +108,9 @@ const CertificateCalculator = ({ certificateListInfo, setCertificateListInfo }: 
                                 </Td>
                                 <Td borderBottomRightRadius={12} width={80} height={56}>
                                     <CheckBox
+                                        checked={form.grade.certificateList.includes(
+                                            '컴퓨터활용능력 3급',
+                                        )}
                                         value="컴퓨터활용능력 3급"
                                         onChange={handleCertificateListInfoDataChange}
                                     />

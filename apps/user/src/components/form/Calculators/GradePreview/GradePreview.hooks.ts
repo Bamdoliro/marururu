@@ -1,11 +1,6 @@
-import {
-    useAttendanceInfoState,
-    useCertificateListInfoState,
-    useStudentSubjectListState,
-    useVolunteerInfoState,
-} from '@/app/form/성적입력/성적입력.state';
+import { useFormState } from '@/app/form/form.state';
+import { useStudentSubjectListState } from '@/app/form/성적입력/성적입력.state';
 import { useFormTypeState } from '@/app/form/전형선택/전형선택.state';
-import { useEducationInfoState } from '@/app/form/출신학교및학력/출신학교및학력.state';
 import {
     DEFAULT_ATTENDANCE_SCORE,
     DEFAULT_VOLUNTEER_SCORE,
@@ -43,12 +38,10 @@ export const useGradeScore = () => {
         );
     };
 
-    const {
-        educationInfo: { graduationType },
-    } = useEducationInfoState();
+    const { form } = useFormState();
 
     const calculateRegularScore = () => {
-        if (graduationType === 'QUALIFICATION_EXAMINATION') {
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
             const score =
                 REGULAR_TYPE_DEFAULT_SCORE +
                 24 *
@@ -68,7 +61,7 @@ export const useGradeScore = () => {
     };
 
     const calculateSpecialScore = () => {
-        if (graduationType === 'QUALIFICATION_EXAMINATION') {
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
             const score =
                 SPECIAL_TYPE_DEFAULT_SCORE +
                 7.2 *
@@ -101,21 +94,17 @@ export const useGradeScore = () => {
 };
 
 export const useAttendanceScore = () => {
-    const { attendanceInfo } = useAttendanceInfoState();
+    const { form } = useFormState();
 
-    const {
-        educationInfo: { graduationType },
-    } = useEducationInfoState();
-
-    if (graduationType === 'QUALIFICATION_EXAMINATION') {
+    if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
         return { attendanceScore: DEFAULT_ATTENDANCE_SCORE };
     }
 
     const getAttendanceCount = (type: keyof Attendance) => {
         return (
-            attendanceInfo.attendance1[type] +
-            attendanceInfo.attendance2[type] +
-            attendanceInfo.attendance3[type]
+            form.grade.attendance1[type] +
+            form.grade.attendance2[type] +
+            form.grade.attendance3[type]
         );
     };
 
@@ -135,19 +124,14 @@ export const useAttendanceScore = () => {
 };
 
 export const useVolunteerScore = () => {
-    const {
-        volunteerInfo: { volunteerTime1, volunteerTime2, volunteerTime3 },
-    } = useVolunteerInfoState();
+    const { form } = useFormState();
 
-    const {
-        educationInfo: { graduationType },
-    } = useEducationInfoState();
-
-    if (graduationType === 'QUALIFICATION_EXAMINATION') {
+    if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
         return { volunteerScore: DEFAULT_VOLUNTEER_SCORE };
     }
 
-    const totalVolunteerTime = volunteerTime1 + volunteerTime2 + volunteerTime3;
+    const totalVolunteerTime =
+        form.grade.volunteerTime1 + form.grade.volunteerTime2 + form.grade.volunteerTime3;
 
     if (totalVolunteerTime < MIN_VOLUNTEER_TIME) {
         return { volunteerScore: MIN_VOLUNTEER_SCORE };
@@ -165,14 +149,14 @@ export const useVolunteerScore = () => {
 };
 
 export const useCertificateScore = () => {
-    const { certificateListInfo } = useCertificateListInfoState();
+    const { form } = useFormState();
     let certificateScore = 0;
 
-    if (certificateListInfo.includes('정보처리기능사, 정보기기운용기능사, 전자계산기기능사'))
+    if (form.grade.certificateList.includes('정보처리기능사, 정보기기운용기능사, 전자계산기기능사'))
         certificateScore += 4;
-    if (certificateListInfo.includes('컴퓨터활용능력 1급')) certificateScore += 3;
-    if (certificateListInfo.includes('컴퓨터활용능력 2급')) certificateScore += 2;
-    if (certificateListInfo.includes('컴퓨터활용능력 3급')) certificateScore += 1;
+    if (form.grade.certificateList.includes('컴퓨터활용능력 1급')) certificateScore += 3;
+    if (form.grade.certificateList.includes('컴퓨터활용능력 2급')) certificateScore += 2;
+    if (form.grade.certificateList.includes('컴퓨터활용능력 3급')) certificateScore += 1;
 
     return { certificateScore };
 };

@@ -1,3 +1,4 @@
+import { useFormState } from '@/app/form/form.state';
 import { AttendanceInfo } from '@/types/form/client';
 import { color, font } from '@maru/theme';
 import { Column, NumberInput, Row, Td, Th } from '@maru/ui';
@@ -5,23 +6,23 @@ import { flex } from '@maru/utils';
 import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 import { styled } from 'styled-components';
 
-interface PropsType {
-    attendanceInfo: AttendanceInfo;
-    setAttendanceInfo: Dispatch<SetStateAction<AttendanceInfo>>;
-}
+const AttendanceCalculator = () => {
+    const { form, setForm } = useFormState();
 
-const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) => {
     const handleAttendanceInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
         const [attendanceName, countName] = name.split('-');
 
-        setAttendanceInfo({
-            ...attendanceInfo,
-            [attendanceName]: {
-                ...attendanceInfo.attendance1,
-                [countName]: Number(value),
+        setForm((prev) => ({
+            ...prev,
+            grade: {
+                ...prev.grade,
+                [attendanceName]: {
+                    ...prev.grade.attendance1,
+                    [countName]: Number(value),
+                },
             },
-        });
+        }));
     };
 
     return (
@@ -55,24 +56,28 @@ const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) 
                         <NumberInput
                             name="attendance1-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance1.absenceCount}
                         />
                     </Td>
                     <Td width="100%" height={56}>
                         <NumberInput
                             name="attendance1-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance1.latenessCount}
                         />
                     </Td>
                     <Td width="100%" height={56}>
                         <NumberInput
                             name="attendance1-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance1.earlyLeaveCount}
                         />
                     </Td>
                     <Td width="100%" height={56}>
                         <NumberInput
                             name="attendance1-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance1.classAbsenceCount}
                         />
                     </Td>
                 </Row>
@@ -84,24 +89,28 @@ const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) 
                         <NumberInput
                             name="attendance2-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance2.absenceCount}
                         />
                     </Td>
                     <Td width="100%" height={56}>
                         <NumberInput
                             name="attendance2-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance2.latenessCount}
                         />
                     </Td>
                     <Td width="100%" height={56}>
                         <NumberInput
                             name="attendance2-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance2.earlyLeaveCount}
                         />
                     </Td>
                     <Td width="100%" height={56}>
                         <NumberInput
                             name="attendance2-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance2.classAbsenceCount}
                         />
                     </Td>
                 </Row>
@@ -113,24 +122,28 @@ const AttendanceCalculator = ({ attendanceInfo, setAttendanceInfo }: PropsType) 
                         <NumberInput
                             name="attendance3-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance3.absenceCount}
                         />
                     </Td>
                     <Td width="100%" height={56}>
                         <NumberInput
                             name="attendance3-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance3.latenessCount}
                         />
                     </Td>
                     <Td width="100%" height={56}>
                         <NumberInput
                             name="attendance3-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance3.earlyLeaveCount}
                         />
                     </Td>
                     <Td borderBottomRightRadius={12} width="100%" height={56}>
                         <NumberInput
                             name="attendance3-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
+                            value={form.grade.attendance3.classAbsenceCount}
                         />
                     </Td>
                 </Row>

@@ -1,3 +1,4 @@
+import { useFormState } from '@/app/form/form.state';
 import { VolunteerInfo } from '@/types/form/client';
 import { color, font } from '@maru/theme';
 import { Column, NumberInput, Row, Td, Th } from '@maru/ui';
@@ -5,15 +6,12 @@ import { flex } from '@maru/utils';
 import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
 import { styled } from 'styled-components';
 
-interface PropsType {
-    volunteerInfo: VolunteerInfo;
-    setVolunteerInfo: Dispatch<SetStateAction<VolunteerInfo>>;
-}
+const VolunteerCalculator = () => {
+    const { form, setForm } = useFormState();
 
-const VolunteerCalculator = ({ volunteerInfo, setVolunteerInfo }: PropsType) => {
     const handleVolunteerInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
-        setVolunteerInfo({ ...volunteerInfo, [name]: +value });
+        setForm((prev) => ({ ...prev, grade: { ...prev.grade, [name]: Number(value) } }));
     };
 
     return (
@@ -38,6 +36,7 @@ const VolunteerCalculator = ({ volunteerInfo, setVolunteerInfo }: PropsType) => 
                         <NumberInput
                             name="volunteerTime1"
                             onChange={handleVolunteerInfoDataChange}
+                            value={form.grade.volunteerTime1}
                         />
                         <Hour>시간</Hour>
                     </Td>
@@ -50,6 +49,7 @@ const VolunteerCalculator = ({ volunteerInfo, setVolunteerInfo }: PropsType) => 
                         <NumberInput
                             name="volunteerTime2"
                             onChange={handleVolunteerInfoDataChange}
+                            value={form.grade.volunteerTime2}
                         />
                         <Hour>시간</Hour>
                     </Td>
@@ -62,6 +62,7 @@ const VolunteerCalculator = ({ volunteerInfo, setVolunteerInfo }: PropsType) => 
                         <NumberInput
                             name="volunteerTime3"
                             onChange={handleVolunteerInfoDataChange}
+                            value={form.grade.volunteerTime3}
                         />
                         <Hour>시간</Hour>
                     </Td>

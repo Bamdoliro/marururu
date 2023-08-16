@@ -7,28 +7,20 @@ import {
     VolunteerCalculator,
 } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { color, font } from '@maru/theme';
+import { color } from '@maru/theme';
 import { UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import { useCTAButton } from './성적입력.hooks';
-import {
-    useAttendanceInfoState,
-    useCertificateListInfoState,
-    useStudentSubjectListState,
-    useVolunteerInfoState,
-} from './성적입력.state';
+import { useStudentSubjectListState } from './성적입력.state';
 
 const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
 
 const 성적입력 = () => {
     const { subjectList, setSubjectList, newSubjectList, setNewSubjectList } =
         useStudentSubjectListState();
-    const { attendanceInfo, setAttendanceInfo } = useAttendanceInfoState();
-    const { volunteerInfo, setVolunteerInfo } = useVolunteerInfoState();
-    const { certificateListInfo, setCertificateListInfo } = useCertificateListInfoState();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
     const [fieldStep, setFieldStep] = useState('성적 입력');
 
@@ -48,41 +40,12 @@ const 성적입력 = () => {
             <SwitchCase
                 value={fieldStep}
                 caseBy={{
-                    성적입력: (
-                        <GradeCalculator
-                            subjectList={subjectList}
-                            setSubjectList={setSubjectList}
-                            newSubjectList={newSubjectList}
-                            setNewSubjectList={setNewSubjectList}
-                        />
-                    ),
-                    출결상황: (
-                        <AttendanceCalculator
-                            attendanceInfo={attendanceInfo}
-                            setAttendanceInfo={setAttendanceInfo}
-                        />
-                    ),
-                    봉사시간: (
-                        <VolunteerCalculator
-                            volunteerInfo={volunteerInfo}
-                            setVolunteerInfo={setVolunteerInfo}
-                        />
-                    ),
-                    자격증: (
-                        <CertificateCalculator
-                            certificateListInfo={certificateListInfo}
-                            setCertificateListInfo={setCertificateListInfo}
-                        />
-                    ),
+                    성적입력: <GradeCalculator />,
+                    출결상황: <AttendanceCalculator />,
+                    봉사시간: <VolunteerCalculator />,
+                    자격증: <CertificateCalculator />,
                 }}
-                defaultComponent={
-                    <GradeCalculator
-                        subjectList={subjectList}
-                        setSubjectList={setSubjectList}
-                        newSubjectList={newSubjectList}
-                        setNewSubjectList={setNewSubjectList}
-                    />
-                }
+                defaultComponent={<GradeCalculator />}
             />
             <FormController
                 onPrevious={handlePreviousButtonClick}
