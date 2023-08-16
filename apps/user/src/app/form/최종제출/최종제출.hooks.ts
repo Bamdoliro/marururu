@@ -4,7 +4,7 @@ import {
 } from '@/services/form/mutations';
 import { useExportFormQuery } from '@/services/form/queries';
 import { ChangeEventHandler, useRef } from 'react';
-import { useFormDocumentState } from '../../../stores/form/최종제출.state';
+import { useFormDocumentState } from '../../../store/form/최종제출.state';
 
 export const useFileUploadButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);

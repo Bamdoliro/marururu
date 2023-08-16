@@ -1,7 +1,7 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { ChangeEventHandler } from 'react';
-import useDocumentInfoState from '../../../stores/form/자기소개서.state';
+import useDocumentInfoState from '../../../store/form/자기소개서.state';
 import { useFormState } from '../form.state';
 
 export const useFormSubmitAction = (coverLetter: string, statementOfPurpose: string) => {

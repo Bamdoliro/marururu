@@ -5,7 +5,7 @@ import {
     useCertificateListInfoState,
     useStudentSubjectListState,
     useVolunteerInfoState,
-} from '../../../stores/form/성적입력.state';
+} from '../../../store/form/성적입력.state';
 import { useFormState } from '../form.state';
 
 export const useCTAButton = () => {

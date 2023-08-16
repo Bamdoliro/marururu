@@ -1,7 +1,7 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { ChangeEventHandler } from 'react';
-import { useUserInfoState } from '../../../stores/form/지원자정보.state';
+import { useUserInfoState } from '../../../store/form/지원자정보.state';
 import { useFormState } from '../form.state';
 
 export const useInput = () => {

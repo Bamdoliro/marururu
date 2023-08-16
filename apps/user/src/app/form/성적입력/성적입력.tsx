@@ -17,7 +17,7 @@ import {
     useCertificateListInfoState,
     useStudentSubjectListState,
     useVolunteerInfoState,
-} from '../../../stores/form/성적입력.state';
+} from '../../../store/form/성적입력.state';
 import { useCTAButton } from './성적입력.hooks';
 
 const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;

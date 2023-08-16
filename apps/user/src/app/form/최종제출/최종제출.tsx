@@ -5,7 +5,7 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
-import { useFormDocumentState } from '../../../stores/form/최종제출.state';
+import { useFormDocumentState } from '../../../store/form/최종제출.state';
 import {
     useExportFormAction,
     useFileUploadButton,

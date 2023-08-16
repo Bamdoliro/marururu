@@ -3,7 +3,7 @@ import { FormLayout } from '@/layouts';
 import { RadioGroup } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
-import { useChoiceFormTypeState } from '../../../stores/form/전형선택.state';
+import { useChoiceFormTypeState } from '../../../store/form/전형선택.state';
 import { useCTAButton, useInput } from './전형선택.hooks';
 
 const 전형선택 = () => {

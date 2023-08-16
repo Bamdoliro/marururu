@@ -1,7 +1,7 @@
 import { useFormStepState } from '@/hooks/state/useFormStepState';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { ChangeEventHandler } from 'react';
-import { useParentInfoState } from '../../../stores/form/보호자정보.state';
+import { useParentInfoState } from '../../../store/form/보호자정보.state';
 import { useFormState } from '../form.state';
 
 export const useInput = () => {

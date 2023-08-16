@@ -16,9 +16,9 @@ import {
     useCertificateListInfoState,
     useStudentSubjectListState,
     useVolunteerInfoState,
-} from '@/stores/form/성적입력.state';
-import { useFormTypeState } from '@/stores/form/전형선택.state';
-import { useEducationInfoState } from '@/stores/form/출신학교및학력.state';
+} from '@/store/form/성적입력.state';
+import { useFormTypeState } from '@/store/form/전형선택.state';
+import { useEducationInfoState } from '@/store/form/출신학교및학력.state';
 import { Attendance, StudentSubject } from '@/types/form/client';
 
 const ACHIEVEMENT_SCORE = {
