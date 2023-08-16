@@ -4,14 +4,15 @@ import { useState, Dispatch, SetStateAction, Suspense } from 'react';
 import { EducationInfo } from '@/types/form/client';
 import SchoolList from './SchoolList/SchoolList';
 import { Loader } from '@/components/common';
+import { useFormState } from '@/app/form/form.state';
 
 interface PropsType {
     isOpen: boolean;
     onClose: () => void;
-    setEducationInfo: Dispatch<SetStateAction<EducationInfo>>;
 }
 
-const FindSchoolModal = ({ isOpen, onClose, setEducationInfo }: PropsType) => {
+const FindSchoolModal = ({ isOpen, onClose }: PropsType) => {
+    const { setForm } = useFormState();
     const [selectedSchool, setSelectedSchool] = useState({ name: '', location: '', code: '' });
     const {
         value: schoolSearchQuery,
@@ -21,11 +22,14 @@ const FindSchoolModal = ({ isOpen, onClose, setEducationInfo }: PropsType) => {
 
     const handleConfirmModalButtonClick = () => {
         const { name, location, code } = selectedSchool;
-        setEducationInfo((prev) => ({
+        setForm((prev) => ({
             ...prev,
-            schoolName: name,
-            schoolLocation: location,
-            schoolCode: code,
+            education: {
+                ...prev.education,
+                schoolName: name,
+                schoolLocation: location,
+                schoolCode: code,
+            },
         }));
         onClose();
     };

@@ -2,20 +2,18 @@ import { FindSchoolModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
-import { useEducationInfoState } from './출신학교및학력.state';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
+import { useFormState } from '../form.state';
 
 const 출신학교및학력 = () => {
     const overlay = useOverlay();
-    const { educationInfo, setEducationInfo } = useEducationInfoState();
-    const { handleEducationInfoDataChange } = useInput();
+    const { form } = useFormState();
+    const { handle출신학교및학력DataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     const openFindSchoolModal = () => {
-        overlay.open(({ isOpen, close }) => (
-            <FindSchoolModal isOpen={isOpen} onClose={close} setEducationInfo={setEducationInfo} />
-        ));
+        overlay.open(({ isOpen, close }) => <FindSchoolModal isOpen={isOpen} onClose={close} />);
     };
 
     return (
@@ -29,14 +27,14 @@ const 출신학교및학력 = () => {
                         { value: 'GRADUATED', label: '졸업' },
                         { value: 'QUALIFICATION_EXAMINATION', label: '고입 검정' },
                     ]}
-                    value={educationInfo.graduationType}
-                    onChange={handleEducationInfoDataChange}
+                    value={form.education.graduationType}
+                    onChange={handle출신학교및학력DataChange}
                 />
                 <div></div>
                 <ButtonInput
                     name="schoolName"
                     label="출신학교"
-                    value={educationInfo.schoolName}
+                    value={form.education.schoolName}
                     buttonText="검색"
                     onClick={openFindSchoolModal}
                     placeholder="클릭하여 검색하기"
@@ -48,13 +46,13 @@ const 출신학교및학력 = () => {
                     label="졸업 년도, 합격 년도"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
-                    value={educationInfo.graduationYear}
-                    onChange={handleEducationInfoDataChange}
+                    value={form.education.graduationYear}
+                    onChange={handle출신학교및학력DataChange}
                 />
                 <ButtonInput
                     name="schoolLocation"
                     label="지역"
-                    value={educationInfo.schoolLocation}
+                    value={form.education.schoolLocation}
                     buttonText="검색"
                     onClick={() => {}}
                     placeholder="도로명 주소"
@@ -65,32 +63,32 @@ const 출신학교및학력 = () => {
                     label="학교 나이스번호"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
-                    value={educationInfo.schoolCode}
-                    onChange={handleEducationInfoDataChange}
+                    value={form.education.schoolCode}
+                    onChange={handle출신학교및학력DataChange}
                 />
                 <Input
                     name="teacherPhoneNumber"
                     label="학교 연락처"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
-                    value={educationInfo.teacherPhoneNumber}
-                    onChange={handleEducationInfoDataChange}
+                    value={form.education.teacherPhoneNumber}
+                    onChange={handle출신학교및학력DataChange}
                 />
                 <Input
                     name="teacherName"
                     label="작성 교사 이름"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
-                    value={educationInfo.teacherName}
-                    onChange={handleEducationInfoDataChange}
+                    value={form.education.teacherName}
+                    onChange={handle출신학교및학력DataChange}
                 />
                 <Input
                     name="teacherMobilePhoneNumber"
                     label="작성 교사 연락처"
                     placeholder="뭐시기 뭐시기"
                     width="100%"
-                    value={educationInfo.teacherMobilePhoneNumber}
-                    onChange={handleEducationInfoDataChange}
+                    value={form.education.teacherMobilePhoneNumber}
+                    onChange={handle출신학교및학력DataChange}
                 />
             </Styled출신학교및학력>
             <FormController
