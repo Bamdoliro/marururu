@@ -4,17 +4,14 @@ import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import { useFormState } from '../form.state';
 import { useCTAButton, useFormSubmitAction, useInput } from './자기소개서.hooks';
-import useDocumentInfoState from './자기소개서.state';
 
 const 자기소개서 = () => {
-    const { documentInfo } = useDocumentInfoState();
-    const { handleDocumentInfoDataChange } = useInput();
+    const { form } = useFormState();
+    const { handle자기소개서DataChange } = useInput();
     const { handlePreviousButtonClick } = useCTAButton();
-    const { handleFormSubmitButtonClick } = useFormSubmitAction(
-        documentInfo.coverLetter,
-        documentInfo.statementOfPurpose,
-    );
+    const { handleFormSubmitButtonClick } = useFormSubmitAction();
 
     return (
         <FormLayout title="자기소개서">
@@ -25,15 +22,15 @@ const 자기소개서 = () => {
                         name="coverLetter"
                         limit={1500}
                         label="자기소개서"
-                        value={documentInfo.coverLetter}
-                        onChange={handleDocumentInfoDataChange}
+                        value={form.document.coverLetter}
+                        onChange={handle자기소개서DataChange}
                     />
                     <Textarea
                         name="statementOfPurpose"
                         limit={1500}
                         label="학업계획서"
-                        value={documentInfo.statementOfPurpose}
-                        onChange={handleDocumentInfoDataChange}
+                        value={form.document.statementOfPurpose}
+                        onChange={handle자기소개서DataChange}
                     />
                 </Column>
             </Styled자기소개서>
