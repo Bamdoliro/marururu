@@ -9,13 +9,13 @@ import {
     useInput,
     useSubmitFinalFormAction,
 } from './최종제출.hooks';
-import { useFormDocumentState } from './최종제출.state';
+import { useFormDocumentValueStore } from '@/store';
 import styled from 'styled-components';
 import { useOverlay } from '@toss/use-overlay';
 
 const 최종제출 = () => {
     const overlay = useOverlay();
-    const { formDocument } = useFormDocumentState();
+    const formDocument = useFormDocumentValueStore();
     const { fileInputRef, handleFileUploadButtonClick } = useFileUploadButton();
     const { handleExportFormButtonClick } = useExportFormAction();
     const { handleSubmitFinalFormButtonClick } = useSubmitFinalFormAction();

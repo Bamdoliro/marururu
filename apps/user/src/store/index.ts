@@ -9,3 +9,8 @@ export {
     useSubjectValueStore,
 } from './form/subject';
 export { useUserStore } from './user/user';
+export {
+    useFormDocumentSetStore,
+    useFormDocumentStore,
+    useFormDocumentValueStore,
+} from './form/document';

@@ -3,8 +3,8 @@ import {
     useUploadFormDocumentMutation,
 } from '@/services/form/mutations';
 import { ChangeEventHandler, useRef } from 'react';
-import { useFormDocumentState } from './최종제출.state';
 import { useExportFormQuery } from '@/services/form/queries';
+import { useFormDocumentSetStore, useFormDocumentValueStore } from '@/store';
 
 export const useFileUploadButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -17,7 +17,7 @@ export const useFileUploadButton = () => {
 };
 
 export const useSubmitFinalFormAction = () => {
-    const { formDocument } = useFormDocumentState();
+    const formDocument = useFormDocumentValueStore();
     const { submitFinalFormMutate } = useSubmitFinalFormMutation(formDocument.formUrl);
 
     const handleSubmitFinalFormButtonClick = () => {
@@ -44,7 +44,7 @@ export const useExportFormAction = () => {
 };
 
 export const useInput = () => {
-    const { setFormDocument } = useFormDocumentState();
+    const setFormDocument = useFormDocumentSetStore();
     const { uploadFormDocumentMutate } = useUploadFormDocumentMutation(setFormDocument);
 
     const handleFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
