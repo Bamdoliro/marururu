@@ -71,7 +71,7 @@ export const useRequestEmailMutation = (email: string) => {
 
 export const useLogoutUserMutation = () => {
     const { mutate: logoutUserMutate, ...restMutation } = useMutation({
-        mutationFn: deleteLogoutUser,
+        mutationFn: () => deleteLogoutUser(),
         onSuccess: () => {
             localStorage.clear();
             window.location.href = ROUTES.MAIN;
