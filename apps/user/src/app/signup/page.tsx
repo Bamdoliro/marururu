@@ -5,6 +5,7 @@ import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Button, ButtonInput, Column, Input, PreviewInput, Text, TimeLimitInput } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { DebounceClick } from '@toss/react';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -40,20 +41,21 @@ const SignUpPage = () => {
                                 placeholder="이름을 입력해주세요."
                                 onChange={handleJoinUserDataChange}
                             />
-                            <ButtonInput
-                                label="이메일 인증"
-                                buttonText="인증"
-                                onClick={() => {
-                                    handleRequestEmailButtonClick();
-                                    startTimer(300); // 5분
-                                }}
-                                type="email"
-                                placeholder="이메일"
-                                width="100%"
-                                name="email"
-                                onChange={handleJoinUserDataChange}
-                                enabled={requestEmailEnabled}
-                            />
+                            <DebounceClick wait={500}>
+                                <ButtonInput
+                                    label="이메일 인증"
+                                    buttonText={requestEmailEnabled ? '재전송' : '인증'}
+                                    onClick={() => {
+                                        handleRequestEmailButtonClick();
+                                        startTimer();
+                                    }}
+                                    type="email"
+                                    placeholder="이메일"
+                                    width="100%"
+                                    name="email"
+                                    onChange={handleJoinUserDataChange}
+                                />
+                            </DebounceClick>
                             {requestEmailEnabled && (
                                 <TimeLimitInput
                                     label="인증코드"

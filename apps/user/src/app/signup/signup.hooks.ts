@@ -30,8 +30,8 @@ export const useTimer = () => {
 
     const requestEmailEnabled = timerTime !== 0;
 
-    const startTimer = (time: number) => {
-        setTimerTime(time);
+    const startTimer = () => {
+        setTimerTime(300); // 5분
     };
 
     return { requestEmailEnabled, startTimer, timerTime, setTimerTime };
