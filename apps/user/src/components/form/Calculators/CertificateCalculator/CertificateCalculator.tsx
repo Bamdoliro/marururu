@@ -15,7 +15,7 @@ const CertificateCalculator = () => {
                 ...prev,
                 grade: {
                     ...prev.grade,
-                    certificateList: [...(prev.grade.certificateList ?? []), value],
+                    certificateList: [...(prev.grade.certificateList ?? []), value.trim()],
                 },
             }));
         } else {
@@ -24,7 +24,7 @@ const CertificateCalculator = () => {
                 grade: {
                     ...prev.grade,
                     certificateList: prev.grade.certificateList.filter(
-                        (certificate) => certificate !== value,
+                        (certificate) => certificate !== value.trim(),
                     ),
                 },
             }));
