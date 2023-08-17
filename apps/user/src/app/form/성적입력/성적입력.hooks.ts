@@ -1,40 +1,27 @@
-import { useFormState } from '../form.state';
-import { useFormStepState } from '@/hooks/state/useFormStepState';
-import {
-    useStudentSubjectListState,
-    useAttendanceInfoState,
-    useVolunteerInfoState,
-    useCertificateListInfoState,
-} from './성적입력.state';
 import { useSaveFormMutation } from '@/services/form/mutations';
+import {
+    useSetFormStore,
+    useSetFormStepStore,
+    useNewSubjectValueStore,
+    useSubjectValueStore,
+} from '@/store';
 
 export const useCTAButton = () => {
-    const { subjectList, newSubjectList } = useStudentSubjectListState();
-    const { attendanceInfo } = useAttendanceInfoState();
-    const { volunteerInfo } = useVolunteerInfoState();
-    const { certificateListInfo } = useCertificateListInfoState();
-
-    const { form, setForm } = useFormState();
+    const setForm = useSetFormStore();
+    const setFormStep = useSetFormStepStore();
+    const newSubjectList = useNewSubjectValueStore();
+    const subjectList = useSubjectValueStore();
     const { saveFormMutate } = useSaveFormMutation();
-    const { setFormStep } = useFormStepState();
+
+    const studentSubjectList = [...subjectList, ...newSubjectList].map(({ id, ...rest }) => rest);
 
     const handleNextButtonClick = () => {
-        const studentSubjectList = [
-            ...subjectList.map(({ id, ...rest }) => rest),
-            ...newSubjectList.map(({ id, ...rest }) => rest),
-        ];
-
         setForm((prev) => ({
             ...prev,
-            grade: {
-                subjectList: studentSubjectList,
-                ...attendanceInfo,
-                ...volunteerInfo,
-                certificateList: certificateListInfo,
-            },
+            grade: { ...prev.grade, subjectList: studentSubjectList },
         }));
         setFormStep('자기소개서');
-        saveFormMutate(form);
+        saveFormMutate();
     };
 
     const handlePreviousButtonClick = () => {

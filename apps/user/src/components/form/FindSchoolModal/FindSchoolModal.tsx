@@ -1,17 +1,17 @@
 import { useDebounceInput } from '@maru/hooks';
 import { Column, Modal, SearchInput } from '@maru/ui';
-import { useState, Dispatch, SetStateAction, Suspense } from 'react';
-import { EducationInfo } from '@/types/form/client';
+import { useState, Suspense } from 'react';
 import SchoolList from './SchoolList/SchoolList';
 import { Loader } from '@/components/common';
+import { useSetFormStore } from '@/store';
 
 interface PropsType {
     isOpen: boolean;
     onClose: () => void;
-    setEducationInfo: Dispatch<SetStateAction<EducationInfo>>;
 }
 
-const FindSchoolModal = ({ isOpen, onClose, setEducationInfo }: PropsType) => {
+const FindSchoolModal = ({ isOpen, onClose }: PropsType) => {
+    const setForm = useSetFormStore();
     const [selectedSchool, setSelectedSchool] = useState({ name: '', location: '', code: '' });
     const {
         value: schoolSearchQuery,
@@ -21,11 +21,14 @@ const FindSchoolModal = ({ isOpen, onClose, setEducationInfo }: PropsType) => {
 
     const handleConfirmModalButtonClick = () => {
         const { name, location, code } = selectedSchool;
-        setEducationInfo((prev) => ({
+        setForm((prev) => ({
             ...prev,
-            schoolName: name,
-            schoolLocation: location,
-            schoolCode: code,
+            education: {
+                ...prev.education,
+                schoolName: name,
+                schoolLocation: location,
+                schoolCode: code,
+            },
         }));
         onClose();
     };

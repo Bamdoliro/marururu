@@ -1,18 +1,23 @@
 import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
-import { useUserState } from './state/useUserState';
+import { useFormValueStore, useSetFormStore, useUserStore } from '@/store';
 import { useEffect } from 'react';
 import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants/common/constant';
 import { color } from '@maru/theme';
+import { useSaveFormQuery } from '@/services/form/queries';
+import { FORM } from '@/constants/form/initial';
 
 const useUser = () => {
     const router = useRouter();
     const pathName = usePathname();
     const overlay = useOverlay();
-    const { user, setUser } = useUserState();
+    const [user, setUser] = useUserStore();
+    const setForm = useSetFormStore();
+    const form = useFormValueStore();
     const { data: userData, isLoading } = useUserQuery();
+    const { data: saveFormData } = useSaveFormQuery();
 
     useEffect(() => {
         if (userData) setUser(userData);
@@ -48,6 +53,24 @@ const useUser = () => {
             }
         }
     }, [isLoading, router, userData, pathName]);
+
+    // 원서 저장 불러오기
+    useEffect(() => {
+        if (saveFormData) {
+            setForm({
+                applicant: saveFormData.applicant || FORM.applicant,
+                parent: saveFormData.parent || FORM.document,
+                education: saveFormData.education || FORM.education,
+                grade: saveFormData.grade || FORM.grade,
+                document: saveFormData.document || FORM.document,
+                type: saveFormData.type || FORM.type,
+            });
+        }
+    }, [saveFormData]);
+
+    useEffect(() => {
+        console.log(form);
+    }, [form]);
 
     return { user, isLogined: !!userData };
 };

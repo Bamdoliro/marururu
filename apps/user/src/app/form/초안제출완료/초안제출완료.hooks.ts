@@ -1,10 +1,10 @@
-import ROUTES from '@/constants/routes';
-import { useFormStepState } from '@/hooks';
+import { ROUTES } from '@/constants/common/constant';
+import { useSetFormStepStore } from '@/store';
 import { useRouter } from 'next/navigation';
 
 export const useCTAButton = () => {
     const router = useRouter();
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useSetFormStepStore();
 
     const handleGoMainPageButtonClick = () => {
         router.push(ROUTES.MAIN);

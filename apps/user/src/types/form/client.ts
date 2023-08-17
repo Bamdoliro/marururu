@@ -16,7 +16,7 @@ export interface Form {
         coverLetter: string;
         statementOfPurpose: string;
     };
-    type: string | null;
+    type: FormType;
 }
 
 export type FormStep =
@@ -36,7 +36,7 @@ export interface UserInfo {
     name: string;
     phoneNumber: string;
     birthday: string;
-    gender: string;
+    gender: 'MALE' | 'FEMALE';
 }
 
 export interface ParentInfo {
@@ -48,7 +48,7 @@ export interface ParentInfo {
 }
 
 export interface EducationInfo {
-    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION' | '';
+    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
     graduationYear: string;
     schoolName: string;
     schoolLocation: string;
@@ -58,7 +58,7 @@ export interface EducationInfo {
     teacherMobilePhoneNumber: string;
 }
 
-export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E' | null;
+export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
 
 export interface StudentSubject {
     subjectName: string;
@@ -73,12 +73,6 @@ export interface Subject {
     achievementLevel21: AchievementLevel;
     achievementLevel22: AchievementLevel;
     achievementLevel31: AchievementLevel;
-}
-
-export interface AttendanceInfo {
-    attendance1: Attendance;
-    attendance2: Attendance;
-    attendance3: Attendance;
 }
 
 export interface Attendance {
@@ -113,8 +107,7 @@ export type FormType =
     | 'MULTICULTURAL'
     | 'TEEN_HOUSEHOLDER'
     | 'MULTI_CHILDREN'
-    | 'FARMING_AND_FISHING'
-    | 'NONE';
+    | 'FARMING_AND_FISHING';
 
 export interface FormDocument {
     fileName: string;

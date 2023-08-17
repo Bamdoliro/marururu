@@ -2,20 +2,18 @@ import { FindAddressModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useInput, useCTAButton } from './보호자정보.hooks';
-import { useParentInfoState } from './보호자정보.state';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
+import { useFormValueStore } from '@/store';
 
 const 보호자정보 = () => {
     const overlay = useOverlay();
-    const { parentInfo, setParentInfo } = useParentInfoState();
-    const { handleParentInfoDataChange } = useInput();
+    const form = useFormValueStore();
+    const { handle보호자정보DataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     const openFindAdressModal = () => {
-        overlay.open(({ isOpen, close }) => (
-            <FindAddressModal isOpen={isOpen} onClose={close} setParentInfo={setParentInfo} />
-        ));
+        overlay.open(({ isOpen, close }) => <FindAddressModal isOpen={isOpen} onClose={close} />);
     };
 
     return (
@@ -25,15 +23,15 @@ const 보호자정보 = () => {
                     <Row gap={48}>
                         <Input
                             name="name"
-                            value={parentInfo.name}
-                            onChange={handleParentInfoDataChange}
+                            value={form.parent.name}
+                            onChange={handle보호자정보DataChange}
                             label="성명"
                             width="100%"
                         />
                         <Input
                             name="phoneNumber"
-                            value={parentInfo.phoneNumber}
-                            onChange={handleParentInfoDataChange}
+                            value={form.parent.phoneNumber}
+                            onChange={handle보호자정보DataChange}
                             label="전화번호"
                             placeholder="- 없이 입력"
                             width="100%"
@@ -44,21 +42,21 @@ const 보호자정보 = () => {
                         buttonText="검색"
                         onClick={openFindAdressModal}
                         width="100%"
-                        value={parentInfo.address}
+                        value={form.parent.address}
                         readOnly
                     />
                     <Row gap={48}>
                         <Input
                             name="detailAddress"
-                            value={parentInfo.detailAddress}
-                            onChange={handleParentInfoDataChange}
+                            value={form.parent.detailAddress}
+                            onChange={handle보호자정보DataChange}
                             label="상세 주소"
                             width="100%"
                         />
                         <Input
                             name="zoneCode"
-                            value={parentInfo.zoneCode}
-                            onChange={handleParentInfoDataChange}
+                            value={form.parent.zoneCode}
+                            onChange={handle보호자정보DataChange}
                             label="우편번호"
                             width="100%"
                             readOnly

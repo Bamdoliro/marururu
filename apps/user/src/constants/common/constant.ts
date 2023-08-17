@@ -1,4 +1,4 @@
-const KEY = {
+export const KEY = {
     NOTICE_LIST: 'useNoticeList',
     NOTICE_DETAIL: 'useNoticeDetail',
     FAQ_CATEGORY_LIST: 'useFaqCategoryListQuery',
@@ -9,4 +9,16 @@ const KEY = {
     USER: 'useUser',
 } as const;
 
-export default KEY;
+export const ROUTES = {
+    MAIN: '/',
+    FAQ: '/faq',
+    FORM: '/form',
+    LOGIN: '/login',
+    NOTICE: '/notice',
+    SIGNUP: '/signup',
+} as const;
+
+export const TOKEN = {
+    ACCESS: 'access-token',
+    REFRESH: 'refresh-token',
+} as const;

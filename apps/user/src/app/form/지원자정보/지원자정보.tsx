@@ -1,64 +1,35 @@
 import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { Column, Dropdown, Input, RadioGroup, Row } from '@maru/ui';
-import styled from 'styled-components';
+import { Column, Input, RadioGroup, Row } from '@maru/ui';
 import { useCTAButton, useInput } from './지원자정보.hooks';
-import { useUserInfoState, useUserInfoDateState } from './지원자정보.state';
+import { DateBox } from '@/components/form';
+import styled from 'styled-components';
+import { useFormValueStore } from '@/store';
 
 const 지원자정보 = () => {
-    const { userInfo, setUserInfo } = useUserInfoState();
-    const { date, setDate } = useUserInfoDateState();
-    const { handleUserInfoDataChange } = useInput();
+    const form = useFormValueStore();
+    const { handle지원자정보DataChange } = useInput();
     const { handleNextButtonClick } = useCTAButton();
 
     return (
         <FormLayout title="지원자 정보">
             <Styled지원자정보>
                 <Row width="100%" justifyContent="space-between">
-                    <ProfileUploader userInfo={userInfo} setUserInfo={setUserInfo} />
+                    <ProfileUploader />
                     <Column gap={30} width={492}>
                         <Input
                             label="성명"
-                            value={userInfo.name}
-                            onChange={handleUserInfoDataChange}
+                            value={form.applicant.name}
+                            onChange={handle지원자정보DataChange}
                             name="name"
                             width="100%"
                         />
-                        <Row gap={16} alignItems="flex-end">
-                            <Dropdown
-                                label="생년월일"
-                                onChange={(data: string, name: string) =>
-                                    setDate((prev) => ({ ...prev, [name]: data }))
-                                }
-                                value={date.year}
-                                name="year"
-                                data={['2006', '2007']}
-                                placeholder="년"
-                            />
-                            <Dropdown
-                                onChange={(data: string, name: string) =>
-                                    setDate((prev) => ({ ...prev, [name]: data }))
-                                }
-                                value={date.month}
-                                name="month"
-                                data={['1']}
-                                placeholder="월"
-                            />
-                            <Dropdown
-                                onChange={(data: string, name: string) =>
-                                    setDate((prev) => ({ ...prev, [name]: data }))
-                                }
-                                value={date.day}
-                                name="day"
-                                data={['2']}
-                                placeholder="일"
-                            />
-                        </Row>
+                        <DateBox />
                         <Row gap={40} alignItems="flex-end">
                             <RadioGroup
                                 label="성별"
-                                value={userInfo.gender}
-                                onChange={handleUserInfoDataChange}
+                                value={form.applicant.gender}
+                                onChange={handle지원자정보DataChange}
                                 name="gender"
                                 list={[
                                     { label: '남자', value: 'MALE' },
@@ -68,8 +39,8 @@ const 지원자정보 = () => {
                         </Row>
                         <Input
                             label="전화번호"
-                            value={userInfo.phoneNumber}
-                            onChange={handleUserInfoDataChange}
+                            value={form.applicant.phoneNumber}
+                            onChange={handle지원자정보DataChange}
                             name="phoneNumber"
                             placeholder="- 없이 입력해주세요"
                             width="100%"

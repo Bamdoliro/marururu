@@ -1,5 +1,4 @@
-import ROUTES from '@/constants/routes';
-import TOKEN from '@/constants/token';
+import { TOKEN, ROUTES } from '@/constants/common/constant';
 import { maru } from '../instance/instance';
 import { Storage } from '../storage/storage';
 

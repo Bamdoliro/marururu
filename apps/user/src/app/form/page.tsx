@@ -9,11 +9,11 @@ import 자기소개서 from './자기소개서/자기소개서';
 import 초안작성완료 from './초안작성완료/초안작성완료';
 import 초안제출완료 from './초안제출완료/초안제출완료';
 import 최종제출 from './최종제출/최종제출';
-import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { useFormStepValueStore } from '@/store';
 import { SwitchCase } from '@toss/react';
 
 const FormPage = () => {
-    const { formStep } = useFormStepState();
+    const formStep = useFormStepValueStore();
 
     return (
         <SwitchCase

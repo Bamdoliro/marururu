@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants/common/constant';
 import { font, color } from '@maru/theme';
 import { flex } from '@maru/utils';
 

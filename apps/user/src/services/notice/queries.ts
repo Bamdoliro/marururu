@@ -1,5 +1,5 @@
 import { getNoticeDetail, getNoticeList } from './api';
-import KEY from '@/constants/key';
+import { KEY } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
 
 export const useNoticeListQuery = () => {

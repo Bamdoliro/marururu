@@ -1,5 +1,4 @@
-import { useFormStepState } from '@/hooks';
-import { FormDocument, UserInfo } from '@/types/form/client';
+import { FormDocument } from '@/types/form/client';
 import { Form } from '@/types/form/client';
 import { Dispatch, SetStateAction } from 'react';
 import { useMutation } from '@tanstack/react-query';
@@ -10,10 +9,11 @@ import {
     postUploadFormDocumnet,
     postUploadProfileImage,
 } from './api';
+import { useSetFormStepStore, useFormValueStore } from '@/store';
 import { Axios, AxiosError, AxiosResponse } from 'axios';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useSetFormStepStore();
 
     const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
         mutationFn: () => postSubmitFinalForm(formUrl),
@@ -30,7 +30,7 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
 };
 
 export const useSubmitDraftFormMutation = (formData: Form) => {
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useSetFormStepStore();
 
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
         mutationFn: () => postSubmitDraftForm(formData),
@@ -47,8 +47,10 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
 };
 
 export const useSaveFormMutation = () => {
+    const form = useFormValueStore();
+
     const { mutate: saveFormMutate, ...restMutation } = useMutation({
-        mutationFn: (formData: Form) => postSaveForm(formData),
+        mutationFn: () => postSaveForm(form),
         onSuccess: (res: AxiosResponse) => {
             console.log(res);
         },
@@ -77,12 +79,15 @@ export const useUploadFormDocumentMutation = (
     return { uploadFormDocumentMutate, ...restMutation };
 };
 
-export const useUploadProfileImageMutation = (setUserInfo: Dispatch<SetStateAction<UserInfo>>) => {
+export const useUploadProfileImageMutation = (setForm: Dispatch<SetStateAction<Form>>) => {
     const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
         mutationFn: (image: FormData) => postUploadProfileImage(image),
         onSuccess: (res: AxiosResponse) => {
             console.log(res);
-            setUserInfo((prev) => ({ ...prev, identificationPictureUri: res.data.url }));
+            setForm((prev) => ({
+                ...prev,
+                applicant: { ...prev.applicant, identificationPictureUri: res.data.url },
+            }));
         },
         onError: (err: AxiosError) => {
             alert(err.message);

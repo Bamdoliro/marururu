@@ -18,14 +18,8 @@ const 전형선택 = () => {
                     label="입학 전형 선택"
                     name="입학전형선택"
                     list={[
-                        {
-                            value: 'REGULAR',
-                            label: '일반전형',
-                        },
-                        {
-                            value: 'SPECIAL',
-                            label: '특별전형',
-                        },
+                        { value: 'REGULAR', label: '일반전형' },
+                        { value: 'SPECIAL', label: '특별전형' },
                     ]}
                     value={choiceFormType.입학전형선택}
                     onChange={handleFormTypeDataChange}
@@ -35,22 +29,10 @@ const 전형선택 = () => {
                         label="특별 전형 선택"
                         name="특별전형선택"
                         list={[
-                            {
-                                value: 'MEISTER_TALENT',
-                                label: '마이스터인재전형',
-                            },
-                            {
-                                value: 'EQUAL_OPPORTUNITY',
-                                label: '기회균등전형',
-                            },
-                            {
-                                value: 'SOCIAL_DIVERSITY',
-                                label: '사회다양성전형',
-                            },
-                            {
-                                value: 'SPECIAL_ADMISSION',
-                                label: '특례입학대상자전형',
-                            },
+                            { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
+                            { value: 'EQUAL_OPPORTUNITY', label: '기회균등전형' },
+                            { value: 'SOCIAL_DIVERSITY', label: '사회다양성전형' },
+                            { value: 'SPECIAL_ADMISSION', label: '특례입학대상자전형' },
                         ]}
                         value={choiceFormType.특별전형선택}
                         onChange={handleFormTypeDataChange}

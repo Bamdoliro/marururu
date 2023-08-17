@@ -1,16 +1,12 @@
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
-import { UserInfo } from '@/types/form/client';
+import { useFormStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { ChangeEventHandler, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
+import { ChangeEventHandler, DragEvent, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
-    userInfo: UserInfo;
-    setUserInfo: Dispatch<SetStateAction<UserInfo>>;
-}
-
-const ProfileUploader = ({ userInfo, setUserInfo }: PropsType) => {
+const ProfileUploader = () => {
+    const [form, setForm] = useFormStore();
     const [isDragging, setIsDragging] = useState(false);
     const imageFileInputRef = useRef<HTMLInputElement>(null);
 
@@ -20,7 +16,7 @@ const ProfileUploader = ({ userInfo, setUserInfo }: PropsType) => {
     };
 
     // Mutation
-    const { uploadProfileImageMutate } = useUploadProfileImageMutation(setUserInfo);
+    const { uploadProfileImageMutate } = useUploadProfileImageMutation(setForm);
     const uploadProfileImageFile = (image: FormData) => {
         uploadProfileImageMutate(image);
     };
@@ -64,8 +60,8 @@ const ProfileUploader = ({ userInfo, setUserInfo }: PropsType) => {
     return (
         <StyledProfileUploader>
             <Title>증명사진</Title>
-            {userInfo.identificationPictureUri ? (
-                <ImagePreview src={userInfo.identificationPictureUri} alt="profile-image" />
+            {form.applicant.identificationPictureUri ? (
+                <ImagePreview src={form.applicant.identificationPictureUri} alt="profile-image" />
             ) : (
                 <ImageUploadBox
                     onDragEnter={onDragEnter}
@@ -82,7 +78,7 @@ const ProfileUploader = ({ userInfo, setUserInfo }: PropsType) => {
                     </Column>
                 </ImageUploadBox>
             )}
-            {userInfo.identificationPictureUri && (
+            {form.applicant.identificationPictureUri && (
                 <Button size="SMALL" onClick={handleImageUploadButtonClick}>
                     재업로드
                 </Button>

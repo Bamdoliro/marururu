@@ -1,10 +1,9 @@
-import { useFormStepState } from '@/hooks/state/useFormStepState';
+import { useSetFormStepStore, useFormValueStore } from '@/store';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useEffect, useState } from 'react';
-import { useFormState } from '../form.state';
 
 export const useSubmitDraftFormAction = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
 
     const handleSubmitDraftFormButtonClick = () => {
@@ -15,7 +14,7 @@ export const useSubmitDraftFormAction = () => {
 };
 
 export const useCheckFilledForm = () => {
-    const { form } = useFormState();
+    const form = useFormValueStore();
     const [isFilledForm, setIsFilledForm] = useState(false);
 
     const [applicantFieldCount, setApplicantFieldCount] = useState(0);
@@ -25,19 +24,20 @@ export const useCheckFilledForm = () => {
     const [documentFieldCount, setDocumentFieldCount] = useState(0);
 
     useEffect(() => {
-        const filledApplicantFieldsCount = form.applicant
-            ? Object.values(form.applicant).filter((value) => !!value).length
-            : 0;
-        const filledParentFieldsCount = form.parent
-            ? Object.values(form.parent).filter((value) => !!value).length
-            : 0;
-        const filledEducationFieldsCount = form.education
-            ? Object.values(form.education).filter((value) => !!value).length
-            : 0;
-        const filledTypeFieldsCount = form.type !== '' ? 1 : 0;
-        const filledDocumentFieldsCount = form.document
-            ? Object.values(form.document).filter((value) => !!value).length
-            : 0;
+        const filledApplicantFieldsCount = Object.values(form.applicant).filter(
+            (value) => !!value,
+        ).length;
+
+        const filledParentFieldsCount = Object.values(form.parent).filter(
+            (value) => !!value,
+        ).length;
+        const filledEducationFieldsCount = Object.values(form.education).filter(
+            (value) => !!value,
+        ).length;
+        const filledTypeFieldsCount = form.type ? 1 : 0;
+        const filledDocumentFieldsCount = Object.values(form.document).filter(
+            (value) => !!value,
+        ).length;
 
         if (
             filledApplicantFieldsCount === 5 &&
@@ -67,7 +67,7 @@ export const useCheckFilledForm = () => {
 };
 
 export const useCTAButton = () => {
-    const { setFormStep } = useFormStepState();
+    const setFormStep = useSetFormStepStore();
 
     const handleAgainCheckFormButtonClick = () => {
         setFormStep('지원자정보');

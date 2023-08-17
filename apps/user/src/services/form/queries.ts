@@ -1,6 +1,5 @@
 import { Storage } from '@/apis/storage/storage';
-import KEY from '@/constants/key';
-import TOKEN from '@/constants/token';
+import { KEY, TOKEN } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
 import { getExportForm, getSaveForm, getSchoolList } from './api';
 

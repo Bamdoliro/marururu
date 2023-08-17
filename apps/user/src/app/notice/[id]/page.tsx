@@ -1,8 +1,8 @@
 'use client';
 
+import { ROUTES } from '@/constants/common/constant';
 import { Loader } from '@/components/common';
 import { NoticeDetailContent } from '@/components/notice';
-import ROUTES from '@/constants/routes';
 import { AppLayout } from '@/layouts';
 import { IconArrowLeft } from '@maru/icon';
 import { color, font } from '@maru/theme';

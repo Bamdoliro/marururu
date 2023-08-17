@@ -1,7 +1,7 @@
 import { PostLoginAuthReq } from '@/types/auth/remote';
 import { useLoginUserMutation } from '@/services/auth/mutations';
 import { useRouter } from 'next/navigation';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants/common/constant';
 import { ChangeEventHandler, useState } from 'react';
 
 export const useLoginAction = (loginUserData: PostLoginAuthReq) => {
