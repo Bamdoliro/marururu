@@ -48,7 +48,7 @@ export interface ParentInfo {
 }
 
 export interface EducationInfo {
-    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION' | '';
+    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
     graduationYear: string;
     schoolName: string;
     schoolLocation: string;
