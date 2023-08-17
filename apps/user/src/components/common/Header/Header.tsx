@@ -36,6 +36,8 @@ const Header = () => {
     const pathName = usePathname();
     const { isLogined } = useUser();
 
+    // console.log('routes', router);
+
     return (
         <StyledHeader>
             <HeaderBar>
@@ -67,14 +69,16 @@ const Header = () => {
                 )}
             </HeaderBar>
             <NavigationBar>
-                {NAVIGATION_DATA.map(({ route, name }, index) => (
-                    <UnderLineButton
-                        key={`navigation ${index}`}
-                        active={route === pathName}
-                        onClick={() => router.push(route)}>
-                        {name}
-                    </UnderLineButton>
-                ))}
+                {NAVIGATION_DATA.map(({ route, name }, index) => {
+                    return (
+                        <UnderLineButton
+                            key={`navigation ${index}`}
+                            active={route === pathName.match(/^\/[^\/]*/s)?.[0]}
+                            onClick={() => router.push(route)}>
+                            {name}
+                        </UnderLineButton>
+                    );
+                })}
             </NavigationBar>
         </StyledHeader>
     );
