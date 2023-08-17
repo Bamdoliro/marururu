@@ -13,7 +13,10 @@ const CertificateCalculator = () => {
         if (checked) {
             setForm((prev) => ({
                 ...prev,
-                grade: { ...prev.grade, certificateList: [...prev.grade.certificateList, value] },
+                grade: {
+                    ...prev.grade,
+                    certificateList: [...(prev.grade.certificateList ?? []), value],
+                },
             }));
         } else {
             setForm((prev) => ({
@@ -80,7 +83,7 @@ const CertificateCalculator = () => {
                                 </Td>
                                 <Td width={80} height={56}>
                                     <CheckBox
-                                        checked={form.grade.certificateList.includes(
+                                        checked={form.grade.certificateList?.includes(
                                             '컴퓨터활용능력 1급',
                                         )}
                                         value="컴퓨터활용능력 1급"
@@ -94,7 +97,7 @@ const CertificateCalculator = () => {
                                 </Td>
                                 <Td width={80} height={56}>
                                     <CheckBox
-                                        checked={form.grade.certificateList.includes(
+                                        checked={form.grade.certificateList?.includes(
                                             '컴퓨터활용능력 2급',
                                         )}
                                         value="컴퓨터활용능력 2급"
@@ -108,7 +111,7 @@ const CertificateCalculator = () => {
                                 </Td>
                                 <Td borderBottomRightRadius={12} width={80} height={56}>
                                     <CheckBox
-                                        checked={form.grade.certificateList.includes(
+                                        checked={form.grade.certificateList?.includes(
                                             '컴퓨터활용능력 3급',
                                         )}
                                         value="컴퓨터활용능력 3급"

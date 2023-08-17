@@ -13,6 +13,7 @@ const GradeCalculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
     const [subjectList, setSubjectList] = useSubjectStore();
     const footerRef = useRef<HTMLDivElement>(null);
+    const isMount = useRef(true);
 
     const newSubjectIdRef = useRef(0);
     const handleAddNewSubjectButtonClick = () => {
@@ -25,8 +26,6 @@ const GradeCalculator = () => {
         };
         setNewSubjectList((prev) => [...prev, newSubject]);
     };
-
-    const isMount = useRef(true);
 
     useEffect(() => {
         if (isMount.current) {

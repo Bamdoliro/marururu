@@ -1,6 +1,6 @@
 import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
-import { useSetFormStore, useUserStore } from '@/store';
+import { useFormValueStore, useSetFormStore, useUserStore } from '@/store';
 import { useEffect } from 'react';
 import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
@@ -15,6 +15,7 @@ const useUser = () => {
     const overlay = useOverlay();
     const [user, setUser] = useUserStore();
     const setForm = useSetFormStore();
+    const form = useFormValueStore();
     const { data: userData, isLoading } = useUserQuery();
     const { data: saveFormData } = useSaveFormQuery();
 
@@ -56,17 +57,20 @@ const useUser = () => {
     // 원서 저장 불러오기
     useEffect(() => {
         if (saveFormData) {
-            setForm((prev) => ({
-                ...prev,
-                applicant: { ...prev.applicant, ...(saveFormData.applicant || FORM.applicant) },
-                parent: { ...prev.parent, ...(saveFormData.parent || FORM.document) },
-                education: { ...prev.education, ...(saveFormData.education || FORM.education) },
-                grade: { ...prev.grade, ...(saveFormData.grade || FORM.grade) },
-                document: { ...prev.document, ...(saveFormData.document || FORM.document) },
+            setForm({
+                applicant: saveFormData.applicant || FORM.applicant,
+                parent: saveFormData.parent || FORM.document,
+                education: saveFormData.education || FORM.education,
+                grade: saveFormData.grade || FORM.grade,
+                document: saveFormData.document || FORM.document,
                 type: saveFormData.type || FORM.type,
-            }));
+            });
         }
     }, [saveFormData]);
+
+    useEffect(() => {
+        console.log(form);
+    }, [form]);
 
     return { user, isLogined: !!userData };
 };

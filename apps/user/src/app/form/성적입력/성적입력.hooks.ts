@@ -18,16 +18,7 @@ export const useCTAButton = () => {
     const handleNextButtonClick = () => {
         setForm((prev) => ({
             ...prev,
-            grade: {
-                subjectList: studentSubjectList,
-                attendance1: prev.grade.attendance1,
-                attendance2: prev.grade.attendance2,
-                attendance3: prev.grade.attendance3,
-                volunteerTime1: prev.grade.volunteerTime1,
-                volunteerTime2: prev.grade.volunteerTime2,
-                volunteerTime3: prev.grade.volunteerTime3,
-                certificateList: prev.grade.certificateList,
-            },
+            grade: { ...prev.grade, subjectList: studentSubjectList },
         }));
         setFormStep('자기소개서');
         saveFormMutate();
