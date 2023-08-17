@@ -1,16 +1,16 @@
 'use client';
 
-import { IconArrowLeft } from '@maru/icon';
 import { ROUTES } from '@/constants/common/constant';
+import { Loader } from '@/components/common';
+import { NoticeDetailContent } from '@/components/notice';
+import { AppLayout } from '@/layouts';
+import { IconArrowLeft } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import { Link } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
-import { Link } from '@maru/ui';
-import { AppLayout } from '@/layouts';
-import styled from 'styled-components';
-import { NoticeDetailContent } from '@/components/notice';
 import { Suspense } from 'react';
-import { Loader } from '@/components/common';
+import styled from 'styled-components';
 
 interface PropsType {
     params: { id: number };
@@ -20,7 +20,7 @@ const NoticeDetailPage = ({ params: { id } }: PropsType) => {
     const router = useRouter();
 
     return (
-        <AppLayout header={true} footer={true} style={{ padding: '0px 207px' }}>
+        <AppLayout header={true} footer={true} style={{ padding: '0px 207px', marginTop: 52 }}>
             <StyledNoticeDetailPage>
                 <Link onClick={() => router.push(ROUTES.NOTICE)} gap="2px">
                     <IconArrowLeft color={color.gray600} width={24} height={24} />

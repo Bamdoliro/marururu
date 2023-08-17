@@ -48,7 +48,7 @@ const Header = () => {
                     alt="logo"
                 />
                 {isLogined ? (
-                    <Profile name="밤돌이로" />
+                    <Profile />
                 ) : (
                     <Row gap="10px" alignItems="center">
                         <Button
@@ -87,7 +87,6 @@ const StyledHeader = styled.div`
     width: 100%;
     height: 126px;
     background-color: ${color.white};
-    margin-bottom: 44px;
     padding: 0px 100px;
     border-bottom: 1px solid ${color.gray200};
 `;

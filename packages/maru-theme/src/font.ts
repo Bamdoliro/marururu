@@ -6,7 +6,7 @@ const fontGenerator = (
     lineHeight: number,
     letterSpacing: number,
 ) => css`
-    font-family: 'Pretendard Variable';
+    font-family: 'Pretendard';
     font-weight: ${weight};
     font-size: ${size}rem;
     line-height: ${lineHeight}%;
@@ -24,17 +24,22 @@ const font = {
     H4: fontGenerator(600, 1.25, 140, 0.15),
     H5: fontGenerator(600, 1.125, 140, 0.15),
 
-    p1: fontGenerator(400, 1.125, 140, 0.15),
-    p2: fontGenerator(400, 1, 160, -0.15),
-    p3: fontGenerator(400, 0.875, 160, -0.1),
+    p1: fontGenerator(400, 1.125, 140, -0.15),
+    p2: fontGenerator(400, 1, 160, 0),
+    p3: fontGenerator(400, 0.875, 160, -0.014),
 
-    btn1: fontGenerator(500, 1.125, 130, 0),
+    btn1: fontGenerator(600, 1.125, 130, 0),
     btn2: fontGenerator(500, 1, 130, 0),
-    btn3: fontGenerator(400, 0.875, 130, 0),
+    btn3: fontGenerator(500, 0.875, 130, 0),
 
     caption: fontGenerator(400, 0.75, 140, 0),
     context: fontGenerator(500, 1, 130, 0),
-    code: fontGenerator(400, 1, 130, 0),
+    code: css`
+        font-family: 'IBM Plex Mono';
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 130%;
+    `,
 };
 
 export default font;

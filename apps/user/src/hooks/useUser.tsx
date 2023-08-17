@@ -52,7 +52,7 @@ const useUser = () => {
                 ));
             }
         }
-    }, [isLoading, router, userData]);
+    }, [isLoading, router, userData, pathName]);
 
     // 원서 저장 불러오기
     useEffect(() => {

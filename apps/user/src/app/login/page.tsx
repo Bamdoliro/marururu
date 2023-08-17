@@ -1,13 +1,13 @@
 'use client';
 
-import Image from 'next/image';
-import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 import { AppLayout } from '@/layouts';
-import { Button, Column, Input, PreviewInput } from '@maru/ui';
-import { color, font } from '@maru/theme';
-import { flex } from '@maru/utils';
 import { IconArrowRight } from '@maru/icon';
+import { color, font } from '@maru/theme';
+import { Button, Column, Input, PreviewInput } from '@maru/ui';
+import { flex } from '@maru/utils';
+import Image from 'next/image';
 import styled from 'styled-components';
+import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 
 const LoginPage = () => {
     const { handleGoSingUpPageButtonClick } = useCTAButton();
@@ -63,7 +63,7 @@ export default LoginPage;
 const StyledLoginPage = styled.div`
     ${flex({ justifyContent: 'center' })}
     width: 100%;
-    height: 100%;
+    height: 100vh;
 `;
 
 const LoginBox = styled.div`
