@@ -8,7 +8,7 @@ interface PropsType {
     label: string;
     list: { value?: string; label: string }[] | string[];
     name: string;
-    value?: string;
+    value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
