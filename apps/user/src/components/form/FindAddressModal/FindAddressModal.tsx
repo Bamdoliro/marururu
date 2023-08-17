@@ -1,6 +1,6 @@
 import { useOutsideClick } from '@maru/hooks';
 import DaumPostcode, { Address } from 'react-daum-postcode';
-import { useFormSetStore } from '@/store';
+import { useSetFormStore } from '@/store';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -9,7 +9,7 @@ interface PropsType {
 }
 
 const FindAddressModal = ({ isOpen, onClose }: PropsType) => {
-    const setForm = useFormSetStore();
+    const setForm = useSetFormStore();
     const findAddressModalRef = useOutsideClick(onClose);
 
     const handleCompleteFindAddress = ({ address, zonecode }: Address) => {

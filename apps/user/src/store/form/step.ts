@@ -7,5 +7,5 @@ const formStepAtomState = atom<FormStep>({
 });
 
 export const useFormStepStore = () => useRecoilState(formStepAtomState);
-export const useFormStepSetStore = () => useSetRecoilState(formStepAtomState);
+export const useSetFormStepStore = () => useSetRecoilState(formStepAtomState);
 export const useFormStepValueStore = () => useRecoilValue(formStepAtomState);

@@ -1,6 +1,6 @@
 import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
-import { useFormSetStore, useUserStore } from '@/store';
+import { useSetFormStore, useUserStore } from '@/store';
 import { useEffect } from 'react';
 import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
@@ -14,7 +14,7 @@ const useUser = () => {
     const pathName = usePathname();
     const overlay = useOverlay();
     const [user, setUser] = useUserStore();
-    const setForm = useFormSetStore();
+    const setForm = useSetFormStore();
     const { data: userData, isLoading } = useUserQuery();
     const { data: saveFormData } = useSaveFormQuery();
 

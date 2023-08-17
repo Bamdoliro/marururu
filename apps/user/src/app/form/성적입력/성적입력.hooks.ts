@@ -1,14 +1,14 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
 import {
-    useFormSetStore,
-    useFormStepSetStore,
+    useSetFormStore,
+    useSetFormStepStore,
     useNewSubjectValueStore,
     useSubjectValueStore,
 } from '@/store';
 
 export const useCTAButton = () => {
-    const setForm = useFormSetStore();
-    const setFormStep = useFormStepSetStore();
+    const setForm = useSetFormStore();
+    const setFormStep = useSetFormStepStore();
     const newSubjectList = useNewSubjectValueStore();
     const subjectList = useSubjectValueStore();
     const { saveFormMutate } = useSaveFormMutation();

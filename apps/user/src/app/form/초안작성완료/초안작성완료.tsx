@@ -11,12 +11,12 @@ import { useCheckFilledForm, useCTAButton, useSubmitDraftFormAction } from './�
 import { CompleteAlaram, CheckFormComplete, DraftFormConfirm } from '@/components/form';
 import styled from 'styled-components';
 import { useOverlay } from '@toss/use-overlay';
-import { useFormStepSetStore } from '@/store';
+import { useSetFormStepStore } from '@/store';
 
 const 초안작성완료 = () => {
     const overlay = useOverlay();
     const [isShowCompleteAlaram, setIsShowCompleteAlaram] = useState(true);
-    const setFormStep = useFormStepSetStore();
+    const setFormStep = useSetFormStepStore();
     const { handleAgainCheckFormButtonClick } = useCTAButton();
     const {
         applicantFieldCount,

@@ -11,4 +11,4 @@ const formDocumentAtomState = atom<FormDocument>({
 
 export const useFormDocumentStore = () => useRecoilState(formDocumentAtomState);
 export const useFormDocumentValueStore = () => useRecoilValue(formDocumentAtomState);
-export const useFormDocumentSetStore = () => useSetRecoilState(formDocumentAtomState);
+export const useSetFormDocumentStore = () => useSetRecoilState(formDocumentAtomState);

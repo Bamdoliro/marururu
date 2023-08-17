@@ -1,5 +1,5 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useFormStepSetStore, useFormStore } from '@/store';
+import { useSetFormStepStore, useFormValueStore } from '@/store';
 import { FormType } from '@/types/form/client';
 import { ChangeEventHandler } from 'react';
 import { useChoiceFormTypeState, useFormTypeState } from './전형선택.state';
@@ -43,8 +43,8 @@ export const useInput = () => {
 
 export const useCTAButton = () => {
     const { formType } = useFormTypeState();
-    const [form, setForm] = useFormStore();
-    const setFormStep = useFormStepSetStore();
+    const form = useFormValueStore();
+    const setFormStep = useSetFormStepStore();
     const { saveFormMutate } = useSaveFormMutation();
 
     const handleNextButtonClick = () => {

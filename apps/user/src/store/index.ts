@@ -1,16 +1,16 @@
-export { useFormStore, useFormSetStore, useFormValueStore } from './form/form';
-export { useFormStepStore, useFormStepSetStore, useFormStepValueStore } from './form/step';
+export { useFormStore, useSetFormStore, useFormValueStore } from './form/form';
+export { useFormStepStore, useSetFormStepStore, useFormStepValueStore } from './form/step';
 export {
     useNewSubjectStore,
-    useNewSubjectSetStore,
+    useSetNewSubjectStore,
     useNewSubjectValueStore,
     useSubjectStore,
-    useSubjectSetStore,
+    useSetSubjectStore,
     useSubjectValueStore,
 } from './form/subject';
 export { useUserStore } from './user/user';
 export {
-    useFormDocumentSetStore,
+    useSetFormDocumentStore,
     useFormDocumentStore,
     useFormDocumentValueStore,
 } from './form/document';

@@ -4,7 +4,7 @@ import {
 } from '@/services/form/mutations';
 import { ChangeEventHandler, useRef } from 'react';
 import { useExportFormQuery } from '@/services/form/queries';
-import { useFormDocumentSetStore, useFormDocumentValueStore } from '@/store';
+import { useSetFormDocumentStore, useFormDocumentValueStore } from '@/store';
 
 export const useFileUploadButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -44,7 +44,7 @@ export const useExportFormAction = () => {
 };
 
 export const useInput = () => {
-    const setFormDocument = useFormDocumentSetStore();
+    const setFormDocument = useSetFormDocumentStore();
     const { uploadFormDocumentMutate } = useUploadFormDocumentMutation(setFormDocument);
 
     const handleFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {

@@ -9,10 +9,10 @@ import {
     postUploadFormDocumnet,
     postUploadProfileImage,
 } from './api';
-import { useFormStepSetStore, useFormValueStore } from '@/store';
+import { useSetFormStepStore, useFormValueStore } from '@/store';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
-    const setFormStep = useFormStepSetStore();
+    const setFormStep = useSetFormStepStore();
 
     const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
         mutationFn: () => postSubmitFinalForm(formUrl),
@@ -31,7 +31,7 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
 };
 
 export const useSubmitDraftFormMutation = (formData: Form) => {
-    const setFormStep = useFormStepSetStore();
+    const setFormStep = useSetFormStepStore();
 
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
         mutationFn: () => postSubmitDraftForm(formData),

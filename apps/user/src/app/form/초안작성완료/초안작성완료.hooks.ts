@@ -1,4 +1,4 @@
-import { useFormStepSetStore, useFormValueStore } from '@/store';
+import { useSetFormStepStore, useFormValueStore } from '@/store';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useEffect, useState } from 'react';
 
@@ -67,7 +67,7 @@ export const useCheckFilledForm = () => {
 };
 
 export const useCTAButton = () => {
-    const setFormStep = useFormStepSetStore();
+    const setFormStep = useSetFormStepStore();
 
     const handleAgainCheckFormButtonClick = () => {
         setFormStep('지원자정보');

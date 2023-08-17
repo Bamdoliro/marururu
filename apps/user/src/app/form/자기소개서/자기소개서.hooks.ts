@@ -1,10 +1,10 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useFormSetStore, useFormStepSetStore, useFormStore } from '@/store';
+import { useSetFormStore, useSetFormStepStore, useFormStore } from '@/store';
 import { ChangeEventHandler } from 'react';
 
 export const useFormSubmitAction = () => {
     const [form, setForm] = useFormStore();
-    const setFormStep = useFormStepSetStore();
+    const setFormStep = useSetFormStepStore();
     const { saveFormMutate } = useSaveFormMutation();
 
     const handleFormSubmitButtonClick = () => {
@@ -23,7 +23,7 @@ export const useFormSubmitAction = () => {
 };
 
 export const useCTAButton = () => {
-    const setFormStep = useFormStepSetStore();
+    const setFormStep = useSetFormStepStore();
 
     const handlePreviousButtonClick = () => {
         setFormStep('성적입력');
@@ -33,7 +33,7 @@ export const useCTAButton = () => {
 };
 
 export const useInput = () => {
-    const setForm = useFormSetStore();
+    const setForm = useSetFormStore();
 
     const handle자기소개서DataChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
         const { name, value } = e.target;

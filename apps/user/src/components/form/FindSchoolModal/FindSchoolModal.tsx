@@ -3,7 +3,7 @@ import { Column, Modal, SearchInput } from '@maru/ui';
 import { useState, Suspense } from 'react';
 import SchoolList from './SchoolList/SchoolList';
 import { Loader } from '@/components/common';
-import { useFormSetStore } from '@/store';
+import { useSetFormStore } from '@/store';
 
 interface PropsType {
     isOpen: boolean;
@@ -11,7 +11,7 @@ interface PropsType {
 }
 
 const FindSchoolModal = ({ isOpen, onClose }: PropsType) => {
-    const setForm = useFormSetStore();
+    const setForm = useSetFormStore();
     const [selectedSchool, setSelectedSchool] = useState({ name: '', location: '', code: '' });
     const {
         value: schoolSearchQuery,
