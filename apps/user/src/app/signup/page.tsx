@@ -41,7 +41,7 @@ const SignUpPage = () => {
                                 placeholder="이름을 입력해주세요."
                                 onChange={handleJoinUserDataChange}
                             />
-                            <DebounceClick wait={3000}>
+                            <DebounceClick wait={5000}>
                                 <ButtonInput
                                     label="이메일 인증"
                                     buttonText={requestEmailEnabled ? '재전송' : '인증'}
