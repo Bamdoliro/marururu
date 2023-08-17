@@ -58,26 +58,11 @@ const useUser = () => {
         if (saveFormData) {
             setForm((prev) => ({
                 ...prev,
-                applicant: {
-                    ...prev.applicant,
-                    ...(saveFormData.applicant || FORM.applicant),
-                },
-                parent: {
-                    ...prev.parent,
-                    ...(saveFormData.parent || FORM.document),
-                },
-                education: {
-                    ...prev.education,
-                    ...(saveFormData.education || FORM.education),
-                },
-                grade: {
-                    ...prev.grade,
-                    ...(saveFormData.grade || FORM.grade),
-                },
-                document: {
-                    ...prev.document,
-                    ...(saveFormData.document || FORM.document),
-                },
+                applicant: { ...prev.applicant, ...(saveFormData.applicant || FORM.applicant) },
+                parent: { ...prev.parent, ...(saveFormData.parent || FORM.document) },
+                education: { ...prev.education, ...(saveFormData.education || FORM.education) },
+                grade: { ...prev.grade, ...(saveFormData.grade || FORM.grade) },
+                document: { ...prev.document, ...(saveFormData.document || FORM.document) },
                 type: saveFormData.type || FORM.type,
             }));
         }
