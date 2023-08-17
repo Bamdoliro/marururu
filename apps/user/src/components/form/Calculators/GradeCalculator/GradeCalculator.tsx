@@ -7,11 +7,11 @@ import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorI
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { useNewSubjectStore } from '@/store';
+import { useNewSubjectStore, useSubjectStore } from '@/store';
 
 const GradeCalculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
-    const [subjectList, setSubjectList] = useNewSubjectStore();
+    const [subjectList, setSubjectList] = useSubjectStore();
     const footerRef = useRef<HTMLDivElement>(null);
 
     const newSubjectIdRef = useRef(0);

@@ -1,7 +1,6 @@
 import { Storage } from '@/apis/storage/storage';
 import { useMutation } from '@tanstack/react-query';
-import TOKEN from '@/constants/token';
-import ROUTES from '@/constants/routes';
+import { TOKEN, ROUTES } from '@/constants/common/constant';
 import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 import { axiosErrorTemplate } from '@maru/utils';
 import { useRouter } from 'next/navigation';

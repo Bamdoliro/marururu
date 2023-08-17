@@ -1,7 +1,7 @@
 'use client';
 
 import { IconArrowLeft } from '@maru/icon';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants/common/constant';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';

@@ -1,4 +1,4 @@
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants/common/constant';
 import { useRouter } from 'next/navigation';
 import { IconArrowRight } from '@maru/icon';
 import { Column } from '@maru/ui';

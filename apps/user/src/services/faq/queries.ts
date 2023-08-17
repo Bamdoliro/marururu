@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import KEY from '@/constants/key';
+import { KEY } from '@/constants/common/constant';
 import { getFaqList } from './api';
 
 export const useFaqListQuery = (category: string) => {

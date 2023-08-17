@@ -11,7 +11,7 @@ import {
     MIN_VOLUNTEER_TIME,
     REGULAR_TYPE_DEFAULT_SCORE,
     SPECIAL_TYPE_DEFAULT_SCORE,
-} from '@/constants/service/form';
+} from '@/constants/form/constant';
 import { useFormValueStore, useNewSubjectValueStore, useSubjectValueStore } from '@/store';
 import { Attendance, StudentSubject } from '@/types/form/client';
 

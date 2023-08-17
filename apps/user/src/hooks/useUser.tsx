@@ -4,9 +4,10 @@ import { useFormSetStore, useUserStore } from '@/store';
 import { useEffect } from 'react';
 import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants/common/constant';
 import { color } from '@maru/theme';
 import { useSaveFormQuery } from '@/services/form/queries';
+import { FORM } from '@/constants/form/initial';
 
 const useUser = () => {
     const router = useRouter();
@@ -59,25 +60,25 @@ const useUser = () => {
                 ...prev,
                 applicant: {
                     ...prev.applicant,
-                    ...(saveFormData.applicant || {}),
+                    ...(saveFormData.applicant || FORM.applicant),
                 },
                 parent: {
                     ...prev.parent,
-                    ...(saveFormData.parent || {}),
+                    ...(saveFormData.parent || FORM.document),
                 },
                 education: {
                     ...prev.education,
-                    ...(saveFormData.education || {}),
+                    ...(saveFormData.education || FORM.education),
                 },
                 grade: {
                     ...prev.grade,
-                    ...(saveFormData.grade || {}),
+                    ...(saveFormData.grade || FORM.grade),
                 },
                 document: {
                     ...prev.document,
-                    ...(saveFormData.document || {}),
+                    ...(saveFormData.document || FORM.document),
                 },
-                type: saveFormData.type || prev.type,
+                type: saveFormData.type || FORM.type,
             }));
         }
     }, [saveFormData]);

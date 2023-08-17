@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants/common/constant';
 import { font, color } from '@maru/theme';
 import { IconFaq } from '@maru/icon';
 import { styled } from 'styled-components';

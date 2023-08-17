@@ -1,4 +1,4 @@
-import ROUTES from '@/constants/routes';
+import { ROUTES } from '@/constants/common/constant';
 import useUser from '@/hooks/useUser';
 import { color } from '@maru/theme';
 import { Button, Row, UnderLineButton } from '@maru/ui';
