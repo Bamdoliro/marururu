@@ -30,8 +30,7 @@ const ProgressBar = () => {
                 <Circle
                     key={`progress ${index}`}
                     name={item}
-                    $active={formStep === PROGRESS_BAR_DATA[index]}
-                    onClick={() => setFormStep(PROGRESS_BAR_DATA[index])}>
+                    $active={formStep === PROGRESS_BAR_DATA[index]}>
                     {index + 1}
                 </Circle>
             ))}
@@ -68,7 +67,6 @@ const Circle = styled.div<{ $active: boolean; name: string }>`
     width: 44px;
     height: 44px;
     border: 2px solid ${(props) => (props.$active ? color.maruDefault : color.gray300)};
-    cursor: pointer;
     &::after {
         ${font.context}
         color: ${(props) => (props.$active ? color.maruDefault : color.gray600)};
