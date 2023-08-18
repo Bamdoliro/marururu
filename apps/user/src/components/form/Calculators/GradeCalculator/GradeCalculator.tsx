@@ -15,10 +15,6 @@ const GradeCalculator = () => {
     const footerRef = useRef<HTMLDivElement>(null);
     const isMount = useRef(true);
 
-    useEffect(() => {
-        console.log(newSubjectList);
-    }, [newSubjectList]);
-
     const newSubjectIdRef = useRef(newSubjectList.length);
     const handleAddNewSubjectButtonClick = () => {
         const newSubject: Subject = {
