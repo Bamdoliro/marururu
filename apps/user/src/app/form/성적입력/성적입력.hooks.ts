@@ -16,11 +16,6 @@ export const useCTAButton = () => {
     const studentSubjectList = [...subjectList, ...newSubjectList].map(({ id, ...rest }) => rest);
 
     const handleNextButtonClick = () => {
-        console.log(studentSubjectList);
-        setForm((prev) => ({
-            ...prev,
-            grade: { ...prev.grade, subjectList: studentSubjectList },
-        }));
         setFormStep('자기소개서');
         saveFormMutate({ ...form, grade: { ...form.grade, subjectList: studentSubjectList } });
     };

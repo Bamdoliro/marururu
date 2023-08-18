@@ -39,6 +39,8 @@ export const useFormStatusQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.FORM_STATUS],
         queryFn: () => getFormStatus(),
+        suspense: false,
+        retry: 1,
     });
 
     return { data: data?.data, ...restQuery };

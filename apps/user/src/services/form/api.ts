@@ -48,6 +48,6 @@ export const getSchoolList = async (school: string) => {
 };
 
 export const getFormStatus = async () => {
-    const { data } = await maru.get<GetFormStatusRes>('/form/satus', authorization());
+    const { data } = await maru.get<GetFormStatusRes>('/form/status', authorization());
     return data;
 };
