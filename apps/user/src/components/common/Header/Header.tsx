@@ -73,7 +73,7 @@ const Header = () => {
                     return (
                         <UnderLineButton
                             key={`navigation ${index}`}
-                            active={route === pathName.match(/^\/[^\/]*/s)?.[0]}
+                            active={route === pathName}
                             onClick={() => router.push(route)}>
                             {name}
                         </UnderLineButton>
