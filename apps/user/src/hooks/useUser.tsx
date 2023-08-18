@@ -1,6 +1,12 @@
 import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
-import { useFormValueStore, useSetFormStore, useUserStore } from '@/store';
+import {
+    useFormValueStore,
+    useSetFormStore,
+    useSetNewSubjectStore,
+    useSetSubjectStore,
+    useUserStore,
+} from '@/store';
 import { useEffect } from 'react';
 import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
@@ -15,6 +21,8 @@ const useUser = () => {
     const overlay = useOverlay();
     const [user, setUser] = useUserStore();
     const setForm = useSetFormStore();
+    const setSubjectList = useSetSubjectStore();
+    const setNewtSubjectList = useSetNewSubjectStore();
     const form = useFormValueStore();
     const { data: userData, isLoading } = useUserQuery();
     const { data: saveFormData } = useSaveFormQuery();
@@ -66,6 +74,20 @@ const useUser = () => {
                 document: saveFormData.document || FORM.document,
                 type: saveFormData.type || FORM.type,
             });
+            if (saveFormData.grade.subjectList) {
+                setSubjectList(
+                    saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
+                        ...subject,
+                        id: index,
+                    })),
+                );
+                setNewtSubjectList(
+                    saveFormData.grade.subjectList.slice(12).map((subject, index) => ({
+                        ...subject,
+                        id: index,
+                    })),
+                );
+            }
         }
     }, [saveFormData]);
 
