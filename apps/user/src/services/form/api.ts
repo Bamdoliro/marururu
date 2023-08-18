@@ -1,7 +1,7 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
 import { Form } from '@/types/form/client';
-import { GetSchoolListRes, GetSaveFormRes } from '@/types/form/remote';
+import { GetSchoolListRes, GetSaveFormRes, GetFormStatusRes } from '@/types/form/remote';
 
 export const postSubmitFinalForm = async (formUrl: string) => {
     const { data } = await maru.patch('/form', formUrl, authorization());
@@ -44,5 +44,10 @@ export const postUploadProfileImage = async (image: FormData) => {
 
 export const getSchoolList = async (school: string) => {
     const { data } = await maru.get<GetSchoolListRes>(`/school?q=${school}`);
+    return data;
+};
+
+export const getFormStatus = async () => {
+    const { data } = await maru.get<GetFormStatusRes>('/form/satus', authorization());
     return data;
 };

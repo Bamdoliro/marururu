@@ -14,11 +14,11 @@ const Home = () => {
     return (
         <AppLayout header footer style={{ padding: '0px 100px', marginTop: 52 }}>
             <StyledMainPage>
-                <Row gap="48px" height="450px" width="100%" justifyContent="center">
+                <Row gap={48} width="100%" height={450} justifyContent="center">
                     <Dday />
                     <Schedule />
                 </Row>
-                <Row gap="48px" width="100%" height="242px" justifyContent="center">
+                <Row gap={48} width="100%" height={242} justifyContent="center">
                     <Notice />
                     <Faq />
                 </Row>
