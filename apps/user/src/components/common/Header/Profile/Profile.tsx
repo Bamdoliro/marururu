@@ -1,12 +1,15 @@
+import { ROUTES } from '@/constants/common/constant';
 import useUser from '@/hooks/useUser';
 import { useLogoutUserMutation } from '@/services/auth/mutations';
 import { useBoolean, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 const Profile = () => {
+    const router = useRouter();
     const { user } = useUser();
     const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBoolean();
     const { logoutUserMutate } = useLogoutUserMutation();
@@ -14,6 +17,10 @@ const Profile = () => {
 
     const handleLogoutButtonClick = () => {
         logoutUserMutate();
+    };
+
+    const handleGoFormPageButtonClick = () => {
+        router.push(ROUTES.FORM);
     };
 
     return (
@@ -27,10 +34,12 @@ const Profile = () => {
                     <MenuList>
                         <NameMenu>
                             <Name>{user.name}</Name>
-                            <NickName>@{user.email.split('@')[0]}</NickName>
+                            <Email>@{user.email.split('@')[0]}</Email>
                         </NameMenu>
                         <MenuItem>프로필</MenuItem>
-                        <MenuItem>이어서 원서 작성하기</MenuItem>
+                        <MenuItem onClick={handleGoFormPageButtonClick}>
+                            이어서 원서 작성하기
+                        </MenuItem>
                         <MenuItem onClick={handleLogoutButtonClick}>로그아웃</MenuItem>
                     </MenuList>
                 </MenuListBox>
@@ -85,7 +94,7 @@ const NameMenu = styled.div`
     border-bottom: 1px solid ${color.gray200};
 `;
 
-const NickName = styled.p`
+const Email = styled.p`
     ${font.p3}
     color: ${color.gray600};
 `;
