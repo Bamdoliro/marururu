@@ -15,7 +15,7 @@ const GradeCalculator = () => {
     const footerRef = useRef<HTMLDivElement>(null);
     const isMount = useRef(true);
 
-    const newSubjectIdRef = useRef(0);
+    const newSubjectIdRef = useRef(newSubjectList.length);
     const handleAddNewSubjectButtonClick = () => {
         const newSubject: Subject = {
             id: newSubjectIdRef.current++,

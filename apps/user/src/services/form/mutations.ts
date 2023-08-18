@@ -47,10 +47,8 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
 };
 
 export const useSaveFormMutation = () => {
-    const form = useFormValueStore();
-
     const { mutate: saveFormMutate, ...restMutation } = useMutation({
-        mutationFn: () => postSaveForm(form),
+        mutationFn: (form: Form) => postSaveForm(form),
         onSuccess: (res: AxiosResponse) => {
             console.log(res);
         },

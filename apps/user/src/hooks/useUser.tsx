@@ -1,6 +1,6 @@
 import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
-import { useFormValueStore, useSetFormStore, useUserStore } from '@/store';
+import { useSetFormStore, useSetNewSubjectStore, useSetSubjectStore, useUserStore } from '@/store';
 import { useEffect } from 'react';
 import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
@@ -15,7 +15,8 @@ const useUser = () => {
     const overlay = useOverlay();
     const [user, setUser] = useUserStore();
     const setForm = useSetFormStore();
-    const form = useFormValueStore();
+    const setSubjectList = useSetSubjectStore();
+    const setNewtSubjectList = useSetNewSubjectStore();
     const { data: userData, isLoading } = useUserQuery();
     const { data: saveFormData } = useSaveFormQuery();
 
@@ -57,6 +58,7 @@ const useUser = () => {
     // 원서 저장 불러오기
     useEffect(() => {
         if (saveFormData) {
+            console.log(saveFormData);
             setForm({
                 applicant: saveFormData.applicant || FORM.applicant,
                 parent: saveFormData.parent || FORM.document,
@@ -65,12 +67,22 @@ const useUser = () => {
                 document: saveFormData.document || FORM.document,
                 type: saveFormData.type || FORM.type,
             });
+            if (saveFormData.grade.subjectList) {
+                setSubjectList(
+                    saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
+                        ...subject,
+                        id: index,
+                    })),
+                );
+                setNewtSubjectList(
+                    saveFormData.grade.subjectList.slice(12).map((subject, index) => ({
+                        ...subject,
+                        id: index,
+                    })),
+                );
+            }
         }
     }, [saveFormData]);
-
-    useEffect(() => {
-        console.log(form);
-    }, [form]);
 
     return { user, isLogined: !!userData };
 };

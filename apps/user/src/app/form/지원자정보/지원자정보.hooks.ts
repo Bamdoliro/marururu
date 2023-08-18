@@ -1,15 +1,15 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useSetFormStore, useSetFormStepStore, useFormStore } from '@/store';
+import { useSetFormStore, useSetFormStepStore, useFormValueStore } from '@/store';
 import { ChangeEventHandler } from 'react';
 
 export const useCTAButton = () => {
-    const form = useFormStore();
+    const form = useFormValueStore();
     const setFormStep = useSetFormStepStore();
     const { saveFormMutate } = useSaveFormMutation();
 
     const handleNextButtonClick = () => {
         setFormStep('보호자정보');
-        saveFormMutate();
+        saveFormMutate(form);
     };
 
     return { handleNextButtonClick };
