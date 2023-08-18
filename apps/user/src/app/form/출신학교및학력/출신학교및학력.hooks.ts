@@ -10,7 +10,7 @@ export const useCTAButton = () => {
     const handleNextButtonClick = () => {
         setForm((prev) => ({ ...prev, education: prev.education }));
         setFormStep('전형선택');
-        saveFormMutate();
+        saveFormMutate(form);
     };
 
     const handlePreviousButtonClick = () => {

@@ -57,6 +57,7 @@ const useUser = () => {
     // 원서 저장 불러오기
     useEffect(() => {
         if (saveFormData) {
+            console.log(saveFormData);
             setForm({
                 applicant: saveFormData.applicant || FORM.applicant,
                 parent: saveFormData.parent || FORM.document,

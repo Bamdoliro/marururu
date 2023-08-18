@@ -16,7 +16,7 @@ export const useFormSubmitAction = () => {
             },
         }));
         setFormStep('초안작성완료');
-        saveFormMutate();
+        saveFormMutate(form);
     };
 
     return { handleFormSubmitButtonClick };
