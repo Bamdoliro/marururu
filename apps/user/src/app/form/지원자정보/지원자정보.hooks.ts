@@ -1,9 +1,8 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useSetFormStore, useSetFormStepStore, useFormStore } from '@/store';
+import { useSetFormStepStore, useSetFormStore } from '@/store';
 import { ChangeEventHandler } from 'react';
 
 export const useCTAButton = () => {
-    const form = useFormStore();
     const setFormStep = useSetFormStepStore();
     const { saveFormMutate } = useSaveFormMutation();
 

@@ -1,13 +1,13 @@
 import { FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
+import { useFormValueStore } from '@/store';
 import { Column, Radio, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
 import { useCTAButton, useInput } from './전형선택.hooks';
-import { useChoiceFormTypeState } from './전형선택.state';
 
 const 전형선택 = () => {
-    const { choiceFormType } = useChoiceFormTypeState();
+    const form = useFormValueStore();
     const { handleFormTypeDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
@@ -39,7 +39,12 @@ const 전형선택 = () => {
                         {}
                     </Td>
                     <Td width={80} height={56}>
-                        <Radio name="type" value="REGULAR" />
+                        <Radio
+                            name="type"
+                            value="REGULAR"
+                            onChange={handleFormTypeDataChange}
+                            defaultChecked={form.type === 'REGULAR'}
+                        />
                     </Td>
                 </Row>
                 <Row>
@@ -55,7 +60,12 @@ const 전형선택 = () => {
                                 {}
                             </Td>
                             <Td width={80} height={56}>
-                                <Radio name="type" value="MEISTER_TALENT" />
+                                <Radio
+                                    name="type"
+                                    value="MEISTER_TALENT"
+                                    onChange={handleFormTypeDataChange}
+                                    defaultChecked={form.type === 'MEISTER_TALENT'}
+                                />
                             </Td>
                         </Row>
                         <Row>
@@ -68,7 +78,12 @@ const 전형선택 = () => {
                                         국민기초생활수급자
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="NATIONAL_BASIC_LIVING" />
+                                        <Radio
+                                            name="type"
+                                            value="NATIONAL_BASIC_LIVING"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'NATIONAL_BASIC_LIVING'}
+                                        />
                                     </Td>
                                 </Row>
                                 <Row>
@@ -76,7 +91,12 @@ const 전형선택 = () => {
                                         차상위계층
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="NEAR_POVERTY" />
+                                        <Radio
+                                            name="type"
+                                            value="NEAR_POVERTY"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'NEAR_POVERTY'}
+                                        />
                                     </Td>
                                 </Row>
                                 <Row>
@@ -84,7 +104,12 @@ const 전형선택 = () => {
                                         국가보훈대상자 (국가유공자)
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="NATIONAL_VETERANS" />
+                                        <Radio
+                                            name="type"
+                                            value="NATIONAL_VETERANS"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'NATIONAL_VETERANS'}
+                                        />
                                     </Td>
                                 </Row>
                                 <Row>
@@ -92,7 +117,12 @@ const 전형선택 = () => {
                                         한부모가정
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="ONE_PARENT" />
+                                        <Radio
+                                            name="type"
+                                            value="ONE_PARENT"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'ONE_PARENT'}
+                                        />
                                     </Td>
                                 </Row>
                                 <Row>
@@ -100,7 +130,12 @@ const 전형선택 = () => {
                                         북한이탈주민
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="FROM_NORTH_KOREA" />
+                                        <Radio
+                                            name="type"
+                                            value="FROM_NORTH_KOREA"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'FROM_NORTH_KOREA'}
+                                        />
                                     </Td>
                                 </Row>
                             </Column>
@@ -115,7 +150,12 @@ const 전형선택 = () => {
                                         다문화가정
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="MULTICULTURAL" />
+                                        <Radio
+                                            name="type"
+                                            value="MULTICULTURAL"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'MULTICULTURAL'}
+                                        />
                                     </Td>
                                 </Row>
                                 <Row>
@@ -123,7 +163,12 @@ const 전형선택 = () => {
                                         소년소녀가장
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="TEEN_HOUSEHOLDER" />
+                                        <Radio
+                                            name="type"
+                                            value="TEEN_HOUSEHOLDER"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'TEEN_HOUSEHOLDER'}
+                                        />
                                     </Td>
                                 </Row>
                                 <Row>
@@ -131,7 +176,12 @@ const 전형선택 = () => {
                                         다자녀가정자녀
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="MULTI_CHILDREN" />
+                                        <Radio
+                                            name="type"
+                                            value="MULTI_CHILDREN"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'MULTI_CHILDREN'}
+                                        />
                                     </Td>
                                 </Row>
                                 <Row>
@@ -139,7 +189,12 @@ const 전형선택 = () => {
                                         농어촌지역출신자
                                     </Td>
                                     <Td width={80} height={56}>
-                                        <Radio name="type" value="FARMING_AND_FISHING" />
+                                        <Radio
+                                            name="type"
+                                            value="FARMING_AND_FISHING"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'FARMING_AND_FISHING'}
+                                        />
                                     </Td>
                                 </Row>
                             </Column>
@@ -152,7 +207,12 @@ const 전형선택 = () => {
                                 {}
                             </Td>
                             <Td width={80} height={56} borderBottomRightRadius={12}>
-                                <Radio name="type" value="SPECIAL_ADMISSION" />
+                                <Radio
+                                    name="type"
+                                    value="SPECIAL_ADMISSION"
+                                    onChange={handleFormTypeDataChange}
+                                    defaultChecked={form.type === 'SPECIAL_ADMISSION'}
+                                />
                             </Td>
                         </Row>
                     </Column>
