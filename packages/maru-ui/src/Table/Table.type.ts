@@ -9,6 +9,7 @@ export interface TablePropsType {
     borderTopRightRadius?: CSSProperties['borderTopRightRadius'];
     borderBottomLeftRadius?: CSSProperties['borderBottomLeftRadius'];
     borderBottomRightRadius?: CSSProperties['borderBottomRightRadius'];
+    style?: CSSProperties;
 }
 
 export type TableOptionType = 'PRIMARY' | 'SECONDARY';
