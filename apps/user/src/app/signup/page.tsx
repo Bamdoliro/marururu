@@ -9,13 +9,14 @@ import { DebounceClick } from '@toss/react';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useInput, useJoinAction, useRequestEmail, useTimer } from './signup.hooks';
+import { useInput, useJoinAction, useRequestEmailAction, useTimer } from './signup.hooks';
 
 const SignUpPage = () => {
     const [termsAgree, setTermsAgree] = useState(false);
-    const { requestEmailEnabled, startTimer, timerTime, setTimerTime } = useTimer();
+    const { startTimer, timerTime, setTimerTime } = useTimer();
     const { joinUserData, handleJoinUserDataChange } = useInput();
-    const { handleRequestEmailButtonClick } = useRequestEmail(joinUserData.email);
+    const { handleRequestEmailButtonClick, isButtonDisabled, isRequestEmail } =
+        useRequestEmailAction(joinUserData.email);
     const { handleJoinButtonClick } = useJoinAction(joinUserData, termsAgree);
 
     return (
@@ -29,7 +30,7 @@ const SignUpPage = () => {
                     alt="colabo-logo"
                 />
                 <ContentBox>
-                    <SignUpBox enabled={requestEmailEnabled}>
+                    <SignUpBox enabled={isRequestEmail}>
                         <Column gap={24}>
                             <Text fontType="H2" color={color.gray900}>
                                 회원가입
@@ -41,22 +42,22 @@ const SignUpPage = () => {
                                 placeholder="이름을 입력해주세요."
                                 onChange={handleJoinUserDataChange}
                             />
-                            <DebounceClick wait={5000}>
-                                <ButtonInput
-                                    label="이메일 인증"
-                                    buttonText={requestEmailEnabled ? '재전송' : '인증'}
-                                    onClick={() => {
-                                        handleRequestEmailButtonClick();
-                                        startTimer();
-                                    }}
-                                    type="email"
-                                    placeholder="이메일"
-                                    width="100%"
-                                    name="email"
-                                    onChange={handleJoinUserDataChange}
-                                />
-                            </DebounceClick>
-                            {requestEmailEnabled && (
+                            <ButtonInput
+                                label="이메일 인증"
+                                buttonText={isRequestEmail ? '재전송' : '인증'}
+                                onClick={() => {
+                                    handleRequestEmailButtonClick();
+                                    startTimer();
+                                }}
+                                enabled={isButtonDisabled}
+                                type="email"
+                                placeholder="이메일"
+                                width="100%"
+                                name="email"
+                                onChange={handleJoinUserDataChange}
+                                value={joinUserData.email}
+                            />
+                            {isRequestEmail && (
                                 <TimeLimitInput
                                     label="인증코드"
                                     width="100%"
