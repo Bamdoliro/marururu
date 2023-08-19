@@ -148,5 +148,8 @@ export const useCertificateScore = () => {
             certificateScore += 1;
     }
 
+    // 최대 4점으로 제한
+    certificateScore = Math.min(certificateScore, 4);
+
     return { certificateScore };
 };
