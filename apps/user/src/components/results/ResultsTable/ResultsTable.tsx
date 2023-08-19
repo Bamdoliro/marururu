@@ -1,15 +1,18 @@
-import { color } from '@maru/theme';
+import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import ResultsTableFooter from './ResultsTableFooter/ResultsTableFooter';
 
 interface PropsType {
     option: '1st' | 'final';
 }
 
 const ResultsTable = ({ option }: PropsType) => {
+    const is합격 = true;
+
     return (
-        <StyledResultsTable>
+        <StyledResultsTable is합격={is합격}>
             <Column gap={12} width={816}>
                 <ResultsTableHeader>
                     <Row alignItems="center" gap={48}>
@@ -44,16 +47,16 @@ const ResultsTable = ({ option }: PropsType) => {
                     </Text>
                 </ResultsTableItem>
             </Column>
-            <Button size="LARGE">홈으로 돌아가기</Button>
+            <ResultsTableFooter is합격={is합격} />
         </StyledResultsTable>
     );
 };
 
 export default ResultsTable;
 
-const StyledResultsTable = styled.div`
+const StyledResultsTable = styled.div<{ is합격: boolean }>`
     ${flex({ flexDirection: 'column', alignItems: 'center' })};
-    gap: 120px;
+    gap: ${(props) => (props.is합격 ? '64px' : '120px')};
 `;
 
 const ResultsTableHeader = styled.div`
