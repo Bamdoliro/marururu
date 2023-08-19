@@ -22,7 +22,7 @@ const FinalResultsPage = () => {
                         2024학년도 부산소프트웨어마이스터고등학교
                     </Text>
                     <Text fontType="D3" color={color.gray900}>
-                        1차 최종 합격자 발표
+                        최종 합격자 발표
                     </Text>
                 </Column>
                 <SwitchCase
