@@ -3,11 +3,11 @@ import {
     useSetFormStepStore,
     useNewSubjectValueStore,
     useSubjectValueStore,
-    useFormStore,
+    useFormValueStore,
 } from '@/store';
 
 export const useCTAButton = () => {
-    const [form, setForm] = useFormStore();
+    const form = useFormValueStore();
     const setFormStep = useSetFormStepStore();
     const newSubjectList = useNewSubjectValueStore();
     const subjectList = useSubjectValueStore();

@@ -10,12 +10,13 @@ const CertificateCalculator = () => {
 
     const handleCertificateListInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { checked, value } = e.target;
+
         if (checked) {
             setForm((prev) => ({
                 ...prev,
                 grade: {
                     ...prev.grade,
-                    certificateList: [...(prev.grade.certificateList ?? []), value.trim()],
+                    certificateList: [...(prev.grade.certificateList ?? []), value],
                 },
             }));
         } else {
@@ -24,18 +25,17 @@ const CertificateCalculator = () => {
                 grade: {
                     ...prev.grade,
                     certificateList: prev.grade.certificateList.filter(
-                        (certificate) => certificate !== value.trim(),
+                        (certificate) => certificate !== value,
                     ),
                 },
             }));
         }
+        console.log(form);
     };
 
     return (
         <StyledCertificateCalculator>
-            <Desc style={{ marginBottom: 16 }}>
-                *자격증을 중복 소지하고 있을 경우, 최고 수준의 자격증 1개만 인정함
-            </Desc>
+            <Desc>*자격증을 중복 소지하고 있을 경우, 최고 수준의 자격증 1개만 인정함</Desc>
             <Column>
                 <Row>
                     <Th borderTopLeftRadius={12} width={416} height={56}>
@@ -54,7 +54,7 @@ const CertificateCalculator = () => {
                 <Column>
                     <Row>
                         <Td width={416} height={56}>
-                            정보처리기능사, 정보기기운용기능사, 전자계산기기능사
+                            정보처리기능사
                         </Td>
                         <Td width={200} height={56}>
                             한국산업인력공단
@@ -64,7 +64,48 @@ const CertificateCalculator = () => {
                         </Td>
                         <Td width={80} height={56}>
                             <CheckBox
-                                value="정보처리기능사, 정보기기운용기능사, 전자계산기기능사"
+                                checked={form.grade.certificateList?.includes(
+                                    'CRAFTSMAN_INFORMATION_PROCESSING',
+                                )}
+                                value="CRAFTSMAN_INFORMATION_PROCESSING"
+                                onChange={handleCertificateListInfoDataChange}
+                            />
+                        </Td>
+                    </Row>
+                    <Row>
+                        <Td width={416} height={56}>
+                            정보기기운용기능사
+                        </Td>
+                        <Td width={200} height={56}>
+                            한국산업인력공단
+                        </Td>
+                        <Td width={120} height={56}>
+                            4점
+                        </Td>
+                        <Td width={80} height={56}>
+                            <CheckBox
+                                checked={form.grade.certificateList?.includes(
+                                    'CRAFTSMAN_INFORMATION_EQUIPMENT_OPERATION',
+                                )}
+                                value="CRAFTSMAN_INFORMATION_EQUIPMENT_OPERATION"
+                                onChange={handleCertificateListInfoDataChange}
+                            />
+                        </Td>
+                    </Row>
+                    <Row>
+                        <Td width={416} height={56}>
+                            전자계산기기능사
+                        </Td>
+                        <Td width={200} height={56}>
+                            한국산업인력공단
+                        </Td>
+                        <Td width={120} height={56}>
+                            4점
+                        </Td>
+                        <Td width={80} height={56}>
+                            <CheckBox
+                                checked={form.grade.certificateList?.includes('CRAFTSMAN_COMPUTER')}
+                                value="CRAFTSMAN_COMPUTER"
                                 onChange={handleCertificateListInfoDataChange}
                             />
                         </Td>
@@ -84,9 +125,9 @@ const CertificateCalculator = () => {
                                 <Td width={80} height={56}>
                                     <CheckBox
                                         checked={form.grade.certificateList?.includes(
-                                            '컴퓨터활용능력 1급',
+                                            'COMPUTER_SPECIALIST_LEVEL_1',
                                         )}
-                                        value="컴퓨터활용능력 1급"
+                                        value="COMPUTER_SPECIALIST_LEVEL_1"
                                         onChange={handleCertificateListInfoDataChange}
                                     />
                                 </Td>
@@ -98,9 +139,9 @@ const CertificateCalculator = () => {
                                 <Td width={80} height={56}>
                                     <CheckBox
                                         checked={form.grade.certificateList?.includes(
-                                            '컴퓨터활용능력 2급',
+                                            'COMPUTER_SPECIALIST_LEVEL_2',
                                         )}
-                                        value="컴퓨터활용능력 2급"
+                                        value="COMPUTER_SPECIALIST_LEVEL_2"
                                         onChange={handleCertificateListInfoDataChange}
                                     />
                                 </Td>
@@ -112,9 +153,9 @@ const CertificateCalculator = () => {
                                 <Td borderBottomRightRadius={12} width={80} height={56}>
                                     <CheckBox
                                         checked={form.grade.certificateList?.includes(
-                                            '컴퓨터활용능력 3급',
+                                            'COMPUTER_SPECIALIST_LEVEL_3',
                                         )}
-                                        value="컴퓨터활용능력 3급"
+                                        value="COMPUTER_SPECIALIST_LEVEL_3"
                                         onChange={handleCertificateListInfoDataChange}
                                     />
                                 </Td>
@@ -130,8 +171,8 @@ const CertificateCalculator = () => {
 export default CertificateCalculator;
 
 const StyledCertificateCalculator = styled.div`
-    ${flex({ flexDirection: 'column' })}
-    gap:16px;
+    ${flex({ flexDirection: 'column' })};
+    gap: 16px;
     width: 100%;
 `;
 

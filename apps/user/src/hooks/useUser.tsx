@@ -1,6 +1,7 @@
 import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
 import {
+    useFormValueStore,
     useSetFormStepStore,
     useSetFormStore,
     useSetNewSubjectStore,
@@ -20,6 +21,7 @@ const useUser = () => {
     const pathName = usePathname();
     const overlay = useOverlay();
     const [user, setUser] = useUserStore();
+    const form = useFormValueStore();
     const setFormStep = useSetFormStepStore();
     const setForm = useSetFormStore();
     const setSubjectList = useSetSubjectStore();
@@ -66,6 +68,7 @@ const useUser = () => {
     // 원서 저장 불러오기
     useEffect(() => {
         if (saveFormData) {
+            console.log('save data: ');
             console.log(saveFormData);
             setForm({
                 applicant: saveFormData.applicant || FORM.applicant,
@@ -90,7 +93,6 @@ const useUser = () => {
                 );
             }
         }
-
         // 제출 현황을 체크하여 적절한 페이지를 보여줍니다
         if (formStatusData) {
             if (formStatusData.status === 'SUBMITTED') {
@@ -103,6 +105,10 @@ const useUser = () => {
             }
         }
     }, [saveFormData, formStatusData]);
+
+    useEffect(() => {
+        console.log(form);
+    }, [form]);
 
     return { user, isLogined: !!userData };
 };
