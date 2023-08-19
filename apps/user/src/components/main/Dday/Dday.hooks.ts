@@ -7,7 +7,7 @@ import {
     제출_마감_날짜,
     제출_시작_날짜,
 } from '@/constants/form/constant';
-import type { ButtonOptionType } from '@maru/ui';
+import type { ButtonOption } from '@maru/ui';
 import { formatDay } from '@/utils';
 import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
@@ -74,7 +74,7 @@ export const useButtonStatus = () => {
     const { remainDays, isSubmitPeriod } = useDday();
     const router = useRouter();
 
-    const buttonOption: ButtonOptionType =
+    const buttonOption: ButtonOption =
         isSubmitPeriod || (-2 < remainDays && remainDays <= 0) ? 'PRIMARY' : 'DISABLED';
     const handleMovePageButtonClick = isSubmitPeriod
         ? () => router.push('/form')

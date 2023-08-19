@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 
-type IntervalOptionsType =
+type IntervalOptions =
     | number
     | {
           delay: number | null;
           trailing?: boolean;
       };
 
-const useInterval = (callback: () => void, options: IntervalOptionsType) => {
+const useInterval = (callback: () => void, options: IntervalOptions) => {
     const delay = typeof options === 'number' ? options : options.delay;
     const trailing = typeof options === 'number' ? undefined : options.trailing;
     const savedCallback = useRef<() => void>();

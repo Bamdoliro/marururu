@@ -1,3 +1,4 @@
+import { ResultsOption } from '@/types/results/client';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -5,7 +6,7 @@ import styled from 'styled-components';
 import ResultsTableFooter from './ResultsTableFooter/ResultsTableFooter';
 
 interface PropsType {
-    option: '1st' | 'final';
+    option: ResultsOption;
 }
 
 const ResultsTable = ({ option }: PropsType) => {
@@ -47,7 +48,7 @@ const ResultsTable = ({ option }: PropsType) => {
                     </Text>
                 </ResultsTableItem>
             </Column>
-            <ResultsTableFooter is합격={is합격} />
+            <ResultsTableFooter option={option} is합격={is합격} />
         </StyledResultsTable>
     );
 };

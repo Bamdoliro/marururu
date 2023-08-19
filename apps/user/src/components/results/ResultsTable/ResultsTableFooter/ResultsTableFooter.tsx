@@ -1,12 +1,22 @@
+import { ROUTES } from '@/constants/common/constant';
+import { ResultsOption } from '@/types/results/client';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 interface PropsType {
-    is합격: boolean;
+    option: ResultsOption;
 }
 
-const ResultsTableFooter = ({ is합격 }: PropsType) => {
+const ResultsTableFooter = ({ option }: PropsType) => {
+    const router = useRouter();
+    const is합격 = true;
+
+    const handleGoMainPageButtonClick = () => {
+        router.push(ROUTES.MAIN);
+    };
+
     return is합격 ? (
         <Column gap={64} alignItems="center">
             <Column gap={24}>
@@ -20,13 +30,15 @@ const ResultsTableFooter = ({ is합격 }: PropsType) => {
             </Column>
             <Row gap={16} alignItems="center">
                 <Button size="LARGE">수험표 출력하기</Button>
-                <Button option="SECONDARY" size="LARGE">
+                <Button onClick={handleGoMainPageButtonClick} option="SECONDARY" size="LARGE">
                     홈으로 돌아가기
                 </Button>
             </Row>
         </Column>
     ) : (
-        <Button size="LARGE">홈으로 돌아가기</Button>
+        <Button onClick={handleGoMainPageButtonClick} size="LARGE">
+            홈으로 돌아가기
+        </Button>
     );
 };
 

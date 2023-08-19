@@ -2,12 +2,19 @@
 
 import ResultsTable from '@/components/results/ResultsTable/ResultsTable';
 import { AppLayout } from '@/layouts';
+import { useBoolean } from '@maru/hooks';
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { SwitchCase } from '@toss/react';
+import { ResultsStep } from '@/types/results/client';
 import styled from 'styled-components';
+import { useState } from 'react';
+import { ResultsMain } from '@/components/results';
 
 const FirstResultsPage = () => {
+    const [resultsStep, setResultsStep] = useState<ResultsStep>('MAIN');
+
     return (
         <AppLayout header footer>
             <StyledFirstResultsPage>
@@ -19,7 +26,13 @@ const FirstResultsPage = () => {
                         1차 합격자 발표
                     </Text>
                 </Column>
-                <ResultsTable option="1st" />
+                <SwitchCase
+                    value={resultsStep}
+                    caseBy={{
+                        MAIN: <ResultsMain option="first" setResultsStep={setResultsStep} />,
+                        RESULTS: <ResultsTable option="first" />,
+                    }}
+                />
             </StyledFirstResultsPage>
         </AppLayout>
     );

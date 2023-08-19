@@ -1,4 +1,4 @@
-export type ButtonOptionType =
+export type ButtonOption =
     | 'PRIMARY'
     | 'SECONDARY'
     | 'TERTIARY'
@@ -6,6 +6,6 @@ export type ButtonOptionType =
     | 'DELETE'
     | 'DISABLED';
 
-export type ButtonIconType = 'NONE' | 'ADD_ICON' | 'SHORTCUTS_ICON';
+export type ButtonIcon = 'NONE' | 'ADD_ICON' | 'SHORTCUTS_ICON';
 
-export type ButtonSizeType = 'LARGE' | 'MEDIUM' | 'SMALL';
+export type ButtonSize = 'LARGE' | 'MEDIUM' | 'SMALL';

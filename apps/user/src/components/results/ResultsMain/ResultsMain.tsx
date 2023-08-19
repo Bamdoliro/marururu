@@ -1,9 +1,21 @@
+import { ResultsStep } from '@/types/results/client';
 import { color } from '@maru/theme';
-import { Button, Column, Text } from '@maru/ui';
+import { Button, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { ResultsOption } from '@/types/results/client';
+import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
-const ResultsMain = () => {
+interface PropsType {
+    setResultsStep: Dispatch<SetStateAction<ResultsStep>>;
+    option: ResultsOption;
+}
+
+const ResultsMain = ({ setResultsStep, option }: PropsType) => {
+    const handleGoResultsPageButtonClick = () => {
+        setResultsStep('RESULTS');
+    };
+
     return (
         <StyledResultsMain>
             <InfoBox>
@@ -17,7 +29,9 @@ const ResultsMain = () => {
                     장소: 본교 입학전형 서비스 (마루)
                 </Text>
             </InfoBox>
-            <Button size="LARGE">결과 확인하기</Button>
+            <Button onClick={handleGoResultsPageButtonClick} size="LARGE">
+                결과 확인하기
+            </Button>
         </StyledResultsMain>
     );
 };
