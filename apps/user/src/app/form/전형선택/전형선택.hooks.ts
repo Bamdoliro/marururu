@@ -20,9 +20,8 @@ export const useCTAButton = () => {
     const { saveFormMutate } = useSaveFormMutation();
 
     const handleNextButtonClick = () => {
-        console.log('25:', form.type);
         setFormStep('성적입력');
-        saveFormMutate();
+        saveFormMutate(form);
     };
 
     const handlePreviousButtonClick = () => {
