@@ -24,7 +24,7 @@ const ButtonInput = ({
     enabled = false,
     readOnly,
     isIncorrect,
-    msg,
+    errorMessage,
 }: ButtonInputPropsType) => {
     return (
         <div>
@@ -39,7 +39,7 @@ const ButtonInput = ({
                     placeholder={placeholder}
                     readOnly={readOnly}
                     isIncorrect={isIncorrect}
-                    msg={msg}
+                    errorMessage={errorMessage}
                 />
                 <Button onClick={onClick} enabled={enabled}>
                     {buttonText}

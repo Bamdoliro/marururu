@@ -28,7 +28,7 @@ const 보호자정보 = () => {
                             label="성명"
                             width="100%"
                             isIncorrect={form.parent.name.length > 20}
-                            msg="20자 이하여야 합니다."
+                            errorMessage="20자 이하여야 합니다."
                         />
                         <Input
                             name="phoneNumber"
@@ -40,7 +40,7 @@ const 보호자정보 = () => {
                             isIncorrect={
                                 !!form.parent.phoneNumber && form.parent.phoneNumber.length !== 11
                             }
-                            msg="11글자여야 합니다"
+                            errorMessage="11글자여야 합니다"
                         />
                     </Row>
                     <ButtonInput
@@ -51,7 +51,7 @@ const 보호자정보 = () => {
                         value={form.parent.address}
                         readOnly
                         isIncorrect={form.parent.address.length > 100}
-                        msg="100자 이하여야 합니다."
+                        errorMessage="100자 이하여야 합니다."
                     />
                     <Row gap={48}>
                         <Input
@@ -61,7 +61,7 @@ const 보호자정보 = () => {
                             label="상세 주소"
                             width="100%"
                             isIncorrect={form.parent.detailAddress.length > 100}
-                            msg="100자 이하여야 합니다."
+                            errorMessage="100자 이하여야 합니다."
                         />
                         <Input
                             name="zoneCode"
@@ -71,7 +71,7 @@ const 보호자정보 = () => {
                             width="100%"
                             readOnly
                             isIncorrect={form.parent.zoneCode.length !== 5}
-                            msg="5자여야 합니다."
+                            errorMessage="5자여야 합니다."
                         />
                     </Row>
                 </Column>

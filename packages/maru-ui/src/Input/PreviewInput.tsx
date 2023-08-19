@@ -1,10 +1,10 @@
+import { IconInvisibleEye, IconVisibleEye } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { InputPropsType } from './Input.type';
 import { useState } from 'react';
-import Message from './Message';
-import { IconInvisibleEye, IconVisibleEye } from '@maru/icon';
 import styled from 'styled-components';
+import { InputPropsType } from './Input.type';
+import Message from './Message';
 
 const PreviewInput = ({
     width = '320px',
@@ -12,7 +12,7 @@ const PreviewInput = ({
     name,
     label,
     value,
-    msg,
+    errorMessage: message,
     onChange,
 }: InputPropsType) => {
     const [isPreview, setIsPreview] = useState(false);
@@ -48,7 +48,7 @@ const PreviewInput = ({
                     />
                 )}
             </StyledPreviewInput>
-            {msg && <Message>{msg}</Message>}
+            {message && <Message>{message}</Message>}
         </div>
     );
 };

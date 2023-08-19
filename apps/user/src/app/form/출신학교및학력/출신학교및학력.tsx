@@ -40,7 +40,7 @@ const 출신학교및학력 = () => {
                     placeholder="클릭하여 검색하기"
                     readOnly
                     isIncorrect={form.education.schoolName.length > 20}
-                    msg="20자 이하여야 합니다."
+                    errorMessage="20자 이하여야 합니다."
                 />
                 <div></div>
                 <Input
@@ -54,7 +54,7 @@ const 출신학교및학력 = () => {
                         !!form.education.graduationYear &&
                         form.education.graduationYear.length !== 4
                     }
-                    msg="4자여야 합니다."
+                    errorMessage="4자여야 합니다."
                 />
                 <ButtonInput
                     name="schoolLocation"
@@ -65,7 +65,7 @@ const 출신학교및학력 = () => {
                     placeholder="도로명 주소"
                     readOnly
                     isIncorrect={form.education.schoolLocation.length > 20}
-                    msg="20자여야 합니다."
+                    errorMessage="20자여야 합니다."
                 />
                 <Input
                     name="schoolCode"
@@ -75,7 +75,7 @@ const 출신학교및학력 = () => {
                     value={form.education.schoolCode}
                     onChange={handle출신학교및학력DataChange}
                     isIncorrect={form.education.schoolCode.length > 10}
-                    msg="10자여야 합니다."
+                    errorMessage="10자여야 합니다."
                 />
                 <Input
                     name="teacherPhoneNumber"
@@ -85,7 +85,7 @@ const 출신학교및학력 = () => {
                     value={form.education.teacherPhoneNumber}
                     onChange={handle출신학교및학력DataChange}
                     isIncorrect={form.education.teacherPhoneNumber.length > 11}
-                    msg="11자 이하여야 합니다."
+                    errorMessage="11자 이하여야 합니다."
                 />
                 <Input
                     name="teacherName"
@@ -95,7 +95,7 @@ const 출신학교및학력 = () => {
                     value={form.education.teacherName}
                     onChange={handle출신학교및학력DataChange}
                     isIncorrect={form.education.teacherName.length > 20}
-                    msg="20자 이하여야 합니다."
+                    errorMessage="20자 이하여야 합니다."
                 />
                 <Input
                     name="teacherMobilePhoneNumber"
@@ -105,7 +105,7 @@ const 출신학교및학력 = () => {
                     value={form.education.teacherMobilePhoneNumber}
                     onChange={handle출신학교및학력DataChange}
                     isIncorrect={form.education.teacherMobilePhoneNumber.length > 11}
-                    msg="11자 이하여야 합니다."
+                    errorMessage="11자 이하여야 합니다."
                 />
             </Styled출신학교및학력>
             <FormController

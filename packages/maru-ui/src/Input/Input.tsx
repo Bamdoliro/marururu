@@ -11,7 +11,7 @@ const Input = ({
     name,
     value,
     onChange,
-    msg,
+    errorMessage,
     readOnly,
     textAlign,
     isIncorrect,
@@ -45,7 +45,7 @@ const Input = ({
             </div>
             {isIncorrect && (
                 <div style={{ position: 'relative' }}>
-                    <ErrorMessage>{msg}</ErrorMessage>
+                    <ErrorMessage>{errorMessage}</ErrorMessage>
                 </div>
             )}
         </div>

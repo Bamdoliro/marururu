@@ -5,7 +5,6 @@ import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Button, ButtonInput, Column, Input, PreviewInput, Text, TimeLimitInput } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { DebounceClick } from '@toss/react';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -62,7 +61,7 @@ const SignUpPage = () => {
                                     label="인증코드"
                                     width="100%"
                                     maxLength={6}
-                                    msg="발송된 이메일의 인증번호를 입력해주세요."
+                                    errorMessage="발송된 이메일의 인증번호를 입력해주세요."
                                     name="code"
                                     onChange={handleJoinUserDataChange}
                                     timerTime={timerTime}
@@ -72,7 +71,7 @@ const SignUpPage = () => {
                             <PreviewInput
                                 label="비밀번호"
                                 width="100%"
-                                msg="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
+                                errorMessage="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
                                 name="password"
                                 onChange={handleJoinUserDataChange}
                             />

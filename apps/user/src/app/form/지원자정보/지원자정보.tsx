@@ -23,7 +23,7 @@ const 지원자정보 = () => {
                             name="name"
                             width="100%"
                             isIncorrect={form.applicant.name.length > 20}
-                            msg="20자 이하여야 합니다."
+                            errorMessage="20자 이하여야 합니다."
                         />
                         <DateBox />
                         <Row gap={40} alignItems="flex-end">
@@ -49,7 +49,7 @@ const 지원자정보 = () => {
                                 !!form.applicant.phoneNumber &&
                                 form.applicant.phoneNumber.length !== 11
                             }
-                            msg="11글자여야 합니다"
+                            errorMessage="11글자여야 합니다"
                         />
                     </Column>
                 </Row>
