@@ -32,7 +32,7 @@ const FormPage = () => {
                 return;
             }
         }
-    }, []);
+    }, [formStatusData]);
 
     return (
         <SwitchCase
