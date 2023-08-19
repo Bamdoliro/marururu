@@ -36,7 +36,7 @@ const VolunteerCalculator = () => {
                             name="volunteerTime1"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime1}
-                            isIncorrect={Number(form.grade.volunteerTime1) < 0}
+                            isError={Number(form.grade.volunteerTime1) < 0}
                         />
                         <Hour>시간</Hour>
                     </Td>
@@ -50,7 +50,7 @@ const VolunteerCalculator = () => {
                             name="volunteerTime2"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime2}
-                            isIncorrect={Number(form.grade.volunteerTime2) < 0}
+                            isError={Number(form.grade.volunteerTime2) < 0}
                         />
                         <Hour>시간</Hour>
                     </Td>
@@ -64,7 +64,7 @@ const VolunteerCalculator = () => {
                             name="volunteerTime3"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime3}
-                            isIncorrect={Number(form.grade.volunteerTime3) < 0}
+                            isError={Number(form.grade.volunteerTime3) < 0}
                         />
                         <Hour>시간</Hour>
                     </Td>

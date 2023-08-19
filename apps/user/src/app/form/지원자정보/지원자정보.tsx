@@ -22,7 +22,7 @@ const 지원자정보 = () => {
                             onChange={handle지원자정보DataChange}
                             name="name"
                             width="100%"
-                            isIncorrect={form.applicant.name.length > 20}
+                            isError={form.applicant.name.length > 20}
                             errorMessage="20자 이하여야 합니다."
                         />
                         <DateBox />
@@ -45,7 +45,7 @@ const 지원자정보 = () => {
                             name="phoneNumber"
                             placeholder="- 없이 입력해주세요"
                             width="100%"
-                            isIncorrect={
+                            isError={
                                 !!form.applicant.phoneNumber &&
                                 form.applicant.phoneNumber.length !== 11
                             }

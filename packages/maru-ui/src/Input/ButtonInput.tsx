@@ -23,7 +23,7 @@ const ButtonInput = ({
     onClick,
     enabled = false,
     readOnly,
-    isIncorrect,
+    isError,
     errorMessage,
 }: ButtonInputPropsType) => {
     return (
@@ -38,7 +38,7 @@ const ButtonInput = ({
                     onChange={onChange}
                     placeholder={placeholder}
                     readOnly={readOnly}
-                    isIncorrect={isIncorrect}
+                    isError={isError}
                     errorMessage={errorMessage}
                 />
                 <Button onClick={onClick} enabled={enabled}>

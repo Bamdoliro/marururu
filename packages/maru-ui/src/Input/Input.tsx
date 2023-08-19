@@ -14,7 +14,7 @@ const Input = ({
     errorMessage,
     readOnly,
     textAlign,
-    isIncorrect,
+    isError,
 }: InputPropsType) => {
     return (
         <div style={{ width }}>
@@ -28,9 +28,9 @@ const Input = ({
                     value={value}
                     readOnly={readOnly}
                     style={{ textAlign }}
-                    isIncorrect={isIncorrect}
+                    isError={isError}
                 />
-                {isIncorrect && (
+                {isError && (
                     <IconError
                         style={{
                             position: 'absolute',
@@ -43,7 +43,7 @@ const Input = ({
                     />
                 )}
             </div>
-            {isIncorrect && (
+            {isError && (
                 <div style={{ position: 'relative' }}>
                     <ErrorMessage>{errorMessage}</ErrorMessage>
                 </div>
@@ -54,7 +54,7 @@ const Input = ({
 
 export default Input;
 
-const StyledInput = styled.input<{ isIncorrect?: boolean }>`
+const StyledInput = styled.input<{ isError?: boolean }>`
     ${font.p2}
     color: ${color.gray800};
     height: 48px;
@@ -72,9 +72,9 @@ const StyledInput = styled.input<{ isIncorrect?: boolean }>`
         outline: 2px solid rgba(20, 112, 255, 0.25);
     }
 
-    ${({ isIncorrect }) =>
-        typeof isIncorrect === 'boolean' &&
-        isIncorrect &&
+    ${({ isError }) =>
+        typeof isError === 'boolean' &&
+        isError &&
         css`
             border: 1px solid ${color.red};
             outline: 2px solid rgba(244, 67, 54, 0.25);

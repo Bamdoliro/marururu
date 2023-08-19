@@ -27,7 +27,7 @@ const 보호자정보 = () => {
                             onChange={handle보호자정보DataChange}
                             label="성명"
                             width="100%"
-                            isIncorrect={form.parent.name.length > 20}
+                            isError={form.parent.name.length > 20}
                             errorMessage="20자 이하여야 합니다."
                         />
                         <Input
@@ -37,7 +37,7 @@ const 보호자정보 = () => {
                             label="전화번호"
                             placeholder="- 없이 입력"
                             width="100%"
-                            isIncorrect={
+                            isError={
                                 !!form.parent.phoneNumber && form.parent.phoneNumber.length !== 11
                             }
                             errorMessage="11글자여야 합니다"
@@ -50,7 +50,7 @@ const 보호자정보 = () => {
                         width="100%"
                         value={form.parent.address}
                         readOnly
-                        isIncorrect={form.parent.address.length > 100}
+                        isError={form.parent.address.length > 100}
                         errorMessage="100자 이하여야 합니다."
                     />
                     <Row gap={48}>
@@ -60,7 +60,7 @@ const 보호자정보 = () => {
                             onChange={handle보호자정보DataChange}
                             label="상세 주소"
                             width="100%"
-                            isIncorrect={form.parent.detailAddress.length > 100}
+                            isError={form.parent.detailAddress.length > 100}
                             errorMessage="100자 이하여야 합니다."
                         />
                         <Input
@@ -70,7 +70,7 @@ const 보호자정보 = () => {
                             label="우편번호"
                             width="100%"
                             readOnly
-                            isIncorrect={form.parent.zoneCode.length !== 5}
+                            isError={form.parent.zoneCode.length !== 5}
                             errorMessage="5자여야 합니다."
                         />
                     </Row>

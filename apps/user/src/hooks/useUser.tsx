@@ -4,6 +4,7 @@ import { useSaveFormQuery } from '@/services/form/queries';
 import { useUserQuery } from '@/services/user/queries';
 import {
     useFormValueStore,
+    useIsSaveFormLoadedStore,
     useSetFormStore,
     useSetNewSubjectStore,
     useSetSubjectStore,
@@ -14,12 +15,6 @@ import { Confirm, Text } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { atom, useRecoilState } from 'recoil';
-
-const isSaveFormLoadedAtomState = atom({
-    key: 'save form loaded state',
-    default: false,
-});
 
 const useUser = () => {
     const router = useRouter();
@@ -32,7 +27,7 @@ const useUser = () => {
     const setNewtSubjectList = useSetNewSubjectStore();
     const { data: userData, isLoading } = useUserQuery();
     const { data: saveFormData } = useSaveFormQuery();
-    const [isSaveFormLoaded, setIsSaveFormLoaded] = useRecoilState(isSaveFormLoadedAtomState);
+    const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();
 
     useEffect(() => {
         if (userData) setUser(userData);

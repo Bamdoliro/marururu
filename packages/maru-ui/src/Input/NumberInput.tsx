@@ -9,7 +9,7 @@ const NumberInput = ({
     onChange,
     placeholder,
     value = 0,
-    isIncorrect,
+    isError,
 }: InputPropsType) => {
     return (
         <StyledNumberInput
@@ -19,7 +19,7 @@ const NumberInput = ({
             type="number"
             value={value}
             placeholder={placeholder}
-            isIncorrect={isIncorrect}
+            isError={isError}
             min={0}
         />
     );
@@ -27,7 +27,7 @@ const NumberInput = ({
 
 export default NumberInput;
 
-const StyledNumberInput = styled.input<{ isIncorrect?: boolean }>`
+const StyledNumberInput = styled.input<{ isError?: boolean }>`
     ${font.p2}
     height: 40px;
     border-radius: 6px;
@@ -50,9 +50,9 @@ const StyledNumberInput = styled.input<{ isIncorrect?: boolean }>`
         margin: 0;
     }
 
-    ${({ isIncorrect }) =>
-        typeof isIncorrect === 'boolean' &&
-        isIncorrect &&
+    ${({ isError }) =>
+        typeof isError === 'boolean' &&
+        isError &&
         css`
             border: 1px solid ${color.red};
             outline: 2px solid rgba(244, 67, 54, 0.25);
