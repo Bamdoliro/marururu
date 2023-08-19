@@ -1,5 +1,7 @@
+import { ROUTES } from '@/constants/common/constant';
+import { FORM } from '@/constants/form/initial';
+import { useSaveFormQuery } from '@/services/form/queries';
 import { useUserQuery } from '@/services/user/queries';
-import { usePathname, useRouter } from 'next/navigation';
 import {
     useFormValueStore,
     useSetFormStore,
@@ -7,13 +9,17 @@ import {
     useSetSubjectStore,
     useUserStore,
 } from '@/store';
-import { useEffect } from 'react';
-import { useOverlay } from '@toss/use-overlay';
-import { Confirm, Text } from '@maru/ui';
-import { ROUTES } from '@/constants/common/constant';
 import { color } from '@maru/theme';
-import { useSaveFormQuery } from '@/services/form/queries';
-import { FORM } from '@/constants/form/initial';
+import { Confirm, Text } from '@maru/ui';
+import { useOverlay } from '@toss/use-overlay';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { atom, useRecoilState } from 'recoil';
+
+const isSaveFormLoadedAtomState = atom({
+    key: 'save form loaded state',
+    default: false,
+});
 
 const useUser = () => {
     const router = useRouter();
@@ -26,6 +32,7 @@ const useUser = () => {
     const setNewtSubjectList = useSetNewSubjectStore();
     const { data: userData, isLoading } = useUserQuery();
     const { data: saveFormData } = useSaveFormQuery();
+    const [isSaveFormLoaded, setIsSaveFormLoaded] = useRecoilState(isSaveFormLoadedAtomState);
 
     useEffect(() => {
         if (userData) setUser(userData);
@@ -64,9 +71,10 @@ const useUser = () => {
 
     // 원서 저장 불러오기
     useEffect(() => {
-        if (saveFormData) {
+        if (saveFormData && !isSaveFormLoaded) {
             console.log('save data: ');
             console.log(saveFormData);
+            setIsSaveFormLoaded(true);
             setForm({
                 applicant: saveFormData.applicant || FORM.applicant,
                 parent: saveFormData.parent || FORM.document,
@@ -92,9 +100,9 @@ const useUser = () => {
         }
     }, [saveFormData]);
 
-    useEffect(() => {
-        console.log(form);
-    }, [form]);
+    // useEffect(() => {
+    //     console.log(form);
+    // }, [form]);
 
     return { user, isLogined: !!userData };
 };
