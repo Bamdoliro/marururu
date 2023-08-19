@@ -43,7 +43,7 @@ const 전형선택 = () => {
                             name="type"
                             value="REGULAR"
                             onChange={handleFormTypeDataChange}
-                            defaultChecked={form.type === 'REGULAR'}
+                            checked={form.type === 'REGULAR'}
                         />
                     </Td>
                 </Row>
@@ -64,7 +64,7 @@ const 전형선택 = () => {
                                     name="type"
                                     value="MEISTER_TALENT"
                                     onChange={handleFormTypeDataChange}
-                                    defaultChecked={form.type === 'MEISTER_TALENT'}
+                                    checked={form.type === 'MEISTER_TALENT'}
                                 />
                             </Td>
                         </Row>
@@ -82,7 +82,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="NATIONAL_BASIC_LIVING"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'NATIONAL_BASIC_LIVING'}
+                                            checked={form.type === 'NATIONAL_BASIC_LIVING'}
                                         />
                                     </Td>
                                 </Row>
@@ -95,7 +95,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="NEAR_POVERTY"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'NEAR_POVERTY'}
+                                            checked={form.type === 'NEAR_POVERTY'}
                                         />
                                     </Td>
                                 </Row>
@@ -108,7 +108,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="NATIONAL_VETERANS"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'NATIONAL_VETERANS'}
+                                            checked={form.type === 'NATIONAL_VETERANS'}
                                         />
                                     </Td>
                                 </Row>
@@ -121,7 +121,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="ONE_PARENT"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'ONE_PARENT'}
+                                            checked={form.type === 'ONE_PARENT'}
                                         />
                                     </Td>
                                 </Row>
@@ -134,7 +134,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="FROM_NORTH_KOREA"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'FROM_NORTH_KOREA'}
+                                            checked={form.type === 'FROM_NORTH_KOREA'}
                                         />
                                     </Td>
                                 </Row>
@@ -154,7 +154,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="MULTICULTURAL"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'MULTICULTURAL'}
+                                            checked={form.type === 'MULTICULTURAL'}
                                         />
                                     </Td>
                                 </Row>
@@ -167,7 +167,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="TEEN_HOUSEHOLDER"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'TEEN_HOUSEHOLDER'}
+                                            checked={form.type === 'TEEN_HOUSEHOLDER'}
                                         />
                                     </Td>
                                 </Row>
@@ -180,7 +180,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="MULTI_CHILDREN"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'MULTI_CHILDREN'}
+                                            checked={form.type === 'MULTI_CHILDREN'}
                                         />
                                     </Td>
                                 </Row>
@@ -193,7 +193,7 @@ const 전형선택 = () => {
                                             name="type"
                                             value="FARMING_AND_FISHING"
                                             onChange={handleFormTypeDataChange}
-                                            defaultChecked={form.type === 'FARMING_AND_FISHING'}
+                                            checked={form.type === 'FARMING_AND_FISHING'}
                                         />
                                     </Td>
                                 </Row>
@@ -211,7 +211,7 @@ const 전형선택 = () => {
                                     name="type"
                                     value="SPECIAL_ADMISSION"
                                     onChange={handleFormTypeDataChange}
-                                    defaultChecked={form.type === 'SPECIAL_ADMISSION'}
+                                    checked={form.type === 'SPECIAL_ADMISSION'}
                                 />
                             </Td>
                         </Row>
