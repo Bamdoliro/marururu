@@ -54,9 +54,6 @@ export const useJoinUserMutation = ({ email, name, code, password }: PostJoinAut
 export const useRequestEmailMutation = (email: string) => {
     const { mutate: requestEmailMutate, ...restMutation } = useMutation({
         mutationFn: () => postRequestEmail(email),
-        onSuccess: () => {
-            alert('인증번호 전송 성공!');
-        },
         onError: (err: AxiosError) => {
             if (err.code === 'BAD_REQUEST') {
                 alert('올바른 형식의 이메일이어야 합니다.');
