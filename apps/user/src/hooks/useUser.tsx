@@ -1,6 +1,12 @@
 import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
-import { useSetFormStore, useSetNewSubjectStore, useSetSubjectStore, useUserStore } from '@/store';
+import {
+    useFormValueStore,
+    useSetFormStore,
+    useSetNewSubjectStore,
+    useSetSubjectStore,
+    useUserStore,
+} from '@/store';
 import { useEffect } from 'react';
 import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
@@ -14,6 +20,7 @@ const useUser = () => {
     const pathName = usePathname();
     const overlay = useOverlay();
     const [user, setUser] = useUserStore();
+    const form = useFormValueStore();
     const setForm = useSetFormStore();
     const setSubjectList = useSetSubjectStore();
     const setNewtSubjectList = useSetNewSubjectStore();
@@ -58,6 +65,7 @@ const useUser = () => {
     // 원서 저장 불러오기
     useEffect(() => {
         if (saveFormData) {
+            console.log('save data: ');
             console.log(saveFormData);
             setForm({
                 applicant: saveFormData.applicant || FORM.applicant,
@@ -83,6 +91,10 @@ const useUser = () => {
             }
         }
     }, [saveFormData]);
+
+    useEffect(() => {
+        console.log(form);
+    }, [form]);
 
     return { user, isLogined: !!userData };
 };

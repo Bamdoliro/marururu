@@ -8,6 +8,7 @@ const NumberInput = ({
     textAlign = 'center',
     onChange,
     placeholder,
+    value = 0,
 }: InputPropsType) => {
     return (
         <StyledNumberInput
@@ -15,7 +16,7 @@ const NumberInput = ({
             style={{ width, textAlign }}
             onChange={onChange}
             type="number"
-            defaultValue={0}
+            value={value}
             placeholder={placeholder}
         />
     );

@@ -3,16 +3,10 @@ import { styled } from 'styled-components';
 
 interface PropsType extends InputHTMLAttributes<HTMLInputElement> {}
 
-const Radio = ({ value, name, defaultChecked, onChange }: PropsType) => {
+const Radio = ({ value, name, checked, onChange }: PropsType) => {
     return (
         <StyledRadio>
-            <Input
-                type="radio"
-                value={value}
-                name={name}
-                defaultChecked={defaultChecked}
-                onChange={onChange}
-            />
+            <Input type="radio" value={value} name={name} checked={checked} onChange={onChange} />
         </StyledRadio>
     );
 };

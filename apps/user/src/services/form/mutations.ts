@@ -40,6 +40,7 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
         },
         onError: (err: AxiosError) => {
             console.error(err);
+            alert('원서를 다시 한번 확인해주세요.');
         },
     });
 

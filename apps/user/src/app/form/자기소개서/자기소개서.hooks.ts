@@ -1,20 +1,13 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useSetFormStore, useSetFormStepStore, useFormStore } from '@/store';
+import { useSetFormStore, useSetFormStepStore, useFormStore, useFormValueStore } from '@/store';
 import { ChangeEventHandler } from 'react';
 
 export const useFormSubmitAction = () => {
-    const [form, setForm] = useFormStore();
+    const form = useFormValueStore();
     const setFormStep = useSetFormStepStore();
     const { saveFormMutate } = useSaveFormMutation();
 
     const handleFormSubmitButtonClick = () => {
-        setForm((prev) => ({
-            ...prev,
-            document: {
-                coverLetter: form.document.coverLetter,
-                statementOfPurpose: form.document.statementOfPurpose,
-            },
-        }));
         setFormStep('초안작성완료');
         saveFormMutate(form);
     };
