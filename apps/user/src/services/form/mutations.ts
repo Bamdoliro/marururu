@@ -9,7 +9,7 @@ import {
     postUploadFormDocumnet,
     postUploadProfileImage,
 } from './api';
-import { useSetFormStepStore, useFormValueStore } from '@/store';
+import { useSetFormStepStore, useFormValueStore, useSetFormStore } from '@/store';
 import { Axios, AxiosError, AxiosResponse } from 'axios';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
@@ -78,7 +78,9 @@ export const useUploadFormDocumentMutation = (
     return { uploadFormDocumentMutate, ...restMutation };
 };
 
-export const useUploadProfileImageMutation = (setForm: Dispatch<SetStateAction<Form>>) => {
+export const useUploadProfileImageMutation = () => {
+    const setForm = useSetFormStore();
+
     const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
         mutationFn: (image: FormData) => postUploadProfileImage(image),
         onSuccess: (res: AxiosResponse) => {
