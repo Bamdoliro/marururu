@@ -1,10 +1,10 @@
-import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
-import { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
-import { getButtonSize, getButtonStyle, getButtonPadding } from './Button.style';
-import { flex } from '@maru/utils';
 import { IconAdd, IconShortcuts } from '@maru/icon';
 import { color } from '@maru/theme';
+import { flex } from '@maru/utils';
+import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
+import { getButtonPadding, getButtonSize, getButtonStyle } from './Button.style';
+import { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
@@ -21,9 +21,15 @@ const Button = ({
     icon = 'NONE',
     size = 'MEDIUM',
     width,
+    style,
 }: PropsType) => {
     return (
-        <StyledButton style={{ width }} onClick={onClick} option={option} icon={icon} size={size}>
+        <StyledButton
+            style={{ width, ...style }}
+            onClick={onClick}
+            option={option}
+            icon={icon}
+            size={size}>
             {icon === 'ADD_ICON' && <IconAdd color={color.white} width={24} height={24} />}
             {children}
             {icon === 'SHORTCUTS_ICON' && (
