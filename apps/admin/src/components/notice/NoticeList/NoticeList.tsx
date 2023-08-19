@@ -26,24 +26,15 @@ const NoticeList = () => {
         <Column gap={12}>
             <ListHeader>
                 <Row gap={48}>
-                    <Text fontType="p2" width={60}>
-                        접수번호
+                    <Text fontType="p2" width={50}>
+                        번호
                     </Text>
-                    <Text fontType="p2" width={60}>
-                        이름
-                    </Text>
-                    <Text fontType="p2" width={60}>
-                        생년월일
-                    </Text>
-                    <Text fontType="p2" width={160}>
-                        학교
-                    </Text>
-                    <Text fontType="p2" width={240}>
-                        전형
+                    <Text fontType="p2" width={540}>
+                        제목
                     </Text>
                 </Row>
-                <Text fontType="p2" width={80}>
-                    상태
+                <Text fontType="p2" width={100}>
+                    게시일
                 </Text>
             </ListHeader>
             {NOTICE_DATA.map((item) => (
