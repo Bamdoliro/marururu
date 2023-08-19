@@ -9,6 +9,7 @@ import 자기소개서 from './자기소개서/자기소개서';
 import 초안작성완료 from './초안작성완료/초안작성완료';
 import 초안제출완료 from './초안제출완료/초안제출완료';
 import 최종제출 from './최종제출/최종제출';
+import 최종제출완료 from './최종제출완료/최종제출완료';
 import { useFormStepValueStore } from '@/store';
 import { SwitchCase } from '@toss/react';
 import { useEffect } from 'react';
@@ -46,6 +47,7 @@ const FormPage = () => {
                 초안작성완료: <초안작성완료 />,
                 초안제출완료: <초안제출완료 />,
                 최종제출: <최종제출 />,
+                최종제출완료: <최종제출완료 />,
             }}
             defaultComponent={<지원자정보 />}
         />
