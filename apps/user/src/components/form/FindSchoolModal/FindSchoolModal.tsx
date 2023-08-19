@@ -1,9 +1,9 @@
-import { useDebounceInput } from '@maru/hooks';
-import { Column, Modal, SearchInput } from '@maru/ui';
-import { useState, Suspense } from 'react';
-import SchoolList from './SchoolList/SchoolList';
 import { Loader } from '@/components/common';
 import { useSetFormStore } from '@/store';
+import { useDebounceInput } from '@maru/hooks';
+import { Column, Modal, SearchInput } from '@maru/ui';
+import { Suspense, useState } from 'react';
+import SchoolList from './SchoolList/SchoolList';
 
 interface PropsType {
     isOpen: boolean;
@@ -20,14 +20,13 @@ const FindSchoolModal = ({ isOpen, onClose }: PropsType) => {
     } = useDebounceInput({ initialValue: '' });
 
     const handleConfirmModalButtonClick = () => {
-        const { name, location, code } = selectedSchool;
+        const { name, location } = selectedSchool;
         setForm((prev) => ({
             ...prev,
             education: {
                 ...prev.education,
                 schoolName: name,
                 schoolLocation: location,
-                schoolCode: code,
             },
         }));
         onClose();
