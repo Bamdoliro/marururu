@@ -1,8 +1,8 @@
-import Input from './Input';
-import { flex } from '@maru/utils';
 import { color, font } from '@maru/theme';
-import { InputPropsType } from './Input.type';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import Input from './Input';
+import { InputPropsType } from './Input.type';
 
 interface ButtonInputPropsType extends InputPropsType {
     buttonText: string;
@@ -23,6 +23,8 @@ const ButtonInput = ({
     onClick,
     enabled = false,
     readOnly,
+    isIncorrect,
+    msg,
 }: ButtonInputPropsType) => {
     return (
         <div>
@@ -36,6 +38,8 @@ const ButtonInput = ({
                     onChange={onChange}
                     placeholder={placeholder}
                     readOnly={readOnly}
+                    isIncorrect={isIncorrect}
+                    msg={msg}
                 />
                 <Button onClick={onClick} enabled={enabled}>
                     {buttonText}

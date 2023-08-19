@@ -1,10 +1,10 @@
 import { FindAddressModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
+import { useFormValueStore } from '@/store';
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
-import { useInput, useCTAButton } from './보호자정보.hooks';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
-import { useFormValueStore } from '@/store';
+import { useCTAButton, useInput } from './보호자정보.hooks';
 
 const 보호자정보 = () => {
     const overlay = useOverlay();
@@ -27,6 +27,8 @@ const 보호자정보 = () => {
                             onChange={handle보호자정보DataChange}
                             label="성명"
                             width="100%"
+                            isIncorrect={form.parent.name.length > 20}
+                            msg="20자 이하여야 합니다."
                         />
                         <Input
                             name="phoneNumber"
@@ -35,6 +37,8 @@ const 보호자정보 = () => {
                             label="전화번호"
                             placeholder="- 없이 입력"
                             width="100%"
+                            isIncorrect={form.parent.phoneNumber.length !== 11}
+                            msg="11글자여야 합니다"
                         />
                     </Row>
                     <ButtonInput
@@ -44,6 +48,8 @@ const 보호자정보 = () => {
                         width="100%"
                         value={form.parent.address}
                         readOnly
+                        isIncorrect={form.parent.address.length > 100}
+                        msg="100자 이하여야 합니다."
                     />
                     <Row gap={48}>
                         <Input
@@ -52,6 +58,8 @@ const 보호자정보 = () => {
                             onChange={handle보호자정보DataChange}
                             label="상세 주소"
                             width="100%"
+                            isIncorrect={form.parent.detailAddress.length > 100}
+                            msg="100자 이하여야 합니다."
                         />
                         <Input
                             name="zoneCode"
@@ -60,6 +68,8 @@ const 보호자정보 = () => {
                             label="우편번호"
                             width="100%"
                             readOnly
+                            isIncorrect={form.parent.zoneCode.length !== 5}
+                            msg="5자여야 합니다."
                         />
                     </Row>
                 </Column>
