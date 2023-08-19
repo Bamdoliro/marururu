@@ -1,3 +1,3 @@
 export type ResultsStep = 'MAIN' | 'RESULTS';
 
-export type ResultsOption = 'first' | 'final';
+export type ResultsOption = 'FIRST' | 'FINAL';

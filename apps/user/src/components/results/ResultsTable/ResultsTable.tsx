@@ -48,7 +48,7 @@ const ResultsTable = ({ option }: PropsType) => {
                     </Text>
                 </ResultsTableItem>
             </Column>
-            <ResultsTableFooter option={option} is합격={is합격} />
+            <ResultsTableFooter option={option} />
         </StyledResultsTable>
     );
 };

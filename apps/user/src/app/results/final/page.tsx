@@ -12,35 +12,35 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { ResultsMain } from '@/components/results';
 
-const FirstResultsPage = () => {
+const FinalResultsPage = () => {
     const [resultsStep, setResultsStep] = useState<ResultsStep>('MAIN');
 
     return (
         <AppLayout header footer>
-            <StyledFirstResultsPage>
+            <StyledFinalResultsPage>
                 <Column gap={12} alignItems="center">
                     <Text fontType="H5" color={color.gray900}>
                         2024학년도 부산소프트웨어마이스터고등학교
                     </Text>
                     <Text fontType="D3" color={color.gray900}>
-                        1차 합격자 발표
+                        1차 최종 합격자 발표
                     </Text>
                 </Column>
                 <SwitchCase
                     value={resultsStep}
                     caseBy={{
-                        MAIN: <ResultsMain option="FIRST" setResultsStep={setResultsStep} />,
-                        RESULTS: <ResultsTable option="FIRST" />,
+                        MAIN: <ResultsMain option="FINAL" setResultsStep={setResultsStep} />,
+                        RESULTS: <ResultsTable option="FINAL" />,
                     }}
                 />
-            </StyledFirstResultsPage>
+            </StyledFinalResultsPage>
         </AppLayout>
     );
 };
 
-export default FirstResultsPage;
+export default FinalResultsPage;
 
-const StyledFirstResultsPage = styled.div`
+const StyledFinalResultsPage = styled.div`
     padding-top: 82px;
     ${flex({ flexDirection: 'column', alignItems: 'center' })};
     gap: 48px;
