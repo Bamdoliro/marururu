@@ -21,4 +21,4 @@ export { default as Modal } from './src/Modal/Modal';
 export { default as Text } from './src/Text/Text';
 
 // type
-export type { ButtonOptionType } from './src/Button/Button.type';
+export type { ButtonOption } from './src/Button/Button.type';

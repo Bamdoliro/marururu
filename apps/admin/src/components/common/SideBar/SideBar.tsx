@@ -1,9 +1,10 @@
 import { ROUTES } from '@/constants/common/constants';
+import { flex } from '@maru/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled, { css } from 'styled-components';
-import { color } from '../../../../../../packages/maru-theme';
+import { color, font } from '../../../../../../packages/maru-theme';
 
 const NAVIGATION_DATA = [
     {
@@ -53,6 +54,7 @@ const SideBar = () => {
                     </StyledLink>
                 ))}
             </SideNavigationBar>
+            <LogoutButton>로그아웃</LogoutButton>
         </StyledSideBar>
     );
 };
@@ -61,10 +63,13 @@ export default SideBar;
 
 const StyledSideBar = styled.div`
     position: relative;
+    ${flex({ flexDirection: 'column' })}
     width: 240px;
     height: 100vh;
 
     background: ${color.gray900};
+
+    flex-shrink: 0;
 `;
 
 const SideNavigationBar = styled.div`
@@ -73,8 +78,7 @@ const SideNavigationBar = styled.div`
 
 const StyledLink = styled(Link)<{ $active: boolean }>`
     position: relative;
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 56px;
     color: ${color.white};
@@ -99,4 +103,13 @@ const StyledLink = styled(Link)<{ $active: boolean }>`
             );
         `}
     box-sizing: border-box;
+`;
+
+const LogoutButton = styled.button`
+    ${font.btn1}
+    ${flex({ alignItems: 'center' })}
+    height: 56px;
+    padding: 0px 36px;
+    color: ${color.white};
+    margin: auto 0 48px;
 `;

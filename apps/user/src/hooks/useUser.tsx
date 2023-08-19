@@ -11,7 +11,7 @@ import {
     useUserStore,
 } from '@/store';
 import { color } from '@maru/theme';
-import { Confirm, Text } from '@maru/ui';
+import { Column, Confirm, Text } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -43,14 +43,14 @@ const useUser = () => {
                         title="로그인"
                         desc="이 페이지는 로그인이 필요한 페이지입니다."
                         content={
-                            <>
+                            <Column>
                                 <Text color={color.gray900} fontType="p2">
                                     로그인하지 않으면 접근할 수 없어요.
                                 </Text>
                                 <Text color={color.gray900} fontType="p2">
                                     로그인 후에 편리하게 서비스를 이용하실 수 있습니다.
                                 </Text>
-                            </>
+                            </Column>
                         }
                         onClose={() => {
                             router.push(ROUTES.MAIN);

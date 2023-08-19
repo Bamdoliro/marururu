@@ -4,13 +4,13 @@ import { flex } from '@maru/utils';
 import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 import { getButtonPadding, getButtonSize, getButtonStyle } from './Button.style';
-import { ButtonIconType, ButtonOptionType, ButtonSizeType } from './Button.type';
+import { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
-    option?: ButtonOptionType;
-    icon?: ButtonIconType;
-    size?: ButtonSizeType;
+    option?: ButtonOption;
+    icon?: ButtonIcon;
+    size?: ButtonSize;
     width?: CSSProperties['width'];
 }
 
@@ -21,9 +21,15 @@ const Button = ({
     icon = 'NONE',
     size = 'MEDIUM',
     width,
+    style,
 }: PropsType) => {
     return (
-        <StyledButton style={{ width }} onClick={onClick} option={option} icon={icon} size={size}>
+        <StyledButton
+            style={{ width, ...style }}
+            onClick={onClick}
+            option={option}
+            icon={icon}
+            size={size}>
             {icon === 'ADD_ICON' && <IconAdd color={color.white} width={24} height={24} />}
             {children}
             {icon === 'SHORTCUTS_ICON' && (
@@ -36,9 +42,9 @@ const Button = ({
 export default Button;
 
 const StyledButton = styled.button<{
-    option: ButtonOptionType;
-    icon: ButtonIconType;
-    size: ButtonSizeType;
+    option: ButtonOption;
+    icon: ButtonIcon;
+    size: ButtonSize;
 }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;

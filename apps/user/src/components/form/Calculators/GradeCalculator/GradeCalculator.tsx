@@ -6,8 +6,8 @@ import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import { useEffect, useRef } from 'react';
-import styled from 'styled-components';
 import { useNewSubjectStore, useSubjectStore } from '@/store';
+import styled from 'styled-components';
 
 const GradeCalculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectStore();

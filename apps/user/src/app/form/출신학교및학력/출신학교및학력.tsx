@@ -56,16 +56,16 @@ const 출신학교및학력 = () => {
                     }
                     errorMessage="4자여야 합니다."
                 />
-                <ButtonInput
+                <Input
                     name="schoolLocation"
                     label="지역"
-                    value={form.education.schoolLocation}
-                    buttonText="검색"
-                    onClick={() => {}}
                     placeholder="도로명 주소"
                     readOnly
                     isError={form.education.schoolLocation.length > 20}
                     errorMessage="20자여야 합니다."
+                    width="100%"
+                    value={form.education.schoolLocation}
+                    onChange={handle출신학교및학력DataChange}
                 />
                 <Input
                     name="schoolCode"
