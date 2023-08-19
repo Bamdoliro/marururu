@@ -1,3 +1,5 @@
+'use client';
+
 import { GlobalStyle } from '@maru/theme';
 import { ReactNode } from 'react';
 

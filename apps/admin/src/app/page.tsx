@@ -1,3 +1,7 @@
+'use client';
+
+import AppLayout from '@/layouts/AppLayout';
+
 export default function Home() {
-    return <main></main>;
+    return <AppLayout>asdf</AppLayout>;
 }
