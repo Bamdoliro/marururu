@@ -135,14 +135,17 @@ export const useCertificateScore = () => {
     let certificateScore = 0;
     if (form.grade.certificateList !== null) {
         if (
-            form.grade.certificateList.includes(
-                '정보처리기능사, 정보기기운용기능사, 전자계산기기능사',
-            )
+            form.grade.certificateList.includes('CRAFTSMAN_INFORMATION_PROCESSING') ||
+            form.grade.certificateList.includes('CRAFTSMAN_INFORMATION_EQUIPMENT_OPERATION') ||
+            form.grade.certificateList.includes('CRAFTSMAN_COMPUTER')
         )
             certificateScore += 4;
-        if (form.grade.certificateList.includes('컴퓨터활용능력 1급')) certificateScore += 3;
-        if (form.grade.certificateList.includes('컴퓨터활용능력 2급')) certificateScore += 2;
-        if (form.grade.certificateList.includes('컴퓨터활용능력 3급')) certificateScore += 1;
+        if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_1'))
+            certificateScore += 3;
+        if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_2'))
+            certificateScore += 2;
+        if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_3'))
+            certificateScore += 1;
     }
 
     return { certificateScore };
