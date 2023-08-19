@@ -1,10 +1,10 @@
 import { FindSchoolModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
+import { useFormValueStore } from '@/store';
 import { ButtonInput, Input, RadioGroup } from '@maru/ui';
-import { useCTAButton, useInput } from './출신학교및학력.hooks';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
-import { useFormValueStore } from '@/store';
+import { useCTAButton, useInput } from './출신학교및학력.hooks';
 
 const 출신학교및학력 = () => {
     const overlay = useOverlay();
@@ -49,14 +49,13 @@ const 출신학교및학력 = () => {
                     value={form.education.graduationYear}
                     onChange={handle출신학교및학력DataChange}
                 />
-                <ButtonInput
+                <Input
                     name="schoolLocation"
                     label="지역"
-                    value={form.education.schoolLocation}
-                    buttonText="검색"
-                    onClick={() => {}}
                     placeholder="도로명 주소"
-                    readOnly
+                    width="100%"
+                    value={form.education.schoolLocation}
+                    onChange={handle출신학교및학력DataChange}
                 />
                 <Input
                     name="schoolCode"
