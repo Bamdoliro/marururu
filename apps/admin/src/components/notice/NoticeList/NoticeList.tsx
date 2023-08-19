@@ -19,7 +19,7 @@ const NOTICE_DATA = [
         title: '테스트입니다',
         date: '2022-05-07T10:35:57',
     },
-];
+] as const;
 
 const NoticeList = () => {
     return (
