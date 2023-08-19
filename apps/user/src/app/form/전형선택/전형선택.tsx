@@ -1,73 +1,223 @@
 import { FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { RadioGroup } from '@maru/ui';
+import { useFormValueStore } from '@/store';
+import { Column, Radio, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
 import { useCTAButton, useInput } from './전형선택.hooks';
-import { useChoiceFormTypeState } from './전형선택.state';
 
 const 전형선택 = () => {
-    const { choiceFormType } = useChoiceFormTypeState();
+    const form = useFormValueStore();
     const { handleFormTypeDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     return (
         <FormLayout title="전형 선택">
-            <Styled전형선택>
-                <RadioGroup
-                    label="입학 전형 선택"
-                    name="입학전형선택"
-                    list={[
-                        { value: 'REGULAR', label: '일반전형' },
-                        { value: 'SPECIAL', label: '특별전형' },
-                    ]}
-                    value={choiceFormType.입학전형선택}
-                    onChange={handleFormTypeDataChange}
-                />
-                {choiceFormType.입학전형선택 === 'SPECIAL' && (
-                    <RadioGroup
-                        label="특별 전형 선택"
-                        name="특별전형선택"
-                        list={[
-                            { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
-                            { value: 'EQUAL_OPPORTUNITY', label: '기회균등전형' },
-                            { value: 'SOCIAL_DIVERSITY', label: '사회다양성전형' },
-                            { value: 'SPECIAL_ADMISSION', label: '특례입학대상자전형' },
-                        ]}
-                        value={choiceFormType.특별전형선택}
-                        onChange={handleFormTypeDataChange}
-                    />
-                )}
-                {choiceFormType.특별전형선택 === 'EQUAL_OPPORTUNITY' && (
-                    <RadioGroup
-                        label="기회 균등 전형 선택"
-                        name="기회균등전형선택"
-                        list={[
-                            { value: 'NATIONAL_BASIC_LIVING', label: '국가기초생활수급권자' },
-                            { value: 'NEAR_POVERTY', label: '차상위계층' },
-                            { value: 'NATIONAL_VETERANS', label: '국가보훈자녀' },
-                            { value: 'ONE_PARENT', label: '한부모가정' },
-                            { value: 'FROM_NORTH_KOREA', label: '북한이탈주민' },
-                        ]}
-                        value={choiceFormType.기회균등전형선택}
-                        onChange={handleFormTypeDataChange}
-                    />
-                )}
-                {choiceFormType.특별전형선택 === 'SOCIAL_DIVERSITY' && (
-                    <RadioGroup
-                        label="사회다양성 전형 선택"
-                        name="사회다양성전형선택"
-                        list={[
-                            { value: 'MULTICULTURAL', label: '다문화가정' },
-                            { value: 'TEEN_HOUSEHOLDER', label: '소년소녀가장' },
-                            { value: 'MULTI_CHILDREN', label: '다자녀가정자녀' },
-                            { value: 'FARMING_AND_FISHING', label: '농어촌지역출신자' },
-                        ]}
-                        value={choiceFormType.사회다양성전형선택}
-                        onChange={handleFormTypeDataChange}
-                    />
-                )}
-            </Styled전형선택>
+            <Table>
+                <Row>
+                    <Th width="calc(736px/3)" height={56} borderTopLeftRadius={12}>
+                        1유형
+                    </Th>
+                    <Th width="calc(736px/3)" height={56}>
+                        2유형
+                    </Th>
+                    <Th width="calc(736px/3)" height={56}>
+                        3유형
+                    </Th>
+                    <Th width={80} height={56} borderTopRightRadius={12}>
+                        선택
+                    </Th>
+                </Row>
+                <Row>
+                    <Td width="calc(736px/3)" height={56}>
+                        일반 전형
+                    </Td>
+                    <Td width="calc(736px/3)" height={56}>
+                        {}
+                    </Td>
+                    <Td width="calc(736px/3)" height={56}>
+                        {}
+                    </Td>
+                    <Td width={80} height={56}>
+                        <Radio
+                            name="type"
+                            value="REGULAR"
+                            onChange={handleFormTypeDataChange}
+                            defaultChecked={form.type === 'REGULAR'}
+                        />
+                    </Td>
+                </Row>
+                <Row>
+                    <Td width="calc(736px/3)" height={616} borderBottomLeftRadius={12}>
+                        특별 전형
+                    </Td>
+                    <Column>
+                        <Row>
+                            <Td width="calc(736px/3)" height={56}>
+                                마이스터인재 전형
+                            </Td>
+                            <Td width="calc(736px/3)" height={56}>
+                                {}
+                            </Td>
+                            <Td width={80} height={56}>
+                                <Radio
+                                    name="type"
+                                    value="MEISTER_TALENT"
+                                    onChange={handleFormTypeDataChange}
+                                    defaultChecked={form.type === 'MEISTER_TALENT'}
+                                />
+                            </Td>
+                        </Row>
+                        <Row>
+                            <Td width="calc(736px/3)" height={280}>
+                                기회균등 전형
+                            </Td>
+                            <Column>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        국민기초생활수급자
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="NATIONAL_BASIC_LIVING"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'NATIONAL_BASIC_LIVING'}
+                                        />
+                                    </Td>
+                                </Row>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        차상위계층
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="NEAR_POVERTY"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'NEAR_POVERTY'}
+                                        />
+                                    </Td>
+                                </Row>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        국가보훈대상자 (국가유공자)
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="NATIONAL_VETERANS"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'NATIONAL_VETERANS'}
+                                        />
+                                    </Td>
+                                </Row>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        한부모가정
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="ONE_PARENT"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'ONE_PARENT'}
+                                        />
+                                    </Td>
+                                </Row>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        북한이탈주민
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="FROM_NORTH_KOREA"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'FROM_NORTH_KOREA'}
+                                        />
+                                    </Td>
+                                </Row>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Td width="calc(736px/3)" height={224}>
+                                사회다양성 전형
+                            </Td>
+                            <Column>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        다문화가정
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="MULTICULTURAL"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'MULTICULTURAL'}
+                                        />
+                                    </Td>
+                                </Row>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        소년소녀가장
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="TEEN_HOUSEHOLDER"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'TEEN_HOUSEHOLDER'}
+                                        />
+                                    </Td>
+                                </Row>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        다자녀가정자녀
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="MULTI_CHILDREN"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'MULTI_CHILDREN'}
+                                        />
+                                    </Td>
+                                </Row>
+                                <Row>
+                                    <Td width="calc(736px/3)" height={56}>
+                                        농어촌지역출신자
+                                    </Td>
+                                    <Td width={80} height={56}>
+                                        <Radio
+                                            name="type"
+                                            value="FARMING_AND_FISHING"
+                                            onChange={handleFormTypeDataChange}
+                                            defaultChecked={form.type === 'FARMING_AND_FISHING'}
+                                        />
+                                    </Td>
+                                </Row>
+                            </Column>
+                        </Row>
+                        <Row>
+                            <Td width="calc(736px/3)" height={56}>
+                                특례입학대상자전형
+                            </Td>
+                            <Td width="calc(736px/3)" height={56}>
+                                {}
+                            </Td>
+                            <Td width={80} height={56} borderBottomRightRadius={12}>
+                                <Radio
+                                    name="type"
+                                    value="SPECIAL_ADMISSION"
+                                    onChange={handleFormTypeDataChange}
+                                    defaultChecked={form.type === 'SPECIAL_ADMISSION'}
+                                />
+                            </Td>
+                        </Row>
+                    </Column>
+                </Row>
+            </Table>
             <FormController
                 onPrevious={handlePreviousButtonClick}
                 onNext={handleNextButtonClick}
@@ -84,4 +234,10 @@ const Styled전형선택 = styled.div`
     gap: 48px;
     width: 100%;
     height: 100%;
+`;
+
+const Table = styled.table`
+    display: flex;
+    flex-direction: column;
+    width: 816px;
 `;
