@@ -50,7 +50,10 @@ const 출신학교및학력 = () => {
                     width="100%"
                     value={form.education.graduationYear}
                     onChange={handle출신학교및학력DataChange}
-                    isIncorrect={form.education.graduationYear.length !== 4}
+                    isIncorrect={
+                        !!form.education.graduationYear &&
+                        form.education.graduationYear.length !== 4
+                    }
                     msg="4자여야 합니다."
                 />
                 <ButtonInput

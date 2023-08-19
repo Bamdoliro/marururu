@@ -37,7 +37,9 @@ const 보호자정보 = () => {
                             label="전화번호"
                             placeholder="- 없이 입력"
                             width="100%"
-                            isIncorrect={form.parent.phoneNumber.length !== 11}
+                            isIncorrect={
+                                !!form.parent.phoneNumber && form.parent.phoneNumber.length !== 11
+                            }
                             msg="11글자여야 합니다"
                         />
                     </Row>

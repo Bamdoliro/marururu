@@ -45,7 +45,10 @@ const 지원자정보 = () => {
                             name="phoneNumber"
                             placeholder="- 없이 입력해주세요"
                             width="100%"
-                            isIncorrect={form.applicant.phoneNumber.length !== 11}
+                            isIncorrect={
+                                !!form.applicant.phoneNumber &&
+                                form.applicant.phoneNumber.length !== 11
+                            }
                             msg="11글자여야 합니다"
                         />
                     </Column>
