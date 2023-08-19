@@ -1,7 +1,7 @@
 const formatCreatedAt = (createdAt: string) => {
-    const date = createdAt.split('T')[0].split('-');
+    const date = new Date(createdAt);
 
-    return `${date[0]}년 ${date[1]}월 ${date[2]}일`;
+    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
 };
 
 export default formatCreatedAt;
