@@ -75,6 +75,12 @@ export interface Subject {
     achievementLevel31: AchievementLevel;
 }
 
+export interface AttendanceInfo {
+    attendance1: Attendance;
+    attendance2: Attendance;
+    attendance3: Attendance;
+}
+
 export interface Attendance {
     absenceCount: number;
     latenessCount: number;

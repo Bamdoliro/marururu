@@ -3,7 +3,8 @@ import { color, font } from '@maru/theme';
 import { Column, NumberInput, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
-import { styled } from 'styled-components';
+import { AttendanceInfo } from '@/types/form/client';
+import styled from 'styled-components';
 
 const AttendanceCalculator = () => {
     const [form, setForm] = useFormStore();
@@ -17,7 +18,7 @@ const AttendanceCalculator = () => {
             grade: {
                 ...prev.grade,
                 [attendanceName]: {
-                    ...prev.grade.attendance1,
+                    ...prev.grade[attendanceName as keyof AttendanceInfo],
                     [countName]: Number(value),
                 },
             },
