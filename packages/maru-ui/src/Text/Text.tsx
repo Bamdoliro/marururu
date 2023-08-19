@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import { font, color } from '@maru/theme';
 import styled from 'styled-components';
 
@@ -8,11 +8,12 @@ interface PropsType extends HTMLAttributes<HTMLSpanElement> {
     children: ReactNode;
     color?: string;
     fontType: Font;
+    textAlign?: CSSProperties['textAlign'];
 }
 
-const Text = ({ children, color, fontType }: PropsType) => {
+const Text = ({ children, color, fontType, textAlign }: PropsType) => {
     return (
-        <StyledText style={{ color }} fontType={fontType}>
+        <StyledText style={{ color, textAlign }} fontType={fontType}>
             {children}
         </StyledText>
     );

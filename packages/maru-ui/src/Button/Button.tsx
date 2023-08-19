@@ -1,16 +1,16 @@
 import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
-import { ButtonIconType, ButtonOptionType, ButtonSizeType } from './Button.type';
+import { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
 import { getButtonSize, getButtonStyle, getButtonPadding } from './Button.style';
 import { flex } from '@maru/utils';
 import { IconAdd, IconShortcuts } from '@maru/icon';
-import styled from 'styled-components';
 import { color } from '@maru/theme';
+import styled from 'styled-components';
 
 interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
-    option?: ButtonOptionType;
-    icon?: ButtonIconType;
-    size?: ButtonSizeType;
+    option?: ButtonOption;
+    icon?: ButtonIcon;
+    size?: ButtonSize;
     width?: CSSProperties['width'];
 }
 
@@ -36,9 +36,9 @@ const Button = ({
 export default Button;
 
 const StyledButton = styled.button<{
-    option: ButtonOptionType;
-    icon: ButtonIconType;
-    size: ButtonSizeType;
+    option: ButtonOption;
+    icon: ButtonIcon;
+    size: ButtonSize;
 }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;

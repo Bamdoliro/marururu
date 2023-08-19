@@ -11,7 +11,7 @@ export const getButtonStyle = {
     `,
     SECONDARY: css`
         background-color: ${color.gray200};
-        color: ${color.gray900};
+        color: ${color.gray700};
         &:hover {
             background-color: ${color.gray300};
         }
