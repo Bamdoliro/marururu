@@ -5,4 +5,5 @@ export interface InputPropsType extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     msg?: string;
     textAlign?: CSSProperties['textAlign'];
+    isIncorrect?: boolean;
 }

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import { IconError } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import styled, { css } from 'styled-components';
 import { InputPropsType } from './Input.type';
-import Message from './Message';
 
 const Input = ({
     width = '320px',
@@ -14,27 +14,47 @@ const Input = ({
     msg,
     readOnly,
     textAlign,
+    isIncorrect,
 }: InputPropsType) => {
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledInput
-                onChange={onChange}
-                placeholder={placeholder}
-                type={type}
-                name={name}
-                value={value}
-                readOnly={readOnly}
-                style={{ textAlign }}
-            />
-            {msg && <Message>{msg}</Message>}
+            <div style={{ position: 'relative' }}>
+                <StyledInput
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    type={type}
+                    name={name}
+                    value={value}
+                    readOnly={readOnly}
+                    style={{ textAlign }}
+                    isIncorrect={isIncorrect}
+                />
+                {isIncorrect && (
+                    <IconError
+                        style={{
+                            position: 'absolute',
+                            right: 16,
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                        }}
+                        color={color.red}
+                        width={24}
+                    />
+                )}
+            </div>
+            {isIncorrect && (
+                <div style={{ position: 'relative' }}>
+                    <ErrorMessage>{msg}</ErrorMessage>
+                </div>
+            )}
         </div>
     );
 };
 
 export default Input;
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<{ isIncorrect?: boolean }>`
     ${font.p2}
     color: ${color.gray800};
     height: 48px;
@@ -51,6 +71,28 @@ const StyledInput = styled.input`
         border: 1px solid ${color.maruDefault};
         outline: 2px solid rgba(20, 112, 255, 0.25);
     }
+
+    ${({ isIncorrect }) =>
+        typeof isIncorrect === 'boolean' &&
+        isIncorrect &&
+        css`
+            border: 1px solid ${color.red};
+            outline: 2px solid rgba(244, 67, 54, 0.25);
+
+            &:focus {
+                border: 1px solid ${color.red};
+                outline: 2px solid rgba(244, 67, 54, 0.25);
+            }
+        `}
+`;
+
+const ErrorMessage = styled.p`
+    position: absolute;
+    top: 0;
+    left: 0;
+    ${font.caption}
+    color: ${color.red};
+    margin-top: 8px;
 `;
 
 const Label = styled.p`
