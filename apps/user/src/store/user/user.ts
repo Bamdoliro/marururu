@@ -10,10 +10,4 @@ const userAtomState = atom<User>({
     },
 });
 
-const isSaveFormLoadedAtomState = atom({
-    key: 'save form loaded state',
-    default: false,
-});
-
 export const useUserStore = () => useRecoilState(userAtomState);
-export const useIsSaveFormLoadedStore = () => useRecoilState(isSaveFormLoadedAtomState);

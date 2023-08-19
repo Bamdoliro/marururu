@@ -70,8 +70,6 @@ const 보호자정보 = () => {
                             label="우편번호"
                             width="100%"
                             readOnly
-                            isError={form.parent.zoneCode.length !== 5}
-                            errorMessage="5자여야 합니다."
                         />
                     </Row>
                 </Column>
