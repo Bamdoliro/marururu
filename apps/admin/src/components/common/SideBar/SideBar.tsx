@@ -65,6 +65,8 @@ const StyledSideBar = styled.div`
     height: 100vh;
 
     background: ${color.gray900};
+
+    flex-shrink: 0;
 `;
 
 const SideNavigationBar = styled.div`
