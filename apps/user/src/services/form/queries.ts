@@ -28,8 +28,8 @@ export const useSaveFormQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.SAVE_FORM],
         queryFn: () => getSaveForm(),
-        suspense: false,
         retry: 1,
+        suspense: false,
     });
 
     return { data: data?.data, ...restQuery };

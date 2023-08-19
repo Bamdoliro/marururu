@@ -11,9 +11,27 @@ import 초안제출완료 from './초안제출완료/초안제출완료';
 import 최종제출 from './최종제출/최종제출';
 import { useFormStepValueStore } from '@/store';
 import { SwitchCase } from '@toss/react';
+import { useEffect } from 'react';
+import { useFormStatusQuery } from '@/services/form/queries';
+import { useSetFormStepStore } from '@/store';
 
 const FormPage = () => {
     const formStep = useFormStepValueStore();
+    const setFormStep = useSetFormStepStore();
+    const { data: formStatusData } = useFormStatusQuery();
+
+    useEffect(() => {
+        if (formStatusData) {
+            if (formStatusData.status === 'SUBMITTED') {
+                setFormStep('초안제출완료');
+                return;
+            }
+            if (formStatusData.status === 'FINAL_SUBMITTED') {
+                setFormStep('최종제출완료');
+                return;
+            }
+        }
+    }, []);
 
     return (
         <SwitchCase

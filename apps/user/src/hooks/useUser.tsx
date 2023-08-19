@@ -2,7 +2,6 @@ import { useUserQuery } from '@/services/user/queries';
 import { usePathname, useRouter } from 'next/navigation';
 import {
     useFormValueStore,
-    useSetFormStepStore,
     useSetFormStore,
     useSetNewSubjectStore,
     useSetSubjectStore,
@@ -13,7 +12,7 @@ import { useOverlay } from '@toss/use-overlay';
 import { Confirm, Text } from '@maru/ui';
 import { ROUTES } from '@/constants/common/constant';
 import { color } from '@maru/theme';
-import { useFormStatusQuery, useSaveFormQuery } from '@/services/form/queries';
+import { useSaveFormQuery } from '@/services/form/queries';
 import { FORM } from '@/constants/form/initial';
 
 const useUser = () => {
@@ -22,13 +21,11 @@ const useUser = () => {
     const overlay = useOverlay();
     const [user, setUser] = useUserStore();
     const form = useFormValueStore();
-    const setFormStep = useSetFormStepStore();
     const setForm = useSetFormStore();
     const setSubjectList = useSetSubjectStore();
     const setNewtSubjectList = useSetNewSubjectStore();
     const { data: userData, isLoading } = useUserQuery();
     const { data: saveFormData } = useSaveFormQuery();
-    const { data: formStatusData } = useFormStatusQuery();
 
     useEffect(() => {
         if (userData) setUser(userData);
@@ -93,18 +90,7 @@ const useUser = () => {
                 );
             }
         }
-        // 제출 현황을 체크하여 적절한 페이지를 보여줍니다
-        if (formStatusData) {
-            if (formStatusData.status === 'SUBMITTED') {
-                setFormStep('초안제출완료');
-                return;
-            }
-            if (formStatusData.status === 'FINAL_SUBMITTED') {
-                setFormStep('최종제출완료');
-                return;
-            }
-        }
-    }, [saveFormData, formStatusData]);
+    }, [saveFormData]);
 
     useEffect(() => {
         console.log(form);
