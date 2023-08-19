@@ -113,3 +113,10 @@ export interface FormDocument {
     fileName: string;
     formUrl: string;
 }
+
+export interface FormStatus {
+    id: number;
+    name: string;
+    status: 'APPROVED' | 'REJECTED' | 'RECEIVED' | 'SUBMITTED' | 'FINAL_SUBMITTED';
+    type: FormType;
+}

@@ -17,21 +17,27 @@ const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
         <div>
             <Label>{label}</Label>
             <RadioListBox>
-                {list.map((item, index) => (
-                    <label key={`radio-group ${name} ${index}`}>
-                        <Row gap={8} alignItems="center">
-                            <Radio
-                                value={typeof item === 'string' ? item : item.value}
-                                name={name}
-                                defaultChecked={
-                                    typeof item === 'string' ? value === item : value === item.value
-                                }
-                                onChange={onChange}
-                            />
-                            <RadioLabel>{typeof item === 'string' ? item : item.label}</RadioLabel>
-                        </Row>
-                    </label>
-                ))}
+                {list.map((item, index) => {
+                    return (
+                        <label key={`radio-group ${name} ${index}`}>
+                            <Row gap={8} alignItems="center">
+                                <Radio
+                                    value={typeof item === 'string' ? item : item.value}
+                                    name={name}
+                                    checked={
+                                        typeof item === 'string'
+                                            ? value === item
+                                            : value === item.value
+                                    }
+                                    onChange={onChange}
+                                />
+                                <RadioLabel>
+                                    {typeof item === 'string' ? item : item.label}
+                                </RadioLabel>
+                            </Row>
+                        </label>
+                    );
+                })}
             </RadioListBox>
         </div>
     );

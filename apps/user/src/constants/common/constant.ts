@@ -7,6 +7,7 @@ export const KEY = {
     EXPORT_FORM: 'useExportForm',
     SAVE_FORM: 'useSaveForm',
     USER: 'useUser',
+    FORM_STATUS: 'useFormStatus',
 } as const;
 
 export const ROUTES = {

@@ -1,10 +1,16 @@
 import { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-const CheckBox = ({ name, value, onChange }: InputHTMLAttributes<HTMLInputElement>) => {
+const CheckBox = ({ name, value, onChange, checked }: InputHTMLAttributes<HTMLInputElement>) => {
     return (
         <StyledCheckBox>
-            <Input type="checkbox" name={name} value={value} onChange={onChange} />
+            <Input
+                type="checkbox"
+                checked={checked}
+                name={name}
+                value={value}
+                onChange={onChange}
+            />
         </StyledCheckBox>
     );
 };
