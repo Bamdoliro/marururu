@@ -1,6 +1,5 @@
 'use client';
 
-import ResultsTable from '@/components/results/ResultsTable/ResultsTable';
 import { AppLayout } from '@/layouts';
 import { useBoolean } from '@maru/hooks';
 import { color } from '@maru/theme';
@@ -10,7 +9,7 @@ import { SwitchCase } from '@toss/react';
 import { ResultsStep } from '@/types/results/client';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { ResultsMain } from '@/components/results';
+import { ResultsMain, FinalResultsTable } from '@/components/results';
 
 const FinalResultsPage = () => {
     const [resultsStep, setResultsStep] = useState<ResultsStep>('MAIN');
@@ -30,7 +29,7 @@ const FinalResultsPage = () => {
                     value={resultsStep}
                     caseBy={{
                         MAIN: <ResultsMain option="FINAL" setResultsStep={setResultsStep} />,
-                        RESULTS: <ResultsTable option="FINAL" />,
+                        RESULTS: <FinalResultsTable />,
                     }}
                 />
             </StyledFinalResultsPage>
