@@ -1,5 +1,4 @@
 import { CompleteAlaram } from '@/components/form';
-import { ROUTES } from '@/constants/common/constant';
 import { AppLayout } from '@/layouts';
 import { IconCheckCircle } from '@maru/icon';
 import { color } from '@maru/theme';
@@ -7,9 +6,11 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
+import { useCTAButton } from './최종제출완료.hooks';
 
 const 최종제출완료 = () => {
     const router = useRouter();
+    const { handleGoMainPageButtonClick } = useCTAButton();
 
     return (
         <AppLayout header footer>
@@ -36,7 +37,7 @@ const 최종제출완료 = () => {
                             신준서 님의 1차 합격을 기원합니다.
                         </Text>
                     </Column>
-                    <Button onClick={() => router.push(ROUTES.MAIN)} size="SMALL">
+                    <Button onClick={handleGoMainPageButtonClick} size="SMALL">
                         홈으로 돌아가기
                     </Button>
                 </Column>
