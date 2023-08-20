@@ -3,7 +3,7 @@ import { TOKEN, KEY } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
 import { getUser } from './api';
 
-export const useUserQuery = () => {
+export const useUserInfoQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.USER] as const,
         queryFn: () => getUser(),
