@@ -1,3 +1,5 @@
+'use client';
+
 import { FORM } from '@/constants/form/initial';
 import { useSaveFormQuery } from '@/services/form/queries';
 import {

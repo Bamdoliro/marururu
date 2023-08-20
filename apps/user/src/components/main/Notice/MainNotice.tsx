@@ -5,7 +5,6 @@ import { IconArrowRight } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Link, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 import MainNoticeList from './MainNoticeList/MainNoticeList';
