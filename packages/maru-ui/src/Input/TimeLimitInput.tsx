@@ -16,7 +16,7 @@ const TimeLimitInput = ({
     width = '320px',
     name,
     label,
-    msg,
+    errorMessage: message,
     onChange,
     maxLength,
     timerTime,
@@ -38,7 +38,7 @@ const TimeLimitInput = ({
                     {formatTime(timerTime)}
                 </Text>
             </StyledTimeLimitInput>
-            {msg && <Message>{msg}</Message>}
+            {message && <Message>{message}</Message>}
         </div>
     );
 };

@@ -78,9 +78,7 @@ const Label = styled.p`
 `;
 
 const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }>`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
     background-color: ${color.white};
     border-radius: 6px;

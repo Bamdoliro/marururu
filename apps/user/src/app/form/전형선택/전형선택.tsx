@@ -237,7 +237,6 @@ const Styled전형선택 = styled.div`
 `;
 
 const Table = styled.table`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     width: 816px;
 `;
