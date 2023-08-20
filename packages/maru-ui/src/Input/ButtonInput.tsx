@@ -62,7 +62,6 @@ export const Button = styled.button<{ enabled: boolean }>`
     color: ${color.white};
     background-color: ${(props) => (props.enabled ? color.gray400 : color.maruDefault)};
     pointer-events: ${(props) => props.enabled && 'none'};
-    display: flex;
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
     height: 48px;

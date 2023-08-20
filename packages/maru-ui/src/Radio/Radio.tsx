@@ -1,3 +1,4 @@
+import { flex } from '@maru/utils';
 import { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
@@ -17,9 +18,7 @@ const Input = styled.input`
 `;
 
 const StyledRadio = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     width: 24px;
     height: 24px;
 `;

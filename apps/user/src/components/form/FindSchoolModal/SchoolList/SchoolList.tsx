@@ -2,6 +2,7 @@ import { useSchoolListQuery } from '@/services/form/queries';
 import { School } from '@/types/form/client';
 import { IconCheck } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -41,8 +42,7 @@ const SchoolList = ({
 export default SchoolList;
 
 const StyledSchoolList = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 8px;
     height: 225px;
     margin-top: 24px;
@@ -50,13 +50,11 @@ const StyledSchoolList = styled.div`
 `;
 
 const SchoolItem = styled.div<{ selected: boolean }>`
-    display: flex;
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     height: 56px;
     padding: 15px 16px;
     border-radius: 6px;
     background: ${color.gray50};
-    justify-content: space-between;
-    align-items: center;
     cursor: pointer;
 
     ${({ selected }) =>
@@ -70,8 +68,7 @@ const SchoolItem = styled.div<{ selected: boolean }>`
 const SchoolName = styled.p`
     ${font.p2}
     color: ${color.gray900};
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     gap: 4px;
 `;
 

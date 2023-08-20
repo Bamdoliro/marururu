@@ -1,4 +1,4 @@
-import { useFormStepStore, useFormStepValueStore } from '@/store';
+import { useFormStepValueStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -60,9 +60,7 @@ const Circle = styled.div<{ $active: boolean; name: string }>`
     ${font.p1}
     color: ${(props) => (props.$active ? color.maruDefault : color.gray600)};
     background-color: ${(props) => (props.$active ? color.white : color.gray50)};
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 50%;
     width: 44px;
     height: 44px;
