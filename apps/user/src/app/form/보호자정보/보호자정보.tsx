@@ -69,6 +69,7 @@ const 보호자정보 = () => {
                             onChange={handle보호자정보DataChange}
                             label="우편번호"
                             width="100%"
+                            isError={!!form.parent.zoneCode && form.parent.zoneCode.length !== 5}
                             readOnly
                         />
                     </Row>

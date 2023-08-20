@@ -59,8 +59,7 @@ const 출신학교및학력 = () => {
                 <Input
                     name="schoolLocation"
                     label="지역"
-                    placeholder="도로명 주소"
-                    readOnly
+                    placeholder="뭐시기 뭐시기"
                     isError={form.education.schoolLocation.length > 20}
                     errorMessage="20자여야 합니다."
                     width="100%"
@@ -74,7 +73,7 @@ const 출신학교및학력 = () => {
                     width="100%"
                     value={form.education.schoolCode}
                     onChange={handle출신학교및학력DataChange}
-                    isError={form.education.schoolCode.length !== 10}
+                    isError={!!form.education.schoolCode && form.education.schoolCode.length !== 10}
                     errorMessage="10자여야 합니다."
                 />
                 <Input
