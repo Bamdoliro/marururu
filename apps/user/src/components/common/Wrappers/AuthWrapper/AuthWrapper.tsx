@@ -1,9 +1,9 @@
 'use client';
 
-import { ROUTES } from '@/constants/common/constant';
-import { useUser } from '@/hooks';
-import { Column, Confirm, Text } from '@maru/ui';
+import { Storage } from '@/apis/storage/storage';
+import { ROUTES, TOKEN } from '@/constants/common/constant';
 import { color } from '@maru/theme';
+import { Column, Confirm, Text } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
@@ -19,10 +19,11 @@ const AuthWrapper = ({ children }: PropsType) => {
     const router = useRouter();
     const pathName = usePathname();
     const overlay = useOverlay();
-    const { isLoggedIn } = useUser();
+
+    const token = Storage.getItem(TOKEN.ACCESS);
 
     useEffect(() => {
-        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !isLoggedIn) {
+        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !token) {
             router.push(ROUTES.MAIN);
             overlay.open(({ isOpen, close }) => (
                 <Confirm
@@ -49,12 +50,12 @@ const AuthWrapper = ({ children }: PropsType) => {
             ));
         }
 
-        if (isLoggedIn) {
+        if (token) {
             if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 router.push(ROUTES.MAIN);
             }
         }
-    }, [isLoggedIn, pathName]);
+    }, [token, pathName]);
 
     return <>{children}</>;
 };

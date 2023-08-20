@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import Profile from './Profile/Profile';
-
 const NAVIGATION_DATA = [
     {
         name: '홈',
