@@ -23,8 +23,6 @@ const FormWrapper = ({ children }: PropsType) => {
 
     useEffect(() => {
         if (saveFormData && !isSaveFormLoaded) {
-            console.log('save data: ');
-            console.log(saveFormData);
             setIsSaveFormLoaded(true);
             setForm({
                 applicant: saveFormData.applicant || FORM.applicant,
