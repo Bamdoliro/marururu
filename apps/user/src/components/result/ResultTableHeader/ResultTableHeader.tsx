@@ -3,35 +3,34 @@ import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-const ResultsTableItem = () => {
+const ResultTableHeader = () => {
     return (
-        <StyledResultsTableItem>
+        <StyledResultTableHeader>
             <Row alignItems="center" gap={48}>
-                <Text fontType="p2" color={color.gray900}>
+                <Text fontType="p2" color={color.gray600}>
                     수험번호
                 </Text>
-                <Text fontType="p2" color={color.gray900}>
+                <Text fontType="p2" color={color.gray600}>
                     이름
                 </Text>
-                <Text fontType="p2" color={color.gray900}>
+                <Text fontType="p2" color={color.gray600}>
                     전형
                 </Text>
             </Row>
-            <Text fontType="p2" color={color.gray900}>
+            <Text fontType="p2" color={color.gray600}>
                 합격 여부
             </Text>
-        </StyledResultsTableItem>
+        </StyledResultTableHeader>
     );
 };
 
-export default ResultsTableItem;
+export default ResultTableHeader;
 
-const StyledResultsTableItem = styled.div`
+const StyledResultTableHeader = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
     height: 64px;
     padding: 0px 64px 0px 32px;
-    background-color: ${color.white};
-    border: 1px solid ${color.gray200};
+    background-color: ${color.gray50};
     border-radius: 12px;
 `;
