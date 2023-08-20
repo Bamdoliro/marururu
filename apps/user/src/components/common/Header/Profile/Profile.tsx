@@ -39,7 +39,6 @@ const Profile = () => {
                                 @{userData.email.split('@')[0]}
                             </Text>
                         </NameMenu>
-                        <MenuItem>프로필</MenuItem>
                         <MenuItem onClick={handleGoFormPageButtonClick}>
                             이어서 원서 작성하기
                         </MenuItem>
