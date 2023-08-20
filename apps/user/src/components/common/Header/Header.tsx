@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/common/constant';
-import useUser from '@/hooks/useUser';
+import { useUser } from '@/hooks';
 import { color } from '@maru/theme';
 import { Button, Row, UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -34,9 +34,7 @@ const NAVIGATION_DATA = [
 const Header = () => {
     const router = useRouter();
     const pathName = usePathname();
-    const { isLogined } = useUser();
-
-    // console.log('routes', router);
+    const { isLoggedIn } = useUser();
 
     return (
         <StyledHeader>
@@ -49,7 +47,7 @@ const Header = () => {
                     onClick={() => router.push(ROUTES.MAIN)}
                     alt="logo"
                 />
-                {isLogined ? (
+                {isLoggedIn ? (
                     <Profile />
                 ) : (
                     <Row gap="10px" alignItems="center">

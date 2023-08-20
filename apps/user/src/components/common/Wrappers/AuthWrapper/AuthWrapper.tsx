@@ -19,10 +19,10 @@ const AuthWrapper = ({ children }: PropsType) => {
     const router = useRouter();
     const pathName = usePathname();
     const overlay = useOverlay();
-    const { isLogined } = useUser();
+    const { isLoggedIn } = useUser();
 
     useEffect(() => {
-        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !isLogined) {
+        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !isLoggedIn) {
             router.push(ROUTES.MAIN);
             overlay.open(({ isOpen, close }) => (
                 <Confirm
@@ -49,12 +49,12 @@ const AuthWrapper = ({ children }: PropsType) => {
             ));
         }
 
-        if (isLogined) {
+        if (isLoggedIn) {
             if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 router.push(ROUTES.MAIN);
             }
         }
-    }, [isLogined, pathName]);
+    }, [isLoggedIn, pathName]);
 
     return <>{children}</>;
 };

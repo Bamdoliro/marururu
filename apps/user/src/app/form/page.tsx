@@ -15,6 +15,7 @@ import { SwitchCase } from '@toss/react';
 import { useEffect } from 'react';
 import { useFormStatusQuery } from '@/services/form/queries';
 import { useSetFormStepStore } from '@/store';
+import { FormWrapper } from '@/components/common';
 
 const FormPage = () => {
     const formStep = useFormStepValueStore();
@@ -35,22 +36,24 @@ const FormPage = () => {
     }, [formStatusData]);
 
     return (
-        <SwitchCase
-            value={formStep}
-            caseBy={{
-                지원자정보: <지원자정보 />,
-                보호자정보: <보호자정보 />,
-                출신학교및학력: <출신학교및학력 />,
-                전형선택: <전형선택 />,
-                성적입력: <성적입력 />,
-                자기소개서: <자기소개서 />,
-                초안작성완료: <초안작성완료 />,
-                초안제출완료: <초안제출완료 />,
-                최종제출: <최종제출 />,
-                최종제출완료: <최종제출완료 />,
-            }}
-            defaultComponent={<지원자정보 />}
-        />
+        <FormWrapper>
+            <SwitchCase
+                value={formStep}
+                caseBy={{
+                    지원자정보: <지원자정보 />,
+                    보호자정보: <보호자정보 />,
+                    출신학교및학력: <출신학교및학력 />,
+                    전형선택: <전형선택 />,
+                    성적입력: <성적입력 />,
+                    자기소개서: <자기소개서 />,
+                    초안작성완료: <초안작성완료 />,
+                    초안제출완료: <초안제출완료 />,
+                    최종제출: <최종제출 />,
+                    최종제출완료: <최종제출완료 />,
+                }}
+                defaultComponent={<지원자정보 />}
+            />
+        </FormWrapper>
     );
 };
 
