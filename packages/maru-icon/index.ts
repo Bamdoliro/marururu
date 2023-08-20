@@ -1,0 +1,17 @@
+export { default as IconAdd } from './src/IconAdd';
+export { default as IconAnswer } from './src/IconAnswer';
+export { default as IconArrowBottom } from './src/IconArrowBottom';
+export { default as IconArrowDropdown } from './src/IconArrowDropdown';
+export { default as IconArrowLeft } from './src/IconArrowLeft';
+export { default as IconArrowRight } from './src/IconArrowRight';
+export { default as IconArrowTop } from './src/IconArrowTop';
+export { default as IconCancelCircle } from './src/IconCancelCircle';
+export { default as IconCheck } from './src/IconCheck';
+export { default as IconCheckCircle } from './src/IconCheckCircle';
+export { default as IconClose } from './src/IconClose';
+export { default as IconFaq } from './src/IconFaq';
+export { default as IconInvisibleEye } from './src/IconInvisibleEye';
+export { default as IconSearch } from './src/IconSearch';
+export { default as IconShortcuts } from './src/IconShortcuts';
+export { default as IconVisibleEye } from './src/IconVisibleEye';
+export { default as IconError } from './src/IconError';

@@ -1,44 +1,23 @@
 {
-  "name": "marururu",
-  "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^29.5.0",
-    "@types/node": "^18.15.6",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^5.0.2",
-    "web-vitals": "^2.1.0"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "packageManager": "yarn@3.5.0"
+  "name": "marururu",
+  "packageManager": "pnpm@8.6.7",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "configs/*"
+  ],
+  "devDependencies": {
+    "@maru/eslint": "workspace:*",
+    "@turbo/gen": "^1.9.7",
+    "eslint": "^7.32.0",
+    "prettier": "^2.5.1",
+    "turbo": "latest"
+  }
 }

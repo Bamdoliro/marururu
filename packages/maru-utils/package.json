@@ -1,0 +1,22 @@
+{
+  "name": "@maru/utils",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "devDependencies": {
+    "@maru/eslint": "workspace:*",
+    "@maru/tsconfig": "workspace:*",
+    "@types/react": "18.2.13",
+    "axios": "^1.4.0",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "@types/styled-components": "^5.1.26",
+    "react": "18.2.0",
+    "styled-components": "^6.0.3"
+  }
+}
