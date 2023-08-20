@@ -17,7 +17,7 @@ export const useFirstResultQuery = () => {
 export const useFinalResultQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.FINAL_RESULT] as const,
-        queryFn: () => getFinalResult(),
+        queryFn: getFinalResult,
         enabled: !!Storage.getItem(TOKEN.ACCESS),
         suspense: false,
     });
