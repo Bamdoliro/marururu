@@ -8,7 +8,8 @@ import { useOverlay } from '@toss/use-overlay';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 
-const PRIVATE_PAGE: string[] = [ROUTES.FORM];
+const NOT_LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.FORM];
+const LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.LOGIN, ROUTES.SIGNUP];
 
 interface PropsType {
     children: ReactNode;
@@ -20,10 +21,8 @@ const AuthProvider = ({ children }: PropsType) => {
     const overlay = useOverlay();
     const { isLogined } = useUser();
 
-    const isPublicPage = !PRIVATE_PAGE.includes(pathName);
-
     useEffect(() => {
-        if (!isPublicPage && !isLogined) {
+        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !isLogined) {
             router.push(ROUTES.MAIN);
             overlay.open(({ isOpen, close }) => (
                 <Confirm
@@ -48,6 +47,12 @@ const AuthProvider = ({ children }: PropsType) => {
                     confirmButtonText="로그인 하러 가기"
                 />
             ));
+        }
+
+        if (isLogined) {
+            if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
+                router.push(ROUTES.MAIN);
+            }
         }
     }, [isLogined, pathName]);
 
