@@ -10,7 +10,7 @@ const useUser = () => {
         if (userData) setUser(userData);
     }, [setUser, userData]);
 
-    return { userData: user, isLoggedIn: !!user };
+    return { userData: user, isLoggedIn: !!userData };
 };
 
 export default useUser;

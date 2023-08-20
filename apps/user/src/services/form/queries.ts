@@ -28,6 +28,7 @@ export const useSaveFormQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.SAVE_FORM],
         queryFn: getSaveForm,
+        enabled: !!Storage.getItem(TOKEN.ACCESS),
         retry: 1,
         suspense: false,
     });
@@ -39,6 +40,7 @@ export const useFormStatusQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.FORM_STATUS],
         queryFn: getFormStatus,
+        enabled: !!Storage.getItem(TOKEN.ACCESS),
         suspense: false,
         retry: 1,
     });
