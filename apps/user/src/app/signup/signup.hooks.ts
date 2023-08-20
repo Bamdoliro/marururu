@@ -38,10 +38,10 @@ export const useRequestEmailAction = (email: string) => {
         setIsButtonDisabled(true);
         setIsRequestEmail(true);
 
-        // 3초뒤 활성화를 풀어줌
+        // 5초뒤 비활성화를 풀어줌
         setTimeout(() => {
             setIsButtonDisabled(false);
-        }, 3000);
+        }, 5000);
     };
 
     return { handleRequestEmailButtonClick, isButtonDisabled, isRequestEmail };
