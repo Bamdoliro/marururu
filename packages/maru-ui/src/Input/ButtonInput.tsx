@@ -1,8 +1,8 @@
-import Input from './Input';
-import { flex } from '@maru/utils';
 import { color, font } from '@maru/theme';
-import { InputPropsType } from './Input.type';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import Input from './Input';
+import { InputPropsType } from './Input.type';
 
 interface ButtonInputPropsType extends InputPropsType {
     buttonText: string;
@@ -58,7 +58,6 @@ export const Button = styled.button<{ enabled: boolean }>`
     color: ${color.white};
     background-color: ${(props) => (props.enabled ? color.gray400 : color.maruDefault)};
     pointer-events: ${(props) => props.enabled && 'none'};
-    display: flex;
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
     height: 48px;
