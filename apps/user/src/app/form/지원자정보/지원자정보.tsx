@@ -1,10 +1,9 @@
-import { FormController, ProfileUploader } from '@/components/form';
+import { DateBox, FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { Column, Input, RadioGroup, Row } from '@maru/ui';
-import { useCTAButton, useInput } from './지원자정보.hooks';
-import { DateBox } from '@/components/form';
-import styled from 'styled-components';
 import { useFormValueStore } from '@/store';
+import { Column, Input, RadioGroup, Row } from '@maru/ui';
+import styled from 'styled-components';
+import { useCTAButton, useInput } from './지원자정보.hooks';
 
 const 지원자정보 = () => {
     const form = useFormValueStore();
@@ -23,6 +22,8 @@ const 지원자정보 = () => {
                             onChange={handle지원자정보DataChange}
                             name="name"
                             width="100%"
+                            isError={form.applicant.name.length > 20}
+                            errorMessage="20자 이하여야 합니다."
                         />
                         <DateBox />
                         <Row gap={40} alignItems="flex-end">
@@ -44,6 +45,11 @@ const 지원자정보 = () => {
                             name="phoneNumber"
                             placeholder="- 없이 입력해주세요"
                             width="100%"
+                            isError={
+                                !!form.applicant.phoneNumber &&
+                                form.applicant.phoneNumber.length !== 11
+                            }
+                            errorMessage="11글자여야 합니다"
                         />
                     </Column>
                 </Row>

@@ -57,6 +57,7 @@ const AttendanceCalculator = () => {
                             name="attendance1-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance1.absenceCount}
+                            isError={Number(form.grade.attendance1.absenceCount) < 0}
                         />
                     </Td>
                     <Td width="100%" height={56}>
@@ -64,6 +65,7 @@ const AttendanceCalculator = () => {
                             name="attendance1-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance1.latenessCount}
+                            isError={Number(form.grade.attendance1.latenessCount) < 0}
                         />
                     </Td>
                     <Td width="100%" height={56}>
@@ -71,6 +73,7 @@ const AttendanceCalculator = () => {
                             name="attendance1-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance1.earlyLeaveCount}
+                            isError={Number(form.grade.attendance1.earlyLeaveCount) < 0}
                         />
                     </Td>
                     <Td width="100%" height={56}>
@@ -78,6 +81,7 @@ const AttendanceCalculator = () => {
                             name="attendance1-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance1.classAbsenceCount}
+                            isError={Number(form.grade.attendance1.classAbsenceCount) < 0}
                         />
                     </Td>
                 </Row>
@@ -90,6 +94,7 @@ const AttendanceCalculator = () => {
                             name="attendance2-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance2.absenceCount}
+                            isError={Number(form.grade.attendance2.absenceCount) < 0}
                         />
                     </Td>
                     <Td width="100%" height={56}>
@@ -97,6 +102,7 @@ const AttendanceCalculator = () => {
                             name="attendance2-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance2.latenessCount}
+                            isError={Number(form.grade.attendance2.latenessCount) < 0}
                         />
                     </Td>
                     <Td width="100%" height={56}>
@@ -104,6 +110,7 @@ const AttendanceCalculator = () => {
                             name="attendance2-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance2.earlyLeaveCount}
+                            isError={Number(form.grade.attendance2.earlyLeaveCount) < 0}
                         />
                     </Td>
                     <Td width="100%" height={56}>
@@ -111,6 +118,7 @@ const AttendanceCalculator = () => {
                             name="attendance2-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance2.classAbsenceCount}
+                            isError={Number(form.grade.attendance2.classAbsenceCount) < 0}
                         />
                     </Td>
                 </Row>
@@ -123,6 +131,7 @@ const AttendanceCalculator = () => {
                             name="attendance3-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance3.absenceCount}
+                            isError={Number(form.grade.attendance3.absenceCount) < 0}
                         />
                     </Td>
                     <Td width="100%" height={56}>
@@ -130,6 +139,7 @@ const AttendanceCalculator = () => {
                             name="attendance3-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance3.latenessCount}
+                            isError={Number(form.grade.attendance3.latenessCount) < 0}
                         />
                     </Td>
                     <Td width="100%" height={56}>
@@ -137,6 +147,7 @@ const AttendanceCalculator = () => {
                             name="attendance3-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance3.earlyLeaveCount}
+                            isError={Number(form.grade.attendance3.earlyLeaveCount) < 0}
                         />
                     </Td>
                     <Td borderBottomRightRadius={12} width="100%" height={56}>
@@ -144,6 +155,7 @@ const AttendanceCalculator = () => {
                             name="attendance3-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance3.classAbsenceCount}
+                            isError={Number(form.grade.attendance3.classAbsenceCount) < 0}
                         />
                     </Td>
                 </Row>

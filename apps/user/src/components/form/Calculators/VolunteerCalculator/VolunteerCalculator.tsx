@@ -1,9 +1,8 @@
 import { useFormStore } from '@/store';
-import { VolunteerInfo } from '@/types/form/client';
 import { color, font } from '@maru/theme';
 import { Column, NumberInput, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
 
 const VolunteerCalculator = () => {
@@ -37,6 +36,7 @@ const VolunteerCalculator = () => {
                             name="volunteerTime1"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime1}
+                            isError={Number(form.grade.volunteerTime1) < 0}
                         />
                         <Hour>시간</Hour>
                     </Td>
@@ -50,6 +50,7 @@ const VolunteerCalculator = () => {
                             name="volunteerTime2"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime2}
+                            isError={Number(form.grade.volunteerTime2) < 0}
                         />
                         <Hour>시간</Hour>
                     </Td>
@@ -63,6 +64,7 @@ const VolunteerCalculator = () => {
                             name="volunteerTime3"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime3}
+                            isError={Number(form.grade.volunteerTime3) < 0}
                         />
                         <Hour>시간</Hour>
                     </Td>
