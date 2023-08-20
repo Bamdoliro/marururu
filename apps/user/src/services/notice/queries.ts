@@ -13,7 +13,7 @@ export const useNoticeListQuery = () => {
 
 export const useNoticeDetailQuery = (id: number) => {
     const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.NOTICE_DETAIL] as const,
+        queryKey: [KEY.NOTICE_DETAIL, id] as const,
         queryFn: () => getNoticeDetail(id),
     });
 
