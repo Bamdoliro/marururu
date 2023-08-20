@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/common/constant';
-import useUser from '@/hooks/useUser';
+import { useUser } from '@/hooks';
 import { color } from '@maru/theme';
 import { Button, Row, UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';

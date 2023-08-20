@@ -1,16 +1,16 @@
-import { useUserInfoQuery } from '@/services/user/queries';
+import { useUserQuery } from '@/services/user/queries';
 import { useEffect } from 'react';
 import { useUserStore } from '@/store';
 
 const useUser = () => {
     const [user, setUser] = useUserStore();
-    const { data: userInfoData } = useUserInfoQuery();
+    const { data: userData } = useUserQuery();
 
     useEffect(() => {
-        if (userInfoData) setUser(userInfoData);
-    }, [setUser, userInfoData]);
+        if (userData) setUser(userData);
+    }, [setUser, userData]);
 
-    return { user, isLoggedIn: !!userInfoData };
+    return { userData: user, isLoggedIn: !!userData };
 };
 
 export default useUser;
