@@ -3,23 +3,36 @@ import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-const ResultTableItem = () => {
+interface PropsType {
+    id: number;
+    name: string;
+    type: string;
+    is합격: boolean;
+}
+
+const ResultTableItem = ({ id, name, type, is합격 }: PropsType) => {
     return (
         <StyledResultTableItem>
             <Row alignItems="center" gap={48}>
                 <Text fontType="p2" color={color.gray900}>
-                    수험번호
+                    {id}
                 </Text>
                 <Text fontType="p2" color={color.gray900}>
-                    이름
+                    {name}
                 </Text>
                 <Text fontType="p2" color={color.gray900}>
-                    전형
+                    {type}
                 </Text>
             </Row>
-            <Text fontType="p2" color={color.gray900}>
-                합격 여부
-            </Text>
+            {is합격 ? (
+                <Text fontType="p2" color={color.gray900}>
+                    합격
+                </Text>
+            ) : (
+                <Text fontType="p2" color={color.gray900}>
+                    불합격
+                </Text>
+            )}
         </StyledResultTableItem>
     );
 };

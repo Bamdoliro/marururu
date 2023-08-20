@@ -28,7 +28,7 @@ const FinalResultPage = () => {
                     value={ResultStep}
                     caseBy={{
                         MAIN: <ResultMain option="FINAL" setResultStep={setResultStep} />,
-                        Result: <FinalResultTable />,
+                        RESULT: <FinalResultTable />,
                     }}
                 />
             </StyledFinalResultPage>

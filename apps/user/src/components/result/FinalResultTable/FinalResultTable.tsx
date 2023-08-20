@@ -1,3 +1,4 @@
+import { useFinalResultQuery } from '@/services/result/queries';
 import { Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -6,17 +7,22 @@ import ResultTableHeader from '../ResultTableHeader/ResultTableHeader';
 import ResultTableItem from '../ResultTableItem/ResultTableItem';
 
 const FinalResultTable = () => {
-    const is합격 = true;
+    const { data: finalResultData } = useFinalResultQuery();
 
-    return (
-        <StyledFinalResultTable is합격={is합격}>
+    return finalResultData ? (
+        <StyledFinalResultTable is합격={finalResultData.passed}>
             <Column gap={12} width={816}>
                 <ResultTableHeader />
-                <ResultTableItem />
+                <ResultTableItem
+                    id={finalResultData.id}
+                    name={finalResultData.name}
+                    type={finalResultData.type}
+                    is합격={finalResultData.passed}
+                />
             </Column>
-            <ResultTableFooter option="FINAL" />
+            <ResultTableFooter option="FINAL" is합격={finalResultData.passed} />
         </StyledFinalResultTable>
-    );
+    ) : null;
 };
 
 export default FinalResultTable;

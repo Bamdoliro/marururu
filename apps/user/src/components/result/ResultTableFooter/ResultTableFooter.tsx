@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation';
 
 interface PropsType {
     option: ResultOption;
+    is합격: boolean;
 }
 
-const ResultTableFooter = ({ option }: PropsType) => {
+const ResultTableFooter = ({ option, is합격 }: PropsType) => {
     const router = useRouter();
-    const is합격 = true;
 
     const handleGoMainPageButtonClick = () => {
         router.push(ROUTES.MAIN);

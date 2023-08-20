@@ -4,19 +4,25 @@ import ResultTableFooter from '../ResultTableFooter/ResultTableFooter';
 import ResultTableHeader from '../ResultTableHeader/ResultTableHeader';
 import ResultTableItem from '../ResultTableItem/ResultTableItem';
 import styled from 'styled-components';
+import { useFirstResultQuery } from '@/services/result/queries';
 
 const FirstResultTable = () => {
-    const is합격 = true;
+    const { data: firstResultData } = useFirstResultQuery();
 
-    return (
-        <StyledFirstResultTable is합격={is합격}>
+    return firstResultData ? (
+        <StyledFirstResultTable is합격={firstResultData.passed}>
             <Column gap={12} width={816}>
                 <ResultTableHeader />
-                <ResultTableItem />
+                <ResultTableItem
+                    id={firstResultData.id}
+                    name={firstResultData.name}
+                    type={firstResultData.type}
+                    is합격={firstResultData.passed}
+                />
             </Column>
-            <ResultTableFooter option="FIRST" />
+            <ResultTableFooter option="FIRST" is합격={firstResultData.passed} />
         </StyledFirstResultTable>
-    );
+    ) : null;
 };
 
 export default FirstResultTable;
