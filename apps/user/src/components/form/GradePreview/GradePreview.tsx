@@ -17,7 +17,7 @@ const GradePreview = () => {
 
     return (
         <Column gap={24}>
-            <Desc style={{ marginBottom: 24 }}>
+            <Desc>
                 *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
                 <br />
                 *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
@@ -114,4 +114,5 @@ const Table = styled.div`
 const Desc = styled.p`
     color: ${color.red};
     ${font.p3}
+    margin-bottom: 24px;
 `;

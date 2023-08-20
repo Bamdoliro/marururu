@@ -1,9 +1,9 @@
 import { useFormStore } from '@/store';
-import { color, font } from '@maru/theme';
-import { Column, NumberInput, Row, Td, Th } from '@maru/ui';
+import { AttendanceName } from '@/types/form/client';
+import { color } from '@maru/theme';
+import { Column, NumberInput, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
-import { AttendanceName } from '@/types/form/client';
 import styled from 'styled-components';
 
 const AttendanceCalculator = () => {
@@ -27,9 +27,9 @@ const AttendanceCalculator = () => {
 
     return (
         <StyledAttendanceCalculator>
-            <Desc>
+            <Text fontType="p3" color={color.red}>
                 *2023.09.30까지의 출결상황을 기재해주세요. 졸업생은 졸업일 기준으로 기재해주세요.
-            </Desc>
+            </Text>
             <Column>
                 <Row>
                     <Th borderTopLeftRadius={12} width="100%" height={56}>
@@ -158,9 +158,4 @@ const StyledAttendanceCalculator = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 16px;
     width: 100%;
-`;
-
-const Desc = styled.p`
-    color: ${color.red};
-    ${font.p3}
 `;

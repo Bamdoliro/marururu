@@ -1,11 +1,11 @@
-import { color, font } from '@maru/theme';
-import { flex } from '@maru/utils';
-import { InputPropsType } from './Input.type';
-import styled from 'styled-components';
-import Message from './Message';
-import { formatTime } from '@maru/utils';
 import { useInterval } from '@maru/hooks';
+import { color, font } from '@maru/theme';
+import { flex, formatTime } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
+import styled from 'styled-components';
+import Text from '../Text/Text';
+import { InputPropsType } from './Input.type';
+import Message from './Message';
 
 interface TimeLimitInputPropsType extends InputPropsType {
     timerTime: number;
@@ -34,7 +34,9 @@ const TimeLimitInput = ({
             {label && <Label>{label}</Label>}
             <StyledTimeLimitInput>
                 <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
-                <Timer>{formatTime(timerTime)}</Timer>
+                <Text fontType="p3" color={color.red}>
+                    {formatTime(timerTime)}
+                </Text>
             </StyledTimeLimitInput>
             {msg && <Message>{msg}</Message>}
         </div>
@@ -73,9 +75,4 @@ const Label = styled.p`
     ${font.context}
     color: ${color.gray700};
     margin-bottom: 8px;
-`;
-
-const Timer = styled.p`
-    ${font.p3}
-    color: ${color.red};
 `;
