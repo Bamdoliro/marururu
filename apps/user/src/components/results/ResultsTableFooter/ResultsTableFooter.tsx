@@ -1,9 +1,8 @@
 import { ROUTES } from '@/constants/common/constant';
 import { ResultsOption } from '@/types/results/client';
-import { color, font } from '@maru/theme';
+import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
-import styled from 'styled-components';
 
 interface PropsType {
     option: ResultsOption;
@@ -34,7 +33,9 @@ const ResultsTableFooter = ({ option }: PropsType) => {
                         <br /> 자세한 내용은 입학 요강에서 확인해주시기 바랍니다.
                     </Text>
                 )}
-                <Export입학요강Button>입학 요강 다운로드</Export입학요강Button>
+                <Text fontType="btn2" color={color.gray500}>
+                    입학 요강 다운로드
+                </Text>
             </Column>
             {option === 'FIRST' ? (
                 <Row gap={16} alignItems="center">
@@ -57,8 +58,3 @@ const ResultsTableFooter = ({ option }: PropsType) => {
 };
 
 export default ResultsTableFooter;
-
-const Export입학요강Button = styled.button`
-    ${font.btn2};
-    color: ${color.gray500};
-`;

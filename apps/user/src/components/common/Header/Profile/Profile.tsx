@@ -4,6 +4,7 @@ import { useLogoutUserMutation } from '@/services/auth/mutations';
 import { useBoolean, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
@@ -34,7 +35,9 @@ const Profile = () => {
                     <MenuList>
                         <NameMenu>
                             <Name>{user.name}</Name>
-                            <Email>@{user.email.split('@')[0]}</Email>
+                            <Text fontType="p3" color={color.gray600}>
+                                @{user.email.split('@')[0]}
+                            </Text>
                         </NameMenu>
                         <MenuItem>프로필</MenuItem>
                         <MenuItem onClick={handleGoFormPageButtonClick}>
@@ -92,11 +95,6 @@ const NameMenu = styled.div`
     padding: 0px 24px;
     gap: 16px;
     border-bottom: 1px solid ${color.gray200};
-`;
-
-const Email = styled.p`
-    ${font.p3}
-    color: ${color.gray600};
 `;
 
 const MenuItem = styled.button`

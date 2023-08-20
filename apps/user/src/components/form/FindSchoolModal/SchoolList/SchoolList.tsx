@@ -2,6 +2,7 @@ import { useSchoolListQuery } from '@/services/form/queries';
 import { School } from '@/types/form/client';
 import { IconCheck } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
@@ -32,7 +33,9 @@ const SchoolList = ({
                         )}
                         {name}
                     </SchoolName>
-                    <SchoolRegion>{location}</SchoolRegion>
+                    <Text fontType="caption" color={color.gray600}>
+                        {location}
+                    </Text>
                 </SchoolItem>
             ))}
         </StyledSchoolList>
@@ -70,9 +73,4 @@ const SchoolName = styled.p`
     color: ${color.gray900};
     ${flex({ alignItems: 'center' })}
     gap: 4px;
-`;
-
-const SchoolRegion = styled.p`
-    ${font.caption}
-    color: ${color.gray600};
 `;

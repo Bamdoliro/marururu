@@ -1,9 +1,9 @@
-import { useRouter } from 'next/navigation';
-import { Column, Row, Link } from '@maru/ui';
-import { font, color } from '@maru/theme';
-import { flex } from '@maru/utils';
 import { ROUTES } from '@/constants/common/constant';
+import { color, font } from '@maru/theme';
+import { Column, Link, Row, Text } from '@maru/ui';
+import { flex } from '@maru/utils';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 const Footer = () => {
@@ -19,7 +19,9 @@ const Footer = () => {
                         <p>교무실(입학처): 051-971-2153, Fax: 051-971-2061</p>
                         <p> 행정실:051-971-2152, Fax: 051-971-6325</p>
                     </ContentBox>
-                    <Copyright>Copyright © 밤돌이로 all rights reserved.</Copyright>
+                    <Text fontType="p3" color={color.gray600}>
+                        Copyright © 밤돌이로 all rights reserved.
+                    </Text>
                 </Column>
             </InfoBox>
 
@@ -79,11 +81,6 @@ const ContentBox = styled.div`
     gap: 8px;
     border-bottom: 1px solid ${color.gray300};
     padding-bottom: 20px;
-`;
-
-const Copyright = styled.p`
-    ${font.p3}
-    color: ${color.gray600};
 `;
 
 const NavigationBox = styled.div`

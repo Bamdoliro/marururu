@@ -1,11 +1,12 @@
 import { IconClose } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { CSSProperties, ReactNode } from 'react';
-import Button from '../Button/Button';
-import Row from '../Flex/Row';
 import styled from 'styled-components';
+import Button from '../Button/Button';
 import Column from '../Flex/Column';
+import Row from '../Flex/Row';
+import Text from '../Text/Text';
 
 interface PropsType {
     title: string;
@@ -35,7 +36,9 @@ const Modal = ({
                     style={{ marginBottom: 20 }}
                     justifyContent="space-between"
                     alignItems="center">
-                    <Title>{title}</Title>
+                    <Text fontType="H2" color={color.gray900}>
+                        {title}
+                    </Text>
                     <IconClose
                         onClick={onClose}
                         color={color.gray600}
@@ -80,9 +83,4 @@ const StyledModal = styled.div`
     padding: 36px;
     border-radius: 16px;
     background-color: ${color.white};
-`;
-
-const Title = styled.p`
-    ${font.H2}
-    color: ${color.gray900};
 `;

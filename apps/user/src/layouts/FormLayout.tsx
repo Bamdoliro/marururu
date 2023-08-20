@@ -1,7 +1,8 @@
 import { Header } from '@/components/common/';
-import { color, font } from '@maru/theme';
-import { ReactNode } from 'react';
 import { ProgressBar } from '@/components/form';
+import { color } from '@maru/theme';
+import { Text } from '@maru/ui';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -16,7 +17,9 @@ const FormLayout = ({ children, title }: PropsType) => {
             <StyledFormLayout>
                 <ProgressBar />
                 <FormBox>
-                    <Title>{title}</Title>
+                    <Text fontType="H3" color={color.gray900}>
+                        {title}
+                    </Text>
                     <ContentBox>{children}</ContentBox>
                 </FormBox>
             </StyledFormLayout>
@@ -35,11 +38,6 @@ const StyledFormLayout = styled.section`
 const FormBox = styled.div`
     margin: 0 auto;
     width: 816px;
-`;
-
-const Title = styled.p`
-    ${font.H3};
-    color: ${color.gray900};
 `;
 
 const ContentBox = styled.div`
