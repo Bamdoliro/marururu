@@ -1,11 +1,12 @@
 import { IconClose } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import Button from '../Button/Button';
 import Column from '../Flex/Column';
 import Row from '../Flex/Row';
+import Text from '../Text/Text';
 
 interface PropsType {
     title: string;
@@ -35,7 +36,9 @@ const Confirm = ({
                     style={{ paddingBottom: 20, borderBottom: `1px solid ${color.gray200}` }}
                     gap={8}>
                     <Row justifyContent="space-between" alignItems="center">
-                        <Title>{title}</Title>
+                        <Text fontType="H2" color={color.gray900}>
+                            {title}
+                        </Text>
                         <IconClose
                             onClick={onClose}
                             color={color.gray600}
@@ -44,7 +47,9 @@ const Confirm = ({
                             cursor="pointer"
                         />
                     </Row>
-                    <Desc>{desc}</Desc>
+                    <Text fontType="p3" color={color.gray600}>
+                        {desc}
+                    </Text>
                 </Column>
                 <Column
                     gap={8}
@@ -88,14 +93,4 @@ const StyledConfirm = styled.div`
     padding: 36px;
     background-color: ${color.white};
     border-radius: 16px;
-`;
-
-const Title = styled.p`
-    ${font.H2}
-    color: ${color.gray900};
-`;
-
-const Desc = styled.p`
-    ${font.p3}
-    color: ${color.gray600};
 `;
