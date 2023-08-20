@@ -15,7 +15,7 @@ interface PropsType {
     children: ReactNode;
 }
 
-const AuthProvider = ({ children }: PropsType) => {
+const AuthWrapper = ({ children }: PropsType) => {
     const router = useRouter();
     const pathName = usePathname();
     const overlay = useOverlay();
@@ -59,4 +59,4 @@ const AuthProvider = ({ children }: PropsType) => {
     return <>{children}</>;
 };
 
-export default AuthProvider;
+export default AuthWrapper;

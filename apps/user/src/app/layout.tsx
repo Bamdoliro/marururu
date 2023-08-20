@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
-import { QueryClientProvider, Provider, AuthProvider } from '@/components/providers';
+import QueryClientProvider from '@/services/QueryClientProvider';
+import Provider from '@/components/Provider';
+import { AuthWrapper } from '@/components/common';
 
 export const metadata = {
     title: '마루',
@@ -16,7 +18,7 @@ const RootLayout = ({ children }: PropsType) => {
             <body>
                 <QueryClientProvider>
                     <Provider>
-                        <AuthProvider>{children}</AuthProvider>
+                        <AuthWrapper>{children}</AuthWrapper>
                     </Provider>
                 </QueryClientProvider>
             </body>
