@@ -8,6 +8,8 @@ export const KEY = {
     SAVE_FORM: 'useSaveForm',
     USER: 'useUser',
     FORM_STATUS: 'useFormStatus',
+    FIRST_RESULT: 'useFirstResult',
+    FINAL_RESULT: 'useFinalResult',
 } as const;
 
 export const ROUTES = {

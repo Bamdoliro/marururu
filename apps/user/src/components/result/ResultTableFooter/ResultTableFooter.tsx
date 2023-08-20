@@ -1,16 +1,16 @@
 import { ROUTES } from '@/constants/common/constant';
-import { ResultsOption } from '@/types/results/client';
+import { ResultOption } from '@/types/result/client';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
 
 interface PropsType {
-    option: ResultsOption;
+    option: ResultOption;
+    is합격: boolean;
 }
 
-const ResultsTableFooter = ({ option }: PropsType) => {
+const ResultTableFooter = ({ option, is합격 }: PropsType) => {
     const router = useRouter();
-    const is합격 = true;
 
     const handleGoMainPageButtonClick = () => {
         router.push(ROUTES.MAIN);
@@ -57,4 +57,4 @@ const ResultsTableFooter = ({ option }: PropsType) => {
     );
 };
 
-export default ResultsTableFooter;
+export default ResultTableFooter;

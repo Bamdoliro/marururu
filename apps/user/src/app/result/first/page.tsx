@@ -1,45 +1,44 @@
 'use client';
 
 import { AppLayout } from '@/layouts';
-import { useBoolean } from '@maru/hooks';
 import { color } from '@maru/theme';
-import { Button, Column, Text } from '@maru/ui';
+import { Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
-import { ResultsStep } from '@/types/results/client';
+import { ResultStep } from '@/types/result/client';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { ResultsMain, FinalResultsTable } from '@/components/results';
+import { ResultMain, FirstResultTable } from '@/components/result';
 
-const FinalResultsPage = () => {
-    const [resultsStep, setResultsStep] = useState<ResultsStep>('MAIN');
+const FirstResultPage = () => {
+    const [ResultStep, setResultStep] = useState<ResultStep>('MAIN');
 
     return (
         <AppLayout header footer>
-            <StyledFinalResultsPage>
+            <StyledFirstResultPage>
                 <Column gap={12} alignItems="center">
                     <Text fontType="H5" color={color.gray900}>
                         2024학년도 부산소프트웨어마이스터고등학교
                     </Text>
                     <Text fontType="D3" color={color.gray900}>
-                        최종 합격자 발표
+                        1차 합격자 발표
                     </Text>
                 </Column>
                 <SwitchCase
-                    value={resultsStep}
+                    value={ResultStep}
                     caseBy={{
-                        MAIN: <ResultsMain option="FINAL" setResultsStep={setResultsStep} />,
-                        RESULTS: <FinalResultsTable />,
+                        MAIN: <ResultMain option="FIRST" setResultStep={setResultStep} />,
+                        RESULT: <FirstResultTable />,
                     }}
                 />
-            </StyledFinalResultsPage>
+            </StyledFirstResultPage>
         </AppLayout>
     );
 };
 
-export default FinalResultsPage;
+export default FirstResultPage;
 
-const StyledFinalResultsPage = styled.div`
+const StyledFirstResultPage = styled.div`
     padding-top: 82px;
     ${flex({ flexDirection: 'column', alignItems: 'center' })};
     gap: 48px;
