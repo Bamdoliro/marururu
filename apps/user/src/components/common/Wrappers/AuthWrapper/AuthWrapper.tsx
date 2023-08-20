@@ -2,8 +2,8 @@
 
 import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
-import { Column, Confirm, Text } from '@maru/ui';
 import { color } from '@maru/theme';
+import { Column, Confirm, Text } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
