@@ -1,10 +1,10 @@
 import { Storage } from '@/apis/storage/storage';
-import { useMutation } from '@tanstack/react-query';
-import { TOKEN, ROUTES } from '@/constants/common/constant';
+import { ROUTES, TOKEN } from '@/constants/common/constant';
 import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosError, AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
 import { deleteLogoutUser, postJoinUser, postLoginUser, postRequestEmail } from './api';
-import { AxiosError, AxiosResponse } from 'axios';
 
 export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     const router = useRouter();
@@ -67,7 +67,7 @@ export const useRequestEmailMutation = (email: string) => {
 
 export const useLogoutUserMutation = () => {
     const { mutate: logoutUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => deleteLogoutUser(),
+        mutationFn: deleteLogoutUser,
         onSuccess: () => {
             localStorage.clear();
             window.location.href = ROUTES.MAIN;
