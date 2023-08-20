@@ -35,5 +35,8 @@ export const useCTAButton = () => {
         router.push(ROUTES.SIGNUP);
     };
 
-    return { handleGoSingUpPageButtonClick };
+    const handleGoMainPageButtonClick = () => {
+        router.push(ROUTES.MAIN);
+    };
+    return { handleGoSingUpPageButtonClick, handleGoMainPageButtonClick };
 };
