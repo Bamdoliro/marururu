@@ -16,7 +16,7 @@ export const useSchoolListQuery = (school: string) => {
 export const useExportFormQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.EXPORT_FORM],
-        queryFn: () => getExportForm(),
+        queryFn: getExportForm,
         retry: 1,
         suspense: false,
     });
@@ -27,7 +27,7 @@ export const useExportFormQuery = () => {
 export const useSaveFormQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.SAVE_FORM],
-        queryFn: () => getSaveForm(),
+        queryFn: getSaveForm,
         retry: 1,
         suspense: false,
     });
@@ -38,7 +38,7 @@ export const useSaveFormQuery = () => {
 export const useFormStatusQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.FORM_STATUS],
-        queryFn: () => getFormStatus(),
+        queryFn: getFormStatus,
         suspense: false,
         retry: 1,
     });
