@@ -6,7 +6,7 @@ import { getFinalResult, getFirstResult } from './api';
 export const useFirstResultQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.FIRST_RESULT] as const,
-        queryFn: () => getFirstResult(),
+        queryFn: getFirstResult,
         enabled: !!Storage.getItem(TOKEN.ACCESS),
         suspense: false,
     });
