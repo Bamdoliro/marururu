@@ -25,10 +25,6 @@ const NAVIGATION_DATA = [
         name: '자주 묻는 질문',
         route: ROUTES.FAQ,
     },
-    {
-        name: '학교 소개',
-        route: '',
-    },
 ] as const;
 
 const Header = () => {
