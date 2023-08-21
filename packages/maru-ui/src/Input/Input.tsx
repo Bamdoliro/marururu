@@ -14,7 +14,7 @@ const Input = ({
     errorMessage,
     readOnly,
     textAlign,
-    isError,
+    isError = false,
 }: InputPropsType) => {
     return (
         <div style={{ width }}>
@@ -73,7 +73,6 @@ const StyledInput = styled.input<{ isError?: boolean }>`
     }
 
     ${({ isError }) =>
-        typeof isError === 'boolean' &&
         isError &&
         css`
             border: 1px solid ${color.red};

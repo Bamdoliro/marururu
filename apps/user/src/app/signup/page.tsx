@@ -80,6 +80,8 @@ const SignUpPage = () => {
                                 width="100%"
                                 name="password_confirm"
                                 onChange={handleJoinUserDataChange}
+                                isError={joinUserData.password !== joinUserData.password_confirm}
+                                errorMessage="비밀번호가 맞지 않습니다."
                             />
                         </Column>
                         {/* 이용약관 동의 */}
