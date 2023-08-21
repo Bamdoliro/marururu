@@ -42,12 +42,7 @@ const TimeLimitInput = ({
                     </Text>
                 </StyledTimeLimitInput>
             </div>
-            {message && <Message>{message}</Message>}
-            {isError && (
-                <div style={{ position: 'relative' }}>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
-                </div>
-            )}
+            <Message isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
 };

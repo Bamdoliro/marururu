@@ -4,6 +4,7 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
 import { InputPropsType } from './Input.type';
+import Message from './Message';
 
 const PreviewInput = ({
     width = '320px',
@@ -12,6 +13,7 @@ const PreviewInput = ({
     label,
     value,
     errorMessage,
+    message,
     isError = false,
     onChange,
 }: InputPropsType) => {
@@ -48,11 +50,7 @@ const PreviewInput = ({
                     )}
                 </StyledPreviewInput>
             </div>
-            {isError && (
-                <div style={{ position: 'relative' }}>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
-                </div>
-            )}
+            <Message isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
 };
@@ -104,13 +102,4 @@ const Label = styled.p`
     ${font.context}
     color: ${color.gray700};
     margin-bottom: 8px;
-`;
-
-const ErrorMessage = styled.p`
-    position: absolute;
-    top: 0;
-    left: 0;
-    ${font.caption}
-    color: ${color.red};
-    margin-top: 8px;
 `;
