@@ -1,13 +1,15 @@
 import { Storage } from '@/apis/storage/storage';
 import { ROUTES, TOKEN } from '@/constants/common/constant';
+import { useApiError } from '@/hooks';
 import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 import { useMutation } from '@tanstack/react-query';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
 import { deleteLogoutUser, postJoinUser, postLoginUser, postRequestEmail } from './api';
 
 export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     const router = useRouter();
+    const { handleError } = useApiError();
 
     const { mutate: loginUserMutate, ...restMutation } = useMutation({
         mutationFn: () => postLoginUser({ email, password }),
@@ -17,13 +19,7 @@ export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
             Storage.setItem(TOKEN.REFRESH, refreshToken);
             router.push(ROUTES.MAIN);
         },
-        onError: (err: AxiosError) => {
-            if (err.code === 'BAD_REQUEST') {
-                alert('이메일과 패스워드를 다 입력해주세요.');
-                return;
-            }
-            alert(err.message);
-        },
+        onError: handleError,
     });
 
     return { loginUserMutate, ...restMutation };
@@ -31,6 +27,7 @@ export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
 
 export const useJoinUserMutation = ({ email, name, code, password }: PostJoinAuthReq) => {
     const router = useRouter();
+    const { handleError } = useApiError();
 
     const { mutate: joinUserMutate, ...restMutation } = useMutation({
         mutationFn: () => postJoinUser({ email, name, code, password }),
@@ -38,40 +35,33 @@ export const useJoinUserMutation = ({ email, name, code, password }: PostJoinAut
             alert('회원가입 성공');
             router.push(ROUTES.LOGIN);
         },
-        onError: (err: AxiosError) => {
-            if (err.code === 'BAD_REQUEST') {
-                alert('다시 한번 확인해주세요.');
-                return;
-            }
-            alert(err.message);
-        },
+        onError: handleError,
     });
 
     return { joinUserMutate, ...restMutation };
 };
 
 export const useRequestEmailMutation = (email: string) => {
+    const { handleError } = useApiError();
+
     const { mutate: requestEmailMutate, ...restMutation } = useMutation({
         mutationFn: () => postRequestEmail(email),
-        onError: (err: AxiosError) => {
-            if (err.code === 'BAD_REQUEST') {
-                alert('올바른 형식의 이메일이어야 합니다.');
-                return;
-            }
-            alert('메일 전송에 실패했습니다.');
-        },
+        onError: handleError,
     });
 
     return { requestEmailMutate, ...restMutation };
 };
 
 export const useLogoutUserMutation = () => {
+    const { handleError } = useApiError();
+
     const { mutate: logoutUserMutate, ...restMutation } = useMutation({
         mutationFn: deleteLogoutUser,
         onSuccess: () => {
             localStorage.clear();
             window.location.href = ROUTES.MAIN;
         },
+        onError: handleError,
     });
 
     return { logoutUserMutate, ...restMutation };
