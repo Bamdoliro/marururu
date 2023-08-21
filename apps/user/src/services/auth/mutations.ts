@@ -19,7 +19,7 @@ export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
         },
         onError: (err: AxiosError) => {
             if (err.code === 'BAD_REQUEST') {
-                alert('아이디와 패스워드를 다 입력해주세요.');
+                alert('이메일와 패스워드를 다 입력해주세요.');
                 return;
             }
             alert(err.message);
