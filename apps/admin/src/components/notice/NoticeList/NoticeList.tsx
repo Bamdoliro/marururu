@@ -7,17 +7,17 @@ const NOTICE_DATA = [
     {
         id: 0,
         title: '입학전형 사용 방법에 대한 공지사항',
-        date: '2022-05-07T10:35:57',
+        createdAt: '2022-05-07T10:35:57',
     },
     {
         id: 1,
         title: '테스트입니다',
-        date: '2022-05-07T10:35:57',
+        createdAt: '2022-05-07T10:35:57',
     },
     {
         id: 2,
         title: '테스트입니다',
-        date: '2022-05-07T10:35:57',
+        createdAt: '2022-05-07T10:35:57',
     },
 ] as const;
 
@@ -48,7 +48,7 @@ const NoticeList = () => {
                         </Text>
                     </Row>
                     <Text fontType="p2" width={100}>
-                        {formatPostedAt(item.date)}
+                        {formatPostedAt(item.createdAt)}
                     </Text>
                 </ListItem>
             ))}
