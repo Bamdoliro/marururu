@@ -74,7 +74,6 @@ const SignUpPage = () => {
                             <PreviewInput
                                 label="비밀번호"
                                 width="100%"
-                                errorMessage="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
                                 name="password"
                                 onChange={handleJoinUserDataChange}
                             />

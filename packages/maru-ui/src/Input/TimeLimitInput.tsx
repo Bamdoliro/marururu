@@ -16,7 +16,7 @@ const TimeLimitInput = ({
     width = '320px',
     name,
     label,
-    errorMessage: message,
+    message,
     onChange,
     maxLength,
     timerTime,
