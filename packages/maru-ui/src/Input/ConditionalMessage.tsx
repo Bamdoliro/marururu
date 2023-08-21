@@ -7,21 +7,21 @@ interface PropsType {
     isError?: boolean;
 }
 
-const Message = ({ message, errorMessage, isError = false }: PropsType) => {
+const ConditionalMessage = ({ message, errorMessage, isError = false }: PropsType) => {
     return isError ? (
         errorMessage ? (
             <div style={{ position: 'relative' }}>
-                <StyledMessage isError={true}>{errorMessage}</StyledMessage>
+                <StyledConditionalMessage isError={true}>{errorMessage}</StyledConditionalMessage>
             </div>
         ) : null
     ) : message ? (
-        <StyledMessage isError={false}>{message}</StyledMessage>
+        <StyledConditionalMessage isError={false}>{message}</StyledConditionalMessage>
     ) : null;
 };
 
-export default Message;
+export default ConditionalMessage;
 
-const StyledMessage = styled.p<{ isError: boolean }>`
+const StyledConditionalMessage = styled.p<{ isError: boolean }>`
     ${({ isError }) =>
         isError
             ? css`

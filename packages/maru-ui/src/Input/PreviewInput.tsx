@@ -3,8 +3,8 @@ import { IconInvisibleEye, IconVisibleEye } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
+import ConditionalMessage from './ConditionalMessage';
 import { InputPropsType } from './Input.type';
-import Message from './Message';
 
 const PreviewInput = ({
     width = '320px',
@@ -50,7 +50,7 @@ const PreviewInput = ({
                     )}
                 </StyledPreviewInput>
             </div>
-            <Message isError={isError} errorMessage={errorMessage} message={message} />
+            <ConditionalMessage isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
 };

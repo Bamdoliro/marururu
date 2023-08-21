@@ -9,11 +9,11 @@ const errorMessages: { [key in ErrorStatus]?: string } = {
 };
 
 const useApiError = () => {
-    const handleError = (e: AxiosError) => {
+    const handleError = (error: AxiosError) => {
         let errorMessage = '';
-        if (isAxiosError(e)) {
-            const status = e.response?.status as ErrorStatus;
-            const message = e.response?.data.message;
+        if (isAxiosError(error)) {
+            const status = error.status as ErrorStatus;
+            const message = error.message;
             errorMessage = message ?? errorMessages[status];
         } else {
             errorMessage = '알 수 없는 오류가 발생하였습니다.';

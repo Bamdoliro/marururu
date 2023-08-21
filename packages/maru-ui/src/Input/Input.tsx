@@ -1,8 +1,8 @@
 import { IconError } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import styled, { css } from 'styled-components';
+import ConditionalMessage from './ConditionalMessage';
 import { InputPropsType } from './Input.type';
-import Message from './Message';
 
 const Input = ({
     width = '320px',
@@ -45,7 +45,7 @@ const Input = ({
                     />
                 )}
             </div>
-            <Message isError={isError} errorMessage={errorMessage} message={message} />
+            <ConditionalMessage isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
 };

@@ -4,8 +4,8 @@ import { flex, formatTime } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 import Text from '../Text/Text';
+import ConditionalMessage from './ConditionalMessage';
 import { InputPropsType } from './Input.type';
-import Message from './Message';
 
 interface TimeLimitInputPropsType extends InputPropsType {
     timerTime: number;
@@ -42,7 +42,7 @@ const TimeLimitInput = ({
                     </Text>
                 </StyledTimeLimitInput>
             </div>
-            <Message isError={isError} errorMessage={errorMessage} message={message} />
+            <ConditionalMessage isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
 };
@@ -75,7 +75,6 @@ const StyledTimeLimitInput = styled.div<{ isError: boolean }>`
 
             &:focus {
                 border: 1px solid ${color.red};
-                /* outline: 2px solid rgba(244, 67, 54, 0.25); This line is excluded */
             }
         `}
 `;
@@ -95,13 +94,4 @@ const Label = styled.p`
     ${font.context}
     color: ${color.gray700};
     margin-bottom: 8px;
-`;
-
-const ErrorMessage = styled.p`
-    position: absolute;
-    top: 0;
-    left: 0;
-    ${font.caption}
-    color: ${color.red};
-    margin-top: 8px;
 `;
