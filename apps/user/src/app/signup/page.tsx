@@ -40,6 +40,8 @@ const SignUpPage = () => {
                                 name="name"
                                 placeholder="이름을 입력해주세요."
                                 onChange={handleJoinUserDataChange}
+                                isError={joinUserData.name.length <= 0}
+                                errorMessage="필수값입니다."
                             />
                             <ButtonInput
                                 label="이메일 인증"
@@ -61,11 +63,12 @@ const SignUpPage = () => {
                                     label="인증코드"
                                     width="100%"
                                     maxLength={6}
-                                    errorMessage="발송된 이메일의 인증번호를 입력해주세요."
                                     name="code"
                                     onChange={handleJoinUserDataChange}
                                     timerTime={timerTime}
                                     setTimerTime={setTimerTime}
+                                    isError={joinUserData.code.length < 6}
+                                    errorMessage="발송된 이메일의 인증번호를 입력해주세요."
                                 />
                             )}
                             <PreviewInput

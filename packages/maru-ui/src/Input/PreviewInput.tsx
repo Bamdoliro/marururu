@@ -85,7 +85,6 @@ const StyledPreviewInput = styled.div<{ isError?: boolean }>`
 
             &:focus {
                 border: 1px solid ${color.red};
-                /* outline: 2px solid rgba(244, 67, 54, 0.25); This line is excluded */
             }
         `}
 `;

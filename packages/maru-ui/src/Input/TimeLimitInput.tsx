@@ -2,7 +2,7 @@ import { useInterval } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { flex, formatTime } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Text from '../Text/Text';
 import { InputPropsType } from './Input.type';
 import Message from './Message';
@@ -21,6 +21,8 @@ const TimeLimitInput = ({
     maxLength,
     timerTime,
     setTimerTime,
+    isError = false,
+    errorMessage,
 }: TimeLimitInputPropsType) => {
     useInterval(() => {
         setTimerTime((prev) => prev - 1);
@@ -32,20 +34,27 @@ const TimeLimitInput = ({
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledTimeLimitInput>
-                <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
-                <Text fontType="p3" color={color.red}>
-                    {formatTime(timerTime)}
-                </Text>
-            </StyledTimeLimitInput>
+            <div style={{ position: 'relative' }}>
+                <StyledTimeLimitInput isError={isError}>
+                    <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
+                    <Text fontType="p3" color={color.red}>
+                        {formatTime(timerTime)}
+                    </Text>
+                </StyledTimeLimitInput>
+            </div>
             {message && <Message>{message}</Message>}
+            {isError && (
+                <div style={{ position: 'relative' }}>
+                    <ErrorMessage>{errorMessage}</ErrorMessage>
+                </div>
+            )}
         </div>
     );
 };
 
 export default TimeLimitInput;
 
-const StyledTimeLimitInput = styled.div`
+const StyledTimeLimitInput = styled.div<{ isError: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     gap: 10px;
     height: 48px;
@@ -55,9 +64,25 @@ const StyledTimeLimitInput = styled.div`
     border-radius: 6px;
 
     &:focus-within {
-        border: 1px solid ${color.maruDefault};
-        outline: 2px solid rgba(20, 112, 255, 0.25);
+        border: 1px solid ${({ isError }) => (isError ? color.red : color.maruDefault)};
+        ${({ isError }) =>
+            !isError &&
+            css`
+                outline: 2px solid rgba(20, 112, 255, 0.25);
+            `}
     }
+
+    ${({ isError }) =>
+        isError &&
+        css`
+            border: 1px solid ${color.red};
+            outline: 2px solid rgba(244, 67, 54, 0.25);
+
+            &:focus {
+                border: 1px solid ${color.red};
+                /* outline: 2px solid rgba(244, 67, 54, 0.25); This line is excluded */
+            }
+        `}
 `;
 
 const Input = styled.input`
@@ -75,4 +100,13 @@ const Label = styled.p`
     ${font.context}
     color: ${color.gray700};
     margin-bottom: 8px;
+`;
+
+const ErrorMessage = styled.p`
+    position: absolute;
+    top: 0;
+    left: 0;
+    ${font.caption}
+    color: ${color.red};
+    margin-top: 8px;
 `;
