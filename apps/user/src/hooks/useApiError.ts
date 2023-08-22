@@ -1,6 +1,6 @@
 import { AxiosError, isAxiosError } from 'axios';
 
-type ErrorStatus = 400 | 401 | 402 | 403 | 404 | 407 | 408 | 409 | 429 | 500;
+type ErrorStatus = 400 | 401 | 402 | 403 | 404 | 407 | 408 | 409 | 418 | 429 | 500;
 
 const errorMessages: { [key in ErrorStatus]?: string } = {
     403: '유저의 권한이 없습니다.',
