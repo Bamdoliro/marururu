@@ -81,9 +81,10 @@ export default Header;
 
 const StyledHeader = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' })}
-    width: 100%;
+    max-width: 1448px;
     height: 126px;
     background-color: ${color.white};
+    margin: 0 auto;
     padding: 0px 100px;
     border-bottom: 1px solid ${color.gray200};
 `;
