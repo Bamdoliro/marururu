@@ -44,7 +44,10 @@ const AuthWrapper = ({ children }: PropsType) => {
                         router.push(ROUTES.MAIN);
                         close();
                     }}
-                    onConfirm={() => router.push(ROUTES.LOGIN)}
+                    onConfirm={() => {
+                        router.push(ROUTES.LOGIN);
+                        close();
+                    }}
                     confirmButtonText="로그인 하러 가기"
                 />
             ));
