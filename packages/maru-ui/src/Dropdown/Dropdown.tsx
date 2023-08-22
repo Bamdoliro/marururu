@@ -1,4 +1,4 @@
-import { useBoolean, useOutsideClick } from '@maru/hooks';
+import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowBottom, IconArrowTop } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
@@ -33,7 +33,7 @@ const Dropdown = ({
         value: isOpen,
         setFalse: closeDropdown,
         toggle: handleToggleButtonClick,
-    } = useBoolean();
+    } = useBooleanState();
     const dropdownRef = useOutsideClick(closeDropdown);
 
     const handleDropdownItemButtonClick = (data: string) => {

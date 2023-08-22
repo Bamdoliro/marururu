@@ -31,7 +31,7 @@ const Schedule = () => {
     return (
         <StyledSchedule>
             <Text fontType="H3" color={color.gray900}>
-                입학일정
+                2024학년도 부산소마고 입학 일정
             </Text>
             <StyledScheduleList>
                 {SCHEDULE_DATA.map((item) => (
