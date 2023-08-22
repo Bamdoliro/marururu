@@ -45,6 +45,7 @@ export interface ParentInfo {
     zoneCode: string;
     address: string;
     detailAddress: string;
+    relation: string;
 }
 
 export interface EducationInfo {
