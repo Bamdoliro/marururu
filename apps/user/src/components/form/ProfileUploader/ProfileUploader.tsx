@@ -91,7 +91,7 @@ const ProfileUploader = () => {
                 </Button>
             )}
             <Desc>
-                20MB 이하, 3개월 이내의
+                10MB 이하, 3개월 이내의
                 <br />
                 3x4 cm 증명사진
             </Desc>

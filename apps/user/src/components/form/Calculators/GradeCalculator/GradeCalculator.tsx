@@ -1,4 +1,4 @@
-import { useNewSubjectStore, useSubjectStore } from '@/store';
+import { useNewSubjectStore, useSetFormStore, useSubjectStore } from '@/store';
 import { Subject } from '@/types/form/client';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
@@ -12,6 +12,7 @@ import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorI
 const GradeCalculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
     const [subjectList, setSubjectList] = useSubjectStore();
+    const setForm = useSetFormStore();
     const footerRef = useRef<HTMLDivElement>(null);
     const isMount = useRef(true);
 
@@ -34,6 +35,14 @@ const GradeCalculator = () => {
         }
         if (newSubjectList.length) footerRef.current?.scrollIntoView();
     }, [newSubjectList]);
+
+    useEffect(() => {
+        const studentSubjectList = [...subjectList, ...newSubjectList].map(
+            ({ id, ...rest }) => rest,
+        );
+
+        setForm((prev) => ({ ...prev, grade: { ...prev.grade, subjectList: studentSubjectList } }));
+    }, [newSubjectList, subjectList]);
 
     return (
         <StyledGradeCalculator>
