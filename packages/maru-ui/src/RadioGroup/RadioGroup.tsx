@@ -6,7 +6,7 @@ import Radio from '../Radio/Radio';
 
 interface PropsType {
     label: string;
-    list: { value?: string; label: string }[] | string[];
+    list: { value?: string; label: string; checked?: boolean }[] | string[];
     name: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
@@ -25,9 +25,11 @@ const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
                                     value={typeof item === 'string' ? item : item.value}
                                     name={name}
                                     checked={
-                                        typeof item === 'string'
-                                            ? value === item
-                                            : value === item.value
+                                        typeof item !== 'string'
+                                            ? item.checked
+                                                ? item.checked
+                                                : value === item.value
+                                            : value === item
                                     }
                                     onChange={onChange}
                                 />

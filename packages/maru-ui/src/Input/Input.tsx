@@ -1,6 +1,7 @@
 import { IconError } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import styled, { css } from 'styled-components';
+import ConditionalMessage from './ConditionalMessage';
 import { InputPropsType } from './Input.type';
 
 const Input = ({
@@ -12,9 +13,10 @@ const Input = ({
     value,
     onChange,
     errorMessage,
+    message,
     readOnly,
     textAlign,
-    isError,
+    isError = false,
 }: InputPropsType) => {
     return (
         <div style={{ width }}>
@@ -43,11 +45,7 @@ const Input = ({
                     />
                 )}
             </div>
-            {isError && (
-                <div style={{ position: 'relative' }}>
-                    <ErrorMessage>{errorMessage}</ErrorMessage>
-                </div>
-            )}
+            <ConditionalMessage isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
 };
@@ -73,7 +71,6 @@ const StyledInput = styled.input<{ isError?: boolean }>`
     }
 
     ${({ isError }) =>
-        typeof isError === 'boolean' &&
         isError &&
         css`
             border: 1px solid ${color.red};
@@ -84,15 +81,6 @@ const StyledInput = styled.input<{ isError?: boolean }>`
                 outline: 2px solid rgba(244, 67, 54, 0.25);
             }
         `}
-`;
-
-const ErrorMessage = styled.p`
-    position: absolute;
-    top: 0;
-    left: 0;
-    ${font.caption}
-    color: ${color.red};
-    margin-top: 8px;
 `;
 
 const Label = styled.p`

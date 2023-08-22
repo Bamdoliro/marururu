@@ -1,7 +1,8 @@
+import { useApiError } from '@/hooks';
 import { useSetFormStepStore, useSetFormStore } from '@/store';
 import { Form, FormDocument } from '@/types/form/client';
 import { useMutation } from '@tanstack/react-query';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { Dispatch, SetStateAction } from 'react';
 import {
     postSaveForm,
@@ -13,16 +14,14 @@ import {
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
     const setFormStep = useSetFormStepStore();
+    const { handleError } = useApiError();
 
     const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
         mutationFn: () => postSubmitFinalForm(formUrl),
-        onSuccess: (res: AxiosResponse) => {
-            console.log(res);
+        onSuccess: () => {
             setFormStep('최종제출완료');
         },
-        onError: (err: AxiosError) => {
-            console.error(err);
-        },
+        onError: handleError,
     });
 
     return { submitFinalFormMutate, ...restQuery };
@@ -30,31 +29,25 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
 
 export const useSubmitDraftFormMutation = (formData: Form) => {
     const setFormStep = useSetFormStepStore();
+    const { handleError } = useApiError();
 
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
         mutationFn: () => postSubmitDraftForm(formData),
-        onSuccess: (res: AxiosResponse) => {
-            console.log(res);
+        onSuccess: () => {
             setFormStep('초안제출완료');
         },
-        onError: (err: AxiosError) => {
-            console.error(err);
-            alert('원서를 다시 한번 확인해주세요.');
-        },
+        onError: handleError,
     });
 
     return { submitDraftFormMutate, ...restMutation };
 };
 
 export const useSaveFormMutation = () => {
+    const { handleError } = useApiError();
+
     const { mutate: saveFormMutate, ...restMutation } = useMutation({
         mutationFn: (form: Form) => postSaveForm(form),
-        onSuccess: (res: AxiosResponse) => {
-            console.log(res);
-        },
-        onError: (err: AxiosError) => {
-            console.error(err);
-        },
+        onError: handleError,
     });
 
     return { saveFormMutate, ...restMutation };
@@ -63,15 +56,14 @@ export const useSaveFormMutation = () => {
 export const useUploadFormDocumentMutation = (
     setFormDocument: Dispatch<SetStateAction<FormDocument>>,
 ) => {
+    const { handleError } = useApiError();
+
     const { mutate: uploadFormDocumentMutate, ...restMutation } = useMutation({
         mutationFn: (file: FormData) => postUploadFormDocumnet(file),
         onSuccess: (res: AxiosResponse) => {
-            console.log(res);
             setFormDocument((prev) => ({ ...prev, formUrl: res.data.url }));
         },
-        onError: (err: AxiosError) => {
-            alert(err.message);
-        },
+        onError: handleError,
     });
 
     return { uploadFormDocumentMutate, ...restMutation };
@@ -79,19 +71,17 @@ export const useUploadFormDocumentMutation = (
 
 export const useUploadProfileImageMutation = () => {
     const setForm = useSetFormStore();
+    const { handleError } = useApiError();
 
     const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
         mutationFn: (image: FormData) => postUploadProfileImage(image),
         onSuccess: (res: AxiosResponse) => {
-            console.log(res);
             setForm((prev) => ({
                 ...prev,
                 applicant: { ...prev.applicant, identificationPictureUri: res.data.url },
             }));
         },
-        onError: (err: AxiosError) => {
-            alert(err.message);
-        },
+        onError: handleError,
     });
 
     return { uploadProfileImageMutate, ...restMutation };

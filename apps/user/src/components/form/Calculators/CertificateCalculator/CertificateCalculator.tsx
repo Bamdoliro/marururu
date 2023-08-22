@@ -30,7 +30,6 @@ const CertificateCalculator = () => {
                 },
             }));
         }
-        console.log(form);
     };
 
     return (
