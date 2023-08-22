@@ -53,15 +53,13 @@ export const useRequestEmailMutation = (email: string) => {
 };
 
 export const useLogoutUserMutation = () => {
-    const { handleError } = useApiError();
-
     const { mutate: logoutUserMutate, ...restMutation } = useMutation({
         mutationFn: deleteLogoutUser,
         onSuccess: () => {
             localStorage.clear();
             window.location.href = ROUTES.MAIN;
         },
-        onError: handleError,
+        onError: localStorage.clear,
     });
 
     return { logoutUserMutate, ...restMutation };
