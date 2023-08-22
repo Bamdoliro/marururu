@@ -25,7 +25,7 @@ const StyledCategory = styled.button<{ $isSelected: boolean }>`
     height: 100%;
     padding: 0px 14px;
     border-radius: 25px;
-    color: ${({ $isSelected: isSelected }) => (isSelected ? color.maruDefault : color.gray900)};
-    background-color: ${({ $isSelected: isSelected }) => (isSelected ? '#eff5ff' : color.gray100)};
+    color: ${(props) => (props.$isSelected ? color.maruDefault : color.gray900)};
+    background-color: ${(props) => (props.$isSelected ? '#eff5ff' : color.gray100)};
     cursor: pointer;
 `;
