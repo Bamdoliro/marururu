@@ -35,10 +35,10 @@ const Header = () => {
         <StyledHeader>
             <HeaderBar>
                 <Image
-                    src="/svg/logo.svg"
+                    src="/svg/school_logo.svg"
                     style={{ cursor: 'pointer' }}
-                    width={107}
-                    height={72}
+                    width={318}
+                    height={64}
                     onClick={() => router.push(ROUTES.MAIN)}
                     alt="logo"
                 />
