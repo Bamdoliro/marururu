@@ -3,27 +3,16 @@ import ListItem from '@/components/common/ListItem/ListItem';
 import { Column, Row, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 
+import { FormType, GraduationType, Status } from '@/types/notice/client';
+
 const FORM_DATA: {
     id: number;
     name: string;
     birthday: string;
-    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
+    graduationType: GraduationType;
     school: string;
-    status: '최종 제출됨' | '반려됨';
-    type:
-        | 'REGULAR'
-        | 'SPECIAL'
-        | 'MEISTER_TALENT'
-        | 'SPECIAL_ADMISSION'
-        | 'NATIONAL_BASIC_LIVING'
-        | 'NEAR_POVERTY'
-        | 'NATIONAL_VETERANS'
-        | 'ONE_PARENT'
-        | 'FROM_NORTH_KOREA'
-        | 'MULTICULTURAL'
-        | 'TEEN_HOUSEHOLDER'
-        | 'MULTI_CHILDREN'
-        | 'FARMING_AND_FISHING';
+    status: Status;
+    type: FormType;
 }[] = [
     {
         id: 0,
@@ -53,20 +42,6 @@ const FORM_DATA: {
         type: 'MULTICULTURAL',
     },
 ];
-
-type FormType =
-    | 'REGULAR'
-    | 'MEISTER_TALENT'
-    | 'NATIONAL_BASIC_LIVING'
-    | 'NEAR_POVERTY'
-    | 'NATIONAL_VETERANS'
-    | 'ONE_PARENT'
-    | 'FROM_NORTH_KOREA'
-    | 'MULTICULTURAL'
-    | 'TEEN_HOUSEHOLDER'
-    | 'MULTI_CHILDREN'
-    | 'FARMING_AND_FISHING'
-    | 'SPECIAL_ADMISSION';
 
 const KoreanFormType: { [key in FormType]: string } = {
     REGULAR: '일반',
