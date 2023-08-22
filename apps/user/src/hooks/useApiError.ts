@@ -15,6 +15,9 @@ const useApiError = () => {
             const status = error.status as ErrorStatus;
             const message = error.message;
             errorMessage = message ?? errorMessages[status];
+            if (status === 500) {
+                throw new Error('500');
+            }
         } else {
             errorMessage = '알 수 없는 오류가 발생하였습니다.';
         }
