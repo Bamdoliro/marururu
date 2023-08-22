@@ -46,7 +46,8 @@ const Error = () => {
 export default Error;
 
 const StyledError = styled.div`
-    ${flex({ flexDirection: 'column', alignItems: 'center' })}
+    ${flex({ flexDirection: 'column', alignItems: 'center' })};
     gap: 56px;
+    margin: 82px auto 0;
     width: fit-content;
 `;
