@@ -8,7 +8,7 @@ import Column from '../Flex/Column';
 import Row from '../Flex/Row';
 import Text from '../Text/Text';
 
-interface PropsType {
+interface Props {
     title: string;
     children: ReactNode;
     isOpen: boolean;
@@ -19,18 +19,9 @@ interface PropsType {
     width?: CSSProperties['width'];
 }
 
-const Modal = ({
-    title,
-    children,
-    isOpen,
-    onClose,
-    onConfirm,
-    style,
-    height,
-    width,
-}: PropsType) => {
+const Modal = ({ title, children, isOpen, onClose, onConfirm, style, height, width }: Props) => {
     return (
-        <BlurBackground isOpen={isOpen}>
+        <BlurBackground $isOpen={isOpen}>
             <StyledModal style={{ width, height, ...style }}>
                 <Row
                     style={{ marginBottom: 20 }}
@@ -63,14 +54,14 @@ const Modal = ({
 
 export default Modal;
 
-const BlurBackground = styled.div<{ isOpen: boolean }>`
-    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+const BlurBackground = styled.div<{ $isOpen: boolean }>`
+    display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;

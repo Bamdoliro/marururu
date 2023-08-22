@@ -7,17 +7,13 @@ import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 
-interface PropsType {
+interface Props {
     selectedSchool: School;
     setSelectedSchool: Dispatch<SetStateAction<School>>;
     debouncedSchoolSearchQuery: string;
 }
 
-const SchoolList = ({
-    selectedSchool,
-    setSelectedSchool,
-    debouncedSchoolSearchQuery,
-}: PropsType) => {
+const SchoolList = ({ selectedSchool, setSelectedSchool, debouncedSchoolSearchQuery }: Props) => {
     const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
 
     return schoolListData ? (
@@ -60,8 +56,8 @@ const SchoolItem = styled.div<{ selected: boolean }>`
     background: ${color.gray50};
     cursor: pointer;
 
-    ${({ selected }) =>
-        selected &&
+    ${(props) =>
+        props.selected &&
         css`
             padding: 15px 15px;
             border: 1px solid ${color.maruDefault};

@@ -12,11 +12,11 @@ import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     params: { id: number };
 }
 
-const NoticeDetailPage = ({ params: { id } }: PropsType) => {
+const NoticeDetailPage = ({ params: { id } }: Props) => {
     const router = useRouter();
 
     return (

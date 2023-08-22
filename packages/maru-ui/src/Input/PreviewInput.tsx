@@ -4,7 +4,7 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
 import ConditionalMessage from './ConditionalMessage';
-import { InputPropsType } from './Input.type';
+import { InputProps } from './Input.type';
 
 const PreviewInput = ({
     width = '320px',
@@ -16,14 +16,14 @@ const PreviewInput = ({
     message,
     isError = false,
     onChange,
-}: InputPropsType) => {
+}: InputProps) => {
     const { value: isPreview, toggle: toggleIsPreview } = useBoolean();
 
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
             <div style={{ position: 'relative' }}>
-                <StyledPreviewInput isError={isError}>
+                <StyledPreviewInput $isError={isError}>
                     <Input
                         onChange={onChange}
                         placeholder={placeholder}
@@ -57,7 +57,7 @@ const PreviewInput = ({
 
 export default PreviewInput;
 
-const StyledPreviewInput = styled.div<{ isError?: boolean }>`
+const StyledPreviewInput = styled.div<{ $isError: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     gap: 10px;
     height: 48px;
@@ -67,16 +67,16 @@ const StyledPreviewInput = styled.div<{ isError?: boolean }>`
     border-radius: 6px;
 
     &:focus-within {
-        border: 1px solid ${({ isError }) => (isError ? color.red : color.maruDefault)};
-        ${({ isError }) =>
-            !isError &&
+        border: 1px solid ${(props) => (props.$isError ? color.red : color.maruDefault)};
+        ${(props) =>
+            !props.$isError &&
             css`
                 outline: 2px solid rgba(20, 112, 255, 0.25);
             `}
     }
 
-    ${({ isError }) =>
-        isError &&
+    ${(props) =>
+        props.$isError &&
         css`
             border: 1px solid ${color.red};
             outline: 2px solid rgba(244, 67, 54, 0.25);

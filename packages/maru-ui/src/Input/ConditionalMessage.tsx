@@ -1,29 +1,29 @@
 import { color, font } from '@maru/theme';
 import styled, { css } from 'styled-components';
 
-interface PropsType {
+interface Props {
     message?: string;
     errorMessage?: string;
     isError?: boolean;
 }
 
-const ConditionalMessage = ({ message, errorMessage, isError = false }: PropsType) => {
+const ConditionalMessage = ({ message, errorMessage, isError = false }: Props) => {
     return isError ? (
         errorMessage ? (
             <div style={{ position: 'relative' }}>
-                <StyledConditionalMessage isError={true}>{errorMessage}</StyledConditionalMessage>
+                <StyledConditionalMessage $isError={true}>{errorMessage}</StyledConditionalMessage>
             </div>
         ) : null
     ) : message ? (
-        <StyledConditionalMessage isError={false}>{message}</StyledConditionalMessage>
+        <StyledConditionalMessage $isError={false}>{message}</StyledConditionalMessage>
     ) : null;
 };
 
 export default ConditionalMessage;
 
-const StyledConditionalMessage = styled.p<{ isError: boolean }>`
-    ${({ isError }) =>
-        isError
+const StyledConditionalMessage = styled.p<{ $isError: boolean }>`
+    ${(props) =>
+        props.$isError
             ? css`
                   position: absolute;
                   top: 0;

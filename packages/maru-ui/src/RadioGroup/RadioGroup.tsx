@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Row from '../Flex/Row';
 import Radio from '../Radio/Radio';
 
-interface PropsType {
+interface Props {
     label: string;
     list: { value?: string; label: string; checked?: boolean }[] | string[];
     name: string;
@@ -12,7 +12,7 @@ interface PropsType {
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
+const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
     return (
         <div>
             <Label>{label}</Label>

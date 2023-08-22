@@ -2,9 +2,9 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import Input from './Input';
-import { InputPropsType } from './Input.type';
+import { InputProps } from './Input.type';
 
-interface ButtonInputPropsType extends InputPropsType {
+interface ButtonInputProps extends InputProps {
     buttonText: string;
     enabled?: boolean;
     buttonWidth?: string;
@@ -25,7 +25,7 @@ const ButtonInput = ({
     readOnly,
     isError = false,
     errorMessage,
-}: ButtonInputPropsType) => {
+}: ButtonInputProps) => {
     return (
         <div>
             {label && <Label>{label}</Label>}

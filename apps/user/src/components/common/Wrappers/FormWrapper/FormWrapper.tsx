@@ -12,11 +12,11 @@ import {
 import { useInterval } from '@toss/react';
 import { ReactNode, useEffect } from 'react';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
 }
 
-const FormWrapper = ({ children }: PropsType) => {
+const FormWrapper = ({ children }: Props) => {
     const { data: saveFormData } = useSaveFormQuery();
     const { saveFormMutate } = useSaveFormMutation();
     const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();

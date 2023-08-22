@@ -5,11 +5,11 @@ import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 
-interface PropsType {
+interface Props {
     title: string;
 }
 
-const MainFaqItem = ({ title }: PropsType) => {
+const MainFaqItem = ({ title }: Props) => {
     const router = useRouter();
 
     return (

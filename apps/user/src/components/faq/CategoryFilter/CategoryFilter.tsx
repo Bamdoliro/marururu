@@ -1,8 +1,8 @@
+import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 import Category from './Category/Category';
-import { color, font } from '@maru/theme';
-import { flex } from '@maru/utils';
 
 const FAQ_CATEGORY_LIST = [
     { id: 0, category: '질문 TOP', value: 'TOP_QUESTION' },
@@ -11,11 +11,11 @@ const FAQ_CATEGORY_LIST = [
     { id: 3, category: '관련 제출 서류', value: 'SUBMIT_DOCUMENT' },
 ] as const;
 
-interface PropsType {
+interface Props {
     setCategory: Dispatch<SetStateAction<string>>;
 }
 
-const CategoryFilter = ({ setCategory }: PropsType) => {
+const CategoryFilter = ({ setCategory }: Props) => {
     const [selectedCategory, setSelectedCategory] = useState(0);
 
     return (

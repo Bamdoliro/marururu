@@ -11,11 +11,11 @@ import { ReactNode, useEffect } from 'react';
 const NOT_LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.FORM, ROUTES.FIRST_RESULT, ROUTES.FINAL_RESULT];
 const LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.LOGIN, ROUTES.SIGNUP];
 
-interface PropsType {
+interface Props {
     children: ReactNode;
 }
 
-const AuthWrapper = ({ children }: PropsType) => {
+const AuthWrapper = ({ children }: Props) => {
     const router = useRouter();
     const pathName = usePathname();
     const overlay = useOverlay();
