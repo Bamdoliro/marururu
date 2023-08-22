@@ -14,4 +14,14 @@ export type FormType =
 
 export type GraduationType = 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
 
-export type Status = '최종 제출됨' | '반려됨';
+export type FormStatus = '최종 제출됨' | '반려됨';
+
+export interface Form {
+    id: number;
+    name: string;
+    birthday: string;
+    graduationType: GraduationType;
+    school: string;
+    status: FormStatus;
+    type: FormType;
+}

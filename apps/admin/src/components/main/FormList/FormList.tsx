@@ -3,17 +3,9 @@ import ListItem from '@/components/common/TableItem/TableItem';
 import { Column, Row, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 
-import { FormType, GraduationType, Status } from '@/types/notice/client';
+import { Form, FormType } from '@/types/notice/client';
 
-const FORM_DATA: {
-    id: number;
-    name: string;
-    birthday: string;
-    graduationType: GraduationType;
-    school: string;
-    status: Status;
-    type: FormType;
-}[] = [
+const FORM_DATA: Form[] = [
     {
         id: 0,
         name: '김밤돌',
