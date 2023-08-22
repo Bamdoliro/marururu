@@ -90,7 +90,7 @@ export const useCheckFilledForm = () => {
 
         if (
             filledApplicantFieldsCount === 5 &&
-            filledParentFieldsCount === 5 &&
+            filledParentFieldsCount === 6 &&
             filledEducationFieldsCount === 8 &&
             filledTypeFieldsCount === 1 &&
             filledDocumentFieldsCount === 2
