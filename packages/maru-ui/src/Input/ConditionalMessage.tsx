@@ -1,13 +1,13 @@
 import { color, font } from '@maru/theme';
 import styled, { css } from 'styled-components';
 
-interface PropsType {
+interface Props {
     message?: string;
     errorMessage?: string;
     isError?: boolean;
 }
 
-const ConditionalMessage = ({ message, errorMessage, isError = false }: PropsType) => {
+const ConditionalMessage = ({ message, errorMessage, isError = false }: Props) => {
     return isError ? (
         errorMessage ? (
             <div style={{ position: 'relative' }}>

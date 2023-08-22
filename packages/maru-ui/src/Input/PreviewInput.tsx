@@ -4,7 +4,7 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
 import ConditionalMessage from './ConditionalMessage';
-import { InputPropsType } from './Input.type';
+import { InputProps } from './Input.type';
 
 const PreviewInput = ({
     width = '320px',
@@ -16,7 +16,7 @@ const PreviewInput = ({
     message,
     isError = false,
     onChange,
-}: InputPropsType) => {
+}: InputProps) => {
     const { value: isPreview, toggle: toggleIsPreview } = useBoolean();
 
     return (

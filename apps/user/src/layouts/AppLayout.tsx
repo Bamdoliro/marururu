@@ -4,7 +4,7 @@ import { color } from '@maru/theme';
 import { CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     header?: boolean;
     footer?: boolean;
     children: ReactNode;
@@ -18,7 +18,7 @@ const AppLayout = ({
     style,
     header = false,
     footer = false,
-}: PropsType) => {
+}: Props) => {
     return (
         <>
             {header && <Header />}

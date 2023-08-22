@@ -7,17 +7,13 @@ import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 
-interface PropsType {
+interface Props {
     selectedSchool: School;
     setSelectedSchool: Dispatch<SetStateAction<School>>;
     debouncedSchoolSearchQuery: string;
 }
 
-const SchoolList = ({
-    selectedSchool,
-    setSelectedSchool,
-    debouncedSchoolSearchQuery,
-}: PropsType) => {
+const SchoolList = ({ selectedSchool, setSelectedSchool, debouncedSchoolSearchQuery }: Props) => {
     const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
 
     return schoolListData ? (

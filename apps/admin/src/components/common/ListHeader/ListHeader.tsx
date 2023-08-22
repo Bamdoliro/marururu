@@ -3,11 +3,11 @@ import { flex } from '@maru/utils';
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
 }
 
-const ListHeader = ({ children }: PropsType) => {
+const ListHeader = ({ children }: Props) => {
     return <StyledListHeader>{children}</StyledListHeader>;
 };
 

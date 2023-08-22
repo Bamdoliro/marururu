@@ -1,7 +1,7 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
-import { TableOptionType, TablePropsType } from './Table.type';
+import { TableOptionType, TableProps } from './Table.type';
 
 const Td = ({
     children,
@@ -12,7 +12,7 @@ const Td = ({
     borderTopRightRadius,
     borderBottomLeftRadius,
     borderBottomRightRadius,
-}: TablePropsType) => {
+}: TableProps) => {
     return (
         <StyledTd
             style={{

@@ -8,7 +8,7 @@ import Column from '../Flex/Column';
 import Row from '../Flex/Row';
 import Text from '../Text/Text';
 
-interface PropsType {
+interface Props {
     title: string;
     children: ReactNode;
     isOpen: boolean;
@@ -19,16 +19,7 @@ interface PropsType {
     width?: CSSProperties['width'];
 }
 
-const Modal = ({
-    title,
-    children,
-    isOpen,
-    onClose,
-    onConfirm,
-    style,
-    height,
-    width,
-}: PropsType) => {
+const Modal = ({ title, children, isOpen, onClose, onConfirm, style, height, width }: Props) => {
     return (
         <BlurBackground $isOpen={isOpen}>
             <StyledModal style={{ width, height, ...style }}>

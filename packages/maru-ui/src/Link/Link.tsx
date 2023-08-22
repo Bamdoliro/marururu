@@ -1,14 +1,14 @@
 import { flex } from '@maru/utils';
-import { ReactNode, CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
     onClick: () => void;
     gap?: CSSProperties['gap'];
 }
 
-const Link = ({ children, gap, onClick }: PropsType) => {
+const Link = ({ children, gap, onClick }: Props) => {
     return (
         <StyledLink style={{ gap }} onClick={onClick}>
             {children}

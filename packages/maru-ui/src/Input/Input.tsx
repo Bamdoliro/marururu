@@ -2,7 +2,7 @@ import { IconError } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import styled, { css } from 'styled-components';
 import ConditionalMessage from './ConditionalMessage';
-import { InputPropsType } from './Input.type';
+import { InputProps } from './Input.type';
 
 const Input = ({
     width = '320px',
@@ -17,7 +17,7 @@ const Input = ({
     readOnly,
     textAlign,
     isError = false,
-}: InputPropsType) => {
+}: InputProps) => {
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}

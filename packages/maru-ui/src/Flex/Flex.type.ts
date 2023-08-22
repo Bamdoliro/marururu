@@ -1,6 +1,6 @@
-import { ReactNode, CSSProperties } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
-export interface FlexPropsType {
+export interface FlexProps {
     children: ReactNode;
     gap?: CSSProperties['gap'];
     justifyContent?: CSSProperties['justifyContent'];

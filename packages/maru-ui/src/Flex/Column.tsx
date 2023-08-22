@@ -1,16 +1,8 @@
-import styled from 'styled-components';
-import { FlexPropsType } from './Flex.type';
 import { flex } from '@maru/utils';
+import styled from 'styled-components';
+import { FlexProps } from './Flex.type';
 
-const Column = ({
-    children,
-    gap,
-    justifyContent,
-    alignItems,
-    width,
-    height,
-    style,
-}: FlexPropsType) => {
+const Column = ({ children, gap, justifyContent, alignItems, width, height, style }: FlexProps) => {
     return (
         <StyledColumn style={{ gap, justifyContent, alignItems, width, height, ...style }}>
             {children}

@@ -5,12 +5,12 @@ import { flex } from '@maru/utils';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     title: string;
     content: string;
 }
 
-const FaqItem = ({ content, title }: PropsType) => {
+const FaqItem = ({ content, title }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (

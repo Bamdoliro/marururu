@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { getButtonPadding, getButtonSize, getButtonStyle } from './Button.style';
 import { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
 
-interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
     option?: ButtonOption;
     icon?: ButtonIcon;
@@ -22,7 +22,7 @@ const Button = ({
     size = 'MEDIUM',
     width,
     style,
-}: PropsType) => {
+}: Props) => {
     return (
         <StyledButton
             style={{ width, ...style }}

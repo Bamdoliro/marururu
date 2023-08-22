@@ -5,12 +5,12 @@ import { Text } from '@maru/ui';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
     title: String;
 }
 
-const FormLayout = ({ children, title }: PropsType) => {
+const FormLayout = ({ children, title }: Props) => {
     return (
         <>
             <Header />

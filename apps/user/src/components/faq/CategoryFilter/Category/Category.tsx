@@ -3,13 +3,13 @@ import { flex } from '@maru/utils';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
     isSelected: boolean;
     onClick: () => void;
 }
 
-const Category = ({ children, isSelected, onClick }: PropsType) => {
+const Category = ({ children, isSelected, onClick }: Props) => {
     return (
         <StyledCategory $isSelected={isSelected} onClick={onClick}>
             {children}

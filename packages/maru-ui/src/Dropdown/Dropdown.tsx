@@ -8,7 +8,7 @@ import Text from '../Text/Text';
 
 type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
-interface PropsType {
+interface Props {
     label?: string;
     data: string[];
     width?: CSSProperties['width'];
@@ -28,7 +28,7 @@ const Dropdown = ({
     onChange,
     name,
     placeholder,
-}: PropsType) => {
+}: Props) => {
     const {
         value: isOpen,
         setFalse: closeDropdown,

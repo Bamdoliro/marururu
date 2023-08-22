@@ -10,11 +10,11 @@ import {
 } from '@/store';
 import { ReactNode, useEffect } from 'react';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
 }
 
-const FormWrapper = ({ children }: PropsType) => {
+const FormWrapper = ({ children }: Props) => {
     const { data: saveFormData } = useSaveFormQuery();
     const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();
     const setForm = useSetFormStore();

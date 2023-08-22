@@ -1,6 +1,6 @@
 import { color, font } from '@maru/theme';
 import { css, styled } from 'styled-components';
-import { InputPropsType } from './Input.type';
+import { InputProps } from './Input.type';
 
 const NumberInput = ({
     name,
@@ -10,7 +10,7 @@ const NumberInput = ({
     placeholder,
     value = 0,
     isError = false,
-}: InputPropsType) => {
+}: InputProps) => {
     return (
         <StyledNumberInput
             name={name}

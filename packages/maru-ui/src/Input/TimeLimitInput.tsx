@@ -5,9 +5,9 @@ import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 import Text from '../Text/Text';
 import ConditionalMessage from './ConditionalMessage';
-import { InputPropsType } from './Input.type';
+import { InputProps } from './Input.type';
 
-interface TimeLimitInputPropsType extends InputPropsType {
+interface TimeLimitInputProps extends InputProps {
     timerTime: number;
     setTimerTime: Dispatch<SetStateAction<number>>;
 }
@@ -23,7 +23,7 @@ const TimeLimitInput = ({
     setTimerTime,
     isError = false,
     errorMessage,
-}: TimeLimitInputPropsType) => {
+}: TimeLimitInputProps) => {
     useInterval(() => {
         setTimerTime((prev) => prev - 1);
         if (timerTime <= 0) {
