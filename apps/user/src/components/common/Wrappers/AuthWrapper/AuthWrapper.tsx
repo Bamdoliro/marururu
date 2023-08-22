@@ -8,7 +8,7 @@ import { useOverlay } from '@toss/use-overlay';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 
-const NOT_LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.FORM];
+const NOT_LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.FORM, ROUTES.FIRST_RESULT, ROUTES.FINAL_RESULT];
 const LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.LOGIN, ROUTES.SIGNUP];
 
 interface PropsType {

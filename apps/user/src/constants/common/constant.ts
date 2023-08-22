@@ -19,6 +19,8 @@ export const ROUTES = {
     LOGIN: '/login',
     NOTICE: '/notice',
     SIGNUP: '/signup',
+    FIRST_RESULT: '/result/first',
+    FINAL_RESULT: '/result/first',
 } as const;
 
 export const TOKEN = {
