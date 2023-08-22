@@ -43,7 +43,7 @@ const FORM_DATA: {
     },
 ];
 
-const KoreanFormType: { [key in FormType]: string } = {
+const KoreanFormType: Record<FormType, string> = {
     REGULAR: '일반',
     MEISTER_TALENT: '마이스터인재',
     NATIONAL_BASIC_LIVING: '국민기초생활수급자',

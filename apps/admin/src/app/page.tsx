@@ -2,7 +2,6 @@
 
 import FormList from '@/components/main/FormList/FormList';
 import AppLayout from '@/layouts/AppLayout';
-import { IconAdd } from '@maru/icon';
 import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
@@ -17,8 +16,8 @@ const Home = () => {
                         <Button
                             width={141}
                             size="SMALL"
-                            style={{ padding: '0 16px 0 10px', justifyContent: 'space-between' }}>
-                            <IconAdd width={24} height={24} />
+                            style={{ padding: '0 16px 0 10px', justifyContent: 'space-between' }}
+                            icon="ADD_ICON">
                             공지사항 작성
                         </Button>
                         <Row gap={8}>
