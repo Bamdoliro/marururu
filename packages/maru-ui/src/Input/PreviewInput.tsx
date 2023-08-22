@@ -1,4 +1,4 @@
-import { useBoolean } from '@maru/hooks';
+import { useBooleanState } from '@maru/hooks';
 import { IconInvisibleEye, IconVisibleEye } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
@@ -17,7 +17,7 @@ const PreviewInput = ({
     isError = false,
     onChange,
 }: InputProps) => {
-    const { value: isPreview, toggle: toggleIsPreview } = useBoolean();
+    const { value: isPreview, toggle: toggleIsPreview } = useBooleanState();
 
     return (
         <div style={{ width }}>
