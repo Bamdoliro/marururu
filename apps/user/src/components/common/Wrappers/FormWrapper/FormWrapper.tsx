@@ -1,13 +1,15 @@
 'use client';
 
 import { FORM } from '@/constants/form/initial';
+import { useSaveFormMutation } from '@/services/form/mutations';
 import { useSaveFormQuery } from '@/services/form/queries';
 import {
+    useFormStore,
     useIsSaveFormLoadedStore,
-    useSetFormStore,
     useSetNewSubjectStore,
     useSetSubjectStore,
 } from '@/store';
+import { useInterval } from '@toss/react';
 import { ReactNode, useEffect } from 'react';
 
 interface PropsType {
@@ -16,10 +18,16 @@ interface PropsType {
 
 const FormWrapper = ({ children }: PropsType) => {
     const { data: saveFormData } = useSaveFormQuery();
+    const { saveFormMutate } = useSaveFormMutation();
     const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();
-    const setForm = useSetFormStore();
+    const [form, setForm] = useFormStore();
     const setSubjectList = useSetSubjectStore();
     const setNewtSubjectList = useSetNewSubjectStore();
+
+    // 2분마다 한번씩 저장
+    useInterval(() => {
+        saveFormMutate(form);
+    }, 6000 * 10 * 2);
 
     useEffect(() => {
         if (saveFormData && !isSaveFormLoaded) {
