@@ -30,7 +30,7 @@ const FormLayout = ({ children, title }: PropsType) => {
 export default FormLayout;
 
 const StyledFormLayout = styled.section`
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: ${color.white};
 `;

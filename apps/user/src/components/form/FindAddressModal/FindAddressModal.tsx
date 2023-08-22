@@ -1,6 +1,6 @@
+import { useSetFormStore } from '@/store';
 import { useOutsideClick } from '@maru/hooks';
 import DaumPostcode, { Address } from 'react-daum-postcode';
-import { useSetFormStore } from '@/store';
 import styled from 'styled-components';
 
 interface PropsType {
@@ -38,7 +38,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
     display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;

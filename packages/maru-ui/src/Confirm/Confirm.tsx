@@ -79,7 +79,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
     display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;

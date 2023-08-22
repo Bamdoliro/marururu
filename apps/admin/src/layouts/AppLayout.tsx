@@ -20,7 +20,7 @@ export default AppLayout;
 
 const StyledAppLayout = styled.div`
     ${flex({ flexDirection: 'row' })}
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 `;
 
