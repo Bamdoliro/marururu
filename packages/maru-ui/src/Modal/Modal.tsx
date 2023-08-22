@@ -30,7 +30,7 @@ const Modal = ({
     width,
 }: PropsType) => {
     return (
-        <BlurBackground isOpen={isOpen}>
+        <BlurBackground $isOpen={isOpen}>
             <StyledModal style={{ width, height, ...style }}>
                 <Row
                     style={{ marginBottom: 20 }}
@@ -63,8 +63,8 @@ const Modal = ({
 
 export default Modal;
 
-const BlurBackground = styled.div<{ isOpen: boolean }>`
-    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+const BlurBackground = styled.div<{ $isOpen: boolean }>`
+    display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     position: fixed;

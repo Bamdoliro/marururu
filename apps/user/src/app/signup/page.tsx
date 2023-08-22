@@ -29,7 +29,7 @@ const SignUpPage = () => {
                     alt="colabo-logo"
                 />
                 <ContentBox>
-                    <SignUpBox enabled={isRequestEmail}>
+                    <SignUpBox>
                         <Column gap={24}>
                             <Text fontType="H2" color={color.gray900}>
                                 회원가입
@@ -114,7 +114,7 @@ const ContentBox = styled.div`
     overflow: auto;
 `;
 
-const SignUpBox = styled.div<{ enabled: boolean }>`
+const SignUpBox = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 36px;
     width: 446px;

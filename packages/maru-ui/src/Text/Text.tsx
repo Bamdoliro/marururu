@@ -23,5 +23,5 @@ const Text = ({ children, color, fontType, textAlign, width }: PropsType) => {
 export default Text;
 
 const StyledText = styled.p<{ fontType: Font }>`
-    ${({ fontType }) => font[fontType]}
+    ${(props) => props.fontType && font[props.fontType]}
 `;

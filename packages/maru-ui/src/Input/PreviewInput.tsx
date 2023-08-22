@@ -57,7 +57,7 @@ const PreviewInput = ({
 
 export default PreviewInput;
 
-const StyledPreviewInput = styled.div<{ isError?: boolean }>`
+const StyledPreviewInput = styled.div<{ isError: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     gap: 10px;
     height: 48px;

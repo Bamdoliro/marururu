@@ -1,8 +1,7 @@
+import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { font, color } from '@maru/theme';
-import { CSSProperties, ReactNode } from 'react';
-import { TableOptionType, TablePropsType } from './Table.type';
 import styled, { css } from 'styled-components';
+import { TableOptionType, TablePropsType } from './Table.type';
 
 const Td = ({
     children,
@@ -32,7 +31,7 @@ const Td = ({
 
 export default Td;
 
-const StyledTd = styled.div<{ option?: TableOptionType }>`
+const StyledTd = styled.div<{ option: TableOptionType }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
 
     color: ${color.gray900};

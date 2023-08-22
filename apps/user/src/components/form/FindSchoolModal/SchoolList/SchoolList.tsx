@@ -60,8 +60,8 @@ const SchoolItem = styled.div<{ selected: boolean }>`
     background: ${color.gray50};
     cursor: pointer;
 
-    ${({ selected }) =>
-        selected &&
+    ${(props) =>
+        props.selected &&
         css`
             padding: 15px 15px;
             border: 1px solid ${color.maruDefault};

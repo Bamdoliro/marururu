@@ -11,19 +11,19 @@ const ConditionalMessage = ({ message, errorMessage, isError = false }: PropsTyp
     return isError ? (
         errorMessage ? (
             <div style={{ position: 'relative' }}>
-                <StyledConditionalMessage isError={true}>{errorMessage}</StyledConditionalMessage>
+                <StyledConditionalMessage $isError={true}>{errorMessage}</StyledConditionalMessage>
             </div>
         ) : null
     ) : message ? (
-        <StyledConditionalMessage isError={false}>{message}</StyledConditionalMessage>
+        <StyledConditionalMessage $isError={false}>{message}</StyledConditionalMessage>
     ) : null;
 };
 
 export default ConditionalMessage;
 
-const StyledConditionalMessage = styled.p<{ isError: boolean }>`
-    ${({ isError }) =>
-        isError
+const StyledConditionalMessage = styled.p<{ $isError: boolean }>`
+    ${(props) =>
+        props.$isError
             ? css`
                   position: absolute;
                   top: 0;

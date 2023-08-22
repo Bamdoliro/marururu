@@ -1,5 +1,6 @@
-import { font, color } from '@maru/theme';
+import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { CSSProperties } from 'react';
 import styled from 'styled-components';
 
 const FinalFormTable = () => {
@@ -77,7 +78,7 @@ const Tr = styled.tr`
     ${flex({ alignItems: 'center' })}
 `;
 
-const Th = styled.th<{ width: string }>`
+const Th = styled.th<{ width: CSSProperties['width'] }>`
     ${font.context}
     color: ${color.gray900};
     ${flex({ justifyContent: 'center', alignItems: 'center' })}
@@ -87,7 +88,7 @@ const Th = styled.th<{ width: string }>`
     border: 1px solid ${color.gray300};
 `;
 
-const Td = styled.td<{ width: string }>`
+const Td = styled.td<{ width: CSSProperties['width'] }>`
     ${font.p2}
     color: ${color.gray900};
     ${flex({ justifyContent: 'center', alignItems: 'center' })}

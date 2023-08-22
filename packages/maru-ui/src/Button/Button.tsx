@@ -50,7 +50,7 @@ const StyledButton = styled.button<{
     border-radius: 6px;
     cursor: pointer;
 
-    ${({ icon }) => icon && getButtonPadding[icon]};
-    ${({ option }) => option && getButtonStyle[option]};
-    ${({ size }) => size && getButtonSize[size]};
+    ${(props) => props.icon && getButtonPadding[props.icon]};
+    ${(props) => props && getButtonStyle[props.option]};
+    ${(props) => props && getButtonSize[props.size]};
 `;

@@ -108,7 +108,7 @@ const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }
 
 const DropdownListBox = styled.div<{ $isOpen: boolean }>`
     position: relative;
-    display: ${({ $isOpen: isOpen }) => (isOpen ? 'block' : 'none')};
+    display: ${(props) => (props.$isOpen ? 'block' : 'none')};
 `;
 
 const DropdownList = styled.div`
