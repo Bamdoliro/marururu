@@ -1,6 +1,6 @@
 import { Row, Text } from "@maru/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import ListItem from "./ListItem";
+import ListItem from "./TableItem";
 
 export default {
     component: ListItem,

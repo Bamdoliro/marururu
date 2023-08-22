@@ -1,5 +1,5 @@
-import ListHeader from '@/components/common/ListHeader/ListHeader';
-import ListItem from '@/components/common/ListItem/ListItem';
+import ListHeader from '@/components/common/TableHeader/TableHeader';
+import ListItem from '@/components/common/TableItem/TableItem';
 import { Column, Row, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 
