@@ -40,8 +40,6 @@ const SignUpPage = () => {
                                 name="name"
                                 placeholder="이름을 입력해주세요."
                                 onChange={handleJoinUserDataChange}
-                                isError={joinUserData.name.length === 0}
-                                errorMessage="필수값입니다."
                             />
                             <ButtonInput
                                 label="이메일 인증"
