@@ -1,5 +1,5 @@
-import ListHeader from '@/components/common/TableHeader/TableHeader';
-import ListItem from '@/components/common/TableItem/TableItem';
+import TableHeader from '@/components/common/TableHeader/TableHeader';
+import TableItem from '@/components/common/TableItem/TableItem';
 import { useNoticeListQuery } from '@/services/notice/queries';
 import { Column, Row, Text } from '@maru/ui';
 import { formatPostedAt } from '@maru/utils';
@@ -10,7 +10,7 @@ const NoticeList = () => {
 
     return (
         <Column gap={12}>
-            <ListHeader>
+            <TableHeader>
                 <Row gap={48}>
                     <Text fontType="p2" width={50}>
                         번호
@@ -22,10 +22,10 @@ const NoticeList = () => {
                 <Text fontType="p2" width={100}>
                     게시일
                 </Text>
-            </ListHeader>
+            </TableHeader>
             {noticeList &&
                 noticeList.map((item) => (
-                    <ListItem key={item.id}>
+                    <TableItem key={item.id}>
                         <Row gap={48}>
                             <Text fontType="p2" width={50}>
                                 {item.id}
@@ -37,7 +37,7 @@ const NoticeList = () => {
                         <Text fontType="p2" width={100}>
                             {formatPostedAt(item.createdAt)}
                         </Text>
-                    </ListItem>
+                    </TableItem>
                 ))}
         </Column>
     );

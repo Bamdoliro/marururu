@@ -1,5 +1,5 @@
-import ListHeader from '@/components/common/TableHeader/TableHeader';
-import ListItem from '@/components/common/TableItem/TableItem';
+import TableHeader from '@/components/common/TableHeader/TableHeader';
+import TableItem from '@/components/common/TableItem/TableItem';
 import { Column, Row, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 
@@ -28,7 +28,7 @@ const FormList = () => {
 
     return (
         <Column gap={12}>
-            <ListHeader>
+            <TableHeader>
                 <Row gap={48}>
                     <Text fontType="p2" width={60}>
                         접수번호
@@ -49,10 +49,10 @@ const FormList = () => {
                 <Text fontType="p2" width={80}>
                     상태
                 </Text>
-            </ListHeader>
+            </TableHeader>
             {formList &&
                 formList.map((item) => (
-                    <ListItem>
+                    <TableItem>
                         <Row gap={48}>
                             <Text fontType="p2" width={60}>
                                 {item.id}
@@ -75,7 +75,7 @@ const FormList = () => {
                         <Text fontType="p2" width={80}>
                             {item.status}
                         </Text>
-                    </ListItem>
+                    </TableItem>
                 ))}
         </Column>
     );
