@@ -1,5 +1,6 @@
 'use client';
 
+import FaqTable from '@/components/faq/FaqTable/FaqTable';
 import AppLayout from '@/layouts/AppLayout';
 import { Button, Column, Dropdown, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -31,6 +32,7 @@ const FaqPage = () => {
                         </Row>
                     </Row>
                 </Column>
+                <FaqTable />
             </StyledFaqPage>
         </AppLayout>
     );
