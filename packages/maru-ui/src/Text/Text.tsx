@@ -13,7 +13,7 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
     ellipsis?: boolean;
 }
 
-const Text = ({ children, color, fontType, textAlign, width, ellipsis = false }: PropsType) => {
+const Text = ({ children, color, fontType, textAlign, width, ellipsis = false }: Props) => {
     return (
         <StyledText style={{ color, textAlign, width }} fontType={fontType} ellipsis={ellipsis}>
             {children}
