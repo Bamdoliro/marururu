@@ -1,7 +1,8 @@
+import { color } from '@maru/theme';
+import { Text } from '@maru/ui';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import ScheduleItem from './ScheduleItem/ScheduleItem';
-import { color, font } from '@maru/theme';
-import { flex } from '@maru/utils';
 
 const SCHEDULE_DATA = [
     {
@@ -29,7 +30,9 @@ const SCHEDULE_DATA = [
 const Schedule = () => {
     return (
         <StyledSchedule>
-            <Title>입학일정</Title>
+            <Text fontType="H3" color={color.gray900}>
+                2024학년도 부산소마고 입학 일정
+            </Text>
             <StyledScheduleList>
                 {SCHEDULE_DATA.map((item) => (
                     <ScheduleItem key={item.id} date={item.date} plan={item.plan} />
@@ -57,9 +60,4 @@ const StyledScheduleList = styled.div`
     height: 100%;
     width: 100%;
     overflow: auto;
-`;
-
-const Title = styled.p`
-    ${font.H3}
-    color: ${color.gray900};
 `;

@@ -1,17 +1,18 @@
 import { ROUTES } from '@/constants/common/constant';
-import useUser from '@/hooks/useUser';
+import { useUser } from '@/hooks';
 import { useLogoutUserMutation } from '@/services/auth/mutations';
-import { useBoolean, useOutsideClick } from '@maru/hooks';
+import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 const Profile = () => {
     const router = useRouter();
-    const { user } = useUser();
-    const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBoolean();
+    const { userData } = useUser();
+    const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBooleanState();
     const { logoutUserMutate } = useLogoutUserMutation();
     const menuListBoxRef = useOutsideClick(closeMenu);
 
@@ -26,17 +27,18 @@ const Profile = () => {
     return (
         <StyledProfile ref={menuListBoxRef}>
             <MenuButton onClick={toggleMenuOpen}>
-                <Name>{user.name} 님</Name>
+                <Name>{userData.name} 님</Name>
                 <IconArrowDropdown color={color.gray600} width={24} height={24} />
             </MenuButton>
             {isMenuOpen && (
                 <MenuListBox>
                     <MenuList>
                         <NameMenu>
-                            <Name>{user.name}</Name>
-                            <Email>@{user.email.split('@')[0]}</Email>
+                            <Name>{userData.name}</Name>
+                            <Text fontType="p3" color={color.gray600}>
+                                @{userData.email.split('@')[0]}
+                            </Text>
                         </NameMenu>
-                        <MenuItem>프로필</MenuItem>
                         <MenuItem onClick={handleGoFormPageButtonClick}>
                             이어서 원서 작성하기
                         </MenuItem>
@@ -92,11 +94,6 @@ const NameMenu = styled.div`
     padding: 0px 24px;
     gap: 16px;
     border-bottom: 1px solid ${color.gray200};
-`;
-
-const Email = styled.p`
-    ${font.p3}
-    color: ${color.gray600};
 `;
 
 const MenuItem = styled.button`

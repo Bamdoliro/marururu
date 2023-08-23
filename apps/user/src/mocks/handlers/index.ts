@@ -1,7 +1,5 @@
-import { noticeHandlers } from "./notice";
-import { mainHandlers } from "./main";
-import { faqHandlers } from "./faq";
+import { faqHandlers } from './faq';
+import { mainHandlers } from './main';
+import { noticeHandlers } from './notice';
 
 export const handlers = [...noticeHandlers, ...mainHandlers, ...faqHandlers];
-
-console.log(handlers);

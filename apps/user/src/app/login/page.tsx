@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 
 const LoginPage = () => {
-    const { handleGoSingUpPageButtonClick } = useCTAButton();
+    const { handleGoSingUpPageButtonClick, handleGoMainPageButtonClick } = useCTAButton();
     const { loginUserData, handleLoginUserDataChange } = useInput();
     const { handleLoginButtonClick } = useLoginAction(loginUserData);
 
@@ -19,11 +19,18 @@ const LoginPage = () => {
             <StyledLoginPage>
                 <LoginBox>
                     <LoginBoxWrap>
-                        <Image src="/svg/logo.svg" width={232} height={70} alt="logo" />
+                        <Image
+                            src="/svg/logo.svg"
+                            onClick={handleGoMainPageButtonClick}
+                            style={{ cursor: 'pointer' }}
+                            width={232}
+                            height={70}
+                            alt="logo"
+                        />
                         <Column gap="36px" width="100%">
                             <Column gap="24px">
                                 <Input
-                                    label="아이디"
+                                    label="이메일"
                                     width="100%"
                                     name="email"
                                     onChange={handleLoginUserDataChange}

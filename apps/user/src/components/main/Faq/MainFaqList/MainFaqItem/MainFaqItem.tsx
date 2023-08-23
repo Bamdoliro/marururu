@@ -1,14 +1,15 @@
-import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/constants/common/constant';
-import { font, color } from '@maru/theme';
 import { IconFaq } from '@maru/icon';
+import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
+import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 
-interface PropsType {
+interface Props {
     title: string;
 }
 
-const MainFaqItem = ({ title }: PropsType) => {
+const MainFaqItem = ({ title }: Props) => {
     const router = useRouter();
 
     return (
@@ -22,8 +23,7 @@ const MainFaqItem = ({ title }: PropsType) => {
 export default MainFaqItem;
 
 const StyledMainFaqItem = styled.div`
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 64px;
     padding: 0px 16px;

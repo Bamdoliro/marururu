@@ -1,20 +1,22 @@
-import { Row } from '@maru/ui';
 import { color, font } from '@maru/theme';
+import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     date: string;
     plan: string;
 }
 
-const ScheduleItem = ({ date, plan }: PropsType) => {
+const ScheduleItem = ({ date, plan }: Props) => {
     return (
         <StyledScheduleItem>
             <Date>{date}</Date>
             <Row gap="6px" alignItems="center">
                 <Bar />
-                <Plan>{plan}</Plan>
+                <Text fontType="H5" color={color.gray900}>
+                    {plan}
+                </Text>
             </Row>
         </StyledScheduleItem>
     );
@@ -34,11 +36,6 @@ const Date = styled.p`
     color: ${color.gray900};
     border-bottom: 1px solid ${color.gray300};
     padding-bottom: 6px;
-`;
-
-const Plan = styled.p`
-    ${font.H5}
-    color: ${color.gray900};
 `;
 
 const Bar = styled.div`

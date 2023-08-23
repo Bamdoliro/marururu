@@ -1,15 +1,15 @@
+import { ROUTES } from '@/constants/common/constant';
+import { color, font } from '@maru/theme';
+import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
-import { ROUTES } from '@/constants/common/constant';
-import { font, color } from '@maru/theme';
-import { flex } from '@maru/utils';
 
-interface PropsType {
+interface Props {
     id: number;
     title: string;
 }
 
-const MainNoticeItem = ({ id, title }: PropsType) => {
+const MainNoticeItem = ({ id, title }: Props) => {
     const router = useRouter();
 
     return (

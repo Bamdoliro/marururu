@@ -1,17 +1,18 @@
+import { useNewSubjectStore, useSetFormStore, useSubjectStore } from '@/store';
 import { Subject } from '@/types/form/client';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
 import { flex } from '@maru/utils';
-import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
-import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
-import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import { useEffect, useRef } from 'react';
-import { useNewSubjectStore, useSubjectStore } from '@/store';
 import styled from 'styled-components';
+import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
+import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
+import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 
 const GradeCalculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
     const [subjectList, setSubjectList] = useSubjectStore();
+    const setForm = useSetFormStore();
     const footerRef = useRef<HTMLDivElement>(null);
     const isMount = useRef(true);
 
@@ -35,9 +36,17 @@ const GradeCalculator = () => {
         if (newSubjectList.length) footerRef.current?.scrollIntoView();
     }, [newSubjectList]);
 
+    useEffect(() => {
+        const studentSubjectList = [...subjectList, ...newSubjectList].map(
+            ({ id, ...rest }) => rest,
+        );
+
+        setForm((prev) => ({ ...prev, grade: { ...prev.grade, subjectList: studentSubjectList } }));
+    }, [newSubjectList, subjectList]);
+
     return (
         <StyledGradeCalculator>
-            <Desc style={{ marginBottom: 16 }}>
+            <Desc>
                 *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
                 <br />
                 *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
@@ -105,4 +114,5 @@ const GradeCalculatorFooter = styled.div`
 const Desc = styled.p`
     color: ${color.red};
     ${font.p3}
+    margin-bottom: 16px;
 `;

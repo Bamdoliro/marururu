@@ -1,13 +1,13 @@
-import { css } from 'styled-components';
 import type { CSSProperties } from 'react';
+import { css } from 'styled-components';
 
-interface PropsType {
+interface Props {
     flexDirection?: CSSProperties['flexDirection'];
     justifyContent?: CSSProperties['justifyContent'];
     alignItems?: CSSProperties['alignItems'];
 }
 
-const flex = ({ flexDirection, justifyContent, alignItems }: PropsType) => {
+const flex = ({ flexDirection, justifyContent, alignItems }: Props) => {
     return css`
         display: flex;
         flex-direction: ${flexDirection};

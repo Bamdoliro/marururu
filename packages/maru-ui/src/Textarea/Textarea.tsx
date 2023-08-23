@@ -2,12 +2,12 @@ import { color, font } from '@maru/theme';
 import { TextareaHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-interface PropsType extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     limit: number;
     label: string;
 }
 
-const Textarea = ({ limit, label, name, value, onChange }: PropsType) => {
+const Textarea = ({ limit, label, name, value, onChange }: Props) => {
     const textValue = value as string;
 
     return (

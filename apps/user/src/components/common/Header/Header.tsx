@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/common/constant';
-import useUser from '@/hooks/useUser';
+import { useUser } from '@/hooks';
 import { color } from '@maru/theme';
 import { Button, Row, UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import Profile from './Profile/Profile';
-
 const NAVIGATION_DATA = [
     {
         name: '홈',
@@ -25,31 +24,25 @@ const NAVIGATION_DATA = [
         name: '자주 묻는 질문',
         route: ROUTES.FAQ,
     },
-    {
-        name: '학교 소개',
-        route: '',
-    },
 ] as const;
 
 const Header = () => {
     const router = useRouter();
     const pathName = usePathname();
-    const { isLogined } = useUser();
-
-    // console.log('routes', router);
+    const { isLoggedIn } = useUser();
 
     return (
         <StyledHeader>
             <HeaderBar>
                 <Image
-                    src="/svg/logo.svg"
+                    src="/svg/school_logo.svg"
                     style={{ cursor: 'pointer' }}
-                    width={107}
-                    height={72}
+                    width={318}
+                    height={64}
                     onClick={() => router.push(ROUTES.MAIN)}
                     alt="logo"
                 />
-                {isLogined ? (
+                {isLoggedIn ? (
                     <Profile />
                 ) : (
                     <Row gap="10px" alignItems="center">
@@ -88,9 +81,10 @@ export default Header;
 
 const StyledHeader = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' })}
-    width: 100%;
+    max-width: 1448px;
     height: 126px;
     background-color: ${color.white};
+    margin: 0 auto;
     padding: 0px 100px;
     border-bottom: 1px solid ${color.gray200};
 `;

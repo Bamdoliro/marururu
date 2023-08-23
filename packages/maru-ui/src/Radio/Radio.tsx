@@ -1,9 +1,10 @@
+import { flex } from '@maru/utils';
 import { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-interface PropsType extends InputHTMLAttributes<HTMLInputElement> {}
+interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
-const Radio = ({ value, name, checked, onChange }: PropsType) => {
+const Radio = ({ value, name, checked, onChange }: Props) => {
     return (
         <StyledRadio>
             <Input type="radio" value={value} name={name} checked={checked} onChange={onChange} />
@@ -17,9 +18,7 @@ const Input = styled.input`
 `;
 
 const StyledRadio = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     width: 24px;
     height: 24px;
 `;

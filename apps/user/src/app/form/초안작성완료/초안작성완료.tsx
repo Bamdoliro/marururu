@@ -81,11 +81,11 @@ const 초안작성완료 = () => {
                     )}
                     {isFilledForm ? (
                         <Text fontType="p1" color={color.gray900}>
-                            잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.
+                            잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
                         </Text>
                     ) : (
                         <Text fontType="p1" color={color.gray900}>
-                            또한 잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.
+                            또한 잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
                         </Text>
                     )}
                 </Column>

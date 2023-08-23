@@ -1,16 +1,16 @@
-import styled from 'styled-components';
-import { IconFaq, IconAnswer, IconArrowBottom, IconArrowTop } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { IconAnswer, IconArrowBottom, IconArrowTop, IconFaq } from '@maru/icon';
+import { color } from '@maru/theme';
+import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { Row } from '@maru/ui';
 import { useState } from 'react';
+import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     title: string;
     content: string;
 }
 
-const FaqItem = ({ content, title }: PropsType) => {
+const FaqItem = ({ content, title }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -22,7 +22,9 @@ const FaqItem = ({ content, title }: PropsType) => {
                         width={24}
                         height={24}
                     />
-                    <Question>{title}</Question>
+                    <Text fontType="p1" color={color.gray900}>
+                        {title}
+                    </Text>
                 </Row>
                 {isOpen ? (
                     <IconArrowTop color={color.gray600} width={24} height={24} />
@@ -34,7 +36,9 @@ const FaqItem = ({ content, title }: PropsType) => {
                 <AnswerBox>
                     <Row gap="12px" alignItems="center">
                         <IconAnswer color={color.gray400} width={24} height={24} />
-                        <Answer>{content}</Answer>
+                        <Text fontType="p2" color={color.gray900}>
+                            {content}
+                        </Text>
                     </Row>
                 </AnswerBox>
             )}
@@ -57,19 +61,9 @@ const QuestionBox = styled.div`
     cursor: pointer;
 `;
 
-const Question = styled.p`
-    ${font.p1}
-    color: ${color.gray900};
-`;
-
 const AnswerBox = styled.div`
     height: 77px;
     ${flex({ alignItems: 'center' })}
     background-color: ${color.white};
     padding: 24px;
-`;
-
-const Answer = styled.p`
-    ${font.p2}
-    color: ${color.gray900};
 `;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 type Font = keyof typeof font;
 
-interface PropsType extends HTMLAttributes<HTMLSpanElement> {
+interface Props extends HTMLAttributes<HTMLSpanElement> {
     children: ReactNode;
     color?: string;
     fontType: Font;
@@ -12,7 +12,7 @@ interface PropsType extends HTMLAttributes<HTMLSpanElement> {
     textAlign?: CSSProperties['textAlign'];
 }
 
-const Text = ({ children, color, fontType, textAlign, width }: PropsType) => {
+const Text = ({ children, color, fontType, textAlign, width }: Props) => {
     return (
         <StyledText style={{ color, textAlign, width }} fontType={fontType}>
             {children}
@@ -23,5 +23,5 @@ const Text = ({ children, color, fontType, textAlign, width }: PropsType) => {
 export default Text;
 
 const StyledText = styled.p<{ fontType: Font }>`
-    ${({ fontType }) => font[fontType]}
+    ${(props) => props.fontType && font[props.fontType]}
 `;

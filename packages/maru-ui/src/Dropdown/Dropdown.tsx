@@ -1,13 +1,14 @@
-import { useBoolean, useOutsideClick } from '@maru/hooks';
+import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowBottom, IconArrowTop } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { CSSProperties } from 'react';
 import styled, { css } from 'styled-components';
+import Text from '../Text/Text';
 
 type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
-interface PropsType {
+interface Props {
     label?: string;
     data: string[];
     width?: CSSProperties['width'];
@@ -27,12 +28,12 @@ const Dropdown = ({
     onChange,
     name,
     placeholder,
-}: PropsType) => {
+}: Props) => {
     const {
         value: isOpen,
         setFalse: closeDropdown,
         toggle: handleToggleButtonClick,
-    } = useBoolean();
+    } = useBooleanState();
     const dropdownRef = useOutsideClick(closeDropdown);
 
     const handleDropdownItemButtonClick = (data: string) => {
@@ -44,7 +45,9 @@ const Dropdown = ({
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
             <StyledDropdown size={size} onClick={handleToggleButtonClick} $isOpen={isOpen}>
-                <SelectedItemText $isSelected={!!value}>{value || placeholder}</SelectedItemText>
+                <Text fontType="p2" color={!!value ? color.gray900 : color.gray500}>
+                    {value || placeholder}
+                </Text>
                 {isOpen ? (
                     <IconArrowTop color={color.gray600} width={24} height={24} />
                 ) : (
@@ -75,9 +78,7 @@ const Label = styled.p`
 `;
 
 const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }>`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
     background-color: ${color.white};
     border-radius: 6px;
@@ -105,14 +106,9 @@ const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }
               `}
 `;
 
-const SelectedItemText = styled.p<{ $isSelected: boolean }>`
-    ${font.p2}
-    color: ${(props) => (props.$isSelected ? color.gray900 : color.gray500)};
-`;
-
 const DropdownListBox = styled.div<{ $isOpen: boolean }>`
     position: relative;
-    display: ${({ $isOpen: isOpen }) => (isOpen ? 'block' : 'none')};
+    display: ${(props) => (props.$isOpen ? 'block' : 'none')};
 `;
 
 const DropdownList = styled.div`

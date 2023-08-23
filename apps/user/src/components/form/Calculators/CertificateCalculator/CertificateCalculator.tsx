@@ -1,6 +1,6 @@
 import { useFormStore } from '@/store';
-import { color, font } from '@maru/theme';
-import { CheckBox, Column, Row, Td, Th } from '@maru/ui';
+import { color } from '@maru/theme';
+import { CheckBox, Column, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
@@ -30,12 +30,13 @@ const CertificateCalculator = () => {
                 },
             }));
         }
-        console.log(form);
     };
 
     return (
         <StyledCertificateCalculator>
-            <Desc>*자격증을 중복 소지하고 있을 경우, 최고 수준의 자격증 1개만 인정함</Desc>
+            <Text fontType="p3" color={color.red}>
+                *자격증을 중복 소지하고 있을 경우, 최고 수준의 자격증 1개만 인정함
+            </Text>
             <Column>
                 <Row>
                     <Th borderTopLeftRadius={12} width={416} height={56}>
@@ -174,9 +175,4 @@ const StyledCertificateCalculator = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 16px;
     width: 100%;
-`;
-
-const Desc = styled.p`
-    color: ${color.red};
-    ${font.p3}
 `;

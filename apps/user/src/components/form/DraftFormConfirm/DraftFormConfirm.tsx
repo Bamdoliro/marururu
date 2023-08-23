@@ -1,13 +1,13 @@
 import { color } from '@maru/theme';
 import { Column, Confirm, Text } from '@maru/ui';
 
-interface PropsType {
+interface Props {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
 }
 
-const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: PropsType) => {
+const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
     return (
         <Confirm
             isOpen={isOpen}
@@ -19,7 +19,7 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: PropsType) => {
                         처리되며 더 이상 입학원서 수정이 불가능합니다.
                     </Text>
                     <Text color={color.gray900} fontType="p2">
-                        잘못 입력한 곳이 있는지 면밀히 검토해주시기 바랍니다.
+                        잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
                     </Text>
                 </Column>
             }

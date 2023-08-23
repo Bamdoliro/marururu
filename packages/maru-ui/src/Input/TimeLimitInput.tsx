@@ -1,13 +1,13 @@
-import { color, font } from '@maru/theme';
-import { flex } from '@maru/utils';
-import { InputPropsType } from './Input.type';
-import styled from 'styled-components';
-import Message from './Message';
-import { formatTime } from '@maru/utils';
 import { useInterval } from '@maru/hooks';
+import { color, font } from '@maru/theme';
+import { flex, formatTime } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
+import styled, { css } from 'styled-components';
+import Text from '../Text/Text';
+import ConditionalMessage from './ConditionalMessage';
+import { InputProps } from './Input.type';
 
-interface TimeLimitInputPropsType extends InputPropsType {
+interface TimeLimitInputProps extends InputProps {
     timerTime: number;
     setTimerTime: Dispatch<SetStateAction<number>>;
 }
@@ -16,12 +16,14 @@ const TimeLimitInput = ({
     width = '320px',
     name,
     label,
-    msg,
+    message,
     onChange,
     maxLength,
     timerTime,
     setTimerTime,
-}: TimeLimitInputPropsType) => {
+    isError = false,
+    errorMessage,
+}: TimeLimitInputProps) => {
     useInterval(() => {
         setTimerTime((prev) => prev - 1);
         if (timerTime <= 0) {
@@ -32,18 +34,22 @@ const TimeLimitInput = ({
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledTimeLimitInput>
-                <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
-                <Timer>{formatTime(timerTime)}</Timer>
-            </StyledTimeLimitInput>
-            {msg && <Message>{msg}</Message>}
+            <div style={{ position: 'relative' }}>
+                <StyledTimeLimitInput $isError={isError}>
+                    <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
+                    <Text fontType="p3" color={color.red}>
+                        {formatTime(timerTime)}
+                    </Text>
+                </StyledTimeLimitInput>
+            </div>
+            <ConditionalMessage isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
 };
 
 export default TimeLimitInput;
 
-const StyledTimeLimitInput = styled.div`
+const StyledTimeLimitInput = styled.div<{ $isError: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     gap: 10px;
     height: 48px;
@@ -53,9 +59,24 @@ const StyledTimeLimitInput = styled.div`
     border-radius: 6px;
 
     &:focus-within {
-        border: 1px solid ${color.maruDefault};
-        outline: 2px solid rgba(20, 112, 255, 0.25);
+        border: 1px solid ${(props) => (props.$isError ? color.red : color.maruDefault)};
+        ${(props) =>
+            !props.$isError &&
+            css`
+                outline: 2px solid rgba(20, 112, 255, 0.25);
+            `}
     }
+
+    ${(props) =>
+        props.$isError &&
+        css`
+            border: 1px solid ${color.red};
+            outline: 2px solid rgba(244, 67, 54, 0.25);
+
+            &:focus {
+                border: 1px solid ${color.red};
+            }
+        `};
 `;
 
 const Input = styled.input`
@@ -73,9 +94,4 @@ const Label = styled.p`
     ${font.context}
     color: ${color.gray700};
     margin-bottom: 8px;
-`;
-
-const Timer = styled.p`
-    ${font.p3}
-    color: ${color.red};
 `;

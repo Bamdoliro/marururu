@@ -1,10 +1,10 @@
-import Input from './Input';
-import { flex } from '@maru/utils';
 import { color, font } from '@maru/theme';
-import { InputPropsType } from './Input.type';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import Input from './Input';
+import { InputProps } from './Input.type';
 
-interface ButtonInputPropsType extends InputPropsType {
+interface ButtonInputProps extends InputProps {
     buttonText: string;
     enabled?: boolean;
     buttonWidth?: string;
@@ -23,7 +23,9 @@ const ButtonInput = ({
     onClick,
     enabled = false,
     readOnly,
-}: ButtonInputPropsType) => {
+    isError = false,
+    errorMessage,
+}: ButtonInputProps) => {
     return (
         <div>
             {label && <Label>{label}</Label>}
@@ -36,6 +38,8 @@ const ButtonInput = ({
                     onChange={onChange}
                     placeholder={placeholder}
                     readOnly={readOnly}
+                    isError={isError}
+                    errorMessage={errorMessage}
                 />
                 <Button onClick={onClick} enabled={enabled}>
                     {buttonText}
@@ -58,7 +62,6 @@ export const Button = styled.button<{ enabled: boolean }>`
     color: ${color.white};
     background-color: ${(props) => (props.enabled ? color.gray400 : color.maruDefault)};
     pointer-events: ${(props) => props.enabled && 'none'};
-    display: flex;
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
     height: 48px;

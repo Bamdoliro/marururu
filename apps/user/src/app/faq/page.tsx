@@ -3,7 +3,8 @@
 import { Loader } from '@/components/common';
 import { CategoryFilter, FaqList } from '@/components/faq';
 import { AppLayout } from '@/layouts';
-import { color, font } from '@maru/theme';
+import { color } from '@maru/theme';
+import { Text } from '@maru/ui';
 import { Suspense, useState } from 'react';
 import styled from 'styled-components';
 
@@ -13,7 +14,9 @@ const FaqPage = () => {
     return (
         <AppLayout header footer style={{ padding: '0px 207px', marginTop: 82 }}>
             <StyledFaqPage>
-                <Title>자주 묻는 질문</Title>
+                <Text fontType="H1" color={color.gray900}>
+                    자주 묻는 질문
+                </Text>
                 <CategoryFilter setCategory={setCategory} />
                 <Suspense fallback={<Loader />}>
                     <FaqList category={category} />
@@ -29,9 +32,4 @@ const StyledFaqPage = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-`;
-
-const Title = styled.p`
-    ${font.H1}
-    color: ${color.gray900};
 `;

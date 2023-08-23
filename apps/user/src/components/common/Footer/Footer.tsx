@@ -1,9 +1,9 @@
-import { useRouter } from 'next/navigation';
-import { Column, Row, Link } from '@maru/ui';
-import { font, color } from '@maru/theme';
-import { flex } from '@maru/utils';
 import { ROUTES } from '@/constants/common/constant';
+import { color, font } from '@maru/theme';
+import { Column, Link, Row, Text } from '@maru/ui';
+import { flex } from '@maru/utils';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 const Footer = () => {
@@ -15,11 +15,19 @@ const Footer = () => {
                 <Image src="/svg/logo_gray.svg" width={107} height={32} alt="logo_gray" />
                 <Column gap="20px">
                     <ContentBox>
-                        <p>주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)</p>
-                        <p>교무실(입학처): 051-971-2153, Fax: 051-971-2061</p>
-                        <p> 행정실:051-971-2152, Fax: 051-971-6325</p>
+                        <Text fontType="p2" color={color.gray600}>
+                            주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)
+                        </Text>
+                        <Text fontType="p2" color={color.gray600}>
+                            교무실(입학처): 051-971-2153, Fax: 051-971-2061
+                        </Text>
+                        <Text fontType="p2" color={color.gray600}>
+                            행정실:051-971-2152, Fax: 051-971-6325
+                        </Text>
                     </ContentBox>
-                    <Copyright>Copyright © 밤돌이로 all rights reserved.</Copyright>
+                    <Text fontType="p3" color={color.gray600}>
+                        Copyright © 밤돌이로 all rights reserved.
+                    </Text>
                 </Column>
             </InfoBox>
 
@@ -67,8 +75,6 @@ const StyledFooter = styled.div`
 `;
 
 const InfoBox = styled.div`
-    ${font.p3}
-    color: ${color.gray600};
     ${flex({ flexDirection: 'column' })}
     gap: 40px;
     width: 489px;
@@ -81,15 +87,10 @@ const ContentBox = styled.div`
     padding-bottom: 20px;
 `;
 
-const Copyright = styled.p`
-    ${font.p3}
-    color: ${color.gray600};
-`;
-
 const NavigationBox = styled.div`
+    // @TODO Link 리팩토링하면서
     ${font.p3}
     color: ${color.gray600};
     display: flex;
-    // @TODO 확인
     gap: 132px;
 `;

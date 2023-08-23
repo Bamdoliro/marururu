@@ -1,7 +1,7 @@
-import { PostJoinAuthReq } from '@/types/auth/remote';
 import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
+import { PostJoinAuthReq } from '@/types/auth/remote';
+import { useBooleanState } from '@maru/hooks';
 import { ChangeEventHandler, useState } from 'react';
-import { useBoolean } from '@maru/hooks';
 
 export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean) => {
     const { joinUserMutate } = useJoinUserMutation(joinUserData);
@@ -28,9 +28,9 @@ export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean
 
 export const useRequestEmailAction = (email: string) => {
     // 이메일 요청을 보냈는가?
-    const { value: isRequestEmail, setValue: setIsRequestEmail } = useBoolean(false);
+    const { value: isRequestEmail, setValue: setIsRequestEmail } = useBooleanState(false);
     // 이메일 전송 활성화 비활성화
-    const { value: isButtonDisabled, setValue: setIsButtonDisabled } = useBoolean(false);
+    const { value: isButtonDisabled, setValue: setIsButtonDisabled } = useBooleanState(false);
     const { requestEmailMutate } = useRequestEmailMutation(email);
 
     const handleRequestEmailButtonClick = () => {
@@ -38,10 +38,10 @@ export const useRequestEmailAction = (email: string) => {
         setIsButtonDisabled(true);
         setIsRequestEmail(true);
 
-        // 3초뒤 활성화를 풀어줌
+        // 5초뒤 비활성화를 풀어줌
         setTimeout(() => {
             setIsButtonDisabled(false);
-        }, 3000);
+        }, 5000);
     };
 
     return { handleRequestEmailButtonClick, isButtonDisabled, isRequestEmail };

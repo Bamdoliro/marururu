@@ -2,13 +2,13 @@ import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
 
-interface PropsType {
+interface Props {
     isComplete: boolean;
     completeText: string;
     inCompleteText?: string;
 }
 
-const CompleteAlaram = ({ isComplete, completeText, inCompleteText }: PropsType) => {
+const CompleteAlaram = ({ isComplete, completeText, inCompleteText }: Props) => {
     return (
         <Column
             style={{ marginTop: '173px' }}

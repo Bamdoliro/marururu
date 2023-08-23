@@ -1,13 +1,14 @@
 import { IconClose } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { CSSProperties, ReactNode } from 'react';
-import Button from '../Button/Button';
-import Row from '../Flex/Row';
 import styled from 'styled-components';
+import Button from '../Button/Button';
 import Column from '../Flex/Column';
+import Row from '../Flex/Row';
+import Text from '../Text/Text';
 
-interface PropsType {
+interface Props {
     title: string;
     children: ReactNode;
     isOpen: boolean;
@@ -18,24 +19,17 @@ interface PropsType {
     width?: CSSProperties['width'];
 }
 
-const Modal = ({
-    title,
-    children,
-    isOpen,
-    onClose,
-    onConfirm,
-    style,
-    height,
-    width,
-}: PropsType) => {
+const Modal = ({ title, children, isOpen, onClose, onConfirm, style, height, width }: Props) => {
     return (
-        <BlurBackground isOpen={isOpen}>
+        <BlurBackground $isOpen={isOpen}>
             <StyledModal style={{ width, height, ...style }}>
                 <Row
                     style={{ marginBottom: 20 }}
                     justifyContent="space-between"
                     alignItems="center">
-                    <Title>{title}</Title>
+                    <Text fontType="H2" color={color.gray900}>
+                        {title}
+                    </Text>
                     <IconClose
                         onClick={onClose}
                         color={color.gray600}
@@ -60,14 +54,14 @@ const Modal = ({
 
 export default Modal;
 
-const BlurBackground = styled.div<{ isOpen: boolean }>`
-    display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+const BlurBackground = styled.div<{ $isOpen: boolean }>`
+    display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
@@ -80,9 +74,4 @@ const StyledModal = styled.div`
     padding: 36px;
     border-radius: 16px;
     background-color: ${color.white};
-`;
-
-const Title = styled.p`
-    ${font.H2}
-    color: ${color.gray900};
 `;

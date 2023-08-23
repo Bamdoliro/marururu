@@ -2,20 +2,18 @@ import { useSchoolListQuery } from '@/services/form/queries';
 import { School } from '@/types/form/client';
 import { IconCheck } from '@maru/icon';
 import { color, font } from '@maru/theme';
+import { Text } from '@maru/ui';
+import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 
-interface PropsType {
+interface Props {
     selectedSchool: School;
     setSelectedSchool: Dispatch<SetStateAction<School>>;
     debouncedSchoolSearchQuery: string;
 }
 
-const SchoolList = ({
-    selectedSchool,
-    setSelectedSchool,
-    debouncedSchoolSearchQuery,
-}: PropsType) => {
+const SchoolList = ({ selectedSchool, setSelectedSchool, debouncedSchoolSearchQuery }: Props) => {
     const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
 
     return schoolListData ? (
@@ -31,7 +29,9 @@ const SchoolList = ({
                         )}
                         {name}
                     </SchoolName>
-                    <SchoolRegion>{location}</SchoolRegion>
+                    <Text fontType="caption" color={color.gray600}>
+                        {location}
+                    </Text>
                 </SchoolItem>
             ))}
         </StyledSchoolList>
@@ -41,8 +41,7 @@ const SchoolList = ({
 export default SchoolList;
 
 const StyledSchoolList = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 8px;
     height: 225px;
     margin-top: 24px;
@@ -50,17 +49,15 @@ const StyledSchoolList = styled.div`
 `;
 
 const SchoolItem = styled.div<{ selected: boolean }>`
-    display: flex;
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     height: 56px;
     padding: 15px 16px;
     border-radius: 6px;
     background: ${color.gray50};
-    justify-content: space-between;
-    align-items: center;
     cursor: pointer;
 
-    ${({ selected }) =>
-        selected &&
+    ${(props) =>
+        props.selected &&
         css`
             padding: 15px 15px;
             border: 1px solid ${color.maruDefault};
@@ -70,12 +67,6 @@ const SchoolItem = styled.div<{ selected: boolean }>`
 const SchoolName = styled.p`
     ${font.p2}
     color: ${color.gray900};
-    display: flex;
-    align-items: center;
+    ${flex({ alignItems: 'center' })}
     gap: 4px;
-`;
-
-const SchoolRegion = styled.p`
-    ${font.caption}
-    color: ${color.gray600};
 `;

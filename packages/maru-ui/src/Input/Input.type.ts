@@ -1,8 +1,10 @@
 import { CSSProperties, InputHTMLAttributes } from 'react';
 
-export interface InputPropsType extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     width?: string;
     label?: string;
-    msg?: string;
+    errorMessage?: string;
+    message?: string;
     textAlign?: CSSProperties['textAlign'];
+    isError?: boolean;
 }

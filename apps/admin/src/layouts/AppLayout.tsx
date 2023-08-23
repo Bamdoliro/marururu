@@ -3,11 +3,11 @@ import { flex } from '@maru/utils';
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
 }
 
-const AppLayout = ({ children }: PropsType) => {
+const AppLayout = ({ children }: Props) => {
     return (
         <StyledAppLayout>
             <SideBar />
@@ -20,7 +20,7 @@ export default AppLayout;
 
 const StyledAppLayout = styled.div`
     ${flex({ flexDirection: 'row' })}
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 `;
 

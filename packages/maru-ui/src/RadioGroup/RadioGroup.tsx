@@ -4,15 +4,15 @@ import styled from 'styled-components';
 import Row from '../Flex/Row';
 import Radio from '../Radio/Radio';
 
-interface PropsType {
+interface Props {
     label: string;
-    list: { value?: string; label: string }[] | string[];
+    list: { value?: string; label: string; checked?: boolean }[] | string[];
     name: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
+const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
     return (
         <div>
             <Label>{label}</Label>
@@ -25,9 +25,11 @@ const RadioGroup = ({ label, list, name, value, onChange }: PropsType) => {
                                     value={typeof item === 'string' ? item : item.value}
                                     name={name}
                                     checked={
-                                        typeof item === 'string'
-                                            ? value === item
-                                            : value === item.value
+                                        typeof item !== 'string'
+                                            ? item.checked
+                                                ? item.checked
+                                                : value === item.value
+                                            : value === item
                                     }
                                     onChange={onChange}
                                 />

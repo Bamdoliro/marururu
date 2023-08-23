@@ -1,7 +1,8 @@
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
 import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/theme';
-import { Button, Column } from '@maru/ui';
+import { Button, Column, Text } from '@maru/ui';
+import { flex } from '@maru/utils';
 import { ChangeEventHandler, DragEvent, useRef, useState } from 'react';
 import styled from 'styled-components';
 
@@ -59,7 +60,9 @@ const ProfileUploader = () => {
 
     return (
         <StyledProfileUploader>
-            <Title>증명사진</Title>
+            <Text fontType="context" color={color.gray700}>
+                증명사진
+            </Text>
             {form.applicant.identificationPictureUri ? (
                 <ImagePreview src={form.applicant.identificationPictureUri} alt="profile-image" />
             ) : (
@@ -73,8 +76,12 @@ const ProfileUploader = () => {
                         <Button size="SMALL" onClick={handleImageUploadButtonClick}>
                             파일 선택
                         </Button>
-                        <ImageUploadText>또는</ImageUploadText>
-                        <ImageUploadText>여기로 사진을 끌어오세요</ImageUploadText>
+                        <Text fontType="p2" color={color.gray500}>
+                            또는
+                        </Text>
+                        <Text fontType="p2" color={color.gray500}>
+                            여기로 사진을 끌어오세요
+                        </Text>
                     </Column>
                 </ImageUploadBox>
             )}
@@ -84,7 +91,7 @@ const ProfileUploader = () => {
                 </Button>
             )}
             <Desc>
-                20MB 이하, 3개월 이내의
+                10MB 이하, 3개월 이내의
                 <br />
                 3x4 cm 증명사진
             </Desc>
@@ -102,15 +109,12 @@ const ProfileUploader = () => {
 export default ProfileUploader;
 
 const StyledProfileUploader = styled.div`
-    display: flex;
-    flex-direction: column;
+    ${flex({ flexDirection: 'column' })}
     gap: 8px;
 `;
 
 const ImageUploadBox = styled.div<{ $isDragging: boolean }>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
     width: 225px;
     height: 300px;
     border-radius: 6px;
@@ -118,20 +122,10 @@ const ImageUploadBox = styled.div<{ $isDragging: boolean }>`
     background-color: ${color.gray50};
 `;
 
-const ImageUploadText = styled.p`
-    ${font.p2}
-    color: ${color.gray500};
-`;
-
 const ImagePreview = styled.img`
     width: 225px;
     height: 300px;
     border-radius: 6px;
-`;
-
-const Title = styled.p`
-    ${font.context}
-    color: ${color.gray700};
 `;
 
 const Desc = styled.p`

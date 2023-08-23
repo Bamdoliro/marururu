@@ -8,6 +8,8 @@ export const KEY = {
     SAVE_FORM: 'useSaveForm',
     USER: 'useUser',
     FORM_STATUS: 'useFormStatus',
+    FIRST_RESULT: 'useFirstResult',
+    FINAL_RESULT: 'useFinalResult',
 } as const;
 
 export const ROUTES = {
@@ -17,6 +19,8 @@ export const ROUTES = {
     LOGIN: '/login',
     NOTICE: '/notice',
     SIGNUP: '/signup',
+    FIRST_RESULT: '/result/first',
+    FINAL_RESULT: '/result/first',
 } as const;
 
 export const TOKEN = {

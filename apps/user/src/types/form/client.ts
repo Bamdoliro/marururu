@@ -45,6 +45,7 @@ export interface ParentInfo {
     zoneCode: string;
     address: string;
     detailAddress: string;
+    relation: string;
 }
 
 export interface EducationInfo {
@@ -98,9 +99,7 @@ export interface School {
 
 export type FormType =
     | 'REGULAR'
-    | 'SPECIAL'
     | 'MEISTER_TALENT'
-    | 'SPECIAL_ADMISSION'
     | 'NATIONAL_BASIC_LIVING'
     | 'NEAR_POVERTY'
     | 'NATIONAL_VETERANS'
@@ -109,7 +108,9 @@ export type FormType =
     | 'MULTICULTURAL'
     | 'TEEN_HOUSEHOLDER'
     | 'MULTI_CHILDREN'
-    | 'FARMING_AND_FISHING';
+    | 'FARMING_AND_FISHING'
+    | 'NATIONAL_VETERANS_EDUCATION'
+    | 'SPECIAL_ADMISSION';
 
 export interface FormDocument {
     fileName: string;

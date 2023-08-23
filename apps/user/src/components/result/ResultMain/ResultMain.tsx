@@ -1,23 +1,22 @@
-import { ResultsStep } from '@/types/results/client';
+import { ResultOption, ResultStep } from '@/types/result/client';
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ResultsOption } from '@/types/results/client';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
-    setResultsStep: Dispatch<SetStateAction<ResultsStep>>;
-    option: ResultsOption;
+interface Props {
+    setResultStep: Dispatch<SetStateAction<ResultStep>>;
+    option: ResultOption;
 }
 
-const ResultsMain = ({ setResultsStep, option }: PropsType) => {
-    const handleGoResultsPageButtonClick = () => {
-        setResultsStep('RESULTS');
+const ResultMain = ({ setResultStep, option }: Props) => {
+    const handleGoResultPageButtonClick = () => {
+        setResultStep('RESULT');
     };
 
     return (
-        <StyledResultsMain>
+        <StyledResultMain>
             <InfoBox>
                 {option === 'FIRST' ? (
                     <Column>
@@ -45,16 +44,16 @@ const ResultsMain = ({ setResultsStep, option }: PropsType) => {
                     </Column>
                 )}
             </InfoBox>
-            <Button onClick={handleGoResultsPageButtonClick} size="LARGE">
+            <Button onClick={handleGoResultPageButtonClick} size="LARGE">
                 결과 확인하기
             </Button>
-        </StyledResultsMain>
+        </StyledResultMain>
     );
 };
 
-export default ResultsMain;
+export default ResultMain;
 
-const StyledResultsMain = styled.div`
+const StyledResultMain = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center' })}
     gap: 48px;
 `;
