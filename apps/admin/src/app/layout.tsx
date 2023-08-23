@@ -1,4 +1,5 @@
 import Provider from '@/components/Provider';
+import QueryClientProvider from '@/services/QueryClientProvider';
 import { ReactNode } from 'react';
 
 export const metadata = {
@@ -14,7 +15,9 @@ const RootLayout = ({ children }: PropsType) => {
     return (
         <html lang="en">
             <body>
-                <Provider>{children}</Provider>
+                <QueryClientProvider>
+                    <Provider>{children}</Provider>
+                </QueryClientProvider>
             </body>
         </html>
     );

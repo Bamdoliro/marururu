@@ -1,27 +1,13 @@
 import ListHeader from '@/components/common/TableHeader/TableHeader';
 import ListItem from '@/components/common/TableItem/TableItem';
+import { useNoticeListQuery } from '@/services/notice/queries';
 import { Column, Row, Text } from '@maru/ui';
 import { formatPostedAt } from '@maru/utils';
 
-const NOTICE_DATA = [
-    {
-        id: 0,
-        title: '입학전형 사용 방법에 대한 공지사항',
-        createdAt: '2022-05-07T10:35:57',
-    },
-    {
-        id: 1,
-        title: '테스트입니다',
-        createdAt: '2022-05-07T10:35:57',
-    },
-    {
-        id: 2,
-        title: '테스트입니다',
-        createdAt: '2022-05-07T10:35:57',
-    },
-] as const;
-
 const NoticeList = () => {
+    const { data: noticeList } = useNoticeListQuery();
+    console.log(noticeList);
+
     return (
         <Column gap={12}>
             <ListHeader>
@@ -37,21 +23,22 @@ const NoticeList = () => {
                     게시일
                 </Text>
             </ListHeader>
-            {NOTICE_DATA.map((item) => (
-                <ListItem key={item.id}>
-                    <Row gap={48}>
-                        <Text fontType="p2" width={50}>
-                            {item.id}
+            {noticeList &&
+                noticeList.map((item) => (
+                    <ListItem key={item.id}>
+                        <Row gap={48}>
+                            <Text fontType="p2" width={50}>
+                                {item.id}
+                            </Text>
+                            <Text fontType="p2" width={540}>
+                                {item.title}
+                            </Text>
+                        </Row>
+                        <Text fontType="p2" width={100}>
+                            {formatPostedAt(item.createdAt)}
                         </Text>
-                        <Text fontType="p2" width={540}>
-                            {item.title}
-                        </Text>
-                    </Row>
-                    <Text fontType="p2" width={100}>
-                        {formatPostedAt(item.createdAt)}
-                    </Text>
-                </ListItem>
-            ))}
+                    </ListItem>
+                ))}
         </Column>
     );
 };

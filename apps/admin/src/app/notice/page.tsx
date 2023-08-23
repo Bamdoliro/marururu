@@ -14,7 +14,6 @@ const NoticePage = () => {
                 <Column gap={36}>
                     <Row justifyContent="space-between">
                         <Button
-                            width={141}
                             size="SMALL"
                             style={{ padding: '0 16px 0 10px', justifyContent: 'space-between' }}
                             icon="ADD_ICON">

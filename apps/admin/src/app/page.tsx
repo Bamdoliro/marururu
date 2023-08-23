@@ -2,9 +2,14 @@
 
 import FormList from '@/components/main/FormList/FormList';
 import AppLayout from '@/layouts/AppLayout';
+import initMockAPI from '@/mocks';
 import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
+
+if (process.env.NODE_ENV === 'development') {
+    initMockAPI();
+}
 
 const Home = () => {
     return (
@@ -14,7 +19,6 @@ const Home = () => {
                 <Column gap={36}>
                     <Row justifyContent="space-between">
                         <Button
-                            width={141}
                             size="SMALL"
                             style={{ padding: '0 16px 0 10px', justifyContent: 'space-between' }}
                             icon="ADD_ICON">

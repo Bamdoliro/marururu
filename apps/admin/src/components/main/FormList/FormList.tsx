@@ -3,37 +3,8 @@ import ListItem from '@/components/common/TableItem/TableItem';
 import { Column, Row, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 
-import { Form, FormType } from '@/types/notice/client';
-
-const FORM_DATA: Form[] = [
-    {
-        id: 0,
-        name: '김밤돌',
-        birthday: '2005-04-15',
-        graduationType: 'EXPECTED',
-        school: '비전중학교',
-        status: '최종 제출됨',
-        type: 'REGULAR',
-    },
-    {
-        id: 1,
-        name: '김밤돌',
-        birthday: '2005-04-15',
-        graduationType: 'QUALIFICATION_EXAMINATION',
-        school: '비전중학교',
-        status: '반려됨',
-        type: 'REGULAR',
-    },
-    {
-        id: 2,
-        name: '김밤돌',
-        birthday: '2005-04-15',
-        graduationType: 'EXPECTED',
-        school: '비전중학교',
-        status: '최종 제출됨',
-        type: 'MULTICULTURAL',
-    },
-];
+import { useFormListQuery } from '@/services/form/queries';
+import { FormType } from '@/types/main/client';
 
 const KoreanFormType: Record<FormType, string> = {
     REGULAR: '일반',
@@ -51,6 +22,10 @@ const KoreanFormType: Record<FormType, string> = {
 };
 
 const FormList = () => {
+    const { data: formList } = useFormListQuery();
+
+    console.log(formList);
+
     return (
         <Column gap={12}>
             <ListHeader>
@@ -75,32 +50,33 @@ const FormList = () => {
                     상태
                 </Text>
             </ListHeader>
-            {FORM_DATA.map((item) => (
-                <ListItem>
-                    <Row gap={48}>
-                        <Text fontType="p2" width={60}>
-                            {item.id}
+            {formList &&
+                formList.map((item) => (
+                    <ListItem>
+                        <Row gap={48}>
+                            <Text fontType="p2" width={60}>
+                                {item.id}
+                            </Text>
+                            <Text fontType="p2" width={60}>
+                                {item.name}
+                            </Text>
+                            <Text fontType="p2" width={60}>
+                                {item.birthday.replaceAll('-', '').slice(2)}
+                            </Text>
+                            <Text fontType="p2" width={160}>
+                                {item.graduationType === 'QUALIFICATION_EXAMINATION'
+                                    ? '검정고시'
+                                    : item.school}
+                            </Text>
+                            <Text fontType="p2" width={240}>
+                                {KoreanFormType[item.type as FormType]}
+                            </Text>
+                        </Row>
+                        <Text fontType="p2" width={80}>
+                            {item.status}
                         </Text>
-                        <Text fontType="p2" width={60}>
-                            {item.name}
-                        </Text>
-                        <Text fontType="p2" width={60}>
-                            {item.birthday.replaceAll('-', '').slice(2)}
-                        </Text>
-                        <Text fontType="p2" width={160}>
-                            {item.graduationType === 'QUALIFICATION_EXAMINATION'
-                                ? '검정고시'
-                                : item.school}
-                        </Text>
-                        <Text fontType="p2" width={240}>
-                            {KoreanFormType[item.type as FormType]}
-                        </Text>
-                    </Row>
-                    <Text fontType="p2" width={80}>
-                        {item.status}
-                    </Text>
-                </ListItem>
-            ))}
+                    </ListItem>
+                ))}
         </Column>
     );
 };
