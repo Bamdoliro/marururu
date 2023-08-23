@@ -1,0 +1,38 @@
+name: Support Review
+
+on:
+    pull_request:
+        types: [opened]
+
+jobs:
+    comment_for_supporting_review:
+        runs-on: ubuntu-latest
+        name: Comment for supporting review
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Comment PR
+              uses: thollander/actions-comment-pull-request@v2
+              with:
+                  message: |
+                      ## 이렇게 리뷰해주세요.
+
+                      ### 🖐️ 규칙
+
+                      1. **왜** 개선이 필요한지 충분히 설명해주세요.
+                      2. 답을 알려주기보다는 **스스로 고민하고 개선 방법을 선택**할 수 있게 해주세요.
+                      3. 코드를 **깔끔하게 유지**하고, **일관되게 구현**하도록 안내해 주세요.
+                      4. 리뷰 과정이 숙제검사가 아닌 **학습과정**으로 느낄 수 있게 리뷰해 주세요.
+                      5. 리뷰를 위한 리뷰를 하지 마세요. 피드백 할 게 없으면 **칭찬**해 주세요.
+
+                      ### 🥬 우선순위
+
+                      리뷰 중요도에 따라 다음과 같은 prefix를 붙여주세요.
+                      > 예시 - P5) 쓸모없는 주석 삭제해주세요.
+
+                      - P1: 꼭 반영해주세요 (Request changes)
+                      - P2: 적극적으로 고려해주세요 (Request changes)
+                      - P3: 웬만하면 반영해 주세요 (Comment)
+                      - P4: 반영해도 좋고 넘어가도 좋습니다 (Approve)
+                      - P5: 그냥 사소한 의견입니다 (Approve)
