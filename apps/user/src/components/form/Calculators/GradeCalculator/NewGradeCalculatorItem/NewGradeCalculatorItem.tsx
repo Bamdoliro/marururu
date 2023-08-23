@@ -1,11 +1,11 @@
+import { Subject } from '@/types/form/client';
 import { color, font } from '@maru/theme';
-import { Button, Td, Dropdown } from '@maru/ui';
+import { Button, Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { Subject } from '@/types/form/client';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     id: number;
     achievementLevels: string[];
     newSubjectList: Subject[];
@@ -17,7 +17,7 @@ const NewGradeCalculatorItem = ({
     achievementLevels,
     newSubjectList,
     setNewSubjectList,
-}: PropsType) => {
+}: Props) => {
     const newSubjectIndex = newSubjectList.findIndex((item) => item.id === id);
 
     const handleDeleteNewSubjectItemButtonClick = (id: number) => {

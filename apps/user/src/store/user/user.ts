@@ -5,7 +5,7 @@ const userAtomState = atom<User>({
     key: 'user',
     default: {
         email: '',
-        authority: 'USER',
+        authority: '',
         name: '',
     },
 });

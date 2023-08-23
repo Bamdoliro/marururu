@@ -1,16 +1,16 @@
 'use client';
 
-import { RecoilRoot } from 'recoil';
 import { GlobalStyle } from '@maru/theme';
-import { ReactNode } from 'react';
 import { OverlayProvider } from '@toss/use-overlay';
+import { ReactNode } from 'react';
+import { RecoilRoot } from 'recoil';
 import { AuthWrapper } from './common';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
 }
 
-const Provider = ({ children }: PropsType) => {
+const Provider = ({ children }: Props) => {
     return (
         <RecoilRoot>
             <OverlayProvider>

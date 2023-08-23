@@ -1,17 +1,17 @@
-import { Td, Dropdown } from '@maru/ui';
+import { Subject } from '@/types/form/client';
+import { Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
-import { Subject } from '@/types/form/client';
 
-interface PropsType {
+interface Props {
     id: number;
     subjectList: Subject[];
     setSubjectList: Dispatch<SetStateAction<Subject[]>>;
     achievementLevels: string[];
 }
 
-const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevels }: PropsType) => {
+const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevels }: Props) => {
     const handleCaculatorItemDataChange = (data: string, name: string) => {
         setSubjectList((prev) => {
             const updatedData = [...prev];

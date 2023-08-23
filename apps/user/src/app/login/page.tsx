@@ -1,14 +1,13 @@
 'use client';
 
-import { ROUTES } from '@/constants/common/constant';
 import { AppLayout } from '@/layouts';
 import { IconArrowRight } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
-import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 import styled from 'styled-components';
+import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 
 const LoginPage = () => {
     const { handleGoSingUpPageButtonClick, handleGoMainPageButtonClick } = useCTAButton();
@@ -31,7 +30,7 @@ const LoginPage = () => {
                         <Column gap="36px" width="100%">
                             <Column gap="24px">
                                 <Input
-                                    label="아이디"
+                                    label="이메일"
                                     width="100%"
                                     name="email"
                                     onChange={handleLoginUserDataChange}

@@ -5,12 +5,12 @@ import { Text } from '@maru/ui';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     children: ReactNode;
     title: String;
 }
 
-const FormLayout = ({ children, title }: PropsType) => {
+const FormLayout = ({ children, title }: Props) => {
     return (
         <>
             <Header />
@@ -30,7 +30,7 @@ const FormLayout = ({ children, title }: PropsType) => {
 export default FormLayout;
 
 const StyledFormLayout = styled.section`
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: ${color.white};
 `;

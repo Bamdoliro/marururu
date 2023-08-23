@@ -4,6 +4,10 @@
     "pipeline": {
         "build": {
             "dependsOn": ["^build"],
+            "env": [
+                "NEXT_PUBLIC_BASE_URL",
+                "NODE_ENV"
+            ],
             "outputs": [".next/**", "!.next/cache/**", "storybook-static/**"]
         },
         "lint": {},

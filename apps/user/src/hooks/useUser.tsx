@@ -1,6 +1,6 @@
 import { useUserQuery } from '@/services/user/queries';
-import { useEffect } from 'react';
 import { useUserStore } from '@/store';
+import { useEffect } from 'react';
 
 const useUser = () => {
     const [user, setUser] = useUserStore();

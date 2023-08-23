@@ -29,7 +29,7 @@ const SignUpPage = () => {
                     alt="colabo-logo"
                 />
                 <ContentBox>
-                    <SignUpBox enabled={isRequestEmail}>
+                    <SignUpBox>
                         <Column gap={24}>
                             <Text fontType="H2" color={color.gray900}>
                                 회원가입
@@ -61,17 +61,17 @@ const SignUpPage = () => {
                                     label="인증코드"
                                     width="100%"
                                     maxLength={6}
-                                    errorMessage="발송된 이메일의 인증번호를 입력해주세요."
                                     name="code"
                                     onChange={handleJoinUserDataChange}
                                     timerTime={timerTime}
                                     setTimerTime={setTimerTime}
+                                    isError={joinUserData.code.length < 6}
+                                    errorMessage="발송된 이메일의 인증번호를 입력해주세요."
                                 />
                             )}
                             <PreviewInput
                                 label="비밀번호"
                                 width="100%"
-                                errorMessage="8~16자의 영문 대소문자, 숫자, 특수문자만 가능합니다."
                                 name="password"
                                 onChange={handleJoinUserDataChange}
                             />
@@ -80,6 +80,8 @@ const SignUpPage = () => {
                                 width="100%"
                                 name="password_confirm"
                                 onChange={handleJoinUserDataChange}
+                                isError={joinUserData.password !== joinUserData.password_confirm}
+                                errorMessage="비밀번호가 맞지 않습니다."
                             />
                         </Column>
                         {/* 이용약관 동의 */}
@@ -112,7 +114,7 @@ const ContentBox = styled.div`
     overflow: auto;
 `;
 
-const SignUpBox = styled.div<{ enabled: boolean }>`
+const SignUpBox = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 36px;
     width: 446px;

@@ -1,18 +1,18 @@
 import { ROUTES } from '@/constants/common/constant';
+import { useUser } from '@/hooks';
 import { useLogoutUserMutation } from '@/services/auth/mutations';
-import { useBoolean, useOutsideClick } from '@maru/hooks';
+import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@/hooks';
 import styled from 'styled-components';
 
 const Profile = () => {
     const router = useRouter();
     const { userData } = useUser();
-    const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBoolean();
+    const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBooleanState();
     const { logoutUserMutate } = useLogoutUserMutation();
     const menuListBoxRef = useOutsideClick(closeMenu);
 

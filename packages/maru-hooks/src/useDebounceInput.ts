@@ -1,12 +1,12 @@
-import { useState, useCallback, useMemo, ChangeEventHandler } from 'react';
 import debounce from 'lodash/debounce';
+import { ChangeEventHandler, useCallback, useMemo, useState } from 'react';
 
-interface PropsType {
+interface Props {
     initialValue?: string;
     debounceTimeout?: number;
 }
 
-const useDebounceInput = ({ initialValue = '', debounceTimeout = 150 }: PropsType) => {
+const useDebounceInput = ({ initialValue = '', debounceTimeout = 150 }: Props) => {
     const [value, setValue] = useState(initialValue);
     const [debouncedValue, setDebouncedValue] = useState(initialValue);
 

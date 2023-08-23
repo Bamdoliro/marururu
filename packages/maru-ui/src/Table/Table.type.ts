@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode } from 'react';
 
-export interface TablePropsType {
+export interface TableProps {
     children: ReactNode;
     width: CSSProperties['width'];
     height: CSSProperties['height'];

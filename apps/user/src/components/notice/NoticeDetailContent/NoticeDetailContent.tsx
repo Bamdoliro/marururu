@@ -4,11 +4,11 @@ import { Column, Text } from '@maru/ui';
 import { flex, formatCreatedAt } from '@maru/utils';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     id: number;
 }
 
-const NoticeDetailContent = ({ id }: PropsType) => {
+const NoticeDetailContent = ({ id }: Props) => {
     const { data: noticeDetailData } = useNoticeDetailQuery(id);
 
     return noticeDetailData ? (

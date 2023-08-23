@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 
 type Font = keyof typeof font;
 
-interface PropsType extends HTMLAttributes<HTMLSpanElement> {
+interface Props extends HTMLAttributes<HTMLSpanElement> {
     children: ReactNode;
     color?: string;
     fontType: Font;

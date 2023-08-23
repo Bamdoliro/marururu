@@ -1,14 +1,14 @@
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 import Button from '../Button/Button';
 import Column from '../Flex/Column';
 import Row from '../Flex/Row';
 import Text from '../Text/Text';
 
-interface PropsType {
+interface Props {
     title: string;
     desc?: string;
     content: ReactNode;
@@ -17,6 +17,7 @@ interface PropsType {
     onConfirm: () => void;
     confirmButtonText?: string;
     closeButtonText?: string;
+    height?: CSSProperties['height'];
 }
 
 const Confirm = ({
@@ -28,10 +29,11 @@ const Confirm = ({
     onConfirm,
     confirmButtonText = '확인',
     closeButtonText = '취소',
-}: PropsType) => {
+    height = 350,
+}: Props) => {
     return (
         <BlurBackground $isOpen={isOpen}>
-            <StyledConfirm>
+            <StyledConfirm style={{ height, minHeight: height }}>
                 <Column
                     style={{ paddingBottom: 20, borderBottom: `1px solid ${color.gray200}` }}
                     gap={8}>
@@ -79,7 +81,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
     display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
@@ -88,8 +90,6 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
 const StyledConfirm = styled.div`
     ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
     width: 600px;
-    height: 350px;
-    min-height: 350px;
     padding: 36px;
     background-color: ${color.white};
     border-radius: 16px;

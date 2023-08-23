@@ -1,10 +1,10 @@
+import { useBooleanState } from '@maru/hooks';
 import { IconInvisibleEye, IconVisibleEye } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { useState } from 'react';
-import styled from 'styled-components';
-import { InputPropsType } from './Input.type';
-import Message from './Message';
+import styled, { css } from 'styled-components';
+import ConditionalMessage from './ConditionalMessage';
+import { InputProps } from './Input.type';
 
 const PreviewInput = ({
     width = '320px',
@@ -12,50 +12,52 @@ const PreviewInput = ({
     name,
     label,
     value,
-    errorMessage: message,
+    errorMessage,
+    message,
+    isError = false,
     onChange,
-}: InputPropsType) => {
-    const [isPreview, setIsPreview] = useState(false);
-
-    const togglePreview = () => setIsPreview((prev) => !prev);
+}: InputProps) => {
+    const { value: isPreview, toggle: toggleIsPreview } = useBooleanState();
 
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <StyledPreviewInput>
-                <Input
-                    onChange={onChange}
-                    placeholder={placeholder}
-                    type={isPreview ? 'text' : 'password'}
-                    name={name}
-                    value={value}
-                />
-                {isPreview ? (
-                    <IconVisibleEye
-                        color={color.gray500}
-                        width={24}
-                        height={24}
-                        cursor="pointer"
-                        onClick={togglePreview}
+            <div style={{ position: 'relative' }}>
+                <StyledPreviewInput $isError={isError}>
+                    <Input
+                        onChange={onChange}
+                        placeholder={placeholder}
+                        type={isPreview ? 'text' : 'password'}
+                        name={name}
+                        value={value}
                     />
-                ) : (
-                    <IconInvisibleEye
-                        color={color.gray500}
-                        width={24}
-                        height={24}
-                        cursor="pointer"
-                        onClick={togglePreview}
-                    />
-                )}
-            </StyledPreviewInput>
-            {message && <Message>{message}</Message>}
+                    {isPreview ? (
+                        <IconVisibleEye
+                            color={color.gray500}
+                            width={24}
+                            height={24}
+                            cursor="pointer"
+                            onClick={toggleIsPreview}
+                        />
+                    ) : (
+                        <IconInvisibleEye
+                            color={color.gray500}
+                            width={24}
+                            height={24}
+                            cursor="pointer"
+                            onClick={toggleIsPreview}
+                        />
+                    )}
+                </StyledPreviewInput>
+            </div>
+            <ConditionalMessage isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
 };
 
 export default PreviewInput;
 
-const StyledPreviewInput = styled.div`
+const StyledPreviewInput = styled.div<{ $isError: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     gap: 10px;
     height: 48px;
@@ -65,9 +67,24 @@ const StyledPreviewInput = styled.div`
     border-radius: 6px;
 
     &:focus-within {
-        border: 1px solid ${color.maruDefault};
-        outline: 2px solid rgba(20, 112, 255, 0.25);
+        border: 1px solid ${(props) => (props.$isError ? color.red : color.maruDefault)};
+        ${(props) =>
+            !props.$isError &&
+            css`
+                outline: 2px solid rgba(20, 112, 255, 0.25);
+            `}
     }
+
+    ${(props) =>
+        props.$isError &&
+        css`
+            border: 1px solid ${color.red};
+            outline: 2px solid rgba(244, 67, 54, 0.25);
+
+            &:focus {
+                border: 1px solid ${color.red};
+            }
+        `}
 `;
 
 const Input = styled.input`

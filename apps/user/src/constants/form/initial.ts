@@ -14,6 +14,7 @@ export const FORM: Form = {
         zoneCode: '',
         address: '',
         detailAddress: '',
+        relation: '',
     },
     education: {
         graduationType: 'EXPECTED',
