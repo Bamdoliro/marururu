@@ -5,12 +5,12 @@ import { Column, Modal, SearchInput } from '@maru/ui';
 import { Suspense, useState } from 'react';
 import SchoolList from './SchoolList/SchoolList';
 
-interface PropsType {
+interface Props {
     isOpen: boolean;
     onClose: () => void;
 }
 
-const FindSchoolModal = ({ isOpen, onClose }: PropsType) => {
+const FindSchoolModal = ({ isOpen, onClose }: Props) => {
     const setForm = useSetFormStore();
     const [selectedSchool, setSelectedSchool] = useState({ name: '', location: '', code: '' });
     const {

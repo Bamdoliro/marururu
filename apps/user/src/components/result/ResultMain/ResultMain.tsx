@@ -1,16 +1,16 @@
+import { ResultOption, ResultStep } from '@/types/result/client';
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ResultOption, ResultStep } from '@/types/result/client';
 import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     setResultStep: Dispatch<SetStateAction<ResultStep>>;
     option: ResultOption;
 }
 
-const ResultMain = ({ setResultStep, option }: PropsType) => {
+const ResultMain = ({ setResultStep, option }: Props) => {
     const handleGoResultPageButtonClick = () => {
         setResultStep('RESULT');
     };

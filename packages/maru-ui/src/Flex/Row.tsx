@@ -1,15 +1,7 @@
 import { styled } from 'styled-components';
-import { FlexPropsType } from './Flex.type';
+import { FlexProps } from './Flex.type';
 
-const Row = ({
-    children,
-    gap,
-    justifyContent,
-    alignItems,
-    width,
-    height,
-    style,
-}: FlexPropsType) => {
+const Row = ({ children, gap, justifyContent, alignItems, width, height, style }: FlexProps) => {
     return (
         <StyledRow style={{ gap, justifyContent, alignItems, width, height, ...style }}>
             {children}

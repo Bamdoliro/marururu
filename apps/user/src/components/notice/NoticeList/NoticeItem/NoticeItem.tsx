@@ -6,13 +6,13 @@ import { flex, formatCreatedAt } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     id: number;
     title: string;
     createdAt: string;
 }
 
-const NoticeItem = ({ id, title, createdAt }: PropsType) => {
+const NoticeItem = ({ id, title, createdAt }: Props) => {
     const router = useRouter();
 
     return (

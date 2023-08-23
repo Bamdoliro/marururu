@@ -8,7 +8,7 @@ import Column from '../Flex/Column';
 import Row from '../Flex/Row';
 import Text from '../Text/Text';
 
-interface PropsType {
+interface Props {
     title: string;
     desc?: string;
     content: ReactNode;
@@ -28,7 +28,7 @@ const Confirm = ({
     onConfirm,
     confirmButtonText = '확인',
     closeButtonText = '취소',
-}: PropsType) => {
+}: Props) => {
     return (
         <BlurBackground $isOpen={isOpen}>
             <StyledConfirm>
@@ -79,7 +79,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
     display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;

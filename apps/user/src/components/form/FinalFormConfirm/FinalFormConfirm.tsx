@@ -1,13 +1,13 @@
 import { color } from '@maru/theme';
 import { Column, Confirm, Text } from '@maru/ui';
 
-interface PropsType {
+interface Props {
     isOpen: boolean;
     onClose: () => void;
     onConfirm: () => void;
 }
 
-const FinalFormConfirm = ({ isOpen, onClose, onConfirm }: PropsType) => {
+const FinalFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
     return (
         <Confirm
             isOpen={isOpen}

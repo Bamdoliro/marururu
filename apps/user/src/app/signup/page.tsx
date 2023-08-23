@@ -29,7 +29,7 @@ const SignUpPage = () => {
                     alt="colabo-logo"
                 />
                 <ContentBox>
-                    <SignUpBox enabled={isRequestEmail}>
+                    <SignUpBox>
                         <Column gap={24}>
                             <Text fontType="H2" color={color.gray900}>
                                 회원가입
@@ -40,8 +40,6 @@ const SignUpPage = () => {
                                 name="name"
                                 placeholder="이름을 입력해주세요."
                                 onChange={handleJoinUserDataChange}
-                                isError={joinUserData.name.length === 0}
-                                errorMessage="필수값입니다."
                             />
                             <ButtonInput
                                 label="이메일 인증"
@@ -116,7 +114,7 @@ const ContentBox = styled.div`
     overflow: auto;
 `;
 
-const SignUpBox = styled.div<{ enabled: boolean }>`
+const SignUpBox = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 36px;
     width: 446px;

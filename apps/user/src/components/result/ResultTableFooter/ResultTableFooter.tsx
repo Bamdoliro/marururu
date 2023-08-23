@@ -4,12 +4,12 @@ import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
 
-interface PropsType {
+interface Props {
     option: ResultOption;
     is합격: boolean;
 }
 
-const ResultTableFooter = ({ option, is합격 }: PropsType) => {
+const ResultTableFooter = ({ option, is합격 }: Props) => {
     const router = useRouter();
 
     const handleGoMainPageButtonClick = () => {

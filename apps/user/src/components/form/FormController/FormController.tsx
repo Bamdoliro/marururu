@@ -3,13 +3,13 @@ import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     onPrevious?: () => void;
     onNext: () => void;
     step: FormStep;
 }
 
-const FormController = ({ onPrevious, onNext, step }: PropsType) => {
+const FormController = ({ onPrevious, onNext, step }: Props) => {
     return (
         <FormControllerBar>
             {step === '지원자정보' ? (

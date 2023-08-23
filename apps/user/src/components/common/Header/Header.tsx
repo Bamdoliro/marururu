@@ -35,10 +35,10 @@ const Header = () => {
         <StyledHeader>
             <HeaderBar>
                 <Image
-                    src="/svg/logo.svg"
+                    src="/svg/school_logo.svg"
                     style={{ cursor: 'pointer' }}
-                    width={107}
-                    height={72}
+                    width={318}
+                    height={64}
                     onClick={() => router.push(ROUTES.MAIN)}
                     alt="logo"
                 />
@@ -81,9 +81,10 @@ export default Header;
 
 const StyledHeader = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' })}
-    width: 100%;
+    max-width: 1448px;
     height: 126px;
     background-color: ${color.white};
+    margin: 0 auto;
     padding: 0px 100px;
     border-bottom: 1px solid ${color.gray200};
 `;

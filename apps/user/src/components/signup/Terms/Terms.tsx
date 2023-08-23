@@ -1,14 +1,14 @@
 import { IconArrowRight } from '@maru/icon';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     setTermsAgree: Dispatch<SetStateAction<boolean>>;
 }
 
-const Terms = ({ setTermsAgree }: PropsType) => {
+const Terms = ({ setTermsAgree }: Props) => {
     const [allCheck, setAllCheck] = useState(false);
     const [checkOne, setChecktOne] = useState(false);
     const [checkTwo, setChecktTwo] = useState(false);

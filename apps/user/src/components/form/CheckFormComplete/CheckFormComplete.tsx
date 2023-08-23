@@ -4,19 +4,14 @@ import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-interface PropsType {
+interface Props {
     formStep: string;
     maxCompleteOfNumber: number;
     completeOfNumber: number;
     onClick: () => void;
 }
 
-const CheckFormComplete = ({
-    formStep,
-    maxCompleteOfNumber,
-    completeOfNumber,
-    onClick,
-}: PropsType) => {
+const CheckFormComplete = ({ formStep, maxCompleteOfNumber, completeOfNumber, onClick }: Props) => {
     const isFilledFormStep = maxCompleteOfNumber !== completeOfNumber;
 
     return (

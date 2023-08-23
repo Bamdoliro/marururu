@@ -2,12 +2,12 @@ import { color, font } from '@maru/theme';
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
-interface PropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
     active: boolean;
 }
 
-const UnderLineButton = ({ children, onClick, active }: PropsType) => {
+const UnderLineButton = ({ children, onClick, active }: Props) => {
     return (
         <StyledUnderLineButton onClick={onClick} $active={active}>
             <HoverStateBox>{children}</HoverStateBox>
