@@ -1,6 +1,6 @@
 'use client';
 
-import { FORM } from '@/constants/form/initial';
+import { FORM } from '@/constants/form/data';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { useSaveFormQuery } from '@/services/form/queries';
 import {

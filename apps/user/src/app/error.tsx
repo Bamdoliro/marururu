@@ -34,8 +34,8 @@ const Error = () => {
                         option="SECONDARY"
                         size="LARGE"
                         width="fit-content"
-                        onClick={() => router.back()}>
-                        이전 페이지로 돌아가기
+                        onClick={() => window.location.reload()}>
+                        새로고침하기
                     </Button>
                 </Row>
             </StyledError>

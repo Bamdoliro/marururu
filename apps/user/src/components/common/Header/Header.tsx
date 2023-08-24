@@ -24,6 +24,10 @@ const NAVIGATION_DATA = [
         name: '자주 묻는 질문',
         route: ROUTES.FAQ,
     },
+    {
+        name: '성적 모의 계산',
+        route: ROUTES.GRADE_SIMULATION,
+    },
 ] as const;
 
 const Header = () => {
