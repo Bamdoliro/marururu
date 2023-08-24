@@ -27,7 +27,8 @@ const GradeSimulation = () => {
                         성적 모의 계산
                     </Text>
                     <Text fontType="p2" color={color.gray600}>
-                        성적을 입력하면 교과 성적 산출식으로 계산된 결과를 볼 수 있습니다.{' '}
+                        성적을 입력하면 교과 성적 산출식으로 계산된 결과를 실시간으로 볼 수
+                        있습니다.
                     </Text>
                 </Column>
                 <GradePreview />
