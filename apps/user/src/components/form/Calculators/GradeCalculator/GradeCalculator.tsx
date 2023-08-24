@@ -48,8 +48,7 @@ const GradeCalculator = () => {
         <StyledGradeCalculator>
             <Desc>
                 *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
-                <br />
-                *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
+                <br /> *해당 과목이 없을 시 추가버튼으로 성적을 입력할 수 있습니다.
             </Desc>
             <Column>
                 <GradeCalculatorHeader />
