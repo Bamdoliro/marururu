@@ -2,7 +2,6 @@
 
 import NoticeList from '@/components/notice/NoticeList/NoticeList';
 import AppLayout from '@/layouts/AppLayout';
-import { IconAdd } from '@maru/icon';
 import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
@@ -14,11 +13,7 @@ const NoticePage = () => {
                 <Text fontType="H1">공지사항</Text>
                 <Column gap={36}>
                     <Row justifyContent="space-between">
-                        <Button
-                            width={141}
-                            size="SMALL"
-                            style={{ padding: '0 16px 0 10px', justifyContent: 'space-between' }}>
-                            <IconAdd width={24} height={24} />
+                        <Button size="SMALL" icon="ADD_ICON">
                             공지사항 작성
                         </Button>
                         <Row gap={8}>
