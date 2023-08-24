@@ -1,4 +1,4 @@
-import { useJoinUserMutation, useRequestEmailMutation } from '@/services/auth/mutations';
+import { useJoinUserMutation, useVerificationMutation } from '@/services/auth/mutations';
 import { PostJoinAuthReq } from '@/types/auth/remote';
 import { useBooleanState } from '@maru/hooks';
 import { ChangeEventHandler, useState } from 'react';
@@ -26,25 +26,25 @@ export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean
     return { handleJoinButtonClick };
 };
 
-export const useRequestEmailAction = (email: string) => {
-    // 이메일 요청을 보냈는가?
-    const { value: isRequestEmail, setValue: setIsRequestEmail } = useBooleanState(false);
-    // 이메일 전송 활성화 비활성화
+export const useVerificationAction = (phoneNumber: string) => {
+    // 전화번호 요청을 보냈는가?
+    const { value: isVerification, setValue: setIsVerification } = useBooleanState(false);
+    // 전화번호 전송 활성화 비활성화
     const { value: isButtonDisabled, setValue: setIsButtonDisabled } = useBooleanState(false);
-    const { requestEmailMutate } = useRequestEmailMutation(email);
+    const { requestVerificationMutate } = useVerificationMutation(phoneNumber);
 
-    const handleRequestEmailButtonClick = () => {
-        requestEmailMutate();
+    const handleVerificationButtonClick = () => {
+        requestVerificationMutate();
         setIsButtonDisabled(true);
-        setIsRequestEmail(true);
+        setIsVerification(true);
 
         // 5초뒤 비활성화를 풀어줌
         setTimeout(() => {
             setIsButtonDisabled(false);
-        }, 5000);
+        }, 7000);
     };
 
-    return { handleRequestEmailButtonClick, isButtonDisabled, isRequestEmail };
+    return { handleVerificationButtonClick, isButtonDisabled, isVerification };
 };
 
 export const useTimer = () => {
@@ -59,7 +59,7 @@ export const useTimer = () => {
 
 export const useInput = () => {
     const [joinUserData, setJoinUserData] = useState<PostJoinAuthReq>({
-        email: '',
+        phoneNumber: '',
         code: '',
         name: '',
         password: '',

@@ -36,7 +36,7 @@ const Profile = () => {
                         <NameMenu>
                             <Name>{userData.name}</Name>
                             <Text fontType="p3" color={color.gray600}>
-                                @{userData.email.split('@')[0]}
+                                @{userData.phoneNumber.split('@')[0]}
                             </Text>
                         </NameMenu>
                         <MenuItem onClick={handleGoFormPageButtonClick}>
