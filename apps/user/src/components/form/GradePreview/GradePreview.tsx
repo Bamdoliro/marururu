@@ -1,20 +1,23 @@
 import { color, font } from '@maru/theme';
 import { Column, Row, Td, Th } from '@maru/ui';
 import styled from 'styled-components';
-import {
-    useAttendanceScore,
-    useCertificateScore,
-    useGradeScore,
-    useVolunteerScore,
-} from './GradePreview.hooks';
+
+interface Props {
+    regularScore: number;
+    specialScore: number;
+    attendanceScore: number;
+    volunteerScore: number;
+    certificateScore: number;
+}
 
 // 모의 성적 계산
-const GradePreview = () => {
-    const { regularScore, specialScore } = useGradeScore();
-    const { attendanceScore } = useAttendanceScore();
-    const { volunteerScore } = useVolunteerScore();
-    const { certificateScore } = useCertificateScore();
-
+const GradePreview = ({
+    regularScore,
+    specialScore,
+    attendanceScore,
+    volunteerScore,
+    certificateScore,
+}: Props) => {
     return (
         <Column gap={24}>
             <Desc>

@@ -6,7 +6,9 @@ import {
     GradePreview,
     VolunteerCalculator,
 } from '@/components/form';
+import { useGradeCalculation } from '@/hooks';
 import { FormLayout } from '@/layouts';
+import { useFormValueStore, useNewSubjectValueStore, useSubjectValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -18,12 +20,24 @@ import { useCTAButton } from './성적입력.hooks';
 const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
 
 const 성적입력 = () => {
-    const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+    const form = useFormValueStore();
+    const subjectList = useSubjectValueStore();
+    const newSubjectList = useNewSubjectValueStore();
     const [fieldStep, setFieldStep] = useState('성적 입력');
+    const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+
+    const { regularScore, specialScore, attendanceScore, volunteerScore, certificateScore } =
+        useGradeCalculation(form, subjectList, newSubjectList);
 
     return (
         <FormLayout title="성적 입력">
-            <GradePreview />
+            <GradePreview
+                regularScore={regularScore}
+                specialScore={specialScore}
+                attendanceScore={attendanceScore}
+                volunteerScore={volunteerScore}
+                certificateScore={certificateScore}
+            />
             <NavigationBar>
                 {FIELD_DATA.map((item, index) => (
                     <UnderLineButton
