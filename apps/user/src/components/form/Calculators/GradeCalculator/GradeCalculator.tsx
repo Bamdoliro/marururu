@@ -1,7 +1,7 @@
 import { useNewSubjectStore, useSetFormStore, useSubjectStore } from '@/store';
 import { Subject } from '@/types/form/client';
-import { color, font } from '@maru/theme';
-import { Button, Column } from '@maru/ui';
+import { color } from '@maru/theme';
+import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
@@ -46,10 +46,10 @@ const GradeCalculator = () => {
 
     return (
         <StyledGradeCalculator>
-            <Desc>
+            <Text fontType="p3" color={color.red}>
                 *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
-                <br /> *해당 과목이 없을 시 추가버튼으로 성적을 입력할 수 있습니다.
-            </Desc>
+                <br /> *해당 과목이 없을 시 과목추가버튼으로 성적을 입력할 수 있습니다.
+            </Text>
             <Column>
                 <GradeCalculatorHeader />
                 {/* 기존 과목 item */}
@@ -108,10 +108,4 @@ const GradeCalculatorFooter = styled.div`
     border-radius: 0px 0px 12px 12px;
     border: 1px dashed ${color.gray300};
     border-top: none;
-`;
-
-const Desc = styled.p`
-    color: ${color.red};
-    ${font.p3}
-    margin-bottom: 16px;
 `;
