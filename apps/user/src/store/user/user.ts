@@ -4,7 +4,7 @@ import { atom, useRecoilState } from 'recoil';
 const userAtomState = atom<User>({
     key: 'user',
     default: {
-        email: '',
+        phoneNumber: '',
         authority: '',
         name: '',
     },
