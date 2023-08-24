@@ -28,7 +28,12 @@ const 성적입력 = () => {
                     <br />
                     *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
                 </Text>
-                <GradePreview />
+                <Column gap={12}>
+                    <Text fontType="H4" color={color.gray900}>
+                        모의 성적 계산
+                    </Text>
+                    <GradePreview />
+                </Column>
             </Column>
 
             <NavigationBar>

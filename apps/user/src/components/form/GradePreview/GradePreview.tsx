@@ -1,5 +1,4 @@
 import { useGradeCalculation } from '@/hooks';
-import { color, font } from '@maru/theme';
 import { Row, Td, Th } from '@maru/ui';
 import styled from 'styled-components';
 
@@ -8,7 +7,6 @@ const GradePreview = () => {
         useGradeCalculation();
     return (
         <StyledGradePreview>
-            <Title>모의 성적 계산</Title>
             <Table>
                 <Row alignItems="center">
                     <Th borderTopLeftRadius={12} width="calc(100% / 6)" height={56}>
@@ -83,12 +81,6 @@ export default GradePreview;
 
 const StyledGradePreview = styled.div`
     width: 816px;
-`;
-
-const Title = styled.p`
-    ${font.H4};
-    color: ${color.gray900};
-    margin-bottom: 12px;
 `;
 
 const Table = styled.div`
