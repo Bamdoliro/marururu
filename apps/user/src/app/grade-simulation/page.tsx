@@ -22,13 +22,11 @@ const GradeSimulation = () => {
     return (
         <AppLayout header footer>
             <GradeSimulationPage>
-                <Column style={{ marginBottom: 48 }} gap={16}>
-                    <Text fontType="H1" color={color.gray900}>
-                        성적 모의 계산
-                    </Text>
-                    <Text fontType="p2" color={color.gray600}>
-                        성적을 입력하면 교과 성적 산출식으로 계산된 결과를 실시간으로 볼 수
-                        있습니다.
+                <Column style={{ marginBottom: 12 }} gap={16}>
+                    <Text fontType="p3" color={color.red}>
+                        *교과 성적 산출 방식에 대한 자세한 정보는 모집요강에서 확인해주시기
+                        바랍니다.
+                        <br /> *특례입학 대상자는 일반 전형 교과 성적 산출식이 적용됩니다.
                     </Text>
                 </Column>
                 <GradePreview />
