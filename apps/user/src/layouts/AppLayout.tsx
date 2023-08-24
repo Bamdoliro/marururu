@@ -32,5 +32,5 @@ export default AppLayout;
 
 const StyledAppLayout = styled.section`
     width: 100%;
-    min-height: 100vh;
+    height: fit-content;
 `;

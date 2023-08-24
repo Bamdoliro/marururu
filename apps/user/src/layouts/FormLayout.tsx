@@ -31,7 +31,7 @@ export default FormLayout;
 
 const StyledFormLayout = styled.section`
     width: 100%;
-    height: 100vh;
+    height: fit-content;
     background-color: ${color.white};
 `;
 
