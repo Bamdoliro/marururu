@@ -18,10 +18,7 @@ const Home = () => {
                 <Text fontType="H1">원서 관리</Text>
                 <Column gap={36}>
                     <Row justifyContent="space-between">
-                        <Button
-                            size="SMALL"
-                            style={{ padding: '0 16px 0 10px', justifyContent: 'space-between' }}
-                            icon="ADD_ICON">
+                        <Button size="SMALL" icon="ADD_ICON">
                             공지사항 작성
                         </Button>
                         <Row gap={8}>

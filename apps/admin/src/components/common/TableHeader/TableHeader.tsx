@@ -7,11 +7,11 @@ interface Props {
     children: ReactNode;
 }
 
-const ListHeader = ({ children }: Props) => {
+const TableHeader = ({ children }: Props) => {
     return <StyledListHeader>{children}</StyledListHeader>;
 };
 
-export default ListHeader;
+export default TableHeader;
 
 const StyledListHeader = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}

@@ -7,11 +7,11 @@ interface Props {
     children: ReactNode;
 }
 
-const ListItem = ({ children }: Props) => {
+const TableItem = ({ children }: Props) => {
     return <StyledListItem>{children}</StyledListItem>;
 };
 
-export default ListItem;
+export default TableItem;
 
 const StyledListItem = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
