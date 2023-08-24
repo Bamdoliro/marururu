@@ -50,7 +50,7 @@ const SignUpPage = () => {
                                 }}
                                 enabled={isButtonDisabled}
                                 type="phoneNumber"
-                                placeholder="전화번호"
+                                placeholder="- 없이 입력해주세요"
                                 width="100%"
                                 name="phoneNumber"
                                 onChange={handleJoinUserDataChange}
