@@ -13,6 +13,10 @@ const NAVIGATION_DATA = [
         route: ROUTES.MAIN,
     },
     {
+        name: '성적 모의 계산',
+        route: ROUTES.GRADE_SIMULATION,
+    },
+    {
         name: '원서접수',
         route: ROUTES.FORM,
     },
@@ -23,10 +27,6 @@ const NAVIGATION_DATA = [
     {
         name: '자주 묻는 질문',
         route: ROUTES.FAQ,
-    },
-    {
-        name: '성적 모의 계산',
-        route: ROUTES.GRADE_SIMULATION,
     },
 ] as const;
 

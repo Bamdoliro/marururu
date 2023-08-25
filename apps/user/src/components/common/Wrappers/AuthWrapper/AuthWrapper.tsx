@@ -2,9 +2,11 @@
 
 import { Storage } from '@/apis/storage/storage';
 import { ROUTES, TOKEN } from '@/constants/common/constant';
+import { 제출_마감_날짜, 제출_시작_날짜 } from '@/constants/form/constant';
 import { color } from '@maru/theme';
 import { Confirm, Text } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
+import dayjs from 'dayjs';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 
@@ -24,7 +26,6 @@ const AuthWrapper = ({ children }: Props) => {
 
     useEffect(() => {
         if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !token) {
-            router.push(ROUTES.MAIN);
             overlay.open(({ isOpen, close }) => (
                 <Confirm
                     isOpen={isOpen}
@@ -46,14 +47,39 @@ const AuthWrapper = ({ children }: Props) => {
                     height={280}
                 />
             ));
+            router.push(ROUTES.MAIN);
         }
-
         if (token) {
             if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 router.push(ROUTES.MAIN);
+                return;
+            }
+            if (pathName === ROUTES.FORM) {
+                if (dayjs().isBefore(제출_시작_날짜) || dayjs().isAfter(제출_마감_날짜)) {
+                    overlay.open(({ isOpen, close }) => (
+                        <Confirm
+                            isOpen={isOpen}
+                            title="원서 접수 기간이 아니에요!"
+                            content={
+                                <Text color={color.gray900} fontType="p2">
+                                    원서 접수 기간에 접속이 가능해요!
+                                </Text>
+                            }
+                            onClose={() => {
+                                router.push(ROUTES.MAIN);
+                                close();
+                            }}
+                            onConfirm={() => {
+                                router.push(ROUTES.MAIN);
+                                close();
+                            }}
+                        />
+                    ));
+                    router.push(ROUTES.MAIN);
+                }
             }
         }
-    }, [token, pathName]);
+    }, [token, pathName, overlay, router]);
 
     return <>{children}</>;
 };
