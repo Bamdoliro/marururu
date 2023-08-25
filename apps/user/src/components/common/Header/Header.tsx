@@ -17,7 +17,7 @@ const NAVIGATION_DATA = [
         route: ROUTES.GRADE_SIMULATION,
     },
     {
-        name: '원서접수',
+        name: '원서작성',
         route: ROUTES.FORM,
     },
     {
