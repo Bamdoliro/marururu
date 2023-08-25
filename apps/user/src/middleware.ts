@@ -1,14 +1,15 @@
-import dayjs from 'dayjs';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { 제출_마감_날짜, 제출_시작_날짜 } from './constants/form/constant';
+
+const 제출_시작_날짜 = new Date('2023-06-25T18:10:20+09:00');
+const 제출_마감_날짜 = new Date('2023-06-30T17:00:00+09:00');
 
 export const middleware = (request: NextRequest) => {
-    if (dayjs().isBefore(제출_시작_날짜) || dayjs().isAfter(제출_마감_날짜)) {
-        if (
-            request.nextUrl.pathname.startsWith('/result/first') ||
-            request.nextUrl.pathname.startsWith('/result/final')
-        ) {
+    const now = new Date();
+
+    if (now.getTime() < 제출_시작_날짜.getTime() || now.getTime() > 제출_마감_날짜.getTime()) {
+        const prefixes = ['/result/first', '/result/final'];
+        if (prefixes.some((prefix) => request.nextUrl.pathname.startsWith(prefix))) {
             return NextResponse.redirect(new URL('/', request.url));
         }
     }
