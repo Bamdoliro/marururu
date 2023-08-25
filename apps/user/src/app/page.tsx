@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'development') {
     // initMockAPI();
 }
 
-const Home = () => {
+const MainPage = () => {
     return (
         <AppLayout header footer style={{ padding: '0px 100px', marginTop: 52 }}>
             <StyledMainPage>
@@ -27,7 +27,7 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default MainPage;
 
 const StyledMainPage = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center' })}
