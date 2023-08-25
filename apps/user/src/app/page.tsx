@@ -30,7 +30,8 @@ const MainPage = () => {
 export default MainPage;
 
 const StyledMainPage = styled.div`
-    ${flex({ flexDirection: 'column', alignItems: 'center' })}
+    ${flex({ flexDirection: 'column', alignItems: 'center' })};
+    padding-bottom: 227px;
     gap: 60px;
     width: 100%;
     height: 100%;
