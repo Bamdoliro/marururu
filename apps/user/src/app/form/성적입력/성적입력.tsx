@@ -35,7 +35,6 @@ const 성적입력 = () => {
                     <GradePreview />
                 </Column>
             </Column>
-
             <NavigationBar>
                 {FIELD_DATA.map((item, index) => (
                     <UnderLineButton

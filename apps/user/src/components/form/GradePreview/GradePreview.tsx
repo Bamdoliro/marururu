@@ -3,8 +3,15 @@ import { Row, Td, Th } from '@maru/ui';
 import styled from 'styled-components';
 
 const GradePreview = () => {
-    const { regularScore, specialScore, attendanceScore, volunteerScore, certificateScore } =
-        useGradeCalculation();
+    const {
+        regularScore,
+        specialScore,
+        attendanceScore,
+        volunteerScore,
+        certificateScore,
+        regularTotalScore,
+        specialTotalScore,
+    } = useGradeCalculation();
     return (
         <StyledGradePreview>
             <Table>
@@ -45,7 +52,7 @@ const GradePreview = () => {
                         {certificateScore}
                     </Td>
                     <Td width="calc(100% / 6)" height={56}>
-                        {regularScore + attendanceScore + volunteerScore + certificateScore}
+                        {regularTotalScore}
                     </Td>
                 </Row>
                 <Row alignItems="center">
@@ -69,7 +76,7 @@ const GradePreview = () => {
                         {certificateScore}
                     </Td>
                     <Td borderBottomRightRadius={12} width="calc(100% / 6)" height={56}>
-                        {specialScore + attendanceScore + volunteerScore + certificateScore}
+                        {specialTotalScore}
                     </Td>
                 </Row>
             </Table>

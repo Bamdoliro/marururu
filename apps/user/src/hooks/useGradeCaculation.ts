@@ -141,7 +141,28 @@ const useGradeCalculation = () => {
     const volunteerScore = useVolunteerScore();
     const certificateScore = useCertificateScore();
 
-    return { regularScore, specialScore, attendanceScore, volunteerScore, certificateScore };
+    const regularTotalScore = (
+        regularScore +
+        attendanceScore +
+        volunteerScore +
+        certificateScore
+    ).toFixed(3);
+    const specialTotalScore = (
+        specialScore +
+        attendanceScore +
+        volunteerScore +
+        certificateScore
+    ).toFixed(3);
+
+    return {
+        regularScore,
+        specialScore,
+        attendanceScore,
+        volunteerScore,
+        certificateScore,
+        regularTotalScore,
+        specialTotalScore,
+    };
 };
 
 export default useGradeCalculation;
