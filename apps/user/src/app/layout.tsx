@@ -11,7 +11,7 @@ interface Props {
     children: ReactNode;
 }
 
-const RootLayout = ({ children }: Props) => {
+const Layout = ({ children }: Props) => {
     return (
         <html lang="en">
             <body>
@@ -23,4 +23,4 @@ const RootLayout = ({ children }: Props) => {
     );
 };
 
-export default RootLayout;
+export default Layout;
