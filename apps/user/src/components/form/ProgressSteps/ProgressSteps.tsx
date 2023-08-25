@@ -21,11 +21,11 @@ const PROGRESS_BAR_DATA = [
     '자기소개서',
 ] as const;
 
-const ProgressBar = () => {
+const ProgressSteps = () => {
     const formStep = useFormStepValueStore();
 
     return (
-        <StyledProgressBar>
+        <StyledProgressSteps>
             {PROGRESS_BAR_DISPLAY_DATA.map((item, index) => (
                 <Circle
                     key={`progress ${index}`}
@@ -34,22 +34,23 @@ const ProgressBar = () => {
                     {index + 1}
                 </Circle>
             ))}
-        </StyledProgressBar>
+        </StyledProgressSteps>
     );
 };
 
-export default ProgressBar;
+export default ProgressSteps;
 
-const StyledProgressBar = styled.div`
+const StyledProgressSteps = styled.div`
     position: relative;
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
-    padding: 0px 205px;
-    margin: 52px 0px 72px 0px;
+    max-width: 1440px;
+    margin: 52px auto 86px;
+    padding: 0 100px;
     &::before {
         position: absolute;
         content: '';
-        width: calc(100% - 410px);
+        width: calc(100% - 200px);
         height: 2px;
         background-color: ${color.gray300};
     }
