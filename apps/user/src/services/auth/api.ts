@@ -2,18 +2,18 @@ import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
 import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 
-export const postLoginUser = async ({ email, password }: PostLoginAuthReq) => {
-    const { data } = await maru.post('/auth', { email, password });
+export const postLoginUser = async ({ phoneNumber, password }: PostLoginAuthReq) => {
+    const { data } = await maru.post('/auth', { phoneNumber, password });
     return data;
 };
 
-export const postJoinUser = async ({ email, name, code, password }: PostJoinAuthReq) => {
-    const { data } = await maru.post('/user', { email, name, code, password });
+export const postJoinUser = async ({ phoneNumber, name, code, password }: PostJoinAuthReq) => {
+    const { data } = await maru.post('/user', { phoneNumber, name, code, password });
     return data;
 };
 
-export const postRequestEmail = async (email: string) => {
-    const { data } = await maru.post(`/user/verification?email=${email}`);
+export const postVerification = async (phoneNumber: string) => {
+    const { data } = await maru.post('/user/verification', { phoneNumber });
     return data;
 };
 

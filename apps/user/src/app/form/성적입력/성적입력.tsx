@@ -6,24 +6,35 @@ import {
     GradePreview,
     VolunteerCalculator,
 } from '@/components/form';
+import { FIELD_DATA } from '@/constants/form/data';
 import { FormLayout } from '@/layouts';
 import { color } from '@maru/theme';
-import { UnderLineButton } from '@maru/ui';
+import { Column, Text, UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { useCTAButton } from './성적입력.hooks';
 
-const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
-
 const 성적입력 = () => {
-    const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
     const [fieldStep, setFieldStep] = useState('성적 입력');
+    const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     return (
         <FormLayout title="성적 입력">
-            <GradePreview />
+            <Column gap={24}>
+                <Text fontType="p3" color={color.red}>
+                    *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
+                    <br />
+                    *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
+                </Text>
+                <Column gap={12}>
+                    <Text fontType="H4" color={color.gray900}>
+                        모의 성적 계산
+                    </Text>
+                    <GradePreview />
+                </Column>
+            </Column>
             <NavigationBar>
                 {FIELD_DATA.map((item, index) => (
                     <UnderLineButton

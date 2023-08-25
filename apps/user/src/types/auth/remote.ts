@@ -1,10 +1,10 @@
 export interface PostLoginAuthReq {
-    email: string;
+    phoneNumber: string;
     password: string;
 }
 
 export interface PostJoinAuthReq {
-    email: string;
+    phoneNumber: string;
     code: string;
     name: string;
     password: string;

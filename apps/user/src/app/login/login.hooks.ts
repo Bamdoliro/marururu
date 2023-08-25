@@ -1,7 +1,7 @@
-import { PostLoginAuthReq } from '@/types/auth/remote';
-import { useLoginUserMutation } from '@/services/auth/mutations';
-import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/constants/common/constant';
+import { useLoginUserMutation } from '@/services/auth/mutations';
+import { PostLoginAuthReq } from '@/types/auth/remote';
+import { useRouter } from 'next/navigation';
 import { ChangeEventHandler, useState } from 'react';
 
 export const useLoginAction = (loginUserData: PostLoginAuthReq) => {
@@ -16,7 +16,7 @@ export const useLoginAction = (loginUserData: PostLoginAuthReq) => {
 
 export const useInput = () => {
     const [loginUserData, setLoginUserData] = useState<PostLoginAuthReq>({
-        email: '',
+        phoneNumber: '',
         password: '',
     });
 

@@ -40,14 +40,14 @@ const NoticeList = () => {
             {NOTICE_DATA.map((item) => (
                 <ListItem key={item.id}>
                     <Row gap={48}>
-                        <Text fontType="p2" width={50}>
+                        <Text fontType="p2" width={50} ellipsis>
                             {item.id}
                         </Text>
-                        <Text fontType="p2" width={540}>
+                        <Text fontType="p2" width={400} ellipsis>
                             {item.title}
                         </Text>
                     </Row>
-                    <Text fontType="p2" width={100}>
+                    <Text fontType="p2" width={100} ellipsis>
                         {formatPostedAt(item.date)}
                     </Text>
                 </ListItem>

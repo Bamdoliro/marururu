@@ -16,7 +16,7 @@ const VolunteerCalculator = () => {
     return (
         <StyledVolunteerCalculator>
             <Text fontType="p3" color={color.red}>
-                *2023.09.30까지의 봉사시간을 기재해주세요. 졸업생은 졸업일 기준으로 기재해주세요.
+                *2023.09.27까지의 봉사시간을 기재해주세요. 졸업생은 졸업일 기준으로 기재해주세요.
             </Text>
             <Column>
                 <Row>

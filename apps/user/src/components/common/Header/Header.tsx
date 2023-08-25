@@ -13,7 +13,11 @@ const NAVIGATION_DATA = [
         route: ROUTES.MAIN,
     },
     {
-        name: '원서접수',
+        name: '성적 모의 계산',
+        route: ROUTES.GRADE_SIMULATION,
+    },
+    {
+        name: '원서작성',
         route: ROUTES.FORM,
     },
     {
