@@ -2,38 +2,41 @@ import { color, font } from '@maru/theme';
 import { css, styled } from 'styled-components';
 import { InputProps } from './Input.type';
 
-const NumberInput = ({
+const NoLabelInput = ({
     name,
     width = '80px',
     textAlign = 'center',
     onChange,
+    type = 'text',
     placeholder,
-    value = 0,
+    value,
     isError = false,
+    ...args
 }: InputProps) => {
     return (
-        <StyledNumberInput
+        <StyledNoLabelInput
             name={name}
             style={{ width, textAlign }}
             onChange={onChange}
-            type="number"
+            type={type}
             value={value}
             placeholder={placeholder}
             $isError={isError}
-            min={0}
+            {...args}
         />
     );
 };
 
-export default NumberInput;
+export default NoLabelInput;
 
-const StyledNumberInput = styled.input<{ $isError: boolean }>`
+const StyledNoLabelInput = styled.input<{ $isError: boolean }>`
     ${font.p2}
     height: 40px;
     border-radius: 6px;
     border: 1px solid ${color.gray400};
     background: ${color.white};
     color: ${color.gray900};
+    padding: 0 16px;
 
     &::placeholder {
         color: ${color.gray500};

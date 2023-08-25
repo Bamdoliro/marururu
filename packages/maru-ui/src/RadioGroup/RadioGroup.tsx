@@ -2,6 +2,7 @@ import { color, font } from '@maru/theme';
 import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 import Row from '../Flex/Row';
+import NoLabelInput from '../Input/NoLabelInput';
 import Radio from '../Radio/Radio';
 
 interface Props {
@@ -10,36 +11,69 @@ interface Props {
     name: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
+    etcEnabled?: boolean;
 }
 
-const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
+const RadioGroup = ({ label, list, name, value, onChange, etcEnabled = false }: Props) => {
+    const isEtcValue = list
+        .map((item) => (typeof item === 'string' ? item : item.value))
+        .every((item) => item !== value);
+
     return (
         <div>
             <Label>{label}</Label>
             <RadioListBox>
-                {list.map((item, index) => {
-                    return (
-                        <label key={`radio-group ${name} ${index}`}>
+                {list.map((item, index) => (
+                    <label key={`radio-group ${name} ${index}`}>
+                        <Row gap={8} alignItems="center">
+                            <Radio
+                                value={typeof item === 'string' ? item : item.value}
+                                name={name}
+                                checked={
+                                    typeof item !== 'string'
+                                        ? item.checked
+                                            ? item.checked
+                                            : value === item.value
+                                        : value === item
+                                }
+                                onChange={onChange}
+                            />
+                            <RadioLabel>{typeof item === 'string' ? item : item.label}</RadioLabel>
+                        </Row>
+                    </label>
+                ))}
+
+                {etcEnabled && (
+                    <label>
+                        <Row gap={16}>
                             <Row gap={8} alignItems="center">
                                 <Radio
-                                    value={typeof item === 'string' ? item : item.value}
+                                    value=""
                                     name={name}
-                                    checked={
-                                        typeof item !== 'string'
-                                            ? item.checked
-                                                ? item.checked
-                                                : value === item.value
-                                            : value === item
-                                    }
+                                    checked={isEtcValue}
                                     onChange={onChange}
                                 />
-                                <RadioLabel>
-                                    {typeof item === 'string' ? item : item.label}
-                                </RadioLabel>
+                                <RadioLabel style={{ margin: 0 }}>기타</RadioLabel>
                             </Row>
-                        </label>
-                    );
-                })}
+                            <div style={{ position: 'relative' }}>
+                                <div
+                                    style={{
+                                        position: 'absolute',
+                                        top: '50%',
+                                        transform: 'translateY(-50%)',
+                                    }}>
+                                    <NoLabelInput
+                                        name={name}
+                                        textAlign="start"
+                                        value={isEtcValue ? value : ''}
+                                        onChange={onChange}
+                                        width="136px"
+                                    />
+                                </div>
+                            </div>
+                        </Row>
+                    </label>
+                )}
             </RadioListBox>
         </div>
     );
