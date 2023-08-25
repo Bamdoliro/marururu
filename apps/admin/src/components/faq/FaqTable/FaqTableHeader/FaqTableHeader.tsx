@@ -1,9 +1,9 @@
-import ListHeader from '@/components/common/ListHeader/ListHeader';
+import TableHeader from '@/components/common/TableHeader/TableHeader';
 import { Row, Text } from '@maru/ui';
 
 const FaqTableHeader = () => {
     return (
-        <ListHeader>
+        <TableHeader>
             <Row gap={48}>
                 <Text fontType="p2" width={50}>
                     번호
@@ -20,7 +20,7 @@ const FaqTableHeader = () => {
                     게시일
                 </Text>
             </Row>
-        </ListHeader>
+        </TableHeader>
     );
 };
 

@@ -1,5 +1,5 @@
-import ListItem from '@/components/common/ListItem/ListItem';
-import { Text, Row } from '@maru/ui';
+import TableItem from '@/components/common/TableItem/TableItem';
+import { Row, Text } from '@maru/ui';
 import { formatCreatedAt } from '@maru/utils';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 const FaqTableItem = ({ id, title, category, createdAt }: Props) => {
     return (
-        <ListItem>
+        <TableItem>
             <Row gap={48}>
                 <Text fontType="p2" width={50} ellipsis>
                     {id}
@@ -28,7 +28,7 @@ const FaqTableItem = ({ id, title, category, createdAt }: Props) => {
                     {formatCreatedAt(createdAt)}
                 </Text>
             </Row>
-        </ListItem>
+        </TableItem>
     );
 };
 

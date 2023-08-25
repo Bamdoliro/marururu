@@ -6,13 +6,13 @@ import FormListHeader from '../FormListHeader/FormListHeader';
 import FormListItem from '../FormListItem/FormListItem';
 
 const FormList = () => {
-    const { data: formListData } = useFormListQuery();
+    const { data: formList } = useFormListQuery();
 
     return (
         <Column gap={12}>
             <FormListHeader />
-            {formListData &&
-                formListData.map((item) => (
+            {formList &&
+                formList.map((item) => (
                     <FormListItem
                         id={item.id}
                         name={item.name}
