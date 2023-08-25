@@ -2,7 +2,7 @@
 
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
-import { Button, Column, Text } from '@maru/ui';
+import { Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -26,9 +26,6 @@ const MobilePage = () => {
                         <br /> 접속하시는 것을 권장드립니다.
                     </Text>
                 </Column>
-                <Button onClick={window.close} size="SMALL">
-                    페이지 닫기
-                </Button>
             </StyledMobilPage>
         </AppLayout>
     );
