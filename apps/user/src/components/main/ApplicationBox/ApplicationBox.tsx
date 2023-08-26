@@ -4,25 +4,27 @@ import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-const GuidelineBox = () => {
+const ApplicationBox = () => {
     return (
-        <StyledGuidelineBox>
+        <StyledApplicationBox>
             <Row gap={8} alignItems="center">
                 <Text fontType="H3" color={color.gray900}>
-                    입학 전형 요강
+                    입학전형 설명회 신청
                 </Text>
                 <IconArrowOutward width={36} height={36} color={color.maruDefault} />
             </Row>
             <Text fontType="p2" color={color.gray500}>
-                클릭해서 입학 전형 요강을 확인하세요
+                일시: 7월 8일, 8월 26일, 9월 16일, 10월 4일
+                <br />
+                장소: 본교 SRC관 1층
             </Text>
-        </StyledGuidelineBox>
+        </StyledApplicationBox>
     );
 };
 
-export default GuidelineBox;
+export default ApplicationBox;
 
-const StyledGuidelineBox = styled.div`
+const StyledApplicationBox = styled.div`
     ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
     width: 384px;
     height: 180px;
