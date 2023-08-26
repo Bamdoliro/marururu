@@ -1,12 +1,16 @@
+import { ROUTES } from '@/constants/common/constant';
 import { IconFunction } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 const SimulatorBox = () => {
+    const router = useRouter();
+
     return (
-        <StyledSimulatorBox>
+        <StyledSimulatorBox onClick={() => router.push(ROUTES.GRADE_SIMULATION)}>
             <Row gap={8} alignItems="flex-start" justifyContent="space-between">
                 <Text fontType="H3" color={color.gray900}>
                     성적 모의 계산
@@ -31,4 +35,5 @@ const StyledSimulatorBox = styled.div`
     background-color: ${color.white};
     border: 1px solid ${color.gray200};
     border-radius: 12px;
+    cursor: pointer;
 `;

@@ -6,7 +6,12 @@ import styled from 'styled-components';
 
 const GuidelineBox = () => {
     return (
-        <StyledGuidelineBox>
+        <StyledGuidelineBox
+            onClick={() =>
+                window.open(
+                    'https://school.busanedu.net/viewer/doc.html?fn=f9ccabacf50aba9dbe108bdbccf244f34b1a4bf9118f8c63e034e9af8c30afc1&rs=/upload/temp/convertToHtml/202308/bssm-h/',
+                )
+            }>
             <Row gap={8} alignItems="center">
                 <Text fontType="H3" color={color.gray900}>
                     입학 전형 요강
@@ -30,4 +35,5 @@ const StyledGuidelineBox = styled.div`
     background-color: ${color.white};
     border: 1px solid ${color.gray200};
     border-radius: 12px;
+    cursor: pointer;
 `;

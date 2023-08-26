@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const ApplicationBox = () => {
     return (
-        <StyledApplicationBox>
+        <StyledApplicationBox onClick={() => alert('준비 중입니다.')}>
             <Row gap={8} alignItems="center">
                 <Text fontType="H3" color={color.gray900}>
                     입학전형 설명회 신청
@@ -32,4 +32,5 @@ const StyledApplicationBox = styled.div`
     background-color: ${color.white};
     border: 1px solid ${color.gray200};
     border-radius: 12px;
+    cursor: pointer;
 `;
