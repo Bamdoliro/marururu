@@ -26,7 +26,7 @@ export default ScheduleItem;
 
 const StyledScheduleItem = styled.div`
     ${flex({ flexDirection: 'column' })}
-    gap: 3px;
+    gap: 10px;
     height: 58px;
     width: 100%;
 `;

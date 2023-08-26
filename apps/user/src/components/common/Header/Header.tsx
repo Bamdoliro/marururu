@@ -84,9 +84,8 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.div`
-    ${flex({ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' })}
     max-width: 1448px;
-    height: 126px;
+    height: 118px;
     background-color: ${color.white};
     margin: 0 auto;
     padding: 0px 100px;
