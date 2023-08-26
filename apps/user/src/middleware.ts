@@ -6,6 +6,6 @@ export const middleware = (request: NextRequest) => {
     const { device } = userAgent(request);
 
     if (device.type === 'mobile' && url !== '/mobile') {
-        return NextResponse.redirect(new URL('/mobile', request.url));
+        return NextResponse.rewrite(new URL('/mobile', request.url));
     }
 };
