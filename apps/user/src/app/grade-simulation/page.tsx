@@ -10,7 +10,7 @@ import {
 import { FIELD_DATA } from '@/constants/form/data';
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
-import { Column, Text, UnderLineButton } from '@maru/ui';
+import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
@@ -42,12 +42,12 @@ const GradeSimulation = () => {
                 <Column gap={24}>
                     <NavigationBar>
                         {FIELD_DATA.map((item, index) => (
-                            <UnderLineButton
+                            <UnderlineButton
                                 key={`field-data ${index}`}
                                 active={item === fieldStep}
                                 onClick={() => setFieldStep(item)}>
                                 {item}
-                            </UnderLineButton>
+                            </UnderlineButton>
                         ))}
                     </NavigationBar>
                     <SwitchCase

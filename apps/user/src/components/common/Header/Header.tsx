@@ -1,7 +1,7 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { color } from '@maru/theme';
-import { Button, Row, UnderLineButton } from '@maru/ui';
+import { Button, Row, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -68,12 +68,12 @@ const Header = () => {
             <NavigationBar>
                 {NAVIGATION_DATA.map(({ route, name }, index) => {
                     return (
-                        <UnderLineButton
+                        <UnderlineButton
                             key={`navigation ${index}`}
                             active={route === pathName}
                             onClick={() => router.push(route)}>
                             {name}
-                        </UnderLineButton>
+                        </UnderlineButton>
                     );
                 })}
             </NavigationBar>
