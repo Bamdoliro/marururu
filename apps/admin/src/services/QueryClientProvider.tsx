@@ -15,6 +15,7 @@ const QueryClientProvider = ({ children }: PropsType) => {
                 defaultOptions: {
                     queries: {
                         refetchOnWindowFocus: false,
+                        suspense: true,
                     },
                 },
             }),

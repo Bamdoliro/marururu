@@ -6,6 +6,7 @@ export const useFormListQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.FORM_LIST],
         queryFn: getFormReviewList,
+        suspense: false,
     });
 
     return { data: data?.dataList, ...restQuery };

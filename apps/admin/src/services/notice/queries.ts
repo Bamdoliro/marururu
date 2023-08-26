@@ -6,6 +6,7 @@ export const useNoticeListQuery = () => {
     const { data, ...restQuery } = useQuery({
         queryKey: [KEY.NOTICE_LIST],
         queryFn: getNoticeList,
+        suspense: false,
     });
 
     return { data: data?.dataList, ...restQuery };
