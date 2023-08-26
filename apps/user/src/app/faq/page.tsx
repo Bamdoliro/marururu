@@ -12,7 +12,7 @@ const FaqPage = () => {
     const [category, setCategory] = useState('TOP_QUESTION');
 
     return (
-        <AppLayout header footer style={{ padding: '0px 207px', marginTop: 82 }}>
+        <AppLayout header footer style={{ padding: '0px 204px', marginTop: 82 }}>
             <StyledFaqPage>
                 <Text fontType="H1" color={color.gray900}>
                     자주 묻는 질문
@@ -31,5 +31,7 @@ export default FaqPage;
 const StyledFaqPage = styled.div`
     position: relative;
     width: 100%;
+    max-width: 1240px;
     height: 100%;
+    margin: 0 auto;
 `;
