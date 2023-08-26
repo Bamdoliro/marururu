@@ -1,6 +1,14 @@
 'use client';
 
-import { ApplicationBox, Dday, Faq, GuidelineBox, Notice, Schedule } from '@/components/main';
+import {
+    ApplicationBox,
+    Dday,
+    Faq,
+    GuidelineBox,
+    Notice,
+    Schedule,
+    SimulatorBox,
+} from '@/components/main';
 import { AppLayout } from '@/layouts';
 import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -21,7 +29,7 @@ const MainPage = () => {
                 <Row gap={48} width="100%" justifyContent="center">
                     <GuidelineBox />
                     <ApplicationBox />
-                    <GuidelineBox />
+                    <SimulatorBox />
                 </Row>
                 <Row gap={48} width="100%" height={242} justifyContent="center">
                     <Notice />

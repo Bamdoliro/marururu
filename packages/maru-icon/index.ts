@@ -12,6 +12,7 @@ export { default as IconCheckCircle } from './src/IconCheckCircle';
 export { default as IconClose } from './src/IconClose';
 export { default as IconError } from './src/IconError';
 export { default as IconFaq } from './src/IconFaq';
+export { default as IconFunction } from './src/IconFunction';
 export { default as IconInvisibleEye } from './src/IconInvisibleEye';
 export { default as IconSearch } from './src/IconSearch';
 export { default as IconShortcuts } from './src/IconShortcuts';
