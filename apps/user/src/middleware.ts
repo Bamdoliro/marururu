@@ -6,10 +6,11 @@ export const middleware = (request: NextRequest) => {
     const url = request.nextUrl.pathname;
 
     if (device.type === 'mobile' && url !== '/mobile') {
-        return NextResponse.rewrite(new URL('/mobile', request.url));
+        return NextResponse.redirect(new URL('/mobile', request.url));
     }
+    return NextResponse.next();
 };
 
 export const config = {
-    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+    matcher: ['/mobile'],
 };
