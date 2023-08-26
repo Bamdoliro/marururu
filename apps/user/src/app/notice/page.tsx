@@ -11,7 +11,7 @@ import styled from 'styled-components';
 
 const NoticePage = () => {
     return (
-        <AppLayout header={true} footer={true} style={{ padding: '0px 207px', marginTop: 82 }}>
+        <AppLayout header={true} footer={true} style={{ padding: '0px 204px', marginTop: 82 }}>
             <StyledNoticePage>
                 <Text fontType="H1" color={color.gray900}>
                     공지사항
@@ -31,5 +31,7 @@ const StyledNoticePage = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 48px;
     width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
     height: 100%;
 `;

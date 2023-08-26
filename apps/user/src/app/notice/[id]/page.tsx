@@ -20,7 +20,7 @@ const NoticeDetailPage = ({ params: { id } }: Props) => {
     const router = useRouter();
 
     return (
-        <AppLayout header={true} footer={true} style={{ padding: '0px 207px', marginTop: 52 }}>
+        <AppLayout header={true} footer={true} style={{ padding: '0px 204px', marginTop: 52 }}>
             <StyledNoticeDetailPage>
                 <Link onClick={() => router.push(ROUTES.NOTICE)} gap="2px">
                     <IconArrowLeft color={color.gray600} width={24} height={24} />
@@ -43,5 +43,7 @@ const StyledNoticeDetailPage = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 36px;
     width: 100%;
+    max-width: 1240px;
     height: 100%;
+    margin: 0 auto;
 `;
