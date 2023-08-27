@@ -21,6 +21,9 @@ export const ROUTES = {
     SIGNUP: '/signup',
     FIRST_RESULT: '/result/first',
     FINAL_RESULT: '/result/first',
+    APPLICATION : '/application',
+    APPLICATION_STUDENT: '/application/student',
+    APPLICATION_TEACHER: '/application/teacher'
 } as const;
 
 export const TOKEN = {
