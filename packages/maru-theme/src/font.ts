@@ -34,12 +34,7 @@ const font = {
 
     caption: fontGenerator(400, 0.75, 140, 0),
     context: fontGenerator(500, 1, 130, 0),
-    code: css`
-        font-family: 'IBM Plex Mono';
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 130%;
-    `,
+    code: fontGenerator(400, 1, 130, 0),
 };
 
 export default font;
