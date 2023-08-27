@@ -1,6 +1,6 @@
-import { ChangeEventHandler } from 'react';
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useSetFormStore, useSetFormStepStore, useFormValueStore } from '@/store';
+import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store';
+import { ChangeEventHandler } from 'react';
 
 export const useCTAButton = () => {
     const form = useFormValueStore();
@@ -23,6 +23,7 @@ export const useInput = () => {
     const setForm = useSetFormStore();
 
     const handle보호자정보DataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        console.log('radio changed');
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, parent: { ...prev.parent, [name]: value } }));
     };
