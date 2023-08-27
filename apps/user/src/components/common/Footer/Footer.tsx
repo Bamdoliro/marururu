@@ -11,67 +11,74 @@ const Footer = () => {
 
     return (
         <StyledFooter>
-            <InfoBox>
-                <Image src="/svg/logo_gray.svg" width={107} height={32} alt="logo_gray" />
-                <Column gap="20px">
-                    <ContentBox>
-                        <Text fontType="p2" color={color.gray600}>
-                            주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)
+            <FooterBox>
+                <InfoBox>
+                    <Image src="/svg/logo_gray.svg" width={107} height={32} alt="logo_gray" />
+                    <Column gap="20px">
+                        <ContentBox>
+                            <Text fontType="p2" color={color.gray600}>
+                                주소: 부산광역시 강서구 가락대로 1393 봉림동 15 (46708)
+                            </Text>
+                            <Text fontType="p2" color={color.gray600}>
+                                교무실(입학처): 051-971-2153, Fax: 051-971-2061
+                            </Text>
+                            <Text fontType="p2" color={color.gray600}>
+                                행정실:051-971-2152, Fax: 051-971-6325
+                            </Text>
+                        </ContentBox>
+                        <Text fontType="p3" color={color.gray600}>
+                            Copyright © 밤돌이로 all rights reserved.
                         </Text>
-                        <Text fontType="p2" color={color.gray600}>
-                            교무실(입학처): 051-971-2153, Fax: 051-971-2061
-                        </Text>
-                        <Text fontType="p2" color={color.gray600}>
-                            행정실:051-971-2152, Fax: 051-971-6325
-                        </Text>
-                    </ContentBox>
-                    <Text fontType="p3" color={color.gray600}>
-                        Copyright © 밤돌이로 all rights reserved.
-                    </Text>
-                </Column>
-            </InfoBox>
+                    </Column>
+                </InfoBox>
 
-            <Row gap="95px" alignItems="flex-start">
-                <NavigationBox>
-                    <Column gap="24px">
-                        <Link onClick={() => router.push(ROUTES.FORM)}>원서접수</Link>
-                        <Link onClick={() => router.push(ROUTES.NOTICE)}>공지사항</Link>
-                        <Link onClick={() => router.push(ROUTES.FAQ)}>자주묻는질문</Link>
-                        <Link onClick={() => console.log('학교 소개 페이지')}>학교소개</Link>
-                    </Column>
-                    <Column gap="24px">
-                        <Link onClick={() => console.log('test')}>이용약관</Link>
-                        <Link onClick={() => console.log('test')}>개인정보처리방침</Link>
-                        <Link onClick={() => console.log('test')}>학교 홈페이지</Link>
-                    </Column>
-                </NavigationBox>
-                <Row gap="16px" alignItems="center">
-                    <Image
-                        src="/svg/round_instagram.svg"
-                        width={36}
-                        height={36}
-                        alt="round_instagram"
-                    />
-                    <Image
-                        src="/svg/round_bamdoliro.svg"
-                        width={36}
-                        height={36}
-                        alt="round_bamdoliro"
-                    />
+                <Row gap="95px" alignItems="flex-start">
+                    <NavigationBox>
+                        <Column gap="24px">
+                            <Link onClick={() => router.push(ROUTES.FORM)}>원서접수</Link>
+                            <Link onClick={() => router.push(ROUTES.NOTICE)}>공지사항</Link>
+                            <Link onClick={() => router.push(ROUTES.FAQ)}>자주묻는질문</Link>
+                            <Link onClick={() => console.log('학교 소개 페이지')}>학교소개</Link>
+                        </Column>
+                        <Column gap="24px">
+                            <Link onClick={() => console.log('test')}>이용약관</Link>
+                            <Link onClick={() => console.log('test')}>개인정보처리방침</Link>
+                            <Link onClick={() => console.log('test')}>학교 홈페이지</Link>
+                        </Column>
+                    </NavigationBox>
+                    <Row gap="16px" alignItems="center">
+                        <Image
+                            src="/svg/round_instagram.svg"
+                            width={36}
+                            height={36}
+                            alt="round_instagram"
+                        />
+                        <Image
+                            src="/svg/round_bamdoliro.svg"
+                            width={36}
+                            height={36}
+                            alt="round_bamdoliro"
+                        />
+                    </Row>
                 </Row>
-            </Row>
+            </FooterBox>
         </StyledFooter>
     );
 };
 
 export default Footer;
 
-const StyledFooter = styled.div`
-    ${flex({ justifyContent: 'space-between', alignItems: 'center' })}
+const StyledFooter = styled.footer`
     background-color: ${color.gray100};
+    padding: 40px 96px 82px;
+`;
+
+const FooterBox = styled.div`
+    ${flex({ justifyContent: 'space-between', alignItems: 'center' })}
     height: 350px;
+    max-width: 1248px;
     width: 100%;
-    padding: 40px 100px;
+    margin: 0 auto;
 `;
 
 const InfoBox = styled.div`
