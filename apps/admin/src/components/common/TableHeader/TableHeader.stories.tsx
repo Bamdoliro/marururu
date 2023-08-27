@@ -1,6 +1,6 @@
 import { Row, Text } from "@maru/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import ListHeader from "./ListHeader";
+import ListHeader from "./TableHeader";
 
 export default {
     component: ListHeader,

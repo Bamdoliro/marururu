@@ -7,19 +7,19 @@ interface Props {
     children: ReactNode;
 }
 
-const ListItem = ({ children }: Props) => {
-    return <StyledListItem>{children}</StyledListItem>;
+const TableHeader = ({ children }: Props) => {
+    return <StyledListHeader>{children}</StyledListHeader>;
 };
 
-export default ListItem;
+export default TableHeader;
 
-const StyledListItem = styled.div`
+const StyledListHeader = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     min-width: fit-content;
     height: 64px;
     padding: 0px 56px 0px 32px;
-    background: ${color.white};
-    border: 1px solid ${color.gray200};
+    color: ${color.gray600};
+    background: ${color.gray50};
     border-radius: 12px;
 
     user-select: none;

@@ -34,4 +34,5 @@ const StyledFaqPage = styled.div`
     max-width: 1240px;
     height: 100%;
     margin: 0 auto;
+    padding-bottom: 227px;
 `;

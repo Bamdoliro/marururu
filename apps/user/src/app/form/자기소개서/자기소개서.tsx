@@ -1,10 +1,10 @@
 import { FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
+import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useFormValueStore } from '@/store';
 import { useCTAButton, useFormSubmitAction, useInput } from './자기소개서.hooks';
 
 const 자기소개서 = () => {
@@ -20,14 +20,14 @@ const 자기소개서 = () => {
                 <Column gap={64}>
                     <Textarea
                         name="coverLetter"
-                        limit={1500}
+                        limit={1000}
                         label="자기소개서"
                         value={form.document.coverLetter}
                         onChange={handle자기소개서DataChange}
                     />
                     <Textarea
                         name="statementOfPurpose"
-                        limit={1500}
+                        limit={1000}
                         label="학업계획서"
                         value={form.document.statementOfPurpose}
                         onChange={handle자기소개서DataChange}

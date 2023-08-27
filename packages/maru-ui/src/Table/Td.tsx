@@ -40,7 +40,7 @@ const StyledTd = styled.div<{ option: TableOptionType }>`
     ${(props) =>
         props.option === 'PRIMARY'
             ? css`
-                  ${font.btn2}
+                  ${font.context}
                   background-color: ${color.white};
               `
             : css`

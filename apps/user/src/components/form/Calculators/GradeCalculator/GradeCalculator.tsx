@@ -1,7 +1,7 @@
 import { useNewSubjectStore, useSetFormStore, useSubjectStore } from '@/store';
 import { Subject } from '@/types/form/client';
-import { color, font } from '@maru/theme';
-import { Button, Column } from '@maru/ui';
+import { color } from '@maru/theme';
+import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
@@ -13,8 +13,6 @@ const GradeCalculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
     const [subjectList, setSubjectList] = useSubjectStore();
     const setForm = useSetFormStore();
-    const footerRef = useRef<HTMLDivElement>(null);
-    const isMount = useRef(true);
 
     const newSubjectIdRef = useRef(newSubjectList.length);
     const handleAddNewSubjectButtonClick = () => {
@@ -29,14 +27,6 @@ const GradeCalculator = () => {
     };
 
     useEffect(() => {
-        if (isMount.current) {
-            isMount.current = false;
-            return;
-        }
-        if (newSubjectList.length) footerRef.current?.scrollIntoView();
-    }, [newSubjectList]);
-
-    useEffect(() => {
         const studentSubjectList = [...subjectList, ...newSubjectList].map(
             ({ id, ...rest }) => rest,
         );
@@ -46,11 +36,10 @@ const GradeCalculator = () => {
 
     return (
         <StyledGradeCalculator>
-            <Desc>
+            <Text fontType="p3" color={color.red}>
                 *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
-                <br />
-                *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
-            </Desc>
+                <br /> *해당 과목이 없을 시 과목추가버튼으로 성적을 입력할 수 있습니다.
+            </Text>
             <Column>
                 <GradeCalculatorHeader />
                 {/* 기존 과목 item */}
@@ -83,7 +72,7 @@ const GradeCalculator = () => {
                         setNewSubjectList={setNewSubjectList}
                     />
                 ))}
-                <GradeCalculatorFooter ref={footerRef}>
+                <GradeCalculatorFooter>
                     <Button onClick={handleAddNewSubjectButtonClick} icon="ADD_ICON" size="SMALL">
                         과목추가
                     </Button>
@@ -109,10 +98,4 @@ const GradeCalculatorFooter = styled.div`
     border-radius: 0px 0px 12px 12px;
     border: 1px dashed ${color.gray300};
     border-top: none;
-`;
-
-const Desc = styled.p`
-    color: ${color.red};
-    ${font.p3}
-    margin-bottom: 16px;
 `;

@@ -8,14 +8,14 @@ import { flex } from '@maru/utils';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useInput, useJoinAction, useRequestEmailAction, useTimer } from './signup.hooks';
+import { useInput, useJoinAction, useTimer, useVerificationAction } from './signup.hooks';
 
 const SignUpPage = () => {
     const [termsAgree, setTermsAgree] = useState(false);
     const { startTimer, timerTime, setTimerTime } = useTimer();
     const { joinUserData, handleJoinUserDataChange } = useInput();
-    const { handleRequestEmailButtonClick, isButtonDisabled, isRequestEmail } =
-        useRequestEmailAction(joinUserData.email);
+    const { handleVerificationButtonClick, isButtonDisabled, isVerification } =
+        useVerificationAction(joinUserData.phoneNumber);
     const { handleJoinButtonClick } = useJoinAction(joinUserData, termsAgree);
 
     return (
@@ -42,21 +42,21 @@ const SignUpPage = () => {
                                 onChange={handleJoinUserDataChange}
                             />
                             <ButtonInput
-                                label="이메일 인증"
-                                buttonText={isRequestEmail ? '재전송' : '인증'}
+                                label="전화번호 인증"
+                                buttonText={isVerification ? '재전송' : '인증'}
                                 onClick={() => {
-                                    handleRequestEmailButtonClick();
+                                    handleVerificationButtonClick();
                                     startTimer();
                                 }}
                                 enabled={isButtonDisabled}
-                                type="email"
-                                placeholder="이메일"
+                                type="phoneNumber"
+                                placeholder="- 없이 입력해주세요"
                                 width="100%"
-                                name="email"
+                                name="phoneNumber"
                                 onChange={handleJoinUserDataChange}
-                                value={joinUserData.email}
+                                value={joinUserData.phoneNumber}
                             />
-                            {isRequestEmail && (
+                            {isVerification && (
                                 <TimeLimitInput
                                     label="인증코드"
                                     width="100%"
@@ -66,7 +66,7 @@ const SignUpPage = () => {
                                     timerTime={timerTime}
                                     setTimerTime={setTimerTime}
                                     isError={joinUserData.code.length < 6}
-                                    errorMessage="발송된 이메일의 인증번호를 입력해주세요."
+                                    errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
                                 />
                             )}
                             <PreviewInput

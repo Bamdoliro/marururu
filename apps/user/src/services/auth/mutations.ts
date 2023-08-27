@@ -5,14 +5,14 @@ import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
-import { deleteLogoutUser, postJoinUser, postLoginUser, postRequestEmail } from './api';
+import { deleteLogoutUser, postJoinUser, postLoginUser, postVerification } from './api';
 
-export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
+export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
     const router = useRouter();
     const { handleError } = useApiError();
 
     const { mutate: loginUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => postLoginUser({ email, password }),
+        mutationFn: () => postLoginUser({ phoneNumber, password }),
         onSuccess: (res: AxiosResponse) => {
             const { accessToken, refreshToken } = res.data;
             Storage.setItem(TOKEN.ACCESS, accessToken);
@@ -25,12 +25,12 @@ export const useLoginUserMutation = ({ email, password }: PostLoginAuthReq) => {
     return { loginUserMutate, ...restMutation };
 };
 
-export const useJoinUserMutation = ({ email, name, code, password }: PostJoinAuthReq) => {
+export const useJoinUserMutation = ({ phoneNumber, name, code, password }: PostJoinAuthReq) => {
     const router = useRouter();
     const { handleError } = useApiError();
 
     const { mutate: joinUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => postJoinUser({ email, name, code, password }),
+        mutationFn: () => postJoinUser({ phoneNumber, name, code, password }),
         onSuccess: () => {
             alert('회원가입 성공');
             router.push(ROUTES.LOGIN);
@@ -41,15 +41,15 @@ export const useJoinUserMutation = ({ email, name, code, password }: PostJoinAut
     return { joinUserMutate, ...restMutation };
 };
 
-export const useRequestEmailMutation = (email: string) => {
+export const useVerificationMutation = (phoneNumber: string) => {
     const { handleError } = useApiError();
 
-    const { mutate: requestEmailMutate, ...restMutation } = useMutation({
-        mutationFn: () => postRequestEmail(email),
+    const { mutate: requestVerificationMutate, ...restMutation } = useMutation({
+        mutationFn: () => postVerification(phoneNumber),
         onError: handleError,
     });
 
-    return { requestEmailMutate, ...restMutation };
+    return { requestVerificationMutate, ...restMutation };
 };
 
 export const useLogoutUserMutation = () => {

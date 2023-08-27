@@ -30,9 +30,9 @@ const LoginPage = () => {
                         <Column gap="36px" width="100%">
                             <Column gap="24px">
                                 <Input
-                                    label="이메일"
+                                    label="전화번호"
                                     width="100%"
-                                    name="email"
+                                    name="phoneNumber"
                                     onChange={handleLoginUserDataChange}
                                 />
                                 <PreviewInput

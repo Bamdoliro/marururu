@@ -1,7 +1,7 @@
 import { useNoticeDetailQuery } from '@/services/notice/queries';
-import { color } from '@maru/theme';
+import { color, font } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
-import { flex, formatCreatedAt } from '@maru/utils';
+import { convertLink, flex, formatCreatedAt } from '@maru/utils';
 import styled from 'styled-components';
 
 interface Props {
@@ -23,9 +23,7 @@ const NoticeDetailContent = ({ id }: Props) => {
                     </Text>
                 </Column>
             </NoticeHeader>
-            <Text fontType="p2" color={color.gray900}>
-                {noticeDetailData.content}
-            </Text>
+            <Content dangerouslySetInnerHTML={{ __html: convertLink(noticeDetailData.content) }} />
         </StyledNoticeDetailContent>
     ) : null;
 };
@@ -44,4 +42,8 @@ const NoticeHeader = styled.div`
     height: 80px;
     border-bottom: 1px solid ${color.gray300};
     margin-bottom: 8px;
+`;
+const Content = styled.div`
+    ${font.p2};
+    color: ${color.gray900};
 `;
