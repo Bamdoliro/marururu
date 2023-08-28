@@ -8,7 +8,7 @@ interface Props {
     header?: boolean;
     footer?: boolean;
     children: ReactNode;
-    backgroundColor?: string;
+    backgroundColor?: CSSProperties['backgroundColor'];
     style?: CSSProperties;
 }
 
