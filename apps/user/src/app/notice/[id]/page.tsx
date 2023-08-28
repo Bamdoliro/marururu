@@ -6,9 +6,9 @@ import { ROUTES } from '@/constants/common/constant';
 import { AppLayout } from '@/layouts';
 import { IconArrowLeft } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Link, Text } from '@maru/ui';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 
@@ -17,17 +17,15 @@ interface Props {
 }
 
 const NoticeDetailPage = ({ params: { id } }: Props) => {
-    const router = useRouter();
-
     return (
         <AppLayout header={true} footer={true} style={{ padding: '0px 207px', marginTop: 52 }}>
             <StyledNoticeDetailPage>
-                <Link onClick={() => router.push(ROUTES.NOTICE)} gap="2px">
+                <BackLink href={ROUTES.NOTICE}>
                     <IconArrowLeft color={color.gray600} width={24} height={24} />
                     <Text fontType="H5" color={color.gray900}>
                         공지사항
                     </Text>
-                </Link>
+                </BackLink>
                 <Suspense fallback={<Loader />}>
                     <NoticeDetailContent id={id} />
                 </Suspense>
@@ -44,4 +42,9 @@ const StyledNoticeDetailPage = styled.div`
     gap: 36px;
     width: 100%;
     height: 100%;
+`;
+
+const BackLink = styled(Link)`
+    ${flex({ alignItems: 'center' })};
+    gap: 8px;
 `;

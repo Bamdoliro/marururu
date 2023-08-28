@@ -12,7 +12,6 @@ export { default as NumberInput } from './src/Input/NumberInput';
 export { default as PreviewInput } from './src/Input/PreviewInput';
 export { default as SearchInput } from './src/Input/SearchInput';
 export { default as TimeLimitInput } from './src/Input/TimeLimitInput';
-export { default as Link } from './src/Link/Link';
 export { default as Modal } from './src/Modal/Modal';
 export { default as Radio } from './src/Radio/Radio';
 export { default as RadioGroup } from './src/RadioGroup/RadioGroup';
