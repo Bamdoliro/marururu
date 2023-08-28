@@ -84,22 +84,23 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.div`
-    max-width: 1448px;
+    width: 100%;
     height: 118px;
     background-color: ${color.white};
-    margin: 0 auto;
-    padding: 0px 100px;
-    border-bottom: 1px solid ${color.gray200};
 `;
 
 const HeaderBar = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
+    padding: 0px 100px;
     width: 100%;
+    height: 64px;
 `;
 
 const NavigationBar = styled.div`
     ${flex({ alignItems: 'center' })}
     width: 100%;
+    padding: 0px 96px;
     height: 54px;
     background-color: ${color.white};
+    border-bottom: 1px solid ${color.gray200};
 `;
