@@ -1,4 +1,4 @@
-import { KEY } from '@/constants/common/constants';
+import { KEY } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
 import { getNoticeList } from './api';
 

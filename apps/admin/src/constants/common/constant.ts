@@ -8,4 +8,10 @@ export const ROUTES = {
     NOTICE: '/notice',
     FAQ: '/faq',
     ANALYSIS: '/analysis',
+    LOGIN: '/login',
+} as const;
+
+export const TOKEN = {
+    ACCESS: 'access-token',
+    REFRESH: 'refresh-token',
 } as const;

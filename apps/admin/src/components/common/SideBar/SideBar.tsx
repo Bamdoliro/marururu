@@ -1,4 +1,4 @@
-import { ROUTES } from '@/constants/common/constants';
+import { ROUTES } from '@/constants/common/constant';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -45,9 +45,9 @@ const SideBar = () => {
                 />
             </Link>
             <SideNavigationBar>
-                {NAVIGATION_DATA.map(({ route, name }, index) => (
+                {NAVIGATION_DATA.map(({ route, name }) => (
                     <StyledLink
-                        key={`navigation ${index}`}
+                        key={`navigation ${name}`}
                         href={route}
                         $active={route === pathName}>
                         {name}
