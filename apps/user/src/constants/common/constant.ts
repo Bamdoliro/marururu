@@ -20,7 +20,7 @@ export const ROUTES = {
     NOTICE: '/notice',
     SIGNUP: '/signup',
     FIRST_RESULT: '/result/first',
-    FINAL_RESULT: '/result/first',
+    FINAL_RESULT: '/result/final',
     APPLICATION : '/application',
     APPLICATION_STUDENT: '/application/student',
     APPLICATION_TEACHER: '/application/teacher'

@@ -12,7 +12,7 @@ interface Props {
 
 const Status = ({ applicable, statusText }: Props) => {
     return (
-        <StyledStatus applicable={applicable}>
+        <StyledStatus $applicable={!!applicable}>
             <Text fontType="context" color={applicable ? color.maruDefault : color.red}>
                 {statusText}
             </Text>
@@ -22,12 +22,11 @@ const Status = ({ applicable, statusText }: Props) => {
 
 export default Status;
 
-const StyledStatus = styled.div<Props>`
+const StyledStatus = styled.div<{ $applicable: boolean }>`
     height: 32px;
     padding: 0px 10px;
-    ${flex({ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' })}
-    gap: 10px;
-    background-color: ${({ applicable }) => (applicable ? 'rgba(37, 124, 255, 0.10)' : 'rgba(244, 67, 54, 0.10)')};
-    border: 1px solid ${({ applicable }) => (applicable ? color.maruDefault : color.red)};
+    ${flex({ justifyContent: 'center', alignItems: 'center' })}
+    background-color: ${(props) => (props.$applicable ? 'rgba(37, 124, 255, 0.10)' : 'rgba(244, 67, 54, 0.10)')};
+    border: 1px solid ${(props) => (props.$applicable ? color.maruDefault : color.red)};
     border-radius: 100px;
 `;

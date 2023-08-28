@@ -43,7 +43,7 @@ const StyledApplicationInfo = styled.div`
     padding: 24px 32px;
     ${flex({ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' })}
     border-radius: 12px;
-    border: 1px solid ${color.gray200}
+    border: 1px solid ${color.gray200};
 `;
 
 const SpacetimeTextArea = styled.div`

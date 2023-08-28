@@ -7,6 +7,7 @@ import { color } from '@maru/theme';
 import { Text, UnderLineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const NAVIGATION_DATA = [
@@ -54,9 +55,10 @@ const INFORMATION_DATA = [
 const ApplicationPage = () => {
     const router = useRouter();
     const pathName = usePathname();
+    const [ studentRoute, teacherRoute ] = useState();
 
     return (
-        <AppLayout header footer style={{ padding: '0px 312px', marginTop: 82 }}>
+        <AppLayout header footer>
             <StyledApplicationPage>
                 <Text fontType="H1" color={color.gray900}>
                     2024학년도 부산소프트웨어마이스터고등학교
@@ -64,29 +66,25 @@ const ApplicationPage = () => {
                     입학전형 설명회 참가 신청
                 </Text>
                 <NavigationBar>
-                    {NAVIGATION_DATA.map(( { route, name }, index) => {
-                        return (
-                            <UnderLineButton
-                                key={`navigation ${index}`}
-                                active={route === pathName}
-                                onClick={() => router.push(route)}>
-                                {name}
-                            </UnderLineButton>
-                        );
-                    })}
+                {NAVIGATION_DATA.map(({ route, name }, index) => (
+                    <UnderLineButton
+                        key={`navigation ${index}`}
+                        active={route === pathName}
+                        onClick={() => router.push(route)}>
+                        {name}
+                    </UnderLineButton>
+                ))}
                 </NavigationBar>
                 <ApplicationInfoBox>
-                    {INFORMATION_DATA.map(( {date, place, deadline, applicable, statusText}, index) => {
-                        return (
-                            <ApplicationInfo
-                                date={date}
-                                place={place}
-                                deadline={deadline}
-                                applicable={applicable}
-                                statusText={statusText}
-                            />
-                        )
-                    })}
+                    {INFORMATION_DATA.map(( {date, place, deadline, applicable, statusText}, index) => (
+                                <ApplicationInfo
+                                    date={date}
+                                    place={place}
+                                    deadline={deadline}
+                                    applicable={applicable}
+                                    statusText={statusText}
+                                />
+                    ))}
                 </ApplicationInfoBox>
             </StyledApplicationPage>
         </AppLayout>
@@ -96,9 +94,10 @@ const ApplicationPage = () => {
 export default ApplicationPage;
 
 const StyledApplicationPage = styled.div`
-    position: relative;
     width: 100%;
     height: 100%;
+    padding: 0px 312px;
+    margin-top: 82px;
 `
 
 const NavigationBar = styled.div`
