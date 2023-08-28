@@ -73,8 +73,8 @@ const 출신학교및학력 = () => {
                     width="100%"
                     value={form.education.schoolCode}
                     onChange={handle출신학교및학력DataChange}
-                    isError={!!form.education.schoolCode && form.education.schoolCode.length !== 10}
-                    errorMessage="10자여야 합니다."
+                    isError={!!form.education.schoolCode && form.education.schoolCode.length !== 7}
+                    errorMessage="7자여야 합니다."
                 />
                 <Input
                     name="teacherPhoneNumber"

@@ -123,3 +123,9 @@ export interface FormStatus {
     status: 'APPROVED' | 'REJECTED' | 'RECEIVED' | 'SUBMITTED' | 'FINAL_SUBMITTED';
     type: FormType;
 }
+
+export interface School {
+    name: string;
+    location: string;
+    code: string;
+}
