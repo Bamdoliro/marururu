@@ -70,7 +70,7 @@ const 출신학교및학력 = () => {
                 <Row gap={48} alignItems="center">
                     <Input
                         name="schoolCode"
-                        label="학교 나이스번호"
+                        label="표준 학교 코드"
                         placeholder="뭐시기 뭐시기"
                         width="100%"
                         value={form.education.schoolCode}
