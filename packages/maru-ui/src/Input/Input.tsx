@@ -17,6 +17,7 @@ const Input = ({
     readOnly,
     textAlign,
     isError = false,
+    required,
 }: InputProps) => {
     return (
         <div style={{ width }}>
@@ -44,6 +45,7 @@ const Input = ({
                         width={24}
                     />
                 )}
+                {required && <div color={color.red} />}
             </div>
             <ConditionalMessage isError={isError} errorMessage={errorMessage} message={message} />
         </div>
