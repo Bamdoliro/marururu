@@ -13,7 +13,7 @@ interface TimeLimitInputProps extends InputProps {
 }
 
 const TimeLimitInput = ({
-    width = '320px',
+    width = 320,
     name,
     label,
     message,

@@ -30,6 +30,5 @@ const StyledNoticePage = styled.div`
     position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 48px;
-    width: 100%;
     height: 100%;
 `;
