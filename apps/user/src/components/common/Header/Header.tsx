@@ -2,7 +2,6 @@ import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { color } from '@maru/theme';
 import { Button, Row, UnderlineButton } from '@maru/ui';
-import { flex } from '@maru/utils';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
@@ -37,7 +36,11 @@ const Header = () => {
 
     return (
         <StyledHeader>
-            <HeaderBar>
+            <Row
+                style={{ padding: '0px 100px' }}
+                height={64}
+                alignItems="center"
+                justifyContent="space-between">
                 <Image
                     src="/svg/school_logo.svg"
                     style={{ cursor: 'pointer' }}
@@ -64,8 +67,8 @@ const Header = () => {
                         </Button>
                     </Row>
                 )}
-            </HeaderBar>
-            <NavigationBar>
+            </Row>
+            <Row style={{ padding: '0px 96px' }} alignItems="center" height={54}>
                 {NAVIGATION_DATA.map(({ route, name }, index) => {
                     return (
                         <UnderlineButton
@@ -76,7 +79,7 @@ const Header = () => {
                         </UnderlineButton>
                     );
                 })}
-            </NavigationBar>
+            </Row>
         </StyledHeader>
     );
 };
@@ -84,23 +87,9 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.div`
-    width: 100%;
+    max-width: 1448px;
     height: 118px;
     background-color: ${color.white};
-`;
-
-const HeaderBar = styled.div`
-    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
-    padding: 0px 100px;
-    width: 100%;
-    height: 64px;
-`;
-
-const NavigationBar = styled.div`
-    ${flex({ alignItems: 'center' })}
-    width: 100%;
-    padding: 0px 96px;
-    height: 54px;
-    background-color: ${color.white};
-    border-bottom: 1px solid ${color.gray200};
+    margin: 0 auto;
+    box-shadow: 0 1px 0 0 ${color.gray200};
 `;
