@@ -63,9 +63,12 @@ const SignUpPage = () => {
                                     maxLength={6}
                                     name="code"
                                     onChange={handleJoinUserDataChange}
+                                    onClick={() => console.log('hi')}
                                     timerTime={timerTime}
                                     setTimerTime={setTimerTime}
                                     isError={joinUserData.code.length < 6}
+                                    buttonText="인증번호 확인"
+                                    enabled={false}
                                     errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
                                 />
                             )}
