@@ -2,6 +2,7 @@
 
 import { GlobalStyle } from '@maru/theme';
 import { ReactNode } from 'react';
+import { RecoilRoot } from 'recoil';
 
 interface Props {
     children: ReactNode;
@@ -9,10 +10,10 @@ interface Props {
 
 const Provider = ({ children }: Props) => {
     return (
-        <>
+        <RecoilRoot>
             <GlobalStyle />
             {children}
-        </>
+        </RecoilRoot>
     );
 };
 

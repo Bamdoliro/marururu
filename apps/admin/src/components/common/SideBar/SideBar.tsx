@@ -1,4 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
+import useUser from '@/hooks/useUser';
+import { useLogoutUserMutation } from '@/services/auth/mutations';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,6 +29,12 @@ const NAVIGATION_DATA = [
 
 const SideBar = () => {
     const pathName = usePathname();
+    const { isLoggedIn } = useUser();
+    const { logoutUserMutate } = useLogoutUserMutation();
+
+    const handleLogoutUser = () => {
+        logoutUserMutate();
+    };
 
     return (
         <StyledSideBar>
@@ -54,7 +62,11 @@ const SideBar = () => {
                     </StyledLink>
                 ))}
             </SideNavigationBar>
-            <LogoutButton>로그아웃</LogoutButton>
+            {isLoggedIn ? (
+                <LogoutButton onClick={handleLogoutUser}>로그아웃</LogoutButton>
+            ) : (
+                <LoginLink href="/login">로그인</LoginLink>
+            )}
         </StyledSideBar>
     );
 };
@@ -106,6 +118,15 @@ const StyledLink = styled(Link)<{ $active: boolean }>`
 `;
 
 const LogoutButton = styled.button`
+    ${font.btn1}
+    ${flex({ alignItems: 'center' })}
+    height: 56px;
+    padding: 0px 36px;
+    color: ${color.white};
+    margin: auto 0 48px;
+`;
+
+const LoginLink = styled(Link)`
     ${font.btn1}
     ${flex({ alignItems: 'center' })}
     height: 56px;
