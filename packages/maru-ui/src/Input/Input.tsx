@@ -5,7 +5,7 @@ import ConditionalMessage from './ConditionalMessage';
 import { InputProps } from './Input.type';
 
 const Input = ({
-    width = '320px',
+    width = 320,
     label,
     placeholder,
     type = 'text',

@@ -36,50 +36,52 @@ const Header = () => {
 
     return (
         <StyledHeader>
-            <Row
-                style={{ padding: '0px 100px' }}
-                height={64}
-                alignItems="center"
-                justifyContent="space-between">
-                <Image
-                    src="/svg/school_logo.svg"
-                    style={{ cursor: 'pointer' }}
-                    width={318}
+            <HeaderBox>
+                <Row
+                    style={{ padding: '0px 100px' }}
                     height={64}
-                    onClick={() => router.push(ROUTES.MAIN)}
-                    alt="logo"
-                />
-                {isLoggedIn ? (
-                    <Profile />
-                ) : (
-                    <Row gap="10px" alignItems="center">
-                        <Button
-                            option="QUATERNARY"
-                            size="SMALL"
-                            onClick={() => router.push(ROUTES.LOGIN)}>
-                            로그인
-                        </Button>
-                        <Button
-                            option="PRIMARY"
-                            size="SMALL"
-                            onClick={() => router.push(ROUTES.SIGNUP)}>
-                            회원가입
-                        </Button>
-                    </Row>
-                )}
-            </Row>
-            <Row style={{ padding: '0px 96px' }} alignItems="center" height={54}>
-                {NAVIGATION_DATA.map(({ route, name }, index) => {
-                    return (
-                        <UnderlineButton
-                            key={`navigation ${index}`}
-                            active={route === pathName}
-                            onClick={() => router.push(route)}>
-                            {name}
-                        </UnderlineButton>
-                    );
-                })}
-            </Row>
+                    alignItems="center"
+                    justifyContent="space-between">
+                    <Image
+                        src="/svg/school_logo.svg"
+                        style={{ cursor: 'pointer' }}
+                        width={318}
+                        height={64}
+                        onClick={() => router.push(ROUTES.MAIN)}
+                        alt="logo"
+                    />
+                    {isLoggedIn ? (
+                        <Profile />
+                    ) : (
+                        <Row gap="10px" alignItems="center">
+                            <Button
+                                option="QUATERNARY"
+                                size="SMALL"
+                                onClick={() => router.push(ROUTES.LOGIN)}>
+                                로그인
+                            </Button>
+                            <Button
+                                option="PRIMARY"
+                                size="SMALL"
+                                onClick={() => router.push(ROUTES.SIGNUP)}>
+                                회원가입
+                            </Button>
+                        </Row>
+                    )}
+                </Row>
+                <Row style={{ padding: '0px 96px' }} alignItems="center" height={54}>
+                    {NAVIGATION_DATA.map(({ route, name }, index) => {
+                        return (
+                            <UnderlineButton
+                                key={`navigation ${index}`}
+                                active={route === pathName}
+                                onClick={() => router.push(route)}>
+                                {name}
+                            </UnderlineButton>
+                        );
+                    })}
+                </Row>
+            </HeaderBox>
         </StyledHeader>
     );
 };
@@ -87,9 +89,14 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.div`
-    max-width: 1448px;
+    width: 100%;
     height: 118px;
+    box-shadow: 0 1px 0 0 ${color.gray200};
+`;
+
+const HeaderBox = styled.div`
+    max-width: 1448px;
+    height: 100%;
     background-color: ${color.white};
     margin: 0 auto;
-    box-shadow: 0 1px 0 0 ${color.gray200};
 `;

@@ -4,7 +4,7 @@ import { InputProps } from './Input.type';
 
 const NumberInput = ({
     name,
-    width = '80px',
+    width = 80,
     textAlign = 'center',
     onChange,
     placeholder,
