@@ -6,7 +6,7 @@ type Font = keyof typeof font;
 
 interface Props extends HTMLAttributes<HTMLSpanElement> {
     children: ReactNode;
-    color?: string;
+    color?: CSSProperties['color'];
     fontType: Font;
     width?: CSSProperties['width'];
     textAlign?: CSSProperties['textAlign'];

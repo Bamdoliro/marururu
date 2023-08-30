@@ -22,6 +22,7 @@ export const ROUTES = {
     FIRST_RESULT: '/result/first',
     FINAL_RESULT: '/result/final',
     APPLICATION : '/application'
+    SCORE_SIMULATION: '/score-simulation',
 } as const;
 
 export const TOKEN = {

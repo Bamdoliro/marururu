@@ -6,6 +6,7 @@
             "dependsOn": ["^build"],
             "env": [
                 "NEXT_PUBLIC_BASE_URL",
+                "NEXT_PUBLIC_GOOGLE_ANALYTICS",
                 "NODE_ENV"
             ],
             "outputs": [".next/**", "!.next/cache/**", "storybook-static/**"]

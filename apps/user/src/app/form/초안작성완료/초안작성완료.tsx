@@ -9,7 +9,7 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
-import { useCTAButton, useCheckFilledForm, useSubmitDraftFormAction } from './초안작성완료.hooks';
+import { useCheckFilledForm, useCTAButton, useSubmitDraftFormAction } from './초안작성완료.hooks';
 
 const 초안작성완료 = () => {
     const overlay = useOverlay();
@@ -99,7 +99,7 @@ const 초안작성완료 = () => {
                     <CheckFormComplete
                         onClick={() => setFormStep('보호자정보')}
                         formStep="보호자 정보"
-                        maxCompleteOfNumber={5}
+                        maxCompleteOfNumber={6}
                         completeOfNumber={parentFieldCount}
                     />
                     <CheckFormComplete

@@ -1,16 +1,18 @@
 'use client';
 
+import { ROUTES } from '@/constants/common/constant';
 import { AppLayout } from '@/layouts';
 import { IconArrowRight } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 
 const LoginPage = () => {
-    const { handleGoSingUpPageButtonClick, handleGoMainPageButtonClick } = useCTAButton();
+    const { handleGoMainPageButtonClick } = useCTAButton();
     const { loginUserData, handleLoginUserDataChange } = useInput();
     const { handleLoginButtonClick } = useLoginAction(loginUserData);
 
@@ -18,7 +20,12 @@ const LoginPage = () => {
         <AppLayout backgroundColor={color.gray100}>
             <StyledLoginPage>
                 <LoginBox>
-                    <LoginBoxWrap>
+                    <Column
+                        gap={56}
+                        alignItems="center"
+                        justifyContent="center"
+                        width={446}
+                        height="100%">
                         <Image
                             src="/svg/logo.svg"
                             onClick={handleGoMainPageButtonClick}
@@ -27,12 +34,12 @@ const LoginPage = () => {
                             height={70}
                             alt="logo"
                         />
-                        <Column gap="36px" width="100%">
-                            <Column gap="24px">
+                        <Column gap={36} width="100%">
+                            <Column gap={24}>
                                 <Input
-                                    label="이메일"
+                                    label="전화번호"
                                     width="100%"
-                                    name="email"
+                                    name="phoneNumber"
                                     onChange={handleLoginUserDataChange}
                                 />
                                 <PreviewInput
@@ -42,23 +49,21 @@ const LoginPage = () => {
                                     onChange={handleLoginUserDataChange}
                                 />
                             </Column>
-                            <Column gap="16px" alignItems="flex-end">
+                            <Column gap={16} alignItems="flex-end">
                                 <Button width="100%" onClick={handleLoginButtonClick}>
                                     로그인
                                 </Button>
-                                <GoFindPasswordPageButton>
+                                <FindPasswordLink href={ROUTES.MAIN}>
                                     비밀번호 찾기
                                     <IconArrowRight color={color.gray500} width={16} height={16} />
-                                </GoFindPasswordPageButton>
+                                </FindPasswordLink>
                             </Column>
                         </Column>
-                        <GoSignUpPageButtonBox>
+                        <SignUpLinkBox>
                             회원이 아니신가요?
-                            <GoSignUpPageButton onClick={handleGoSingUpPageButtonClick}>
-                                회원가입
-                            </GoSignUpPageButton>
-                        </GoSignUpPageButtonBox>
-                    </LoginBoxWrap>
+                            <SignUpLink href={ROUTES.SIGNUP}>회원가입</SignUpLink>
+                        </SignUpLinkBox>
+                    </Column>
                 </LoginBox>
             </StyledLoginPage>
         </AppLayout>
@@ -68,7 +73,7 @@ const LoginPage = () => {
 export default LoginPage;
 
 const StyledLoginPage = styled.div`
-    ${flex({ justifyContent: 'center' })}
+    ${flex({ justifyContent: 'center', alignItems: 'center' })};
     width: 100%;
     height: 100vh;
 `;
@@ -81,16 +86,9 @@ const LoginBox = styled.div`
     background-color: ${color.white};
 `;
 
-const LoginBoxWrap = styled.div`
-    ${flex({ flexDirection: 'column', alignItems: 'center' })}
-    gap: 56px;
-    width: 446px;
-`;
-
-const GoFindPasswordPageButton = styled.a`
+const FindPasswordLink = styled(Link)`
     ${font.p2}
     color: ${color.gray500};
-    cursor: pointer;
     ${flex({ alignItems: 'center' })}
     &:hover {
         text-decoration-line: underline;
@@ -98,17 +96,16 @@ const GoFindPasswordPageButton = styled.a`
     }
 `;
 
-const GoSignUpPageButtonBox = styled.div`
+const SignUpLinkBox = styled.div`
     ${font.p2}
     color: ${color.gray500};
     ${flex({ alignItems: 'center' })}
     gap: 8px;
 `;
 
-const GoSignUpPageButton = styled.a`
+const SignUpLink = styled(Link)`
     ${font.p2}
     color: ${color.gray500};
     text-decoration-line: underline;
     text-decoration-color: ${color.gray500};
-    cursor: pointer;
 `;
