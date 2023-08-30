@@ -1,7 +1,6 @@
 'use client';
 
-import ApplicationInfo from '@/components/application/applicationInfo/ApplicationInfo';
-import { ROUTES } from '@/constants/common/constant';
+import ApplicationItem from '@/components/application/ApplicationItem/ApplicationItem';
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Text, UnderLineButton } from '@maru/ui';
@@ -12,12 +11,10 @@ import styled from 'styled-components';
 
 const NAVIGATION_DATA = [
     {
-        name: '학생, 학부모',
-        route: ROUTES.APPLICATION_STUDENT
+        name: '학생, 학부모'
     },
     {
-        name: '교사',
-        route: ROUTES.APPLICATION_TEACHER
+        name: '교사'
     }
 ]
 
@@ -52,11 +49,13 @@ const INFORMATION_DATA = [
     },
 ]
 
+type ApplicationStep = "학생, 학부모" | "교사";
+
 const ApplicationPage = () => {
     const router = useRouter();
     const pathName = usePathname();
-    const [ studentRoute, teacherRoute ] = useState();
-
+    const [fieldStep, setFieldStep] = useState<ApplicationStep>("학생, 학부모")
+    
     return (
         <AppLayout header footer>
             <StyledApplicationPage>
@@ -66,26 +65,26 @@ const ApplicationPage = () => {
                     입학전형 설명회 참가 신청
                 </Text>
                 <NavigationBar>
-                {NAVIGATION_DATA.map(({ route, name }, index) => (
+                {NAVIGATION_DATA.map(({ name }, index) => (
                     <UnderLineButton
                         key={`navigation ${index}`}
-                        active={route === pathName}
-                        onClick={() => router.push(route)}>
+                        active={name === fieldStep}
+                        onClick={() => setFieldStep(name)}>
                         {name}
                     </UnderLineButton>
                 ))}
                 </NavigationBar>
-                <ApplicationInfoBox>
+                <ApplicationItemBox>
                     {INFORMATION_DATA.map(( {date, place, deadline, applicable, statusText}, index) => (
-                                <ApplicationInfo
-                                    date={date}
-                                    place={place}
-                                    deadline={deadline}
-                                    applicable={applicable}
-                                    statusText={statusText}
-                                />
+                        <ApplicationItem
+                            date={date}
+                            place={place}
+                            deadline={deadline}
+                            applicable={applicable}
+                            statusText={statusText}
+                        />
                     ))}
-                </ApplicationInfoBox>
+                </ApplicationItemBox>
             </StyledApplicationPage>
         </AppLayout>
     )
@@ -108,7 +107,7 @@ const NavigationBar = styled.div`
     background-color: ${color.white};
 `
 
-const ApplicationInfoBox = styled.div`
+const ApplicationItemBox = styled.div`
     width: 100%;
     ${flex({ alignItems: 'center' })}
     align-content: flex-start;
