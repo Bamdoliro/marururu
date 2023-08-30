@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import { useCTAButton } from './성적입력.hooks';
 
 const 성적입력 = () => {
-    const [fieldStep, setFieldStep] = useState('성적 입력');
+    const [scoreStep, setScoreStep] = useState('성적 입력');
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     return (
@@ -39,14 +39,14 @@ const 성적입력 = () => {
                 {FIELD_DATA.map((item, index) => (
                     <UnderlineButton
                         key={`field-data ${index}`}
-                        active={item === fieldStep}
-                        onClick={() => setFieldStep(item)}>
+                        active={item === scoreStep}
+                        onClick={() => setScoreStep(item)}>
                         {item}
                     </UnderlineButton>
                 ))}
             </NavigationBar>
             <SwitchCase
-                value={fieldStep}
+                value={scoreStep}
                 caseBy={{
                     성적입력: <GradeCalculator />,
                     출결상황: <AttendanceCalculator />,
