@@ -16,7 +16,7 @@ const VolunteerCalculator = () => {
     return (
         <StyledVolunteerCalculator>
             <Text fontType="p3" color={color.red}>
-                *2023.09.30까지의 봉사시간을 기재해주세요. 졸업생은 졸업일 기준으로 기재해주세요.
+                *2023.09.27까지의 봉사시간을 기재해주세요. 졸업생은 졸업일 기준으로 기재해주세요.
             </Text>
             <Column>
                 <Row>
@@ -43,7 +43,7 @@ const VolunteerCalculator = () => {
                 </Row>
                 <Row>
                     <Td width={162} height={56} option="SECONDARY">
-                        1학년
+                        2학년
                     </Td>
                     <Td width={654} height={56}>
                         <NumberInput
@@ -57,7 +57,7 @@ const VolunteerCalculator = () => {
                 </Row>
                 <Row>
                     <Td borderBottomLeftRadius={12} width={162} height={56} option="SECONDARY">
-                        1학년
+                        3학년
                     </Td>
                     <Td borderBottomRightRadius={12} width={654} height={56}>
                         <NumberInput

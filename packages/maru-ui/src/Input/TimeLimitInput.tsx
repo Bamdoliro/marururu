@@ -3,6 +3,7 @@ import { color, font } from '@maru/theme';
 import { flex, formatTime } from '@maru/utils';
 import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
+import Row from '../Flex/Row';
 import Text from '../Text/Text';
 import ConditionalMessage from './ConditionalMessage';
 import { InputProps } from './Input.type';
@@ -10,10 +11,13 @@ import { InputProps } from './Input.type';
 interface TimeLimitInputProps extends InputProps {
     timerTime: number;
     setTimerTime: Dispatch<SetStateAction<number>>;
+    buttonText: string;
+    enabled?: boolean;
+    onClick: () => void;
 }
 
 const TimeLimitInput = ({
-    width = '320px',
+    width = 320,
     name,
     label,
     message,
@@ -23,6 +27,9 @@ const TimeLimitInput = ({
     setTimerTime,
     isError = false,
     errorMessage,
+    onClick,
+    buttonText,
+    enabled = false,
 }: TimeLimitInputProps) => {
     useInterval(() => {
         setTimerTime((prev) => prev - 1);
@@ -34,14 +41,17 @@ const TimeLimitInput = ({
     return (
         <div style={{ width }}>
             {label && <Label>{label}</Label>}
-            <div style={{ position: 'relative' }}>
+            <Row gap={8} alignItems="center" style={{ position: 'relative' }}>
                 <StyledTimeLimitInput $isError={isError}>
                     <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
                     <Text fontType="p3" color={color.red}>
                         {formatTime(timerTime)}
                     </Text>
                 </StyledTimeLimitInput>
-            </div>
+                <Button onClick={onClick} enabled={enabled}>
+                    {buttonText}
+                </Button>
+            </Row>
             <ConditionalMessage isError={isError} errorMessage={errorMessage} message={message} />
         </div>
     );
@@ -53,6 +63,7 @@ const StyledTimeLimitInput = styled.div<{ $isError: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     gap: 10px;
     height: 48px;
+    width: 100%;
     padding: 10px 16px;
     background-color: ${color.white};
     border: 1px solid ${color.gray400};
@@ -87,6 +98,23 @@ const Input = styled.input`
 
     &::placeholder {
         color: ${color.gray500};
+    }
+`;
+
+export const Button = styled.button<{ enabled: boolean }>`
+    ${font.btn2};
+    color: ${color.white};
+    background-color: ${(props) => (props.enabled ? color.gray400 : color.maruDefault)};
+    pointer-events: ${(props) => props.enabled && 'none'};
+    ${flex({ alignItems: 'center', justifyContent: 'center' })}
+    border-radius: 6px;
+    height: 48px;
+    padding: 10px 20px;
+    flex-shrink: 0;
+
+    &:hover {
+        background-color: ${(props) => (props.enabled ? color.gray400 : color.maruHoverd)};
+        cursor: ${(props) => (props.enabled ? 'default' : 'pointer')};
     }
 `;
 

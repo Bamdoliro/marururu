@@ -1,5 +1,6 @@
 import Provider from '@/components/Provider';
 import QueryClientProvider from '@/services/QueryClientProvider';
+import Script from 'next/script';
 import { ReactNode } from 'react';
 
 export const metadata = {
@@ -11,9 +12,23 @@ interface Props {
     children: ReactNode;
 }
 
-const RootLayout = ({ children }: Props) => {
+const Layout = ({ children }: Props) => {
     return (
-        <html lang="en">
+        <html lang="ko">
+            <head>
+                <Script
+                    async
+                    src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+                />
+                <Script>
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+                    `}
+                </Script>
+            </head>
             <body>
                 <QueryClientProvider>
                     <Provider>{children}</Provider>
@@ -23,4 +38,4 @@ const RootLayout = ({ children }: Props) => {
     );
 };
 
-export default RootLayout;
+export default Layout;

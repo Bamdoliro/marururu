@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { InputProps } from './Input.type';
 
 const SearchInput = ({
-    width = '320px',
+    width = 320,
     placeholder,
     type = 'text',
     name,

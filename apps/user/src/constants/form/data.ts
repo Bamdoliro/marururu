@@ -78,3 +78,5 @@ export const SUBJECT_LIST: Subject[] = [
     achievementLevel22: 'A',
     achievementLevel31: 'A',
 }));
+
+export const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;

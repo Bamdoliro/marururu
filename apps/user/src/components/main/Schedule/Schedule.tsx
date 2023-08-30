@@ -46,7 +46,7 @@ export default Schedule;
 
 const StyledSchedule = styled.div`
     ${flex({ flexDirection: 'column' })}
-    gap: 10px;
+    gap: 24px;
     width: 492px;
     height: 100%;
     padding: 40px 32px;

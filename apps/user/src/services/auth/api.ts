@@ -1,19 +1,24 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
+import { PatchVerificationReq, PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 
-export const postLoginUser = async ({ email, password }: PostLoginAuthReq) => {
-    const { data } = await maru.post('/auth', { email, password });
+export const postLoginUser = async ({ phoneNumber, password }: PostLoginAuthReq) => {
+    const { data } = await maru.post('/auth', { phoneNumber, password });
     return data;
 };
 
-export const postJoinUser = async ({ email, name, code, password }: PostJoinAuthReq) => {
-    const { data } = await maru.post('/user', { email, name, code, password });
+export const postJoinUser = async ({ phoneNumber, name, password }: PostJoinAuthReq) => {
+    const { data } = await maru.post('/user', { phoneNumber, name, password });
     return data;
 };
 
-export const postRequestEmail = async (email: string) => {
-    const { data } = await maru.post(`/user/verification?email=${email}`);
+export const postRequestVerification = async (phoneNumber: string) => {
+    const { data } = await maru.post('/user/verification', { phoneNumber });
+    return data;
+};
+
+export const patchVerification = async ({ code, phoneNumber }: PatchVerificationReq) => {
+    const { data } = await maru.patch('/user/verification', { code, phoneNumber });
     return data;
 };
 

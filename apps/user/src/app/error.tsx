@@ -13,7 +13,7 @@ const Error = () => {
 
     return (
         <AppLayout header footer>
-            <StyledError>
+            <StyledErrorPage>
                 <Image src="/svg/error.svg" alt="error" width={364} height={155} />
                 <Column gap={24}>
                     <Text fontType="H1" color={color.gray900}>
@@ -34,18 +34,18 @@ const Error = () => {
                         option="SECONDARY"
                         size="LARGE"
                         width="fit-content"
-                        onClick={() => router.back()}>
-                        이전 페이지로 돌아가기
+                        onClick={() => window.location.reload()}>
+                        새로고침하기
                     </Button>
                 </Row>
-            </StyledError>
+            </StyledErrorPage>
         </AppLayout>
     );
 };
 
 export default Error;
 
-const StyledError = styled.div`
+const StyledErrorPage = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center' })};
     gap: 56px;
     margin: 82px auto 0;

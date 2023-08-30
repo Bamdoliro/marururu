@@ -1,6 +1,6 @@
 import { IconAnswer, IconArrowBottom, IconArrowTop, IconFaq } from '@maru/icon';
-import { color } from '@maru/theme';
-import { Row, Text } from '@maru/ui';
+import { color, font } from '@maru/theme';
+import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -16,15 +16,13 @@ const FaqItem = ({ content, title }: Props) => {
     return (
         <StyledFaqItem>
             <QuestionBox onClick={() => setIsOpen((prev) => !prev)}>
-                <Row gap="12px" alignItems="center">
+                <Row alignItems="center">
                     <IconFaq
                         color={isOpen ? color.maruDefault : color.gray400}
                         width={24}
                         height={24}
                     />
-                    <Text fontType="p1" color={color.gray900}>
-                        {title}
-                    </Text>
+                    <Question>{title}</Question>
                 </Row>
                 {isOpen ? (
                     <IconArrowTop color={color.gray600} width={24} height={24} />
@@ -34,11 +32,9 @@ const FaqItem = ({ content, title }: Props) => {
             </QuestionBox>
             {isOpen && (
                 <AnswerBox>
-                    <Row gap="12px" alignItems="center">
+                    <Row alignItems="flex-start">
                         <IconAnswer color={color.gray400} width={24} height={24} />
-                        <Text fontType="p2" color={color.gray900}>
-                            {content}
-                        </Text>
+                        <Answer>{content}</Answer>
                     </Row>
                 </AnswerBox>
             )}
@@ -54,16 +50,31 @@ const StyledFaqItem = styled.div`
 `;
 
 const QuestionBox = styled.div`
-    height: 77px;
+    height: fit-content;
+    min-height: 77px;
+    padding: 0px 24px;
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     background-color: ${color.white};
-    padding: 24px;
     cursor: pointer;
 `;
 
 const AnswerBox = styled.div`
-    height: 77px;
+    height: fit-content;
+    min-height: 77px;
+    padding: 0px 24px;
     ${flex({ alignItems: 'center' })}
     background-color: ${color.white};
-    padding: 24px;
+`;
+
+const Question = styled.p`
+    ${font.p1};
+    color: ${color.gray900};
+    margin-left: 12px;
+`;
+
+const Answer = styled.p`
+    ${font.p2};
+    color: ${color.gray900};
+    width: calc(100% - 24px);
+    margin-left: 12px;
 `;
