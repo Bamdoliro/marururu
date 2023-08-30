@@ -1,11 +1,18 @@
 import { Storage } from '@/apis/storage/storage';
 import { ROUTES, TOKEN } from '@/constants/common/constant';
 import { useApiError } from '@/hooks';
-import { PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
+import { PatchVerificationReq, PostJoinAuthReq, PostLoginAuthReq } from '@/types/auth/remote';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
-import { deleteLogoutUser, postJoinUser, postLoginUser, postVerification } from './api';
+import { Dispatch, SetStateAction } from 'react';
+import {
+    deleteLogoutUser,
+    patchVerification,
+    postJoinUser,
+    postLoginUser,
+    postRequestVerification,
+} from './api';
 
 export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
     const router = useRouter();
@@ -25,12 +32,12 @@ export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq
     return { loginUserMutate, ...restMutation };
 };
 
-export const useJoinUserMutation = ({ phoneNumber, name, code, password }: PostJoinAuthReq) => {
+export const useJoinUserMutation = ({ phoneNumber, name, password }: PostJoinAuthReq) => {
     const router = useRouter();
     const { handleError } = useApiError();
 
     const { mutate: joinUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => postJoinUser({ phoneNumber, name, code, password }),
+        mutationFn: () => postJoinUser({ phoneNumber, name, password }),
         onSuccess: () => {
             alert('회원가입 성공');
             router.push(ROUTES.LOGIN);
@@ -41,15 +48,32 @@ export const useJoinUserMutation = ({ phoneNumber, name, code, password }: PostJ
     return { joinUserMutate, ...restMutation };
 };
 
-export const useVerificationMutation = (phoneNumber: string) => {
+export const useRequestVerificationMutation = (phoneNumber: string) => {
     const { handleError } = useApiError();
 
     const { mutate: requestVerificationMutate, ...restMutation } = useMutation({
-        mutationFn: () => postVerification(phoneNumber),
+        mutationFn: () => postRequestVerification(phoneNumber),
         onError: handleError,
     });
 
     return { requestVerificationMutate, ...restMutation };
+};
+
+export const useVerificationMutation = (
+    setIsVerificationDisabled: Dispatch<SetStateAction<boolean>>,
+) => {
+    const { handleError } = useApiError();
+
+    const { mutate: verificationMutate, ...restMutation } = useMutation({
+        mutationFn: ({ code, phoneNumber }: PatchVerificationReq) =>
+            patchVerification({ code, phoneNumber }),
+        onSuccess: () => {
+            setIsVerificationDisabled(true);
+        },
+        onError: handleError,
+    });
+
+    return { verificationMutate, ...restMutation };
 };
 
 export const useLogoutUserMutation = () => {

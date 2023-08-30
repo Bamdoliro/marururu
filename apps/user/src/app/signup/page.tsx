@@ -14,8 +14,13 @@ const SignUpPage = () => {
     const [termsAgree, setTermsAgree] = useState(false);
     const { startTimer, timerTime, setTimerTime } = useTimer();
     const { joinUserData, handleJoinUserDataChange } = useInput();
-    const { handleVerificationButtonClick, isButtonDisabled, isVerification } =
-        useVerificationAction(joinUserData.phoneNumber);
+    const {
+        handleRequestVerificationButtonClick,
+        handleVerificationButtonClick,
+        isRequestVerificationDisabled,
+        isVerificationDisabled,
+        isVerification,
+    } = useVerificationAction(joinUserData);
     const { handleJoinButtonClick } = useJoinAction(joinUserData, termsAgree);
 
     return (
@@ -45,10 +50,10 @@ const SignUpPage = () => {
                                 label="전화번호 인증"
                                 buttonText={isVerification ? '재전송' : '인증'}
                                 onClick={() => {
-                                    handleVerificationButtonClick();
+                                    handleRequestVerificationButtonClick();
                                     startTimer();
                                 }}
-                                enabled={isButtonDisabled}
+                                enabled={isRequestVerificationDisabled}
                                 type="phoneNumber"
                                 placeholder="- 없이 입력해주세요"
                                 width="100%"
@@ -63,9 +68,12 @@ const SignUpPage = () => {
                                     maxLength={6}
                                     name="code"
                                     onChange={handleJoinUserDataChange}
-                                    timerTime={timerTime}
+                                    onClick={handleVerificationButtonClick}
+                                    timerTime={isVerificationDisabled ? 0 : timerTime}
                                     setTimerTime={setTimerTime}
                                     isError={joinUserData.code.length < 6}
+                                    buttonText="인증번호 확인"
+                                    enabled={isVerificationDisabled}
                                     errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
                                 />
                             )}
