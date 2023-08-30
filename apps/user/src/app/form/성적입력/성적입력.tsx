@@ -38,7 +38,7 @@ const 성적입력 = () => {
             <NavigationBar>
                 {FIELD_DATA.map((item, index) => (
                     <UnderlineButton
-                        key={`field-data ${index}`}
+                        key={`score-step ${index}`}
                         active={item === scoreStep}
                         onClick={() => setScoreStep(item)}>
                         {item}
