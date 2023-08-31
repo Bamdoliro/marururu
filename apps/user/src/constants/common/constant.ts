@@ -21,7 +21,7 @@ export const ROUTES = {
     SIGNUP: '/signup',
     FIRST_RESULT: '/result/first',
     FINAL_RESULT: '/result/final',
-    APPLICATION : '/application'
+    APPLICATION : '/application',
     SCORE_SIMULATION: '/score-simulation',
 } as const;
 
