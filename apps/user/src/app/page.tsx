@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const MainPage = () => {
     return (
-        <AppLayout header footer style={{ padding: '0px 100px', marginTop: 52 }}>
+        <AppLayout header footer>
             <StyledMainPage>
                 <Row gap={48} width="100%" height={450} justifyContent="center">
                     <Dday />
@@ -44,6 +44,6 @@ export default MainPage;
 
 const StyledMainPage = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center' })};
-    padding-bottom: 227px;
+    padding: 52px 96px 240px;
     gap: 80px;
 `;

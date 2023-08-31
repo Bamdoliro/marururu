@@ -109,7 +109,7 @@ export default SignUpPage;
 const StyledSignUpPage = styled.div`
     ${flex({ justifyContent: 'space-between', alignItems: 'center' })}
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: ${color.gray100};
 `;
 
@@ -126,5 +126,6 @@ const SignUpBox = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 36px;
     width: 446px;
+    height: fit-content;
     margin: 120px 0;
 `;

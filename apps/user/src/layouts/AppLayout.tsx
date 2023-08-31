@@ -9,20 +9,18 @@ interface Props {
     footer?: boolean;
     children: ReactNode;
     backgroundColor?: CSSProperties['backgroundColor'];
-    style?: CSSProperties;
 }
 
 const AppLayout = ({
     children,
     backgroundColor = color.white,
-    style,
     header = false,
     footer = false,
 }: Props) => {
     return (
         <>
             {header && <Header />}
-            <StyledAppLayout style={{ backgroundColor, ...style }}>{children}</StyledAppLayout>
+            <StyledAppLayout style={{ backgroundColor }}>{children}</StyledAppLayout>
             {footer && <Footer />}
         </>
     );
