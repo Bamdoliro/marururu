@@ -1,21 +1,32 @@
 import { color, font } from '@maru/theme';
+import { useRef } from 'react';
 import { css, styled } from 'styled-components';
 import { InputProps } from './Input.type';
 
 const NumberInput = ({
     name,
-    width = '80px',
+    width = 80,
     textAlign = 'center',
     onChange,
     placeholder,
     value = 0,
     isError = false,
 }: InputProps) => {
+    const numberInputRef = useRef<HTMLInputElement>(null);
+
+    const handleSelectAllClick = () => {
+        if (numberInputRef.current) {
+            numberInputRef.current.select();
+        }
+    };
+
     return (
         <StyledNumberInput
+            ref={numberInputRef}
             name={name}
             style={{ width, textAlign }}
             onChange={onChange}
+            onClick={handleSelectAllClick}
             type="number"
             value={value}
             placeholder={placeholder}

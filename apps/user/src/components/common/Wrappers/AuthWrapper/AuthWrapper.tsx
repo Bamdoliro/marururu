@@ -50,7 +50,10 @@ const AuthWrapper = ({ children }: Props) => {
             if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 redirect(ROUTES.MAIN);
             }
-            if (dayjs().isBefore(제출_시작_날짜) || dayjs().isAfter(제출_마감_날짜)) {
+            if (
+                dayjs().isBefore(제출_시작_날짜) ||
+                (dayjs().isAfter(제출_마감_날짜) && process.env.NODE_ENV !== 'development')
+            ) {
                 if (pathName === ROUTES.FORM) {
                     overlay.open(({ isOpen, close }) => (
                         <Confirm

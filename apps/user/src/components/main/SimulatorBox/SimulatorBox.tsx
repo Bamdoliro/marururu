@@ -10,7 +10,7 @@ const SimulatorBox = () => {
     const router = useRouter();
 
     return (
-        <StyledSimulatorBox onClick={() => router.push(ROUTES.GRADE_SIMULATION)}>
+        <StyledSimulatorBox onClick={() => router.push(ROUTES.SCORE_SIMULATION)}>
             <Row gap={8} alignItems="flex-start" justifyContent="space-between">
                 <Text fontType="H3" color={color.gray900}>
                     성적 모의 계산

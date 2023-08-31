@@ -5,8 +5,11 @@ export interface PostLoginAuthReq {
 
 export interface PostJoinAuthReq {
     phoneNumber: string;
-    code: string;
     name: string;
     password: string;
-    password_confirm?: string;
+}
+
+export interface PatchVerificationReq {
+    code: string;
+    phoneNumber: string;
 }

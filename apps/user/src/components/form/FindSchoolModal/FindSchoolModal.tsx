@@ -1,5 +1,6 @@
 import { Loader } from '@/components/common';
 import { useSetFormStore } from '@/store';
+import { School } from '@/types/form/client';
 import { useDebounceInput } from '@maru/hooks';
 import { Column, Modal, SearchInput } from '@maru/ui';
 import { Suspense, useState } from 'react';
@@ -12,28 +13,33 @@ interface Props {
 
 const FindSchoolModal = ({ isOpen, onClose }: Props) => {
     const setForm = useSetFormStore();
-    const [selectedSchool, setSelectedSchool] = useState({ name: '', location: '', code: '' });
+    const [school, setSchool] = useState<School>({
+        name: '',
+        location: '',
+        code: '',
+    });
     const {
-        value: schoolSearchQuery,
-        onChange: handleSchoolSearchQueryDataChange,
-        debouncedValue: debouncedSchoolSearchQuery,
+        value: schoolName,
+        onChange: handleSchoolNameDataChange,
+        debouncedValue: debouncedSchoolName,
     } = useDebounceInput({ initialValue: '' });
 
     const handleConfirmModalButtonClick = () => {
-        const { name, location } = selectedSchool;
+        const { name, location, code } = school;
         setForm((prev) => ({
             ...prev,
             education: {
                 ...prev.education,
                 schoolName: name,
                 schoolLocation: location,
+                schoolCode: code,
             },
         }));
         onClose();
     };
 
     const handleCloseModalButtonClick = () => {
-        setSelectedSchool({ name: '', location: '', code: '' });
+        setSchool({ name: '', location: '', code: '' });
         onClose();
     };
 
@@ -48,16 +54,16 @@ const FindSchoolModal = ({ isOpen, onClose }: Props) => {
             onConfirm={handleConfirmModalButtonClick}>
             <Column gap={16}>
                 <SearchInput
-                    value={schoolSearchQuery}
-                    onChange={handleSchoolSearchQueryDataChange}
+                    value={schoolName}
+                    onChange={handleSchoolNameDataChange}
                     placeholder="학교 이름을 입력해주세요."
                 />
             </Column>
             <Suspense fallback={<Loader />}>
                 <SchoolList
-                    selectedSchool={selectedSchool}
-                    setSelectedSchool={setSelectedSchool}
-                    debouncedSchoolSearchQuery={debouncedSchoolSearchQuery}
+                    school={school}
+                    setSchool={setSchool}
+                    debouncedSchoolSearchQuery={debouncedSchoolName}
                 />
             </Suspense>
         </Modal>

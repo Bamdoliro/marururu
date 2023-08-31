@@ -7,7 +7,7 @@ import ConditionalMessage from './ConditionalMessage';
 import { InputProps } from './Input.type';
 
 const PreviewInput = ({
-    width = '320px',
+    width = 320,
     placeholder,
     name,
     label,

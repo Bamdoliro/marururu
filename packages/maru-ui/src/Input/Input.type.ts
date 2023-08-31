@@ -1,7 +1,7 @@
 import { CSSProperties, InputHTMLAttributes } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    width?: string;
+    width?: CSSProperties['width'];
     label?: string;
     errorMessage?: string;
     message?: string;

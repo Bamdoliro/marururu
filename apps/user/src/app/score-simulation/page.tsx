@@ -16,12 +16,12 @@ import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const GradeSimulation = () => {
+const ScoreSimulation = () => {
     const [fieldStep, setFieldStep] = useState('성적 입력');
 
     return (
         <AppLayout header footer>
-            <GradeSimulationPage>
+            <ScoreSimulationPage>
                 <Column>
                     <Text fontType="H1" color={color.gray900}>
                         성적 모의 계산
@@ -61,14 +61,14 @@ const GradeSimulation = () => {
                         defaultComponent={<GradeCalculator />}
                     />
                 </Column>
-            </GradeSimulationPage>
+            </ScoreSimulationPage>
         </AppLayout>
     );
 };
 
-export default GradeSimulation;
+export default ScoreSimulation;
 
-const GradeSimulationPage = styled.div`
+const ScoreSimulationPage = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 48px;
     width: 816px;
