@@ -1,3 +1,5 @@
+'use client';
+
 import SideBar from '@/components/common/SideBar/SideBar';
 import { flex } from '@maru/utils';
 import { ReactNode } from 'react';

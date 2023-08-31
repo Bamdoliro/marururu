@@ -9,8 +9,8 @@ import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 
 const LoginPage = () => {
     const { handleGoMainPageButtonClick } = useCTAButton();
-    const { loginUserData, handleLoginUserDataChange } = useInput();
-    const { handleLoginButtonClick } = useLoginAction(loginUserData);
+    const { loginAdminData, handleLoginAdminDataChange } = useInput();
+    const { handleLoginButtonClick } = useLoginAction(loginAdminData);
 
     return (
         <StyledLoginPage>
@@ -30,13 +30,13 @@ const LoginPage = () => {
                                 label="전화번호"
                                 width="100%"
                                 name="phoneNumber"
-                                onChange={handleLoginUserDataChange}
+                                onChange={handleLoginAdminDataChange}
                             />
                             <PreviewInput
                                 label="비밀번호"
                                 width="100%"
                                 name="password"
-                                onChange={handleLoginUserDataChange}
+                                onChange={handleLoginAdminDataChange}
                             />
                         </Column>
                         <Column gap="16px" alignItems="flex-end">

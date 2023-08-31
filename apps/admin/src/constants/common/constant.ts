@@ -1,6 +1,7 @@
 export const KEY = {
     NOTICE_LIST: 'useNoticeList',
     FORM_LIST: 'useFormList',
+    ADMIN: 'useAdmin',
 };
 
 export const ROUTES = {

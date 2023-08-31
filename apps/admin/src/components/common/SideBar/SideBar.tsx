@@ -1,6 +1,8 @@
+'use client';
+
 import { ROUTES } from '@/constants/common/constant';
-import useUser from '@/hooks/useUser';
-import { useLogoutUserMutation } from '@/services/auth/mutations';
+import useAdmin from '@/hooks/useAdmin';
+import { useLogoutAdminMutation } from '@/services/auth/mutations';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -29,11 +31,11 @@ const NAVIGATION_DATA = [
 
 const SideBar = () => {
     const pathName = usePathname();
-    const { isLoggedIn } = useUser();
-    const { logoutUserMutate } = useLogoutUserMutation();
+    const { isLoggedIn } = useAdmin();
+    const { logoutAdminMutate } = useLogoutAdminMutation();
 
-    const handleLogoutUser = () => {
-        logoutUserMutate();
+    const handleLogoutAdmin = () => {
+        logoutAdminMutate();
     };
 
     return (
@@ -63,7 +65,7 @@ const SideBar = () => {
                 ))}
             </SideNavigationBar>
             {isLoggedIn ? (
-                <LogoutButton onClick={handleLogoutUser}>로그아웃</LogoutButton>
+                <LogoutButton onClick={handleLogoutAdmin}>로그아웃</LogoutButton>
             ) : (
                 <LoginLink href="/login">로그인</LoginLink>
             )}

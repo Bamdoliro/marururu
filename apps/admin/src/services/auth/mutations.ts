@@ -5,14 +5,14 @@ import { PostLoginAuthReq } from '@/types/auth/remote';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
-import { deleteLogoutUser, postLoginUser } from './api';
+import { deleteLogoutAdmin, postLoginAdmin } from './api';
 
-export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
+export const useLoginAdminMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
     const router = useRouter();
     const { handleError } = useApiError();
 
-    const { mutate: loginUserMutate, ...restMutation } = useMutation({
-        mutationFn: () => postLoginUser({ phoneNumber, password }),
+    const { mutate: loginAdminMutate, ...restMutation } = useMutation({
+        mutationFn: () => postLoginAdmin({ phoneNumber, password }),
         onSuccess: (res: AxiosResponse) => {
             const { accessToken, refreshToken } = res.data;
             Storage.setItem(TOKEN.ACCESS, accessToken);
@@ -22,18 +22,17 @@ export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq
         onError: handleError,
     });
 
-    return { loginUserMutate, ...restMutation };
+    return { loginAdminMutate, ...restMutation };
 };
 
-export const useLogoutUserMutation = () => {
-    const { mutate: logoutUserMutate, ...restMutation } = useMutation({
-        mutationFn: deleteLogoutUser,
+export const useLogoutAdminMutation = () => {
+    const { mutate: logoutAdminMutate, ...restMutation } = useMutation({
+        mutationFn: deleteLogoutAdmin,
         onSuccess: () => {
             localStorage.clear();
             window.location.href = ROUTES.MAIN;
         },
         onError: localStorage.clear,
     });
-
-    return { logoutUserMutate, ...restMutation };
+    return { logoutAdminMutate, ...restMutation };
 };

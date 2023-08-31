@@ -1,8 +1,8 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import { GetUserRes } from '@/types/user/remote';
+import { GetAdminRes } from '@/types/admin/remote';
 
-export const getUser = async () => {
-    const { data } = await maru.get<GetUserRes>('/user', authorization());
+export const getAdmin = async () => {
+    const { data } = await maru.get<GetAdminRes>('/user', authorization());
     return data;
 };
