@@ -45,8 +45,8 @@ const StyledProgressSteps = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
     max-width: 1440px;
-    margin: 52px auto 86px;
-    padding: 0 100px;
+    margin: 0 auto;
+    padding: 52px 100px 86px;
     &::before {
         position: absolute;
         content: '';
