@@ -84,7 +84,7 @@ const Th = styled.th<{ width: CSSProperties['width'] }>`
     ${flex({ justifyContent: 'center', alignItems: 'center' })}
     width: ${(props) => props.width};
     height: 56px;
-    background-color: ${color.gray50};
+    background-color: ${color.grey50};
     border: 1px solid ${color.gray300};
 `;
 

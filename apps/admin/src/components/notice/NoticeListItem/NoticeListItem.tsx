@@ -1,6 +1,7 @@
 import TableItem from '@/components/common/TableItem/TableItem';
 import { Row, Text } from '@maru/ui';
 import { formatPostedAt } from '@maru/utils';
+import Link from 'next/link';
 
 interface Props {
     id: number;
@@ -10,19 +11,21 @@ interface Props {
 
 const NoticeListItem = ({ id, title, createdAt }: Props) => {
     return (
-        <TableItem key={id}>
-            <Row gap={48}>
-                <Text fontType="p2" width={50}>
-                    {id}
+        <Link href={`/notice/${id}`}>
+            <TableItem key={id}>
+                <Row gap={48}>
+                    <Text fontType="p2" width={50}>
+                        {id}
+                    </Text>
+                    <Text fontType="p2" width={540}>
+                        {title}
+                    </Text>
+                </Row>
+                <Text fontType="p2" width={100}>
+                    {formatPostedAt(createdAt)}
                 </Text>
-                <Text fontType="p2" width={540}>
-                    {title}
-                </Text>
-            </Row>
-            <Text fontType="p2" width={100}>
-                {formatPostedAt(createdAt)}
-            </Text>
-        </TableItem>
+            </TableItem>
+        </Link>
     );
 };
 

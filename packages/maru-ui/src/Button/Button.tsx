@@ -49,6 +49,7 @@ const StyledButton = styled.button<{
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     border-radius: 6px;
     cursor: pointer;
+    word-break: keep-all;
 
     ${(props) => props.icon && getButtonPadding[props.icon]};
     ${(props) => props && getButtonStyle[props.option]};

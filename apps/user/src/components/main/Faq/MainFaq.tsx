@@ -1,8 +1,7 @@
-import { Loader } from '@/components/common';
 import { ROUTES } from '@/constants/common/constant';
 import { IconArrowRight } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Text } from '@maru/ui';
+import { Loader, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

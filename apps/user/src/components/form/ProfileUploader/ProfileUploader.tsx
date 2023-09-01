@@ -119,7 +119,7 @@ const ImageUploadBox = styled.div<{ $isDragging: boolean }>`
     height: 300px;
     border-radius: 6px;
     border: 1px dashed ${(props) => (props.$isDragging ? color.maruDefault : color.gray400)};
-    background-color: ${color.gray50};
+    background-color: ${color.grey50};
 `;
 
 const ImagePreview = styled.img`

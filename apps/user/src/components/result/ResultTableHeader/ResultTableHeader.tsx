@@ -1,5 +1,5 @@
-import { Row, Text } from '@maru/ui';
 import { color } from '@maru/theme';
+import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
@@ -31,6 +31,6 @@ const StyledResultTableHeader = styled.div`
     width: 100%;
     height: 64px;
     padding: 0px 64px 0px 32px;
-    background-color: ${color.gray50};
+    background-color: ${color.grey50};
     border-radius: 12px;
 `;
