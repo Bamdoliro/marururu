@@ -72,7 +72,8 @@ const ScoreSimulationPage = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 48px;
     width: 816px;
-    margin: 82px auto 93px;
+    padding: 82px 0 172px;
+    margin: 0 auto;
 `;
 
 const NavigationBar = styled.div`
