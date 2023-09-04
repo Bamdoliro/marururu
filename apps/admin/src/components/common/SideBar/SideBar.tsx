@@ -8,8 +8,12 @@ import { color, font } from '../../../../../../packages/maru-theme';
 
 const NAVIGATION_DATA = [
     {
-        name: '홈',
+        name: '원서조회',
         route: ROUTES.MAIN,
+    },
+    {
+        name: '원서검토',
+        route: ROUTES.REVIEW,
     },
     {
         name: '공지사항',
