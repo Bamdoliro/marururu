@@ -15,7 +15,7 @@ const LoginPage = () => {
     return (
         <StyledLoginPage>
             <LoginBox>
-                <LoginBoxWrap>
+                <Column gap={56} alignItems="center" width={446}>
                     <Image
                         src="/svg/logo_black.svg"
                         onClick={handleGoMainPageButtonClick}
@@ -45,7 +45,7 @@ const LoginPage = () => {
                             </Button>
                         </Column>
                     </Column>
-                </LoginBoxWrap>
+                </Column>
             </LoginBox>
         </StyledLoginPage>
     );
@@ -65,10 +65,4 @@ const LoginBox = styled.div`
     width: 818px;
     height: 100%;
     background-color: ${color.white};
-`;
-
-const LoginBoxWrap = styled.div`
-    ${flex({ flexDirection: 'column', alignItems: 'center' })}
-    gap: 56px;
-    width: 446px;
 `;

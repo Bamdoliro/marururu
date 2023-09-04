@@ -12,16 +12,16 @@ if (process.env.NODE_ENV === 'development') {
     initMockAPI();
 }
 
-const Home = () => {
-    const { data: formList } = useFormListQuery();
+const MainPage = () => {
+    const { data: formListData } = useFormListQuery();
 
     return (
         <AppLayout>
-            <StyledHome>
+            <StyledMainPage>
                 <Text fontType="H1">원서 관리</Text>
                 <Column gap={36}>
                     <Row justifyContent="space-between" alignItems="center">
-                        <Text fontType="H5">{formList?.length}명</Text>
+                        <Text fontType="H5">{formListData?.length}명</Text>
                         <Row gap={8}>
                             <SearchInput placeholder="통합 검색" />
                             <Button size="SMALL">검색</Button>
@@ -29,14 +29,14 @@ const Home = () => {
                     </Row>
                     <FormList />
                 </Column>
-            </StyledHome>
+            </StyledMainPage>
         </AppLayout>
     );
 };
 
-export default Home;
+export default MainPage;
 
-const StyledHome = styled.div`
+const StyledMainPage = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 40px;
     width: 100%;

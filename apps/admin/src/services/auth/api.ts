@@ -3,7 +3,6 @@ import { authorization } from '@/apis/token';
 import { PostLoginAuthReq } from '@/types/auth/remote';
 
 export const postLoginAdmin = async ({ phoneNumber, password }: PostLoginAuthReq) => {
-    console.log(phoneNumber);
     const { data } = await maru.post('/auth', { phoneNumber, password });
     return data;
 };
