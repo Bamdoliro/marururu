@@ -4,9 +4,14 @@ import styled from 'styled-components';
 import Row from '../Flex/Row';
 import Radio from '../Radio/Radio';
 
+interface RadioGroupList {
+    value: string;
+    label: string;
+}
+
 interface Props {
     label: string;
-    list: { value?: string; label: string; checked?: boolean }[] | string[];
+    list: RadioGroupList[] | string[];
     name: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
@@ -14,41 +19,37 @@ interface Props {
 
 const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
     return (
-        <div>
+        <StyledRadioGroup>
             <Label>{label}</Label>
-            <RadioListBox>
+            <Row>
                 {list.map((item, index) => {
+                    const isString = typeof item === 'string';
+                    const radioLabel = isString ? item : item.label;
+                    const radioValue = isString ? item : item.value;
+                    const isChecked = isString ? item === value : value === item.value;
+
                     return (
-                        <label key={`radio-group ${name} ${index}`}>
-                            <Row gap={8} alignItems="center">
-                                <Radio
-                                    value={typeof item === 'string' ? item : item.value}
-                                    name={name}
-                                    checked={
-                                        typeof item !== 'string'
-                                            ? item.checked
-                                                ? item.checked
-                                                : value === item.value
-                                            : value === item
-                                    }
-                                    onChange={onChange}
-                                />
-                                <RadioLabel>
-                                    {typeof item === 'string' ? item : item.label}
-                                </RadioLabel>
-                            </Row>
-                        </label>
+                        <Row key={`radio ${name} ${index}`} gap={8} alignItems="center">
+                            <Radio
+                                value={radioValue}
+                                name={name}
+                                checked={isChecked}
+                                onChange={onChange}
+                            />
+                            <RadioLabel>{radioLabel}</RadioLabel>
+                        </Row>
                     );
                 })}
-            </RadioListBox>
-        </div>
+            </Row>
+        </StyledRadioGroup>
     );
 };
 
 export default RadioGroup;
 
-const RadioListBox = styled.div`
-    display: flex;
+export const StyledRadioGroup = styled.div`
+    width: 100%;
+    height: 100%;
 `;
 
 const Label = styled.p`
@@ -57,7 +58,7 @@ const Label = styled.p`
     margin-bottom: 12px;
 `;
 
-const RadioLabel = styled.p`
+const RadioLabel = styled.label`
     ${font.p2};
     color: ${color.gray900};
     margin-right: 40px;

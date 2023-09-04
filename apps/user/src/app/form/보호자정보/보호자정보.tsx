@@ -62,24 +62,9 @@ const 보호자정보 = () => {
                             list={[
                                 { label: '부', value: '아빠' },
                                 { label: '모', value: '엄마' },
-                                {
-                                    label: '기타',
-                                    value: '기타',
-                                    checked:
-                                        form.parent.relation !== '아빠' &&
-                                        form.parent.relation !== '엄마',
-                                },
                             ]}
                         />
                     </Row>
-                    {form.parent.relation !== '아빠' && form.parent.relation !== '엄마' && (
-                        <Input
-                            value={form.parent.relation}
-                            onChange={handle보호자정보DataChange}
-                            name="relation"
-                        />
-                    )}
-
                     <Row gap={48}>
                         <Input
                             name="detailAddress"
