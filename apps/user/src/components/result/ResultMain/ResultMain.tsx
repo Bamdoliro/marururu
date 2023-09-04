@@ -63,5 +63,5 @@ const InfoBox = styled.div`
     gap: 12px;
     width: 600px;
     padding: 24px 36px;
-    background-color: ${color.grey50};
+    background-color: ${color.gray50};
 `;

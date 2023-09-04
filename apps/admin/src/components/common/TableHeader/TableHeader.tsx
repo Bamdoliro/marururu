@@ -19,7 +19,7 @@ const StyledListHeader = styled.div`
     height: 64px;
     padding: 0px 56px 0px 32px;
     color: ${color.gray600};
-    background: ${color.grey50};
+    background: ${color.gray50};
     border-radius: 12px;
 
     user-select: none;

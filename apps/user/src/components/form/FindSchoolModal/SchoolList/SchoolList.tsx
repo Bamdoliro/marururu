@@ -53,7 +53,7 @@ const SchoolItem = styled.div<{ selected: boolean }>`
     height: 56px;
     padding: 15px 16px;
     border-radius: 6px;
-    background: ${color.grey50};
+    background: ${color.gray50};
     cursor: pointer;
 
     ${(props) =>

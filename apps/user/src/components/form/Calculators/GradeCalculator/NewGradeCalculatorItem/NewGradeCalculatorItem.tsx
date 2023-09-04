@@ -99,7 +99,7 @@ const StyledNewGradeCalculatorItem = styled.div`
 const NewSubjectInput = styled.input`
     ${font.p2}
     color: ${color.gray900};
-    background-color: ${color.grey50};
+    background-color: ${color.gray50};
     width: 74px;
     text-align: center;
     &:-webkit-input-placeholder {

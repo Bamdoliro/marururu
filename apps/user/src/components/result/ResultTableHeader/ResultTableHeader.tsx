@@ -31,6 +31,6 @@ const StyledResultTableHeader = styled.div`
     width: 100%;
     height: 64px;
     padding: 0px 64px 0px 32px;
-    background-color: ${color.grey50};
+    background-color: ${color.gray50};
     border-radius: 12px;
 `;

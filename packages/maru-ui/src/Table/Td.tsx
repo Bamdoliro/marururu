@@ -45,6 +45,6 @@ const StyledTd = styled.div<{ option: TableOptionType }>`
               `
             : css`
                   ${font.p2}
-                  background-color: ${color.grey50};
+                  background-color: ${color.gray50};
               `}
 `;
