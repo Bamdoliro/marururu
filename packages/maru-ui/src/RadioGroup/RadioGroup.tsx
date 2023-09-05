@@ -2,7 +2,6 @@ import { color, font } from '@maru/theme';
 import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 import Row from '../Flex/Row';
-import Input from '../Input/Input';
 import Radio from '../Radio/Radio';
 
 interface Radio {
@@ -17,28 +16,6 @@ interface Props {
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
-
-interface EtcInputProps {
-    name: string;
-    value: string;
-    onChange: ChangeEventHandler<HTMLInputElement>;
-}
-
-const EtcInput = ({ name, value, onChange }: EtcInputProps) => {
-    return (
-        <div style={{ position: 'relative' }}>
-            <InputBox>
-                <Input
-                    name={name}
-                    textAlign="start"
-                    value={value}
-                    onChange={onChange}
-                    width="136px"
-                />
-            </InputBox>
-        </div>
-    );
-};
 
 const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
     return (
@@ -85,10 +62,4 @@ const RadioLabel = styled.label`
     ${font.p2};
     color: ${color.gray900};
     margin-right: 40px;
-`;
-
-const InputBox = styled.div`
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
 `;
