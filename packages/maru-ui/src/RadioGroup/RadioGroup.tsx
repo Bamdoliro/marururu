@@ -1,23 +1,64 @@
+import { useBooleanState } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 import Row from '../Flex/Row';
+import Input from '../Input/Input';
 import Radio from '../Radio/Radio';
 
-interface RadioGroupList {
+interface Radio {
     value: string;
     label: string;
 }
 
 interface Props {
     label: string;
-    list: RadioGroupList[] | string[];
+    list: Radio[] | string[];
     name: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
+interface EtcInputProps {
+    name: string;
+    value: string;
+    onChange: ChangeEventHandler<HTMLInputElement>;
+}
+
+const EtcInput = ({ name, value, onChange }: EtcInputProps) => {
+    return (
+        <div style={{ position: 'relative' }}>
+            <InputBox>
+                <Input
+                    name={name}
+                    textAlign="start"
+                    value={value}
+                    onChange={onChange}
+                    width="136px"
+                />
+            </InputBox>
+        </div>
+    );
+};
+
 const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
+    const { value: isEtcClicked, setValue: setIsEtcClicked } = useBooleanState();
+
+    const hasOtherOption = list.some((item) => {
+        const isString = typeof item === 'string';
+
+        return isString ? item === '기타' : item.value === '기타';
+    });
+
+    const handleRadioDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const selectedValue = e.target.value;
+
+        if (selectedValue === '기타') {
+            setIsEtcClicked(true);
+        }
+        onChange(e);
+    };
+
     return (
         <StyledRadioGroup>
             <Label>{label}</Label>
@@ -34,12 +75,15 @@ const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
                                 value={radioValue}
                                 name={name}
                                 checked={isChecked}
-                                onChange={onChange}
+                                onChange={handleRadioDataChange}
                             />
                             <RadioLabel>{radioLabel}</RadioLabel>
                         </Row>
                     );
                 })}
+                {hasOtherOption && value === '기타' && (
+                    <EtcInput name={name} value={value} onChange={handleRadioDataChange} />
+                )}
             </Row>
         </StyledRadioGroup>
     );
@@ -62,5 +106,10 @@ const RadioLabel = styled.label`
     ${font.p2};
     color: ${color.gray900};
     margin-right: 40px;
-    height: 26px;
+`;
+
+const InputBox = styled.div`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 `;

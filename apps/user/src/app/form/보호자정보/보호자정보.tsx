@@ -62,6 +62,7 @@ const 보호자정보 = () => {
                             list={[
                                 { label: '부', value: '아빠' },
                                 { label: '모', value: '엄마' },
+                                { label: '기타', value: '기타' },
                             ]}
                         />
                     </Row>
