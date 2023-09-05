@@ -1,4 +1,3 @@
-import { useBooleanState } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
@@ -42,23 +41,6 @@ const EtcInput = ({ name, value, onChange }: EtcInputProps) => {
 };
 
 const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
-    const { value: isEtcClicked, setValue: setIsEtcClicked } = useBooleanState();
-
-    const hasOtherOption = list.some((item) => {
-        const isString = typeof item === 'string';
-
-        return isString ? item === '기타' : item.value === '기타';
-    });
-
-    const handleRadioDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const selectedValue = e.target.value;
-
-        if (selectedValue === '기타') {
-            setIsEtcClicked(true);
-        }
-        onChange(e);
-    };
-
     return (
         <StyledRadioGroup>
             <Label>{label}</Label>
@@ -72,18 +54,15 @@ const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
                     return (
                         <Row key={`radio ${name} ${index}`} gap={8} alignItems="center">
                             <Radio
-                                value={radioValue}
                                 name={name}
+                                value={radioValue}
                                 checked={isChecked}
-                                onChange={handleRadioDataChange}
+                                onChange={onChange}
                             />
                             <RadioLabel>{radioLabel}</RadioLabel>
                         </Row>
                     );
                 })}
-                {hasOtherOption && value === '기타' && (
-                    <EtcInput name={name} value={value} onChange={handleRadioDataChange} />
-                )}
             </Row>
         </StyledRadioGroup>
     );
@@ -91,7 +70,7 @@ const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
 
 export default RadioGroup;
 
-export const StyledRadioGroup = styled.div`
+const StyledRadioGroup = styled.div`
     width: 100%;
     height: 100%;
 `;
