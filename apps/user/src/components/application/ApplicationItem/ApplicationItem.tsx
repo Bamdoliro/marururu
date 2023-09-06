@@ -1,7 +1,7 @@
 'use client';
 
 import { color } from '@maru/theme';
-import { Row, Text } from '@maru/ui';
+import { Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
 import Status from '../Status/Status';
@@ -29,14 +29,14 @@ const ApplicationItem = ({
                 </Text>
                 <Status status={status} />
             </Row>
-            <SpacetimeTextArea>
+            <Column alignItems="flex-start">
                 <Text fontType="p2" color={color.gray500}>
                     장소: {place}
                 </Text>
                 <Text fontType="p2" color={color.gray500}>
                     신청 기한: {applicationStartDate} ~ {applicationEndDate}
                 </Text>
-            </SpacetimeTextArea>
+            </Column>
         </StyledApplicationItem>
     );
 };
@@ -51,9 +51,4 @@ const StyledApplicationItem = styled.div`
     border-radius: 12px;
     border: 1px solid ${color.gray200};
     cursor: pointer;
-`;
-
-const SpacetimeTextArea = styled.div`
-    padding: 0px auto;
-    ${flex({ flexDirection: 'column', alignItems: 'flex-start' })}
 `;
