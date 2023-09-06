@@ -36,7 +36,7 @@ const ApplicationDetailPage = () => {
                         </Column>
                     </Column>
                     <Column gap={64}>
-                        <Input label="소속학교" required={true} />
+                        <Input label="소속학교" required />
                         <Input label="성함 *"></Input>
                         <Input label="참석인원 *" placeholder="0"></Input>
                         <Row justifyContent="flex-start" alignItems="center">
