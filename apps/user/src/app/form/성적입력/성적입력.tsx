@@ -6,7 +6,7 @@ import {
     GradePreview,
     VolunteerCalculator,
 } from '@/components/form';
-import { FIELD_DATA } from '@/constants/form/data';
+import { SCORE_STEP_DATA } from '@/constants/form/data';
 import { FormLayout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Column, Text, UnderlineButton } from '@maru/ui';
@@ -36,7 +36,7 @@ const 성적입력 = () => {
                 </Column>
             </Column>
             <NavigationBar>
-                {FIELD_DATA.map((item, index) => (
+                {SCORE_STEP_DATA.map((item, index) => (
                     <UnderlineButton
                         key={`score-step ${index}`}
                         active={item === scoreStep}

@@ -2,60 +2,23 @@
 
 import ApplicationItem from '@/components/application/ApplicationItem/ApplicationItem';
 import { AppLayout } from '@/layouts';
+import { ApplicationStep } from '@/types/application/client';
 import { color } from '@maru/theme';
-import { Text, UnderLineButton } from '@maru/ui';
+import { Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const NAVIGATION_DATA = [
-    {
-        name: '학생, 학부모'
-    },
-    {
-        name: '교사'
-    }
-]
+export enum ApplicationStepEnum {
+    '학생, 학부모' = 'STUDENT_AND_PARENT',
+    '교사' = 'TEACHER',
+}
 
-const INFORMATION_DATA = [
-    {
-        date: '9월 16일(토) 11:00',
-        place: '본교 SRC관 1층',
-        deadline: '2023.09.01 ~ 2023.09.13',
-        applicable: true,
-        statusText: '신청 가능'
-    },
-    {
-        date: '10월 4일 (수) 19:00',
-        place: '본교 SRC관 1층',
-        deadline: '2023.09.11 ~ 2023.09.25',
-        applicable: true,
-        statusText: '신청 가능'
-    },
-    {
-        date: '7월 8일 (토) 11:00',
-        place: '본교 SRC관 1층',
-        deadline: '2023.06.25 ~ 2023.07.02',
-        applicable: false,
-        statusText: '마감'
-    },
-    {
-        date: '8월 26일(토) 11:00',
-        place: '본교 SRC관 1층',
-        deadline: '2023.08.09 ~ 2023.08.23',
-        applicable: false,
-        statusText: '조기 마감'
-    },
-]
-
-type ApplicationStep = "학생, 학부모" | "교사";
+export const APPLICATION_STEP_DATA = ['학생, 학부모', '교사'] as const;
 
 const ApplicationPage = () => {
-    const router = useRouter();
-    const pathName = usePathname();
-    const [fieldStep, setFieldStep] = useState<ApplicationStep>("학생, 학부모")
-    
+    const [applicationStep, setApplicationStep] = useState<ApplicationStep>('STUDENT_AND_PARENT');
+
     return (
         <AppLayout header footer>
             <StyledApplicationPage>
@@ -65,30 +28,30 @@ const ApplicationPage = () => {
                     입학전형 설명회 참가 신청
                 </Text>
                 <NavigationBar>
-                {NAVIGATION_DATA.map(({ name }, index) => (
-                    <UnderLineButton
-                        key={`navigation ${index}`}
-                        active={name === fieldStep}
-                        onClick={() => setFieldStep(name)}>
-                        {name}
-                    </UnderLineButton>
-                ))}
+                    {APPLICATION_STEP_DATA.map((item, index) => (
+                        <UnderlineButton
+                            key={`navigation ${index}`}
+                            active={ApplicationStepEnum[item] === applicationStep}
+                            onClick={() => setApplicationStep(ApplicationStepEnum[item])}>
+                            {item}
+                        </UnderlineButton>
+                    ))}
                 </NavigationBar>
-                <ApplicationItemBox>
-                    {INFORMATION_DATA.map(( {date, place, deadline, applicable, statusText}, index) => (
+                <ApplicationList>
+                    {[0, 1, 2].map((item) => (
                         <ApplicationItem
-                            date={date}
-                            place={place}
-                            deadline={deadline}
-                            applicable={applicable}
-                            statusText={statusText}
+                            start={''}
+                            place={''}
+                            applicationStartDate={''}
+                            applicationEndDate={''}
+                            status={''}
                         />
                     ))}
-                </ApplicationItemBox>
+                </ApplicationList>
             </StyledApplicationPage>
         </AppLayout>
-    )
-}
+    );
+};
 
 export default ApplicationPage;
 
@@ -97,7 +60,7 @@ const StyledApplicationPage = styled.div`
     height: 100%;
     padding: 0px 312px;
     margin-top: 82px;
-`
+`;
 
 const NavigationBar = styled.div`
     ${flex({ alignItems: 'center' })}
@@ -105,9 +68,9 @@ const NavigationBar = styled.div`
     height: 54px;
     margin: 36px 0px;
     background-color: ${color.white};
-`
+`;
 
-const ApplicationItemBox = styled.div`
+const ApplicationList = styled.div`
     width: 100%;
     ${flex({ alignItems: 'center' })}
     align-content: flex-start;
