@@ -1,4 +1,4 @@
-import { color } from '@maru/theme';
+import applicationStatusColor from '@/utils/applicationStatusColor';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -6,11 +6,6 @@ import styled from 'styled-components';
 interface Props {
     status: string;
 }
-
-/** 디자이너가 색깔 지정해주면 utils로 빼자 */
-const applicationStatusColor = (status: string) => {
-    return { color: color.maruDefault, backgroundColor: 'rgba(37, 124, 255, 0.10)' };
-};
 
 const Status = ({ status }: Props) => {
     const { color, backgroundColor } = applicationStatusColor(status);
