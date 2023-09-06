@@ -58,7 +58,7 @@ const Label = styled.p`
     margin-bottom: 12px;
 `;
 
-const RadioLabel = styled.label`
+const RadioLabel = styled.p`
     ${font.p2};
     color: ${color.gray900};
     margin-right: 40px;
