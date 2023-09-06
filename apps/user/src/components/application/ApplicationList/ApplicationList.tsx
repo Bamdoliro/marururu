@@ -1,6 +1,7 @@
 import { useApplicationListQuery } from '@/services/application/queries';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import ApplicationItem from '../ApplicationItem/ApplicationItem';
 
 interface Props {
     applicationType: string;
