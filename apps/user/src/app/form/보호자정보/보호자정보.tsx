@@ -58,9 +58,10 @@ const 보호자정보 = () => {
                         value={form.parent.relation}
                         onChange={handle보호자정보DataChange}
                         name="relation"
-                        placeholder="예시: 엄마, 아빠"
+                        placeholder="부, 모, 삼촌 등등.."
                         width="calc(50% - 24px)"
                     />
+
                     <Row gap={48}>
                         <Input
                             name="detailAddress"
