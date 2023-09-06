@@ -1,20 +1,21 @@
 'use client';
 
-import ApplicationItem from '@/components/application/ApplicationItem/ApplicationItem';
+import { ApplicationList } from '@/components/application';
+import { Loader } from '@/components/common';
 import { AppLayout } from '@/layouts';
 import { ApplicationStep } from '@/types/application/client';
 import { color } from '@maru/theme';
 import { Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import styled from 'styled-components';
 
-export enum ApplicationStepEnum {
+enum ApplicationStepEnum {
     '학생, 학부모' = 'STUDENT_AND_PARENT',
     '교사' = 'TEACHER',
 }
 
-export const APPLICATION_STEP_DATA = ['학생, 학부모', '교사'] as const;
+const APPLICATION_STEP_DATA = ['학생, 학부모', '교사'] as const;
 
 const ApplicationPage = () => {
     const [applicationStep, setApplicationStep] = useState<ApplicationStep>('STUDENT_AND_PARENT');
@@ -37,17 +38,9 @@ const ApplicationPage = () => {
                         </UnderlineButton>
                     ))}
                 </NavigationBar>
-                <ApplicationList>
-                    {[0, 1, 2].map((item) => (
-                        <ApplicationItem
-                            start={''}
-                            place={''}
-                            applicationStartDate={''}
-                            applicationEndDate={''}
-                            status={''}
-                        />
-                    ))}
-                </ApplicationList>
+                <Suspense fallback={<Loader />}>
+                    <ApplicationList applicationType={applicationStep} />
+                </Suspense>
             </StyledApplicationPage>
         </AppLayout>
     );
@@ -68,12 +61,4 @@ const NavigationBar = styled.div`
     height: 54px;
     margin: 36px 0px;
     background-color: ${color.white};
-`;
-
-const ApplicationList = styled.div`
-    width: 100%;
-    ${flex({ alignItems: 'center' })}
-    align-content: flex-start;
-    gap: 16px;
-    flex-wrap: wrap;
 `;
