@@ -31,7 +31,9 @@ export default FaqPage;
 const StyledFaqPage = styled.div`
     position: relative;
     width: 100%;
+    max-width: 1240px;
     height: 100%;
     margin-top: 52px;
     padding: 0 207px;
+    margin: 0 auto;
 `;

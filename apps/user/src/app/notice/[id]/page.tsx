@@ -18,7 +18,7 @@ interface Props {
 
 const NoticeDetailPage = ({ params: { id } }: Props) => {
     return (
-        <AppLayout header={true} footer={true}>
+        <AppLayout header footer>
             <StyledNoticeDetailPage>
                 <BackLink href={ROUTES.NOTICE}>
                     <IconArrowLeft color={color.gray600} width={24} height={24} />
@@ -41,6 +41,7 @@ const StyledNoticeDetailPage = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 36px;
     width: 100%;
+    max-width: 1240px;
     height: 100%;
     margin-top: 52px;
     padding: 0 207px;
