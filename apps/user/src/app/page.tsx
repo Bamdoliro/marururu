@@ -44,7 +44,7 @@ export default MainPage;
 
 const StyledMainPage = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center' })};
-    padding: 0 100px 240px;
+    padding: 0 100px;
     margin-top: 52px;
     gap: 80px;
 `;
