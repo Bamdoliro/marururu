@@ -10,7 +10,7 @@ export const KEY = {
     FORM_STATUS: 'useFormStatus',
     FIRST_RESULT: 'useFirstResult',
     FINAL_RESULT: 'useFinalResult',
-    APPLICATION_LIST: 'useApplicationList',
+    FAIR_LIST: 'useFairList',
 } as const;
 
 export const ROUTES = {
@@ -22,7 +22,7 @@ export const ROUTES = {
     SIGNUP: '/signup',
     FIRST_RESULT: '/result/first',
     FINAL_RESULT: '/result/final',
-    APPLICATION: '/application',
+    FAIR: '/fair',
     SCORE_SIMULATION: '/score-simulation',
 } as const;
 

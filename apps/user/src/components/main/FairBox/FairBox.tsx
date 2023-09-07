@@ -4,9 +4,9 @@ import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
-const ApplicationBox = () => {
+const FairBox = () => {
     return (
-        <StyledApplicationBox onClick={() => alert('준비 중입니다.')}>
+        <StyledFairBox onClick={() => alert('준비 중입니다.')}>
             <Row gap={8} alignItems="center">
                 <Text fontType="H3" color={color.gray900}>
                     입학전형 설명회 신청
@@ -18,13 +18,13 @@ const ApplicationBox = () => {
                 <br />
                 장소: 본교 SRC관 1층
             </Text>
-        </StyledApplicationBox>
+        </StyledFairBox>
     );
 };
 
-export default ApplicationBox;
+export default FairBox;
 
-const StyledApplicationBox = styled.div`
+const StyledFairBox = styled.div`
     ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
     width: 384px;
     height: 180px;

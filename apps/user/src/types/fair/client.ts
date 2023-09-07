@@ -1,6 +1,6 @@
-export type ApplicationStep = 'STUDENT_AND_PARENT' | 'TEACHER';
+export type FairStep = 'STUDENT_AND_PARENT' | 'TEACHER';
 
-export interface Application {
+export interface Fair {
     start: string;
     place: string;
     applicationStartDate: string;

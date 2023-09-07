@@ -1,11 +1,11 @@
 import { KEY } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
-import { getApplicationList } from './api';
+import { getFairList } from './api';
 
-export const useApplicationListQuery = (type: string) => {
+export const useFairListQuery = (type: string) => {
     const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.APPLICATION_LIST, type] as const,
-        queryFn: () => getApplicationList(type),
+        queryKey: [KEY.FAIR_LIST, type] as const,
+        queryFn: () => getFairList(type),
     });
 
     return { data: data?.dataList, ...restQuery };

@@ -1,8 +1,8 @@
 'use client';
 
 import {
-    ApplicationBox,
     Dday,
+    FairBox,
     Faq,
     GuidelineBox,
     Notice,
@@ -28,7 +28,7 @@ const MainPage = () => {
                 </Row>
                 <Row gap={48} width="100%" justifyContent="center">
                     <GuidelineBox />
-                    <ApplicationBox />
+                    <FairBox />
                     <SimulatorBox />
                 </Row>
                 <Row gap={48} width="100%" height={242} justifyContent="center">

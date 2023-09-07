@@ -4,7 +4,7 @@ import { color } from '@maru/theme';
 import { Column, Row, Text } from '@maru/ui';
 import { flex, formatCreatedAt } from '@maru/utils';
 import { styled } from 'styled-components';
-import Status from '../Status/Status';
+import Status from './Status/Status';
 
 interface Props {
     start: string;
@@ -14,15 +14,9 @@ interface Props {
     status: string;
 }
 
-const ApplicationItem = ({
-    start,
-    place,
-    applicationStartDate,
-    applicationEndDate,
-    status,
-}: Props) => {
+const FairItem = ({ start, place, applicationStartDate, applicationEndDate, status }: Props) => {
     return (
-        <StyledApplicationItem>
+        <StyledFairItem>
             <Row gap={32} alignItems="center" justifyContent="space-between" width="100%">
                 <Text fontType="H3" color={color.gray900}>
                     {formatCreatedAt(start)}
@@ -37,13 +31,13 @@ const ApplicationItem = ({
                     신청 기한: {applicationStartDate} ~ {applicationEndDate}
                 </Text>
             </Column>
-        </StyledApplicationItem>
+        </StyledFairItem>
     );
 };
 
-export default ApplicationItem;
+export default FairItem;
 
-const StyledApplicationItem = styled.div`
+const StyledFairItem = styled.div`
     width: calc(50% - 8px);
     height: 160px;
     padding: 24px 32px;
