@@ -12,7 +12,7 @@ const FaqPage = () => {
     const [category, setCategory] = useState('TOP_QUESTION');
 
     return (
-        <AppLayout header footer style={{ padding: '0px 207px', marginTop: 82 }}>
+        <AppLayout header footer>
             <StyledFaqPage>
                 <Text fontType="H1" color={color.gray900}>
                     자주 묻는 질문
@@ -32,5 +32,6 @@ const StyledFaqPage = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-    padding-bottom: 227px;
+    margin-top: 52px;
+    padding: 0 207px;
 `;
