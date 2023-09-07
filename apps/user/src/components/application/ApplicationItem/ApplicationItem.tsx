@@ -2,7 +2,7 @@
 
 import { color } from '@maru/theme';
 import { Column, Row, Text } from '@maru/ui';
-import { flex } from '@maru/utils';
+import { flex, formatCreatedAt } from '@maru/utils';
 import { styled } from 'styled-components';
 import Status from '../Status/Status';
 
@@ -25,7 +25,7 @@ const ApplicationItem = ({
         <StyledApplicationItem>
             <Row gap={32} alignItems="center" justifyContent="space-between" width="100%">
                 <Text fontType="H3" color={color.gray900}>
-                    {start}
+                    {formatCreatedAt(start)}
                 </Text>
                 <Status status={status} />
             </Row>
@@ -44,7 +44,7 @@ const ApplicationItem = ({
 export default ApplicationItem;
 
 const StyledApplicationItem = styled.div`
-    width: 400px;
+    width: calc(50% - 8px);
     height: 160px;
     padding: 24px 32px;
     ${flex({ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' })}

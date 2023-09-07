@@ -21,6 +21,13 @@ const ApplicationList = ({ applicationType }: Props) => {
                     status={item.status}
                 />
             ))}
+            <ApplicationItem
+                start={'2023년 10월 6일'}
+                place={'부산소프트웨어마이스터고 src관'}
+                applicationStartDate={'2023-09-06'}
+                applicationEndDate={'2023-09-21'}
+                status={'APPLICATION_IN_PROGRESS'}
+            />
         </StyledApplicationList>
     ) : null;
 };
@@ -28,9 +35,9 @@ const ApplicationList = ({ applicationType }: Props) => {
 export default ApplicationList;
 
 const StyledApplicationList = styled.div`
+    flex-wrap: wrap;
+    align-content: flex-start;
     width: 100%;
     ${flex({ alignItems: 'center' })}
-    align-content: flex-start;
     gap: 16px;
-    flex-wrap: wrap;
 `;

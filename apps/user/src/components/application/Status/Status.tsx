@@ -1,5 +1,5 @@
-import applicationStatusColor from '@/utils/applicationStatusColor';
-import { Text } from '@maru/ui';
+import { getFairStatus } from '@/utils';
+import { font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
@@ -8,13 +8,11 @@ interface Props {
 }
 
 const Status = ({ status }: Props) => {
-    const { color, backgroundColor } = applicationStatusColor(status);
+    const { color, backgroundColor, fairStatus } = getFairStatus(status);
 
     return (
         <StyledStatus color={color} backgroundColor={backgroundColor}>
-            <Text fontType="context" color={color}>
-                {status}
-            </Text>
+            {fairStatus}
         </StyledStatus>
     );
 };
@@ -22,10 +20,12 @@ const Status = ({ status }: Props) => {
 export default Status;
 
 const StyledStatus = styled.div<{ color: string; backgroundColor: string }>`
-    height: 32px;
-    padding: 0px 10px;
+    ${font.context}
     ${flex({ justifyContent: 'center', alignItems: 'center' })}
     background-color: ${(props) => props.backgroundColor};
     border: 1px solid ${(props) => props.color};
+    color: ${(props) => props.color};
     border-radius: 100px;
+    height: 32px;
+    padding: 0px 10px;
 `;
