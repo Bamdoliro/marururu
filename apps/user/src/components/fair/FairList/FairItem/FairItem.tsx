@@ -4,7 +4,7 @@ import { color } from '@maru/theme';
 import { Column, Row, Text } from '@maru/ui';
 import { flex, formatCreatedAt } from '@maru/utils';
 import { styled } from 'styled-components';
-import Status from './Status/Status';
+import FairStatus from './FairStatus/FairStatus';
 
 interface Props {
     start: string;
@@ -21,7 +21,7 @@ const FairItem = ({ start, place, applicationStartDate, applicationEndDate, stat
                 <Text fontType="H3" color={color.gray900}>
                     {formatCreatedAt(start)}
                 </Text>
-                <Status status={status} />
+                <FairStatus status={status} />
             </Row>
             <Column alignItems="flex-start">
                 <Text fontType="p2" color={color.gray500}>
