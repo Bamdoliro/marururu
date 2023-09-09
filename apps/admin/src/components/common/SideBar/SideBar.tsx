@@ -81,6 +81,7 @@ const SideNavigationBar = styled.div`
 `;
 
 const StyledLink = styled(Link)<{ $active: boolean }>`
+    ${font.btn1}
     position: relative;
     ${flex({ alignItems: 'center' })}
     width: 100%;
