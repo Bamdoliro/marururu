@@ -81,7 +81,7 @@ const SideNavigationBar = styled.div`
 `;
 
 const StyledLink = styled(Link)<{ $active: boolean }>`
-    ${font.btn1}
+    ${font.H5}
     position: relative;
     ${flex({ alignItems: 'center' })}
     width: 100%;
@@ -111,7 +111,7 @@ const StyledLink = styled(Link)<{ $active: boolean }>`
 `;
 
 const LogoutButton = styled.button`
-    ${font.btn1}
+    ${font.H5}
     ${flex({ alignItems: 'center' })}
     height: 56px;
     padding: 0px 36px;
