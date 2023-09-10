@@ -61,19 +61,26 @@ export interface EducationInfo {
 
 export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
 
+export type AchievementLevelKey =
+    | 'achievementLevel21'
+    | 'achievementLevel22'
+    | 'achievementLevel31';
+
 export interface StudentSubject {
     subjectName: string;
-    achievementLevel21: AchievementLevel;
-    achievementLevel22: AchievementLevel;
-    achievementLevel31: AchievementLevel;
+    achievementLevel21: AchievementLevel | null;
+    achievementLevel22: AchievementLevel | null;
+    achievementLevel31: AchievementLevel | null;
+    score: number | null;
 }
 
 export interface Subject {
     id: number;
     subjectName: string;
-    achievementLevel21: AchievementLevel;
-    achievementLevel22: AchievementLevel;
-    achievementLevel31: AchievementLevel;
+    achievementLevel21: AchievementLevel | null;
+    achievementLevel22: AchievementLevel | null;
+    achievementLevel31: AchievementLevel | null;
+    score: number | null;
 }
 
 export type AttendanceName = 'attendance1' | 'attendance2' | 'attendance3';

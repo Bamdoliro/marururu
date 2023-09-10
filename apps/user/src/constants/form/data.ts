@@ -71,12 +71,13 @@ export const SUBJECT_LIST: Subject[] = [
     '음악',
     '미술',
     '정보',
-].map((currentSubjectName, index) => ({
+].map((subject, index) => ({
     id: index,
-    subjectName: currentSubjectName,
+    subjectName: subject,
     achievementLevel21: 'A',
     achievementLevel22: 'A',
     achievementLevel31: 'A',
+    score: null,
 }));
 
 export const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;

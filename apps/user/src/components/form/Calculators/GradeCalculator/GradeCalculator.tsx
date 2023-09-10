@@ -19,9 +19,10 @@ const GradeCalculator = () => {
         const newSubject: Subject = {
             id: newSubjectIdRef.current++,
             subjectName: '',
-            achievementLevel21: 'A',
-            achievementLevel22: 'A',
-            achievementLevel31: 'A',
+            achievementLevel21: null,
+            achievementLevel22: null,
+            achievementLevel31: null,
+            score: null,
         };
         setNewSubjectList((prev) => [...prev, newSubject]);
     };

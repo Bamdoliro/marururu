@@ -12,9 +12,15 @@ import {
     SPECIAL_TYPE_DEFAULT_SCORE,
 } from '@/constants/form/constant';
 import { useFormValueStore, useNewSubjectValueStore, useSubjectValueStore } from '@/store';
-import { Attendance, StudentSubject } from '@/types/form/client';
+import { AchievementLevelKey, Attendance } from '@/types/form/client';
 
-const ACHIEVEMENT_SCORE = { A: 5, B: 4, C: 3, D: 2, E: 1 } as const;
+enum AchievementScore {
+    'A' = 5,
+    'B' = 4,
+    'C' = 3,
+    'D' = 2,
+    'E' = 1,
+}
 
 const useGradeCalculation = () => {
     const form = useFormValueStore();
@@ -23,13 +29,13 @@ const useGradeCalculation = () => {
 
     const studentSubjectList = subjectList.concat(newSubjectList);
 
-    const getScoreOf = (achievementLevel: keyof Omit<StudentSubject, 'subjectName'>) => {
+    const getScoreOf = (achievementLevelKey: AchievementLevelKey) => {
         return (
             studentSubjectList.reduce((acc, subject) => {
-                const score = subject[achievementLevel];
-                return acc + (score ? ACHIEVEMENT_SCORE[score] : 0);
+                const score = subject[achievementLevelKey];
+                return acc + (score ? AchievementScore[score] : 0);
             }, 0) /
-            studentSubjectList.filter((subject) => subject[achievementLevel] !== null).length
+            studentSubjectList.filter((subject) => subject[achievementLevelKey] !== null).length
         );
     };
 

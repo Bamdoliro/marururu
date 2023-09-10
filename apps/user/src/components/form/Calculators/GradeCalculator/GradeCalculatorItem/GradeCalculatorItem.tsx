@@ -22,6 +22,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
             return updatedData;
         });
     };
+
     return (
         <StyledGradeCalculatorItem>
             <Td option="SECONDARY" width={123} height="100%">
