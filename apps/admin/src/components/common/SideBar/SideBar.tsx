@@ -8,8 +8,12 @@ import { color, font } from '../../../../../../packages/maru-theme';
 
 const NAVIGATION_DATA = [
     {
-        name: '홈',
+        name: '원서조회',
         route: ROUTES.MAIN,
+    },
+    {
+        name: '원서검토',
+        route: ROUTES.REVIEW,
     },
     {
         name: '공지사항',
@@ -77,6 +81,7 @@ const SideNavigationBar = styled.div`
 `;
 
 const StyledLink = styled(Link)<{ $active: boolean }>`
+    ${font.btn1}
     position: relative;
     ${flex({ alignItems: 'center' })}
     width: 100%;
