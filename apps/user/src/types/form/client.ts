@@ -3,7 +3,7 @@ export interface Form {
     parent: ParentInfo;
     education: EducationInfo;
     grade: {
-        subjectList: StudentSubject[];
+        subjectList: Subject[];
         attendance1: Attendance;
         attendance2: Attendance;
         attendance3: Attendance;
@@ -61,15 +61,8 @@ export interface EducationInfo {
 
 export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
 
-export interface StudentSubject {
-    subjectName: string;
-    achievementLevel21: AchievementLevel;
-    achievementLevel22: AchievementLevel;
-    achievementLevel31: AchievementLevel;
-}
-
 export interface Subject {
-    id: number;
+    id?: number;
     subjectName: string;
     achievementLevel21: AchievementLevel;
     achievementLevel22: AchievementLevel;
