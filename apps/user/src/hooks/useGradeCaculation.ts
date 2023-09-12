@@ -12,7 +12,7 @@ import {
     SPECIAL_TYPE_DEFAULT_SCORE,
 } from '@/constants/form/constant';
 import { useFormValueStore, useNewSubjectValueStore, useSubjectValueStore } from '@/store';
-import { AchievementLevelKey, Attendance } from '@/types/form/client';
+import { Attendance } from '@/types/form/client';
 
 enum AchievementScore {
     'A' = 5,
@@ -21,6 +21,8 @@ enum AchievementScore {
     'D' = 2,
     'E' = 1,
 }
+
+type AchievementLevelKey = 'achievementLevel21' | 'achievementLevel22' | 'achievementLevel31';
 
 const useGradeCalculation = () => {
     const form = useFormValueStore();

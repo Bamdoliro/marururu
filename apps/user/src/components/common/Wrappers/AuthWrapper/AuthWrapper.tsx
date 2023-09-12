@@ -49,8 +49,7 @@ const AuthWrapper = ({ children }: Props) => {
         if (token) {
             if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 redirect(ROUTES.MAIN);
-            }
-            if (
+            } else if (
                 dayjs().isBefore(제출_시작_날짜) ||
                 (dayjs().isAfter(제출_마감_날짜) && process.env.NODE_ENV !== 'development')
             ) {
@@ -74,8 +73,7 @@ const AuthWrapper = ({ children }: Props) => {
                     ));
                     router.push(ROUTES.MAIN);
                     return;
-                }
-                if (pathName === ROUTES.FIRST_RESULT || pathName === ROUTES.FINAL_RESULT) {
+                } else if (pathName === ROUTES.FIRST_RESULT || pathName === ROUTES.FINAL_RESULT) {
                     redirect(ROUTES.MAIN);
                 }
             }
