@@ -2,7 +2,6 @@ import { useNoticeDetailQuery } from '@/services/notice/queries';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { convertLink, flex, formatCreatedAt } from '@maru/utils';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 interface Props {
@@ -24,7 +23,7 @@ const NoticeDetailContent = ({ id }: Props) => {
                             {formatCreatedAt(noticeDetailData.createdAt)}
                         </Text>
                     </Column>
-                    <Row gap={16}>
+                    <Row gap={16} alignItems="flex-end">
                         <Button option="SECONDARY" size="SMALL" width={60}>
                             수정
                         </Button>
@@ -51,18 +50,10 @@ const StyledNoticeDetailContent = styled.div`
 const NoticeHeader = styled.div`
     ${flex({ justifyContent: 'space-between' })}
     width: 100%;
-    height: 80px;
     border-bottom: 1px solid ${color.gray300};
-    margin-bottom: 8px;
+    padding-bottom: 8px;
 `;
 const Content = styled.div`
     ${font.p2};
     color: ${color.gray900};
-`;
-
-const DirectLink = styled(Link)`
-    ${flex({ alignItems: 'center' })}
-    gap: 2px;
-    ${font.p3}
-    color: ${color.gray600};
 `;
