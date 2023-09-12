@@ -1,15 +1,16 @@
 import { useNewSubjectStore, useSetFormStore, useSubjectStore } from '@/store';
 import { Subject } from '@/types/form/client';
 import { color } from '@maru/theme';
-import { Button, Column, Text } from '@maru/ui';
+import { Button, Column, Row, Switch, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 
 const GradeCalculator = () => {
+    const [gradeSwitchStep, setGradeSwitchStep] = useState('졸업 예정');
     const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
     const [subjectList, setSubjectList] = useSubjectStore();
     const setForm = useSetFormStore();
@@ -37,10 +38,17 @@ const GradeCalculator = () => {
 
     return (
         <StyledGradeCalculator>
-            <Text fontType="p3" color={color.red}>
-                *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
-                <br /> *해당 과목이 없을 시 과목추가버튼으로 성적을 입력할 수 있습니다.
-            </Text>
+            <Row alignItems="center" justifyContent="space-between">
+                <Text fontType="p3" color={color.red}>
+                    *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
+                    <br /> *해당 과목이 없을 시 과목추가버튼으로 성적을 입력할 수 있습니다.
+                </Text>
+                <Switch
+                    items={['졸업 예정', '검정고시']}
+                    value={gradeSwitchStep}
+                    setValue={setGradeSwitchStep}
+                />
+            </Row>
             <Column>
                 <GradeCalculatorHeader />
                 {/* 기존 과목 item */}

@@ -80,4 +80,4 @@ export const SUBJECT_LIST: Subject[] = [
     score: null,
 }));
 
-export const FIELD_DATA = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
+export const SCORE_STEP_LIST = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;

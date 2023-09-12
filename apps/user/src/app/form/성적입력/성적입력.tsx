@@ -6,7 +6,7 @@ import {
     GradePreview,
     VolunteerCalculator,
 } from '@/components/form';
-import { FIELD_DATA } from '@/constants/form/data';
+import { SCORE_STEP_LIST } from '@/constants/form/data';
 import { FormLayout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Column, Text, UnderlineButton } from '@maru/ui';
@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import { useCTAButton } from './성적입력.hooks';
 
 const 성적입력 = () => {
-    const [scoreStep, setScoreStep] = useState('성적 입력');
+    const [currentScoreStep, setCurrentScoreStep] = useState('성적 입력');
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     return (
@@ -36,17 +36,17 @@ const 성적입력 = () => {
                 </Column>
             </Column>
             <NavigationBar>
-                {FIELD_DATA.map((item, index) => (
+                {SCORE_STEP_LIST.map((scoreStep, index) => (
                     <UnderlineButton
                         key={`score-step ${index}`}
-                        active={item === scoreStep}
-                        onClick={() => setScoreStep(item)}>
-                        {item}
+                        active={scoreStep === currentScoreStep}
+                        onClick={() => setCurrentScoreStep(scoreStep)}>
+                        {scoreStep}
                     </UnderlineButton>
                 ))}
             </NavigationBar>
             <SwitchCase
-                value={scoreStep}
+                value={currentScoreStep}
                 caseBy={{
                     성적입력: <GradeCalculator />,
                     출결상황: <AttendanceCalculator />,

@@ -118,7 +118,7 @@ const useGradeCalculation = () => {
         const totalVolunteerTime =
             form.grade.volunteerTime1 + form.grade.volunteerTime2 + form.grade.volunteerTime3;
         if (totalVolunteerTime < MIN_VOLUNTEER_TIME) return MIN_VOLUNTEER_SCORE;
-        if (totalVolunteerTime > MAX_VOLUNTEER_TIME) return MAX_VOLUNTEER_SCORE;
+        else if (totalVolunteerTime > MAX_VOLUNTEER_TIME) return MAX_VOLUNTEER_SCORE;
 
         return Math.round(MAX_VOLUNTEER_SCORE - (MAX_VOLUNTEER_TIME - totalVolunteerTime) * 0.5);
     };
@@ -134,9 +134,9 @@ const useGradeCalculation = () => {
                 certificateScore += 4;
             if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_1'))
                 certificateScore += 3;
-            if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_2'))
+            else if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_2'))
                 certificateScore += 2;
-            if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_3'))
+            else if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_3'))
                 certificateScore += 1;
         }
 
