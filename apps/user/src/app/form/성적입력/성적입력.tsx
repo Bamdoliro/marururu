@@ -9,7 +9,7 @@ import {
 import { FIELD_DATA } from '@/constants/form/data';
 import { FormLayout } from '@/layouts';
 import { color } from '@maru/theme';
-import { Column, Text, UnderLineButton } from '@maru/ui';
+import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ import styled from 'styled-components';
 import { useCTAButton } from './성적입력.hooks';
 
 const 성적입력 = () => {
-    const [fieldStep, setFieldStep] = useState('성적 입력');
+    const [scoreStep, setScoreStep] = useState('성적 입력');
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 
     return (
@@ -37,16 +37,16 @@ const 성적입력 = () => {
             </Column>
             <NavigationBar>
                 {FIELD_DATA.map((item, index) => (
-                    <UnderLineButton
-                        key={`field-data ${index}`}
-                        active={item === fieldStep}
-                        onClick={() => setFieldStep(item)}>
+                    <UnderlineButton
+                        key={`score-step ${index}`}
+                        active={item === scoreStep}
+                        onClick={() => setScoreStep(item)}>
                         {item}
-                    </UnderLineButton>
+                    </UnderlineButton>
                 ))}
             </NavigationBar>
             <SwitchCase
-                value={fieldStep}
+                value={scoreStep}
                 caseBy={{
                     성적입력: <GradeCalculator />,
                     출결상황: <AttendanceCalculator />,

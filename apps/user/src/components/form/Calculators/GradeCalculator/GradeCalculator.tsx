@@ -13,8 +13,6 @@ const GradeCalculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
     const [subjectList, setSubjectList] = useSubjectStore();
     const setForm = useSetFormStore();
-    const footerRef = useRef<HTMLDivElement>(null);
-    const isMount = useRef(true);
 
     const newSubjectIdRef = useRef(newSubjectList.length);
     const handleAddNewSubjectButtonClick = () => {
@@ -27,14 +25,6 @@ const GradeCalculator = () => {
         };
         setNewSubjectList((prev) => [...prev, newSubject]);
     };
-
-    useEffect(() => {
-        if (isMount.current) {
-            isMount.current = false;
-            return;
-        }
-        if (newSubjectList.length) footerRef.current?.scrollIntoView();
-    }, [newSubjectList]);
 
     useEffect(() => {
         const studentSubjectList = [...subjectList, ...newSubjectList].map(
@@ -82,7 +72,7 @@ const GradeCalculator = () => {
                         setNewSubjectList={setNewSubjectList}
                     />
                 ))}
-                <GradeCalculatorFooter ref={footerRef}>
+                <GradeCalculatorFooter>
                     <Button onClick={handleAddNewSubjectButtonClick} icon="ADD_ICON" size="SMALL">
                         과목추가
                     </Button>

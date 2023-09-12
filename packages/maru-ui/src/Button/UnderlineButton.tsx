@@ -7,15 +7,15 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     active: boolean;
 }
 
-const UnderLineButton = ({ children, onClick, active }: Props) => {
+const UnderlineButton = ({ children, onClick, active }: Props) => {
     return (
-        <StyledUnderLineButton onClick={onClick} $active={active}>
+        <StyledUnderlineButton onClick={onClick} $active={active}>
             <HoverStateBox>{children}</HoverStateBox>
-        </StyledUnderLineButton>
+        </StyledUnderlineButton>
     );
 };
 
-export default UnderLineButton;
+export default UnderlineButton;
 
 const HoverStateBox = styled.div`
     ${font.btn1}
@@ -23,7 +23,7 @@ const HoverStateBox = styled.div`
     border-radius: 6px;
 `;
 
-const StyledUnderLineButton = styled.button<{ $active: boolean }>`
+const StyledUnderlineButton = styled.button<{ $active: boolean }>`
     padding: 0px 4px;
     height: 54px;
     position: relative;

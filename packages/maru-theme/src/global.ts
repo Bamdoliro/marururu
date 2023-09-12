@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
+import color from './color';
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -50,6 +51,11 @@ button {
   background: none;
   padding: 0;
   cursor: pointer;
+}
+
+.link {
+  color: ${color.maruDefault};
+  text-decoration: underline;
 }
 `;
 

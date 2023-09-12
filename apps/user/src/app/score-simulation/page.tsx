@@ -10,18 +10,18 @@ import {
 import { FIELD_DATA } from '@/constants/form/data';
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
-import { Column, Text, UnderLineButton } from '@maru/ui';
+import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const GradeSimulation = () => {
+const ScoreSimulation = () => {
     const [fieldStep, setFieldStep] = useState('성적 입력');
 
     return (
         <AppLayout header footer>
-            <GradeSimulationPage>
+            <ScoreSimulationPage>
                 <Column>
                     <Text fontType="H1" color={color.gray900}>
                         성적 모의 계산
@@ -42,12 +42,12 @@ const GradeSimulation = () => {
                 <Column gap={24}>
                     <NavigationBar>
                         {FIELD_DATA.map((item, index) => (
-                            <UnderLineButton
+                            <UnderlineButton
                                 key={`field-data ${index}`}
                                 active={item === fieldStep}
                                 onClick={() => setFieldStep(item)}>
                                 {item}
-                            </UnderLineButton>
+                            </UnderlineButton>
                         ))}
                     </NavigationBar>
                     <SwitchCase
@@ -61,18 +61,19 @@ const GradeSimulation = () => {
                         defaultComponent={<GradeCalculator />}
                     />
                 </Column>
-            </GradeSimulationPage>
+            </ScoreSimulationPage>
         </AppLayout>
     );
 };
 
-export default GradeSimulation;
+export default ScoreSimulation;
 
-const GradeSimulationPage = styled.div`
+const ScoreSimulationPage = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 48px;
     width: 816px;
-    margin: 82px auto 93px;
+    padding: 82px 0 172px;
+    margin: 0 auto;
 `;
 
 const NavigationBar = styled.div`

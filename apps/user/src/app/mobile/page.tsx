@@ -37,6 +37,5 @@ const StyledMobilPage = styled.div`
     ${flex({ flexDirection: 'column', alignItems: 'center' })};
     padding-top: 200px;
     gap: 36px;
-    width: 100%;
     height: 100%;
 `;

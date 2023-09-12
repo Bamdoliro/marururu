@@ -31,12 +31,8 @@ export const useInput = () => {
 export const useCTAButton = () => {
     const router = useRouter();
 
-    const handleGoSingUpPageButtonClick = () => {
-        router.push(ROUTES.SIGNUP);
-    };
-
     const handleGoMainPageButtonClick = () => {
         router.push(ROUTES.MAIN);
     };
-    return { handleGoSingUpPageButtonClick, handleGoMainPageButtonClick };
+    return { handleGoMainPageButtonClick };
 };

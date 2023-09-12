@@ -1,7 +1,7 @@
 import { FindAddressModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
-import { ButtonInput, Column, Input, RadioGroup, Row } from '@maru/ui';
+import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
 import { useCTAButton, useInput } from './보호자정보.hooks';
@@ -53,32 +53,14 @@ const 보호자정보 = () => {
                         isError={form.parent.address.length > 100}
                         errorMessage="100자 이하여야 합니다."
                     />
-                    <Row justifyContent="flex-start" alignItems="center">
-                        <RadioGroup
-                            label="보호자 관계"
-                            value={form.parent.relation}
-                            onChange={handle보호자정보DataChange}
-                            name="relation"
-                            list={[
-                                { label: '부', value: '아빠' },
-                                { label: '모', value: '엄마' },
-                                {
-                                    label: '기타',
-                                    value: '기타',
-                                    checked:
-                                        form.parent.relation !== '아빠' &&
-                                        form.parent.relation !== '엄마',
-                                },
-                            ]}
-                        />
-                    </Row>
-                    {form.parent.relation !== '아빠' && form.parent.relation !== '엄마' && (
-                        <Input
-                            value={form.parent.relation}
-                            onChange={handle보호자정보DataChange}
-                            name="relation"
-                        />
-                    )}
+                    <Input
+                        label="보호자 관계"
+                        value={form.parent.relation}
+                        onChange={handle보호자정보DataChange}
+                        name="relation"
+                        placeholder="부, 모, 삼촌 등등.."
+                        width="calc(50% - 24px)"
+                    />
 
                     <Row gap={48}>
                         <Input
