@@ -1,14 +1,14 @@
 'use client';
 
+import { FinalResultTable, ResultMain } from '@/components/result';
 import { AppLayout } from '@/layouts';
+import { ResultStep } from '@/types/result/client';
 import { color } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
-import { ResultStep } from '@/types/result/client';
-import styled from 'styled-components';
 import { useState } from 'react';
-import { ResultMain, FinalResultTable } from '@/components/result';
+import styled from 'styled-components';
 
 const FinalResultPage = () => {
     const [ResultStep, setResultStep] = useState<ResultStep>('MAIN');

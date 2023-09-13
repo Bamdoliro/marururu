@@ -8,12 +8,12 @@ import { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {
-    selectedSchool: School;
-    setSelectedSchool: Dispatch<SetStateAction<School>>;
+    school: School;
+    setSchool: Dispatch<SetStateAction<School>>;
     debouncedSchoolSearchQuery: string;
 }
 
-const SchoolList = ({ selectedSchool, setSelectedSchool, debouncedSchoolSearchQuery }: Props) => {
+const SchoolList = ({ school, setSchool, debouncedSchoolSearchQuery }: Props) => {
     const { data: schoolListData } = useSchoolListQuery(debouncedSchoolSearchQuery);
 
     return schoolListData ? (
@@ -21,10 +21,10 @@ const SchoolList = ({ selectedSchool, setSelectedSchool, debouncedSchoolSearchQu
             {schoolListData.map(({ name, location, code }: School) => (
                 <SchoolItem
                     key={code}
-                    selected={selectedSchool.code === code}
-                    onClick={() => setSelectedSchool({ name, location, code })}>
+                    selected={school.code === code}
+                    onClick={() => setSchool({ name, location, code })}>
                     <SchoolName>
-                        {selectedSchool.code === code && (
+                        {school.code === code && (
                             <IconCheck color={color.maruDefault} width={24} height={24} />
                         )}
                         {name}

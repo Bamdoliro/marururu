@@ -1,9 +1,13 @@
-import { useJoinUserMutation, useVerificationMutation } from '@/services/auth/mutations';
-import { PostJoinAuthReq } from '@/types/auth/remote';
+import {
+    useJoinUserMutation,
+    useRequestVerificationMutation,
+    useVerificationMutation,
+} from '@/services/auth/mutations';
+import { Join } from '@/types/auth/client';
 import { useBooleanState } from '@maru/hooks';
 import { ChangeEventHandler, useState } from 'react';
 
-export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean) => {
+export const useJoinAction = (joinUserData: Join, termsAgree: boolean) => {
     const { joinUserMutate } = useJoinUserMutation(joinUserData);
 
     const handleJoinButtonClick = () => {
@@ -26,25 +30,42 @@ export const useJoinAction = (joinUserData: PostJoinAuthReq, termsAgree: boolean
     return { handleJoinButtonClick };
 };
 
-export const useVerificationAction = (phoneNumber: string) => {
+export const useVerificationAction = (joinUserData: Join) => {
     // 전화번호 요청을 보냈는가?
     const { value: isVerification, setValue: setIsVerification } = useBooleanState(false);
     // 전화번호 전송 활성화 비활성화
-    const { value: isButtonDisabled, setValue: setIsButtonDisabled } = useBooleanState(false);
-    const { requestVerificationMutate } = useVerificationMutation(phoneNumber);
+    const { value: isRequestVerificationDisabled, setValue: setIsRequestVerificationDisabled } =
+        useBooleanState(false);
+    // 전화번호 인증 확인 여부
+    const { value: isVerificationDisabled, setValue: setIsVerificationDisabled } =
+        useBooleanState(false);
 
-    const handleVerificationButtonClick = () => {
+    const { verificationMutate } = useVerificationMutation(setIsVerificationDisabled);
+    const { requestVerificationMutate } = useRequestVerificationMutation(joinUserData.phoneNumber);
+
+    const handleRequestVerificationButtonClick = () => {
         requestVerificationMutate();
-        setIsButtonDisabled(true);
+        setIsRequestVerificationDisabled(true);
         setIsVerification(true);
+        setIsVerificationDisabled(false);
 
         // 5초뒤 비활성화를 풀어줌
         setTimeout(() => {
-            setIsButtonDisabled(false);
+            setIsRequestVerificationDisabled(false);
         }, 7000);
     };
 
-    return { handleVerificationButtonClick, isButtonDisabled, isVerification };
+    const handleVerificationButtonClick = () => {
+        verificationMutate(joinUserData);
+    };
+
+    return {
+        handleRequestVerificationButtonClick,
+        handleVerificationButtonClick,
+        isRequestVerificationDisabled,
+        isVerificationDisabled,
+        isVerification,
+    };
 };
 
 export const useTimer = () => {
@@ -58,7 +79,7 @@ export const useTimer = () => {
 };
 
 export const useInput = () => {
-    const [joinUserData, setJoinUserData] = useState<PostJoinAuthReq>({
+    const [joinUserData, setJoinUserData] = useState<Join>({
         phoneNumber: '',
         code: '',
         name: '',

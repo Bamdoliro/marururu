@@ -35,7 +35,7 @@ const 최종제출 = () => {
     };
 
     return (
-        <AppLayout header style={{ padding: '58px 96px 0px' }}>
+        <AppLayout header>
             <Styled최종제출>
                 <ContentBox>
                     <Column gap={36} alignItems="flex-start">
@@ -111,6 +111,7 @@ const Styled최종제출 = styled.div`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     width: 100%;
     height: 100%;
+    padding: 58px 96px 0px;
 `;
 
 const ContentBox = styled.div`

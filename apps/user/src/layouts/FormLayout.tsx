@@ -1,5 +1,5 @@
 import { Header } from '@/components/common/';
-import { ProgressBar } from '@/components/form';
+import { ProgressSteps } from '@/components/form';
 import { color } from '@maru/theme';
 import { Text } from '@maru/ui';
 import { ReactNode } from 'react';
@@ -15,7 +15,7 @@ const FormLayout = ({ children, title }: Props) => {
         <>
             <Header />
             <StyledFormLayout>
-                <ProgressBar />
+                <ProgressSteps />
                 <FormBox>
                     <Text fontType="H3" color={color.gray900}>
                         {title}
@@ -31,8 +31,6 @@ export default FormLayout;
 
 const StyledFormLayout = styled.section`
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
     margin-bottom: 240px;
     background-color: ${color.white};
 `;

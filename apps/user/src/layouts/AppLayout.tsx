@@ -8,21 +8,19 @@ interface Props {
     header?: boolean;
     footer?: boolean;
     children: ReactNode;
-    backgroundColor?: string;
-    style?: CSSProperties;
+    backgroundColor?: CSSProperties['backgroundColor'];
 }
 
 const AppLayout = ({
     children,
     backgroundColor = color.white,
-    style,
     header = false,
     footer = false,
 }: Props) => {
     return (
         <>
             {header && <Header />}
-            <StyledAppLayout style={{ backgroundColor, ...style }}>{children}</StyledAppLayout>
+            <StyledAppLayout style={{ backgroundColor }}>{children}</StyledAppLayout>
             {footer && <Footer />}
         </>
     );
@@ -32,6 +30,5 @@ export default AppLayout;
 
 const StyledAppLayout = styled.section`
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 118px);
 `;
