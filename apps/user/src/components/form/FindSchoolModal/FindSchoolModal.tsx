@@ -1,8 +1,7 @@
-import { Loader } from '@/components/common';
 import { useSetFormStore } from '@/store';
 import { School } from '@/types/form/client';
 import { useDebounceInput } from '@maru/hooks';
-import { Column, Modal, SearchInput } from '@maru/ui';
+import { Column, Loader, Modal, SearchInput } from '@maru/ui';
 import { Suspense, useState } from 'react';
 import SchoolList from './SchoolList/SchoolList';
 
