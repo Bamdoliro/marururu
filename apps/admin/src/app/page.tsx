@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
 const MainPage = () => {
     return (
         <AppLayout>
-            <StyledHome>
+            <StyledMainPage>
                 <Text fontType="H1">원서 관리</Text>
                 <Column gap={36}>
                     <Row justifyContent="space-between">
@@ -63,14 +63,14 @@ const MainPage = () => {
                     </Row>
                     <FormList />
                 </Column>
-            </StyledHome>
+            </StyledMainPage>
         </AppLayout>
     );
 };
 
 export default MainPage;
 
-const StyledHome = styled.div`
+const StyledMainPage = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 40px;
     width: 100%;

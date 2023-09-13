@@ -1,5 +1,5 @@
 import TableItem from '@/components/common/TableItem/TableItem';
-import { ROUTES } from '@/constants/common/constants';
+import { ROUTES } from '@/constants/common/constant';
 import { Row, Text } from '@maru/ui';
 import { formatPostedAt } from '@maru/utils';
 import Link from 'next/link';

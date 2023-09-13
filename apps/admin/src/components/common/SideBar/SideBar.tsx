@@ -1,4 +1,8 @@
-import { ROUTES } from '@/constants/common/constants';
+'use client';
+
+import { ROUTES } from '@/constants/common/constant';
+import useAdmin from '@/hooks/useAdmin';
+import { useLogoutAdminMutation } from '@/services/auth/mutations';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,6 +31,12 @@ const NAVIGATION_DATA = [
 
 const SideBar = () => {
     const pathName = usePathname();
+    const { isLoggedIn } = useAdmin();
+    const { logoutAdminMutate } = useLogoutAdminMutation();
+
+    const handleLogoutAdmin = () => {
+        logoutAdminMutate();
+    };
 
     return (
         <StyledSideBar>
@@ -45,16 +55,20 @@ const SideBar = () => {
                 />
             </Link>
             <SideNavigationBar>
-                {NAVIGATION_DATA.map(({ route, name }, index) => (
+                {NAVIGATION_DATA.map(({ route, name }) => (
                     <StyledLink
-                        key={`navigation ${index}`}
+                        key={`navigation ${name}`}
                         href={route}
                         $active={route === pathName}>
                         {name}
                     </StyledLink>
                 ))}
             </SideNavigationBar>
-            <LogoutButton>로그아웃</LogoutButton>
+            {isLoggedIn ? (
+                <LogoutButton onClick={handleLogoutAdmin}>로그아웃</LogoutButton>
+            ) : (
+                <LoginLink href="/login">로그인</LoginLink>
+            )}
         </StyledSideBar>
     );
 };
@@ -108,6 +122,15 @@ const StyledLink = styled(Link)<{ $active: boolean }>`
 
 const LogoutButton = styled.button`
     ${font.H5}
+    ${flex({ alignItems: 'center' })}
+    height: 56px;
+    padding: 0px 36px;
+    color: ${color.white};
+    margin: auto 0 48px;
+`;
+
+const LoginLink = styled(Link)`
+    ${font.btn1}
     ${flex({ alignItems: 'center' })}
     height: 56px;
     padding: 0px 36px;

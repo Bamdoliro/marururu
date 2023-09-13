@@ -1,7 +1,7 @@
 'use client';
 
 import FaqDetailContent from '@/components/faq/FaqDetailContent/FaqDetailContent';
-import { ROUTES } from '@/constants/common/constants';
+import { ROUTES } from '@/constants/common/constant';
 import AppLayout from '@/layouts/AppLayout';
 import { IconArrowLeft } from '@maru/icon';
 import { color, font } from '@maru/theme';
