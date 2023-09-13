@@ -42,7 +42,7 @@ const Dropdown = ({
     };
 
     return (
-        <div style={{ width }}>
+        <div style={{ width }} ref={dropdownRef}>
             {label && <Label>{label}</Label>}
             <StyledDropdown size={size} onClick={handleToggleButtonClick} $isOpen={isOpen}>
                 <Text fontType="p2" color={!!value ? color.gray900 : color.gray500}>
@@ -54,7 +54,7 @@ const Dropdown = ({
                     <IconArrowBottom color={color.gray600} width={24} height={24} />
                 )}
             </StyledDropdown>
-            <DropdownListBox ref={dropdownRef} $isOpen={isOpen}>
+            <DropdownListBox $isOpen={isOpen}>
                 <DropdownList>
                     {data?.map((item, index) => (
                         <DropdownItem
