@@ -80,4 +80,20 @@ export const SUBJECT_LIST: Subject[] = [
     score: null,
 }));
 
+export const 검정고시_SUBJECT_LIST: Subject[] = [
+    '국어',
+    '수학',
+    '사회',
+    '과학',
+    '영어',
+    '도덕',
+].map((subject, index) => ({
+    id: index,
+    subjectName: subject,
+    achievementLevel21: null,
+    achievementLevel22: null,
+    achievementLevel31: null,
+    score: 0,
+}));
+
 export const SCORE_STEP_LIST = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;

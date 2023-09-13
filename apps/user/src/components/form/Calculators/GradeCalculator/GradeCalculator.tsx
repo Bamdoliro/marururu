@@ -1,4 +1,4 @@
-import { useNewSubjectStore, useSetFormStore, useSubjectStore } from '@/store';
+import { useNewSubjectListStore, useSetFormStore, useSubjectListStore } from '@/store';
 import { Subject } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Switch, Text } from '@maru/ui';
@@ -11,8 +11,8 @@ import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorI
 
 const GradeCalculator = () => {
     const [gradeSwitchStep, setGradeSwitchStep] = useState('졸업 예정');
-    const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
-    const [subjectList, setSubjectList] = useSubjectStore();
+    const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
+    const [subjectList, setSubjectList] = useSubjectListStore();
     const setForm = useSetFormStore();
 
     const newSubjectIdRef = useRef(newSubjectList.length);
@@ -97,6 +97,7 @@ const StyledGradeCalculator = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 16px;
     width: 816px;
+    height: 100%;
 `;
 
 const GradeCalculatorFooter = styled.div`

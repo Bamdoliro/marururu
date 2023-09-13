@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import Profile from './Profile/Profile';
-const NAVIGATION_DATA = [
+const NAVIGATION_LIST = [
     {
         name: '홈',
         route: ROUTES.MAIN,
@@ -70,7 +70,7 @@ const Header = () => {
                     )}
                 </Row>
                 <Row style={{ padding: '0px 96px' }} alignItems="center" height={54}>
-                    {NAVIGATION_DATA.map(({ route, name }, index) => {
+                    {NAVIGATION_LIST.map(({ route, name }, index) => {
                         return (
                             <UnderlineButton
                                 key={`navigation ${index}`}

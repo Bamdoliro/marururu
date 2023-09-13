@@ -6,8 +6,8 @@ import { useSaveFormQuery } from '@/services/form/queries';
 import {
     useFormStore,
     useIsSaveFormLoadedStore,
-    useSetNewSubjectStore,
-    useSetSubjectStore,
+    useSetNewSubjectListStore,
+    useSetSubjectListStore,
 } from '@/store';
 import { useInterval } from '@toss/react';
 import { ReactNode, useEffect } from 'react';
@@ -21,8 +21,8 @@ const FormWrapper = ({ children }: Props) => {
     const { saveFormMutate } = useSaveFormMutation();
     const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();
     const [form, setForm] = useFormStore();
-    const setSubjectList = useSetSubjectStore();
-    const setNewtSubjectList = useSetNewSubjectStore();
+    const setSubjectList = useSetSubjectListStore();
+    const setNewtSubjectList = useSetNewSubjectListStore();
 
     // 2분마다 한번씩 저장
     useInterval(() => {

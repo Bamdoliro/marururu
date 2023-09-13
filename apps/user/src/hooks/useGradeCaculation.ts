@@ -11,7 +11,7 @@ import {
     REGULAR_TYPE_DEFAULT_SCORE,
     SPECIAL_TYPE_DEFAULT_SCORE,
 } from '@/constants/form/constant';
-import { useFormValueStore, useNewSubjectValueStore, useSubjectValueStore } from '@/store';
+import { useFormValueStore, useNewSubjectListValueStore, useSubjectListValueStore } from '@/store';
 import { Attendance } from '@/types/form/client';
 
 enum AchievementScore {
@@ -26,8 +26,8 @@ type AchievementLevelKey = 'achievementLevel21' | 'achievementLevel22' | 'achiev
 
 const useGradeCalculation = () => {
     const form = useFormValueStore();
-    const subjectList = useSubjectValueStore();
-    const newSubjectList = useNewSubjectValueStore();
+    const subjectList = useSubjectListValueStore();
+    const newSubjectList = useNewSubjectListValueStore();
 
     const studentSubjectList = subjectList.concat(newSubjectList);
 

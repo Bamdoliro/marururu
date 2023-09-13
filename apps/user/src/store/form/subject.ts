@@ -12,10 +12,10 @@ const newSubjectListAtomState = atom<Subject[]>({
     default: [],
 });
 
-export const useSubjectStore = () => useRecoilState(subjectListAtomState);
-export const useSubjectValueStore = () => useRecoilValue(subjectListAtomState);
-export const useSetSubjectStore = () => useSetRecoilState(subjectListAtomState);
+export const useSubjectListStore = () => useRecoilState(subjectListAtomState);
+export const useSubjectListValueStore = () => useRecoilValue(subjectListAtomState);
+export const useSetSubjectListStore = () => useSetRecoilState(subjectListAtomState);
 
-export const useNewSubjectStore = () => useRecoilState(newSubjectListAtomState);
-export const useNewSubjectValueStore = () => useRecoilValue(newSubjectListAtomState);
-export const useSetNewSubjectStore = () => useSetRecoilState(newSubjectListAtomState);
+export const useNewSubjectListStore = () => useRecoilState(newSubjectListAtomState);
+export const useNewSubjectListValueStore = () => useRecoilValue(newSubjectListAtomState);
+export const useSetNewSubjectListStore = () => useSetRecoilState(newSubjectListAtomState);
