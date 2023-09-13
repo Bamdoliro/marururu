@@ -28,16 +28,21 @@ const useGradeCalculation = () => {
     const form = useFormValueStore();
     const subjectList = useSubjectListValueStore();
     const newSubjectList = useNewSubjectListValueStore();
-
     const studentSubjectList = subjectList.concat(newSubjectList);
 
     const getScoreOf = (achievementLevelKey: AchievementLevelKey) => {
         return (
             studentSubjectList.reduce((acc, subject) => {
                 const score = subject[achievementLevelKey];
-                return acc + (score ? AchievementScore[score] : 0);
+                const subjectName = subject.subjectName;
+                if (subjectName === '수학' && score !== null) {
+                    return acc + AchievementScore[score] * 2;
+                } else {
+                    return acc + (score ? AchievementScore[score] : 0);
+                }
             }, 0) /
-            studentSubjectList.filter((subject) => subject[achievementLevelKey] !== null).length
+            (studentSubjectList.filter((subject) => subject[achievementLevelKey] !== null).length +
+                1)
         );
     };
 

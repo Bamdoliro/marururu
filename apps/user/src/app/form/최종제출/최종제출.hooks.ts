@@ -2,9 +2,9 @@ import {
     useSubmitFinalFormMutation,
     useUploadFormDocumentMutation,
 } from '@/services/form/mutations';
-import { ChangeEventHandler, useRef } from 'react';
 import { useExportFormQuery } from '@/services/form/queries';
-import { useSetFormDocumentStore, useFormDocumentValueStore } from '@/store';
+import { useFormDocumentValueStore, useSetFormDocumentStore } from '@/store';
+import { ChangeEventHandler, useRef } from 'react';
 
 export const useFileUploadButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -29,6 +29,7 @@ export const useSubmitFinalFormAction = () => {
 
 export const useExportFormAction = () => {
     const { data: exportFormData } = useExportFormQuery();
+    console.log(exportFormData);
 
     const pdfUrl = window.URL.createObjectURL(new Blob([exportFormData]));
 

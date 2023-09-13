@@ -9,8 +9,8 @@ const 검정고시Calculator = () => {
     return (
         <Styled검정고시Calculator>
             <검정고시CalculatorHeader />
-            {subjectList.map(({ subjectName, score }) => (
-                <검정고시CalculatorItem subject={subjectName} score={score} />
+            {subjectList.map(({ id, subjectName, score }) => (
+                <검정고시CalculatorItem id={id} subject={subjectName} score={score} />
             ))}
         </Styled검정고시Calculator>
     );

@@ -1,20 +1,44 @@
+import { useSetSubjectListStore } from '@/store';
 import { NumberInput, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 
 interface Props {
+    id: number;
     subject: string;
     score: number | null;
 }
 
-const 검정고시CalculatorItem = ({ subject, score }: Props) => {
+const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
+    const setSubjectList = useSetSubjectListStore();
+
+    const handle검정고시CaculatorItemDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { name, value } = e.target;
+
+        setSubjectList((prev) => {
+            const updatedData = [...prev];
+            updatedData[id] = {
+                ...updatedData[id],
+                [name]: value,
+            };
+
+            console.log(updatedData);
+            return updatedData;
+        });
+    };
+
     return (
         <Styled검정고시CalculatorItem>
             <Td width={123} height={64}>
                 {subject}
             </Td>
             <Td width={613} height={64}>
-                <NumberInput value={score} />
+                <NumberInput
+                    value={score ?? 0}
+                    name="score"
+                    onChange={handle검정고시CaculatorItemDataChange}
+                />
             </Td>
             <Td width={80} height={64}>
                 {null}
