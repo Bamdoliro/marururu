@@ -2,6 +2,8 @@ export const KEY = {
     NOTICE_LIST: 'useNoticeList',
     FORM_LIST: 'useFormList',
     ADMIN: 'useAdmin',
+    FAQ_LIST: 'useFaqList',
+    FAQ_DETAIL: 'useFaqDetail',
     NOTICE_DETAIL: 'useNoticeDetail',
 };
 
