@@ -2,6 +2,7 @@ export const KEY = {
     NOTICE_LIST: 'useNoticeList',
     FORM_LIST: 'useFormList',
     ADMIN: 'useAdmin',
+    NOTICE_DETAIL: 'useNoticeDetail',
 };
 
 export const ROUTES = {
