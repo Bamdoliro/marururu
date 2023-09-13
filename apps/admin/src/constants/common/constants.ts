@@ -5,7 +5,6 @@ export const KEY = {
 
 export const ROUTES = {
     MAIN: '/',
-    REVIEW: '/review',
     NOTICE: '/notice',
     FAQ: '/faq',
     ANALYSIS: '/analysis',
