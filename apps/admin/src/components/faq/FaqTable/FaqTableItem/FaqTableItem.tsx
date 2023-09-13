@@ -1,7 +1,7 @@
 import TableItem from '@/components/common/TableItem/TableItem';
 import { ROUTES } from '@/constants/common/constants';
 import { Row, Text } from '@maru/ui';
-import { formatCreatedAt } from '@maru/utils';
+import { formatPostedAt } from '@maru/utils';
 import Link from 'next/link';
 
 interface Props {
@@ -28,7 +28,7 @@ const FaqTableItem = ({ id, title, category, createdAt }: Props) => {
                         {category}
                     </Text>
                     <Text fontType="p2" width={120} ellipsis>
-                        {formatCreatedAt(createdAt)}
+                        {formatPostedAt(createdAt)}
                     </Text>
                 </Row>
             </TableItem>

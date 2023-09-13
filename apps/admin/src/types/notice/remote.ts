@@ -1,5 +1,9 @@
-import { Notice } from './client';
+import { Notice, NoticeDetail } from './client';
 
 export interface GetNoticeListRes {
     dataList: Notice[];
+}
+
+export interface GetNoticeDetailRes {
+    data: NoticeDetail;
 }
