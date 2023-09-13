@@ -1,4 +1,5 @@
 import TableItem from '@/components/common/TableItem/TableItem';
+import { ROUTES } from '@/constants/common/constants';
 import { Row, Text } from '@maru/ui';
 import { formatPostedAt } from '@maru/utils';
 import Link from 'next/link';
@@ -11,7 +12,7 @@ interface Props {
 
 const NoticeListItem = ({ id, title, createdAt }: Props) => {
     return (
-        <Link href={`/notice/${id}`}>
+        <Link href={`${ROUTES.NOTICE}/${id}`}>
             <TableItem key={id}>
                 <Row gap={48}>
                     <Text fontType="p2" width={50}>
