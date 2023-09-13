@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 interface Props {
     subject: string;
-    score: number;
+    score: number | null;
 }
 
-const 검정고시CaculatorItem = ({ subject, score }: Props) => {
+const 검정고시CalculatorItem = ({ subject, score }: Props) => {
     return (
-        <Styled검정고시CaculatorItem>
+        <Styled검정고시CalculatorItem>
             <Td width={123} height={64}>
                 {subject}
             </Td>
@@ -19,13 +19,13 @@ const 검정고시CaculatorItem = ({ subject, score }: Props) => {
             <Td width={80} height={64}>
                 {null}
             </Td>
-        </Styled검정고시CaculatorItem>
+        </Styled검정고시CalculatorItem>
     );
 };
 
-export default 검정고시CaculatorItem;
+export default 검정고시CalculatorItem;
 
-const Styled검정고시CaculatorItem = styled.div`
+const Styled검정고시CalculatorItem = styled.div`
     ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 64px;

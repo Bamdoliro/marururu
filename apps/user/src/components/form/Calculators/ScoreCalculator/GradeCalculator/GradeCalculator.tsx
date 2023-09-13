@@ -32,7 +32,7 @@ const GradeCalculator = () => {
             ({ id, ...rest }) => rest,
         );
         setForm((prev) => ({ ...prev, grade: { ...prev.grade, subjectList: studentSubjectList } }));
-    }, [newSubjectList, subjectList]);
+    }, [newSubjectList, setNewSubjectList, subjectList, setSubjectList]);
 
     return (
         <StyledGradeCalculator>
@@ -43,6 +43,7 @@ const GradeCalculator = () => {
                     item.subjectName === '미술' ||
                     item.subjectName === '음악' ||
                     item.subjectName === '체육';
+
                 return (
                     <GradeCalculatorItem
                         id={item.id}

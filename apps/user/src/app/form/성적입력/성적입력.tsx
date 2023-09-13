@@ -48,12 +48,12 @@ const 성적입력 = () => {
             <SwitchCase
                 value={currentScoreStep}
                 caseBy={{
-                    성적입력: <ScoreCalculator />,
+                    성적입력: <ScoreCalculator option="FORM" />,
                     출결상황: <AttendanceCalculator />,
                     봉사시간: <VolunteerCalculator />,
                     자격증: <CertificateCalculator />,
                 }}
-                defaultComponent={<ScoreCalculator />}
+                defaultComponent={<ScoreCalculator option="FORM" />}
             />
             <FormController
                 onPrevious={handlePreviousButtonClick}

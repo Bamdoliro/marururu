@@ -13,7 +13,7 @@ interface Props {
     option: 'SIMULATION' | 'FORM';
 }
 
-const ScoreCalculator = () => {
+const ScoreCalculator = ({ option }: Props) => {
     const setSubjectList = useSetSubjectListStore();
     const [gradeSwitchStep, setGradeSwitchStep] = useState('졸업 예정');
 
@@ -32,11 +32,13 @@ const ScoreCalculator = () => {
                     *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
                     <br /> *해당 과목이 없을 시 과목추가버튼으로 성적을 입력할 수 있습니다.
                 </Text>
-                <Switch
-                    items={['졸업 예정', '검정고시']}
-                    value={gradeSwitchStep}
-                    setValue={setGradeSwitchStep}
-                />
+                {option === 'SIMULATION' && (
+                    <Switch
+                        items={['졸업 예정', '검정고시']}
+                        value={gradeSwitchStep}
+                        setValue={setGradeSwitchStep}
+                    />
+                )}
             </Row>
             <SwitchCase
                 value={gradeSwitchStep}
