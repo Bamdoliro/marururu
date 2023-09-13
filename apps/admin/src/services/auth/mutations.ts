@@ -32,7 +32,7 @@ export const useLogoutAdminMutation = () => {
             localStorage.clear();
             window.location.href = ROUTES.MAIN;
         },
-        onError: localStorage.clear,
+        onError: () => localStorage.clear(),
     });
     return { logoutAdminMutate, ...restMutation };
 };
