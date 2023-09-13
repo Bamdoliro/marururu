@@ -2,8 +2,9 @@
 
 import NoticeList from '@/components/notice/NoticeList/NoticeList';
 import AppLayout from '@/layouts/AppLayout';
-import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
+import { Button, Column, Loader, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { Suspense } from 'react';
 import { styled } from 'styled-components';
 
 const NoticePage = () => {
@@ -21,7 +22,9 @@ const NoticePage = () => {
                             <Button size="SMALL">검색</Button>
                         </Row>
                     </Row>
-                    <NoticeList />
+                    <Suspense fallback={<Loader />}>
+                        <NoticeList />
+                    </Suspense>
                 </Column>
             </StyledNoticePage>
         </AppLayout>
@@ -31,6 +34,7 @@ const NoticePage = () => {
 export default NoticePage;
 
 const StyledNoticePage = styled.div`
+    position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 40px;
     width: 100%;

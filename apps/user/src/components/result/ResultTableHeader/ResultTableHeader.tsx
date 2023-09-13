@@ -1,5 +1,5 @@
-import { Row, Text } from '@maru/ui';
 import { color } from '@maru/theme';
+import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
