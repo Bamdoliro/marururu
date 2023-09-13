@@ -4,7 +4,7 @@ import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 const subjectListAtomState = atom<Subject[]>({
     key: 'subject-list',
-    default: [...SUBJECT_LIST],
+    default: SUBJECT_LIST,
 });
 
 const newSubjectListAtomState = atom<Subject[]>({

@@ -1,9 +1,11 @@
 import { FindSchoolModal, FormController } from '@/components/form';
+import { SUBJECT_LIST, 검정고시_SUBJECT_LIST } from '@/constants/form/data';
 import { FormLayout } from '@/layouts';
-import { useFormValueStore } from '@/store';
+import { useFormValueStore, useSetSubjectListStore } from '@/store';
 import { ButtonInput, Input, RadioGroup, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
 
@@ -12,6 +14,15 @@ const 출신학교및학력 = () => {
     const form = useFormValueStore();
     const { handle출신학교및학력DataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+    const setSubjectList = useSetSubjectListStore();
+
+    useEffect(() => {
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+            setSubjectList(검정고시_SUBJECT_LIST);
+        } else {
+            setSubjectList(SUBJECT_LIST);
+        }
+    }, [form.education.graduationType]);
 
     const openFindSchoolModal = () => {
         overlay.open(({ isOpen, close }) => <FindSchoolModal isOpen={isOpen} onClose={close} />);

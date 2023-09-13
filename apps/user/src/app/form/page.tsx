@@ -25,10 +25,8 @@ const FormPage = () => {
         if (formStatusData) {
             if (formStatusData.status === 'SUBMITTED') {
                 setFormStep('초안제출완료');
-                return;
             } else if (formStatusData.status === 'FINAL_SUBMITTED') {
                 setFormStep('최종제출완료');
-                return;
             }
         }
     }, [formStatusData]);

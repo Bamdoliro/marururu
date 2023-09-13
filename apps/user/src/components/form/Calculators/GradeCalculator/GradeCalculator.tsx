@@ -32,7 +32,6 @@ const GradeCalculator = () => {
         const studentSubjectList = [...subjectList, ...newSubjectList].map(
             ({ id, ...rest }) => rest,
         );
-
         setForm((prev) => ({ ...prev, grade: { ...prev.grade, subjectList: studentSubjectList } }));
     }, [newSubjectList, subjectList]);
 
