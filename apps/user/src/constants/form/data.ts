@@ -80,13 +80,24 @@ export const SUBJECT_LIST: Subject[] = [
     score: null,
 }));
 
-export const 검정고시_SUBJECT_LIST: Subject[] = [
-    '국어',
-    '수학',
-    '사회',
-    '과학',
-    '영어',
+export const 검정고시_SUBJECT_LIST: Subject[] = ['국어', '수학', '사회', '과학', '영어'].map(
+    (subject, index) => ({
+        id: index,
+        subjectName: subject,
+        achievementLevel21: null,
+        achievementLevel22: null,
+        achievementLevel31: null,
+        score: 0,
+    }),
+);
+
+export const SELECT_검정고시_SUBJECT_LIST: Subject[] = [
     '도덕',
+    '기술',
+    '가정',
+    '체육',
+    '음악',
+    '미술',
 ].map((subject, index) => ({
     id: index,
     subjectName: subject,

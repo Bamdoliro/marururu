@@ -15,7 +15,7 @@ const GradeCalculator = () => {
     const setForm = useSetFormStore();
 
     const newSubjectIdRef = useRef(newSubjectList.length);
-    const handleAddNewSubjectButtonClick = () => {
+    const handleAddNewGradeItemButtonClick = () => {
         const newSubject: Subject = {
             id: newSubjectIdRef.current++,
             subjectName: '',
@@ -32,7 +32,7 @@ const GradeCalculator = () => {
             ({ id, ...rest }) => rest,
         );
         setForm((prev) => ({ ...prev, grade: { ...prev.grade, subjectList: studentSubjectList } }));
-    }, [newSubjectList, setNewSubjectList, subjectList, setSubjectList]);
+    }, [newSubjectList, subjectList]);
 
     return (
         <StyledGradeCalculator>
@@ -64,12 +64,10 @@ const GradeCalculator = () => {
                     id={item.id}
                     key={`new-subject ${index}`}
                     achievementLevels={['없음', 'A', 'B', 'C', 'D', 'E']}
-                    newSubjectList={newSubjectList}
-                    setNewSubjectList={setNewSubjectList}
                 />
             ))}
             <GradeCalculatorFooter>
-                <Button onClick={handleAddNewSubjectButtonClick} icon="ADD_ICON" size="SMALL">
+                <Button onClick={handleAddNewGradeItemButtonClick} icon="ADD_ICON" size="SMALL">
                     과목추가
                 </Button>
             </GradeCalculatorFooter>

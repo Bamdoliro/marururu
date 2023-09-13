@@ -13,7 +13,7 @@ interface Props {
 const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
     const setSubjectList = useSetSubjectListStore();
 
-    const handle검정고시CaculatorItemDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handle검정고시ItemDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
 
         setSubjectList((prev) => {
@@ -30,17 +30,17 @@ const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
 
     return (
         <Styled검정고시CalculatorItem>
-            <Td width={123} height={64}>
+            <Td option="SECONDARY" width={123} height={64}>
                 {subject}
             </Td>
-            <Td width={613} height={64}>
+            <Td width={570} height={64}>
                 <NumberInput
                     value={score ?? 0}
                     name="score"
-                    onChange={handle검정고시CaculatorItemDataChange}
+                    onChange={handle검정고시ItemDataChange}
                 />
             </Td>
-            <Td width={80} height={64}>
+            <Td width={120} height={64}>
                 {null}
             </Td>
         </Styled검정고시CalculatorItem>

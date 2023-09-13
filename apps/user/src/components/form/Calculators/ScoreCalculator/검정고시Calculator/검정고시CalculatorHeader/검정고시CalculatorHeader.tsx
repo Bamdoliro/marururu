@@ -8,11 +8,11 @@ const 검정고시CalculatorHeader = () => {
                 <Th borderTopLeftRadius={12} width={123} height={64}>
                     과목
                 </Th>
-                <Th width={613} height={64}>
+                <Th width={570} height={64}>
                     성적
                 </Th>
-                <Th borderTopRightRadius={12} width={80} height={64}>
-                    선택
+                <Th borderTopRightRadius={12} width={120} height={64}>
+                    삭제
                 </Th>
             </Row>
         </Styled검정고시CalculatorHeader>

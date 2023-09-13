@@ -12,7 +12,7 @@ interface Props {
 }
 
 const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevels }: Props) => {
-    const handleCaculatorItemDataChange = (data: string, name: string) => {
+    const handleGradeItemDataChange = (data: string, name: string) => {
         setSubjectList((prev) => {
             const updatedData = [...prev];
             updatedData[id] = {
@@ -34,7 +34,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleCaculatorItemDataChange}
+                    onChange={handleGradeItemDataChange}
                     name="achievementLevel21"
                 />
             </Td>
@@ -44,7 +44,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleCaculatorItemDataChange}
+                    onChange={handleGradeItemDataChange}
                     name="achievementLevel22"
                 />
             </Td>
@@ -54,7 +54,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleCaculatorItemDataChange}
+                    onChange={handleGradeItemDataChange}
                     name="achievementLevel31"
                 />
             </Td>

@@ -63,7 +63,8 @@ const useGradeCalculation = () => {
                     }
                     return acc;
                 }, 0) /
-                    7;
+                    studentSubjectList.length +
+                2;
 
             return Number(score.toFixed(3));
         }
