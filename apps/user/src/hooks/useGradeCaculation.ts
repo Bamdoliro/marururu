@@ -13,6 +13,7 @@ import {
 } from '@/constants/form/constant';
 import { useFormValueStore, useNewSubjectListValueStore, useSubjectListValueStore } from '@/store';
 import { Attendance } from '@/types/form/client';
+import { getAchivementLevel } from '@/utils';
 
 enum AchievementScore {
     'A' = 5,
@@ -34,6 +35,7 @@ const useGradeCalculation = () => {
         return (
             studentSubjectList.reduce((acc, subject) => {
                 const score = subject[achievementLevelKey];
+
                 const subjectName = subject.subjectName;
                 if (subjectName === '수학' && score !== null) {
                     return acc + AchievementScore[score] * 2;
@@ -49,11 +51,19 @@ const useGradeCalculation = () => {
     const useRegularScore = () => {
         if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
             const score =
-                REGULAR_TYPE_DEFAULT_SCORE +
-                24 *
-                    (getScoreOf('achievementLevel21') +
-                        getScoreOf('achievementLevel22') +
-                        getScoreOf('achievementLevel31'));
+                SPECIAL_TYPE_DEFAULT_SCORE +
+                12 * 2 +
+                subjectList.reduce((acc, subject) => {
+                    const achievementLevel = subject.score && getAchivementLevel(subject.score);
+                    if (achievementLevel) {
+                        if (subject.subjectName === '수학') {
+                            return acc + AchievementScore[achievementLevel] * 2;
+                        }
+                        return acc + AchievementScore[achievementLevel];
+                    }
+                    return acc;
+                }, 0) /
+                    7;
 
             return Number(score.toFixed(3));
         }
@@ -61,7 +71,7 @@ const useGradeCalculation = () => {
         const score =
             REGULAR_TYPE_DEFAULT_SCORE +
             4.8 * (getScoreOf('achievementLevel21') + getScoreOf('achievementLevel22')) +
-            14.4 * getScoreOf('achievementLevel31');
+            7.2 * 2 * getScoreOf('achievementLevel31');
 
         return Number(score.toFixed(3));
     };

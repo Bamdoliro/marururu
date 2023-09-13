@@ -15,7 +15,7 @@ interface Props {
 
 const ScoreCalculator = ({ option }: Props) => {
     const setSubjectList = useSetSubjectListStore();
-    const [gradeSwitchStep, setGradeSwitchStep] = useState('졸업 예정');
+    const [gradeSwitchStep, setGradeSwitchStep] = useState('검정고시');
 
     useEffect(() => {
         if (gradeSwitchStep === '졸업 예정') {
