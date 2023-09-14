@@ -16,18 +16,18 @@ interface Props {
 const ScoreCalculator = ({ option }: Props) => {
     const [form, setForm] = useFormStore();
     const setSubjectList = useSetSubjectListStore();
-    const [graduationTypeSwitch, setGraduationTypeSwitch] = useState('EXPECTED');
+    const [selectedGraduationType, setSelectedGraduationType] = useState('EXPECTED');
 
     useEffect(() => {
         if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
-            setGraduationTypeSwitch('QUALIFICATION_EXAMINATION');
+            setSelectedGraduationType('QUALIFICATION_EXAMINATION');
         } else {
-            setGraduationTypeSwitch('EXPECTED');
+            setSelectedGraduationType('EXPECTED');
         }
     }, []);
 
     useEffect(() => {
-        if (graduationTypeSwitch === 'QUALIFICATION_EXAMINATION') {
+        if (selectedGraduationType === 'QUALIFICATION_EXAMINATION') {
             setSubjectList(검정고시_SUBJECT_LIST);
             setForm((prev) => ({
                 ...prev,
@@ -40,7 +40,7 @@ const ScoreCalculator = ({ option }: Props) => {
                 education: { ...prev.education, graduationType: 'EXPECTED' },
             }));
         }
-    }, [graduationTypeSwitch]);
+    }, [selectedGraduationType]);
 
     return (
         <StyledScoreCalculator>
@@ -55,13 +55,13 @@ const ScoreCalculator = ({ option }: Props) => {
                             { name: '졸업 예정', value: 'EXPECTED' },
                             { name: '고입검정', value: 'QUALIFICATION_EXAMINATION' },
                         ]}
-                        value={graduationTypeSwitch}
-                        setValue={setGraduationTypeSwitch}
+                        value={selectedGraduationType}
+                        setValue={setSelectedGraduationType}
                     />
                 )}
             </Row>
             <SwitchCase
-                value={graduationTypeSwitch}
+                value={selectedGraduationType}
                 caseBy={{
                     QUALIFICATION_EXAMINATION: <검정고시Calculator />,
                 }}
