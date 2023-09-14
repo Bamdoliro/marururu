@@ -11,7 +11,7 @@ const 검정고시CalculatorHeader = () => {
                 <Th width={570} height={64}>
                     성적
                 </Th>
-                <Th borderTopRightRadius={12} width={120} height={64}>
+                <Th borderTopRightRadius={12} width={123} height={64}>
                     삭제
                 </Th>
             </Row>

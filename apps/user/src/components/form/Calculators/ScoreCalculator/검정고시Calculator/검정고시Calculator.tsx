@@ -17,8 +17,8 @@ import 검정고시CalculatorItem from './검정고시CalculatorItem/검정고�
 const 검정고시Calculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
     const subjectList = useSubjectListValueStore();
-    const setForm = useSetFormStore();
     const form = useFormValueStore();
+    const setForm = useSetFormStore();
 
     const new검정고시SubjectIdRef = useRef(newSubjectList.length);
     const handleAddNew검정고시ItemButtonClick = () => {
@@ -42,8 +42,7 @@ const 검정고시Calculator = () => {
             ({ id, ...rest }) => rest,
         );
         setForm((prev) => ({ ...prev, grade: { ...prev.grade, subjectList: studentSubjectList } }));
-        console.log(form);
-    }, [newSubjectList, subjectList]);
+    }, [subjectList, newSubjectList]);
 
     return (
         <Styled검정고시Calculator>

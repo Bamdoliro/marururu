@@ -41,13 +41,13 @@ const FormWrapper = ({ children }: Props) => {
                 type: saveFormData.type || FORM.type,
             });
             if (saveFormData.grade.subjectList) {
-                setSubjectList(
-                    saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
-                        ...subject,
-                        id: index,
-                    })),
-                );
                 if (saveFormData.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+                    setSubjectList(
+                        saveFormData.grade.subjectList.slice(0, 5).map((subject, index) => ({
+                            ...subject,
+                            id: index,
+                        })),
+                    );
                     setNewtSubjectList(
                         saveFormData.grade.subjectList.slice(5).map((newSubject, index) => ({
                             ...newSubject,
@@ -56,6 +56,12 @@ const FormWrapper = ({ children }: Props) => {
                     );
                     return;
                 }
+                setSubjectList(
+                    saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
+                        ...subject,
+                        id: index,
+                    })),
+                );
                 setNewtSubjectList(
                     saveFormData.grade.subjectList.slice(12).map((newSubject, index) => ({
                         ...newSubject,

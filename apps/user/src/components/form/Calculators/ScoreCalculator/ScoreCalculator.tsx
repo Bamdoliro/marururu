@@ -1,4 +1,3 @@
-import { SUBJECT_LIST, 검정고시_SUBJECT_LIST } from '@/constants/form/data';
 import { useFormStore, useSetSubjectListStore } from '@/store';
 import { color } from '@maru/theme';
 import { Row, Switch, Text } from '@maru/ui';
@@ -28,13 +27,11 @@ const ScoreCalculator = ({ option }: Props) => {
 
     useEffect(() => {
         if (selectedGraduationType === 'QUALIFICATION_EXAMINATION') {
-            setSubjectList(검정고시_SUBJECT_LIST);
             setForm((prev) => ({
                 ...prev,
                 education: { ...prev.education, graduationType: 'QUALIFICATION_EXAMINATION' },
             }));
         } else {
-            setSubjectList(SUBJECT_LIST);
             setForm((prev) => ({
                 ...prev,
                 education: { ...prev.education, graduationType: 'EXPECTED' },

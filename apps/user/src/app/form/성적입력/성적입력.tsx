@@ -29,6 +29,8 @@ const 성적입력 = () => {
                 return;
             }
             setCurrentScoreStep(scoreStep);
+        } else {
+            setCurrentScoreStep(scoreStep);
         }
     };
 

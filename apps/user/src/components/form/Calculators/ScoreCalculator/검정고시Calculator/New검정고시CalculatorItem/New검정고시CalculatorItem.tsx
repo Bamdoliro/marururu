@@ -13,7 +13,7 @@ interface Props {
 const New검정고시CalculatorItem = ({ id, score }: Props) => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
 
-    const newSubjectIndex = newSubjectList.findIndex((item) => item.id === id);
+    const new검정고시SubjectIndex = newSubjectList.findIndex((item) => item.id === id);
 
     const handleDeleteNew검정고시ItemButtonClick = (id: number) => {
         setNewSubjectList((prev) => prev.filter((item) => item.id !== id));
@@ -24,8 +24,8 @@ const New검정고시CalculatorItem = ({ id, score }: Props) => {
 
         setNewSubjectList((prev) => {
             const updatedData = [...prev];
-            updatedData[newSubjectIndex] = {
-                ...updatedData[newSubjectIndex],
+            updatedData[new검정고시SubjectIndex] = {
+                ...updatedData[new검정고시SubjectIndex],
                 [name]: value,
             };
             return updatedData;
@@ -38,7 +38,7 @@ const New검정고시CalculatorItem = ({ id, score }: Props) => {
                 <NewSubjectInput
                     onChange={handleNew검정고시ItemDataChange}
                     name="subjectName"
-                    value={newSubjectList[newSubjectIndex].subjectName}
+                    value={newSubjectList[new검정고시SubjectIndex].subjectName}
                     placeholder="과목명 입력"
                 />
             </Td>

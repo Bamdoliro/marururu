@@ -1,8 +1,8 @@
-import { useSetSubjectListStore } from '@/store';
+import { useSubjectListStore } from '@/store';
 import { NumberInput, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 
 interface Props {
     id: number;
@@ -11,21 +11,20 @@ interface Props {
 }
 
 const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
-    const setSubjectList = useSetSubjectListStore();
+    const [subjectList, setSubjectList] = useSubjectListStore();
 
     const handle검정고시ItemDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
-
         setSubjectList((prev) => {
             const updatedData = [...prev];
             updatedData[id] = {
                 ...updatedData[id],
                 [name]: value,
             };
-
             console.log(updatedData);
             return updatedData;
         });
+        console.log(subjectList);
     };
 
     return (
@@ -40,7 +39,7 @@ const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
                     onChange={handle검정고시ItemDataChange}
                 />
             </Td>
-            <Td width={120} height={64}>
+            <Td width={123} height={64}>
                 {null}
             </Td>
         </Styled검정고시CalculatorItem>
