@@ -29,7 +29,6 @@ export const useSubmitFinalFormAction = () => {
 
 export const useExportFormAction = () => {
     const { data: exportFormData } = useExportFormQuery();
-    console.log(exportFormData);
 
     const pdfUrl = window.URL.createObjectURL(new Blob([exportFormData]));
 
