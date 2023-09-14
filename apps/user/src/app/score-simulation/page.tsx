@@ -23,7 +23,7 @@ const ScoreSimulation = () => {
     const handleScoreStepButtonClick = (scoreStep: string) => {
         if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
             if (scoreStep === '출결상황' || scoreStep === '봉사시간') {
-                alert('검정고시 지원자는 입력하지 않아도 돼요');
+                alert('검정고시 합격자는 기본 점수가 부여돼요.');
                 return;
             }
             setCurrentScoreStep(scoreStep);
