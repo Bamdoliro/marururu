@@ -14,14 +14,11 @@ export const useJoinAction = (joinUserData: Join, termsAgree: boolean) => {
         if (joinUserData.password === joinUserData.password_confirm) {
             if (termsAgree) {
                 joinUserMutate();
-                return;
             } else if (!termsAgree) {
                 alert('이용약관 동의를 해주세요');
-                return;
             }
         } else if (joinUserData.password !== joinUserData.password_confirm) {
             alert('비밀번호를 한번만 확인해주세요');
-            return;
         }
     };
 
