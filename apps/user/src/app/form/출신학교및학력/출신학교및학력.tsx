@@ -34,7 +34,7 @@ const 출신학교및학력 = () => {
                 <RadioGroup
                     label="졸업 구분"
                     name="graduationType"
-                    list={[
+                    items={[
                         { value: 'EXPECTED', label: '졸업 예정' },
                         { value: 'GRADUATED', label: '졸업' },
                         { value: 'QUALIFICATION_EXAMINATION', label: '고입 검정' },

@@ -32,7 +32,7 @@ const 지원자정보 = () => {
                                 value={form.applicant.gender}
                                 onChange={handle지원자정보DataChange}
                                 name="gender"
-                                list={[
+                                items={[
                                     { label: '남자', value: 'MALE' },
                                     { label: '여자', value: 'FEMALE' },
                                 ]}

@@ -34,8 +34,8 @@ const Schedule = () => {
                 2024학년도 부산소마고 입학 일정
             </Text>
             <StyledScheduleList>
-                {SCHEDULE_DATA.map((item) => (
-                    <ScheduleItem key={item.id} date={item.date} plan={item.plan} />
+                {SCHEDULE_DATA.map(({ id, date, plan }) => (
+                    <ScheduleItem key={id} date={date} plan={plan} />
                 ))}
             </StyledScheduleList>
         </StyledSchedule>
