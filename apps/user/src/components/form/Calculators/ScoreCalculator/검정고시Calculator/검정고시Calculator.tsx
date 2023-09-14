@@ -23,7 +23,7 @@ const 검정고시Calculator = () => {
     const new검정고시SubjectIdRef = useRef(newSubjectList.length);
     const handleAddNew검정고시ItemButtonClick = () => {
         if (newSubjectList.length >= 1) {
-            alert('1개만 추가 할 수 있습니다.');
+            alert('한 개만 추가 할 수 있습니다.');
             return;
         }
         const newSubject: Subject = {
