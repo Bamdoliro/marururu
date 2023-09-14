@@ -1,15 +1,25 @@
 import { FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { useFormValueStore } from '@/store';
+import { useFormStore } from '@/store';
 import { Column, Radio, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useCTAButton, useInput } from './전형선택.hooks';
 
 const 전형선택 = () => {
-    const form = useFormValueStore();
+    const [form, setForm] = useFormStore();
     const { handleFormTypeDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+
+    useEffect(() => {
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+            if (form.type !== 'REGULAR') {
+                alert('검정고시 사용자는 일반 전형으로 지원이 가능해요');
+                setForm((prev) => ({ ...prev, type: 'REGULAR' }));
+            }
+        }
+    }, [form.type]);
 
     return (
         <FormLayout title="전형 선택">
