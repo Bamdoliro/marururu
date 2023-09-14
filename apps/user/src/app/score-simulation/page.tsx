@@ -9,6 +9,7 @@ import {
 } from '@/components/form';
 import { SCORE_STEP_LIST } from '@/constants/form/data';
 import { AppLayout } from '@/layouts';
+import { useFormValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -16,7 +17,20 @@ import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import styled from 'styled-components';
 const ScoreSimulation = () => {
+    const form = useFormValueStore();
     const [currentScoreStep, setCurrentScoreStep] = useState('성적 입력');
+
+    const handleScoreStepButtonClick = (scoreStep: string) => {
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+            if (scoreStep === '출결상황' || scoreStep === '봉사시간') {
+                alert('검정고시 지원자는 입력하지 않아도 돼요');
+                return;
+            }
+            setCurrentScoreStep(scoreStep);
+        } else {
+            setCurrentScoreStep(scoreStep);
+        }
+    };
 
     return (
         <AppLayout header footer>
@@ -44,7 +58,7 @@ const ScoreSimulation = () => {
                             <UnderlineButton
                                 key={`field-data ${index}`}
                                 active={scoreStep === currentScoreStep}
-                                onClick={() => setCurrentScoreStep(scoreStep)}>
+                                onClick={() => handleScoreStepButtonClick(scoreStep)}>
                                 {scoreStep}
                             </UnderlineButton>
                         ))}

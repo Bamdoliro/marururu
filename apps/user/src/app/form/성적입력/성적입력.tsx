@@ -8,6 +8,7 @@ import {
 } from '@/components/form';
 import { SCORE_STEP_LIST } from '@/constants/form/data';
 import { FormLayout } from '@/layouts';
+import { useFormValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -17,8 +18,19 @@ import styled from 'styled-components';
 import { useCTAButton } from './성적입력.hooks';
 
 const 성적입력 = () => {
+    const form = useFormValueStore();
     const [currentScoreStep, setCurrentScoreStep] = useState('성적 입력');
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+
+    const handleScoreStepButtonClick = (scoreStep: string) => {
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+            if (scoreStep === '출결상황' || scoreStep === '봉사시간') {
+                alert('검정고시 지원자는 입력하지 않아도돼요');
+                return;
+            }
+            setCurrentScoreStep(scoreStep);
+        }
+    };
 
     return (
         <FormLayout title="성적 입력">
@@ -40,7 +52,7 @@ const 성적입력 = () => {
                     <UnderlineButton
                         key={`score-step ${index}`}
                         active={scoreStep === currentScoreStep}
-                        onClick={() => setCurrentScoreStep(scoreStep)}>
+                        onClick={() => handleScoreStepButtonClick(scoreStep)}>
                         {scoreStep}
                     </UnderlineButton>
                 ))}
