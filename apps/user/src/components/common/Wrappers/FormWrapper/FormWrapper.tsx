@@ -49,16 +49,16 @@ const FormWrapper = ({ children }: Props) => {
                 );
                 if (saveFormData.education.graduationType === 'QUALIFICATION_EXAMINATION') {
                     setNewtSubjectList(
-                        saveFormData.grade.subjectList.slice(5).map((subject, index) => ({
-                            ...subject,
+                        saveFormData.grade.subjectList.slice(5).map((newSubject, index) => ({
+                            ...newSubject,
                             id: index,
                         })),
                     );
                     return;
                 }
                 setNewtSubjectList(
-                    saveFormData.grade.subjectList.slice(12).map((subject, index) => ({
-                        ...subject,
+                    saveFormData.grade.subjectList.slice(12).map((newSubject, index) => ({
+                        ...newSubject,
                         id: index,
                     })),
                 );
