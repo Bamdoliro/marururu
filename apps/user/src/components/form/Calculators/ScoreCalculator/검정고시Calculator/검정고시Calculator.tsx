@@ -1,4 +1,9 @@
-import { useNewSubjectListStore, useSetFormStore, useSubjectListValueStore } from '@/store';
+import {
+    useFormValueStore,
+    useNewSubjectListStore,
+    useSetFormStore,
+    useSubjectListValueStore,
+} from '@/store';
 import { Subject } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
@@ -13,6 +18,7 @@ const 검정고시Calculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
     const subjectList = useSubjectListValueStore();
     const setForm = useSetFormStore();
+    const form = useFormValueStore();
 
     const new검정고시SubjectIdRef = useRef(newSubjectList.length);
     const handleAddNew검정고시ItemButtonClick = () => {
@@ -36,6 +42,7 @@ const 검정고시Calculator = () => {
             ({ id, ...rest }) => rest,
         );
         setForm((prev) => ({ ...prev, grade: { ...prev.grade, subjectList: studentSubjectList } }));
+        console.log(form);
     }, [newSubjectList, subjectList]);
 
     return (

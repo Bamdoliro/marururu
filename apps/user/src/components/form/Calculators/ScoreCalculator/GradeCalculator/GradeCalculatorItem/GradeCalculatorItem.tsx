@@ -1,17 +1,16 @@
-import { Subject } from '@/types/form/client';
+import { useSubjectListStore } from '@/store';
 import { Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
 interface Props {
     id: number;
-    subjectList: Subject[];
-    setSubjectList: Dispatch<SetStateAction<Subject[]>>;
     achievementLevels: string[];
 }
 
-const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevels }: Props) => {
+const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
+    const [subjectList, setSubjectList] = useSubjectListStore();
+
     const handleGradeItemDataChange = (data: string, name: string) => {
         setSubjectList((prev) => {
             const updatedData = [...prev];

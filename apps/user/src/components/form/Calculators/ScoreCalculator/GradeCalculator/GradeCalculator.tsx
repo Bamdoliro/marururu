@@ -38,31 +38,27 @@ const GradeCalculator = () => {
         <StyledGradeCalculator>
             <GradeCalculatorHeader />
             {/* 기존 과목 item */}
-            {subjectList.map((item, index) => {
+            {subjectList.map(({ id, subjectName }) => {
                 const isSpecialSubject =
-                    item.subjectName === '미술' ||
-                    item.subjectName === '음악' ||
-                    item.subjectName === '체육';
+                    subjectName === '미술' || subjectName === '음악' || subjectName === '체육';
 
                 return (
                     <GradeCalculatorItem
-                        id={item.id}
-                        key={`subject ${index}`}
+                        id={id}
+                        key={`subject ${id}`}
                         achievementLevels={
                             isSpecialSubject
                                 ? ['없음', 'A', 'B', 'C']
                                 : ['없음', 'A', 'B', 'C', 'D', 'E']
                         }
-                        subjectList={subjectList}
-                        setSubjectList={setSubjectList}
                     />
                 );
             })}
             {/* 사용자가 과목을 추가했을때 나타나는 item */}
-            {newSubjectList.map((item, index) => (
+            {newSubjectList.map(({ id }) => (
                 <NewGradeCalculatorItem
-                    id={item.id}
-                    key={`new-subject ${index}`}
+                    id={id}
+                    key={`new-subject ${id}`}
                     achievementLevels={['없음', 'A', 'B', 'C', 'D', 'E']}
                 />
             ))}

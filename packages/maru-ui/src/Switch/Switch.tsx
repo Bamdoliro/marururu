@@ -6,15 +6,15 @@ import { css, styled } from 'styled-components';
 interface Props {
     value: string;
     setValue: Dispatch<SetStateAction<string>>;
-    items: string[];
+    items: { name: string; value: string }[];
 }
 
 const Switch = ({ items, value, setValue }: Props) => {
     return (
         <StyledSwitch>
             {items.map((item) => (
-                <SwitchButton $active={item === value} onClick={() => setValue(item)}>
-                    {item}
+                <SwitchButton $active={item.value === value} onClick={() => setValue(item.value)}>
+                    {item.name}
                 </SwitchButton>
             ))}
         </StyledSwitch>

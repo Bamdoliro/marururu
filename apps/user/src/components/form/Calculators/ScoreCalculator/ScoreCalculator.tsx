@@ -1,5 +1,5 @@
 import { SUBJECT_LIST, 검정고시_SUBJECT_LIST } from '@/constants/form/data';
-import { useSetSubjectListStore } from '@/store';
+import { useFormStore, useSetSubjectListStore } from '@/store';
 import { color } from '@maru/theme';
 import { Row, Switch, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -14,16 +14,33 @@ interface Props {
 }
 
 const ScoreCalculator = ({ option }: Props) => {
+    const [form, setForm] = useFormStore();
     const setSubjectList = useSetSubjectListStore();
-    const [gradeSwitchStep, setGradeSwitchStep] = useState('검정고시');
+    const [graduationTypeSwitch, setGraduationTypeSwitch] = useState('EXPECTED');
 
     useEffect(() => {
-        if (gradeSwitchStep === '졸업 예정') {
-            setSubjectList(SUBJECT_LIST);
-        } else if (gradeSwitchStep === '검정고시') {
-            setSubjectList(검정고시_SUBJECT_LIST);
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+            setGraduationTypeSwitch('QUALIFICATION_EXAMINATION');
+        } else {
+            setGraduationTypeSwitch('EXPECTED');
         }
-    }, [gradeSwitchStep, setGradeSwitchStep]);
+    }, []);
+
+    useEffect(() => {
+        if (graduationTypeSwitch === 'QUALIFICATION_EXAMINATION') {
+            setSubjectList(검정고시_SUBJECT_LIST);
+            setForm((prev) => ({
+                ...prev,
+                education: { ...prev.education, graduationType: 'QUALIFICATION_EXAMINATION' },
+            }));
+        } else {
+            setSubjectList(SUBJECT_LIST);
+            setForm((prev) => ({
+                ...prev,
+                education: { ...prev.education, graduationType: 'EXPECTED' },
+            }));
+        }
+    }, [graduationTypeSwitch]);
 
     return (
         <StyledScoreCalculator>
@@ -34,17 +51,19 @@ const ScoreCalculator = ({ option }: Props) => {
                 </Text>
                 {option === 'SIMULATION' && (
                     <Switch
-                        items={['졸업 예정', '검정고시']}
-                        value={gradeSwitchStep}
-                        setValue={setGradeSwitchStep}
+                        items={[
+                            { name: '졸업 예정', value: 'EXPECTED' },
+                            { name: '고입검정', value: 'QUALIFICATION_EXAMINATION' },
+                        ]}
+                        value={graduationTypeSwitch}
+                        setValue={setGraduationTypeSwitch}
                     />
                 )}
             </Row>
             <SwitchCase
-                value={gradeSwitchStep}
+                value={graduationTypeSwitch}
                 caseBy={{
-                    졸업예정: <GradeCalculator />,
-                    검정고시: <검정고시Calculator />,
+                    QUALIFICATION_EXAMINATION: <검정고시Calculator />,
                 }}
                 defaultComponent={<GradeCalculator />}
             />

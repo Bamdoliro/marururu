@@ -49,7 +49,7 @@ export interface ParentInfo {
 }
 
 export interface EducationInfo {
-    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
+    graduationType: GraduationType;
     graduationYear: string;
     schoolName: string;
     schoolLocation: string;
@@ -113,6 +113,8 @@ export type FormType =
     | 'FARMING_AND_FISHING'
     | 'NATIONAL_VETERANS_EDUCATION'
     | 'SPECIAL_ADMISSION';
+
+export type GraduationType = 'EXPECTED' | 'QUALIFICATION_EXAMINATION' | 'GRADUATED';
 
 export interface FormDocument {
     fileName: string;
