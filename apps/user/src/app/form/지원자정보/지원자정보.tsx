@@ -21,6 +21,7 @@ const 지원자정보 = () => {
                             value={form.applicant.name}
                             onChange={handle지원자정보DataChange}
                             name="name"
+                            placeholder="예) 홍길동"
                             width="100%"
                             isError={form.applicant.name.length > 20}
                             errorMessage="20자 이하여야 합니다."
@@ -43,7 +44,7 @@ const 지원자정보 = () => {
                             value={form.applicant.phoneNumber}
                             onChange={handle지원자정보DataChange}
                             name="phoneNumber"
-                            placeholder="- 없이 입력해주세요"
+                            placeholder="- 없이 입력해주세요."
                             width="100%"
                             isError={
                                 !!form.applicant.phoneNumber &&

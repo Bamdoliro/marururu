@@ -1,4 +1,5 @@
 import { CompleteAlaram } from '@/components/form';
+import { useUser } from '@/hooks';
 import { AppLayout } from '@/layouts';
 import { IconCheckCircle } from '@maru/icon';
 import { color } from '@maru/theme';
@@ -10,6 +11,7 @@ import { useCTAButton } from './최종제출완료.hooks';
 
 const 최종제출완료 = () => {
     const router = useRouter();
+    const { userData } = useUser();
     const { handleGoMainPageButtonClick } = useCTAButton();
 
     return (
@@ -30,11 +32,11 @@ const 최종제출완료 = () => {
                             부산소프트웨어마이스터고에 지원해주셔서 감사합니다.
                         </Text>
                         <Text fontType="p2" color={color.gray900} textAlign="center">
-                            신준서 님, 부산소프트웨어마이스터고에 지원해주셔서 대단히 감사드립니다.
+                            {userData.name} 님, 부산소프트웨어마이스터고에 지원해주셔서 대단히 감사드립니다.
                             <br />
                             1차 합격자는 11월 3일에 발표됩니다.
                             <br />
-                            신준서 님의 1차 합격을 기원합니다.
+                            {userData.name} 님의 1차 합격을 기원합니다.
                         </Text>
                     </Column>
                     <Button onClick={handleGoMainPageButtonClick} size="SMALL">
