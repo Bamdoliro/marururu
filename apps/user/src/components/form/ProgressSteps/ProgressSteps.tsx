@@ -46,7 +46,8 @@ const StyledProgressSteps = styled.div`
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 52px 100px 86px;
+    padding: 52px 100px 0;
+    margin-bottom: 86px;
     &::before {
         position: absolute;
         content: '';
