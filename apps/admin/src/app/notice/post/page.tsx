@@ -1,6 +1,6 @@
 'use client';
 
-import NoticeDetailContentWrite from '@/components/notice/NoticeDetailContentWrite/NoticeDetailContentWrite';
+import NoticePost from '@/components/notice/NoticePost/NoticePost';
 import AppLayout from '@/layouts/AppLayout';
 import { IconArrowLeft } from '@maru/icon';
 import { color, font } from '@maru/theme';
@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 
-const NoticeWritePage = () => {
+const NoticePostPage = () => {
     return (
         <AppLayout>
             <StyledNoticeDetail>
@@ -19,14 +19,14 @@ const NoticeWritePage = () => {
                     돌아가기
                 </DirectLink>
                 <Suspense fallback={<Loader />}>
-                    <NoticeDetailContentWrite />
+                    <NoticePost />
                 </Suspense>
             </StyledNoticeDetail>
         </AppLayout>
     );
 };
 
-export default NoticeWritePage;
+export default NoticePostPage;
 
 const StyledNoticeDetail = styled.div`
     position: relative;

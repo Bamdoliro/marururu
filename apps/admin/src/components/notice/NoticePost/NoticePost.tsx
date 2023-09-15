@@ -4,18 +4,18 @@ import { flex } from '@maru/utils';
 import { ChangeEventHandler, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-const NoticeDetailContentWrite = () => {
+const NoticePost = () => {
     const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
-    const [noticeDetailData, setNoticeDetailData] = useState({
+    const [noticeData, setNoticeData] = useState({
         title: '',
         content: '',
     });
 
-    const handleNoticeDetailDataChange: ChangeEventHandler<
-        HTMLInputElement | HTMLTextAreaElement
-    > = (event) => {
+    const handleNoticeDataChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (
+        event,
+    ) => {
         const { name, value } = event.target;
-        setNoticeDetailData({ ...noticeDetailData, [name]: value });
+        setNoticeData({ ...noticeData, [name]: value });
 
         if (!contentTextareaRef.current) return;
         contentTextareaRef.current.style.height = 'auto';
@@ -28,8 +28,8 @@ const NoticeDetailContentWrite = () => {
                 <NoticeHeader>
                     <TitleInput
                         name="title"
-                        value={noticeDetailData.title}
-                        onChange={handleNoticeDetailDataChange}
+                        value={noticeData.title}
+                        onChange={handleNoticeDataChange}
                         placeholder="제목을 입력해주세요"
                     />
                     <Button size="SMALL">게시하기</Button>
@@ -37,8 +37,8 @@ const NoticeDetailContentWrite = () => {
                 <ContentTextarea
                     ref={contentTextareaRef}
                     name="content"
-                    value={noticeDetailData.content}
-                    onChange={handleNoticeDetailDataChange}
+                    value={noticeData.content}
+                    onChange={handleNoticeDataChange}
                     placeholder="내용을 작성해주세요."
                     rows={1}
                 />
@@ -47,7 +47,7 @@ const NoticeDetailContentWrite = () => {
     );
 };
 
-export default NoticeDetailContentWrite;
+export default NoticePost;
 
 const StyledNoticeDetailContent = styled.div`
     ${flex({ flexDirection: 'column' })}

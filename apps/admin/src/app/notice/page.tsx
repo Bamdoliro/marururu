@@ -12,8 +12,8 @@ import { styled } from 'styled-components';
 const NoticePage = () => {
     const router = useRouter();
 
-    const handleGoNoticeWritePageButtonClick = () => {
-        router.push(ROUTES.NOTICE_WRITE);
+    const handleGoNoticePostPageButtonClick = () => {
+        router.push(ROUTES.NOTICE_POST);
     };
 
     return (
@@ -25,7 +25,7 @@ const NoticePage = () => {
                         <Button
                             size="SMALL"
                             icon="ADD_ICON"
-                            onClick={handleGoNoticeWritePageButtonClick}>
+                            onClick={handleGoNoticePostPageButtonClick}>
                             공지사항 작성
                         </Button>
                         <Row gap={8}>
