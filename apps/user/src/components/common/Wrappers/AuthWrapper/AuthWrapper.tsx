@@ -51,8 +51,8 @@ const AuthWrapper = ({ children }: Props) => {
                 redirect(ROUTES.MAIN);
             }
             if (
-                dayjs().isBefore(제출_시작_날짜) ||
-                (dayjs().isAfter(제출_마감_날짜) && process.env.NODE_ENV !== 'development')
+                (dayjs().isBefore(제출_시작_날짜) || dayjs().isAfter(제출_마감_날짜)) &&
+                process.env.NODE_ENV !== 'development'
             ) {
                 if (pathName === ROUTES.FORM) {
                     overlay.open(({ isOpen, close }) => (
