@@ -1,4 +1,4 @@
-import { useNewSubjectListStore } from '@/store';
+import { useNew검정고시SubjectListStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Button, NumberInput, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -11,18 +11,18 @@ interface Props {
 }
 
 const New검정고시CalculatorItem = ({ id, score }: Props) => {
-    const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
+    const [new검정고시SubjectList, setNew검정고시SubjectList] = useNew검정고시SubjectListStore();
 
-    const new검정고시SubjectIndex = newSubjectList.findIndex((item) => item.id === id);
+    const new검정고시SubjectIndex = new검정고시SubjectList.findIndex((item) => item.id === id);
 
     const handleDeleteNew검정고시ItemButtonClick = (id: number) => {
-        setNewSubjectList((prev) => prev.filter((item) => item.id !== id));
+        setNew검정고시SubjectList((prev) => prev.filter((item) => item.id !== id));
     };
 
     const handleNew검정고시ItemDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
 
-        setNewSubjectList((prev) => {
+        setNew검정고시SubjectList((prev) => {
             const updatedData = [...prev];
             updatedData[new검정고시SubjectIndex] = {
                 ...updatedData[new검정고시SubjectIndex],
@@ -38,7 +38,7 @@ const New검정고시CalculatorItem = ({ id, score }: Props) => {
                 <NewSubjectInput
                     onChange={handleNew검정고시ItemDataChange}
                     name="subjectName"
-                    value={newSubjectList[new검정고시SubjectIndex].subjectName}
+                    value={new검정고시SubjectList[new검정고시SubjectIndex].subjectName}
                     placeholder="과목명 입력"
                 />
             </Td>

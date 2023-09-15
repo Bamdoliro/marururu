@@ -1,4 +1,4 @@
-import { useNewSubjectListStore, useSetFormStore, useSubjectListStore } from '@/store';
+import { useNewSubjectListStore, useSetFormStore, useSubjectListValueStore } from '@/store';
 import { Subject } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
@@ -11,7 +11,7 @@ import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorI
 
 const GradeCalculator = () => {
     const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
-    const [subjectList, setSubjectList] = useSubjectListStore();
+    const subjectList = useSubjectListValueStore();
     const setForm = useSetFormStore();
 
     const newSubjectIdRef = useRef(newSubjectList.length);

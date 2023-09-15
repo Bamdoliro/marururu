@@ -1,9 +1,8 @@
-import { useFormStore } from '@/store';
 import { color } from '@maru/theme';
 import { Row, Switch, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import GradeCalculator from './GradeCalculator/GradeCalculator';
 import 검정고시Calculator from './검정고시Calculator/검정고시Calculator';
@@ -13,30 +12,7 @@ interface Props {
 }
 
 const ScoreCalculator = ({ option }: Props) => {
-    const [form, setForm] = useFormStore();
     const [selectedGraduationType, setSelectedGraduationType] = useState('EXPECTED');
-
-    useEffect(() => {
-        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
-            setSelectedGraduationType('QUALIFICATION_EXAMINATION');
-        } else {
-            setSelectedGraduationType('EXPECTED');
-        }
-    }, []);
-
-    useEffect(() => {
-        if (selectedGraduationType === 'QUALIFICATION_EXAMINATION') {
-            setForm((prev) => ({
-                ...prev,
-                education: { ...prev.education, graduationType: 'QUALIFICATION_EXAMINATION' },
-            }));
-        } else {
-            setForm((prev) => ({
-                ...prev,
-                education: { ...prev.education, graduationType: 'EXPECTED' },
-            }));
-        }
-    }, [selectedGraduationType]);
 
     return (
         <StyledScoreCalculator>

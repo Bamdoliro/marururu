@@ -12,6 +12,7 @@ const GradePreview = () => {
         regularTotalScore,
         specialTotalScore,
     } = useGradeCalculation();
+
     return (
         <StyledGradePreview>
             <Table>

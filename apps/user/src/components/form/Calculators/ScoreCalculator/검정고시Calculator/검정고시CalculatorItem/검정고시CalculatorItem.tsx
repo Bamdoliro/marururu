@@ -1,4 +1,4 @@
-import { useSubjectListStore } from '@/store';
+import { useSet검정고시SubjectListStore } from '@/store';
 import { NumberInput, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
@@ -11,11 +11,11 @@ interface Props {
 }
 
 const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
-    const [subjectList, setSubjectList] = useSubjectListStore();
+    const set검정고시SubjectList = useSet검정고시SubjectListStore();
 
     const handle검정고시ItemDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
-        setSubjectList((prev) => {
+        set검정고시SubjectList((prev) => {
             const updatedData = [...prev];
             updatedData[id] = {
                 ...updatedData[id],
@@ -24,7 +24,6 @@ const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
             console.log(updatedData);
             return updatedData;
         });
-        console.log(subjectList);
     };
 
     return (

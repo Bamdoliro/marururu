@@ -1,8 +1,7 @@
 import {
-    useFormValueStore,
-    useNewSubjectListStore,
+    useNew검정고시SubjectListStore,
     useSetFormStore,
-    useSubjectListValueStore,
+    use검정고시SubjectListValueStore,
 } from '@/store';
 import { Subject } from '@/types/form/client';
 import { color } from '@maru/theme';
@@ -15,15 +14,14 @@ import 검정고시CalculatorHeader from './검정고시CalculatorHeader/검정�
 import 검정고시CalculatorItem from './검정고시CalculatorItem/검정고시CalculatorItem';
 
 const 검정고시Calculator = () => {
-    const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
-    const subjectList = useSubjectListValueStore();
-    const form = useFormValueStore();
+    const [new검정고시SubjectList, setNew검정고시SubjectList] = useNew검정고시SubjectListStore();
+    const 검정고시SubjectList = use검정고시SubjectListValueStore();
     const setForm = useSetFormStore();
 
-    const new검정고시SubjectIdRef = useRef(newSubjectList.length);
+    const new검정고시SubjectIdRef = useRef(new검정고시SubjectList.length);
     const handleAddNew검정고시ItemButtonClick = () => {
-        if (newSubjectList.length >= 1) {
-            alert('한 개만 추가 할 수 있습니다.');
+        if (new검정고시SubjectList.length >= 1) {
+            alert('선택과목은 하나만 추가할 수 있습니다.');
             return;
         }
         const newSubject: Subject = {
@@ -34,23 +32,23 @@ const 검정고시Calculator = () => {
             achievementLevel31: null,
             score: 0,
         };
-        setNewSubjectList((prev) => [...prev, newSubject]);
+        setNew검정고시SubjectList((prev) => [...prev, newSubject]);
     };
 
     useEffect(() => {
-        const studentSubjectList = [...subjectList, ...newSubjectList].map(
+        const studentSubjectList = [...검정고시SubjectList, ...new검정고시SubjectList].map(
             ({ id, ...rest }) => rest,
         );
         setForm((prev) => ({ ...prev, grade: { ...prev.grade, subjectList: studentSubjectList } }));
-    }, [subjectList, newSubjectList]);
+    }, [검정고시SubjectList, new검정고시SubjectList]);
 
     return (
         <Styled검정고시Calculator>
             <검정고시CalculatorHeader />
-            {subjectList.map(({ id, subjectName, score }) => (
+            {검정고시SubjectList.map(({ id, subjectName, score }) => (
                 <검정고시CalculatorItem id={id} subject={subjectName} score={score} />
             ))}
-            {newSubjectList.map(({ id, score }) => (
+            {new검정고시SubjectList.map(({ id, score }) => (
                 <New검정고시CalculatorItem id={id} score={score} />
             ))}
             <검정고시CalculatorFooter>
