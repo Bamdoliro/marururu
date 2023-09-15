@@ -1,4 +1,4 @@
-import { useFormStore, useSetSubjectListStore } from '@/store';
+import { useFormStore } from '@/store';
 import { color } from '@maru/theme';
 import { Row, Switch, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -14,7 +14,6 @@ interface Props {
 
 const ScoreCalculator = ({ option }: Props) => {
     const [form, setForm] = useFormStore();
-    const setSubjectList = useSetSubjectListStore();
     const [selectedGraduationType, setSelectedGraduationType] = useState('EXPECTED');
 
     useEffect(() => {

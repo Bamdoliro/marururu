@@ -8,6 +8,7 @@ import {
     useIsSaveFormLoadedStore,
     useSetNewSubjectListStore,
     useSetSubjectListStore,
+    useSubjectListValueStore,
 } from '@/store';
 import { useInterval } from '@toss/react';
 import { ReactNode, useEffect } from 'react';
@@ -22,6 +23,7 @@ const FormWrapper = ({ children }: Props) => {
     const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();
     const [form, setForm] = useFormStore();
     const setSubjectList = useSetSubjectListStore();
+    const subjectList = useSubjectListValueStore();
     const setNewtSubjectList = useSetNewSubjectListStore();
 
     // 2분마다 한번씩 저장
@@ -41,21 +43,6 @@ const FormWrapper = ({ children }: Props) => {
                 type: saveFormData.type || FORM.type,
             });
             if (saveFormData.grade.subjectList) {
-                if (saveFormData.education.graduationType === 'QUALIFICATION_EXAMINATION') {
-                    setSubjectList(
-                        saveFormData.grade.subjectList.slice(0, 5).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
-                    setNewtSubjectList(
-                        saveFormData.grade.subjectList.slice(5).map((newSubject, index) => ({
-                            ...newSubject,
-                            id: index,
-                        })),
-                    );
-                    return;
-                }
                 setSubjectList(
                     saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
                         ...subject,
@@ -68,6 +55,8 @@ const FormWrapper = ({ children }: Props) => {
                         id: index,
                     })),
                 );
+                console.info('저장된 데이터 : ', saveFormData);
+                console.info('subjectList : ', subjectList);
             }
         }
     }, [saveFormData]);

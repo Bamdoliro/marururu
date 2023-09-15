@@ -22,6 +22,8 @@ const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
         });
     };
 
+    console.log(subjectList);
+
     return (
         <StyledGradeCalculatorItem>
             <Td option="SECONDARY" width={123} height="100%">
