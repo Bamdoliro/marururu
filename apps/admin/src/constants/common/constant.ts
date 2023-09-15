@@ -11,6 +11,7 @@ export const ROUTES = {
     MAIN: '/',
     REVIEW: '/review',
     NOTICE: '/notice',
+    NOTICE_WRITE: '/notice/write',
     FAQ: '/faq',
     ANALYSIS: '/analysis',
     LOGIN: '/login',
