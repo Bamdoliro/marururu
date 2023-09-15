@@ -3,6 +3,7 @@ import { Button, Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useNoticePostAction } from './NoticePost.hooks';
 
 const NoticePost = () => {
     const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
@@ -10,6 +11,8 @@ const NoticePost = () => {
         title: '',
         content: '',
     });
+
+    const { handlePostButtonClick } = useNoticePostAction(noticeData);
 
     const handleNoticeDataChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (
         event,
@@ -32,7 +35,9 @@ const NoticePost = () => {
                         onChange={handleNoticeDataChange}
                         placeholder="제목을 입력해주세요"
                     />
-                    <Button size="SMALL">게시하기</Button>
+                    <Button size="SMALL" onClick={handlePostButtonClick}>
+                        게시하기
+                    </Button>
                 </NoticeHeader>
                 <ContentTextarea
                     ref={contentTextareaRef}
