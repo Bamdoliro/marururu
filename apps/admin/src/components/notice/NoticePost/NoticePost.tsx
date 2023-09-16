@@ -12,12 +12,12 @@ const NoticePost = () => {
         content: '',
     });
 
-    const { handlePostButtonClick } = useNoticePostAction(noticeData);
+    const { handleNoticePostButtonClick } = useNoticePostAction(noticeData);
 
     const handleNoticeDataChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (
-        event,
+        e,
     ) => {
-        const { name, value } = event.target;
+        const { name, value } = e.target;
         setNoticeData({ ...noticeData, [name]: value });
 
         if (!contentTextareaRef.current) return;
@@ -35,7 +35,7 @@ const NoticePost = () => {
                         onChange={handleNoticeDataChange}
                         placeholder="제목을 입력해주세요"
                     />
-                    <Button size="SMALL" onClick={handlePostButtonClick}>
+                    <Button size="SMALL" onClick={handleNoticePostButtonClick}>
                         게시하기
                     </Button>
                 </NoticeHeader>

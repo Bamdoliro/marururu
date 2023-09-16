@@ -11,7 +11,7 @@ export const useNoticePostMutation = ({ title, content }: PostNoticeReq) => {
     const { handleError } = useApiError();
     const router = useRouter();
 
-    const { mutate: noticePostMutate, ...restMutation } = useMutation({
+    const { mutate: postNoticeMutate, ...restMutation } = useMutation({
         mutationFn: () => postNotice({ title, content }),
         onSuccess: ({ data }) => {
             toast('업로드 완료', {
@@ -22,5 +22,5 @@ export const useNoticePostMutation = ({ title, content }: PostNoticeReq) => {
         onError: handleError,
     });
 
-    return { noticePostMutate, ...restMutation };
+    return { postNoticeMutate, ...restMutation };
 };
