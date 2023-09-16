@@ -2,6 +2,7 @@
 
 import { GlobalStyle } from '@maru/theme';
 import { ReactNode } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { RecoilRoot } from 'recoil';
 
 interface Props {
@@ -13,6 +14,7 @@ const Provider = ({ children }: Props) => {
         <RecoilRoot>
             <GlobalStyle />
             {children}
+            <ToastContainer />
         </RecoilRoot>
     );
 };

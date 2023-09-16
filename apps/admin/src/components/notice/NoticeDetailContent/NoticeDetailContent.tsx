@@ -51,7 +51,7 @@ const NoticeHeader = styled.div`
     ${flex({ justifyContent: 'space-between' })}
     width: 100%;
     border-bottom: 1px solid ${color.gray300};
-    padding-bottom: 8px;
+    padding-bottom: 16px;
 `;
 const Content = styled.div`
     ${font.p2};
