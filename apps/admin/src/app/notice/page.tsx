@@ -17,16 +17,13 @@ const NoticePage = () => {
                 <Text fontType="H1">공지사항</Text>
                 <Column gap={36}>
                     <Row justifyContent="space-between">
+                        <SearchInput placeholder="검색어를 입력하세요." />
                         <Button
                             size="SMALL"
                             icon="ADD_ICON"
                             onClick={handleGoNoticePostPageButtonClick}>
                             공지사항 작성
                         </Button>
-                        <Row gap={8}>
-                            <SearchInput placeholder="검색어를 입력하세요." />
-                            <Button size="SMALL">검색</Button>
-                        </Row>
                     </Row>
                     <Suspense fallback={<Loader />}>
                         <NoticeList />
