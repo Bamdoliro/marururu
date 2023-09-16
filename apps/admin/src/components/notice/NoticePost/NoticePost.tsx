@@ -1,6 +1,6 @@
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { flex } from '@maru/utils';
+import { flex, resizeTextarea } from '@maru/utils';
 import { ChangeEventHandler, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNoticePostAction } from './NoticePost.hooks';
@@ -20,13 +20,11 @@ const NoticePost = () => {
         const { name, value } = e.target;
         setNoticeData({ ...noticeData, [name]: value });
 
-        if (!contentTextareaRef.current) return;
-        contentTextareaRef.current.style.height = 'auto';
-        contentTextareaRef.current.style.height = contentTextareaRef.current.scrollHeight + 'px';
+        resizeTextarea(contentTextareaRef);
     };
 
     return (
-        <StyledNoticeDetailContent>
+        <StyledNoticePost>
             <Column gap={36}>
                 <NoticeHeader>
                     <TitleInput
@@ -48,13 +46,13 @@ const NoticePost = () => {
                     rows={1}
                 />
             </Column>
-        </StyledNoticeDetailContent>
+        </StyledNoticePost>
     );
 };
 
 export default NoticePost;
 
-const StyledNoticeDetailContent = styled.div`
+const StyledNoticePost = styled.div`
     ${flex({ flexDirection: 'column' })}
     padding: 0px 7px;
 `;

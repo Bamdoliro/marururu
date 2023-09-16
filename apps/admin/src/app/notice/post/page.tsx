@@ -1,6 +1,7 @@
 'use client';
 
 import NoticePost from '@/components/notice/NoticePost/NoticePost';
+import { ROUTES } from '@/constants/common/constant';
 import AppLayout from '@/layouts/AppLayout';
 import { IconArrowLeft } from '@maru/icon';
 import { color, font } from '@maru/theme';
@@ -13,22 +14,22 @@ import styled from 'styled-components';
 const NoticePostPage = () => {
     return (
         <AppLayout>
-            <StyledNoticeDetail>
-                <DirectLink href="/notice">
+            <StyledNoticePost>
+                <DirectLink href={ROUTES.NOTICE}>
                     <IconArrowLeft width={18} height={18} />
                     돌아가기
                 </DirectLink>
                 <Suspense fallback={<Loader />}>
                     <NoticePost />
                 </Suspense>
-            </StyledNoticeDetail>
+            </StyledNoticePost>
         </AppLayout>
     );
 };
 
 export default NoticePostPage;
 
-const StyledNoticeDetail = styled.div`
+const StyledNoticePost = styled.div`
     position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 24px;
