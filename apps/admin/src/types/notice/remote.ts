@@ -8,7 +8,7 @@ export interface GetNoticeDetailRes {
     data: NoticeDetail;
 }
 
-export interface PostNotice {
+export interface PostNoticeReq {
     title: string;
     content: string;
 }

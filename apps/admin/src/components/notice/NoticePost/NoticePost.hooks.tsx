@@ -1,7 +1,7 @@
 import { useNoticePostMutation } from '@/services/notice/mutations';
-import { PostNotice } from '@/types/notice/remote';
+import { PostNoticeReq } from '@/types/notice/remote';
 
-export const useNoticePostAction = (noticeData: PostNotice) => {
+export const useNoticePostAction = (noticeData: PostNoticeReq) => {
     const { noticePostMutate } = useNoticePostMutation(noticeData);
 
     const handlePostButtonClick = () => {
