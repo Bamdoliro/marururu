@@ -1,20 +1,18 @@
 'use client';
 
 import NoticeList from '@/components/notice/NoticeList/NoticeList';
-import { ROUTES } from '@/constants/common/constant';
 import AppLayout from '@/layouts/AppLayout';
 import { Button, Column, Loader, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
+import useCTAButton from './notice.hooks';
 
 const NoticePage = () => {
     const router = useRouter();
 
-    const handleGoNoticePostPageButtonClick = () => {
-        router.push(ROUTES.NOTICE_POST);
-    };
+    const { handleGoNoticePostPageButtonClick } = useCTAButton();
 
     return (
         <AppLayout>
