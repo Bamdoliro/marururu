@@ -12,6 +12,7 @@ export const ROUTES = {
     NOTICE: '/notice',
     NOTICE_POST: '/notice/post',
     FAQ: '/faq',
+    FAQ_POST: '/faq/post',
     ANALYSIS: '/analysis',
     LOGIN: '/login',
 } as const;

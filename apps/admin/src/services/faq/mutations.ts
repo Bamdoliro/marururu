@@ -1,25 +1,25 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useApiError } from '@/hooks';
-import { PostNoticeReq } from '@/types/notice/remote';
+import { PostFaqReq } from '@/types/faq/remote';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { postNotice } from './api';
+import { postFaq } from './api';
 
-export const useNoticePostMutation = ({ title, content }: PostNoticeReq) => {
+export const useFaqPostMutation = (faqData: PostFaqReq) => {
     const { handleError } = useApiError();
     const router = useRouter();
 
-    const { mutate: postNoticeMutate, ...restMutation } = useMutation({
-        mutationFn: () => postNotice({ title, content }),
+    const { mutate: postFaqMutate, ...restMutation } = useMutation({
+        mutationFn: () => postFaq(faqData),
         onSuccess: ({ data }) => {
-            toast('업로드 완료', {
+            toast('게시물이 게시되었습니다.', {
                 type: 'success',
             });
-            router.push(`${ROUTES.NOTICE}/${data.id}`);
+            router.push(`${ROUTES.FAQ}/${data.id}`);
         },
         onError: handleError,
     });
 
-    return { postNoticeMutate, ...restMutation };
+    return { postFaqMutate, ...restMutation };
 };
