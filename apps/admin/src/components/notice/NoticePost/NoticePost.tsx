@@ -80,6 +80,10 @@ const TitleInput = styled.input`
 
 const ContentTextarea = styled.textarea`
     ${font.p2};
-    color: ${color.gray500};
+    color: ${color.gray900};
+
+    &::placeholder {
+        color: ${color.gray500};
+    }
     resize: none;
 `;
