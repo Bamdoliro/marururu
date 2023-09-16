@@ -47,6 +47,6 @@ const StyledFaqPage = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 40px;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     padding: 64px 75px;
 `;
