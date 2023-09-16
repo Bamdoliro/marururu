@@ -4,14 +4,11 @@ import NoticeList from '@/components/notice/NoticeList/NoticeList';
 import AppLayout from '@/layouts/AppLayout';
 import { Button, Column, Loader, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
 import useCTAButton from './notice.hooks';
 
 const NoticePage = () => {
-    const router = useRouter();
-
     const { handleGoNoticePostPageButtonClick } = useCTAButton();
 
     return (
