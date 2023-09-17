@@ -12,6 +12,11 @@ export const getFaqDetail = async (id: number) => {
     return data;
 };
 
+export const deleteFaq = async (id: number) => {
+    const { data } = await maru.delete(`/question/${id}`, authorization());
+    return data;
+};
+
 export const postFaq = async (faqData: PostFaqReq) => {
     const { data } = await maru.post(`/question`, faqData, authorization());
     return data;

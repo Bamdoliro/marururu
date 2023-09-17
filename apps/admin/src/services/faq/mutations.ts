@@ -4,9 +4,25 @@ import { PostFaqReq, PutFaqReq } from '@/types/faq/remote';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { postFaq, putEditFaq } from './api';
+import { deleteFaq, postFaq, putEditFaq } from './api';
 
-export const useFaqPostMutation = (faqData: PostFaqReq) => {
+export const useDeleteFaqMutation = (id: number) => {
+    const router = useRouter();
+
+    const { mutate: deleteFaqMutate, ...restMutation } = useMutation({
+        mutationFn: () => deleteFaq(id),
+        onSuccess: () => {
+            toast('게시물이 삭제되었습니다.', {
+                type: 'success',
+            });
+            router.push(ROUTES.FAQ);
+        },
+    });
+
+    return { deleteFaqMutate, ...restMutation };
+};
+
+export const usePostFaqMutation = (faqData: PostFaqReq) => {
     const { handleError } = useApiError();
     const router = useRouter();
 

@@ -5,6 +5,7 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { convertLink, flex, formatCreatedAt } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
+import { useFaqDeleteAction } from './FaqDetailContent.hooks';
 
 interface Props {
     id: number;
@@ -13,6 +14,8 @@ interface Props {
 const FaqDetailContent = ({ id }: Props) => {
     const router = useRouter();
     const { data: faqDetailData } = useFaqDetailQuery(id);
+
+    const { handleDeleteFaqButtonClick } = useFaqDeleteAction(id);
 
     return faqDetailData ? (
         <StyledNoticeDetailContent>
@@ -34,7 +37,11 @@ const FaqDetailContent = ({ id }: Props) => {
                             onClick={() => router.push(`${ROUTES.FAQ_EDIT}/${id}`)}>
                             수정
                         </Button>
-                        <Button option="DELETE" size="SMALL" width={60}>
+                        <Button
+                            option="DELETE"
+                            size="SMALL"
+                            width={60}
+                            onClick={handleDeleteFaqButtonClick}>
                             삭제
                         </Button>
                     </Row>
