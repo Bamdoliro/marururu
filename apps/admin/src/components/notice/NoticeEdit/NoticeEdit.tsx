@@ -1,19 +1,27 @@
+import { useNoticeDetailQuery } from '@/services/notice/queries';
 import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, useRef, useState } from 'react';
+import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useNoticePostAction } from './NoticePost.hooks';
+import { useNotieEditAction } from './NoticeEdit.hooks';
 
-const NoticePost = () => {
+interface Props {
+    id: number;
+}
+
+const NoticeEdit = ({ id }: Props) => {
+    const { data: noticeDetailData } = useNoticeDetailQuery(id);
+
     const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
     const [noticeData, setNoticeData] = useState({
-        title: '',
-        content: '',
+        // TODO :: 고민해보기
+        title: noticeDetailData?.title ?? '',
+        content: noticeDetailData?.content ?? '',
     });
 
-    const { handleNoticePostButtonClick } = useNoticePostAction(noticeData);
+    const { handleNoticeEditButtonClick } = useNotieEditAction(id, noticeData);
 
     const handleNoticeDataChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (
         e,
@@ -24,8 +32,10 @@ const NoticePost = () => {
         resizeTextarea(contentTextareaRef);
     };
 
+    useEffect(() => resizeTextarea(contentTextareaRef), []);
+
     return (
-        <StyledNoticePost>
+        <StyledNoticeEdit>
             <Column gap={36}>
                 <NoticeHeader>
                     <TitleInput
@@ -34,8 +44,8 @@ const NoticePost = () => {
                         onChange={handleNoticeDataChange}
                         placeholder="제목을 입력해주세요"
                     />
-                    <Button size="SMALL" onClick={handleNoticePostButtonClick}>
-                        게시하기
+                    <Button size="SMALL" onClick={handleNoticeEditButtonClick}>
+                        수정하기
                     </Button>
                 </NoticeHeader>
                 <ContentTextarea
@@ -47,13 +57,13 @@ const NoticePost = () => {
                     rows={1}
                 />
             </Column>
-        </StyledNoticePost>
+        </StyledNoticeEdit>
     );
 };
 
-export default NoticePost;
+export default NoticeEdit;
 
-const StyledNoticePost = styled.div`
+const StyledNoticeEdit = styled.div`
     ${flex({ flexDirection: 'column' })}
     padding: 0px 7px;
 `;

@@ -1,6 +1,6 @@
 'use client';
 
-import NoticePost from '@/components/notice/NoticePost/NoticePost';
+import FaqPost from '@/components/faq/FaqPost/FaqPost';
 import { ROUTES } from '@/constants/common/constant';
 import AppLayout from '@/layouts/AppLayout';
 import { IconArrowLeft } from '@maru/icon';
@@ -11,25 +11,25 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 
-const NoticePostPage = () => {
+const FaqPostPage = () => {
     return (
         <AppLayout>
-            <StyledNoticePost>
-                <DirectLink href={ROUTES.NOTICE}>
+            <StyledFaqDetail>
+                <DirectLink href={ROUTES.FAQ}>
                     <IconArrowLeft width={18} height={18} />
                     돌아가기
                 </DirectLink>
                 <Suspense fallback={<Loader />}>
-                    <NoticePost />
+                    <FaqPost />
                 </Suspense>
-            </StyledNoticePost>
+            </StyledFaqDetail>
         </AppLayout>
     );
 };
 
-export default NoticePostPage;
+export default FaqPostPage;
 
-const StyledNoticePost = styled.div`
+const StyledFaqDetail = styled.div`
     position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 24px;
