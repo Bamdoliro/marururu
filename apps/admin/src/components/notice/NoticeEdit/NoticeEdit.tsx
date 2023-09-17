@@ -13,8 +13,6 @@ interface Props {
 const NoticeEdit = ({ id }: Props) => {
     const { data: noticeDetailData } = useNoticeDetailQuery(id);
 
-    console.log(noticeDetailData);
-
     const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
     const [noticeData, setNoticeData] = useState({
         // TODO :: 고민해보기

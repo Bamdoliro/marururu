@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { postNotice, putNotice } from './api';
+import { postNotice, putEditNotice } from './api';
 
 export const useNoticePostMutation = ({ title, content }: PostNoticeReq) => {
     const { handleError } = useApiError();
@@ -30,7 +30,7 @@ export const useNoticeEditMutation = (id: number, { title, content }: PutNoticeR
     const router = useRouter();
 
     const { mutate: editNoticeMutate, ...restMutation } = useMutation({
-        mutationFn: () => putNotice(id, { title, content }),
+        mutationFn: () => putEditNotice(id, { title, content }),
         onSuccess: () => {
             toast('공지사항이 수정되었습니다.', {
                 type: 'success',
