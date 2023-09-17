@@ -1,5 +1,7 @@
 import TableItem from '@/components/common/TableItem/TableItem';
 import { ROUTES } from '@/constants/common/constant';
+import { FAQ_CATEGORY } from '@/constants/faq/constants';
+import { Category } from '@/types/faq/client';
 import { Row, Text } from '@maru/ui';
 import { formatPostedAt } from '@maru/utils';
 import Link from 'next/link';
@@ -7,7 +9,7 @@ import Link from 'next/link';
 interface Props {
     id: number;
     title: string;
-    category: string;
+    category: Category;
     createdAt: string;
 }
 
@@ -25,7 +27,7 @@ const FaqTableItem = ({ id, title, category, createdAt }: Props) => {
                 </Row>
                 <Row gap={184}>
                     <Text fontType="p2" width={120} ellipsis>
-                        {category}
+                        {FAQ_CATEGORY[category]}
                     </Text>
                     <Text fontType="p2" width={120} ellipsis>
                         {formatPostedAt(createdAt)}
