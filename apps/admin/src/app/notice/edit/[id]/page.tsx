@@ -1,6 +1,6 @@
 'use client';
 
-import NoticePost from '@/components/notice/NoticePost/NoticePost';
+import NoticeEdit from '@/components/notice/NoticeEdit/NoticeEdit';
 import { ROUTES } from '@/constants/common/constant';
 import AppLayout from '@/layouts/AppLayout';
 import { IconArrowLeft } from '@maru/icon';
@@ -11,25 +11,29 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 
-const NoticePostPage = () => {
+interface Props {
+    params: { id: number };
+}
+
+const NoticeEditPage = ({ params: { id } }: Props) => {
     return (
         <AppLayout>
-            <StyledNoticePost>
-                <DirectLink href={ROUTES.NOTICE}>
+            <StyledNoticeEdit>
+                <DirectLink href={`${ROUTES.NOTICE}/${id}`}>
                     <IconArrowLeft width={18} height={18} />
                     돌아가기
                 </DirectLink>
                 <Suspense fallback={<Loader />}>
-                    <NoticePost />
+                    <NoticeEdit id={id} />
                 </Suspense>
-            </StyledNoticePost>
+            </StyledNoticeEdit>
         </AppLayout>
     );
 };
 
-export default NoticePostPage;
+export default NoticeEditPage;
 
-const StyledNoticePost = styled.div`
+const StyledNoticeEdit = styled.div`
     position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 24px;
