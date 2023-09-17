@@ -8,15 +8,15 @@ import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
 import {
     useExportFormAction,
-    useFileUploadButton,
     useInput,
     useSubmitFinalFormAction,
+    useUploadFileButton,
 } from './최종제출.hooks';
 
 const 최종제출 = () => {
     const overlay = useOverlay();
     const formDocument = useFormDocumentValueStore();
-    const { fileInputRef, handleFileUploadButtonClick } = useFileUploadButton();
+    const { fileInputRef, handleUploadFileButtonClick } = useUploadFileButton();
     const { handleExportFormButtonClick } = useExportFormAction();
     const { handleSubmitFinalFormButtonClick } = useSubmitFinalFormAction();
     const { handleFileDataChange } = useInput();
@@ -55,7 +55,7 @@ const 최종제출 = () => {
                         </ExportFormButton>
                     </Column>
                     <Row gap={16} alignItems="center" style={{ margin: '72px 0 56px 0' }}>
-                        <Button onClick={handleFileUploadButtonClick} size="SMALL">
+                        <Button onClick={handleUploadFileButtonClick} size="SMALL">
                             첨부파일 업로드
                         </Button>
                         {formDocument.fileName ? (

@@ -14,7 +14,7 @@ interface Props {
 const NoticeDetailContent = ({ id }: Props) => {
     const router = useRouter();
     const { data: noticeDetailData } = useNoticeDetailQuery(id);
-    const { handleNoticeDeleteButtonClick } = useNoticeDeleteAction(id);
+    const { handleDeleteNoticeButtonClick } = useNoticeDeleteAction(id);
 
     return noticeDetailData ? (
         <StyledNoticeDetailContent>
@@ -40,7 +40,7 @@ const NoticeDetailContent = ({ id }: Props) => {
                             option="DELETE"
                             size="SMALL"
                             width={60}
-                            onClick={handleNoticeDeleteButtonClick}>
+                            onClick={handleDeleteNoticeButtonClick}>
                             삭제
                         </Button>
                     </Row>

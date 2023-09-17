@@ -12,7 +12,7 @@ interface Props {
 const FaqDetailContent = ({ id }: Props) => {
     const { data: faqDetailData } = useFaqDetailQuery(id);
 
-    const { handleFaqDeleteButtonClick } = useFaqDeleteAction(id);
+    const { handleDeleteFaqButtonClick } = useFaqDeleteAction(id);
 
     return faqDetailData ? (
         <StyledNoticeDetailContent>
@@ -34,7 +34,7 @@ const FaqDetailContent = ({ id }: Props) => {
                             option="DELETE"
                             size="SMALL"
                             width={60}
-                            onClick={handleFaqDeleteButtonClick}>
+                            onClick={handleDeleteFaqButtonClick}>
                             삭제
                         </Button>
                     </Row>

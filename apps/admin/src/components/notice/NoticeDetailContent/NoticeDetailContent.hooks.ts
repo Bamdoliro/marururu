@@ -1,11 +1,11 @@
-import { useNoticeDeleteMutation } from '@/services/notice/mutations';
+import { useDeleteNoticeMutation } from '@/services/notice/mutations';
 
 export const useNoticeDeleteAction = (id: number) => {
-    const { deleteNoticeMutate } = useNoticeDeleteMutation(id);
+    const { deleteNoticeMutate } = useDeleteNoticeMutation(id);
 
-    const handleNoticeDeleteButtonClick = () => {
+    const handleDeleteNoticeButtonClick = () => {
         deleteNoticeMutate();
     };
 
-    return { handleNoticeDeleteButtonClick };
+    return { handleDeleteNoticeButtonClick };
 };

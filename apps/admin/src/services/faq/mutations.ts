@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { deleteFaq, postFaq } from './api';
 
-export const useFaqDeleteMutation = (id: number) => {
+export const useDeleteFaqMutation = (id: number) => {
     const router = useRouter();
 
     const { mutate: deleteFaqMutate, ...restMutation } = useMutation({
@@ -22,7 +22,7 @@ export const useFaqDeleteMutation = (id: number) => {
     return { deleteFaqMutate, ...restMutation };
 };
 
-export const useFaqPostMutation = (faqData: PostFaqReq) => {
+export const usePostFaqMutation = (faqData: PostFaqReq) => {
     const { handleError } = useApiError();
     const router = useRouter();
 

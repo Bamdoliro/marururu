@@ -1,11 +1,11 @@
-import { useFaqDeleteMutation } from '@/services/faq/mutations';
+import { useDeleteFaqMutation } from '@/services/faq/mutations';
 
 export const useFaqDeleteAction = (id: number) => {
-    const { deleteFaqMutate } = useFaqDeleteMutation(id);
+    const { deleteFaqMutate } = useDeleteFaqMutation(id);
 
-    const handleFaqDeleteButtonClick = () => {
+    const handleDeleteFaqButtonClick = () => {
         deleteFaqMutate();
     };
 
-    return { handleFaqDeleteButtonClick };
+    return { handleDeleteFaqButtonClick };
 };
