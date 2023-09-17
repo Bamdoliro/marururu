@@ -4,7 +4,6 @@ import { PostNoticeReq } from '@/types/notice/remote';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { postNotice } from './api';
 
 export const useNoticePostMutation = ({ title, content }: PostNoticeReq) => {
