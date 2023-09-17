@@ -11,5 +11,6 @@ export interface Faq {
 export interface FaqDetail {
     title: string;
     content: string;
+    category: string;
     createdAt: string;
 }
