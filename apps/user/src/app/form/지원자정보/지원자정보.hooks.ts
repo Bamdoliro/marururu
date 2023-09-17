@@ -9,6 +9,7 @@ export const useCTAButton = () => {
 
     const handleNextButtonClick = () => {
         setFormStep('보호자정보');
+
         saveFormMutate(form);
     };
 
@@ -20,6 +21,7 @@ export const useInput = () => {
 
     const handle지원자정보DataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         const { name, value } = e.target;
+
         setForm((prev) => ({ ...prev, applicant: { ...prev.applicant, [name]: value } }));
     };
 

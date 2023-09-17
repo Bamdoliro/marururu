@@ -1,4 +1,4 @@
-import { DateBox, FormController, ProfileUploader } from '@/components/form';
+import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { Column, Input, RadioGroup, Row } from '@maru/ui';
@@ -26,7 +26,14 @@ const 지원자정보 = () => {
                             isError={form.applicant.name.length > 20}
                             errorMessage="20자 이하여야 합니다."
                         />
-                        <DateBox />
+                        <Input
+                            label="생년월일"
+                            value={form.applicant.birthday}
+                            onChange={handle지원자정보DataChange}
+                            name="birthday"
+                            placeholder="예) 2006-07-06"
+                            width="100%"
+                        />
                         <Row gap={40} alignItems="flex-end">
                             <RadioGroup
                                 label="성별"
