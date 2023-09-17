@@ -1,6 +1,7 @@
+import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { flex, resizeTextarea } from '@maru/utils';
+import { flex } from '@maru/utils';
 import { ChangeEventHandler, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNoticePostAction } from './NoticePost.hooks';

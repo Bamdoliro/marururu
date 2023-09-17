@@ -1,7 +1,8 @@
 import { useNoticeDetailQuery } from '@/services/notice/queries';
+import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
-import { flex, resizeTextarea } from '@maru/utils';
+import { flex } from '@maru/utils';
 import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNotieEditAction } from './NoticeEdit.hooks';
