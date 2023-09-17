@@ -34,7 +34,8 @@ const ScheduleItem = ({ plan, date, startTime, endTime }: Props) => {
 export default ScheduleItem;
 
 const StyledScheduleItem = styled.div<{ active: boolean }>`
-    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })};
+    flex-shrink: 0;
     padding: 0px 20px;
     height: 64px;
     width: 100%;

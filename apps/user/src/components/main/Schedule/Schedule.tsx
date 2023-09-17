@@ -2,10 +2,11 @@ import {
     이차_전형_끝,
     이차_전형_시작,
     일차_합격_발표,
+    입학_등록_기간,
+    입학_등록_기간_마감,
     제출_마감_날짜,
     제출_시작_날짜,
     최종_합격_발표,
-    최종_합격_발표_끝,
 } from '@/constants/form/constant';
 import { color } from '@maru/theme';
 import { Text } from '@maru/ui';
@@ -40,7 +41,14 @@ const SCHEDULE_DATA = [
         date: '2023년 11월 2일 15:00',
         plan: '최종 합격자 발표',
         startTime: 최종_합격_발표,
-        endTime: 최종_합격_발표_끝,
+        endTime: 입학_등록_기간,
+    },
+    {
+        id: 4,
+        date: '2023년 12월 18일 ~ 20일',
+        plan: '입학등록기간',
+        startTime: 입학_등록_기간,
+        endTime: 입학_등록_기간_마감,
     },
 ] as const;
 
@@ -68,7 +76,7 @@ const Schedule = () => {
 export default Schedule;
 
 const StyledSchedule = styled.div`
-    ${flex({ flexDirection: 'column' })}
+    ${flex({ flexDirection: 'column' })};
     gap: 16px;
     width: 492px;
     height: 100%;
@@ -78,7 +86,7 @@ const StyledSchedule = styled.div`
 `;
 
 const StyledScheduleList = styled.div`
-    ${flex({ flexDirection: 'column' })}
+    ${flex({ flexDirection: 'column' })};
     gap: 16px;
     height: 100%;
     width: 100%;
