@@ -1,7 +1,9 @@
+import { ROUTES } from '@/constants/common/constant';
 import { useNoticeDetailQuery } from '@/services/notice/queries';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { convertLink, flex, formatCreatedAt } from '@maru/utils';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { useNoticeDeleteAction } from './NoticeDetailContent.hooks';
 
@@ -10,6 +12,7 @@ interface Props {
 }
 
 const NoticeDetailContent = ({ id }: Props) => {
+    const router = useRouter();
     const { data: noticeDetailData } = useNoticeDetailQuery(id);
     const { handleNoticeDeleteButtonClick } = useNoticeDeleteAction(id);
 
@@ -26,7 +29,11 @@ const NoticeDetailContent = ({ id }: Props) => {
                         </Text>
                     </Column>
                     <Row gap={16} alignItems="flex-end">
-                        <Button option="SECONDARY" size="SMALL" width={60}>
+                        <Button
+                            option="SECONDARY"
+                            size="SMALL"
+                            width={60}
+                            onClick={() => router.push(`${ROUTES.NOTICE_EDIT}/${id}`)}>
                             수정
                         </Button>
                         <Button
