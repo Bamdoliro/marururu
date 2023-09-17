@@ -1,19 +1,29 @@
 import TableItem from '@/components/common/TableItem/TableItem';
 import { KoreanFormType } from '@/constants/main/constants';
-import { FormStatus, FormType, GraduationType } from '@/types/main/client';
+import { Form, FormType } from '@/types/main/client';
+import { color } from '@maru/theme';
 import { Row, Text } from '@maru/ui';
 
-interface Props {
-    id: number;
-    name: string;
-    birthday: string;
-    graduationType: GraduationType;
-    school: string;
-    status: FormStatus;
-    type: FormType;
-}
+const FormListItem = ({
+    id,
+    name,
+    birthday,
+    graduationType,
+    school,
+    type,
+    totalScore,
+    hasDocument,
+    firstRoundPassed,
+    secondRoundPassed,
+}: Form) => {
+    const getStatusColor = (status: boolean | null) => {
+        return typeof status !== 'boolean' ? color.gray600 : status ? color.maruDefault : color.red;
+    };
 
-const FormListItem = ({ id, name, birthday, graduationType, school, type, status }: Props) => {
+    const getStatusString = (status: boolean | null, trueString: string, falseString: string) => {
+        return typeof status !== 'boolean' ? '미정' : status ? trueString : falseString;
+    };
+
     return (
         <TableItem>
             <Row gap={48}>
@@ -33,9 +43,23 @@ const FormListItem = ({ id, name, birthday, graduationType, school, type, status
                     {KoreanFormType[type as FormType]}
                 </Text>
             </Row>
-            <Text fontType="p2" width={80}>
-                {status}
-            </Text>
+            <Row gap={48}>
+                <Text fontType="p2" width={80} color={getStatusColor(hasDocument)}>
+                    {getStatusString(hasDocument, '제출', '미제출')}
+                </Text>
+                <Text fontType="p2" width={80} color={getStatusColor(firstRoundPassed)}>
+                    {getStatusString(firstRoundPassed, '합격', '불합격')}
+                </Text>
+                <Text
+                    fontType="p2"
+                    width={80}
+                    color={typeof totalScore !== 'number' ? color.gray600 : color.gray900}>
+                    {typeof totalScore !== 'number' ? '미정' : totalScore}
+                </Text>
+                <Text fontType="p2" width={80} color={getStatusColor(secondRoundPassed)}>
+                    {getStatusString(secondRoundPassed, '합격', '불합격')}
+                </Text>
+            </Row>
         </TableItem>
     );
 };
