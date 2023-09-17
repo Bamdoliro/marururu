@@ -1,23 +1,22 @@
-import { color, font } from '@maru/theme';
-import { Row, Text } from '@maru/ui';
+import { color } from '@maru/theme';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 interface Props {
-    date: string;
     plan: string;
+    date: string;
 }
 
-const ScheduleItem = ({ date, plan }: Props) => {
+const ScheduleItem = ({ plan, date }: Props) => {
     return (
         <StyledScheduleItem>
-            <Date>{date}</Date>
-            <Row gap="6px" alignItems="center">
-                <Bar />
-                <Text fontType="H5" color={color.gray900}>
-                    {plan}
-                </Text>
-            </Row>
+            <Text fontType="H5" color={color.gray900}>
+                {plan}
+            </Text>
+            <Text fontType="p2" color={color.gray700}>
+                {date}
+            </Text>
         </StyledScheduleItem>
     );
 };
@@ -25,22 +24,10 @@ const ScheduleItem = ({ date, plan }: Props) => {
 export default ScheduleItem;
 
 const StyledScheduleItem = styled.div`
-    ${flex({ flexDirection: 'column' })}
-    gap: 10px;
-    height: 58px;
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
+    padding: 0px 20px;
+    height: 64px;
     width: 100%;
-`;
-
-const Date = styled.p`
-    ${font.context}
-    color: ${color.gray900};
-    border-bottom: 1px solid ${color.gray300};
-    padding-bottom: 6px;
-`;
-
-const Bar = styled.div`
-    width: 4px;
-    height: 100%;
-    background-color: ${color.maruDefault};
-    border-radius: 2px;
+    border-radius: 12px;
+    background-color: ${color.gray50};
 `;
