@@ -158,7 +158,7 @@ const Styled초안작성완료 = styled.div<{ isFilledForm: boolean }>`
     gap: ${(props) => (props.isFilledForm ? '48px' : '62px')};
     max-width: 800px;
     height: 100%;
-    margin: 62px auto 0;
+    margin: 62px auto 240px;
 
     opacity: 0;
     animation: show 1.2s 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;

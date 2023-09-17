@@ -40,7 +40,7 @@ const LoginPage = () => {
                                     label="전화번호"
                                     width="100%"
                                     name="phoneNumber"
-                                    placeholder="이메일을 입력해주세요."
+                                    placeholder="전화번호를 입력해주세요."
                                     onChange={handleLoginUserDataChange}
                                 />
                                 <PreviewInput
