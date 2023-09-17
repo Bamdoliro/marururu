@@ -1,5 +1,6 @@
 import { FAQ_CATEGORY } from '@/constants/faq/constants';
 import { Category } from '@/types/faq/client';
+import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/theme';
 import { Button, Column, Dropdown, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -21,9 +22,11 @@ const FaqPost = () => {
         const { name, value } = e.target;
         setFaqData({ ...faqData, [name]: value });
 
-        if (!contentTextareaRef.current) return;
-        contentTextareaRef.current.style.height = 'auto';
-        contentTextareaRef.current.style.height = contentTextareaRef.current.scrollHeight + 'px';
+        resizeTextarea(contentTextareaRef);
+    };
+
+    const handleFaqCategoryChange = (value: string, name: string) => {
+        setFaqData({ ...faqData, [name]: value });
     };
 
     return (
@@ -52,9 +55,7 @@ const FaqPost = () => {
                         size="SMALL"
                         value={FAQ_CATEGORY[faqData.category as Category]}
                         placeholder="카테고리"
-                        onChange={(value, name) => {
-                            setFaqData({ ...faqData, [name]: value });
-                        }}
+                        onChange={handleFaqCategoryChange}
                     />
                 </FaqHeader>
                 <ContentTextarea
