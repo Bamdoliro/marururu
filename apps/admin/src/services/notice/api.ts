@@ -16,3 +16,8 @@ export const postNotice = async ({ title, content }: PostNoticeReq) => {
     const { data } = await maru.post('/notice', { title, content }, authorization());
     return data;
 };
+
+export const deleteNotice = async (id: number) => {
+    const { data } = await maru.delete(`/notice/${id}`, authorization());
+    return data;
+};
