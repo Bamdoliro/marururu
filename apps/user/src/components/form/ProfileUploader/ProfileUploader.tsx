@@ -12,7 +12,7 @@ const ProfileUploader = () => {
     const imageFileInputRef = useRef<HTMLInputElement>(null);
 
     // 클릭시 이미지 업로드 파일 열기
-    const handleImageUploadButtonClick = () => {
+    const handleUploadImageButtonClick = () => {
         imageFileInputRef.current?.click();
     };
 
@@ -66,14 +66,14 @@ const ProfileUploader = () => {
             {form.applicant.identificationPictureUri ? (
                 <ImagePreview src={form.applicant.identificationPictureUri} alt="profile-image" />
             ) : (
-                <ImageUploadBox
+                <UploadImageBox
                     onDragEnter={onDragEnter}
                     onDragLeave={onDragLeave}
                     onDragOver={onDragOver}
                     onDrop={onDrop}
                     $isDragging={isDragging}>
                     <Column gap={12} alignItems="center">
-                        <Button size="SMALL" onClick={handleImageUploadButtonClick}>
+                        <Button size="SMALL" onClick={handleUploadImageButtonClick}>
                             파일 선택
                         </Button>
                         <Text fontType="p2" color={color.gray500}>
@@ -83,10 +83,10 @@ const ProfileUploader = () => {
                             여기로 사진을 끌어오세요
                         </Text>
                     </Column>
-                </ImageUploadBox>
+                </UploadImageBox>
             )}
             {form.applicant.identificationPictureUri && (
-                <Button size="SMALL" onClick={handleImageUploadButtonClick}>
+                <Button size="SMALL" onClick={handleUploadImageButtonClick}>
                     재업로드
                 </Button>
             )}
@@ -113,7 +113,7 @@ const StyledProfileUploader = styled.div`
     gap: 8px;
 `;
 
-const ImageUploadBox = styled.div<{ $isDragging: boolean }>`
+const UploadImageBox = styled.div<{ $isDragging: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     width: 225px;
     height: 300px;

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { deleteNotice, postNotice, putEditNotice } from './api';
 
-export const useNoticePostMutation = ({ title, content }: PostNoticeReq) => {
+export const usePostNoticeMutation = ({ title, content }: PostNoticeReq) => {
     const { handleError } = useApiError();
     const router = useRouter();
 
@@ -24,7 +24,7 @@ export const useNoticePostMutation = ({ title, content }: PostNoticeReq) => {
     return { postNoticeMutate, ...restMutation };
 };
 
-export const useNoticeEditMutation = (id: number, { title, content }: PutNoticeReq) => {
+export const useEditNoticeMutation = (id: number, { title, content }: PutNoticeReq) => {
     const { handleError } = useApiError();
     const router = useRouter();
 
@@ -42,7 +42,7 @@ export const useNoticeEditMutation = (id: number, { title, content }: PutNoticeR
     return { editNoticeMutate, ...restMutation };
 };
 
-export const useNoticeDeleteMutation = (id: number) => {
+export const useDeleteNoticeMutation = (id: number) => {
     const { handleError } = useApiError();
     const router = useRouter();
 
