@@ -26,3 +26,8 @@ export const putEditNotice = async (id: number, { title, content }: PutNoticeReq
     const { data } = await maru.put(`/notice/${id}`, { title, content }, authorization());
     return { data };
 };
+
+export const deleteNotice = async (id: number) => {
+    const { data } = await maru.delete(`/notice/${id}`, authorization());
+    return data;
+};
