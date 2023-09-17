@@ -10,9 +10,16 @@ const FaqTable = () => {
         <StyledFaqTable>
             <FaqTableHeader />
             {faqList &&
-                faqList.map(({ id, title, category, createdAt }) => (
-                    <FaqTableItem id={id} title={title} category={category} createdAt={createdAt} />
-                ))}
+                faqList
+                    .sort((a, b) => a.id - b.id)
+                    .map(({ id, title, category, createdAt }) => (
+                        <FaqTableItem
+                            id={id}
+                            title={title}
+                            category={category}
+                            createdAt={createdAt}
+                        />
+                    ))}
         </StyledFaqTable>
     );
 };

@@ -1,8 +1,10 @@
+export type Category = 'SCHOOL_LIFE' | 'SUBMIT_DOCUMENT' | 'ADMISSION_PROCESS' | 'TOP_QUESTION';
+
 export interface Faq {
     id: number;
     title: string;
     content: string;
-    category: string;
+    category: Category;
     createdAt: string;
 }
 

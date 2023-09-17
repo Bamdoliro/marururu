@@ -1,5 +1,5 @@
 import TableItem from '@/components/common/TableItem/TableItem';
-import { KoreanFormType } from '@/constants/main/constants';
+import { FORM_TYPE } from '@/constants/main/constants';
 import { FormStatus, FormType, GraduationType } from '@/types/main/client';
 import { Row, Text } from '@maru/ui';
 
@@ -30,7 +30,7 @@ const FormListItem = ({ id, name, birthday, graduationType, school, type, status
                     {graduationType === 'QUALIFICATION_EXAMINATION' ? '검정고시' : school}
                 </Text>
                 <Text fontType="p2" width={240}>
-                    {KoreanFormType[type as FormType]}
+                    {FORM_TYPE[type as FormType]}
                 </Text>
             </Row>
             <Text fontType="p2" width={80}>
