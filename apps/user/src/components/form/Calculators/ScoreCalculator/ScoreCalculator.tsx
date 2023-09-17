@@ -1,8 +1,9 @@
+import { useFormStore } from '@/store';
+import { GraduationType } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Row, Switch, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
-import { useState } from 'react';
 import styled from 'styled-components';
 import GradeCalculator from './GradeCalculator/GradeCalculator';
 import 검정고시Calculator from './검정고시Calculator/검정고시Calculator';
@@ -12,7 +13,12 @@ interface Props {
 }
 
 const ScoreCalculator = ({ option }: Props) => {
-    const [selectedGraduationType, setSelectedGraduationType] = useState('EXPECTED');
+    const [form, setForm] = useFormStore();
+
+    const handleGraduationTypeSwitchDataChange = (value: string) => {
+        const graduationType = value as GraduationType;
+        setForm((prev) => ({ ...prev, education: { ...prev.education, graduationType } }));
+    };
 
     return (
         <StyledScoreCalculator>
@@ -27,13 +33,13 @@ const ScoreCalculator = ({ option }: Props) => {
                             { name: '졸업 예정', value: 'EXPECTED' },
                             { name: '고입검정', value: 'QUALIFICATION_EXAMINATION' },
                         ]}
-                        value={selectedGraduationType}
-                        setValue={setSelectedGraduationType}
+                        value={form.education.graduationType}
+                        onChange={handleGraduationTypeSwitchDataChange}
                     />
                 )}
             </Row>
             <SwitchCase
-                value={selectedGraduationType}
+                value={form.education.graduationType}
                 caseBy={{
                     QUALIFICATION_EXAMINATION: <검정고시Calculator />,
                 }}

@@ -11,7 +11,7 @@ import {
     REGULAR_TYPE_DEFAULT_SCORE,
     SPECIAL_TYPE_DEFAULT_SCORE,
 } from '@/constants/form/constant';
-import { useFormValueStore, useNewSubjectListValueStore, useSubjectListValueStore } from '@/store';
+import { useFormValueStore } from '@/store';
 import { getAchivementLevel } from '@/utils';
 
 enum AchievementScore {
@@ -27,12 +27,9 @@ type AttenedanceKey = 'absenceCount' | 'latenessCount' | 'earlyLeaveCount' | 'cl
 
 const useGradeCalculation = () => {
     const form = useFormValueStore();
-    const subjectList = useSubjectListValueStore();
-    const newSubjectList = useNewSubjectListValueStore();
-    const studentSubjectList = subjectList.concat(newSubjectList);
 
     const getScoreOf = (achievementLevelKey: AchievementLevelKey) => {
-        const scoreTotal = studentSubjectList.reduce((acc, subject) => {
+        const scoreTotal = form.grade.subjectList.reduce((acc, subject) => {
             const achievementLevel = subject[achievementLevelKey];
             const subjectName = subject.subjectName;
             if (subjectName === '수학' && achievementLevel !== null) {
@@ -42,15 +39,15 @@ const useGradeCalculation = () => {
             }
         }, 0);
         const scoreLength =
-            studentSubjectList.filter((subject) => subject[achievementLevelKey] !== null).length +
-            1;
+            form.grade.subjectList.filter((subject) => subject[achievementLevelKey] !== null)
+                .length + 1;
 
         return scoreTotal / scoreLength;
     };
 
     const calculateRegularScore = () => {
         if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
-            const regularTotal = studentSubjectList.reduce((acc, subject) => {
+            const regularTotal = form.grade.subjectList.reduce((acc, subject) => {
                 const achievementLevel = subject.score && getAchivementLevel(subject.score);
 
                 if (achievementLevel) {
@@ -61,7 +58,7 @@ const useGradeCalculation = () => {
                 }
                 return acc;
             }, 0);
-            const regularLength = studentSubjectList.length + 1;
+            const regularLength = form.grade.subjectList.length + 1;
             const regularScore =
                 REGULAR_TYPE_DEFAULT_SCORE + (12 * 2 * regularTotal) / regularLength;
 

@@ -1,19 +1,18 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { Dispatch, SetStateAction } from 'react';
 import { css, styled } from 'styled-components';
 
 interface Props {
     value: string;
-    setValue: Dispatch<SetStateAction<string>>;
+    onChange: (value: string) => void;
     items: { name: string; value: string }[];
 }
 
-const Switch = ({ items, value, setValue }: Props) => {
+const Switch = ({ items, value, onChange }: Props) => {
     return (
         <StyledSwitch>
             {items.map((item) => (
-                <SwitchButton $active={item.value === value} onClick={() => setValue(item.value)}>
+                <SwitchButton $active={item.value === value} onClick={() => onChange(item.value)}>
                     {item.name}
                 </SwitchButton>
             ))}
