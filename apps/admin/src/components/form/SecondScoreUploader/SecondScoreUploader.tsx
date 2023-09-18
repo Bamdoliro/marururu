@@ -3,34 +3,21 @@ import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, Dispatch, DragEvent, SetStateAction, useRef, useState } from 'react';
+import { DragEvent, useState } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-    inputFileValue: string;
-    setInputFileValue: Dispatch<SetStateAction<string>>;
+    removeFileInputValue: () => void;
+    handleUploadFileButtonClick: () => void;
 }
 
-const SecondScoreUploader = ({ inputFileValue, setInputFileValue }: Props) => {
+const SecondScoreUploader = ({ removeFileInputValue, handleUploadFileButtonClick }: Props) => {
     const [fileData, setFileData] = useSecondScoreFileStore();
-    const imageFileInputRef = useRef<HTMLInputElement>(null);
     const [isDragging, setIsDragging] = useState(false);
 
-    const handleUploadFileButtonClick = () => {
-        imageFileInputRef.current?.click();
-    };
-
     const handleUploadCancelButtonClick = () => {
-        setInputFileValue('');
+        removeFileInputValue();
         setFileData(null);
-    };
-
-    const handleFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { files, value } = e.target;
-
-        if (!files || files.length === 0) return;
-        setInputFileValue(value);
-        setFileData(files[0]);
     };
 
     // DnD
@@ -91,14 +78,6 @@ const SecondScoreUploader = ({ inputFileValue, setInputFileValue }: Props) => {
                     </>
                 )}
             </Column>
-            <input
-                type="file"
-                ref={imageFileInputRef}
-                value={inputFileValue}
-                accept=".xlsx"
-                onChange={handleFileDataChange}
-                hidden
-            />
         </StyledSecondScoreUploader>
     );
 };
