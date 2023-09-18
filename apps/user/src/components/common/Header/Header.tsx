@@ -53,7 +53,7 @@ const Header = () => {
                     {isLoggedIn ? (
                         <Profile />
                     ) : (
-                        <Row gap="10px" alignItems="center">
+                        <Row gap={10} alignItems="center">
                             <Button
                                 option="QUATERNARY"
                                 size="SMALL"

@@ -7,15 +7,15 @@ const FinalFormTable = () => {
     return (
         <Table>
             <Tr>
-                <Th style={{ borderTopLeftRadius: '12px' }} width="120px">
+                <Th style={{ borderTopLeftRadius: '12px' }} width={120}>
                     지원 구분
                 </Th>
-                <Th style={{ borderTopRightRadius: '12px' }} width="696px">
+                <Th style={{ borderTopRightRadius: '12px' }} width={696}>
                     제출 서류
                 </Th>
             </Tr>
             <Tr>
-                <Td width="120px">공동 제출</Td>
+                <Td width={120}>공동 제출</Td>
                 <Td
                     style={{
                         display: 'flex',
@@ -23,7 +23,7 @@ const FinalFormTable = () => {
                         alignItems: 'flex-start',
                         padding: '0px 16px',
                     }}
-                    width="696px">
+                    width={696}>
                     <div>
                         <li>
                             입학 원서 1부
@@ -42,7 +42,7 @@ const FinalFormTable = () => {
                 </Td>
             </Tr>
             <Tr>
-                <Td style={{ borderBottomLeftRadius: '12px' }} width="120px">
+                <Td style={{ borderBottomLeftRadius: '12px' }} width={120}>
                     해당자
                 </Td>
                 <Td
@@ -53,7 +53,7 @@ const FinalFormTable = () => {
                         padding: '0px 16px',
                         borderBottomRightRadius: '12px',
                     }}
-                    width="696px">
+                    width={696}>
                     <li>검정고시 합격증 사본 및 성적증명서 (점정고시 합격자에 한함)</li>
                     <li>주민등록등본 1부 (검정고시 합격자, 사회통합전형에 한함)</li>
                     <li>가족관계증명서 1부 (사회통합전형에 한함)</li>

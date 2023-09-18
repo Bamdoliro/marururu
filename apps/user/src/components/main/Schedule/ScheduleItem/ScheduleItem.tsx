@@ -12,7 +12,7 @@ const ScheduleItem = ({ date, plan }: Props) => {
     return (
         <StyledScheduleItem>
             <Date>{date}</Date>
-            <Row gap="6px" alignItems="center">
+            <Row gap={6} alignItems="center">
                 <Bar />
                 <Text fontType="H5" color={color.gray900}>
                     {plan}

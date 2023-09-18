@@ -38,7 +38,6 @@ const FormWrapper = ({ children }: Props) => {
             setIsSaveFormLoaded(true);
             setForm((prev) => ({ ...prev, ...saveFormData }));
             if (saveFormData.grade.subjectList) {
-                console.log('제발1', saveFormData);
                 if (saveFormData.education.graduationType === 'QUALIFICATION_EXAMINATION') {
                     set검정고시SubjectList(
                         saveFormData.grade.subjectList.slice(0, 5).map((subject, index) => ({
@@ -52,7 +51,6 @@ const FormWrapper = ({ children }: Props) => {
                             id: index,
                         })),
                     );
-                    console.log('제발', saveFormData.grade.subjectList);
                 } else {
                     setSubjectList(
                         saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
