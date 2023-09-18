@@ -14,7 +14,7 @@ const NoticeDetailContent = ({ id }: Props) => {
     return noticeDetailData ? (
         <StyledNoticeDetailContent>
             <NoticeHeader>
-                <Column gap="16px" height="72px">
+                <Column gap={16} height={72}>
                     <Text fontType="H3" color={color.gray900}>
                         {noticeDetailData.title}
                     </Text>

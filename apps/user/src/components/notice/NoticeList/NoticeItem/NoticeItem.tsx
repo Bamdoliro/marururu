@@ -17,7 +17,7 @@ const NoticeItem = ({ id, title, createdAt }: Props) => {
 
     return (
         <StyledNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
-            <Column gap="8px" height="55px">
+            <Column gap={8} height={55}>
                 <Text fontType="H5" color={color.gray900}>
                     {title}
                 </Text>

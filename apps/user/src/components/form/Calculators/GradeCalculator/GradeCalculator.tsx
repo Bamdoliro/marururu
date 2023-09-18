@@ -1,17 +1,17 @@
-import { useNewSubjectStore, useSetFormStore, useSubjectStore } from '@/store';
+import { useNewSubjectListStore, useSetFormStore, useSubjectListValueStore } from '@/store';
 import { Subject } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
-import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
-import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
+import GradeCalculatorHeader from '../ScoreCalculator/GradeCalculator/GradeCalculatorHeader/GradeCalculatorHeader';
+import GradeCalculatorItem from '../ScoreCalculator/GradeCalculator/GradeCalculatorItem/GradeCalculatorItem';
+import NewGradeCalculatorItem from '../ScoreCalculator/GradeCalculator/NewGradeCalculatorItem/NewGradeCalculatorItem';
 
 const GradeCalculator = () => {
-    const [newSubjectList, setNewSubjectList] = useNewSubjectStore();
-    const [subjectList, setSubjectList] = useSubjectStore();
+    const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
+    const subjectList = useSubjectListValueStore();
     const setForm = useSetFormStore();
 
     const newSubjectIdRef = useRef(newSubjectList.length);
@@ -22,6 +22,7 @@ const GradeCalculator = () => {
             achievementLevel21: 'A',
             achievementLevel22: 'A',
             achievementLevel31: 'A',
+            score: null,
         };
         setNewSubjectList((prev) => [...prev, newSubject]);
     };
@@ -57,8 +58,6 @@ const GradeCalculator = () => {
                                     ? ['-', 'A', 'B', 'C']
                                     : ['-', 'A', 'B', 'C', 'D', 'E']
                             }
-                            subjectList={subjectList}
-                            setSubjectList={setSubjectList}
                         />
                     );
                 })}
@@ -68,8 +67,6 @@ const GradeCalculator = () => {
                         id={item.id}
                         key={`new-subject ${index}`}
                         achievementLevels={['-', 'A', 'B', 'C', 'D', 'E']}
-                        newSubjectList={newSubjectList}
-                        setNewSubjectList={setNewSubjectList}
                     />
                 ))}
                 <GradeCalculatorFooter>

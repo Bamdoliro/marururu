@@ -1,18 +1,17 @@
-import { Subject } from '@/types/form/client';
+import { useSubjectListStore } from '@/store';
 import { Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
 interface Props {
     id: number;
-    subjectList: Subject[];
-    setSubjectList: Dispatch<SetStateAction<Subject[]>>;
     achievementLevels: string[];
 }
 
-const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevels }: Props) => {
-    const handleCaculatorItemDataChange = (data: string, name: string) => {
+const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
+    const [subjectList, setSubjectList] = useSubjectListStore();
+
+    const handleGradeItemDataChange = (data: string, name: string) => {
         setSubjectList((prev) => {
             const updatedData = [...prev];
             updatedData[id] = {
@@ -22,6 +21,9 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
             return updatedData;
         });
     };
+
+    console.log(subjectList);
+
     return (
         <StyledGradeCalculatorItem>
             <Td option="SECONDARY" width={123} height="100%">
@@ -33,7 +35,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleCaculatorItemDataChange}
+                    onChange={handleGradeItemDataChange}
                     name="achievementLevel21"
                 />
             </Td>
@@ -43,7 +45,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleCaculatorItemDataChange}
+                    onChange={handleGradeItemDataChange}
                     name="achievementLevel22"
                 />
             </Td>
@@ -53,7 +55,7 @@ const GradeCalculatorItem = ({ id, subjectList, setSubjectList, achievementLevel
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleCaculatorItemDataChange}
+                    onChange={handleGradeItemDataChange}
                     name="achievementLevel31"
                 />
             </Td>

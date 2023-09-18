@@ -2,12 +2,13 @@ import {
     AttendanceCalculator,
     CertificateCalculator,
     FormController,
-    GradeCalculator,
     GradePreview,
+    ScoreCalculator,
     VolunteerCalculator,
 } from '@/components/form';
-import { FIELD_DATA } from '@/constants/form/data';
+import { SCORE_STEP_LIST } from '@/constants/form/data';
 import { FormLayout } from '@/layouts';
+import { useFormValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -17,8 +18,20 @@ import styled from 'styled-components';
 import { useCTAButton } from './성적입력.hooks';
 
 const 성적입력 = () => {
-    const [scoreStep, setScoreStep] = useState('성적 입력');
+    const form = useFormValueStore();
+    const [currentScoreStep, setCurrentScoreStep] = useState('성적 입력');
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+
+    const handleScoreStepButtonClick = (scoreStep: string) => {
+        if (
+            form.education.graduationType === 'QUALIFICATION_EXAMINATION' &&
+            (scoreStep === '출결상황' || scoreStep === '봉사시간')
+        ) {
+            alert('검정고시 지원자는 입력하지 않아도돼요');
+            return;
+        }
+        setCurrentScoreStep(scoreStep);
+    };
 
     return (
         <FormLayout title="성적 입력">
@@ -36,24 +49,24 @@ const 성적입력 = () => {
                 </Column>
             </Column>
             <NavigationBar>
-                {FIELD_DATA.map((item, index) => (
+                {SCORE_STEP_LIST.map((scoreStep, index) => (
                     <UnderlineButton
                         key={`score-step ${index}`}
-                        active={item === scoreStep}
-                        onClick={() => setScoreStep(item)}>
-                        {item}
+                        active={scoreStep === currentScoreStep}
+                        onClick={() => handleScoreStepButtonClick(scoreStep)}>
+                        {scoreStep}
                     </UnderlineButton>
                 ))}
             </NavigationBar>
             <SwitchCase
-                value={scoreStep}
+                value={currentScoreStep}
                 caseBy={{
-                    성적입력: <GradeCalculator />,
+                    성적입력: <ScoreCalculator option="FORM" />,
                     출결상황: <AttendanceCalculator />,
                     봉사시간: <VolunteerCalculator />,
                     자격증: <CertificateCalculator />,
                 }}
-                defaultComponent={<GradeCalculator />}
+                defaultComponent={<ScoreCalculator option="FORM" />}
             />
             <FormController
                 onPrevious={handlePreviousButtonClick}

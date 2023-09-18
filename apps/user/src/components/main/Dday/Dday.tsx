@@ -15,7 +15,7 @@ const Dday = () => {
         <StyledDday>
             <Column width="100%" height="100%" justifyContent="space-between">
                 {isSubmitPeriod ? (
-                    <Column gap="36px">
+                    <Column gap={36}>
                         <Text fontType="H1" color={color.white}>
                             부산소프트웨어마이스터고등학교
                             <br />
@@ -26,8 +26,8 @@ const Dday = () => {
                         </Text>
                     </Column>
                 ) : (
-                    <Column gap="16px">
-                        <Column gap="8px">
+                    <Column gap={16}>
+                        <Column gap={8}>
                             <Text fontType="H2" color={color.gray400}>
                                 {status}
                             </Text>
@@ -41,7 +41,7 @@ const Dday = () => {
                     </Column>
                 )}
                 <Button
-                    width="250px"
+                    width={250}
                     size="LARGE"
                     option={buttonOption}
                     onClick={handleMovePageButtonClick}>

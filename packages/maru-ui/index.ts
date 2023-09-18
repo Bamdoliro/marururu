@@ -17,6 +17,7 @@ export { default as Loader } from './src/Loader/Loader';
 export { default as Modal } from './src/Modal/Modal';
 export { default as Radio } from './src/Radio/Radio';
 export { default as RadioGroup } from './src/RadioGroup/RadioGroup';
+export { default as Switch } from './src/Switch/Switch';
 export { default as Td } from './src/Table/Td';
 export { default as Th } from './src/Table/Th';
 export { default as Text } from './src/Text/Text';

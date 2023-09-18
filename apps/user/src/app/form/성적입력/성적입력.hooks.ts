@@ -8,6 +8,7 @@ export const useCTAButton = () => {
 
     const handleNextButtonClick = () => {
         setFormStep('자기소개서');
+        console.log(form);
         saveFormMutate(form);
     };
 

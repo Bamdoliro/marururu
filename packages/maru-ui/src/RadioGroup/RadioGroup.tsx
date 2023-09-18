@@ -11,18 +11,18 @@ interface Radio {
 
 interface Props {
     label: string;
-    list: Radio[] | string[];
+    items: Radio[] | string[];
     name: string;
     value: string;
     onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
-const RadioGroup = ({ label, list, name, value, onChange }: Props) => {
+const RadioGroup = ({ label, items, name, value, onChange }: Props) => {
     return (
         <StyledRadioGroup>
             <Label>{label}</Label>
             <Row>
-                {list.map((item, index) => {
+                {items.map((item, index) => {
                     const isString = typeof item === 'string';
                     const radioLabel = isString ? item : item.label;
                     const radioValue = isString ? item : item.value;

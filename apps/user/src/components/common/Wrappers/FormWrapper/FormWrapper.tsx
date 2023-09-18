@@ -1,13 +1,14 @@
 'use client';
 
-import { FORM } from '@/constants/form/data';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { useSaveFormQuery } from '@/services/form/queries';
 import {
     useFormStore,
     useIsSaveFormLoadedStore,
-    useSetNewSubjectStore,
-    useSetSubjectStore,
+    useSetNewSubjectListStore,
+    useSetNew검정고시SubjectListStore,
+    useSetSubjectListStore,
+    useSet검정고시SubjectListStore,
 } from '@/store';
 import { useInterval } from '@toss/react';
 import { ReactNode, useEffect } from 'react';
@@ -21,38 +22,49 @@ const FormWrapper = ({ children }: Props) => {
     const { saveFormMutate } = useSaveFormMutation();
     const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();
     const [form, setForm] = useFormStore();
-    const setSubjectList = useSetSubjectStore();
-    const setNewtSubjectList = useSetNewSubjectStore();
+    const setSubjectList = useSetSubjectListStore();
+    const setNewtSubjectList = useSetNewSubjectListStore();
+    const set검정고시SubjectList = useSet검정고시SubjectListStore();
+    const setNew검정고시SubjectList = useSetNew검정고시SubjectListStore();
 
-    // 2분마다 한번씩 저장
+    const SAVE_FORM_INTERVAL = 6000 * 10 * 2;
+
     useInterval(() => {
         saveFormMutate(form);
-    }, 6000 * 10 * 2);
+    }, SAVE_FORM_INTERVAL);
 
     useEffect(() => {
         if (saveFormData && !isSaveFormLoaded) {
             setIsSaveFormLoaded(true);
-            setForm({
-                applicant: saveFormData.applicant || FORM.applicant,
-                parent: saveFormData.parent || FORM.document,
-                education: saveFormData.education || FORM.education,
-                grade: saveFormData.grade || FORM.grade,
-                document: saveFormData.document || FORM.document,
-                type: saveFormData.type || FORM.type,
-            });
+            setForm((prev) => ({ ...prev, ...saveFormData }));
             if (saveFormData.grade.subjectList) {
-                setSubjectList(
-                    saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
-                        ...subject,
-                        id: index,
-                    })),
-                );
-                setNewtSubjectList(
-                    saveFormData.grade.subjectList.slice(12).map((subject, index) => ({
-                        ...subject,
-                        id: index,
-                    })),
-                );
+                if (saveFormData.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+                    set검정고시SubjectList(
+                        saveFormData.grade.subjectList.slice(0, 5).map((subject, index) => ({
+                            ...subject,
+                            id: index,
+                        })),
+                    );
+                    setNew검정고시SubjectList(
+                        saveFormData.grade.subjectList.slice(5).map((subject, index) => ({
+                            ...subject,
+                            id: index,
+                        })),
+                    );
+                } else {
+                    setSubjectList(
+                        saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
+                            ...subject,
+                            id: index,
+                        })),
+                    );
+                    setNewtSubjectList(
+                        saveFormData.grade.subjectList.slice(12).map((subject, index) => ({
+                            ...subject,
+                            id: index,
+                        })),
+                    );
+                }
             }
         }
     }, [saveFormData]);
