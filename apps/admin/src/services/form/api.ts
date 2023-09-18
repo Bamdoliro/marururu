@@ -1,7 +1,7 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
 import { ExportExcelType, FormListType } from '@/types/form/client';
-import { GetFormListRes } from '@/types/form/remote';
+import { GetFormDetail, GetFormListRes } from '@/types/form/remote';
 
 export const getFormList = async (formListType: FormListType) => {
     if (formListType === '검토해야 하는 원서 모아보기') {
@@ -46,7 +46,7 @@ export const getExportExcel = async (exportExcelType: ExportExcelType) => {
 };
 
 export const getFormDetail = async (id: number) => {
-    const { data } = await maru.get(`/form/${id}`, authorization());
+    const { data } = await maru.get<GetFormDetail>(`/form/${id}`, authorization());
 
     return data;
 };

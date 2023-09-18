@@ -1,15 +1,21 @@
-import { useFormDetailQuery } from '@/services/form/queries';
+import { Column, Row } from '@maru/ui';
 import styled from 'styled-components';
+import Profile from './Profile/Profile';
 
 interface Props {
     id: number;
 }
 
 const FormDetailContent = ({ id }: Props) => {
-    const { data: formDetailData } = useFormDetailQuery(id);
-    console.log(formDetailData);
-
-    return <StyledFormDetailContent>{id}</StyledFormDetailContent>;
+    return (
+        <StyledFormDetailContent>
+            <Row gap={48}>
+                <Column gap={36}>
+                    <Profile id={id} />
+                </Column>
+            </Row>
+        </StyledFormDetailContent>
+    );
 };
 
 export default FormDetailContent;

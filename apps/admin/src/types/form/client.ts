@@ -44,3 +44,69 @@ export interface Form {
 export type FormListType = '모두 보기' | '검토해야 하는 원서 모아보기';
 
 export type ExportExcelType = '전체 내보내기' | '1차 전형 결과' | '2차 전형 결과' | '최종 합격자';
+
+export interface FormDetail {
+    applicant: UserInfo;
+    parent: ParentInfo;
+    education: EducationInfo;
+    grade: {
+        subjectList: StudentSubject[];
+        attendance1: Attendance;
+        attendance2: Attendance;
+        attendance3: Attendance;
+        volunteerTime1: number;
+        volunteerTime2: number;
+        volunteerTime3: number;
+        certificateList: string[];
+    };
+    document: {
+        coverLetter: string;
+        statementOfPurpose: string;
+    };
+    type: FormType;
+}
+
+export interface UserInfo {
+    identificationPictureUri: string;
+    name: string;
+    phoneNumber: string;
+    birthday: string;
+    gender: 'MALE' | 'FEMALE';
+}
+
+export interface ParentInfo {
+    name: string;
+    phoneNumber: string;
+    zoneCode: string;
+    address: string;
+    detailAddress: string;
+    relation: string;
+}
+
+export interface EducationInfo {
+    graduationType: GraduationType;
+    graduationYear: string;
+    schoolName: string;
+    schoolLocation: string;
+    schoolCode: string;
+    teacherName: string;
+    teacherPhoneNumber: string;
+    teacherMobilePhoneNumber: string;
+}
+
+export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
+
+export interface StudentSubject {
+    subjectName: string;
+    achievementLevel21: AchievementLevel;
+    achievementLevel22: AchievementLevel;
+    achievementLevel31: AchievementLevel;
+    score: number;
+}
+
+export interface Attendance {
+    absenceCount: number;
+    latenessCount: number;
+    earlyLeaveCount: number;
+    classAbsenceCount: number;
+}

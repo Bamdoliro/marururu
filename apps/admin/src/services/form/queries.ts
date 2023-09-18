@@ -43,5 +43,5 @@ export const useFormDetailQuery = (id: number) => {
         queryFn: () => getFormDetail(id),
     });
 
-    return { data, ...restQuery };
+    return { data: data?.data, ...restQuery };
 };
