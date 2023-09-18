@@ -14,6 +14,7 @@ export { default as IconClose } from './src/IconClose';
 export { default as IconEditDocument } from './src/IconEditDocument';
 export { default as IconError } from './src/IconError';
 export { default as IconFaq } from './src/IconFaq';
+export { default as IconFilter } from './src/IconFilter';
 export { default as IconFunction } from './src/IconFunction';
 export { default as IconInvisibleEye } from './src/IconInvisibleEye';
 export { default as IconPrint } from './src/IconPrint';
