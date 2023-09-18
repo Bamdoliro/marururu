@@ -14,7 +14,17 @@ export type FormType =
 
 export type GraduationType = 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
 
-export type FormStatus = '최종 제출됨' | '반려됨';
+export type FormStatus =
+    | '접수됨'
+    | '1차 불합격'
+    | '불합격'
+    | '최종 제출됨'
+    | '제출됨'
+    | '승인됨'
+    | '불참'
+    | '1차 합격'
+    | '최종 합격'
+    | '반려됨';
 
 export interface Form {
     id: number;
@@ -24,4 +34,8 @@ export interface Form {
     school: string;
     status: FormStatus;
     type: FormType;
+    totalScore: number | null;
+    hasDocument: boolean;
+    firstRoundPassed: boolean | null;
+    secondRoundPassed: boolean | null;
 }

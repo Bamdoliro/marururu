@@ -25,6 +25,7 @@ export default Text;
 
 const StyledText = styled.p<{ fontType: Font; ellipsis: boolean }>`
     ${({ fontType }) => font[fontType]}
+    white-space: nowrap;
     ${(props) =>
         props.ellipsis &&
         css`
