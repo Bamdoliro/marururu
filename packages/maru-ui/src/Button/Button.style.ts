@@ -42,8 +42,8 @@ export const getButtonStyle = {
         }
     `,
     DISABLED: css`
-        background-color: ${color.gray700};
-        color: ${color.gray400};
+        background-color: ${color.gray500};
+        color: ${color.gray300};
         cursor: auto;
     `,
 };
