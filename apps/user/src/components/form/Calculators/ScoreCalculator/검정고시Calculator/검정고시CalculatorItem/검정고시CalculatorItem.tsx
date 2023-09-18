@@ -21,7 +21,6 @@ const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
                 ...updatedData[id],
                 [name]: value,
             };
-            console.log(updatedData);
             return updatedData;
         });
     };
