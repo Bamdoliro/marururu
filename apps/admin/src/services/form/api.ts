@@ -29,38 +29,24 @@ export const patchSecondScoreFormat = async (formData: FormData) => {
     return data;
 };
 
+const EXPORT_EXCEL_TYPE: Record<ExportExcelType, string> = {
+    '전체 내보내기': 'result',
+    '1차 전형 결과': 'first-round',
+    '2차 전형 결과': 'second-round',
+    '최종 합격자': 'final-passed',
+} as const;
+
 export const getExportExcel = async (exportExcelType: ExportExcelType) => {
-    if (exportExcelType === '전체 내보내기') {
-        const { data } = await maru.get('/form/xlsx/result', {
-            ...authorization(),
-            responseType: 'blob',
-        });
-
-        return data;
-    }
-
-    if (exportExcelType === '1차 전형 결과') {
-        const { data } = await maru.get('/form/xlsx/first-round', {
-            ...authorization(),
-            responseType: 'blob',
-        });
-
-        return data;
-    }
-
-    if (exportExcelType === '2차 전형 결과') {
-        const { data } = await maru.get('/form/xlsx/second-round', {
-            ...authorization(),
-            responseType: 'blob',
-        });
-
-        return data;
-    }
-
-    const { data } = await maru.get('/form/xlsx/final-passed', {
+    const { data } = await maru.get(`/form/xlsx/${EXPORT_EXCEL_TYPE[exportExcelType]}`, {
         ...authorization(),
         responseType: 'blob',
     });
+
+    return data;
+};
+
+export const getFormDetail = async (id: number) => {
+    const { data } = await maru.get(`/form/${id}`, authorization());
 
     return data;
 };
