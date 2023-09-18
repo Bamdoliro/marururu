@@ -38,6 +38,8 @@ export const useExportFormAction = () => {
         link.setAttribute('download', '원서초안.pdf');
         document.body.appendChild(link);
         link.click();
+        link.remove();
+        window.URL.revokeObjectURL(pdfUrl);
     };
 
     return { handleExportFormButtonClick };

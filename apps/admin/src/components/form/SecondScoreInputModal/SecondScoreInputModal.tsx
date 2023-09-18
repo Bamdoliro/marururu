@@ -53,7 +53,7 @@ const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
                     </TextButton>
                 </Column>
                 <Row gap={16} style={{ alignSelf: 'flex-end' }}>
-                    <Button size="SMALL" option="SECONDARY" onClick={() => console.log('asdf')}>
+                    <Button size="SMALL" option="SECONDARY" onClick={onClose}>
                         취소
                     </Button>
                     <Button size="SMALL" option="DISABLED">
