@@ -7,7 +7,7 @@ import {
     GuidelineBox,
     Notice,
     Schedule,
-    SimulatorBox,
+    SimulatorBox
 } from '@/components/main';
 import { AppLayout } from '@/layouts';
 import { Row } from '@maru/ui';

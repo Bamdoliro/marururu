@@ -171,7 +171,7 @@ const 전형선택 = () => {
                                     </Row>
                                     <Row>
                                         <Td width="calc(736px/3)" height={56}>
-                                            소년 . 소녀가장
+                                            소년 ∙ 소녀가장
                                         </Td>
                                         <Td width={80} height={56}>
                                             <Radio

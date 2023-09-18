@@ -83,7 +83,7 @@ export const useLogoutUserMutation = () => {
             localStorage.clear();
             window.location.href = ROUTES.MAIN;
         },
-        onError: localStorage.clear,
+        onError: () => localStorage.clear(),
     });
 
     return { logoutUserMutate, ...restMutation };

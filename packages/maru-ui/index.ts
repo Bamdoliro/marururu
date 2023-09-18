@@ -1,5 +1,6 @@
 export { default as Button } from './src/Button/Button';
 export type { ButtonOption } from './src/Button/Button.type';
+export { default as TextButton } from './src/Button/TextButton';
 export { default as UnderlineButton } from './src/Button/UnderlineButton';
 export { default as CheckBox } from './src/CheckBox/CheckBox';
 export { default as Confirm } from './src/Confirm/Confirm';
@@ -12,6 +13,7 @@ export { default as NumberInput } from './src/Input/NumberInput';
 export { default as PreviewInput } from './src/Input/PreviewInput';
 export { default as SearchInput } from './src/Input/SearchInput';
 export { default as TimeLimitInput } from './src/Input/TimeLimitInput';
+export { default as Loader } from './src/Loader/Loader';
 export { default as Modal } from './src/Modal/Modal';
 export { default as Radio } from './src/Radio/Radio';
 export { default as RadioGroup } from './src/RadioGroup/RadioGroup';

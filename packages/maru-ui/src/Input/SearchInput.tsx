@@ -14,7 +14,6 @@ const SearchInput = ({
 }: InputProps) => {
     return (
         <StyledSearchInput>
-            <IconSearch color={color.gray400} width={24} height={24} cursor="pointer" />
             <Input
                 style={{ width }}
                 onChange={onChange}
@@ -23,6 +22,7 @@ const SearchInput = ({
                 name={name}
                 value={value}
             />
+            <IconSearch color={color.gray400} width={24} height={24} />
         </StyledSearchInput>
     );
 };
@@ -31,9 +31,8 @@ export default SearchInput;
 
 const StyledSearchInput = styled.div`
     ${flex({ alignItems: 'center' })}
-    gap: 4px;
     height: 40px;
-    padding: 10px 8px;
+    padding: 0 12px 0 16px;
     background-color: ${color.white};
     border: 1px solid ${color.gray400};
     border-radius: 6px;

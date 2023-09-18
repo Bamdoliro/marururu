@@ -6,14 +6,14 @@ import { useExportFormQuery } from '@/services/form/queries';
 import { useFormDocumentValueStore, useSetFormDocumentStore } from '@/store';
 import { ChangeEventHandler, useRef } from 'react';
 
-export const useFileUploadButton = () => {
+export const useUploadFileButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleFileUploadButtonClick = () => {
+    const handleUploadFileButtonClick = () => {
         fileInputRef.current?.click();
     };
 
-    return { fileInputRef, handleFileUploadButtonClick };
+    return { fileInputRef, handleUploadFileButtonClick };
 };
 
 export const useSubmitFinalFormAction = () => {
@@ -38,6 +38,8 @@ export const useExportFormAction = () => {
         link.setAttribute('download', '원서초안.pdf');
         document.body.appendChild(link);
         link.click();
+        link.remove();
+        window.URL.revokeObjectURL(pdfUrl);
     };
 
     return { handleExportFormButtonClick };

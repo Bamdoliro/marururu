@@ -55,7 +55,7 @@ const SignUpPage = () => {
                                 }}
                                 enabled={isRequestVerificationDisabled}
                                 type="phoneNumber"
-                                placeholder="- 없이 입력해주세요"
+                                placeholder="- 없이 입력해주세요."
                                 width="100%"
                                 name="phoneNumber"
                                 onChange={handleJoinUserDataChange}
@@ -81,12 +81,14 @@ const SignUpPage = () => {
                                 label="비밀번호"
                                 width="100%"
                                 name="password"
+                                placeholder="비밀번호를 입력해주세요."
                                 onChange={handleJoinUserDataChange}
                             />
                             <PreviewInput
                                 label="비밀번호 재확인"
                                 width="100%"
                                 name="password_confirm"
+                                placeholder="비밀번호를 다시 입력해주세요."
                                 onChange={handleJoinUserDataChange}
                                 isError={joinUserData.password !== joinUserData.password_confirm}
                                 errorMessage="비밀번호가 맞지 않습니다."
