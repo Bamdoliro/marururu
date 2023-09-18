@@ -40,18 +40,27 @@ export const getExportExcel = async (exportExcelType: ExportExcelType) => {
     }
 
     if (exportExcelType === '1차 전형 결과') {
-        const { data } = await maru.get('/form/xlsx/first-round', authorization.FormData());
+        const { data } = await maru.get('/form/xlsx/first-round', {
+            ...authorization(),
+            responseType: 'blob',
+        });
 
         return data;
     }
 
     if (exportExcelType === '2차 전형 결과') {
-        const { data } = await maru.get('/form/xlsx/second-round', authorization.FormData());
+        const { data } = await maru.get('/form/xlsx/second-round', {
+            ...authorization(),
+            responseType: 'blob',
+        });
 
         return data;
     }
 
-    const { data } = await maru.get('/form/xlsx/final-passed', authorization.FormData());
+    const { data } = await maru.get('/form/xlsx/final-passed', {
+        ...authorization(),
+        responseType: 'blob',
+    });
 
     return data;
 };
