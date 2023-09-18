@@ -21,6 +21,10 @@ const FormList = () => {
                         school={item.school}
                         status={item.status}
                         type={item.type}
+                        totalScore={item.totalScore}
+                        hasDocument={item.hasDocument}
+                        firstRoundPassed={item.firstRoundPassed}
+                        secondRoundPassed={item.secondRoundPassed}
                     />
                 ))}
         </Column>

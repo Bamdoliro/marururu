@@ -31,9 +31,8 @@ export default SearchInput;
 
 const StyledSearchInput = styled.div`
     ${flex({ alignItems: 'center' })}
-    gap: 4px;
     height: 40px;
-    padding: 0 10px 0 16px;
+    padding: 0 12px 0 16px;
     background-color: ${color.white};
     border: 1px solid ${color.gray400};
     border-radius: 6px;

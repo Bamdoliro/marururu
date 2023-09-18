@@ -3,7 +3,7 @@ import { authorization } from '@/apis/token';
 import { GetFormReviewListRes } from '@/types/main/remote';
 
 export const getFormReviewList = async () => {
-    const { data } = await maru.get<GetFormReviewListRes>('/form/review', authorization());
+    const { data } = await maru.get<GetFormReviewListRes>('/form', authorization());
 
     return data;
 };

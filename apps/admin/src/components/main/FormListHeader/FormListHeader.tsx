@@ -21,9 +21,20 @@ const FormListHeader = () => {
                     전형
                 </Text>
             </Row>
-            <Text fontType="p2" width={80}>
-                상태
-            </Text>
+            <Row gap={48}>
+                <Text fontType="p2" width={80}>
+                    제출서류
+                </Text>
+                <Text fontType="p2" width={80}>
+                    1차 결과
+                </Text>
+                <Text fontType="p2" width={80}>
+                    최종 점수
+                </Text>
+                <Text fontType="p2" width={80}>
+                    2차 결과
+                </Text>
+            </Row>
         </TableHeader>
     );
 };

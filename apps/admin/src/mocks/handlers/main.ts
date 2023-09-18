@@ -10,6 +10,10 @@ const MAIN_FORM_DATA: Form[] = [
         school: '비전중학교',
         status: '최종 제출됨',
         type: 'REGULAR',
+        totalScore: null,
+        hasDocument: false,
+        firstRoundPassed: null,
+        secondRoundPassed: null,
     },
     {
         id: 1,
@@ -19,6 +23,10 @@ const MAIN_FORM_DATA: Form[] = [
         school: '비전중학교',
         status: '반려됨',
         type: 'REGULAR',
+        totalScore: null,
+        hasDocument: false,
+        firstRoundPassed: null,
+        secondRoundPassed: null,
     },
     {
         id: 2,
@@ -28,6 +36,10 @@ const MAIN_FORM_DATA: Form[] = [
         school: '비전중학교',
         status: '최종 제출됨',
         type: 'MULTICULTURAL',
+        totalScore: null,
+        hasDocument: false,
+        firstRoundPassed: null,
+        secondRoundPassed: null,
     },
 ];
 
