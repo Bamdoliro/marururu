@@ -1,19 +1,19 @@
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { ReactNode } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import styled from 'styled-components';
 
-interface Props {
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
 }
 
-const ButtonMenuItem = ({ children }: Props) => {
-    return <StyledButtonMenuItem>{children}</StyledButtonMenuItem>;
+const ButtonMenuItem = ({ children, ...props }: Props) => {
+    return <StyledButtonMenuItem {...props}>{children}</StyledButtonMenuItem>;
 };
 
 export default ButtonMenuItem;
 
-const StyledButtonMenuItem = styled.div`
+const StyledButtonMenuItem = styled.button`
     ${flex({ alignItems: 'center' })}
     gap: 12px;
     width: 100%;
