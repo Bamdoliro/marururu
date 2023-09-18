@@ -31,6 +31,7 @@ const ScoreCalculator = ({ option }: Props) => {
                     <Switch
                         items={[
                             { name: '졸업 예정', value: 'EXPECTED' },
+                            { name: '졸업', value: 'GRADUATED' },
                             { name: '고입검정', value: 'QUALIFICATION_EXAMINATION' },
                         ]}
                         value={form.education.graduationType}
