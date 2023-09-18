@@ -40,12 +40,14 @@ const LoginPage = () => {
                                     label="전화번호"
                                     width="100%"
                                     name="phoneNumber"
+                                    placeholder="전화번호를 입력해주세요."
                                     onChange={handleLoginUserDataChange}
                                 />
                                 <PreviewInput
                                     label="비밀번호"
                                     width="100%"
                                     name="password"
+                                    placeholder="비밀번호를 입력해주세요."
                                     onChange={handleLoginUserDataChange}
                                 />
                             </Column>

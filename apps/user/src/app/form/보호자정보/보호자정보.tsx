@@ -26,6 +26,7 @@ const 보호자정보 = () => {
                             value={form.parent.name}
                             onChange={handle보호자정보DataChange}
                             label="성명"
+                            placeholder="예) 홍길동"
                             width="100%"
                             isError={form.parent.name.length > 20}
                             errorMessage="20자 이하여야 합니다."
@@ -35,7 +36,7 @@ const 보호자정보 = () => {
                             value={form.parent.phoneNumber}
                             onChange={handle보호자정보DataChange}
                             label="전화번호"
-                            placeholder="- 없이 입력"
+                            placeholder="- 없이 입력해주세요."
                             width="100%"
                             isError={
                                 !!form.parent.phoneNumber && form.parent.phoneNumber.length !== 11
@@ -43,31 +44,32 @@ const 보호자정보 = () => {
                             errorMessage="11글자여야 합니다"
                         />
                     </Row>
+                    <Input
+                        label="보호자 관계"
+                        value={form.parent.relation}
+                        onChange={handle보호자정보DataChange}
+                        name="relation"
+                        placeholder="예) 부, 모"
+                        width="calc(50% - 24px)"
+                    />
                     <ButtonInput
                         label="주소"
                         buttonText="검색"
                         onClick={openFindAdressModal}
                         width="100%"
                         value={form.parent.address}
+                        placeholder="예) 부산광역시 강서구 가락대로 1393 봉림동 15 "
                         readOnly
                         isError={form.parent.address.length > 100}
                         errorMessage="100자 이하여야 합니다."
                     />
-                    <Input
-                        label="보호자 관계"
-                        value={form.parent.relation}
-                        onChange={handle보호자정보DataChange}
-                        name="relation"
-                        placeholder="부, 모, 삼촌 등등.."
-                        width="calc(50% - 24px)"
-                    />
-
                     <Row gap={48}>
                         <Input
                             name="detailAddress"
                             value={form.parent.detailAddress}
                             onChange={handle보호자정보DataChange}
                             label="상세 주소"
+                            placeholder="상세 주소를 입력해주세요."
                             width="100%"
                             isError={form.parent.detailAddress.length > 100}
                             errorMessage="100자 이하여야 합니다."
@@ -77,6 +79,7 @@ const 보호자정보 = () => {
                             value={form.parent.zoneCode}
                             onChange={handle보호자정보DataChange}
                             label="우편번호"
+                            placeholder="우편번호 5자리를 입력해주세요."
                             width="100%"
                             isError={!!form.parent.zoneCode && form.parent.zoneCode.length !== 5}
                             readOnly

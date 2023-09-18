@@ -112,6 +112,7 @@ const Styled최종제출 = styled.div`
     width: 100%;
     height: 100%;
     padding: 58px 96px 0px;
+    margin-bottom: 240px;
 `;
 
 const ContentBox = styled.div`

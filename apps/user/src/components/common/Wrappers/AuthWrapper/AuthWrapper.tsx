@@ -2,11 +2,9 @@
 
 import { Storage } from '@/apis/storage/storage';
 import { ROUTES, TOKEN } from '@/constants/common/constant';
-import { 제출_마감_날짜, 제출_시작_날짜 } from '@/constants/form/constant';
 import { color } from '@maru/theme';
 import { Confirm, Text } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
-import dayjs from 'dayjs';
 import { redirect, usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 
@@ -50,35 +48,35 @@ const AuthWrapper = ({ children }: Props) => {
             if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 redirect(ROUTES.MAIN);
             }
-            if (
-                (dayjs().isBefore(제출_시작_날짜) || dayjs().isAfter(제출_마감_날짜)) &&
-                process.env.NODE_ENV !== 'development'
-            ) {
-                if (pathName === ROUTES.FORM) {
-                    overlay.open(({ isOpen, close }) => (
-                        <Confirm
-                            isOpen={isOpen}
-                            title="원서 접수 기간이 아닙니다"
-                            content={
-                                <Text color={color.gray900} fontType="p2">
-                                    원서 접수 기간에만 원서 작성이 가능합니다.
-                                    <br /> 원서 접수 기간까지 조금만 기다려 주세요.
-                                </Text>
-                            }
-                            onClose={close}
-                            onConfirm={() => {
-                                router.push(ROUTES.MAIN);
-                                close();
-                            }}
-                        />
-                    ));
-                    router.push(ROUTES.MAIN);
-                    return;
-                }
-                if (pathName === ROUTES.FIRST_RESULT || pathName === ROUTES.FINAL_RESULT) {
-                    redirect(ROUTES.MAIN);
-                }
-            }
+            // if (
+            //     (dayjs().isBefore(제출_시작_날짜) || dayjs().isAfter(제출_마감_날짜)) &&
+            //     process.env.NODE_ENV !== 'development'
+            // ) {
+            //     if (pathName === ROUTES.FORM) {
+            //         overlay.open(({ isOpen, close }) => (
+            //             <Confirm
+            //                 isOpen={isOpen}
+            //                 title="원서 접수 기간이 아닙니다"
+            //                 content={
+            //                     <Text color={color.gray900} fontType="p2">
+            //                         원서 접수 기간에만 원서 작성이 가능합니다.
+            //                         <br /> 원서 접수 기간까지 조금만 기다려 주세요.
+            //                     </Text>
+            //                 }
+            //                 onClose={close}
+            //                 onConfirm={() => {
+            //                     router.push(ROUTES.MAIN);
+            //                     close();
+            //                 }}
+            //             />
+            //         ));
+            //         router.push(ROUTES.MAIN);
+            //         return;
+            //     }
+            //     if (pathName === ROUTES.FIRST_RESULT || pathName === ROUTES.FINAL_RESULT) {
+            //         redirect(ROUTES.MAIN);
+            //     }
+            // }
         }
     }, [token, pathName, overlay, router]);
 

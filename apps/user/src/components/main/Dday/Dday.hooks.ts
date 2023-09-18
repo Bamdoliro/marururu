@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useInterval } from '@maru/hooks';
 import {
-    일차_합격_발표,
-    최종_합격_발표,
-    제출_마감_날짜,
-    제출_시작_날짜,
+    일차_합격_발표, 제출_마감_날짜,
+    제출_시작_날짜, 최종_합격_발표
 } from '@/constants/form/constant';
-import type { ButtonOption } from '@maru/ui';
 import { formatDay } from '@/utils';
+import { useInterval } from '@maru/hooks';
+import type { ButtonOption } from '@maru/ui';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
-import dayjs from 'dayjs';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 dayjs.extend(isBetween);
 dayjs.extend(utc);
+dayjs.locale('ko');
 
 export const useDday = () => {
     const currentTime = dayjs().isBefore(제출_시작_날짜)
@@ -41,8 +41,8 @@ export const useDday = () => {
 };
 
 export const useSchoolRecruitDate = () => {
-    const submitStart = 제출_시작_날짜.format('YYYY년 MM월 DD일');
-    const submitEnd = 제출_마감_날짜.format('YYYY년 MM월 DD일');
+    const submitStart = 제출_시작_날짜.format('YYYY년 MM월 DD일 (ddd) HH:mm');
+    const submitEnd = 제출_마감_날짜.format('YYYY년 MM월 DD일 (ddd) HH:mm');
     return {
         submitStart,
         submitEnd,
@@ -61,7 +61,7 @@ export const useRemainDate = () => {
 
     const status = statusMap.get(currentTime);
     const remainTime = remainDays >= 1 || remainDays < 0 ? formatDay(remainDays) : timeDiff;
-    const targetDate = currentTime.format('YYYY년 MM월 DD일');
+    const targetDate = currentTime.format('YYYY년 MM월 DD일 (ddd) HH:mm');
 
     return {
         status,
