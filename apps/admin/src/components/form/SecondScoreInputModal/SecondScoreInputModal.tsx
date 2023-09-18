@@ -3,6 +3,7 @@ import { color } from '@maru/theme';
 import { Button, Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import SecondScoreUploader from '../SecondScoreUploader/SecondScoreUploader';
 import { useSecondScoreFormatAction } from './SecondScoreInputModal.hooks';
 
 interface Props {
@@ -34,17 +35,7 @@ const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
                     />
                 </Row>
                 <Column gap={16}>
-                    <UploadFileBox>
-                        <Column gap={12} alignItems="center">
-                            <Button size="SMALL">파일 선택</Button>
-                            <Text fontType="p2" color={color.gray500}>
-                                또는
-                            </Text>
-                            <Text fontType="p2" color={color.gray500}>
-                                여기로 파일을 끌어오세요
-                            </Text>
-                        </Column>
-                    </UploadFileBox>
+                    <SecondScoreUploader />
                     <TextButton
                         fontType="btn2"
                         color={color.gray600}
