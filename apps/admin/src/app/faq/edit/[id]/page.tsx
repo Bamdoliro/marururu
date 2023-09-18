@@ -1,6 +1,6 @@
 'use client';
 
-import FaqPost from '@/components/faq/FaqPost/FaqPost';
+import FaqEdit from '@/components/faq/FaqEdit/FaqEdit';
 import { ROUTES } from '@/constants/common/constant';
 import AppLayout from '@/layouts/AppLayout';
 import { IconArrowLeft } from '@maru/icon';
@@ -11,25 +11,29 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 
-const FaqPostPage = () => {
+interface Props {
+    params: { id: number };
+}
+
+const FaqEditPage = ({ params: { id } }: Props) => {
     return (
         <AppLayout>
-            <StyledFaqPost>
-                <DirectLink href={ROUTES.FAQ}>
+            <StyledFaqEdit>
+                <DirectLink href={`${ROUTES.FAQ}/${id}`}>
                     <IconArrowLeft width={18} height={18} />
                     돌아가기
                 </DirectLink>
                 <Suspense fallback={<Loader />}>
-                    <FaqPost />
+                    <FaqEdit id={id} />
                 </Suspense>
-            </StyledFaqPost>
+            </StyledFaqEdit>
         </AppLayout>
     );
 };
 
-export default FaqPostPage;
+export default FaqEditPage;
 
-const StyledFaqPost = styled.div`
+const StyledFaqEdit = styled.div`
     position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 24px;

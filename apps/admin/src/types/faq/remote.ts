@@ -13,3 +13,9 @@ export interface PostFaqReq {
     content: string;
     category: string;
 }
+
+export interface PutFaqReq {
+    title: string;
+    content: string;
+    category: string;
+}

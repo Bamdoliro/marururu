@@ -16,7 +16,6 @@ const NoticeEdit = ({ id }: Props) => {
 
     const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
     const [noticeData, setNoticeData] = useState({
-        // TODO :: 고민해보기
         title: noticeDetailData?.title ?? '',
         content: noticeDetailData?.content ?? '',
     });
