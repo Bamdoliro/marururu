@@ -1,13 +1,15 @@
+import { useSecondScoreFileStore } from '@/store/form/secondScore';
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, useRef, useState } from 'react';
+import { ChangeEventHandler, DragEvent, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const SecondScoreUploader = () => {
-    const [fileData, setFileData] = useState<File | null>(null);
+    const [fileData, setFileData] = useSecondScoreFileStore();
     const imageFileInputRef = useRef<HTMLInputElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
 
     const handleUploadFileButtonClick = () => {
         imageFileInputRef.current?.click();
@@ -25,8 +27,37 @@ const SecondScoreUploader = () => {
         setFileData(files[0]);
     };
 
+    // DnD
+    const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(true);
+    };
+    const onDragLeave = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(false);
+    };
+    const onDragOver = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.dataTransfer.files) {
+            setIsDragging(true);
+        }
+    };
+    const onDrop = (e: DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setFileData(e.dataTransfer.files[0]);
+    };
+
     return (
-        <StyledSecondScoreUploader>
+        <StyledSecondScoreUploader
+            onDragEnter={onDragEnter}
+            onDragLeave={onDragLeave}
+            onDragOver={onDragOver}
+            onDrop={onDrop}
+            $isDragging={isDragging}>
             <Column gap={12} alignItems="center">
                 {fileData ? (
                     <FileNameBox>
@@ -67,12 +98,12 @@ const SecondScoreUploader = () => {
 
 export default SecondScoreUploader;
 
-const StyledSecondScoreUploader = styled.div`
+const StyledSecondScoreUploader = styled.div<{ $isDragging: boolean }>`
     ${flex({ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' })}
     height: 240px;
-    border: 1px dashed ${color.gray400};
     border-radius: 6px;
     background: ${color.gray50};
+    border: 1px dashed ${(props) => (props.$isDragging ? color.maruDefault : color.gray400)};
 `;
 
 const FileNameBox = styled.div`

@@ -1,3 +1,4 @@
+import { useSecondScoreFileValueStore } from '@/store/form/secondScore';
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text, TextButton } from '@maru/ui';
@@ -13,6 +14,7 @@ interface Props {
 
 const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
     const { handleDownloadSecondScoreFormatButtonClick } = useSecondScoreFormatAction();
+    const fileData = useSecondScoreFileValueStore();
 
     return (
         <BlurBackground $isOpen={isOpen}>
@@ -47,7 +49,7 @@ const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
                     <Button size="SMALL" option="SECONDARY" onClick={onClose}>
                         취소
                     </Button>
-                    <Button size="SMALL" option="DISABLED">
+                    <Button size="SMALL" option={fileData ? 'PRIMARY' : 'DISABLED'}>
                         입력하기
                     </Button>
                 </Row>
