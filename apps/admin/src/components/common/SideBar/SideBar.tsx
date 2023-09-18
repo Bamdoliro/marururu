@@ -12,7 +12,7 @@ import { color, font } from '../../../../../../packages/maru-theme';
 
 const NAVIGATION_DATA = [
     {
-        name: '원서 조회',
+        name: '원서 관리',
         route: ROUTES.MAIN,
     },
     {

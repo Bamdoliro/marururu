@@ -2,18 +2,18 @@ import {
     useSubmitFinalFormMutation,
     useUploadFormDocumentMutation,
 } from '@/services/form/mutations';
-import { ChangeEventHandler, useRef } from 'react';
 import { useExportFormQuery } from '@/services/form/queries';
-import { useSetFormDocumentStore, useFormDocumentValueStore } from '@/store';
+import { useFormDocumentValueStore, useSetFormDocumentStore } from '@/store';
+import { ChangeEventHandler, useRef } from 'react';
 
-export const useFileUploadButton = () => {
+export const useUploadFileButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleFileUploadButtonClick = () => {
+    const handleUploadFileButtonClick = () => {
         fileInputRef.current?.click();
     };
 
-    return { fileInputRef, handleFileUploadButtonClick };
+    return { fileInputRef, handleUploadFileButtonClick };
 };
 
 export const useSubmitFinalFormAction = () => {

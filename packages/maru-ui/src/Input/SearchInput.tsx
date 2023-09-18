@@ -22,7 +22,7 @@ const SearchInput = ({
                 name={name}
                 value={value}
             />
-            <IconSearch color={color.gray400} width={24} height={24} cursor="pointer" />
+            <IconSearch color={color.gray400} width={24} height={24} />
         </StyledSearchInput>
     );
 };

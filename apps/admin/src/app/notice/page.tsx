@@ -6,21 +6,24 @@ import { Button, Column, Loader, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
+import useCTAButton from './notice.hooks';
 
 const NoticePage = () => {
+    const { handleGoNoticePostPageButtonClick } = useCTAButton();
+
     return (
         <AppLayout>
             <StyledNoticePage>
                 <Text fontType="H1">공지사항</Text>
                 <Column gap={36}>
                     <Row justifyContent="space-between">
-                        <Button size="SMALL" icon="ADD_ICON">
+                        <SearchInput placeholder="검색어를 입력하세요." />
+                        <Button
+                            size="SMALL"
+                            icon="ADD_ICON"
+                            onClick={handleGoNoticePostPageButtonClick}>
                             공지사항 작성
                         </Button>
-                        <Row gap={8}>
-                            <SearchInput placeholder="검색어를 입력하세요." />
-                            <Button size="SMALL">검색</Button>
-                        </Row>
                     </Row>
                     <Suspense fallback={<Loader />}>
                         <NoticeList />

@@ -1,5 +1,5 @@
 import TableItem from '@/components/common/TableItem/TableItem';
-import { KoreanFormType } from '@/constants/main/constants';
+import { FORM_TYPE } from '@/constants/main/constants';
 import { Form, FormType } from '@/types/main/client';
 import { color } from '@maru/theme';
 import { Row, Text } from '@maru/ui';
@@ -40,7 +40,7 @@ const FormListItem = ({
                     {graduationType === 'QUALIFICATION_EXAMINATION' ? '검정고시' : school}
                 </Text>
                 <Text fontType="p2" width={240}>
-                    {KoreanFormType[type as FormType]}
+                    {FORM_TYPE[type as FormType]}
                 </Text>
             </Row>
             <Row gap={48}>

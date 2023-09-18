@@ -10,7 +10,10 @@ export const KEY = {
 export const ROUTES = {
     MAIN: '/',
     NOTICE: '/notice',
+    NOTICE_POST: '/notice/post',
+    NOTICE_EDIT: '/notice/edit',
     FAQ: '/faq',
+    FAQ_POST: '/faq/post',
     ANALYSIS: '/analysis',
     LOGIN: '/login',
 } as const;

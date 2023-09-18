@@ -8,9 +8,14 @@ import Text from '../Text/Text';
 
 type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
+interface Data {
+    value: string;
+    label: string;
+}
+
 interface Props {
     label?: string;
-    data: string[];
+    data: Data[] | string[];
     width?: CSSProperties['width'];
     size?: DropdownSizeOption;
     value?: string;
@@ -42,7 +47,7 @@ const Dropdown = ({
     };
 
     return (
-        <div style={{ width }} ref={dropdownRef}>
+        <div ref={dropdownRef} style={{ width }}>
             {label && <Label>{label}</Label>}
             <StyledDropdown size={size} onClick={handleToggleButtonClick} $isOpen={isOpen}>
                 <Text fontType="p2" color={!!value ? color.gray900 : color.gray500}>
@@ -56,13 +61,19 @@ const Dropdown = ({
             </StyledDropdown>
             <DropdownListBox $isOpen={isOpen}>
                 <DropdownList>
-                    {data?.map((item, index) => (
-                        <DropdownItem
-                            key={`dropdown ${index}`}
-                            onClick={() => handleDropdownItemButtonClick(item)}>
-                            {item}
-                        </DropdownItem>
-                    ))}
+                    {data?.map((item, index) => {
+                        const isString = typeof item === 'string';
+                        const dropdownLabel = isString ? item : item.label;
+                        const dropdownValue = isString ? item : item.value;
+
+                        return (
+                            <DropdownItem
+                                key={`dropdown ${index}`}
+                                onClick={() => handleDropdownItemButtonClick(dropdownValue)}>
+                                {dropdownLabel}
+                            </DropdownItem>
+                        );
+                    })}
                 </DropdownList>
             </DropdownListBox>
         </div>
