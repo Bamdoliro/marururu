@@ -54,8 +54,8 @@ const GradeCalculator = () => {
                             key={`subject ${index}`}
                             achievementLevels={
                                 isSpecialSubject
-                                    ? ['없음', 'A', 'B', 'C']
-                                    : ['없음', 'A', 'B', 'C', 'D', 'E']
+                                    ? ['-', 'A', 'B', 'C']
+                                    : ['-', 'A', 'B', 'C', 'D', 'E']
                             }
                             subjectList={subjectList}
                             setSubjectList={setSubjectList}
@@ -67,7 +67,7 @@ const GradeCalculator = () => {
                     <NewGradeCalculatorItem
                         id={item.id}
                         key={`new-subject ${index}`}
-                        achievementLevels={['없음', 'A', 'B', 'C', 'D', 'E']}
+                        achievementLevels={['-', 'A', 'B', 'C', 'D', 'E']}
                         newSubjectList={newSubjectList}
                         setNewSubjectList={setNewSubjectList}
                     />

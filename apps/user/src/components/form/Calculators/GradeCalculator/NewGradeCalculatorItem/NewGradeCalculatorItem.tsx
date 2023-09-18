@@ -29,7 +29,7 @@ const NewGradeCalculatorItem = ({
             const updatedData = [...prev];
             updatedData[newSubjectIndex] = {
                 ...updatedData[newSubjectIndex],
-                [name]: data === '없음' ? null : data,
+                [name]: data === '-' ? null : data,
             };
             return updatedData;
         });
@@ -48,7 +48,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].achievementLevel21 ?? '없음'}
+                    value={newSubjectList[newSubjectIndex].achievementLevel21 ?? '-'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -58,7 +58,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].achievementLevel22 ?? '없음'}
+                    value={newSubjectList[newSubjectIndex].achievementLevel22 ?? '-'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
@@ -68,7 +68,7 @@ const NewGradeCalculatorItem = ({
             </Td>
             <Td width={190} height="100%">
                 <Dropdown
-                    value={newSubjectList[newSubjectIndex].achievementLevel31 ?? '없음'}
+                    value={newSubjectList[newSubjectIndex].achievementLevel31 ?? '-'}
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
