@@ -42,6 +42,7 @@
     "@maru/utils": "workspace:*",
     "@tanstack/react-query": "^4.32.6",
     "@tanstack/react-query-devtools": "^4.32.6",
+    "@toss/use-overlay": "^1.3.6",
     "axios": "^1.4.0",
     "next": "13.4.6",
     "react": "18.2.0",

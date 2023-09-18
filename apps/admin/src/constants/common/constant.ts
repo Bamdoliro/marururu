@@ -1,6 +1,7 @@
 export const KEY = {
     NOTICE_LIST: 'useNoticeList',
     FORM_LIST: 'useFormList',
+    SECOND_SCORE_FORMAT: 'useSecondScoreFormat',
     ADMIN: 'useAdmin',
     FAQ_LIST: 'useFaqList',
     FAQ_DETAIL: 'useFaqDetail',

@@ -1,5 +1,6 @@
 export { default as Button } from './src/Button/Button';
 export type { ButtonOption } from './src/Button/Button.type';
+export { default as TextButton } from './src/Button/TextButton';
 export { default as UnderlineButton } from './src/Button/UnderlineButton';
 export { default as CheckBox } from './src/CheckBox/CheckBox';
 export { default as Confirm } from './src/Confirm/Confirm';

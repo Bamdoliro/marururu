@@ -22,6 +22,7 @@ const Button = ({
     size = 'MEDIUM',
     width,
     style,
+    disabled,
 }: Props) => {
     return (
         <StyledButton
@@ -29,7 +30,8 @@ const Button = ({
             onClick={onClick}
             option={option}
             icon={icon}
-            size={size}>
+            size={size}
+            disabled={disabled || option === 'DISABLED'}>
             {icon === 'ADD_ICON' && <IconAdd color={color.white} width={24} height={24} />}
             {children}
             {icon === 'SHORTCUTS_ICON' && (
