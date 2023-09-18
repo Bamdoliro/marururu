@@ -3,7 +3,7 @@ import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useState } from 'react';
+import { ChangeEventHandler, useRef } from 'react';
 import styled from 'styled-components';
 import SecondScoreUploader from '../SecondScoreUploader/SecondScoreUploader';
 import {
@@ -19,12 +19,28 @@ interface Props {
 const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
     const { handleDownloadSecondScoreFormatButtonClick } = useSecondScoreFormatAction();
     const [fileData, setFileData] = useSecondScoreFileStore();
-    /* TODO :: 이거 좀 별론데... 요청 성공했을 때 input value도 지워야 됨... */
-    const [inputFileValue, setInputFileValue] = useState('');
+
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleUploadFileButtonClick = () => {
+        fileInputRef.current?.click();
+    };
+
+    const removeFileInputValue = () => {
+        if (!fileInputRef.current) return;
+        fileInputRef.current.value = '';
+    };
+
+    const handleFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { files } = e.target;
+
+        if (!files || files.length === 0) return;
+        setFileData(files[0]);
+    };
 
     const removeFileAndCloseModal = () => {
         setFileData(null);
-        setInputFileValue('');
+        removeFileInputValue();
         onClose();
     };
 
@@ -50,13 +66,13 @@ const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
                         height={36}
                         color={color.gray600}
                         cursor="pointer"
-                        onClick={onClose}
+                        onClick={removeFileAndCloseModal}
                     />
                 </Row>
                 <Column gap={16}>
                     <SecondScoreUploader
-                        inputFileValue={inputFileValue}
-                        setInputFileValue={setInputFileValue}
+                        removeFileInputValue={removeFileInputValue}
+                        handleUploadFileButtonClick={handleUploadFileButtonClick}
                     />
                     <TextButton
                         fontType="btn2"
@@ -66,7 +82,7 @@ const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
                     </TextButton>
                 </Column>
                 <Row gap={16} style={{ alignSelf: 'flex-end' }}>
-                    <Button size="SMALL" option="SECONDARY" onClick={onClose}>
+                    <Button size="SMALL" option="SECONDARY" onClick={removeFileAndCloseModal}>
                         취소
                     </Button>
                     <Button
@@ -77,6 +93,13 @@ const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
                     </Button>
                 </Row>
             </StyledSecondScoreUploadModal>
+            <input
+                type="file"
+                ref={fileInputRef}
+                accept=".xlsx"
+                onChange={handleFileDataChange}
+                hidden
+            />
         </BlurBackground>
     );
 };

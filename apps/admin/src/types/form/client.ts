@@ -41,3 +41,5 @@ export interface Form {
 }
 
 export type FormListType = '모두 보기' | '검토해야 하는 원서 모아보기';
+
+export type ExportExcelType = '전체 내보내기' | '1차 전형 결과' | '2차 전형 결과' | '최종 합격자';

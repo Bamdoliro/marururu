@@ -2,8 +2,9 @@
 
 import ButtonMenu from '@/components/common/ButtonMenu/ButtonMenu';
 import ButtonMenuItem from '@/components/common/ButtonMenu/ButtonMenuItem/ButtonMenuItem';
+import ExportExcelModal from '@/components/form/ExportExcelModal/ExportExcelModal';
 import FormList from '@/components/form/FormList/FormList';
-import SecondScoreInputModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
+import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
 import { useFormListTypeStore } from '@/store/form/type';
@@ -33,10 +34,14 @@ const MainPage = () => {
 
     const overlay = useOverlay();
 
-    const openSecondScoreInputModal = () => {
+    const openSecondScoreUplaodModal = () => {
         overlay.open(({ isOpen, close }) => (
-            <SecondScoreInputModal isOpen={isOpen} onClose={close} />
+            <SecondScoreUploadModal isOpen={isOpen} onClose={close} />
         ));
+    };
+
+    const openExportExcelModal = () => {
+        overlay.open(({ isOpen, close }) => <ExportExcelModal isOpen={isOpen} onClose={close} />);
     };
 
     return (
@@ -77,7 +82,7 @@ const MainPage = () => {
                                             검토해야 하는 원서 모아보기
                                         </Text>
                                     </ButtonMenuItem>,
-                                    <ButtonMenuItem onClick={openSecondScoreInputModal}>
+                                    <ButtonMenuItem onClick={openSecondScoreUplaodModal}>
                                         <IconEditDocument
                                             color={color.gray600}
                                             width={24}
@@ -87,7 +92,7 @@ const MainPage = () => {
                                             2차 전형 점수 입력하기
                                         </Text>
                                     </ButtonMenuItem>,
-                                    <ButtonMenuItem>
+                                    <ButtonMenuItem onClick={openExportExcelModal}>
                                         <IconUpload color={color.gray600} width={24} height={24} />
                                         <Text fontType="p2" color={color.gray900}>
                                             명단 엑셀로 내보내기

@@ -6,6 +6,7 @@ export const KEY = {
     FAQ_LIST: 'useFaqList',
     FAQ_DETAIL: 'useFaqDetail',
     NOTICE_DETAIL: 'useNoticeDetail',
+    EXPORT_EXCEL: 'useExportExcel',
 };
 
 export const ROUTES = {
