@@ -2,7 +2,7 @@
 
 import ButtonMenu from '@/components/common/ButtonMenu/ButtonMenu';
 import ButtonMenuItem from '@/components/common/ButtonMenu/ButtonMenuItem/ButtonMenuItem';
-import FormList from '@/components/main/FormList/FormList';
+import FormList from '@/components/form/FormList/FormList';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
 import { IconCheckDocument, IconEditDocument, IconPrint, IconUpload } from '@maru/icon';

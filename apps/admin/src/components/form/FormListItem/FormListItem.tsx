@@ -1,6 +1,6 @@
 import TableItem from '@/components/common/TableItem/TableItem';
 import { FORM_TYPE } from '@/constants/main/constants';
-import { Form, FormType } from '@/types/main/client';
+import { Form, FormType } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Row, Text } from '@maru/ui';
 
@@ -33,10 +33,7 @@ const FormListItem = ({
                 <Text fontType="p2" width={60}>
                     {name}
                 </Text>
-                <Text fontType="p2" width={60}>
-                    {birthday.replaceAll('-', '').slice(2)}
-                </Text>
-                <Text fontType="p2" width={160}>
+                <Text fontType="p2" width={160} ellipsis>
                     {graduationType === 'QUALIFICATION_EXAMINATION' ? '검정고시' : school}
                 </Text>
                 <Text fontType="p2" width={240}>
