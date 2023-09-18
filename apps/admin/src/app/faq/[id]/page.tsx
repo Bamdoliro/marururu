@@ -16,7 +16,6 @@ interface Props {
 }
 
 const FaqDetailPage = ({ params: { id } }: Props) => {
-    // TODO :: 수정, 삭제 기능 추가하기
     return (
         <AppLayout>
             <StyledNoticeDetail>
