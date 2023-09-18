@@ -3,6 +3,7 @@
 import ButtonMenu from '@/components/common/ButtonMenu/ButtonMenu';
 import ButtonMenuItem from '@/components/common/ButtonMenu/ButtonMenuItem/ButtonMenuItem';
 import FormList from '@/components/form/FormList/FormList';
+import SecondScoreInputModal from '@/components/form/SecondScoreInputModal/SecondScoreInputModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
 import { useFormListTypeStore } from '@/store/form/type';
@@ -17,6 +18,7 @@ import {
 import { color } from '@maru/theme';
 import { Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
 
 if (process.env.NODE_ENV === 'development') {
@@ -28,6 +30,14 @@ const MainPage = () => {
 
     const handleFormListTypeReview = () => setFormListType('검토해야 하는 원서 모아보기');
     const handleFormListTypeAll = () => setFormListType('모두 보기');
+
+    const overlay = useOverlay();
+
+    const openSecondScoreInputModal = () => {
+        overlay.open(({ isOpen, close }) => (
+            <SecondScoreInputModal isOpen={isOpen} onClose={close} />
+        ));
+    };
 
     return (
         <AppLayout>
@@ -67,7 +77,7 @@ const MainPage = () => {
                                             검토해야 하는 원서 모아보기
                                         </Text>
                                     </ButtonMenuItem>,
-                                    <ButtonMenuItem>
+                                    <ButtonMenuItem onClick={openSecondScoreInputModal}>
                                         <IconEditDocument
                                             color={color.gray600}
                                             width={24}
