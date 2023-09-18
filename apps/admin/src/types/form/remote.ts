@@ -1,5 +1,5 @@
 import { Form } from './client';
 
-export interface GetFormReviewListRes {
+export interface GetFormListRes {
     dataList: Form[];
 }

@@ -11,9 +11,6 @@ const FormListHeader = () => {
                 <Text fontType="p2" width={60}>
                     이름
                 </Text>
-                <Text fontType="p2" width={60}>
-                    생년월일
-                </Text>
                 <Text fontType="p2" width={160}>
                     학교
                 </Text>

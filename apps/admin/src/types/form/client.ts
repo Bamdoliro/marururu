@@ -39,3 +39,5 @@ export interface Form {
     firstRoundPassed: boolean | null;
     secondRoundPassed: boolean | null;
 }
+
+export type FormListType = '모두 보기' | '검토해야 하는 원서 모아보기';
