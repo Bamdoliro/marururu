@@ -3,3 +3,9 @@ export interface Notice {
     title: string;
     createdAt: string;
 }
+
+export interface NoticeDetail {
+    title: string;
+    content: string;
+    createdAt: string;
+}

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const FinalFormTable = () => {
     return (
-        <Table>
+        <StyledFinalFormTable>
             <Tr>
                 <Th style={{ borderTopLeftRadius: '12px' }} width="120px">
                     지원 구분
@@ -63,13 +63,13 @@ const FinalFormTable = () => {
                     <li>자격증 사본 1부 (원본대조필, 스캔본을 제출)</li>
                 </Td>
             </Tr>
-        </Table>
+        </StyledFinalFormTable>
     );
 };
 
 export default FinalFormTable;
 
-const Table = styled.table`
+const StyledFinalFormTable = styled.table`
     width: 816px;
     border-radius: 12px;
 `;

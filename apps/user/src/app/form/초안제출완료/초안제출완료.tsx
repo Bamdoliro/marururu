@@ -47,10 +47,10 @@ export default 초안제출완료;
 
 const Styled초안제출완료 = styled.div`
     ${flex({ flexDirection: 'column' })}
-    gap:48px;
+    gap: 48px;
     max-width: 800px;
     height: 100%;
-    margin: 0 auto;
+    margin: 62px auto 0;
 
     opacity: 0;
     animation: show 1.2s 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;

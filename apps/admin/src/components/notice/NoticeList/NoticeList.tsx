@@ -9,10 +9,13 @@ const NoticeList = () => {
     return (
         <Column gap={12}>
             <NoticeListHeader />
-            {noticeList &&
-                noticeList.map(({ id, title, createdAt }) => (
-                    <NoticeListItem id={id} title={title} createdAt={createdAt} />
-                ))}
+            {noticeList
+                ? noticeList
+                      .sort((a, b) => a.id - b.id)
+                      .map(({ id, title, createdAt }) => (
+                          <NoticeListItem id={id} title={title} createdAt={createdAt} />
+                      ))
+                : null}
         </Column>
     );
 };
