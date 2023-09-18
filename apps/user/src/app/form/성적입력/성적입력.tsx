@@ -82,7 +82,6 @@ export default 성적입력;
 const NavigationBar = styled.div`
     ${flex({ alignItems: 'center' })}
     width: 100%;
-    height: 54px;
     margin: 64px 0 16px;
     background-color: ${color.white};
 `;
