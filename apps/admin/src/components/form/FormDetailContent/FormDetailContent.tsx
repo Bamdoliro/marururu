@@ -1,5 +1,6 @@
 import { Column, Row } from '@maru/ui';
 import styled from 'styled-components';
+import FormStatus from './FormStatus/FormStatus';
 import Profile from './Profile/Profile';
 
 interface Props {
@@ -12,6 +13,7 @@ const FormDetailContent = ({ id }: Props) => {
             <Row gap={48}>
                 <Column gap={36}>
                     <Profile id={id} />
+                    <FormStatus id={id} />
                 </Column>
             </Row>
         </StyledFormDetailContent>
