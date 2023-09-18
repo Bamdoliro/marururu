@@ -19,6 +19,7 @@ const StyledButtonMenuItem = styled.button`
     width: 100%;
     height: 44px;
     padding: 0 8px;
+    border-radius: 6px;
 
     &:hover {
         background-color: ${color.gray100};
