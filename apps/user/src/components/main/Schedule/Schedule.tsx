@@ -91,4 +91,7 @@ const StyledScheduleList = styled.div`
     height: 100%;
     width: 100%;
     overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
