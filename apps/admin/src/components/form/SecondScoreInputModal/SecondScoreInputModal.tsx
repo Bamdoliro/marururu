@@ -3,6 +3,7 @@ import { color } from '@maru/theme';
 import { Button, Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import { useSecondScoreFormatAction } from './SecondScoreInputModal.hooks';
 
 interface Props {
     isOpen: boolean;
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
+    const { handleDownloadSecondScoreFormatButtonClick } = useSecondScoreFormatAction();
+
     return (
         <BlurBackground $isOpen={isOpen}>
             <StyledSecondScoreInputModal>
@@ -42,7 +45,10 @@ const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
                             </Text>
                         </Column>
                     </UploadFileBox>
-                    <TextButton fontType="btn2" color={color.gray600}>
+                    <TextButton
+                        fontType="btn2"
+                        color={color.gray600}
+                        onClick={handleDownloadSecondScoreFormatButtonClick}>
                         [ 엑셀 포맷 다운로드 ]
                     </TextButton>
                 </Column>

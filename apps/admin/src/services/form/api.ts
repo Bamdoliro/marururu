@@ -13,3 +13,12 @@ export const getFormList = async (formListType: FormListType) => {
 
     return data;
 };
+
+export const getSecondScoreFormat = async () => {
+    const { data } = await maru.get('/form/second-round/format', {
+        ...authorization(),
+        responseType: 'blob',
+    });
+
+    return data;
+};
