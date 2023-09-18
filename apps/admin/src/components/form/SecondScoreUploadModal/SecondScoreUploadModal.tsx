@@ -1,24 +1,41 @@
-import { useSecondScoreFileValueStore } from '@/store/form/secondScore';
+import { useSecondScoreFileStore } from '@/store/form/secondScore';
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useState } from 'react';
 import styled from 'styled-components';
 import SecondScoreUploader from '../SecondScoreUploader/SecondScoreUploader';
-import { useSecondScoreFormatAction } from './SecondScoreInputModal.hooks';
+import {
+    useSecondScoreFormatAction,
+    useUploadSecondScoreFormatAction,
+} from './SecondScoreUploadModal.hooks';
 
 interface Props {
     isOpen: boolean;
     onClose: () => void;
 }
 
-const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
+const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
     const { handleDownloadSecondScoreFormatButtonClick } = useSecondScoreFormatAction();
-    const fileData = useSecondScoreFileValueStore();
+    const [fileData, setFileData] = useSecondScoreFileStore();
+    /* TODO :: 이거 좀 별론데... 요청 성공했을 때 input value도 지워야 됨... */
+    const [inputFileValue, setInputFileValue] = useState('');
+
+    const removeFileAndCloseModal = () => {
+        setFileData(null);
+        setInputFileValue('');
+        onClose();
+    };
+
+    const { handleUploadSecondScoreFormatButtonClick } = useUploadSecondScoreFormatAction(
+        fileData,
+        removeFileAndCloseModal,
+    );
 
     return (
         <BlurBackground $isOpen={isOpen}>
-            <StyledSecondScoreInputModal>
+            <StyledSecondScoreUploadModal>
                 <Row justifyContent="space-between">
                     <Column gap={8}>
                         <Text fontType="H2" color={color.gray900}>
@@ -37,7 +54,10 @@ const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
                     />
                 </Row>
                 <Column gap={16}>
-                    <SecondScoreUploader />
+                    <SecondScoreUploader
+                        inputFileValue={inputFileValue}
+                        setInputFileValue={setInputFileValue}
+                    />
                     <TextButton
                         fontType="btn2"
                         color={color.gray600}
@@ -49,16 +69,19 @@ const SecondScoreInputModal = ({ isOpen, onClose }: Props) => {
                     <Button size="SMALL" option="SECONDARY" onClick={onClose}>
                         취소
                     </Button>
-                    <Button size="SMALL" option={fileData ? 'PRIMARY' : 'DISABLED'}>
+                    <Button
+                        size="SMALL"
+                        option={fileData ? 'PRIMARY' : 'DISABLED'}
+                        onClick={handleUploadSecondScoreFormatButtonClick}>
                         입력하기
                     </Button>
                 </Row>
-            </StyledSecondScoreInputModal>
+            </StyledSecondScoreUploadModal>
         </BlurBackground>
     );
 };
 
-export default SecondScoreInputModal;
+export default SecondScoreUploadModal;
 
 const BlurBackground = styled.div<{ $isOpen: boolean }>`
     position: fixed;
@@ -73,7 +96,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
     z-index: 1;
 `;
 
-const StyledSecondScoreInputModal = styled.div`
+const StyledSecondScoreUploadModal = styled.div`
     ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
     width: 720px;
     height: 540px;

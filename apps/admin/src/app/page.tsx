@@ -3,7 +3,7 @@
 import ButtonMenu from '@/components/common/ButtonMenu/ButtonMenu';
 import ButtonMenuItem from '@/components/common/ButtonMenu/ButtonMenuItem/ButtonMenuItem';
 import FormList from '@/components/form/FormList/FormList';
-import SecondScoreInputModal from '@/components/form/SecondScoreInputModal/SecondScoreInputModal';
+import SecondScoreInputModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
 import { useFormListTypeStore } from '@/store/form/type';
