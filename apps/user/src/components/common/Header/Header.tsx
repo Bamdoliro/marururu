@@ -69,7 +69,7 @@ const Header = () => {
                         </Row>
                     )}
                 </Row>
-                <Row style={{ padding: '0px 96px' }} alignItems="center" height={54}>
+                <Row style={{ padding: '0px 96px' }} alignItems="center">
                     {NAVIGATION_LIST.map(({ route, name }, index) => {
                         return (
                             <UnderlineButton
@@ -90,7 +90,6 @@ export default Header;
 
 const StyledHeader = styled.div`
     width: 100%;
-    height: 118px;
     box-shadow: 0 1px 0 0 ${color.gray200};
 `;
 
