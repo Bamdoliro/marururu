@@ -5,6 +5,7 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler, useState } from 'react';
 import styled, { css } from 'styled-components';
+import { useExportExcelAction } from './ExportExcelModal.hooks';
 
 interface Props {
     isOpen: boolean;
@@ -18,6 +19,8 @@ const ExportExcelModal = ({ isOpen, onClose }: Props) => {
         const { value } = e.target;
         setExportExcelType(value as ExportExcelType);
     };
+
+    const { handleExportExcelButtonClick } = useExportExcelAction(exportExcelType);
 
     return (
         <BlurBackground $isOpen={isOpen}>
@@ -120,8 +123,7 @@ const ExportExcelModal = ({ isOpen, onClose }: Props) => {
                     <Button
                         size="SMALL"
                         option={exportExcelType ? 'PRIMARY' : 'DISABLED'}
-                        // onClick={handleExportExcelButtonClick}
-                    >
+                        onClick={handleExportExcelButtonClick}>
                         내보내기
                     </Button>
                 </Row>
