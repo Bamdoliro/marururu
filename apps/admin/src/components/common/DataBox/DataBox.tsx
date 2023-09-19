@@ -3,19 +3,22 @@ import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
+type LengthType = 'SHORT' | 'LONG';
+
 interface Props {
     label: string;
     data: string | number;
+    lengthType?: LengthType;
 }
 
-const DataBox = ({ label, data }: Props) => {
+const DataBox = ({ label, data, lengthType = 'SHORT' }: Props) => {
     return (
-        <StyledDataBox>
+        <StyledDataBox lengthType={lengthType}>
             <Text fontType="H4" color={color.gray900}>
                 {label}
             </Text>
-            <DataUnderlineBox>
-                <Text fontType="p2" color={color.gray900}>
+            <DataUnderlineBox lengthType={lengthType}>
+                <Text fontType="p2" color={color.gray900} whiteSpace="normal">
                     {data}
                 </Text>
             </DataUnderlineBox>
@@ -25,20 +28,22 @@ const DataBox = ({ label, data }: Props) => {
 
 export default DataBox;
 
-const StyledDataBox = styled.div`
+const StyledDataBox = styled.div<{ lengthType: LengthType }>`
     ${flex({ flexDirection: 'column' })}
     gap: 16px;
-    width: 604px;
-    height: 122px;
+    min-width: 604px;
+    max-width: 1232px;
+    width: ${(props) => (props.lengthType === 'SHORT' ? '604px' : 'fit-content')};
+    min-height: 122px;
     padding: 24px;
     border-radius: 12px;
     border: 1px solid ${color.gray200};
     background: ${color.white};
 `;
 
-const DataUnderlineBox = styled.div`
+const DataUnderlineBox = styled.div<{ lengthType: LengthType }>`
     ${flex({ alignItems: 'flex-start' })}
-    width: 360px;
-    height: 30px;
+    width: ${(props) => (props.lengthType === 'SHORT' ? '360px' : '100%')};
+    padding-bottom: 4px;
     border-bottom: 1px solid ${color.gray200};
 `;
