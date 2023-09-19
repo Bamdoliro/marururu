@@ -9,7 +9,6 @@ interface Props {
 }
 
 const CompleteAlarm = ({ isComplete, completeText, incompleteText }: Props) => {
-    const IconAlarm = isComplete ? IconCheckCircle : IconCancelCircle;
     const alarmText = isComplete ? completeText : incompleteText;
 
     return (
@@ -19,9 +18,14 @@ const CompleteAlarm = ({ isComplete, completeText, incompleteText }: Props) => {
             height="100%"
             gap={34}
             alignItems="center">
-            <IconAlarm width={150} height={150} />
+            {isComplete ? (
+                <IconCheckCircle width={150} height={150} />
+            ) : (
+                <IconCancelCircle width={150} height={150} />
+            )}
+
             <Text fontType="D2" color={color.gray900}>
-                {alarmText}
+                {isComplete ? completeText : incompleteText}
             </Text>
         </Column>
     );
