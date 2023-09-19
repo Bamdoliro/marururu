@@ -15,7 +15,6 @@ const ERROR: Record<ErrorStatus, string> = {
 
 const useApiError = () => {
     const handleError = (error: AxiosError<AxiosErrorResponse>) => {
-        console.log(error);
         let errorMessage = '';
         if (isAxiosError(error)) {
             if (error.response) {
