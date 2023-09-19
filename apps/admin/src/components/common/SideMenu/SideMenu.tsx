@@ -6,10 +6,15 @@ import styled, { css } from 'styled-components';
 interface Props {
     children: ReactNode;
     active: boolean;
+    onClick: () => void;
 }
 
-const SideMenu = ({ children, active }: Props) => {
-    return <StyledSideMenu $active={active}>{children}</StyledSideMenu>;
+const SideMenu = ({ children, active, onClick }: Props) => {
+    return (
+        <StyledSideMenu $active={active} onClick={onClick}>
+            {children}
+        </StyledSideMenu>
+    );
 };
 
 export default SideMenu;
