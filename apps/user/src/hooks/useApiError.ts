@@ -2,6 +2,11 @@ import { AxiosError, isAxiosError } from 'axios';
 
 type ErrorStatus = 403 | 429 | 500;
 
+interface AxiosErrorResponse {
+    code: string;
+    message: string;
+}
+
 const ERROR: Record<ErrorStatus, string> = {
     403: '유저의 권한이 없습니다.',
     429: '너무 많이 요청하였습니다. 조금 뒤 다시 이용해주세요.',
@@ -9,7 +14,7 @@ const ERROR: Record<ErrorStatus, string> = {
 };
 
 const useApiError = () => {
-    const handleError = (error: AxiosError) => {
+    const handleError = (error: AxiosError<AxiosErrorResponse>) => {
         console.log(error);
         let errorMessage = '';
         if (isAxiosError(error)) {

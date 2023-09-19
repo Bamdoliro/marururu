@@ -1,5 +1,5 @@
-import ClipLoader from 'react-spinners/ClipLoader';
 import { color } from '@maru/theme';
+import ClipLoader from 'react-spinners/ClipLoader';
 import styled from 'styled-components';
 
 const Loader = () => {
