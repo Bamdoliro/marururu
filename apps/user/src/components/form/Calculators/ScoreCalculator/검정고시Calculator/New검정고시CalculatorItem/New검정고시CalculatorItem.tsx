@@ -1,6 +1,6 @@
 import { useNew검정고시SubjectListStore } from '@/store';
 import { color, font } from '@maru/theme';
-import { Button, NumberInput, Td } from '@maru/ui';
+import { Button, CellInput, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
@@ -43,7 +43,7 @@ const New검정고시CalculatorItem = ({ id, score }: Props) => {
                 />
             </Td>
             <Td width={570} height="100%">
-                <NumberInput
+                <CellInput
                     value={score ?? 0}
                     name="score"
                     onChange={handleNew검정고시ItemDataChange}

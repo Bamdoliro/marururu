@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import FormStatus from './FormStatus/FormStatus';
 import Profile from './Profile/Profile';
 import 보호자정보 from './보호자정보/보호자정보';
+import 성적 from './성적/성적';
 import 자기소개서 from './자기소개서/자기소개서';
 import 전형 from './전형/전형';
 import 지원자정보 from './지원자정보/지원자정보';
@@ -19,10 +20,6 @@ interface Props {
 
 const FormDetailContent = ({ id }: Props) => {
     const [currentFormDetailStep, setCurrentFormDetailStep] = useState('지원자 정보');
-
-    const handleFormDetailStepButtonClick = (formDetailStep: string) => {
-        setCurrentFormDetailStep(formDetailStep);
-    };
 
     return (
         <StyledFormDetailContent>
@@ -37,7 +34,7 @@ const FormDetailContent = ({ id }: Props) => {
                             <UnderlineButton
                                 key={`form-detail-step ${index}`}
                                 active={formDetailStep === currentFormDetailStep}
-                                onClick={() => handleFormDetailStepButtonClick(formDetailStep)}>
+                                onClick={() => setCurrentFormDetailStep(formDetailStep)}>
                                 {formDetailStep}
                             </UnderlineButton>
                         ))}
@@ -49,6 +46,7 @@ const FormDetailContent = ({ id }: Props) => {
                             '보호자 정보': <보호자정보 id={id} />,
                             '출신학교 및 학력': <출신학교및학력 id={id} />,
                             전형: <전형 id={id} />,
+                            성적: <성적 id={id} />,
                             자기소개서: <자기소개서 id={id} />,
                         }}
                     />

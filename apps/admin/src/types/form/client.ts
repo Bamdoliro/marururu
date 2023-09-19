@@ -50,7 +50,7 @@ export interface FormDetail {
     parent: ParentInfo;
     education: EducationInfo;
     grade: {
-        subjectList: StudentSubject[];
+        subjectList: Subject[];
         attendance1: Attendance;
         attendance2: Attendance;
         attendance3: Attendance;
@@ -96,12 +96,16 @@ export interface EducationInfo {
 
 export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
 
-export interface StudentSubject {
+export interface AchievementLevelsGroup {
     subjectName: string;
-    achievementLevel21: AchievementLevel;
-    achievementLevel22: AchievementLevel;
-    achievementLevel31: AchievementLevel;
-    score: number;
+    achievementLevels: AchievementLevel[];
+}
+
+export interface Subject {
+    subjectName: string;
+    achievementLevel: AchievementLevel;
+    grade: number;
+    semester: number;
 }
 
 export interface Attendance {

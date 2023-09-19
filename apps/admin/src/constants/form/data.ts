@@ -6,3 +6,5 @@ export const FORM_DETAIL_STEP_LIST = [
     '성적',
     '자기소개서',
 ] as const;
+
+export const GRADUATION_STEP_LIST = ['교과 성적', '출결 상황', '봉사 시간', '자격증'] as const;
