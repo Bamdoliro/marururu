@@ -11,6 +11,7 @@ import {
     useSetSubjectListStore,
     useSet검정고시SubjectListStore,
 } from '@/store';
+import { updateSlicedSubjectList } from '@/utils';
 import { useInterval } from '@toss/react';
 import { ReactNode, useEffect } from 'react';
 
@@ -32,51 +33,40 @@ const FormWrapper = ({ children }: Props) => {
 
     useEffect(() => {
         if (formStatusData) {
-            if (formStatusData.status === 'SUBMITTED') {
-                setFormStep('초안제출완료');
-            } else if (formStatusData.status === 'FINAL_SUBMITTED') {
-                setFormStep('최종제출완료');
+            const { status } = formStatusData;
+            switch (status) {
+                case 'SUBMITTED':
+                    setFormStep('초안제출완료');
+                    break;
+                case 'FINAL_SUBMITTED':
+                    setFormStep('최종제출완료');
+                    break;
+                default:
+                    break;
             }
         }
     }, [formStatusData]);
 
-    const SAVE_FORM_INTERVAL = 6000 * 10 * 2;
-
+    // 2분마다 자동 저장
+    const SAVE_FORM_INTERVAL_MS = 6000 * 10 * 2;
     useInterval(() => {
         saveFormMutate(form);
-    }, SAVE_FORM_INTERVAL);
+    }, SAVE_FORM_INTERVAL_MS);
 
     useEffect(() => {
         if (saveFormData && !isSaveFormLoaded) {
+            const subjectList = saveFormData.grade.subjectList;
+            const graduationType = saveFormData.education.graduationType;
+
             setIsSaveFormLoaded(true);
             setForm((prev) => ({ ...prev, ...saveFormData }));
-            if (saveFormData.grade.subjectList) {
-                if (saveFormData.education.graduationType === 'QUALIFICATION_EXAMINATION') {
-                    set검정고시SubjectList(
-                        saveFormData.grade.subjectList.slice(0, 5).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
-                    setNew검정고시SubjectList(
-                        saveFormData.grade.subjectList.slice(5).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
+            if (subjectList) {
+                if (graduationType === 'QUALIFICATION_EXAMINATION') {
+                    set검정고시SubjectList(updateSlicedSubjectList(subjectList, 0, 5));
+                    setNew검정고시SubjectList(updateSlicedSubjectList(subjectList, 5));
                 } else {
-                    setSubjectList(
-                        saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
-                    setNewtSubjectList(
-                        saveFormData.grade.subjectList.slice(12).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
+                    setSubjectList(updateSlicedSubjectList(subjectList, 0, 12));
+                    setNewtSubjectList(updateSlicedSubjectList(subjectList, 12));
                 }
             }
         }
