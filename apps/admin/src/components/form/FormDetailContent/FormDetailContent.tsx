@@ -7,6 +7,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import FormStatus from './FormStatus/FormStatus';
 import Profile from './Profile/Profile';
+import 보호자정보 from './보호자정보/보호자정보';
 import 지원자정보 from './지원자정보/지원자정보';
 
 interface Props {
@@ -42,6 +43,7 @@ const FormDetailContent = ({ id }: Props) => {
                         value={currentFormDetailStep}
                         caseBy={{
                             '지원자 정보': <지원자정보 id={id} />,
+                            '보호자 정보': <보호자정보 id={id} />,
                         }}
                     />
                 </Column>
