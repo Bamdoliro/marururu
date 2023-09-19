@@ -9,6 +9,7 @@ import FormStatus from './FormStatus/FormStatus';
 import Profile from './Profile/Profile';
 import 보호자정보 from './보호자정보/보호자정보';
 import 지원자정보 from './지원자정보/지원자정보';
+import 출신학교및학력 from './출신학교및학력/출신학교및학력';
 
 interface Props {
     id: number;
@@ -44,6 +45,7 @@ const FormDetailContent = ({ id }: Props) => {
                         caseBy={{
                             '지원자 정보': <지원자정보 id={id} />,
                             '보호자 정보': <보호자정보 id={id} />,
+                            '출신학교 및 학력': <출신학교및학력 id={id} />,
                         }}
                     />
                 </Column>
