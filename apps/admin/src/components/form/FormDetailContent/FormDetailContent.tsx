@@ -2,10 +2,12 @@ import { FORM_DETAIL_STEP_LIST } from '@/constants/form/data';
 import { color } from '@maru/theme';
 import { Column, Row, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import FormStatus from './FormStatus/FormStatus';
 import Profile from './Profile/Profile';
+import 지원자정보 from './지원자정보/지원자정보';
 
 interface Props {
     id: number;
@@ -36,6 +38,12 @@ const FormDetailContent = ({ id }: Props) => {
                             </UnderlineButton>
                         ))}
                     </NavigationBar>
+                    <SwitchCase
+                        value={currentFormDetailStep}
+                        caseBy={{
+                            '지원자 정보': <지원자정보 id={id} />,
+                        }}
+                    />
                 </Column>
             </Row>
         </StyledFormDetailContent>

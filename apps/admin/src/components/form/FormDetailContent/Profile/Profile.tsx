@@ -17,9 +17,9 @@ const Profile = ({ id }: Props) => {
     return (
         <StyledProfile>
             <ProfileImageBox>
-                {formDetailData?.applicant.identificationPictureUri ? (
+                {formDetailData ? (
                     <ProfileImage
-                        src={formDetailData?.applicant.identificationPictureUri}
+                        src={formDetailData.applicant.identificationPictureUri}
                         alt="profile-image"
                         width={280}
                         height={280}
