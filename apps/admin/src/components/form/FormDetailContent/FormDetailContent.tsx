@@ -20,10 +20,6 @@ interface Props {
 const FormDetailContent = ({ id }: Props) => {
     const [currentFormDetailStep, setCurrentFormDetailStep] = useState('지원자 정보');
 
-    const handleFormDetailStepButtonClick = (formDetailStep: string) => {
-        setCurrentFormDetailStep(formDetailStep);
-    };
-
     return (
         <StyledFormDetailContent>
             <Row gap={48}>
@@ -37,7 +33,7 @@ const FormDetailContent = ({ id }: Props) => {
                             <UnderlineButton
                                 key={`form-detail-step ${index}`}
                                 active={formDetailStep === currentFormDetailStep}
-                                onClick={() => handleFormDetailStepButtonClick(formDetailStep)}>
+                                onClick={() => setCurrentFormDetailStep(formDetailStep)}>
                                 {formDetailStep}
                             </UnderlineButton>
                         ))}
