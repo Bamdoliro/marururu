@@ -11,6 +11,8 @@ const NumberInput = ({
     placeholder,
     value = 0,
     isError = false,
+    readOnly,
+    type = 'number',
 }: InputProps) => {
     const numberInputRef = useRef<HTMLInputElement>(null);
 
@@ -27,11 +29,12 @@ const NumberInput = ({
             style={{ width, textAlign }}
             onChange={onChange}
             onClick={handleSelectAllClick}
-            type="number"
+            type={type}
             value={value}
             placeholder={placeholder}
             $isError={isError}
             min={0}
+            readOnly={readOnly}
         />
     );
 };
