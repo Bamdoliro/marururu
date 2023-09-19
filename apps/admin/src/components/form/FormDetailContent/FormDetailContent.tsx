@@ -8,7 +8,10 @@ import styled from 'styled-components';
 import FormStatus from './FormStatus/FormStatus';
 import Profile from './Profile/Profile';
 import 보호자정보 from './보호자정보/보호자정보';
+import 자기소개서 from './자기소개서/자기소개서';
+import 전형 from './전형/전형';
 import 지원자정보 from './지원자정보/지원자정보';
+import 출신학교및학력 from './출신학교및학력/출신학교및학력';
 
 interface Props {
     id: number;
@@ -44,6 +47,9 @@ const FormDetailContent = ({ id }: Props) => {
                         caseBy={{
                             '지원자 정보': <지원자정보 id={id} />,
                             '보호자 정보': <보호자정보 id={id} />,
+                            '출신학교 및 학력': <출신학교및학력 id={id} />,
+                            전형: <전형 id={id} />,
+                            자기소개서: <자기소개서 id={id} />,
                         }}
                     />
                 </Column>
