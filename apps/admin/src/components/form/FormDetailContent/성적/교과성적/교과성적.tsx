@@ -1,6 +1,5 @@
 import { useFormDetailQuery } from '@/services/form/queries';
 import getAchievementLevelsGroupList from '@/utils/functions/getAchievementLevelsGroupList';
-import styled from 'styled-components';
 import 교과성적Header from './교과성적Header/교과성적Header';
 import 교과성적Item from './교과성적Item/교과성적Item';
 
@@ -18,7 +17,7 @@ const 교과성적 = ({ id }: Props) => {
     console.log(achievementLevelsGroupList);
 
     return (
-        <Styled교과성적>
+        <div>
             <교과성적Header />
             {achievementLevelsGroupList.map((group) => (
                 <교과성적Item
@@ -28,10 +27,8 @@ const 교과성적 = ({ id }: Props) => {
                     achievementLevel31={group.achievementLevels[2] || '없음'}
                 />
             ))}
-        </Styled교과성적>
+        </div>
     );
 };
 
 export default 교과성적;
-
-const Styled교과성적 = styled.div``;
