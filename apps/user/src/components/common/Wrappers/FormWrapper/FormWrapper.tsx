@@ -1,10 +1,11 @@
 'use client';
 
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useSaveFormQuery } from '@/services/form/queries';
+import { useFormStatusQuery, useSaveFormQuery } from '@/services/form/queries';
 import {
     useFormStore,
     useIsSaveFormLoadedStore,
+    useSetFormStepStore,
     useSetNewSubjectListStore,
     useSetNew검정고시SubjectListStore,
     useSetSubjectListStore,
@@ -26,6 +27,18 @@ const FormWrapper = ({ children }: Props) => {
     const setNewtSubjectList = useSetNewSubjectListStore();
     const set검정고시SubjectList = useSet검정고시SubjectListStore();
     const setNew검정고시SubjectList = useSetNew검정고시SubjectListStore();
+    const setFormStep = useSetFormStepStore();
+    const { data: formStatusData } = useFormStatusQuery();
+
+    useEffect(() => {
+        if (formStatusData) {
+            if (formStatusData.status === 'SUBMITTED') {
+                setFormStep('초안제출완료');
+            } else if (formStatusData.status === 'FINAL_SUBMITTED') {
+                setFormStep('최종제출완료');
+            }
+        }
+    }, [formStatusData]);
 
     const SAVE_FORM_INTERVAL = 6000 * 10 * 2;
 

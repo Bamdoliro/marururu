@@ -124,7 +124,17 @@ export interface FormDocument {
 export interface FormStatus {
     id: number;
     name: string;
-    status: 'APPROVED' | 'REJECTED' | 'RECEIVED' | 'SUBMITTED' | 'FINAL_SUBMITTED';
+    status:
+        | 'RECEIVED'
+        | 'FIRST_FAILED'
+        | 'FAILED'
+        | 'FINAL_SUBMITTED'
+        | 'SUBMITTED'
+        | 'APPROVED'
+        | 'NO_SHOW'
+        | 'FIRST_PASSED'
+        | 'PASSED'
+        | 'REJECTED';
     type: FormType;
 }
 

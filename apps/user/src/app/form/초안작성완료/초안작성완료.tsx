@@ -44,7 +44,7 @@ const 초안작성완료 = () => {
                 <CompleteAlaram
                     isComplete={isFilledForm}
                     completeText="원서 초안 작성 완료"
-                    inCompleteText="아직 작성하지 않은 곳이 있어요"
+                    incompleteText="아직 작성하지 않은 곳이 있어요"
                 />
             </CompleteAlarmBox>
             <Styled초안작성완료 isFilledForm={isFilledForm}>

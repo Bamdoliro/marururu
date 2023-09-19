@@ -11,7 +11,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const FirstResultPage = () => {
-    const [ResultStep, setResultStep] = useState<ResultStep>('MAIN');
+    const [firstResultStep, setFirstResultStep] = useState<ResultStep>('MAIN');
 
     return (
         <AppLayout header footer>
@@ -25,9 +25,9 @@ const FirstResultPage = () => {
                     </Text>
                 </Column>
                 <SwitchCase
-                    value={ResultStep}
+                    value={firstResultStep}
                     caseBy={{
-                        MAIN: <ResultMain option="FIRST" setResultStep={setResultStep} />,
+                        MAIN: <ResultMain option="FIRST" setResultStep={setFirstResultStep} />,
                         RESULT: <FirstResultTable />,
                     }}
                 />
