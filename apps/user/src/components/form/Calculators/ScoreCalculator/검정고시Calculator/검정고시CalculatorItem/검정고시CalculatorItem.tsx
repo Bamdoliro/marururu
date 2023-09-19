@@ -1,5 +1,5 @@
 import { useSet검정고시SubjectListStore } from '@/store';
-import { NumberInput, Td } from '@maru/ui';
+import { CellInput, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
@@ -31,7 +31,7 @@ const 검정고시CalculatorItem = ({ id, subject, score }: Props) => {
                 {subject}
             </Td>
             <Td width={570} height={64}>
-                <NumberInput
+                <CellInput
                     value={score ?? 0}
                     name="score"
                     onChange={handle검정고시ItemDataChange}

@@ -1,5 +1,5 @@
 import { AchievementLevel } from '@/types/form/client';
-import { NumberInput, Row, Td } from '@maru/ui';
+import { CellInput, Row, Td } from '@maru/ui';
 
 interface Props {
     subjectName: string;
@@ -20,13 +20,13 @@ const 교과성적Item = ({
                 {subjectName}
             </Td>
             <Td width={140} height="100%">
-                <NumberInput type="text" value={achievementLevel21} readOnly />
+                <CellInput type="text" value={achievementLevel21} readOnly />
             </Td>
             <Td width={140} height="100%">
-                <NumberInput type="text" value={achievementLevel22} readOnly />
+                <CellInput type="text" value={achievementLevel22} readOnly />
             </Td>
             <Td width={140} height="100%">
-                <NumberInput type="text" value={achievementLevel31} readOnly />
+                <CellInput type="text" value={achievementLevel31} readOnly />
             </Td>
         </Row>
     );

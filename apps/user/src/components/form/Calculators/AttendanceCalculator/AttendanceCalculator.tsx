@@ -1,7 +1,7 @@
 import { useFormStore } from '@/store';
 import { AttendanceName } from '@/types/form/client';
 import { color } from '@maru/theme';
-import { Column, NumberInput, Row, Td, Text, Th } from '@maru/ui';
+import { CellInput, Column, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
@@ -53,7 +53,7 @@ const AttendanceCalculator = () => {
                         1학년
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance1-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance1.absenceCount}
@@ -61,7 +61,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance1-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance1.latenessCount}
@@ -69,7 +69,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance1-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance1.earlyLeaveCount}
@@ -77,7 +77,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance1-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance1.classAbsenceCount}
@@ -90,7 +90,7 @@ const AttendanceCalculator = () => {
                         2학년
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance2-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance2.absenceCount}
@@ -98,7 +98,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance2-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance2.latenessCount}
@@ -106,7 +106,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance2-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance2.earlyLeaveCount}
@@ -114,7 +114,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance2-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance2.classAbsenceCount}
@@ -127,7 +127,7 @@ const AttendanceCalculator = () => {
                         3학년
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance3-absenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance3.absenceCount}
@@ -135,7 +135,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance3-latenessCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance3.latenessCount}
@@ -143,7 +143,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance3-earlyLeaveCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance3.earlyLeaveCount}
@@ -151,7 +151,7 @@ const AttendanceCalculator = () => {
                         />
                     </Td>
                     <Td borderBottomRightRadius={12} width="100%" height={56}>
-                        <NumberInput
+                        <CellInput
                             name="attendance3-classAbsenceCount"
                             onChange={handleAttendanceInfoDataChange}
                             value={form.grade.attendance3.classAbsenceCount}

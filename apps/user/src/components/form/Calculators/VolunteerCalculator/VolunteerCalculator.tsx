@@ -1,6 +1,6 @@
 import { useFormStore } from '@/store';
 import { color, font } from '@maru/theme';
-import { Column, NumberInput, Row, Td, Text, Th } from '@maru/ui';
+import { CellInput, Column, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
@@ -32,7 +32,7 @@ const VolunteerCalculator = () => {
                         1학년
                     </Td>
                     <Td width={654} height={56}>
-                        <NumberInput
+                        <CellInput
                             name="volunteerTime1"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime1}
@@ -46,7 +46,7 @@ const VolunteerCalculator = () => {
                         2학년
                     </Td>
                     <Td width={654} height={56}>
-                        <NumberInput
+                        <CellInput
                             name="volunteerTime2"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime2}
@@ -60,7 +60,7 @@ const VolunteerCalculator = () => {
                         3학년
                     </Td>
                     <Td borderBottomRightRadius={12} width={654} height={56}>
-                        <NumberInput
+                        <CellInput
                             name="volunteerTime3"
                             onChange={handleVolunteerInfoDataChange}
                             value={form.grade.volunteerTime3}

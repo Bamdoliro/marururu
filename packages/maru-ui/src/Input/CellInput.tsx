@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { css, styled } from 'styled-components';
 import { InputProps } from './Input.type';
 
-const NumberInput = ({
+const CellInput = ({
     name,
     width = 80,
     textAlign = 'center',
@@ -14,17 +14,17 @@ const NumberInput = ({
     readOnly,
     type = 'number',
 }: InputProps) => {
-    const numberInputRef = useRef<HTMLInputElement>(null);
+    const cellInputRef = useRef<HTMLInputElement>(null);
 
     const handleSelectAllClick = () => {
-        if (numberInputRef.current) {
-            numberInputRef.current.select();
+        if (cellInputRef.current) {
+            cellInputRef.current.select();
         }
     };
 
     return (
-        <StyledNumberInput
-            ref={numberInputRef}
+        <StyledCellInput
+            ref={cellInputRef}
             name={name}
             style={{ width, textAlign }}
             onChange={onChange}
@@ -39,9 +39,9 @@ const NumberInput = ({
     );
 };
 
-export default NumberInput;
+export default CellInput;
 
-const StyledNumberInput = styled.input<{ $isError: boolean }>`
+const StyledCellInput = styled.input<{ $isError: boolean }>`
     ${font.p2}
     height: 40px;
     border-radius: 6px;
