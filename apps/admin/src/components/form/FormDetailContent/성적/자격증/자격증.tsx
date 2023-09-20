@@ -18,7 +18,7 @@ const 자격증 = ({ id }: Props) => {
     return (
         <Column>
             <Row>
-                <Th width={416} height={56}>
+                <Th width={416} height={56} borderTopLeftRadius={12}>
                     자격증명
                 </Th>
                 <Th width={200} height={56}>
@@ -27,7 +27,7 @@ const 자격증 = ({ id }: Props) => {
                 <Th width={120} height={56}>
                     반영점수
                 </Th>
-                <Th width={80} height={56}>
+                <Th width={80} height={56} borderTopRightRadius={12}>
                     선택
                 </Th>
             </Row>
@@ -46,7 +46,7 @@ const 자격증 = ({ id }: Props) => {
                 </Td>
             </Row>
             <Row>
-                <Td width={416} height={168}>
+                <Td width={416} height={168} borderBottomLeftRadius={12}>
                     컴퓨터활용능력
                 </Td>
                 <Td width={200} height={168}>
@@ -81,7 +81,7 @@ const 자격증 = ({ id }: Props) => {
                         <Td width={120} height={56}>
                             3급(1점)
                         </Td>
-                        <Td width={80} height={56}>
+                        <Td width={80} height={56} borderBottomRightRadius={12}>
                             <CheckBox
                                 checked={formDetailData?.grade.certificateList.includes(
                                     'COMPUTER_SPECIALIST_LEVEL_3',
