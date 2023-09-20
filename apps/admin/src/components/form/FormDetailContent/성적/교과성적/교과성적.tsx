@@ -1,6 +1,6 @@
 import { useFormDetailQuery } from '@/services/form/queries';
 import getAchievementLevelsGroupList from '@/utils/functions/getAchievementLevelsGroupList';
-import styled from 'styled-components';
+import { Column } from '@maru/ui';
 import 교과성적Header from './교과성적Header/교과성적Header';
 import 교과성적Item from './교과성적Item/교과성적Item';
 
@@ -18,20 +18,18 @@ const 교과성적 = ({ id }: Props) => {
     console.log(achievementLevelsGroupList);
 
     return (
-        <Styled교과성적>
+        <Column>
             <교과성적Header />
             {achievementLevelsGroupList.map((group) => (
                 <교과성적Item
                     subjectName={group.subjectName}
-                    achievementLevel21={group.achievementLevels[0]}
-                    achievementLevel22={group.achievementLevels[1]}
-                    achievementLevel31={group.achievementLevels[2]}
+                    achievementLevel21={group.achievementLevels[0] || '없음'}
+                    achievementLevel22={group.achievementLevels[1] || '없음'}
+                    achievementLevel31={group.achievementLevels[2] || '없음'}
                 />
             ))}
-        </Styled교과성적>
+        </Column>
     );
 };
 
 export default 교과성적;
-
-const Styled교과성적 = styled.div``;
