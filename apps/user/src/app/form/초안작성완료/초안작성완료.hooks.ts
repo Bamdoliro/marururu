@@ -9,18 +9,7 @@ export const useSubmitDraftFormAction = () => {
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
 
     const handleSubmitDraftFormButtonClick = () => {
-        const isEmptySubjectName = form.grade.subjectList.some(({ subjectName }) => {
-            if (subjectName === '') {
-                alert('비어있는 과목명이 있어요');
-                setFormStep('성적입력');
-                return true;
-            }
-            return false;
-        });
-
-        if (!isEmptySubjectName) {
-            submitDraftFormMutate();
-        }
+        submitDraftFormMutate();
     };
 
     return { handleSubmitDraftFormButtonClick };
