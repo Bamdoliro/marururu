@@ -2,7 +2,9 @@ import { useFormListQuery } from '@/services/form/queries';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
+import FinalSubmissionConfirm from '../FinalSubmissionConfirm/FinalSubmissionConfirm';
 
 interface Props {
     id: number;
@@ -12,12 +14,21 @@ const FormStatus = ({ id }: Props) => {
     const { data: formList } = useFormListQuery();
 
     const formDetailData = formList?.filter((form) => form.id === Number(id))[0];
+
     const getStatusColor = (status: boolean | null) => {
         return typeof status !== 'boolean' ? color.gray600 : status ? color.maruDefault : color.red;
     };
 
     const getStatusString = (status: boolean | null, trueString: string, falseString: string) => {
         return typeof status !== 'boolean' ? '미정' : status ? trueString : falseString;
+    };
+
+    const overlay = useOverlay();
+
+    const openFinalSubmissionConfirm = () => {
+        overlay.open(({ isOpen, close }) => (
+            <FinalSubmissionConfirm isOpen={isOpen} onClose={close} />
+        ));
     };
 
     return (
@@ -77,7 +88,9 @@ const FormStatus = ({ id }: Props) => {
                 </Row>
             </FormStatusBox>
             <Column gap={8}>
-                <Button size="SMALL">최종 접수 상태 변경하기</Button>
+                <Button size="SMALL" onClick={openFinalSubmissionConfirm}>
+                    최종 접수 상태 변경하기
+                </Button>
                 <Button size="SMALL" option="SECONDARY">
                     제출 서류 조회하기
                 </Button>
