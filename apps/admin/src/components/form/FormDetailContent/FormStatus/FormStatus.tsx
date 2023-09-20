@@ -77,7 +77,7 @@ const FormStatus = ({ id }: Props) => {
                 </Row>
             </FormStatusBox>
             <Column gap={8}>
-                <Button size="SMALL">원서 상태 변경하기</Button>
+                <Button size="SMALL">최종 접수 상태 변경하기</Button>
                 <Button size="SMALL" option="SECONDARY">
                     제출 서류 조회하기
                 </Button>
