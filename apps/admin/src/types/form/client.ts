@@ -114,3 +114,5 @@ export interface Attendance {
     earlyLeaveCount: number;
     classAbsenceCount: number;
 }
+
+export type ApprovalStatus = '승인' | '반려' | '';
