@@ -4,7 +4,7 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
-import FinalSubmissionConfirm from '../FinalSubmissionConfirm/FinalSubmissionConfirm';
+import FinalScoreConfirm from '../ChangeFinalScoreModal/ChangeFinalScoreModal';
 
 interface Props {
     id: number;
@@ -25,9 +25,9 @@ const FormStatus = ({ id }: Props) => {
 
     const overlay = useOverlay();
 
-    const openFinalSubmissionConfirm = () => {
+    const openFinalScoreConfirm = () => {
         overlay.open(({ isOpen, close }) => (
-            <FinalSubmissionConfirm isOpen={isOpen} onClose={close} />
+            <FinalScoreConfirm id={id} isOpen={isOpen} onClose={close} />
         ));
     };
 
@@ -88,7 +88,7 @@ const FormStatus = ({ id }: Props) => {
                 </Row>
             </FormStatusBox>
             <Column gap={8}>
-                <Button size="SMALL" onClick={openFinalSubmissionConfirm}>
+                <Button size="SMALL" onClick={openFinalScoreConfirm}>
                     최종 접수 상태 변경하기
                 </Button>
                 <Button size="SMALL" option="SECONDARY">

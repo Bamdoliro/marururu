@@ -1,33 +1,41 @@
+import { ApprovalStatus } from '@/types/form/client';
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler, useState } from 'react';
 import { css, styled } from 'styled-components';
+import { useChangeFinalScoreStatusAction } from './ChangeFinalScoreModal.hooks';
 
 interface Props {
+    id: number;
     isOpen: boolean;
     onClose: () => void;
 }
 
-type ApprovalStatus = '승인' | '반려' | '';
-
-const FinalSubmissionConfirm = ({ isOpen, onClose }: Props) => {
-    const [approvalStatus, setApprovalStatus] = useState<ApprovalStatus>('');
+const FinalScoreConfirm = ({ id, isOpen, onClose }: Props) => {
+    const [approvalStatus, setApprovalStatus] = useState<ApprovalStatus | ''>('');
 
     const handleApprovalRadioChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         setApprovalStatus(e.target.value as ApprovalStatus);
     };
+
+    const { handleChangeFinalScoreStatusButtonClick } = useChangeFinalScoreStatusAction(
+        id,
+        approvalStatus,
+        onClose,
+    );
+
     return (
         <BlurBackground $isOpen={isOpen}>
-            <StyledFinalSubmissionConfirm>
+            <StyledFinalScoreConfirm>
                 <Row justifyContent="space-between">
                     <Column gap={8}>
                         <Text fontType="H2" color={color.gray900}>
-                            지원자의 원서와 증빙서류를 확인해주시기 바랍니다.
+                            최종 접수 확인
                         </Text>
                         <Text fontType="p3" color={color.gray600}>
-                            무슨 명단을 엑셀로 내보내실 건가요?
+                            지원자의 원서와 증빙서류를 확인해주시기 바랍니다.
                         </Text>
                     </Column>
                     <IconClose
@@ -72,16 +80,19 @@ const FinalSubmissionConfirm = ({ isOpen, onClose }: Props) => {
                     <Button size="SMALL" option="SECONDARY" onClick={onClose}>
                         취소
                     </Button>
-                    <Button size="SMALL" option={approvalStatus ? 'PRIMARY' : 'DISABLED'}>
-                        내보내기
+                    <Button
+                        size="SMALL"
+                        option={approvalStatus ? 'PRIMARY' : 'DISABLED'}
+                        onClick={handleChangeFinalScoreStatusButtonClick}>
+                        변경
                     </Button>
                 </Row>
-            </StyledFinalSubmissionConfirm>
+            </StyledFinalScoreConfirm>
         </BlurBackground>
     );
 };
 
-export default FinalSubmissionConfirm;
+export default FinalScoreConfirm;
 
 const BlurBackground = styled.div<{ $isOpen: boolean }>`
     position: fixed;
@@ -96,7 +107,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
     z-index: 1;
 `;
 
-const StyledFinalSubmissionConfirm = styled.div`
+const StyledFinalScoreConfirm = styled.div`
     ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
     width: 720px;
     height: 350px;

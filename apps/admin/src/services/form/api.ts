@@ -1,6 +1,6 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import { ExportExcelType, FormListType } from '@/types/form/client';
+import { ApprovalStatus, ExportExcelType, FormListType } from '@/types/form/client';
 import { GetFormDetail, GetFormListRes } from '@/types/form/remote';
 
 export const getFormList = async (formListType: FormListType) => {
@@ -47,6 +47,18 @@ export const getExportExcel = async (exportExcelType: ExportExcelType) => {
 
 export const getFormDetail = async (id: number) => {
     const { data } = await maru.get<GetFormDetail>(`/form/${id}`, authorization());
+
+    return data;
+};
+
+export const patchFinalScore = async (id: number, status: ApprovalStatus) => {
+    if (status === '승인') {
+        const { data } = await maru.patch(`/form/${id}/approve`, {}, authorization());
+
+        return data;
+    }
+
+    const { data } = await maru.patch(`/form/${id}/reject`, {}, authorization());
 
     return data;
 };
