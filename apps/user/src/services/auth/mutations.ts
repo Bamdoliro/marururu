@@ -54,6 +54,7 @@ export const useRequestVerificationMutation = (phoneNumber: string) => {
     const { mutate: requestVerificationMutate, ...restMutation } = useMutation({
         mutationFn: () => postRequestVerification(phoneNumber),
         onError: handleError,
+        onSuccess: () => alert('인증 성공'),
     });
 
     return { requestVerificationMutate, ...restMutation };
