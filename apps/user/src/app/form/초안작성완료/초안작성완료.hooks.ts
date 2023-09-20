@@ -5,10 +5,22 @@ import { useEffect, useState } from 'react';
 
 export const useSubmitDraftFormAction = () => {
     const form = useFormValueStore();
+    const setFormStep = useSetFormStepStore();
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
 
     const handleSubmitDraftFormButtonClick = () => {
-        submitDraftFormMutate();
+        const isEmptySubjectName = form.grade.subjectList.some(({ subjectName }) => {
+            if (subjectName === '') {
+                alert('비어있는 과목명이 있어요');
+                setFormStep('성적입력');
+                return true;
+            }
+            return false;
+        });
+
+        if (!isEmptySubjectName) {
+            submitDraftFormMutate();
+        }
     };
 
     return { handleSubmitDraftFormButtonClick };
