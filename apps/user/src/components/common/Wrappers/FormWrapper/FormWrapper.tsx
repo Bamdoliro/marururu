@@ -1,15 +1,17 @@
 'use client';
 
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useSaveFormQuery } from '@/services/form/queries';
+import { useFormStatusQuery, useSaveFormQuery } from '@/services/form/queries';
 import {
     useFormStore,
     useIsSaveFormLoadedStore,
+    useSetFormStepStore,
     useSetNewSubjectListStore,
     useSetNew검정고시SubjectListStore,
     useSetSubjectListStore,
     useSet검정고시SubjectListStore,
 } from '@/store';
+import { updateSlicedSubjectList } from '@/utils';
 import { useInterval } from '@toss/react';
 import { ReactNode, useEffect } from 'react';
 
@@ -26,44 +28,45 @@ const FormWrapper = ({ children }: Props) => {
     const setNewtSubjectList = useSetNewSubjectListStore();
     const set검정고시SubjectList = useSet검정고시SubjectListStore();
     const setNew검정고시SubjectList = useSetNew검정고시SubjectListStore();
+    const setFormStep = useSetFormStepStore();
+    const { data: formStatusData } = useFormStatusQuery();
 
-    const SAVE_FORM_INTERVAL = 6000 * 10 * 2;
+    useEffect(() => {
+        if (formStatusData) {
+            const { status } = formStatusData;
+            switch (status) {
+                case 'SUBMITTED':
+                    setFormStep('초안제출완료');
+                    break;
+                case 'FINAL_SUBMITTED':
+                    setFormStep('최종제출완료');
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, [formStatusData]);
 
+    // 2분마다 자동 저장
+    const SAVE_FORM_INTERVAL_MS = 6000 * 10 * 2;
     useInterval(() => {
         saveFormMutate(form);
-    }, SAVE_FORM_INTERVAL);
+    }, SAVE_FORM_INTERVAL_MS);
 
     useEffect(() => {
         if (saveFormData && !isSaveFormLoaded) {
+            const subjectList = saveFormData.grade.subjectList;
+            const graduationType = saveFormData.education.graduationType;
+
             setIsSaveFormLoaded(true);
             setForm((prev) => ({ ...prev, ...saveFormData }));
-            if (saveFormData.grade.subjectList) {
-                if (saveFormData.education.graduationType === 'QUALIFICATION_EXAMINATION') {
-                    set검정고시SubjectList(
-                        saveFormData.grade.subjectList.slice(0, 5).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
-                    setNew검정고시SubjectList(
-                        saveFormData.grade.subjectList.slice(5).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
+            if (subjectList) {
+                if (graduationType === 'QUALIFICATION_EXAMINATION') {
+                    set검정고시SubjectList(updateSlicedSubjectList(subjectList, 0, 5));
+                    setNew검정고시SubjectList(updateSlicedSubjectList(subjectList, 5));
                 } else {
-                    setSubjectList(
-                        saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
-                    setNewtSubjectList(
-                        saveFormData.grade.subjectList.slice(12).map((subject, index) => ({
-                            ...subject,
-                            id: index,
-                        })),
-                    );
+                    setSubjectList(updateSlicedSubjectList(subjectList, 0, 12));
+                    setNewtSubjectList(updateSlicedSubjectList(subjectList, 12));
                 }
             }
         }
