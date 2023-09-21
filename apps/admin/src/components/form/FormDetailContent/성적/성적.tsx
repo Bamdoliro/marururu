@@ -4,6 +4,9 @@ import { Column, Row } from '@maru/ui';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import 교과성적 from './교과성적/교과성적';
+import 봉사시간 from './봉사시간/봉사시간';
+import 자격증 from './자격증/자격증';
+import 출결상황 from './출결상황/출결상황';
 
 interface Props {
     id: number;
@@ -27,6 +30,9 @@ const 성적 = ({ id }: Props) => {
                 value={currentGraduationStep}
                 caseBy={{
                     '교과 성적': <교과성적 id={id} />,
+                    '출결 상황': <출결상황 id={id} />,
+                    '봉사 시간': <봉사시간 id={id} />,
+                    자격증: <자격증 id={id} />,
                 }}
             />
         </Row>

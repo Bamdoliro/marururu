@@ -1,29 +1,28 @@
 'use client';
 
-import { Storage } from '@/apis/storage/storage';
-import { ROUTES, TOKEN } from '@/constants/common/constant';
+import { ROUTES } from '@/constants/common/constant';
+import { useUser } from '@/hooks';
 import { color } from '@maru/theme';
 import { Confirm, Text } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { redirect, usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 
-const NOT_LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.FORM, ROUTES.FIRST_RESULT, ROUTES.FINAL_RESULT];
-const LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.LOGIN, ROUTES.SIGNUP];
-
 interface Props {
     children: ReactNode;
 }
+
+const NOT_LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.FORM, ROUTES.FIRST_RESULT, ROUTES.FINAL_RESULT];
+const LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.LOGIN, ROUTES.SIGNUP];
 
 const AuthWrapper = ({ children }: Props) => {
     const router = useRouter();
     const pathName = usePathname();
     const overlay = useOverlay();
-
-    const token = Storage.getItem(TOKEN.ACCESS);
+    const { isLoggedIn } = useUser();
 
     useEffect(() => {
-        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !token) {
+        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !isLoggedIn) {
             overlay.open(({ isOpen, close }) => (
                 <Confirm
                     isOpen={isOpen}
@@ -44,7 +43,7 @@ const AuthWrapper = ({ children }: Props) => {
             ));
             router.push(ROUTES.MAIN);
         }
-        if (token) {
+        if (isLoggedIn) {
             if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 redirect(ROUTES.MAIN);
             }
@@ -77,7 +76,7 @@ const AuthWrapper = ({ children }: Props) => {
             //     }
             // }
         }
-    }, [token, pathName, overlay, router]);
+    }, [isLoggedIn, pathName, overlay, router]);
 
     return <>{children}</>;
 };

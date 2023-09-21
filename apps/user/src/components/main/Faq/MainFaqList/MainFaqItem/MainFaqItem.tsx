@@ -34,7 +34,6 @@ const StyledMainFaqItem = styled.div`
 const Question = styled.a`
     ${font.p1}
     color: ${color.gray750};
-    // 일정 길이 넘어가면 ... 처리
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

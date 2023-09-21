@@ -37,7 +37,6 @@ export default Text;
 
 const StyledText = styled.p<{ fontType: Font; ellipsis: boolean }>`
     ${({ fontType }) => font[fontType]}
-
     ${(props) =>
         props.ellipsis &&
         css`
