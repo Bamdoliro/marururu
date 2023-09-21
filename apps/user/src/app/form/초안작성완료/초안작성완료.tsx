@@ -59,35 +59,22 @@ const 초안작성완료 = () => {
                     </Text>
                 </Row>
                 <Column gap={12}>
-                    {isFilledForm ? (
-                        <Text fontType="p1" color={color.gray900}>
-                            원서 접수에 필요한 초안을 모두 작성하셨습니다.
-                        </Text>
-                    ) : (
-                        <Text fontType="p1" color={color.gray900}>
-                            원서 작성 중 입력하지 않은 곳이 있습니다.
-                        </Text>
-                    )}
-                    {isFilledForm ? (
-                        <Text fontType="H4" color={color.red}>
-                            원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한
-                            것으로 처리되며
-                            <br />더 이상 입학원서 수정이 불가능합니다.
-                        </Text>
-                    ) : (
-                        <Text fontType="H4" color={color.red}>
-                            원서 작성 중 입력하지 않은 곳이 있다면 초안을 제출할 수 없습니다.
-                        </Text>
-                    )}
-                    {isFilledForm ? (
-                        <Text fontType="p1" color={color.gray900}>
-                            잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
-                        </Text>
-                    ) : (
-                        <Text fontType="p1" color={color.gray900}>
-                            또한 잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
-                        </Text>
-                    )}
+                    <Text fontType="p1" color={color.gray900}>
+                        {isFilledForm
+                            ? '원서 접수에 필요한 초안을 모두 작성하셨습니다.'
+                            : '원서 작성 중 입력하지 않은 곳이 있습니다.'}
+                    </Text>
+
+                    <Text fontType="H4" color={color.red}>
+                        {isFilledForm
+                            ? '원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로\n 처리되며 더 이상 입학원서 수정이 불가능합니다.'
+                            : '원서 작성 중 입력하지 않은 곳이 있다면 초안을 제출할 수 없습니다.'}
+                    </Text>
+                    <Text fontType="p1" color={color.gray900}>
+                        {isFilledForm
+                            ? '잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.'
+                            : '또한 잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.'}
+                    </Text>
                 </Column>
                 <CheckFormCompleteBox>
                     <CheckFormComplete

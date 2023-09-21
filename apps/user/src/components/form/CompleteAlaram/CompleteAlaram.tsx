@@ -21,15 +21,9 @@ const CompleteAlaram = ({ isComplete, completeText, inCompleteText }: Props) => 
             ) : (
                 <IconCancelCircle width={150} height={150} />
             )}
-            {isComplete ? (
-                <Text fontType="D2" color={color.gray900}>
-                    {completeText}
-                </Text>
-            ) : (
-                <Text fontType="D2" color={color.gray900}>
-                    {inCompleteText}
-                </Text>
-            )}
+            <Text fontType="D2" color={color.gray900}>
+                {isComplete ? completeText : inCompleteText}
+            </Text>
         </Column>
     );
 };
