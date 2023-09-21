@@ -23,7 +23,6 @@ const CompleteAlarm = ({ isComplete, completeText, incompleteText }: Props) => {
             ) : (
                 <IconCancelCircle width={150} height={150} />
             )}
-
             <Text fontType="D2" color={color.gray900}>
                 {isComplete ? completeText : incompleteText}
             </Text>

@@ -1,11 +1,12 @@
-import { FinalFormConfirm, FinalFormTable } from '@/components/form';
+import { FinalFormConfirm, FinalFormTable, PdfGeneratedLoader } from '@/components/form';
 import { AppLayout } from '@/layouts';
 import { useFormDocumentValueStore } from '@/store';
+import { useBooleanState } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import {
     useExportFormAction,
     useInput,
@@ -16,8 +17,16 @@ import {
 const 최종제출 = () => {
     const overlay = useOverlay();
     const formDocument = useFormDocumentValueStore();
+    const {
+        value: isOpenPdfGeneratedLoader,
+        setTrue: openPdfGeneratedLoader,
+        setFalse: closePdfGeneratedLoader,
+    } = useBooleanState();
     const { fileInputRef, handleUploadFileButtonClick } = useUploadFileButton();
-    const { handleExportFormButtonClick } = useExportFormAction();
+    const { handleExportFormButtonClick } = useExportFormAction(
+        openPdfGeneratedLoader,
+        closePdfGeneratedLoader,
+    );
     const { handleSubmitFinalFormButtonClick } = useSubmitFinalFormAction();
     const { handleFileDataChange } = useInput();
 
@@ -36,6 +45,8 @@ const 최종제출 = () => {
 
     return (
         <AppLayout header>
+            {/* Loader */}
+            <PdfGeneratedLoader isOpen={isOpenPdfGeneratedLoader} />
             <Styled최종제출>
                 <ContentBox>
                     <Column gap={36} alignItems="flex-start">
@@ -58,15 +69,9 @@ const 최종제출 = () => {
                         <Button onClick={handleUploadFileButtonClick} size="SMALL">
                             첨부파일 업로드
                         </Button>
-                        {formDocument.fileName ? (
-                            <Text fontType="p2" color={color.gray900}>
-                                {formDocument.fileName}
-                            </Text>
-                        ) : (
-                            <Text fontType="p2" color={color.gray900}>
-                                선택된 파일 없음
-                            </Text>
-                        )}
+                        <Text fontType="p2" color={color.gray900}>
+                            {formDocument.fileName || '선택된 파일 없음'}
+                        </Text>
                     </Row>
                     <FinalFormTable />
                 </ContentBox>
@@ -108,11 +113,12 @@ const 최종제출 = () => {
 export default 최종제출;
 
 const Styled최종제출 = styled.div`
-    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })};
+    max-width: 1448px;
+    margin: 0 auto;
     width: 100%;
     height: 100%;
-    padding: 58px 96px 0px;
-    margin-bottom: 240px;
+    padding: 58px 96px 240px;
 `;
 
 const ContentBox = styled.div`

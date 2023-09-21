@@ -33,9 +33,7 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
 
     const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
         mutationFn: () => postSubmitDraftForm(formData),
-        onSuccess: () => {
-            setFormStep('초안제출완료');
-        },
+        onSuccess: () => setFormStep('초안제출완료'),
         onError: handleError,
     });
 
