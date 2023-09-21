@@ -5,7 +5,7 @@ import {
 } from '@/services/form/mutations';
 import { useExportFormQuery } from '@/services/form/queries';
 import { useFormDocumentValueStore, useSetFormDocumentStore } from '@/store';
-import { ChangeEventHandler, Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { ChangeEventHandler, useEffect, useRef } from 'react';
 
 export const useUploadFileButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -29,7 +29,8 @@ export const useSubmitFinalFormAction = () => {
 };
 
 export const useExportFormAction = (
-    setIsLoadingPdfGenerated: Dispatch<SetStateAction<boolean>>,
+    openPdfGeneratedLoader: () => void,
+    closePdfGeneratedLoader: () => void,
 ) => {
     const { userData } = useUser();
     const { data: exportFormData } = useExportFormQuery();
@@ -51,15 +52,15 @@ export const useExportFormAction = (
     useEffect(() => {
         if (exportFormData) {
             downloadPdf();
-            setIsLoadingPdfGenerated(false);
+            closePdfGeneratedLoader();
         } else {
-            setIsLoadingPdfGenerated(true);
+            openPdfGeneratedLoader();
         }
     }, [exportFormData]);
 
     const handleExportFormButtonClick = () => {
         downloadPdf();
-        setIsLoadingPdfGenerated(false);
+        closePdfGeneratedLoader();
     };
 
     return { handleExportFormButtonClick };

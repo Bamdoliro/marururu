@@ -1,4 +1,4 @@
-import { FinalFormConfirm, FinalFormTable, PdfGeneratedModal } from '@/components/form';
+import { FinalFormConfirm, FinalFormTable, PdfGeneratedLoader } from '@/components/form';
 import { AppLayout } from '@/layouts';
 import { useFormDocumentValueStore } from '@/store';
 import { useBooleanState } from '@maru/hooks';
@@ -17,9 +17,16 @@ import {
 const 최종제출 = () => {
     const overlay = useOverlay();
     const formDocument = useFormDocumentValueStore();
-    const { value: isLoadingPdfGenerated, setValue: setIsLoadingPdfGenerated } = useBooleanState();
+    const {
+        value: isOpenPdfGeneratedLoader,
+        setTrue: openPdfGeneratedLoader,
+        setFalse: closePdfGeneratedLoader,
+    } = useBooleanState();
     const { fileInputRef, handleUploadFileButtonClick } = useUploadFileButton();
-    const { handleExportFormButtonClick } = useExportFormAction(setIsLoadingPdfGenerated);
+    const { handleExportFormButtonClick } = useExportFormAction(
+        openPdfGeneratedLoader,
+        closePdfGeneratedLoader,
+    );
     const { handleSubmitFinalFormButtonClick } = useSubmitFinalFormAction();
     const { handleFileDataChange } = useInput();
 
@@ -38,6 +45,8 @@ const 최종제출 = () => {
 
     return (
         <AppLayout header>
+            {/* Loader */}
+            <PdfGeneratedLoader isOpen={isOpenPdfGeneratedLoader} />
             <Styled최종제출>
                 <ContentBox>
                     <Column gap={36} alignItems="flex-start">
@@ -90,7 +99,6 @@ const 최종제출 = () => {
                     </Column>
                 </SideBar>
             </Styled최종제출>
-            <PdfGeneratedModal isOpen={isLoadingPdfGenerated} />
             <input
                 ref={fileInputRef}
                 onChange={handleFileDataChange}

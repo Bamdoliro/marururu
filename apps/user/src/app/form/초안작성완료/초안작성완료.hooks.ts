@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 
 export const useSubmitDraftFormAction = () => {
     const form = useFormValueStore();
-    const setFormStep = useSetFormStepStore();
     const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
 
     const handleSubmitDraftFormButtonClick = () => {

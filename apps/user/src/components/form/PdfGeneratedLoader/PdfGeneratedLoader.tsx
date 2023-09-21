@@ -7,10 +7,10 @@ interface Props {
     isOpen: boolean;
 }
 
-const PdfGeneratedModal = ({ isOpen }: Props) => {
+const PdfGeneratedLoader = ({ isOpen }: Props) => {
     return (
         <BlurBackground $isOpen={isOpen}>
-            <StyledPdfGeneratedModal>
+            <StyledPdfGeneratedLoader>
                 <Column gap={8}>
                     <Text fontType="H2" color={color.gray900}>
                         원서 초안 pdf파일을 만드는 중입니다...
@@ -20,12 +20,12 @@ const PdfGeneratedModal = ({ isOpen }: Props) => {
                     </Text>
                 </Column>
                 <Loader top="65%" />
-            </StyledPdfGeneratedModal>
+            </StyledPdfGeneratedLoader>
         </BlurBackground>
     );
 };
 
-export default PdfGeneratedModal;
+export default PdfGeneratedLoader;
 
 const BlurBackground = styled.div<{ $isOpen: boolean }>`
     position: fixed;
@@ -40,7 +40,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
     z-index: 1;
 `;
 
-const StyledPdfGeneratedModal = styled.div`
+const StyledPdfGeneratedLoader = styled.div`
     position: relative;
     ${flex({ flexDirection: 'column', alignItems: 'flex-start' })};
     gap: 48px;
