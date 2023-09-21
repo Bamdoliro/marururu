@@ -8,5 +8,6 @@ export { default as FindAddressModal } from './FindAddressModal/FindAddressModal
 export { default as FindSchoolModal } from './FindSchoolModal/FindSchoolModal';
 export { default as FormController } from './FormController/FormController';
 export { default as GradePreview } from './GradePreview/GradePreview';
+export { default as PdfGeneratedModal } from './PdfGeneratedModal/PdfGeneratedModal';
 export { default as ProfileUploader } from './ProfileUploader/ProfileUploader';
 export { default as ProgressSteps } from './ProgressSteps/ProgressSteps';

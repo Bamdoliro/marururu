@@ -1,10 +1,11 @@
+import { useUser } from '@/hooks';
 import {
     useSubmitFinalFormMutation,
     useUploadFormDocumentMutation,
 } from '@/services/form/mutations';
 import { useExportFormQuery } from '@/services/form/queries';
 import { useFormDocumentValueStore, useSetFormDocumentStore } from '@/store';
-import { ChangeEventHandler, useRef } from 'react';
+import { ChangeEventHandler, Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 export const useUploadFileButton = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -27,19 +28,38 @@ export const useSubmitFinalFormAction = () => {
     return { handleSubmitFinalFormButtonClick };
 };
 
-export const useExportFormAction = () => {
+export const useExportFormAction = (
+    setIsLoadingPdfGenerated: Dispatch<SetStateAction<boolean>>,
+) => {
+    const { userData } = useUser();
     const { data: exportFormData } = useExportFormQuery();
-
     const pdfUrl = window.URL.createObjectURL(new Blob([exportFormData]));
 
-    const handleExportFormButtonClick = () => {
+    const downloadPdf = () => {
         const link = document.createElement('a');
         link.href = pdfUrl;
-        link.setAttribute('download', '원서초안.pdf');
+        link.setAttribute(
+            'download',
+            `${userData.name} 부산소프트웨어마이스터고등학교 원서접수.pdf`,
+        );
         document.body.appendChild(link);
         link.click();
         link.remove();
         window.URL.revokeObjectURL(pdfUrl);
+    };
+
+    useEffect(() => {
+        if (exportFormData) {
+            downloadPdf();
+            setIsLoadingPdfGenerated(false);
+        } else {
+            setIsLoadingPdfGenerated(true);
+        }
+    }, [exportFormData]);
+
+    const handleExportFormButtonClick = () => {
+        downloadPdf();
+        setIsLoadingPdfGenerated(false);
     };
 
     return { handleExportFormButtonClick };
