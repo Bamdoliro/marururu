@@ -3,7 +3,7 @@
 import ButtonMenu from '@/components/common/ButtonMenu/ButtonMenu';
 import ButtonMenuItem from '@/components/common/ButtonMenu/ButtonMenuItem/ButtonMenuItem';
 import ExportExcelModal from '@/components/form/ExportExcelModal/ExportExcelModal';
-import FormList from '@/components/form/FormList/FormList';
+import FormTable from '@/components/form/FormTable/FormTable';
 import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
@@ -108,7 +108,7 @@ const MainPage = () => {
                             />
                         </Row>
                     </Row>
-                    <FormList />
+                    <FormTable />
                 </Column>
             </StyledMainPage>
         </AppLayout>

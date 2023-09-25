@@ -1,7 +1,7 @@
 import TableHeader from '@/components/common/TableHeader/TableHeader';
 import { Row, Text } from '@maru/ui';
 
-const NoticeListHeader = () => {
+const NoticeTableHeader = () => {
     return (
         <TableHeader>
             <Row gap={48}>
@@ -19,4 +19,4 @@ const NoticeListHeader = () => {
     );
 };
 
-export default NoticeListHeader;
+export default NoticeTableHeader;

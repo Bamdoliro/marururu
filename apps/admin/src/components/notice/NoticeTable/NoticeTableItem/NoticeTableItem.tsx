@@ -10,7 +10,7 @@ interface Props {
     createdAt: string;
 }
 
-const NoticeListItem = ({ id, title, createdAt }: Props) => {
+const NoticeTableItem = ({ id, title, createdAt }: Props) => {
     return (
         <Link href={`${ROUTES.NOTICE}/${id}`}>
             <TableItem key={id}>
@@ -30,4 +30,4 @@ const NoticeListItem = ({ id, title, createdAt }: Props) => {
     );
 };
 
-export default NoticeListItem;
+export default NoticeTableItem;

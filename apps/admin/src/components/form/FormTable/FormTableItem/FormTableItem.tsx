@@ -4,7 +4,7 @@ import { Form, FormType } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Row, Text } from '@maru/ui';
 
-const FormListItem = ({
+const FormTableItem = ({
     id,
     name,
     birthday,
@@ -61,4 +61,4 @@ const FormListItem = ({
     );
 };
 
-export default FormListItem;
+export default FormTableItem;

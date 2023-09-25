@@ -1,19 +1,18 @@
 import { Column } from '@maru/ui';
-import { styled } from 'styled-components';
 
 import { useFormListQuery } from '@/services/form/queries';
-import FormListHeader from '../FormListHeader/FormListHeader';
-import FormListItem from '../FormListItem/FormListItem';
+import FormTableHeader from './FormTableHeader/FormTableHeader';
+import FormTableItem from './FormTableItem/FormTableItem';
 
-const FormList = () => {
+const FormTable = () => {
     const { data: formList } = useFormListQuery();
 
     return (
         <Column gap={12}>
-            <FormListHeader />
+            <FormTableHeader />
             {formList &&
                 formList.map((item) => (
-                    <FormListItem
+                    <FormTableItem
                         id={item.id}
                         name={item.name}
                         birthday={item.birthday}
@@ -31,6 +30,4 @@ const FormList = () => {
     );
 };
 
-export default FormList;
-
-const StyledFormList = styled.div``;
+export default FormTable;

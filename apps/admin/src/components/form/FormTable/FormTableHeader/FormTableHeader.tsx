@@ -1,7 +1,7 @@
 import TableHeader from '@/components/common/TableHeader/TableHeader';
 import { Row, Text } from '@maru/ui';
 
-const FormListHeader = () => {
+const FormTableHeader = () => {
     return (
         <TableHeader>
             <Row gap={48}>
@@ -36,4 +36,4 @@ const FormListHeader = () => {
     );
 };
 
-export default FormListHeader;
+export default FormTableHeader;
