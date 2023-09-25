@@ -1,4 +1,4 @@
-import { useSecondScoreFileStore } from '@/store/form/secondScore';
+import { useSecondScoreFileStore } from '@/store/form/secondScoreFile';
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text, TextButton } from '@maru/ui';
