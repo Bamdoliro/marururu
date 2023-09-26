@@ -1,27 +1,28 @@
 import { ROUTES } from '@/constants/common/constant';
+import { IconFaq } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 
 interface Props {
-    id: number;
     title: string;
 }
 
-const MainNoticeItem = ({ id, title }: Props) => {
+const FaqBoxItem = ({ title }: Props) => {
     const router = useRouter();
 
     return (
-        <StyledMainNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
-            <Title>{title}</Title>
-        </StyledMainNoticeItem>
+        <StyledFaqBoxItem onClick={() => router.push(ROUTES.FAQ)}>
+            <IconFaq color={color.maruDefault} width={24} height={24} />
+            <Question>{title}</Question>
+        </StyledFaqBoxItem>
     );
 };
 
-export default MainNoticeItem;
+export default FaqBoxItem;
 
-const StyledMainNoticeItem = styled.div`
+const StyledFaqBoxItem = styled.div`
     ${flex({ alignItems: 'center' })}
     width: 100%;
     height: 64px;
@@ -30,11 +31,11 @@ const StyledMainNoticeItem = styled.div`
     cursor: pointer;
 `;
 
-const Title = styled.a`
+const Question = styled.a`
     ${font.p1}
     color: ${color.gray750};
-    // 일정 길이 넘어가면 ... 처리
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: 12px;
 `;

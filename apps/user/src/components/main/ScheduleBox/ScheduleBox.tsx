@@ -12,7 +12,7 @@ import { color } from '@maru/theme';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import ScheduleItem from './ScheduleItem/ScheduleItem';
+import ScheduleItem from './ScheduleBoxItem/ScheduleBoxItem';
 
 const SCHEDULE_DATA = [
     {
@@ -52,13 +52,13 @@ const SCHEDULE_DATA = [
     },
 ] as const;
 
-const Schedule = () => {
+const ScheduleBox = () => {
     return (
-        <StyledSchedule>
+        <StyledScheduleBox>
             <Text fontType="H3" color={color.gray900}>
                 2024학년도 신입생 입학 일정
             </Text>
-            <StyledScheduleList>
+            <ScheduleBoxList>
                 {SCHEDULE_DATA.map((item) => (
                     <ScheduleItem
                         key={item.id}
@@ -68,14 +68,14 @@ const Schedule = () => {
                         endTime={item.endTime}
                     />
                 ))}
-            </StyledScheduleList>
-        </StyledSchedule>
+            </ScheduleBoxList>
+        </StyledScheduleBox>
     );
 };
 
-export default Schedule;
+export default ScheduleBox;
 
-const StyledSchedule = styled.div`
+const StyledScheduleBox = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 16px;
     width: 492px;
@@ -85,7 +85,7 @@ const StyledSchedule = styled.div`
     border-radius: 32px;
 `;
 
-const StyledScheduleList = styled.div`
+const ScheduleBoxList = styled.div`
     ${flex({ flexDirection: 'column' })};
     gap: 16px;
     height: 100%;

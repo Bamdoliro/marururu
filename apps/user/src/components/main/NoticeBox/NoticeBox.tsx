@@ -6,27 +6,27 @@ import { flex } from '@maru/utils';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import styled from 'styled-components';
-import MainFaqList from './MainFaqList/MainFaqList';
+import NoticeBoxList from './NoticeBoxList/NoticeBoxList';
 
-const MainFaq = () => {
+const NoticeBox = () => {
     return (
-        <StyledMainFaq>
-            <DirectLink href={ROUTES.FAQ}>
+        <StyledNoticeBox>
+            <DirectLink href={ROUTES.NOTICE}>
                 <Text fontType="H3" color={color.gray900}>
-                    자주묻는 질문
+                    공지사항
                 </Text>
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </DirectLink>
             <Suspense fallback={<Loader />}>
-                <MainFaqList />
+                <NoticeBoxList />
             </Suspense>
-        </StyledMainFaq>
+        </StyledNoticeBox>
     );
 };
 
-export default MainFaq;
+export default NoticeBox;
 
-const StyledMainFaq = styled.div`
+const StyledNoticeBox = styled.div`
     position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 16px;

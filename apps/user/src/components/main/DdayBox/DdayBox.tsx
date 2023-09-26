@@ -3,16 +3,16 @@
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { styled } from 'styled-components';
-import { useButtonStatus, useDday, useRemainDate, useSchoolRecruitDate } from './Dday.hooks';
+import { useButtonStatus, useDday, useRemainDate, useSchoolRecruitDate } from './DdayBox.hooks';
 
-const Dday = () => {
+const DdayBox = () => {
     const { isSubmitPeriod } = useDday();
     const { submitStart, submitEnd } = useSchoolRecruitDate();
     const { status, remainTime, targetDate } = useRemainDate();
     const { buttonOption, handleMovePageButtonClick, buttonText } = useButtonStatus();
 
     return (
-        <StyledDday>
+        <StyledDdayBox>
             <Column width="100%" height="100%" justifyContent="space-between">
                 {isSubmitPeriod ? (
                     <Column gap={36}>
@@ -48,13 +48,13 @@ const Dday = () => {
                     {buttonText}
                 </Button>
             </Column>
-        </StyledDday>
+        </StyledDdayBox>
     );
 };
 
-export default Dday;
+export default DdayBox;
 
-const StyledDday = styled.div`
+const StyledDdayBox = styled.div`
     width: 708px;
     height: 100%;
     border-radius: 32px;
