@@ -1,7 +1,8 @@
-import { useSubjectListStore } from '@/store';
+import { useSubjectListValueStore } from '@/store';
 import { Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import { useInput } from './GradeCalculatorItem.hooks';
 
 interface Props {
     id: number;
@@ -9,20 +10,8 @@ interface Props {
 }
 
 const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
-    const [subjectList, setSubjectList] = useSubjectListStore();
-
-    const handleGradeItemDataChange = (data: string, name: string) => {
-        setSubjectList((prev) => {
-            const updatedData = [...prev];
-            updatedData[id] = {
-                ...updatedData[id],
-                [name]: data === '-' ? null : data,
-            };
-            return updatedData;
-        });
-    };
-
-    console.log(subjectList);
+    const subjectList = useSubjectListValueStore();
+    const { handleSubjectDataChange } = useInput(id);
 
     return (
         <StyledGradeCalculatorItem>
@@ -35,7 +24,7 @@ const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleGradeItemDataChange}
+                    onChange={handleSubjectDataChange}
                     name="achievementLevel21"
                 />
             </Td>
@@ -45,7 +34,7 @@ const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleGradeItemDataChange}
+                    onChange={handleSubjectDataChange}
                     name="achievementLevel22"
                 />
             </Td>
@@ -55,7 +44,7 @@ const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
                     size="SMALL"
                     data={achievementLevels}
                     width={80}
-                    onChange={handleGradeItemDataChange}
+                    onChange={handleSubjectDataChange}
                     name="achievementLevel31"
                 />
             </Td>

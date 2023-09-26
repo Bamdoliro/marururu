@@ -1,39 +1,23 @@
 import {
-    useNew검정고시SubjectListStore,
+    useNew검정고시SubjectListValueStore,
     useSetFormStore,
     use검정고시SubjectListValueStore,
 } from '@/store';
-import { Subject } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import New검정고시CalculatorItem from './New검정고시CalculatorItem/New검정고시CalculatorItem';
+import { useAddNew검정고시Subject } from './검정고시Calculator.hooks';
 import 검정고시CalculatorHeader from './검정고시CalculatorHeader/검정고시CalculatorHeader';
 import 검정고시CalculatorItem from './검정고시CalculatorItem/검정고시CalculatorItem';
 
 const 검정고시Calculator = () => {
-    const [new검정고시SubjectList, setNew검정고시SubjectList] = useNew검정고시SubjectListStore();
+    const new검정고시SubjectList = useNew검정고시SubjectListValueStore();
     const 검정고시SubjectList = use검정고시SubjectListValueStore();
     const setForm = useSetFormStore();
-
-    const new검정고시SubjectIdRef = useRef(new검정고시SubjectList.length);
-    const handleAddNew검정고시ItemButtonClick = () => {
-        if (new검정고시SubjectList.length >= 1) {
-            alert('선택과목은 하나만 추가할 수 있습니다.');
-            return;
-        }
-        const newSubject: Subject = {
-            id: new검정고시SubjectIdRef.current++,
-            subjectName: '',
-            achievementLevel21: null,
-            achievementLevel22: null,
-            achievementLevel31: null,
-            score: 0,
-        };
-        setNew검정고시SubjectList((prev) => [...prev, newSubject]);
-    };
+    const { handleAddNew검정고시SubjectButtonClick } = useAddNew검정고시Subject();
 
     useEffect(() => {
         const studentSubjectList = [...검정고시SubjectList, ...new검정고시SubjectList].map(
@@ -52,7 +36,10 @@ const 검정고시Calculator = () => {
                 <New검정고시CalculatorItem id={id} score={score} />
             ))}
             <검정고시CalculatorFooter>
-                <Button onClick={handleAddNew검정고시ItemButtonClick} icon="ADD_ICON" size="SMALL">
+                <Button
+                    onClick={handleAddNew검정고시SubjectButtonClick}
+                    icon="ADD_ICON"
+                    size="SMALL">
                     과목추가
                 </Button>
             </검정고시CalculatorFooter>

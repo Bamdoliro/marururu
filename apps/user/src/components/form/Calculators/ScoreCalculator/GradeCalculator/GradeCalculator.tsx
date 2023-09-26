@@ -1,31 +1,19 @@
-import { useNewSubjectListStore, useSetFormStore, useSubjectListValueStore } from '@/store';
-import { Subject } from '@/types/form/client';
+import { useNewSubjectListValueStore, useSetFormStore, useSubjectListValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
+import { useAddNewSubject } from './GradeCalculator.hooks';
 import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader';
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 
 const GradeCalculator = () => {
-    const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
+    const newSubjectList = useNewSubjectListValueStore();
     const subjectList = useSubjectListValueStore();
     const setForm = useSetFormStore();
-
-    const newSubjectIdRef = useRef(newSubjectList.length);
-    const handleAddNewGradeItemButtonClick = () => {
-        const newSubject: Subject = {
-            id: newSubjectIdRef.current++,
-            subjectName: '',
-            achievementLevel21: null,
-            achievementLevel22: null,
-            achievementLevel31: null,
-            score: null,
-        };
-        setNewSubjectList((prev) => [...prev, newSubject]);
-    };
+    const { handleAddNewSubjectButtonClick } = useAddNewSubject();
 
     useEffect(() => {
         const studentSubjectList = [...subjectList, ...newSubjectList].map(
@@ -63,7 +51,7 @@ const GradeCalculator = () => {
                 />
             ))}
             <GradeCalculatorFooter>
-                <Button onClick={handleAddNewGradeItemButtonClick} icon="ADD_ICON" size="SMALL">
+                <Button onClick={handleAddNewSubjectButtonClick} icon="ADD_ICON" size="SMALL">
                     과목추가
                 </Button>
             </GradeCalculatorFooter>

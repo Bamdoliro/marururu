@@ -1,9 +1,9 @@
-import { useNewSubjectListStore } from '@/store';
+import { useNewSubjectListValueStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Button, Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEvent } from 'react';
 import styled from 'styled-components';
+import { useDeleteNewSubject, useInput } from './NewGradeCalculatorItem.hooks';
 
 interface Props {
     id: number;
@@ -11,32 +11,18 @@ interface Props {
 }
 
 const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
-    const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
+    const newSubjectList = useNewSubjectListValueStore();
 
     const newSubjectIndex = newSubjectList.findIndex((item) => item.id === id);
-
-    const handleDeleteNewGradeItemButtonClick = (id: number) => {
-        setNewSubjectList((prev) => prev.filter((item) => item.id !== id));
-    };
-
-    const handleNewGradeItemDataChange = (data: string, name: string) => {
-        setNewSubjectList((prev) => {
-            const updatedData = [...prev];
-            updatedData[newSubjectIndex] = {
-                ...updatedData[newSubjectIndex],
-                [name]: data === '-' ? null : data,
-            };
-            return updatedData;
-        });
-    };
+    const { handleNewSubjectDataChange, handleNewSubjectNameDataChange } =
+        useInput(newSubjectIndex);
+    const { handleDeleteNewSubjectButtonClick } = useDeleteNewSubject();
 
     return (
         <StyledNewGradeCalculatorItem>
             <Td option="SECONDARY" width={123} height="100%">
                 <NewSubjectInput
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        handleNewGradeItemDataChange(e.target.value, 'subjectName')
-                    }
+                    onChange={handleNewSubjectNameDataChange}
                     value={newSubjectList[newSubjectIndex].subjectName}
                     placeholder="과목명 입력"
                 />
@@ -48,7 +34,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
                     data={achievementLevels}
                     width={80}
                     name="achievementLevel21"
-                    onChange={handleNewGradeItemDataChange}
+                    onChange={handleNewSubjectDataChange}
                 />
             </Td>
             <Td width={190} height="100%">
@@ -58,7 +44,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
                     data={achievementLevels}
                     width={80}
                     name="achievementLevel22"
-                    onChange={handleNewGradeItemDataChange}
+                    onChange={handleNewSubjectDataChange}
                 />
             </Td>
             <Td width={190} height="100%">
@@ -68,12 +54,12 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
                     data={achievementLevels}
                     width={80}
                     name="achievementLevel31"
-                    onChange={handleNewGradeItemDataChange}
+                    onChange={handleNewSubjectDataChange}
                 />
             </Td>
             <Td width={123} height="100%">
                 <Button
-                    onClick={() => handleDeleteNewGradeItemButtonClick(id)}
+                    onClick={() => handleDeleteNewSubjectButtonClick(id)}
                     option="DELETE"
                     size="SMALL">
                     삭제

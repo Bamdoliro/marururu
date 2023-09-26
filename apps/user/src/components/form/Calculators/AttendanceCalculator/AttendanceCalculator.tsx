@@ -1,29 +1,13 @@
-import { useFormStore } from '@/store';
-import { AttendanceName } from '@/types/form/client';
+import { useFormValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { CellInput, Column, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
+import { useInput } from './AttendanceCalculator.hooks';
 
 const AttendanceCalculator = () => {
-    const [form, setForm] = useFormStore();
-
-    const handleAttendanceInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-        const [attendanceName, countName] = name.split('-');
-
-        setForm((prev) => ({
-            ...prev,
-            grade: {
-                ...prev.grade,
-                [attendanceName]: {
-                    ...prev.grade[attendanceName as AttendanceName],
-                    [countName]: Number(value),
-                },
-            },
-        }));
-    };
+    const form = useFormValueStore();
+    const { handleAttendanceInfoDataChange } = useInput();
 
     return (
         <StyledAttendanceCalculator>

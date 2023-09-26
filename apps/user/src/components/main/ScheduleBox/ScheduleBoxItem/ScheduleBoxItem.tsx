@@ -16,24 +16,24 @@ interface Props {
     endTime: Dayjs;
 }
 
-const ScheduleItem = ({ plan, date, startTime, endTime }: Props) => {
+const ScheduleBoxItem = ({ plan, date, startTime, endTime }: Props) => {
     const active = dayjs().isBetween(startTime, endTime);
 
     return (
-        <StyledScheduleItem active={active}>
+        <StyledScheduleBoxItem active={active}>
             <Text fontType="H5" color={active ? color.maruDefault : color.gray900}>
                 {plan}
             </Text>
             <Text fontType="p2" color={color.gray700}>
                 {date}
             </Text>
-        </StyledScheduleItem>
+        </StyledScheduleBoxItem>
     );
 };
 
-export default ScheduleItem;
+export default ScheduleBoxItem;
 
-const StyledScheduleItem = styled.div<{ active: boolean }>`
+const StyledScheduleBoxItem = styled.div<{ active: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'space-between' })};
     flex-shrink: 0;
     padding: 0px 20px;
