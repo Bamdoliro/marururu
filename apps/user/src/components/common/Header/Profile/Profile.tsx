@@ -1,31 +1,21 @@
-import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
-import { useLogoutUserMutation } from '@/services/auth/mutations';
 import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
+import { useCTAButton, useLogoutAction } from './Profile.hooks';
 
 const Profile = () => {
-    const router = useRouter();
     const { userData } = useUser();
     const { value: isMenuOpen, toggle: toggleMenuOpen, setFalse: closeMenu } = useBooleanState();
-    const { logoutUserMutate } = useLogoutUserMutation();
-    const menuListBoxRef = useOutsideClick(closeMenu);
-
-    const handleLogoutButtonClick = () => {
-        logoutUserMutate();
-    };
-
-    const handleGoFormPageButtonClick = () => {
-        router.push(ROUTES.FORM);
-    };
+    const { handleGoFormPageButtonClick } = useCTAButton();
+    const { handleLogoutButtonClick } = useLogoutAction();
+    const profileRef = useOutsideClick(closeMenu);
 
     return (
-        <StyledProfile ref={menuListBoxRef}>
+        <StyledProfile ref={profileRef}>
             <MenuButton onClick={toggleMenuOpen}>
                 <Name>{userData.name} 님</Name>
                 <IconArrowDropdown color={color.gray600} width={24} height={24} />
