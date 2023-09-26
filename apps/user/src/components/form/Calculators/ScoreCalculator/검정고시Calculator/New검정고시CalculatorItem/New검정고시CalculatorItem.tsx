@@ -2,8 +2,8 @@ import { useNew검정고시SubjectListStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Button, CellInput, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
+import { useDeleteNew검정고시Subject, useInput } from './New검정고시CalculatorItem.hooks';
 
 interface Props {
     id: number;
@@ -14,29 +14,14 @@ const New검정고시CalculatorItem = ({ id, score }: Props) => {
     const [new검정고시SubjectList, setNew검정고시SubjectList] = useNew검정고시SubjectListStore();
 
     const new검정고시SubjectIndex = new검정고시SubjectList.findIndex((item) => item.id === id);
-
-    const handleDeleteNew검정고시ItemButtonClick = (id: number) => {
-        setNew검정고시SubjectList((prev) => prev.filter((item) => item.id !== id));
-    };
-
-    const handleNew검정고시ItemDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-
-        setNew검정고시SubjectList((prev) => {
-            const updatedData = [...prev];
-            updatedData[new검정고시SubjectIndex] = {
-                ...updatedData[new검정고시SubjectIndex],
-                [name]: value,
-            };
-            return updatedData;
-        });
-    };
+    const { handleNew검정고시SubjectDataChange } = useInput(new검정고시SubjectIndex);
+    const { handleDeleteNew검정고시SubjectButtonClick } = useDeleteNew검정고시Subject();
 
     return (
         <StyledNew검정고시CalculatorItem>
             <Td option="SECONDARY" width={123} height="100%">
                 <NewSubjectInput
-                    onChange={handleNew검정고시ItemDataChange}
+                    onChange={handleNew검정고시SubjectDataChange}
                     name="subjectName"
                     value={new검정고시SubjectList[new검정고시SubjectIndex].subjectName}
                     placeholder="과목명 입력"
@@ -46,12 +31,12 @@ const New검정고시CalculatorItem = ({ id, score }: Props) => {
                 <CellInput
                     value={score ?? 0}
                     name="score"
-                    onChange={handleNew검정고시ItemDataChange}
+                    onChange={handleNew검정고시SubjectDataChange}
                 />
             </Td>
             <Td width={123} height="100%">
                 <Button
-                    onClick={() => handleDeleteNew검정고시ItemButtonClick(id)}
+                    onClick={() => handleDeleteNew검정고시SubjectButtonClick(id)}
                     option="DELETE"
                     size="SMALL">
                     삭제

@@ -4,14 +4,11 @@ import { color } from '@maru/theme';
 import { Loader, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import styled from 'styled-components';
 import MainFaqList from './MainFaqList/MainFaqList';
 
 const MainFaq = () => {
-    const router = useRouter();
-
     return (
         <StyledMainFaq>
             <DirectLink href={ROUTES.FAQ}>
