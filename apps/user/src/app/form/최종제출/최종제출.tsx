@@ -1,4 +1,5 @@
 import { FinalFormConfirm, FinalFormTable, PdfGeneratedLoader } from '@/components/form';
+import { useOpenFileUploader } from '@/hooks';
 import { AppLayout } from '@/layouts';
 import { useFormDocumentValueStore } from '@/store';
 import { useBooleanState } from '@maru/hooks';
@@ -7,12 +8,7 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
-import {
-    useExportFormAction,
-    useInput,
-    useSubmitFinalFormAction,
-    useUploadFileButton,
-} from './최종제출.hooks';
+import { useExportFormAction, useInput, useSubmitFinalFormAction } from './최종제출.hooks';
 
 const 최종제출 = () => {
     const overlay = useOverlay();
@@ -22,13 +18,14 @@ const 최종제출 = () => {
         setTrue: openPdfGeneratedLoader,
         setFalse: closePdfGeneratedLoader,
     } = useBooleanState();
-    const { fileInputRef, handleUploadFileButtonClick } = useUploadFileButton();
+    const { openFileUploader: openPdfFileUploader, ref: pdfFileUploaderRef } =
+        useOpenFileUploader();
     const { handleExportFormButtonClick } = useExportFormAction(
         openPdfGeneratedLoader,
         closePdfGeneratedLoader,
     );
     const { handleSubmitFinalFormButtonClick } = useSubmitFinalFormAction();
-    const { handleFileDataChange } = useInput();
+    const { handleFormDocumentDataChange } = useInput();
 
     const openFinalFormConfirm = () => {
         overlay.open(({ isOpen, close }) => (
@@ -66,7 +63,7 @@ const 최종제출 = () => {
                         </ExportFormButton>
                     </Column>
                     <Row gap={16} alignItems="center" style={{ margin: '72px 0 56px 0' }}>
-                        <Button onClick={handleUploadFileButtonClick} size="SMALL">
+                        <Button onClick={openPdfFileUploader} size="SMALL">
                             첨부파일 업로드
                         </Button>
                         <Text fontType="p2" color={color.gray900}>
@@ -100,8 +97,8 @@ const 최종제출 = () => {
                 </SideBar>
             </Styled최종제출>
             <input
-                ref={fileInputRef}
-                onChange={handleFileDataChange}
+                ref={pdfFileUploaderRef}
+                onChange={handleFormDocumentDataChange}
                 type="file"
                 accept=".pdf"
                 hidden

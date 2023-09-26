@@ -1,21 +1,17 @@
+import { useOpenFileUploader } from '@/hooks';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
 import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, DragEvent, useRef, useState } from 'react';
+import { ChangeEventHandler, DragEvent, useState } from 'react';
 import styled from 'styled-components';
 
 const ProfileUploader = () => {
     const form = useFormValueStore();
     const [isDragging, setIsDragging] = useState(false);
-    const imageFileInputRef = useRef<HTMLInputElement>(null);
-
-    // 클릭시 이미지 업로드 파일 열기
-    const handleUploadImageButtonClick = () => {
-        imageFileInputRef.current?.click();
-    };
-
+    const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
+        useOpenFileUploader();
     // Mutation
     const { uploadProfileImageMutate } = useUploadProfileImageMutation();
     const uploadProfileImageFile = (image: FormData) => {
@@ -73,7 +69,7 @@ const ProfileUploader = () => {
                     onDrop={onDrop}
                     $isDragging={isDragging}>
                     <Column gap={12} alignItems="center">
-                        <Button size="SMALL" onClick={handleUploadImageButtonClick}>
+                        <Button size="SMALL" onClick={openImageFileUploader}>
                             파일 선택
                         </Button>
                         <Text fontType="p2" color={color.gray500}>
@@ -86,7 +82,7 @@ const ProfileUploader = () => {
                 </UploadImageBox>
             )}
             {form.applicant.identificationPictureUri && (
-                <Button size="SMALL" onClick={handleUploadImageButtonClick}>
+                <Button size="SMALL" onClick={openImageFileUploader}>
                     재업로드
                 </Button>
             )}
@@ -97,7 +93,7 @@ const ProfileUploader = () => {
             </Desc>
             <input
                 type="file"
-                ref={imageFileInputRef}
+                ref={imageUploaderRef}
                 accept=".png, .jpg, .jpeg"
                 onChange={handleImageFileDataChange}
                 hidden
