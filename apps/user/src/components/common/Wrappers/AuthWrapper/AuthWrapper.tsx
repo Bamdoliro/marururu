@@ -3,7 +3,7 @@ import { 제출_마감_날짜, 제출_시작_날짜 } from '@/constants/form/con
 import { useUser } from '@/hooks';
 import { useOverlay } from '@toss/use-overlay';
 import dayjs from 'dayjs';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import FormPeriodModal from './FormPeriodModal/FormPeriodModal';
 import LoginRequiredModal from './LoginRequiredModal/LoginRequiredModal';
@@ -17,6 +17,7 @@ const LOGGEDIN_PRIVATE_PAGE: string[] = [ROUTES.LOGIN, ROUTES.SIGNUP];
 
 const AuthWrapper = ({ children }: Props) => {
     const router = useRouter();
+    const pathName = usePathname();
     const overlay = useOverlay();
     const { isLoggedIn } = useUser();
 
@@ -29,29 +30,26 @@ const AuthWrapper = ({ children }: Props) => {
     };
 
     useEffect(() => {
-        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(router.pathname) && !isLoggedIn) {
+        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !isLoggedIn) {
             openRequiredLoginModal();
             router.push(ROUTES.MAIN);
         }
         if (isLoggedIn) {
-            if (LOGGEDIN_PRIVATE_PAGE.includes(router.pathname)) {
+            if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 openFormPeriodModal();
                 router.push(ROUTES.MAIN);
             } else if (
                 dayjs().isBefore(제출_시작_날짜) ||
                 (dayjs().isAfter(제출_마감_날짜) && process.env.NODE_ENV !== 'development')
             ) {
-                if (router.pathname === ROUTES.FORM) {
+                if (pathName === ROUTES.FORM) {
                     router.push(ROUTES.MAIN);
-                } else if (
-                    router.pathname === ROUTES.FIRST_RESULT ||
-                    router.pathname === ROUTES.FINAL_RESULT
-                ) {
+                } else if (pathName === ROUTES.FIRST_RESULT || pathName === ROUTES.FINAL_RESULT) {
                     router.push(ROUTES.MAIN);
                 }
             }
         }
-    }, [isLoggedIn, router, overlay]);
+    }, [isLoggedIn, pathName]);
 
     return <>{children}</>;
 };
