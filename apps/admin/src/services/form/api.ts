@@ -1,7 +1,7 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import { ExportExcelType, FormListType } from '@/types/form/client';
-import { GetFormListRes, PatchSecondRoundResultReq } from '@/types/form/remote';
+import { ApprovalStatus, ExportExcelType, FormListType } from '@/types/form/client';
+import { GetFormDetail, GetFormListRes, PatchSecondRoundResultReq } from '@/types/form/remote';
 
 export const getFormList = async (formListType: FormListType) => {
     if (formListType === '검토해야 하는 원서 모아보기') {
@@ -29,35 +29,15 @@ export const patchSecondScoreFormat = async (formData: FormData) => {
     return data;
 };
 
+const EXPORT_EXCEL_TYPE: Record<ExportExcelType, string> = {
+    '전체 내보내기': 'result',
+    '1차 전형 결과': 'first-round',
+    '2차 전형 결과': 'second-round',
+    '최종 합격자': 'final-passed',
+} as const;
+
 export const getExportExcel = async (exportExcelType: ExportExcelType) => {
-    if (exportExcelType === '전체 내보내기') {
-        const { data } = await maru.get('/form/xlsx/result', {
-            ...authorization(),
-            responseType: 'blob',
-        });
-
-        return data;
-    }
-
-    if (exportExcelType === '1차 전형 결과') {
-        const { data } = await maru.get('/form/xlsx/first-round', {
-            ...authorization(),
-            responseType: 'blob',
-        });
-
-        return data;
-    }
-
-    if (exportExcelType === '2차 전형 결과') {
-        const { data } = await maru.get('/form/xlsx/second-round', {
-            ...authorization(),
-            responseType: 'blob',
-        });
-
-        return data;
-    }
-
-    const { data } = await maru.get('/form/xlsx/final-passed', {
+    const { data } = await maru.get(`/form/xlsx/${EXPORT_EXCEL_TYPE[exportExcelType]}`, {
         ...authorization(),
         responseType: 'blob',
     });
@@ -71,6 +51,24 @@ export const patchSecondRoundResult = async (secondRoundResultData: PatchSecondR
         secondRoundResultData,
         authorization(),
     );
+
+    return data;
+};
+
+export const getFormDetail = async (id: number) => {
+    const { data } = await maru.get<GetFormDetail>(`/form/${id}`, authorization());
+
+    return data;
+};
+
+export const patchFinalScore = async (id: number, status: ApprovalStatus) => {
+    if (status === '승인') {
+        const { data } = await maru.patch(`/form/${id}/approve`, {}, authorization());
+
+        return data;
+    }
+
+    const { data } = await maru.patch(`/form/${id}/reject`, {}, authorization());
 
     return data;
 };

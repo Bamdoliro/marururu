@@ -1,10 +1,16 @@
-import ClipLoader from 'react-spinners/ClipLoader';
 import { color } from '@maru/theme';
+import { CSSProperties } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
 import styled from 'styled-components';
 
-const Loader = () => {
+interface Props {
+    top?: CSSProperties['top'];
+    left?: CSSProperties['left'];
+}
+
+const Loader = ({ top = '50%', left = '50%' }: Props) => {
     return (
-        <SpinnerBox>
+        <SpinnerBox top={top} left={left}>
             <ClipLoader color={color.maruDefault} />
         </SpinnerBox>
     );
@@ -12,9 +18,9 @@ const Loader = () => {
 
 export default Loader;
 
-const SpinnerBox = styled.div`
+const SpinnerBox = styled.div<{ top: CSSProperties['top']; left: CSSProperties['left'] }>`
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: ${(props) => props.top};
+    left: ${(props) => props.left};
     transform: translate(-50%, -50%);
 `;

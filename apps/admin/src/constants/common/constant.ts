@@ -7,6 +7,7 @@ export const KEY = {
     FAQ_DETAIL: 'useFaqDetail',
     NOTICE_DETAIL: 'useNoticeDetail',
     EXPORT_EXCEL: 'useExportExcel',
+    FORM_DETAIL: 'useFormDetail',
 };
 
 export const ROUTES = {
@@ -19,6 +20,7 @@ export const ROUTES = {
     FAQ_POST: '/faq/post',
     ANALYSIS: '/analysis',
     LOGIN: '/login',
+    FORM: '/form',
 } as const;
 
 export const TOKEN = {

@@ -5,7 +5,7 @@ import { Button, Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler, useRef } from 'react';
 import styled from 'styled-components';
-import SecondScoreUploader from '../SecondScoreUploader/SecondScoreUploader';
+import SecondScoreUploader from './SecondScoreUploader/SecondScoreUploader';
 import {
     useSecondScoreFormatAction,
     useUploadSecondScoreFormatAction,

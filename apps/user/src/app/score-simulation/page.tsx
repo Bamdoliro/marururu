@@ -3,21 +3,34 @@
 import {
     AttendanceCalculator,
     CertificateCalculator,
-    GradeCalculator,
     GradePreview,
+    ScoreCalculator,
     VolunteerCalculator,
 } from '@/components/form';
-import { FIELD_DATA } from '@/constants/form/data';
+import { SCORE_STEP_LIST } from '@/constants/form/data';
 import { AppLayout } from '@/layouts';
+import { useFormValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import styled from 'styled-components';
-
 const ScoreSimulation = () => {
-    const [fieldStep, setFieldStep] = useState('성적 입력');
+    const form = useFormValueStore();
+    const [currentScoreStep, setCurrentScoreStep] = useState('성적 입력');
+
+    const handleScoreStepButtonClick = (scoreStep: string) => {
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+            if (scoreStep === '출결상황' || scoreStep === '봉사시간') {
+                alert('검정고시 합격자는 기본 점수가 부여돼요.');
+                return;
+            }
+            setCurrentScoreStep(scoreStep);
+        } else {
+            setCurrentScoreStep(scoreStep);
+        }
+    };
 
     return (
         <AppLayout header footer>
@@ -41,24 +54,24 @@ const ScoreSimulation = () => {
                 </Column>
                 <Column gap={24}>
                     <NavigationBar>
-                        {FIELD_DATA.map((item, index) => (
+                        {SCORE_STEP_LIST.map((scoreStep, index) => (
                             <UnderlineButton
                                 key={`field-data ${index}`}
-                                active={item === fieldStep}
-                                onClick={() => setFieldStep(item)}>
-                                {item}
+                                active={scoreStep === currentScoreStep}
+                                onClick={() => handleScoreStepButtonClick(scoreStep)}>
+                                {scoreStep}
                             </UnderlineButton>
                         ))}
                     </NavigationBar>
                     <SwitchCase
-                        value={fieldStep}
+                        value={currentScoreStep}
                         caseBy={{
-                            성적입력: <GradeCalculator />,
+                            성적입력: <ScoreCalculator option="SIMULATION" />,
                             출결상황: <AttendanceCalculator />,
                             봉사시간: <VolunteerCalculator />,
                             자격증: <CertificateCalculator />,
                         }}
-                        defaultComponent={<GradeCalculator />}
+                        defaultComponent={<ScoreCalculator option="SIMULATION" />}
                     />
                 </Column>
             </ScoreSimulationPage>

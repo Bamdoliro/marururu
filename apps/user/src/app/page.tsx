@@ -2,12 +2,12 @@
 
 import {
     ApplicationBox,
-    Dday,
-    Faq,
+    DdayBox,
+    FaqBox,
     GuidelineBox,
-    Notice,
-    Schedule,
-    SimulatorBox
+    NoticeBox,
+    ScheduleBox,
+    SimulatorBox,
 } from '@/components/main';
 import { AppLayout } from '@/layouts';
 import { Row } from '@maru/ui';
@@ -23,8 +23,8 @@ const MainPage = () => {
         <AppLayout header footer>
             <StyledMainPage>
                 <Row gap={48} width="100%" height={450} justifyContent="center">
-                    <Dday />
-                    <Schedule />
+                    <DdayBox />
+                    <ScheduleBox />
                 </Row>
                 <Row gap={48} width="100%" justifyContent="center">
                     <GuidelineBox />
@@ -32,8 +32,8 @@ const MainPage = () => {
                     <SimulatorBox />
                 </Row>
                 <Row gap={48} width="100%" height={242} justifyContent="center">
-                    <Notice />
-                    <Faq />
+                    <NoticeBox />
+                    <FaqBox />
                 </Row>
             </StyledMainPage>
         </AppLayout>

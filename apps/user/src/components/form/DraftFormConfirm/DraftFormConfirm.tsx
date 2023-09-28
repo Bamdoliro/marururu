@@ -16,6 +16,7 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
                 <Column>
                     <Text color={color.red} fontType="p2">
                         원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로
+                        <br />
                         처리되며 더 이상 입학원서 수정이 불가능합니다.
                     </Text>
                     <Text color={color.gray900} fontType="p2">

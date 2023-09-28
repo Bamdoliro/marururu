@@ -1,36 +1,13 @@
-import { useFormStore } from '@/store';
+import { useFormValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { CheckBox, Column, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
+import { useInput } from './CertificateCaculator.hooks';
 
 const CertificateCalculator = () => {
-    const [form, setForm] = useFormStore();
-
-    const handleCertificateListInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { checked, value } = e.target;
-
-        if (checked) {
-            setForm((prev) => ({
-                ...prev,
-                grade: {
-                    ...prev.grade,
-                    certificateList: [...(prev.grade.certificateList ?? []), value],
-                },
-            }));
-        } else {
-            setForm((prev) => ({
-                ...prev,
-                grade: {
-                    ...prev.grade,
-                    certificateList: prev.grade.certificateList.filter(
-                        (certificate) => certificate !== value,
-                    ),
-                },
-            }));
-        }
-    };
+    const form = useFormValueStore();
+    const { handleCertificateListDataChange } = useInput();
 
     return (
         <StyledCertificateCalculator>
@@ -69,7 +46,7 @@ const CertificateCalculator = () => {
                                     'CRAFTSMAN_INFORMATION_PROCESSING',
                                 )}
                                 value="CRAFTSMAN_INFORMATION_PROCESSING"
-                                onChange={handleCertificateListInfoDataChange}
+                                onChange={handleCertificateListDataChange}
                             />
                         </Td>
                     </Row>
@@ -89,7 +66,7 @@ const CertificateCalculator = () => {
                                     'CRAFTSMAN_INFORMATION_EQUIPMENT_OPERATION',
                                 )}
                                 value="CRAFTSMAN_INFORMATION_EQUIPMENT_OPERATION"
-                                onChange={handleCertificateListInfoDataChange}
+                                onChange={handleCertificateListDataChange}
                             />
                         </Td>
                     </Row>
@@ -107,7 +84,7 @@ const CertificateCalculator = () => {
                             <CheckBox
                                 checked={form.grade.certificateList?.includes('CRAFTSMAN_COMPUTER')}
                                 value="CRAFTSMAN_COMPUTER"
-                                onChange={handleCertificateListInfoDataChange}
+                                onChange={handleCertificateListDataChange}
                             />
                         </Td>
                     </Row>
@@ -129,7 +106,7 @@ const CertificateCalculator = () => {
                                             'COMPUTER_SPECIALIST_LEVEL_1',
                                         )}
                                         value="COMPUTER_SPECIALIST_LEVEL_1"
-                                        onChange={handleCertificateListInfoDataChange}
+                                        onChange={handleCertificateListDataChange}
                                     />
                                 </Td>
                             </Row>
@@ -143,7 +120,7 @@ const CertificateCalculator = () => {
                                             'COMPUTER_SPECIALIST_LEVEL_2',
                                         )}
                                         value="COMPUTER_SPECIALIST_LEVEL_2"
-                                        onChange={handleCertificateListInfoDataChange}
+                                        onChange={handleCertificateListDataChange}
                                     />
                                 </Td>
                             </Row>
@@ -157,7 +134,7 @@ const CertificateCalculator = () => {
                                             'COMPUTER_SPECIALIST_LEVEL_3',
                                         )}
                                         value="COMPUTER_SPECIALIST_LEVEL_3"
-                                        onChange={handleCertificateListInfoDataChange}
+                                        onChange={handleCertificateListDataChange}
                                     />
                                 </Td>
                             </Row>

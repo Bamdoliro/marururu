@@ -5,10 +5,12 @@ import { Column, Text } from '@maru/ui';
 interface Props {
     isComplete: boolean;
     completeText: string;
-    inCompleteText?: string;
+    incompleteText?: string;
 }
 
-const CompleteAlaram = ({ isComplete, completeText, inCompleteText }: Props) => {
+const CompleteAlarm = ({ isComplete, completeText, incompleteText }: Props) => {
+    const alarmText = isComplete ? completeText : incompleteText;
+
     return (
         <Column
             style={{ marginTop: '173px' }}
@@ -21,17 +23,11 @@ const CompleteAlaram = ({ isComplete, completeText, inCompleteText }: Props) => 
             ) : (
                 <IconCancelCircle width={150} height={150} />
             )}
-            {isComplete ? (
-                <Text fontType="D2" color={color.gray900}>
-                    {completeText}
-                </Text>
-            ) : (
-                <Text fontType="D2" color={color.gray900}>
-                    {inCompleteText}
-                </Text>
-            )}
+            <Text fontType="D2" color={color.gray900}>
+                {isComplete ? completeText : incompleteText}
+            </Text>
         </Column>
     );
 };
 
-export default CompleteAlaram;
+export default CompleteAlarm;

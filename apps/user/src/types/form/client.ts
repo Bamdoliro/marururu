@@ -49,7 +49,7 @@ export interface ParentInfo {
 }
 
 export interface EducationInfo {
-    graduationType: 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
+    graduationType: GraduationType;
     graduationYear: string;
     schoolName: string;
     schoolLocation: string;
@@ -63,17 +63,19 @@ export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
 
 export interface StudentSubject {
     subjectName: string;
-    achievementLevel21: AchievementLevel;
-    achievementLevel22: AchievementLevel;
-    achievementLevel31: AchievementLevel;
+    achievementLevel21: AchievementLevel | null;
+    achievementLevel22: AchievementLevel | null;
+    achievementLevel31: AchievementLevel | null;
+    score: number | null;
 }
 
 export interface Subject {
     id: number;
     subjectName: string;
-    achievementLevel21: AchievementLevel;
-    achievementLevel22: AchievementLevel;
-    achievementLevel31: AchievementLevel;
+    achievementLevel21: AchievementLevel | null;
+    achievementLevel22: AchievementLevel | null;
+    achievementLevel31: AchievementLevel | null;
+    score: number | null;
 }
 
 export type AttendanceName = 'attendance1' | 'attendance2' | 'attendance3';
@@ -112,6 +114,8 @@ export type FormType =
     | 'NATIONAL_VETERANS_EDUCATION'
     | 'SPECIAL_ADMISSION';
 
+export type GraduationType = 'EXPECTED' | 'QUALIFICATION_EXAMINATION' | 'GRADUATED';
+
 export interface FormDocument {
     fileName: string;
     formUrl: string;
@@ -120,7 +124,17 @@ export interface FormDocument {
 export interface FormStatus {
     id: number;
     name: string;
-    status: 'APPROVED' | 'REJECTED' | 'RECEIVED' | 'SUBMITTED' | 'FINAL_SUBMITTED';
+    status:
+        | 'RECEIVED'
+        | 'FIRST_FAILED'
+        | 'FAILED'
+        | 'FINAL_SUBMITTED'
+        | 'SUBMITTED'
+        | 'APPROVED'
+        | 'NO_SHOW'
+        | 'FIRST_PASSED'
+        | 'PASSED'
+        | 'REJECTED';
     type: FormType;
 }
 

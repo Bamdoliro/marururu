@@ -43,8 +43,8 @@ const StyledNoticeDetail = styled.div`
 `;
 
 const DirectLink = styled(Link)`
-    ${flex({ alignItems: 'center' })}
+    ${flex({ alignItems: 'center' })};
     gap: 2px;
-    ${font.p3}
+    ${font.p3};
     color: ${color.gray600};
 `;
