@@ -25,7 +25,7 @@ import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
-import { useSecondRoundResultEditAction } from './form.hooks';
+import { useDownloadFormURLAction, useSecondRoundResultEditAction } from './form.hooks';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();
@@ -71,6 +71,8 @@ const MainPage = () => {
         setIsFormToPrintSelecting(false);
         setFormToPrint({});
     };
+
+    const { handleDownloadFormUrlButtonClick } = useDownloadFormURLAction();
 
     return (
         <AppLayout>
@@ -119,7 +121,7 @@ const MainPage = () => {
                                         onClick={setIsFormToPrintSelectingFalse}>
                                         취소
                                     </Button>
-                                    <Button size="SMALL" onClick={() => {}}>
+                                    <Button size="SMALL" onClick={handleDownloadFormUrlButtonClick}>
                                         출력하기
                                     </Button>
                                 </Row>

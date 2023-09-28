@@ -8,6 +8,7 @@ export const KEY = {
     NOTICE_DETAIL: 'useNoticeDetail',
     EXPORT_EXCEL: 'useExportExcel',
     FORM_DETAIL: 'useFormDetail',
+    FORM_URL: 'useFormURL',
 };
 
 export const ROUTES = {

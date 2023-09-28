@@ -1,7 +1,12 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
 import { ApprovalStatus, ExportExcelType, FormListType } from '@/types/form/client';
-import { GetFormDetail, GetFormListRes, PatchSecondRoundResultReq } from '@/types/form/remote';
+import {
+    GetFormDetail,
+    GetFormListRes,
+    GetFormURLRes,
+    PatchSecondRoundResultReq,
+} from '@/types/form/remote';
 
 export const getFormList = async (formListType: FormListType) => {
     if (formListType === '검토해야 하는 원서 모아보기') {
@@ -69,6 +74,15 @@ export const patchFinalScore = async (id: number, status: ApprovalStatus) => {
     }
 
     const { data } = await maru.patch(`/form/${id}/reject`, {}, authorization());
+
+    return data;
+};
+
+export const getFormUrl = async (formIdList: number[]) => {
+    const { data } = await maru.get<GetFormURLRes>(
+        `/form/form-url?id-list=${formIdList.join('%2C')}`,
+        authorization(),
+    );
 
     return data;
 };
