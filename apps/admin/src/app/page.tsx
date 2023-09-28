@@ -7,6 +7,8 @@ import FormTable from '@/components/form/FormTable/FormTable';
 import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
+import { useIsSecondPassResultEditingStore } from '@/store/form/isSecondPassEditing';
+import { useSetSecondPassResultStore } from '@/store/form/secondPassResult';
 import { useFormListTypeStore } from '@/store/form/type';
 import {
     IconCheckDocument,
@@ -17,7 +19,7 @@ import {
     IconUpload,
 } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Column, Row, SearchInput, Text } from '@maru/ui';
+import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
@@ -42,6 +44,16 @@ const MainPage = () => {
 
     const openExportExcelModal = () => {
         overlay.open(({ isOpen, close }) => <ExportExcelModal isOpen={isOpen} onClose={close} />);
+    };
+
+    const [isSecondPassResultEditing, setIsSecondPassResultEditing] =
+        useIsSecondPassResultEditingStore();
+    const secondPassResult = useSetSecondPassResultStore();
+
+    const handleIsSecondPassResultEditingTrue = () => setIsSecondPassResultEditing(true);
+    const handleIsSecondPassResultEditingFalse = () => {
+        setIsSecondPassResultEditing(false);
+        secondPassResult({});
     };
 
     return (
@@ -69,43 +81,74 @@ const MainPage = () => {
                                     />
                                 </ReviewFilterBox>
                             ) : null}
-                            <ButtonMenu
-                                width={280}
-                                menuItemList={[
-                                    <ButtonMenuItem onClick={handleFormListTypeReview}>
-                                        <IconCheckDocument
-                                            color={color.gray600}
-                                            width={24}
-                                            height={24}
-                                        />
-                                        <Text fontType="p2" color={color.gray900}>
-                                            검토해야 하는 원서 모아보기
-                                        </Text>
-                                    </ButtonMenuItem>,
-                                    <ButtonMenuItem onClick={openSecondScoreUplaodModal}>
-                                        <IconEditDocument
-                                            color={color.gray600}
-                                            width={24}
-                                            height={24}
-                                        />
-                                        <Text fontType="p2" color={color.gray900}>
-                                            2차 전형 점수 입력하기
-                                        </Text>
-                                    </ButtonMenuItem>,
-                                    <ButtonMenuItem onClick={openExportExcelModal}>
-                                        <IconUpload color={color.gray600} width={24} height={24} />
-                                        <Text fontType="p2" color={color.gray900}>
-                                            명단 엑셀로 내보내기
-                                        </Text>
-                                    </ButtonMenuItem>,
-                                    <ButtonMenuItem>
-                                        <IconPrint color={color.gray600} width={24} height={24} />
-                                        <Text fontType="p2" color={color.gray900}>
-                                            원서 출력하기
-                                        </Text>
-                                    </ButtonMenuItem>,
-                                ]}
-                            />
+                            {isSecondPassResultEditing ? (
+                                <Row gap={16}>
+                                    <Button
+                                        option="SECONDARY"
+                                        size="SMALL"
+                                        onClick={handleIsSecondPassResultEditingFalse}>
+                                        취소
+                                    </Button>
+                                    <Button size="SMALL">완료</Button>
+                                </Row>
+                            ) : (
+                                <ButtonMenu
+                                    width={280}
+                                    menuItemList={[
+                                        <ButtonMenuItem onClick={handleFormListTypeReview}>
+                                            <IconCheckDocument
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                검토해야 하는 원서 모아보기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem onClick={openSecondScoreUplaodModal}>
+                                            <IconEditDocument
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                2차 전형 점수 입력하기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem
+                                            onClick={handleIsSecondPassResultEditingTrue}>
+                                            <IconEditDocument
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                2차 합격 여부 변경하기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem onClick={openExportExcelModal}>
+                                            <IconUpload
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                명단 엑셀로 내보내기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem>
+                                            <IconPrint
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                원서 출력하기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                    ]}
+                                />
+                            )}
                         </Row>
                     </Row>
                     <FormTable />
