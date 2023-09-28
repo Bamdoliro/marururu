@@ -7,7 +7,7 @@ import FormTable from '@/components/form/FormTable/FormTable';
 import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
-import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundEditing';
+import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { useFormListTypeStore } from '@/store/form/type';
 import {

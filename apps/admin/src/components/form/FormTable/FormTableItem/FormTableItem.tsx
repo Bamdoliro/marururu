@@ -1,7 +1,7 @@
 import TableItem from '@/components/common/TableItem/TableItem';
 import { ROUTES } from '@/constants/common/constant';
 import { FORM_TYPE } from '@/constants/main/constants';
-import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundEditing';
+import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { Form, FormType, PassStatusType } from '@/types/form/client';
 import { color } from '@maru/theme';

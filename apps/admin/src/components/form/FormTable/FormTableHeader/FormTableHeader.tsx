@@ -1,5 +1,5 @@
 import TableHeader from '@/components/common/TableHeader/TableHeader';
-import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundEditing';
+import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { Row, Text } from '@maru/ui';
 
 const FormTableHeader = () => {
