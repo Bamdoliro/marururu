@@ -1,8 +1,8 @@
 import { useUploadSecondScoreFormatMutation } from '@/services/form/mutations';
-import { useSecondScoreFormatQuery } from '@/services/form/queries';
+import { useDownloadSecondScoreFormatQuery } from '@/services/form/queries';
 
-export const useSecondScoreFormatAction = () => {
-    const { data: secondScoreFormatData } = useSecondScoreFormatQuery();
+export const useDownloadSecondScoreFormatAction = () => {
+    const { data: secondScoreFormatData } = useDownloadSecondScoreFormatQuery();
 
     const handleDownloadSecondScoreFormatButtonClick = () => {
         if (!secondScoreFormatData) return;

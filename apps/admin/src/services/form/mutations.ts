@@ -1,5 +1,5 @@
 import { useApiError } from '@/hooks';
-import { useSetIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundEditing';
+import { useSetIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { PatchSecondRoundResultReq } from '@/types/form/remote';
 import { useMutation } from '@tanstack/react-query';

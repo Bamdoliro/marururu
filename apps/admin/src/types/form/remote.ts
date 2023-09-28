@@ -11,3 +11,11 @@ export interface PatchSecondRoundResultReq {
 export interface GetFormDetail {
     data: FormDetail;
 }
+
+export interface GetFormURLRes {
+    dataList: {
+        examinationNumber: number;
+        name: string;
+        formUrl: string;
+    }[];
+}

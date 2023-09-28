@@ -1,13 +1,37 @@
 import TableHeader from '@/components/common/TableHeader/TableHeader';
-import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundEditing';
-import { Row, Text } from '@maru/ui';
+import { useFormListQuery } from '@/services/form/queries';
+import { useSetFormToPrintStore } from '@/store/form/formToPrint';
+import { useIsFormToPrintSelectingValueStore } from '@/store/form/isFormToPrintSelecting';
+import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
+import { CheckBox, Row, Text } from '@maru/ui';
+import { ChangeEventHandler } from 'react';
 
 const FormTableHeader = () => {
     const isSecondRoundResultEditing = useIsSecondRoundResultEditingValueStore();
+    const isFormToPrintSelecting = useIsFormToPrintSelectingValueStore();
+
+    const { data: formListData } = useFormListQuery();
+
+    const formIdList = formListData?.map((form) => form.id);
+
+    const setFormToPrint = useSetFormToPrintStore();
+
+    const handleAllFormToPrintSelectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { checked } = e.target;
+
+        if (!formIdList) return;
+
+        formIdList?.forEach((formId) => {
+            setFormToPrint((prev) => ({ ...prev, [formId]: checked }));
+        });
+    };
 
     return (
         <TableHeader>
             <Row gap={48}>
+                {isFormToPrintSelecting ? (
+                    <CheckBox onChange={handleAllFormToPrintSelectChange} />
+                ) : null}
                 <Text fontType="p2" width={60}>
                     접수번호
                 </Text>

@@ -1,7 +1,7 @@
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const isSecondRoundResultEditingAtomState = atom<boolean>({
-    key: 'is-editing',
+    key: 'is-second-round-result-editing',
     default: false,
 });
 

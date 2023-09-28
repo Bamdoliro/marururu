@@ -7,7 +7,9 @@ import FormTable from '@/components/form/FormTable/FormTable';
 import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
-import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundEditing';
+import { useSetFormToPrintStore } from '@/store/form/formToPrint';
+import { useIsFormToPrintSelectingStore } from '@/store/form/isFormToPrintSelecting';
+import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { useFormListTypeStore } from '@/store/form/type';
 import {
@@ -23,7 +25,7 @@ import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
-import { useSecondRoundResultEditAction } from './form.hooks';
+import { useDownloadFormURLAction, useSecondRoundResultEditAction } from './form.hooks';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();
@@ -47,8 +49,8 @@ const MainPage = () => {
         useIsSecondRoundResultEditingStore();
     const secondRoundResult = useSetSecondRoundResultStore();
 
-    const handleIsSecondRoundResultEditingTrue = () => setIsSecondRoundResultEditing(true);
-    const handleIsSecondRoundResultEditingFalse = () => {
+    const setIsSecondRoundResultEditingTrue = () => setIsSecondRoundResultEditing(true);
+    const setIsSecondRoundResultEditingFalse = () => {
         setIsSecondRoundResultEditing(false);
         secondRoundResult({});
     };
@@ -58,6 +60,19 @@ const MainPage = () => {
     const openExportExcelModal = () => {
         overlay.open(({ isOpen, close }) => <ExportExcelModal isOpen={isOpen} onClose={close} />);
     };
+
+    const [isFormToPrintSelecting, setIsFormToPrintSelecting] = useIsFormToPrintSelectingStore();
+    const setFormToPrint = useSetFormToPrintStore();
+
+    const setIsFormToPrintSelectingTrue = () => {
+        setIsFormToPrintSelecting(true);
+    };
+    const setIsFormToPrintSelectingFalse = () => {
+        setIsFormToPrintSelecting(false);
+        setFormToPrint({});
+    };
+
+    const { handleDownloadFormUrlButtonClick } = useDownloadFormURLAction();
 
     return (
         <AppLayout>
@@ -89,13 +104,25 @@ const MainPage = () => {
                                     <Button
                                         option="SECONDARY"
                                         size="SMALL"
-                                        onClick={handleIsSecondRoundResultEditingFalse}>
+                                        onClick={setIsSecondRoundResultEditingFalse}>
                                         취소
                                     </Button>
                                     <Button
                                         size="SMALL"
                                         onClick={handleSecondRoundResultEditCompleteButtonClick}>
                                         완료
+                                    </Button>
+                                </Row>
+                            ) : isFormToPrintSelecting ? (
+                                <Row gap={16}>
+                                    <Button
+                                        option="SECONDARY"
+                                        size="SMALL"
+                                        onClick={setIsFormToPrintSelectingFalse}>
+                                        취소
+                                    </Button>
+                                    <Button size="SMALL" onClick={handleDownloadFormUrlButtonClick}>
+                                        출력하기
                                     </Button>
                                 </Row>
                             ) : (
@@ -122,8 +149,7 @@ const MainPage = () => {
                                                 2차 전형 점수 입력하기
                                             </Text>
                                         </ButtonMenuItem>,
-                                        <ButtonMenuItem
-                                            onClick={handleIsSecondRoundResultEditingTrue}>
+                                        <ButtonMenuItem onClick={setIsSecondRoundResultEditingTrue}>
                                             <IconEditDocument
                                                 color={color.gray600}
                                                 width={24}
@@ -143,7 +169,7 @@ const MainPage = () => {
                                                 명단 엑셀로 내보내기
                                             </Text>
                                         </ButtonMenuItem>,
-                                        <ButtonMenuItem>
+                                        <ButtonMenuItem onClick={setIsFormToPrintSelectingTrue}>
                                             <IconPrint
                                                 color={color.gray600}
                                                 width={24}
