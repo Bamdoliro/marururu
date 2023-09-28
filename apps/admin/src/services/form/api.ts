@@ -1,7 +1,7 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
 import { ExportExcelType, FormListType } from '@/types/form/client';
-import { GetFormListRes } from '@/types/form/remote';
+import { GetFormListRes, PatchSecondRoundResultReq } from '@/types/form/remote';
 
 export const getFormList = async (formListType: FormListType) => {
     if (formListType === '검토해야 하는 원서 모아보기') {
@@ -61,6 +61,16 @@ export const getExportExcel = async (exportExcelType: ExportExcelType) => {
         ...authorization(),
         responseType: 'blob',
     });
+
+    return data;
+};
+
+export const patchSecondRoundResult = async (secondRoundResultData: PatchSecondRoundResultReq) => {
+    const { data } = await maru.patch(
+        '/form/second-round/result',
+        secondRoundResultData,
+        authorization(),
+    );
 
     return data;
 };

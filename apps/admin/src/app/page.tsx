@@ -23,6 +23,7 @@ import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
+import { useSecondRoundResultEditAction } from './form.hooks';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();
@@ -51,6 +52,8 @@ const MainPage = () => {
         setIsSecondRoundResultEditing(false);
         secondRoundResult({});
     };
+
+    const { handleSecondRoundResultEditCompleteButtonClick } = useSecondRoundResultEditAction();
 
     const openExportExcelModal = () => {
         overlay.open(({ isOpen, close }) => <ExportExcelModal isOpen={isOpen} onClose={close} />);
@@ -89,7 +92,11 @@ const MainPage = () => {
                                         onClick={handleIsSecondRoundResultEditingFalse}>
                                         취소
                                     </Button>
-                                    <Button size="SMALL">완료</Button>
+                                    <Button
+                                        size="SMALL"
+                                        onClick={handleSecondRoundResultEditCompleteButtonClick}>
+                                        완료
+                                    </Button>
                                 </Row>
                             ) : (
                                 <ButtonMenu
