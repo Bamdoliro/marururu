@@ -7,8 +7,8 @@ import FormTable from '@/components/form/FormTable/FormTable';
 import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
-import { useIsSecondPassResultEditingStore } from '@/store/form/isSecondPassEditing';
-import { useSetSecondPassResultStore } from '@/store/form/secondPassResult';
+import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundEditing';
+import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { useFormListTypeStore } from '@/store/form/type';
 import {
     IconCheckDocument,
@@ -42,18 +42,18 @@ const MainPage = () => {
         ));
     };
 
-    const openExportExcelModal = () => {
-        overlay.open(({ isOpen, close }) => <ExportExcelModal isOpen={isOpen} onClose={close} />);
+    const [isSecondRoundResultEditing, setIsSecondRoundResultEditing] =
+        useIsSecondRoundResultEditingStore();
+    const secondRoundResult = useSetSecondRoundResultStore();
+
+    const handleIsSecondRoundResultEditingTrue = () => setIsSecondRoundResultEditing(true);
+    const handleIsSecondRoundResultEditingFalse = () => {
+        setIsSecondRoundResultEditing(false);
+        secondRoundResult({});
     };
 
-    const [isSecondPassResultEditing, setIsSecondPassResultEditing] =
-        useIsSecondPassResultEditingStore();
-    const secondPassResult = useSetSecondPassResultStore();
-
-    const handleIsSecondPassResultEditingTrue = () => setIsSecondPassResultEditing(true);
-    const handleIsSecondPassResultEditingFalse = () => {
-        setIsSecondPassResultEditing(false);
-        secondPassResult({});
+    const openExportExcelModal = () => {
+        overlay.open(({ isOpen, close }) => <ExportExcelModal isOpen={isOpen} onClose={close} />);
     };
 
     return (
@@ -81,12 +81,12 @@ const MainPage = () => {
                                     />
                                 </ReviewFilterBox>
                             ) : null}
-                            {isSecondPassResultEditing ? (
+                            {isSecondRoundResultEditing ? (
                                 <Row gap={16}>
                                     <Button
                                         option="SECONDARY"
                                         size="SMALL"
-                                        onClick={handleIsSecondPassResultEditingFalse}>
+                                        onClick={handleIsSecondRoundResultEditingFalse}>
                                         취소
                                     </Button>
                                     <Button size="SMALL">완료</Button>
@@ -116,7 +116,7 @@ const MainPage = () => {
                                             </Text>
                                         </ButtonMenuItem>,
                                         <ButtonMenuItem
-                                            onClick={handleIsSecondPassResultEditingTrue}>
+                                            onClick={handleIsSecondRoundResultEditingTrue}>
                                             <IconEditDocument
                                                 color={color.gray600}
                                                 width={24}

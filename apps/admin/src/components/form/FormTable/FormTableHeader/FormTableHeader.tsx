@@ -1,9 +1,9 @@
 import TableHeader from '@/components/common/TableHeader/TableHeader';
-import { useIsSecondPassResultEditingValueStore } from '@/store/form/isSecondPassEditing';
+import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundEditing';
 import { Row, Text } from '@maru/ui';
 
 const FormTableHeader = () => {
-    const isSecondPassResultEditing = useIsSecondPassResultEditingValueStore();
+    const isSecondRoundResultEditing = useIsSecondRoundResultEditingValueStore();
 
     return (
         <TableHeader>
@@ -31,7 +31,7 @@ const FormTableHeader = () => {
                 <Text fontType="p2" width={60}>
                     최종 점수
                 </Text>
-                <Text fontType="p2" width={isSecondPassResultEditing ? 100 : 60}>
+                <Text fontType="p2" width={isSecondRoundResultEditing ? 100 : 60}>
                     2차 결과
                 </Text>
             </Row>

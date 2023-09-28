@@ -1,7 +1,7 @@
 import TableItem from '@/components/common/TableItem/TableItem';
 import { FORM_TYPE } from '@/constants/main/constants';
-import { useIsSecondPassResultEditingValueStore } from '@/store/form/isSecondPassEditing';
-import { useSecondPassResultStore } from '@/store/form/secondPassResult';
+import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundEditing';
+import { useSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { Form, FormType, PassStatusType } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Dropdown, Row, Text } from '@maru/ui';
@@ -25,11 +25,11 @@ const FormTableItem = ({
         return typeof status !== 'boolean' ? '미정' : status ? trueString : falseString;
     };
 
-    const isSecondPassResultEditing = useIsSecondPassResultEditingValueStore();
-    const [secondPassResult, setSecondPassResult] = useSecondPassResultStore();
+    const isSecondRoundResultEditing = useIsSecondRoundResultEditingValueStore();
+    const [secondRoundResult, setSecondRoundResult] = useSecondRoundResultStore();
 
     const handleSecondPassResultDropdownChange = (value: string) => {
-        setSecondPassResult((prev) => ({
+        setSecondRoundResult((prev) => ({
             ...prev,
             [id]: value as PassStatusType,
         }));
@@ -64,13 +64,13 @@ const FormTableItem = ({
                     color={typeof totalScore !== 'number' ? color.gray600 : color.gray900}>
                     {typeof totalScore !== 'number' ? '미정' : totalScore}
                 </Text>
-                {isSecondPassResultEditing ? (
+                {isSecondRoundResultEditing ? (
                     <Dropdown
                         name="pass"
                         size="SMALL"
                         width={100}
                         value={
-                            secondPassResult[id] ||
+                            secondRoundResult[id] ||
                             getStatusString(secondRoundPassed, '합격', '불합격')
                         }
                         data={['합격', '불합격', '미정']}
