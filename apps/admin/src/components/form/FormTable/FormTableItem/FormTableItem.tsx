@@ -1,12 +1,15 @@
 import TableItem from '@/components/common/TableItem/TableItem';
 import { ROUTES } from '@/constants/common/constant';
 import { FORM_TYPE } from '@/constants/main/constants';
+import { useFormToPrintStore } from '@/store/form/formToPrint';
+import { useIsFormToPrintSelectingValueStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { Form, FormType, PassStatusType } from '@/types/form/client';
 import { color } from '@maru/theme';
-import { Dropdown, Row, Text } from '@maru/ui';
+import { CheckBox, Dropdown, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
+import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 
 const FormTableItem = ({
@@ -40,14 +43,34 @@ const FormTableItem = ({
         }));
     };
 
+    const isFormToPrintSelecting = useIsFormToPrintSelectingValueStore();
+
+    const [formToPrint, setFormToPrint] = useFormToPrintStore();
+
+    const handleFormToPrintSelectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const { checked } = e.target;
+        setFormToPrint((prev) => ({ ...prev, [id]: checked }));
+    };
+
     return (
         <DirectButton
-            onClick={() => isSecondRoundResultEditing || router.push(`${ROUTES.FORM}/${id}`)}
+            onClick={() =>
+                isSecondRoundResultEditing ||
+                isFormToPrintSelecting ||
+                router.push(`${ROUTES.FORM}/${id}`)
+            }
             style={{
-                cursor: isSecondRoundResultEditing ? 'default' : 'pointer',
+                cursor:
+                    isSecondRoundResultEditing || isFormToPrintSelecting ? 'default' : 'pointer',
             }}>
             <TableItem>
                 <Row gap={48}>
+                    {isFormToPrintSelecting ? (
+                        <CheckBox
+                            checked={formToPrint[id]}
+                            onChange={handleFormToPrintSelectChange}
+                        />
+                    ) : null}
                     <Text fontType="p2" width={60}>
                         {id}
                     </Text>
