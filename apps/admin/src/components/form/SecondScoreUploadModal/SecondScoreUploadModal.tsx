@@ -5,11 +5,11 @@ import { Button, Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler, useRef } from 'react';
 import styled from 'styled-components';
-import SecondScoreUploader from './SecondScoreUploader/SecondScoreUploader';
 import {
-    useSecondScoreFormatAction,
+    useDownloadSecondScoreFormatAction,
     useUploadSecondScoreFormatAction,
 } from './SecondScoreUploadModal.hooks';
+import SecondScoreUploader from './SecondScoreUploader/SecondScoreUploader';
 
 interface Props {
     isOpen: boolean;
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
-    const { handleDownloadSecondScoreFormatButtonClick } = useSecondScoreFormatAction();
+    const { handleDownloadSecondScoreFormatButtonClick } = useDownloadSecondScoreFormatAction();
     const [fileData, setFileData] = useSecondScoreFileStore();
 
     const fileInputRef = useRef<HTMLInputElement>(null);
