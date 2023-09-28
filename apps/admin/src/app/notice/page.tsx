@@ -1,6 +1,6 @@
 'use client';
 
-import NoticeList from '@/components/notice/NoticeList/NoticeList';
+import NoticeTable from '@/components/notice/NoticeTable/NoticeTable';
 import AppLayout from '@/layouts/AppLayout';
 import { Button, Column, Loader, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -26,7 +26,7 @@ const NoticePage = () => {
                         </Button>
                     </Row>
                     <Suspense fallback={<Loader />}>
-                        <NoticeList />
+                        <NoticeTable />
                     </Suspense>
                 </Column>
             </StyledNoticePage>

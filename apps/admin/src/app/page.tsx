@@ -3,10 +3,12 @@
 import ButtonMenu from '@/components/common/ButtonMenu/ButtonMenu';
 import ButtonMenuItem from '@/components/common/ButtonMenu/ButtonMenuItem/ButtonMenuItem';
 import ExportExcelModal from '@/components/form/ExportExcelModal/ExportExcelModal';
-import FormList from '@/components/form/FormList/FormList';
+import FormTable from '@/components/form/FormTable/FormTable';
 import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
+import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundEditing';
+import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { useFormListTypeStore } from '@/store/form/type';
 import {
     IconCheckDocument,
@@ -17,10 +19,11 @@ import {
     IconUpload,
 } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Column, Row, SearchInput, Text } from '@maru/ui';
+import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
+import { useSecondRoundResultEditAction } from './form.hooks';
 
 if (process.env.NODE_ENV === 'development') {
     initMockAPI();
@@ -39,6 +42,18 @@ const MainPage = () => {
             <SecondScoreUploadModal isOpen={isOpen} onClose={close} />
         ));
     };
+
+    const [isSecondRoundResultEditing, setIsSecondRoundResultEditing] =
+        useIsSecondRoundResultEditingStore();
+    const secondRoundResult = useSetSecondRoundResultStore();
+
+    const handleIsSecondRoundResultEditingTrue = () => setIsSecondRoundResultEditing(true);
+    const handleIsSecondRoundResultEditingFalse = () => {
+        setIsSecondRoundResultEditing(false);
+        secondRoundResult({});
+    };
+
+    const { handleSecondRoundResultEditCompleteButtonClick } = useSecondRoundResultEditAction();
 
     const openExportExcelModal = () => {
         overlay.open(({ isOpen, close }) => <ExportExcelModal isOpen={isOpen} onClose={close} />);
@@ -69,46 +84,81 @@ const MainPage = () => {
                                     />
                                 </ReviewFilterBox>
                             ) : null}
-                            <ButtonMenu
-                                width={280}
-                                menuItemList={[
-                                    <ButtonMenuItem onClick={handleFormListTypeReview}>
-                                        <IconCheckDocument
-                                            color={color.gray600}
-                                            width={24}
-                                            height={24}
-                                        />
-                                        <Text fontType="p2" color={color.gray900}>
-                                            검토해야 하는 원서 모아보기
-                                        </Text>
-                                    </ButtonMenuItem>,
-                                    <ButtonMenuItem onClick={openSecondScoreUplaodModal}>
-                                        <IconEditDocument
-                                            color={color.gray600}
-                                            width={24}
-                                            height={24}
-                                        />
-                                        <Text fontType="p2" color={color.gray900}>
-                                            2차 전형 점수 입력하기
-                                        </Text>
-                                    </ButtonMenuItem>,
-                                    <ButtonMenuItem onClick={openExportExcelModal}>
-                                        <IconUpload color={color.gray600} width={24} height={24} />
-                                        <Text fontType="p2" color={color.gray900}>
-                                            명단 엑셀로 내보내기
-                                        </Text>
-                                    </ButtonMenuItem>,
-                                    <ButtonMenuItem>
-                                        <IconPrint color={color.gray600} width={24} height={24} />
-                                        <Text fontType="p2" color={color.gray900}>
-                                            원서 출력하기
-                                        </Text>
-                                    </ButtonMenuItem>,
-                                ]}
-                            />
+                            {isSecondRoundResultEditing ? (
+                                <Row gap={16}>
+                                    <Button
+                                        option="SECONDARY"
+                                        size="SMALL"
+                                        onClick={handleIsSecondRoundResultEditingFalse}>
+                                        취소
+                                    </Button>
+                                    <Button
+                                        size="SMALL"
+                                        onClick={handleSecondRoundResultEditCompleteButtonClick}>
+                                        완료
+                                    </Button>
+                                </Row>
+                            ) : (
+                                <ButtonMenu
+                                    width={280}
+                                    menuItemList={[
+                                        <ButtonMenuItem onClick={handleFormListTypeReview}>
+                                            <IconCheckDocument
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                검토해야 하는 원서 모아보기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem onClick={openSecondScoreUplaodModal}>
+                                            <IconEditDocument
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                2차 전형 점수 입력하기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem
+                                            onClick={handleIsSecondRoundResultEditingTrue}>
+                                            <IconEditDocument
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                2차 합격 여부 변경하기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem onClick={openExportExcelModal}>
+                                            <IconUpload
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                명단 엑셀로 내보내기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem>
+                                            <IconPrint
+                                                color={color.gray600}
+                                                width={24}
+                                                height={24}
+                                            />
+                                            <Text fontType="p2" color={color.gray900}>
+                                                원서 출력하기
+                                            </Text>
+                                        </ButtonMenuItem>,
+                                    ]}
+                                />
+                            )}
                         </Row>
                     </Row>
-                    <FormList />
+                    <FormTable />
                 </Column>
             </StyledMainPage>
         </AppLayout>

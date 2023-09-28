@@ -45,6 +45,8 @@ export type FormListType = '모두 보기' | '검토해야 하는 원서 모아�
 
 export type ExportExcelType = '전체 내보내기' | '1차 전형 결과' | '2차 전형 결과' | '최종 합격자';
 
+export type PassStatusType = '합격' | '불합격' | '미정';
+
 export interface FormDetail {
     applicant: UserInfo;
     parent: ParentInfo;
