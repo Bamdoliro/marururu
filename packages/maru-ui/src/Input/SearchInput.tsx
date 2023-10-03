@@ -30,7 +30,7 @@ const SearchInput = ({
 export default SearchInput;
 
 const StyledSearchInput = styled.div`
-    ${flex({ alignItems: 'center' })}
+    ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
     height: 40px;
     padding: 0 12px 0 16px;
     background-color: ${color.white};

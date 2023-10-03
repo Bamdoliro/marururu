@@ -43,7 +43,7 @@ const Footer = () => {
                             <DirectLink href={ROUTES.MAIN}>학교 홈페이지</DirectLink>
                         </Column>
                     </Row>
-                    <Row gap="16px" alignItems="center">
+                    <Row gap={16} alignItems="center">
                         <Image
                             src="/svg/round_instagram.svg"
                             width={36}

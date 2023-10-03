@@ -1,9 +1,8 @@
-import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { ResultOption } from '@/types/result/client';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
-import { useRouter } from 'next/navigation';
+import { useCTAButton } from './ResultTableFooter.hooks';
 
 interface Props {
     option: ResultOption;
@@ -11,12 +10,8 @@ interface Props {
 }
 
 const ResultTableFooter = ({ option, is합격 }: Props) => {
-    const router = useRouter();
+    const { handleGoMainPageButtonClick } = useCTAButton();
     const { userData } = useUser();
-
-    const handleGoMainPageButtonClick = () => {
-        router.push(ROUTES.MAIN);
-    };
 
     return is합격 ? (
         <Column gap={64} alignItems="center">

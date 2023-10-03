@@ -1,14 +1,17 @@
 'use client';
 
-import { FORM } from '@/constants/form/data';
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useSaveFormQuery } from '@/services/form/queries';
+import { useFormStatusQuery, useSaveFormQuery } from '@/services/form/queries';
 import {
     useFormStore,
     useIsSaveFormLoadedStore,
-    useSetNewSubjectStore,
-    useSetSubjectStore,
+    useSetFormStepStore,
+    useSetNewSubjectListStore,
+    useSetNew검정고시SubjectListStore,
+    useSetSubjectListStore,
+    useSet검정고시SubjectListStore,
 } from '@/store';
+import { updateSlicedSubjectList } from '@/utils';
 import { useInterval } from '@toss/react';
 import { ReactNode, useEffect } from 'react';
 
@@ -21,38 +24,50 @@ const FormWrapper = ({ children }: Props) => {
     const { saveFormMutate } = useSaveFormMutation();
     const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();
     const [form, setForm] = useFormStore();
-    const setSubjectList = useSetSubjectStore();
-    const setNewtSubjectList = useSetNewSubjectStore();
+    const setSubjectList = useSetSubjectListStore();
+    const setNewtSubjectList = useSetNewSubjectListStore();
+    const set검정고시SubjectList = useSet검정고시SubjectListStore();
+    const setNew검정고시SubjectList = useSetNew검정고시SubjectListStore();
+    const setFormStep = useSetFormStepStore();
+    const { data: formStatusData } = useFormStatusQuery();
 
-    // 2분마다 한번씩 저장
+    useEffect(() => {
+        if (formStatusData) {
+            const { status } = formStatusData;
+            switch (status) {
+                case 'SUBMITTED':
+                    setFormStep('초안제출완료');
+                    break;
+                case 'FINAL_SUBMITTED':
+                    setFormStep('최종제출완료');
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, [formStatusData]);
+
+    // 2분마다 자동 저장
+    const SAVE_FORM_INTERVAL_MS = 6000 * 10 * 2;
     useInterval(() => {
         saveFormMutate(form);
-    }, 6000 * 10 * 2);
+    }, SAVE_FORM_INTERVAL_MS);
 
     useEffect(() => {
         if (saveFormData && !isSaveFormLoaded) {
+            const subjectList = saveFormData.grade.subjectList;
+            const graduationType = saveFormData.education.graduationType;
+
             setIsSaveFormLoaded(true);
-            setForm({
-                applicant: saveFormData.applicant || FORM.applicant,
-                parent: saveFormData.parent || FORM.document,
-                education: saveFormData.education || FORM.education,
-                grade: saveFormData.grade || FORM.grade,
-                document: saveFormData.document || FORM.document,
-                type: saveFormData.type || FORM.type,
-            });
-            if (saveFormData.grade.subjectList) {
-                setSubjectList(
-                    saveFormData.grade.subjectList.slice(0, 12).map((subject, index) => ({
-                        ...subject,
-                        id: index,
-                    })),
-                );
-                setNewtSubjectList(
-                    saveFormData.grade.subjectList.slice(12).map((subject, index) => ({
-                        ...subject,
-                        id: index,
-                    })),
-                );
+            setForm((prev) => ({ ...prev, ...saveFormData }));
+            if (subjectList) {
+                if (graduationType === 'QUALIFICATION_EXAMINATION') {
+                    set검정고시SubjectList(updateSlicedSubjectList(subjectList, 0, 5));
+                    setNew검정고시SubjectList(updateSlicedSubjectList(subjectList, 5));
+                } else {
+                    setSubjectList(updateSlicedSubjectList(subjectList, 0, 12));
+                    setNewtSubjectList(updateSlicedSubjectList(subjectList, 12));
+                }
             }
         }
     }, [saveFormData]);

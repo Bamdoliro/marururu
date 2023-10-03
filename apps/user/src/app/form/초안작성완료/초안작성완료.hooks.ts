@@ -72,18 +72,17 @@ export const useCheckFilledForm = () => {
     const form = useFormValueStore();
     const [isFilledForm, setIsFilledForm] = useState(false);
 
-    const [applicantFieldCount, setApplicantFieldCount] = useState(0);
-    const [parentFieldCount, setParentFieldCount] = useState(0);
-    const [educationFieldCount, setEducationFieldCount] = useState(0);
-    const [typeFieldCount, setTypeFieldCount] = useState(0);
-    const [documentFieldCount, setDocumentFieldCount] = useState(0);
+    const [applicantFilledCount, setApplicantFilledCount] = useState(0);
+    const [parentFilledCount, setParentFilledCount] = useState(0);
+    const [educationFilledCount, setEducationFilledCount] = useState(0);
+    const [typeFilledCount, setTypeFilledCount] = useState(0);
+    const [documentFilledCount, setDocumentFilledCount] = useState(0);
 
     useEffect(() => {
         const filledApplicantFieldsCount = useFilledApplicantFieldsCount(form.applicant);
-
         const filledParentFieldsCount = useFilledParentFieldsCount(form.parent);
         const filledEducationFieldsCount = useFilledEducationFieldsCount(form.education);
-        const filledTypeFieldsCount = form.type ? 1 : 0;
+        const filledTypeFieldCount = form.type ? 1 : 0;
         const filledDocumentFieldsCount = Object.values(form.document).filter(
             (value) => !!value,
         ).length;
@@ -92,25 +91,25 @@ export const useCheckFilledForm = () => {
             filledApplicantFieldsCount === 5 &&
             filledParentFieldsCount === 6 &&
             filledEducationFieldsCount === 8 &&
-            filledTypeFieldsCount === 1 &&
+            filledTypeFieldCount === 1 &&
             filledDocumentFieldsCount === 2
         ) {
             setIsFilledForm(true);
         }
 
-        setApplicantFieldCount(filledApplicantFieldsCount);
-        setParentFieldCount(filledParentFieldsCount);
-        setEducationFieldCount(filledEducationFieldsCount);
-        setTypeFieldCount(filledTypeFieldsCount);
-        setDocumentFieldCount(filledDocumentFieldsCount);
+        setApplicantFilledCount(filledApplicantFieldsCount);
+        setParentFilledCount(filledParentFieldsCount);
+        setEducationFilledCount(filledEducationFieldsCount);
+        setTypeFilledCount(filledTypeFieldCount);
+        setDocumentFilledCount(filledDocumentFieldsCount);
     }, []);
 
     return {
-        applicantFieldCount,
-        parentFieldCount,
-        educationFieldCount,
-        typeFieldCount,
-        documentFieldCount,
+        applicantFilledCount,
+        parentFilledCount,
+        educationFilledCount,
+        typeFilledCount,
+        documentFilledCount,
         isFilledForm,
     };
 };

@@ -7,8 +7,19 @@ export const useCTAButton = () => {
     const { saveFormMutate } = useSaveFormMutation();
 
     const handleNextButtonClick = () => {
-        setFormStep('자기소개서');
-        saveFormMutate(form);
+        const isEmptySubjectName = form.grade.subjectList.some(({ subjectName }) => {
+            if (subjectName === '') {
+                alert('비어있는 과목명이 있어요');
+                setFormStep('성적입력');
+                return true;
+            }
+            return false;
+        });
+
+        if (!isEmptySubjectName) {
+            setFormStep('자기소개서');
+            saveFormMutate(form);
+        }
     };
 
     const handlePreviousButtonClick = () => {

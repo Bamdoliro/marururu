@@ -14,7 +14,7 @@ import styled from 'styled-components';
 const FaqPostPage = () => {
     return (
         <AppLayout>
-            <StyledFaqDetail>
+            <StyledFaqPost>
                 <DirectLink href={ROUTES.FAQ}>
                     <IconArrowLeft width={18} height={18} />
                     돌아가기
@@ -22,14 +22,14 @@ const FaqPostPage = () => {
                 <Suspense fallback={<Loader />}>
                     <FaqPost />
                 </Suspense>
-            </StyledFaqDetail>
+            </StyledFaqPost>
         </AppLayout>
     );
 };
 
 export default FaqPostPage;
 
-const StyledFaqDetail = styled.div`
+const StyledFaqPost = styled.div`
     position: relative;
     ${flex({ flexDirection: 'column' })}
     gap: 24px;

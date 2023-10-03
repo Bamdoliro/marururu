@@ -1,8 +1,7 @@
 'use client';
 
-import { CheckFormComplete, CompleteAlaram, DraftFormConfirm } from '@/components/form';
+import { CheckFormCompleteBox, CompleteAlaram, DraftFormConfirm } from '@/components/form';
 import { AppLayout } from '@/layouts';
-import { useSetFormStepStore } from '@/store';
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
@@ -13,15 +12,14 @@ import { useCheckFilledForm, useCTAButton, useSubmitDraftFormAction } from './�
 
 const 초안작성완료 = () => {
     const overlay = useOverlay();
-    const setFormStep = useSetFormStepStore();
     const { handleAgainCheckFormButtonClick } = useCTAButton();
     const {
-        applicantFieldCount,
-        parentFieldCount,
-        educationFieldCount,
-        typeFieldCount,
-        documentFieldCount,
-        isFilledForm,
+        applicantFilledCount,
+        parentFilledCount,
+        educationFilledCount,
+        typeFilledCount,
+        documentFilledCount,
+        isFilledForm: isComplete,
     } = useCheckFilledForm();
     const { handleSubmitDraftFormButtonClick } = useSubmitDraftFormAction();
 
@@ -42,93 +40,48 @@ const 초안작성완료 = () => {
         <AppLayout header>
             <CompleteAlarmBox>
                 <CompleteAlaram
-                    isComplete={isFilledForm}
+                    isComplete={isComplete}
                     completeText="원서 초안 작성 완료"
-                    inCompleteText="아직 작성하지 않은 곳이 있어요"
+                    incompleteText="아직 작성하지 않은 곳이 있어요"
                 />
             </CompleteAlarmBox>
-            <Styled초안작성완료 isFilledForm={isFilledForm}>
+            <Styled초안작성완료 isComplete={isComplete}>
                 <Row gap={8} alignItems="center">
-                    {isFilledForm ? (
+                    {isComplete ? (
                         <IconCheckCircle width={64} height={64} />
                     ) : (
                         <IconCancelCircle width={64} height={64} />
                     )}
                     <Text fontType="H1" color={color.gray900}>
-                        {isFilledForm ? '원서 초안 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
+                        {isComplete ? '원서 초안 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
                     </Text>
                 </Row>
                 <Column gap={12}>
-                    {isFilledForm ? (
-                        <Text fontType="p1" color={color.gray900}>
-                            원서 접수에 필요한 초안을 모두 작성하셨습니다.
-                        </Text>
-                    ) : (
-                        <Text fontType="p1" color={color.gray900}>
-                            원서 작성 중 입력하지 않은 곳이 있습니다.
-                        </Text>
-                    )}
-                    {isFilledForm ? (
-                        <Text fontType="H4" color={color.red}>
-                            원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한
-                            것으로 처리되며
-                            <br />더 이상 입학원서 수정이 불가능합니다.
-                        </Text>
-                    ) : (
-                        <Text fontType="H4" color={color.red}>
-                            원서 작성 중 입력하지 않은 곳이 있다면 초안을 제출할 수 없습니다.
-                        </Text>
-                    )}
-                    {isFilledForm ? (
-                        <Text fontType="p1" color={color.gray900}>
-                            잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
-                        </Text>
-                    ) : (
-                        <Text fontType="p1" color={color.gray900}>
-                            또한 잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
-                        </Text>
-                    )}
-                </Column>
-                <CheckFormCompleteBox>
-                    <CheckFormComplete
-                        onClick={() => setFormStep('지원자정보')}
-                        formStep="지원자 정보"
-                        maxCompleteOfNumber={5}
-                        completeOfNumber={applicantFieldCount}
-                    />
-                    <CheckFormComplete
-                        onClick={() => setFormStep('보호자정보')}
-                        formStep="보호자 정보"
-                        maxCompleteOfNumber={6}
-                        completeOfNumber={parentFieldCount}
-                    />
-                    <CheckFormComplete
-                        onClick={() => setFormStep('출신학교및학력')}
-                        formStep="출신학교 및 학력"
-                        maxCompleteOfNumber={8}
-                        completeOfNumber={educationFieldCount}
-                    />
-                    <CheckFormComplete
-                        onClick={() => setFormStep('전형선택')}
-                        formStep="전형 선택"
-                        maxCompleteOfNumber={1}
-                        completeOfNumber={typeFieldCount}
-                    />
-                    <CheckFormComplete
-                        onClick={() => setFormStep('성적입력')}
-                        formStep="성적 입력"
-                        maxCompleteOfNumber={4}
-                        completeOfNumber={4}
-                    />
-                    <CheckFormComplete
-                        onClick={() => setFormStep('자기소개서')}
-                        formStep="자기소개서 및 학업계획서"
-                        maxCompleteOfNumber={2}
-                        completeOfNumber={documentFieldCount}
-                    />
-                </CheckFormCompleteBox>
+                    <Text fontType="p1" color={color.gray900}>
+                        {isComplete
+                            ? '원서 접수에 필요한 초안을 모두 작성하셨습니다.'
+                            : '원서 작성 중 입력하지 않은 곳이 있습니다.'}
+                    </Text>
 
-                {isFilledForm && (
+                    <Text fontType="H4" color={color.red}>
+                        {isComplete
+                            ? '원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로\n 처리되며 더 이상 입학원서 수정이 불가능합니다.'
+                            : '원서 작성 중 입력하지 않은 곳이 있다면 초안을 제출할 수 없습니다.'}
+                    </Text>
+                    <Text fontType="p1" color={color.gray900}>
+                        {isComplete
+                            ? '잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.'
+                            : '또한 잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.'}
+                    </Text>
+                </Column>
+                <CheckFormCompleteBox
+                    applicantFilledCount={applicantFilledCount}
+                    parentFilledCount={parentFilledCount}
+                    educationFilledCount={educationFilledCount}
+                    typeFilledCount={typeFilledCount}
+                    documentFilledCount={documentFilledCount}
+                />
+                {isComplete && (
                     <Column gap={24}>
                         <Text fontType="H3" color={color.gray900}>
                             제출하시겠습니까?
@@ -153,9 +106,9 @@ const 초안작성완료 = () => {
 
 export default 초안작성완료;
 
-const Styled초안작성완료 = styled.div<{ isFilledForm: boolean }>`
+const Styled초안작성완료 = styled.div<{ isComplete: boolean }>`
     ${flex({ flexDirection: 'column' })}
-    gap: ${(props) => (props.isFilledForm ? '48px' : '62px')};
+    gap: ${(props) => (props.isComplete ? '48px' : '62px')};
     max-width: 800px;
     height: 100%;
     margin: 62px auto 240px;
@@ -172,14 +125,6 @@ const Styled초안작성완료 = styled.div<{ isFilledForm: boolean }>`
             opacity: 100;
         }
     }
-`;
-
-const CheckFormCompleteBox = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    width: 100%;
-    height: 248px;
 `;
 
 const CompleteAlarmBox = styled.div`

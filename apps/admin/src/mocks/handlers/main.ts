@@ -1,4 +1,4 @@
-import { Form } from '@/types/main/client';
+import { Form } from '@/types/form/client';
 import { rest } from 'msw';
 
 const MAIN_FORM_DATA: Form[] = [

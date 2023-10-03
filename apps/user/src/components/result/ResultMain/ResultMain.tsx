@@ -11,10 +11,6 @@ interface Props {
 }
 
 const ResultMain = ({ setResultStep, option }: Props) => {
-    const handleGoResultPageButtonClick = () => {
-        setResultStep('RESULT');
-    };
-
     return (
         <StyledResultMain>
             <InfoBox>
@@ -44,7 +40,7 @@ const ResultMain = ({ setResultStep, option }: Props) => {
                     </Column>
                 )}
             </InfoBox>
-            <Button onClick={handleGoResultPageButtonClick} size="LARGE">
+            <Button onClick={() => setResultStep('RESULT')} size="LARGE">
                 결과 확인하기
             </Button>
         </StyledResultMain>

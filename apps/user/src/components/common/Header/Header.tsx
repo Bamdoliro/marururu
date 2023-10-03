@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import Profile from './Profile/Profile';
-const NAVIGATION_DATA = [
+const NAVIGATION_LIST = [
     {
         name: '홈',
         route: ROUTES.MAIN,
@@ -53,7 +53,7 @@ const Header = () => {
                     {isLoggedIn ? (
                         <Profile />
                     ) : (
-                        <Row gap="10px" alignItems="center">
+                        <Row gap={10} alignItems="center">
                             <Button
                                 option="QUATERNARY"
                                 size="SMALL"
@@ -69,8 +69,8 @@ const Header = () => {
                         </Row>
                     )}
                 </Row>
-                <Row style={{ padding: '0px 96px' }} alignItems="center" height={54}>
-                    {NAVIGATION_DATA.map(({ route, name }, index) => {
+                <Row style={{ padding: '0px 96px' }} alignItems="center">
+                    {NAVIGATION_LIST.map(({ route, name }, index) => {
                         return (
                             <UnderlineButton
                                 key={`navigation ${index}`}
@@ -90,7 +90,6 @@ export default Header;
 
 const StyledHeader = styled.div`
     width: 100%;
-    height: 118px;
     box-shadow: 0 1px 0 0 ${color.gray200};
 `;
 

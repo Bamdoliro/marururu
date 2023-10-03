@@ -16,7 +16,6 @@ interface Props {
 }
 
 const FaqDetailPage = ({ params: { id } }: Props) => {
-    // TODO :: 수정, 삭제 기능 추가하기
     return (
         <AppLayout>
             <StyledNoticeDetail>
@@ -44,8 +43,8 @@ const StyledNoticeDetail = styled.div`
 `;
 
 const DirectLink = styled(Link)`
-    ${flex({ alignItems: 'center' })}
+    ${flex({ alignItems: 'center' })};
     gap: 2px;
-    ${font.p3}
+    ${font.p3};
     color: ${color.gray600};
 `;
