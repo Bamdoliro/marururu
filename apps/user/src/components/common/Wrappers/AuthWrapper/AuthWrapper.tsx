@@ -1,8 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
-import { 제출_마감_날짜, 제출_시작_날짜 } from '@/constants/form/constant';
 import { useUser } from '@/hooks';
 import { useOverlay } from '@toss/use-overlay';
-import dayjs from 'dayjs';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import FormPeriodModal from './FormPeriodModal/FormPeriodModal';
@@ -30,23 +28,25 @@ const AuthWrapper = ({ children }: Props) => {
     };
 
     useEffect(() => {
-        if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName) && !isLoggedIn) {
-            openRequiredLoginModal();
-            router.push(ROUTES.MAIN);
-        }
+        // 로그인이 되었을때
         if (isLoggedIn) {
             if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
                 openFormPeriodModal();
                 router.push(ROUTES.MAIN);
-            } else if (
-                dayjs().isBefore(제출_시작_날짜) ||
-                (dayjs().isAfter(제출_마감_날짜) && process.env.NODE_ENV !== 'development')
-            ) {
-                if (pathName === ROUTES.FORM) {
-                    router.push(ROUTES.MAIN);
-                } else if (pathName === ROUTES.FIRST_RESULT || pathName === ROUTES.FINAL_RESULT) {
-                    router.push(ROUTES.MAIN);
-                }
+            }
+            // else if (dayjs().isBefore(제출_시작_날짜) || dayjs().isAfter(제출_마감_날짜)) {
+            //     if (pathName === ROUTES.FORM) {
+            //         router.push(ROUTES.MAIN);
+            //     } else if (pathName === ROUTES.FIRST_RESULT || pathName === ROUTES.FINAL_RESULT) {
+            //         router.push(ROUTES.MAIN);
+            //     }
+            // }
+        }
+        // 로그인이 되지 않았을때
+        else {
+            if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
+                openRequiredLoginModal();
+                router.push(ROUTES.MAIN);
             }
         }
     }, [isLoggedIn, pathName]);
