@@ -1,12 +1,11 @@
 'use client';
 
-import { Loader } from '@/components/common';
 import { NoticeDetailContent } from '@/components/notice';
 import { ROUTES } from '@/constants/common/constant';
 import { AppLayout } from '@/layouts';
 import { IconArrowLeft } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Text } from '@maru/ui';
+import { Loader, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Link from 'next/link';
 import { Suspense } from 'react';

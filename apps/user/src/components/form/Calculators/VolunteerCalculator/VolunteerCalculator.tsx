@@ -1,17 +1,13 @@
-import { useFormStore } from '@/store';
+import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/theme';
-import { Column, NumberInput, Row, Td, Text, Th } from '@maru/ui';
+import { CellInput, Column, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler } from 'react';
 import { styled } from 'styled-components';
+import { useInput } from './VolunteerCalculator.hooks';
 
 const VolunteerCalculator = () => {
-    const [form, setForm] = useFormStore();
-
-    const handleVolunteerInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, grade: { ...prev.grade, [name]: Number(value) } }));
-    };
+    const form = useFormValueStore();
+    const { handleVolunteerTimeDataChange } = useInput();
 
     return (
         <StyledVolunteerCalculator>
@@ -32,9 +28,9 @@ const VolunteerCalculator = () => {
                         1학년
                     </Td>
                     <Td width={654} height={56}>
-                        <NumberInput
+                        <CellInput
                             name="volunteerTime1"
-                            onChange={handleVolunteerInfoDataChange}
+                            onChange={handleVolunteerTimeDataChange}
                             value={form.grade.volunteerTime1}
                             isError={Number(form.grade.volunteerTime1) < 0}
                         />
@@ -46,9 +42,9 @@ const VolunteerCalculator = () => {
                         2학년
                     </Td>
                     <Td width={654} height={56}>
-                        <NumberInput
+                        <CellInput
                             name="volunteerTime2"
-                            onChange={handleVolunteerInfoDataChange}
+                            onChange={handleVolunteerTimeDataChange}
                             value={form.grade.volunteerTime2}
                             isError={Number(form.grade.volunteerTime2) < 0}
                         />
@@ -60,9 +56,9 @@ const VolunteerCalculator = () => {
                         3학년
                     </Td>
                     <Td borderBottomRightRadius={12} width={654} height={56}>
-                        <NumberInput
+                        <CellInput
                             name="volunteerTime3"
-                            onChange={handleVolunteerInfoDataChange}
+                            onChange={handleVolunteerTimeDataChange}
                             value={form.grade.volunteerTime3}
                             isError={Number(form.grade.volunteerTime3) < 0}
                         />

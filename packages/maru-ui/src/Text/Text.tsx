@@ -11,11 +11,26 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
     width?: CSSProperties['width'];
     textAlign?: CSSProperties['textAlign'];
     ellipsis?: boolean;
+    whiteSpace?: CSSProperties['whiteSpace'];
+    tag?: 'span' | 'p';
 }
 
-const Text = ({ children, color, fontType, textAlign, width, ellipsis = false }: Props) => {
+const Text = ({
+    children,
+    color,
+    fontType,
+    textAlign,
+    width,
+    ellipsis = false,
+    whiteSpace = 'nowrap',
+    tag = 'span',
+}: Props) => {
     return (
-        <StyledText style={{ color, textAlign, width }} fontType={fontType} ellipsis={ellipsis}>
+        <StyledText
+            style={{ color, textAlign, width, whiteSpace }}
+            fontType={fontType}
+            as={tag}
+            ellipsis={ellipsis}>
             {children}
         </StyledText>
     );
@@ -23,13 +38,12 @@ const Text = ({ children, color, fontType, textAlign, width, ellipsis = false }:
 
 export default Text;
 
-const StyledText = styled.p<{ fontType: Font; ellipsis: boolean }>`
+const StyledText = styled.span<{ fontType: Font; ellipsis: boolean }>`
     ${({ fontType }) => font[fontType]}
     ${(props) =>
         props.ellipsis &&
         css`
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         `}
 `;

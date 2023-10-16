@@ -1,21 +1,17 @@
+import { useOpenFileUploader } from '@/hooks';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
 import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, DragEvent, useRef, useState } from 'react';
+import { ChangeEventHandler, DragEvent, useState } from 'react';
 import styled from 'styled-components';
 
 const ProfileUploader = () => {
     const form = useFormValueStore();
     const [isDragging, setIsDragging] = useState(false);
-    const imageFileInputRef = useRef<HTMLInputElement>(null);
-
-    // 클릭시 이미지 업로드 파일 열기
-    const handleImageUploadButtonClick = () => {
-        imageFileInputRef.current?.click();
-    };
-
+    const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
+        useOpenFileUploader();
     // Mutation
     const { uploadProfileImageMutate } = useUploadProfileImageMutation();
     const uploadProfileImageFile = (image: FormData) => {
@@ -66,14 +62,14 @@ const ProfileUploader = () => {
             {form.applicant.identificationPictureUri ? (
                 <ImagePreview src={form.applicant.identificationPictureUri} alt="profile-image" />
             ) : (
-                <ImageUploadBox
+                <UploadImageBox
                     onDragEnter={onDragEnter}
                     onDragLeave={onDragLeave}
                     onDragOver={onDragOver}
                     onDrop={onDrop}
                     $isDragging={isDragging}>
                     <Column gap={12} alignItems="center">
-                        <Button size="SMALL" onClick={handleImageUploadButtonClick}>
+                        <Button size="SMALL" onClick={openImageFileUploader}>
                             파일 선택
                         </Button>
                         <Text fontType="p2" color={color.gray500}>
@@ -83,10 +79,10 @@ const ProfileUploader = () => {
                             여기로 사진을 끌어오세요
                         </Text>
                     </Column>
-                </ImageUploadBox>
+                </UploadImageBox>
             )}
             {form.applicant.identificationPictureUri && (
-                <Button size="SMALL" onClick={handleImageUploadButtonClick}>
+                <Button size="SMALL" onClick={openImageFileUploader}>
                     재업로드
                 </Button>
             )}
@@ -97,7 +93,7 @@ const ProfileUploader = () => {
             </Desc>
             <input
                 type="file"
-                ref={imageFileInputRef}
+                ref={imageUploaderRef}
                 accept=".png, .jpg, .jpeg"
                 onChange={handleImageFileDataChange}
                 hidden
@@ -113,7 +109,7 @@ const StyledProfileUploader = styled.div`
     gap: 8px;
 `;
 
-const ImageUploadBox = styled.div<{ $isDragging: boolean }>`
+const UploadImageBox = styled.div<{ $isDragging: boolean }>`
     ${flex({ alignItems: 'center', justifyContent: 'center' })}
     width: 225px;
     height: 300px;

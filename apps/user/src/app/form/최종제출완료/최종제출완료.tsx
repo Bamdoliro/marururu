@@ -1,15 +1,15 @@
 import { CompleteAlaram } from '@/components/form';
+import { useUser } from '@/hooks';
 import { AppLayout } from '@/layouts';
 import { IconCheckCircle } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 import { useCTAButton } from './최종제출완료.hooks';
 
 const 최종제출완료 = () => {
-    const router = useRouter();
+    const { userData } = useUser();
     const { handleGoMainPageButtonClick } = useCTAButton();
 
     return (
@@ -30,11 +30,12 @@ const 최종제출완료 = () => {
                             부산소프트웨어마이스터고에 지원해주셔서 감사합니다.
                         </Text>
                         <Text fontType="p2" color={color.gray900} textAlign="center">
-                            신준서 님, 부산소프트웨어마이스터고에 지원해주셔서 대단히 감사드립니다.
+                            {userData.name} 님, 부산소프트웨어마이스터고에 지원해주셔서 대단히
+                            감사드립니다.
                             <br />
-                            1차 합격자는 11월 3일에 발표됩니다.
+                            1차 합격자는 10월 23일에 발표됩니다.
                             <br />
-                            신준서 님의 1차 합격을 기원합니다.
+                            {userData.name} 님의 1차 합격을 기원합니다.
                         </Text>
                     </Column>
                     <Button onClick={handleGoMainPageButtonClick} size="SMALL">
@@ -51,6 +52,9 @@ export default 최종제출완료;
 const Styled최종제출완료 = styled.div`
     ${flex({ flexDirection: 'column' })}
     gap: 70px;
+    width: 100%;
+    height: 100%;
+    padding-top: 69px;
 
     opacity: 0;
     animation: show 1.2s 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;

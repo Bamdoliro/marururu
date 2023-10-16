@@ -1,15 +1,25 @@
 import { FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { useFormValueStore } from '@/store';
+import { useFormStore } from '@/store';
 import { Column, Radio, Row, Td, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useCTAButton, useInput } from './전형선택.hooks';
 
 const 전형선택 = () => {
-    const form = useFormValueStore();
+    const [form, setForm] = useFormStore();
     const { handleFormTypeDataChange } = useInput();
     const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+
+    useEffect(() => {
+        if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+            if (form.type !== 'REGULAR') {
+                alert('서류상으로 검정고시 합격자는 특별전형 지원이 불가능해요. 일반전형으로 지원해주세요!');
+                setForm((prev) => ({ ...prev, type: 'REGULAR' }));
+            }
+        }
+    }, [form.type]);
 
     return (
         <FormLayout title="전형 선택">
@@ -161,7 +171,7 @@ const 전형선택 = () => {
                                     </Row>
                                     <Row>
                                         <Td width="calc(736px/3)" height={56}>
-                                            소년 . 소녀가장
+                                            소년 ∙ 소녀가장
                                         </Td>
                                         <Td width={80} height={56}>
                                             <Radio

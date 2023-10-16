@@ -53,6 +53,7 @@ export const useRequestVerificationMutation = (phoneNumber: string) => {
 
     const { mutate: requestVerificationMutate, ...restMutation } = useMutation({
         mutationFn: () => postRequestVerification(phoneNumber),
+        onSuccess: () => alert('인증 성공'),
         onError: handleError,
     });
 
@@ -83,7 +84,7 @@ export const useLogoutUserMutation = () => {
             localStorage.clear();
             window.location.href = ROUTES.MAIN;
         },
-        onError: localStorage.clear,
+        onError: () => localStorage.clear(),
     });
 
     return { logoutUserMutate, ...restMutation };

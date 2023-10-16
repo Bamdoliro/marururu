@@ -25,7 +25,7 @@ const HoverStateBox = styled.div`
 
 const StyledUnderlineButton = styled.button<{ $active: boolean }>`
     padding: 0px 4px;
-    height: 54px;
+    height: 60px;
     position: relative;
     background-color: ${color.white};
     color: ${color.gray900};

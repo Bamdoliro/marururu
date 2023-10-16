@@ -1,4 +1,4 @@
-import { DateBox, FormController, ProfileUploader } from '@/components/form';
+import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { Column, Input, RadioGroup, Row } from '@maru/ui';
@@ -21,18 +21,26 @@ const 지원자정보 = () => {
                             value={form.applicant.name}
                             onChange={handle지원자정보DataChange}
                             name="name"
+                            placeholder="예) 홍길동"
                             width="100%"
                             isError={form.applicant.name.length > 20}
                             errorMessage="20자 이하여야 합니다."
                         />
-                        <DateBox />
+                        <Input
+                            label="생년월일"
+                            value={form.applicant.birthday}
+                            onChange={handle지원자정보DataChange}
+                            name="birthday"
+                            placeholder="예) 2006-07-06"
+                            width="100%"
+                        />
                         <Row gap={40} alignItems="flex-end">
                             <RadioGroup
                                 label="성별"
                                 value={form.applicant.gender}
                                 onChange={handle지원자정보DataChange}
                                 name="gender"
-                                list={[
+                                items={[
                                     { label: '남자', value: 'MALE' },
                                     { label: '여자', value: 'FEMALE' },
                                 ]}
@@ -43,7 +51,7 @@ const 지원자정보 = () => {
                             value={form.applicant.phoneNumber}
                             onChange={handle지원자정보DataChange}
                             name="phoneNumber"
-                            placeholder="- 없이 입력해주세요"
+                            placeholder="- 없이 입력해주세요."
                             width="100%"
                             isError={
                                 !!form.applicant.phoneNumber &&

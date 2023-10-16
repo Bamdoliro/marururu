@@ -1,10 +1,9 @@
 'use client';
 
-import { Loader } from '@/components/common';
 import { CategoryFilter, FaqList } from '@/components/faq';
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
-import { Text } from '@maru/ui';
+import { Loader, Text } from '@maru/ui';
 import { Suspense, useState } from 'react';
 import styled from 'styled-components';
 

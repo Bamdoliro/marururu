@@ -1,7 +1,11 @@
 'use client';
 
 import { GlobalStyle } from '@maru/theme';
+import { OverlayProvider } from '@toss/use-overlay';
 import { ReactNode } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { RecoilRoot } from 'recoil';
 
 interface Props {
     children: ReactNode;
@@ -9,10 +13,13 @@ interface Props {
 
 const Provider = ({ children }: Props) => {
     return (
-        <>
-            <GlobalStyle />
-            {children}
-        </>
+        <RecoilRoot>
+            <OverlayProvider>
+                <GlobalStyle />
+                {children}
+                <ToastContainer />
+            </OverlayProvider>
+        </RecoilRoot>
     );
 };
 
