@@ -6,14 +6,14 @@ import { useCTAButton } from './ResultTableFooter.hooks';
 
 interface Props {
     option: ResultOption;
-    is합격: boolean;
+    isPassed: boolean;
 }
 
-const ResultTableFooter = ({ option, is합격 }: Props) => {
+const ResultTableFooter = ({ option, isPassed }: Props) => {
     const { handleGoMainPageButtonClick } = useCTAButton();
     const { userData } = useUser();
 
-    return is합격 ? (
+    return isPassed ? (
         <Column gap={64} alignItems="center">
             <Column gap={24}>
                 {option === 'FIRST' ? (

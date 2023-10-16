@@ -1,9 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import { reset } from 'styled-reset';
 import color from './color';
 
 const GlobalStyle = createGlobalStyle`
-${reset}
 
 * {
   box-sizing: border-box;
@@ -17,9 +15,6 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-p {
-  display: inline-block;
-}
 
 a {
   display: inline-block;
