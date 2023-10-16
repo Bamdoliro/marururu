@@ -1,4 +1,5 @@
 import Provider from '@/components/Provider';
+import StyledComponentsRegistry from '@/lib/registry';
 import QueryClientProvider from '@/services/QueryClientProvider';
 import Script from 'next/script';
 import { ReactNode } from 'react';
@@ -30,9 +31,11 @@ const Layout = ({ children }: Props) => {
                 </Script>
             </head>
             <body>
-                <QueryClientProvider>
-                    <Provider>{children}</Provider>
-                </QueryClientProvider>
+                <StyledComponentsRegistry>
+                    <QueryClientProvider>
+                        <Provider>{children}</Provider>
+                    </QueryClientProvider>
+                </StyledComponentsRegistry>
             </body>
         </html>
     );
