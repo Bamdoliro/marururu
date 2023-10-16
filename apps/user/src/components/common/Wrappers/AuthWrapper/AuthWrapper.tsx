@@ -1,3 +1,5 @@
+'use client';
+
 import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { useOverlay } from '@toss/use-overlay';
