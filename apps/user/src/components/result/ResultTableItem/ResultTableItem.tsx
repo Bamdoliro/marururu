@@ -24,15 +24,9 @@ const ResultTableItem = ({ id, name, type, isPassed }: Props) => {
                     {type}
                 </Text>
             </Row>
-            {isPassed ? (
-                <Text fontType="p2" color={color.gray900}>
-                    합격
-                </Text>
-            ) : (
-                <Text fontType="p2" color={color.gray900}>
-                    불합격
-                </Text>
-            )}
+            <Text fontType="p2" color={color.gray900}>
+                {isPassed ? '합격' : '불합격'}
+            </Text>
         </StyledResultTableItem>
     );
 };
