@@ -7,10 +7,10 @@ interface Props {
     id: number;
     name: string;
     type: string;
-    is합격: boolean;
+    isPassed: boolean;
 }
 
-const ResultTableItem = ({ id, name, type, is합격 }: Props) => {
+const ResultTableItem = ({ id, name, type, isPassed }: Props) => {
     return (
         <StyledResultTableItem>
             <Row alignItems="center" gap={48}>
@@ -24,7 +24,7 @@ const ResultTableItem = ({ id, name, type, is합격 }: Props) => {
                     {type}
                 </Text>
             </Row>
-            {is합격 ? (
+            {isPassed ? (
                 <Text fontType="p2" color={color.gray900}>
                     합격
                 </Text>
