@@ -3,7 +3,7 @@ export interface Form {
     parent: ParentInfo;
     education: EducationInfo;
     grade: {
-        subjectList: Omit<Subject, 'id'>[];
+        subjectList: StudentSubject[];
         attendance1: Attendance;
         attendance2: Attendance;
         attendance3: Attendance;
@@ -69,6 +69,8 @@ export interface Subject {
     achievementLevel31: AchievementLevel | null;
     score: number | null;
 }
+
+export type StudentSubject = Omit<Subject, 'id'>;
 
 export type AttendanceName = 'attendance1' | 'attendance2' | 'attendance3';
 
