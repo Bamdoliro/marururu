@@ -61,14 +61,6 @@ export interface EducationInfo {
 
 export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
 
-export interface StudentSubject {
-    subjectName: string;
-    achievementLevel21: AchievementLevel | null;
-    achievementLevel22: AchievementLevel | null;
-    achievementLevel31: AchievementLevel | null;
-    score: number | null;
-}
-
 export interface Subject {
     id: number;
     subjectName: string;
@@ -77,6 +69,8 @@ export interface Subject {
     achievementLevel31: AchievementLevel | null;
     score: number | null;
 }
+
+export type StudentSubject = Omit<Subject, 'id'>;
 
 export type AttendanceName = 'attendance1' | 'attendance2' | 'attendance3';
 
