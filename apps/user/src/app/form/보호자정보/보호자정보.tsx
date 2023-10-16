@@ -1,9 +1,9 @@
 import { FindAddressModal, FormController } from '@/components/form';
-import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
+import FormLayout from '../layout';
 import { useCTAButton, useInput } from './보호자정보.hooks';
 
 const 보호자정보 = () => {

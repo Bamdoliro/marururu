@@ -9,7 +9,7 @@ import {
     ScheduleBox,
     SimulatorBox,
 } from '@/components/main';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const MainPage = () => {
     return (
-        <AppLayout header footer>
+        <Layout header footer>
             <StyledMainPage>
                 <Row gap={48} width="100%" height={450} justifyContent="center">
                     <DdayBox />
@@ -36,7 +36,7 @@ const MainPage = () => {
                     <FaqBox />
                 </Row>
             </StyledMainPage>
-        </AppLayout>
+        </Layout>
     );
 };
 

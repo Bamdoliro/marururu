@@ -1,5 +1,4 @@
 import { FindSchoolModal, FormController } from '@/components/form';
-import { FormLayout } from '@/layouts';
 import {
     useFormValueStore,
     useSetNewSubjectListStore,
@@ -11,6 +10,7 @@ import { ButtonInput, Input, RadioGroup, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
+import FormLayout from '../layout';
 import { useCTAButton, useInput } from './출신학교및학력.hooks';
 
 const 출신학교및학력 = () => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -12,7 +12,7 @@ const NotFound = () => {
     const router = useRouter();
 
     return (
-        <AppLayout header footer>
+        <Layout header footer>
             <StyledNotFound>
                 <Image src="/svg/not_found.svg" alt="not-found" width={389} height={155} />
                 <Column gap={24}>
@@ -29,7 +29,7 @@ const NotFound = () => {
                     이전 페이지로 돌아가기
                 </Button>
             </StyledNotFound>
-        </AppLayout>
+        </Layout>
     );
 };
 

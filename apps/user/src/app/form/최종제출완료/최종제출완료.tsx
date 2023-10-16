@@ -1,6 +1,6 @@
 import { CompleteAlaram } from '@/components/form';
 import { useUser } from '@/hooks';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { IconCheckCircle } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
@@ -13,7 +13,7 @@ const 최종제출완료 = () => {
     const { handleGoMainPageButtonClick } = useCTAButton();
 
     return (
-        <AppLayout header footer>
+        <Layout header footer>
             <CompleteAlarmBox>
                 <CompleteAlaram isComplete completeText="원서 최종 제출 완료" />
             </CompleteAlarmBox>
@@ -43,7 +43,7 @@ const 최종제출완료 = () => {
                     </Button>
                 </Column>
             </Styled최종제출완료>
-        </AppLayout>
+        </Layout>
     );
 };
 

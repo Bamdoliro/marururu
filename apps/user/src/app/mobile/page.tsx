@@ -1,6 +1,6 @@
 'use client';
 
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const MobilePage = () => {
     return (
-        <AppLayout>
+        <Layout>
             <StyledMobilPage>
                 <Image src="/svg/logo.svg" alt="logo" width={160} height={47} />
                 <Column gap={27}>
@@ -27,7 +27,7 @@ const MobilePage = () => {
                     </Text>
                 </Column>
             </StyledMobilPage>
-        </AppLayout>
+        </Layout>
     );
 };
 

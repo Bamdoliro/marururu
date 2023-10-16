@@ -1,5 +1,5 @@
 import { CompleteAlaram } from '@/components/form';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { IconCheckCircle } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
@@ -11,7 +11,7 @@ const 초안제출완료 = () => {
     const { handleGoMainPageButtonClick, handleGo최종제출PageButtonClick } = useCTAButton();
 
     return (
-        <AppLayout header>
+        <Layout header>
             <CompleteAlarmBox>
                 <CompleteAlaram isComplete completeText="원서 초안 제출 완료" />
             </CompleteAlarmBox>
@@ -39,7 +39,7 @@ const 초안제출완료 = () => {
                     </Button>
                 </Row>
             </Styled초안제출완료>
-        </AppLayout>
+        </Layout>
     );
 };
 

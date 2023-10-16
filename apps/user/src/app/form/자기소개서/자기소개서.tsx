@@ -1,10 +1,10 @@
 import { FormController } from '@/components/form';
-import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Column, Textarea } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import FormLayout from '../layout';
 import { useCTAButton, useFormSubmitAction, useInput } from './자기소개서.hooks';
 
 const 자기소개서 = () => {

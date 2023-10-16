@@ -1,6 +1,6 @@
 import { FinalFormConfirm, FinalFormTable, PdfGeneratedLoader } from '@/components/form';
 import { useOpenFileUploader } from '@/hooks';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { useFormDocumentValueStore } from '@/store';
 import { useBooleanState } from '@maru/hooks';
 import { color, font } from '@maru/theme';
@@ -41,7 +41,7 @@ const 최종제출 = () => {
     };
 
     return (
-        <AppLayout header>
+        <Layout header>
             {/* Loader */}
             <PdfGeneratedLoader isOpen={isOpenPdfGeneratedLoader} />
             <Styled최종제출>
@@ -103,7 +103,7 @@ const 최종제출 = () => {
                 accept=".pdf"
                 hidden
             />
-        </AppLayout>
+        </Layout>
     );
 };
 

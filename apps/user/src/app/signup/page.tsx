@@ -1,7 +1,7 @@
 'use client';
 
 import Terms from '@/components/signup/Terms/Terms';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Button, ButtonInput, Column, Input, PreviewInput, Text, TimeLimitInput } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -24,7 +24,7 @@ const SignUpPage = () => {
     const { handleJoinButtonClick } = useJoinAction(joinUserData, termsAgree);
 
     return (
-        <AppLayout>
+        <Layout>
             <StyledSignUpPage>
                 <Image
                     src="/svg/colabo_logo.svg"
@@ -102,7 +102,7 @@ const SignUpPage = () => {
                     </SignUpBox>
                 </ContentBox>
             </StyledSignUpPage>
-        </AppLayout>
+        </Layout>
     );
 };
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { FirstResultTable, ResultMain } from '@/components/result';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { ResultStep } from '@/types/result/client';
 import { color } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
@@ -14,7 +14,7 @@ const FirstResultPage = () => {
     const [firstResultStep, setFirstResultStep] = useState<ResultStep>('MAIN');
 
     return (
-        <AppLayout header footer>
+        <Layout header footer>
             <StyledFirstResultPage>
                 <Column gap={12} alignItems="center">
                     <Text fontType="H5" color={color.gray900}>
@@ -32,7 +32,7 @@ const FirstResultPage = () => {
                     }}
                 />
             </StyledFirstResultPage>
-        </AppLayout>
+        </Layout>
     );
 };
 

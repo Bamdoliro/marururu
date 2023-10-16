@@ -7,7 +7,6 @@ import {
     VolunteerCalculator,
 } from '@/components/form';
 import { SCORE_STEP_LIST } from '@/constants/form/data';
-import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { Column, Text, UnderlineButton } from '@maru/ui';
@@ -15,6 +14,7 @@ import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import styled from 'styled-components';
+import FormLayout from '../layout';
 import { useCTAButton } from './성적입력.hooks';
 
 const 성적입력 = () => {

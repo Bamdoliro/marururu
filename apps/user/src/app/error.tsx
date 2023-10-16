@@ -1,6 +1,6 @@
 'use client';
 
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -12,7 +12,7 @@ const Error = () => {
     const router = useRouter();
 
     return (
-        <AppLayout header footer>
+        <Layout header footer>
             <StyledErrorPage>
                 <Image src="/svg/error.svg" alt="error" width={364} height={155} />
                 <Column gap={24}>
@@ -39,7 +39,7 @@ const Error = () => {
                     </Button>
                 </Row>
             </StyledErrorPage>
-        </AppLayout>
+        </Layout>
     );
 };
 

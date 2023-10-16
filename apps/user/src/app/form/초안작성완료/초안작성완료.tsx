@@ -1,7 +1,7 @@
 'use client';
 
 import { CheckFormCompleteBox, CompleteAlaram, DraftFormConfirm } from '@/components/form';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
@@ -37,7 +37,7 @@ const 초안작성완료 = () => {
     };
 
     return (
-        <AppLayout header>
+        <Layout header>
             <CompleteAlarmBox>
                 <CompleteAlaram
                     isComplete={isComplete}
@@ -100,7 +100,7 @@ const 초안작성완료 = () => {
                     </Column>
                 )}
             </Styled초안작성완료>
-        </AppLayout>
+        </Layout>
     );
 };
 

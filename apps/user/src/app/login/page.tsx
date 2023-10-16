@@ -1,7 +1,7 @@
 'use client';
 
 import { ROUTES } from '@/constants/common/constant';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { IconArrowRight } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
@@ -17,7 +17,7 @@ const LoginPage = () => {
     const { handleLoginButtonClick } = useLoginAction(loginUserData);
 
     return (
-        <AppLayout backgroundColor={color.gray100}>
+        <Layout backgroundColor={color.gray100}>
             <StyledLoginPage>
                 <LoginBox>
                     <Column
@@ -68,7 +68,7 @@ const LoginPage = () => {
                     </Column>
                 </LoginBox>
             </StyledLoginPage>
-        </AppLayout>
+        </Layout>
     );
 };
 

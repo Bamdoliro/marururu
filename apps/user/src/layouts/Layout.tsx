@@ -11,7 +11,7 @@ interface Props {
     backgroundColor?: CSSProperties['backgroundColor'];
 }
 
-const AppLayout = ({
+const Layout = ({
     children,
     backgroundColor = color.white,
     header = false,
@@ -20,15 +20,15 @@ const AppLayout = ({
     return (
         <>
             {header && <Header />}
-            <StyledAppLayout style={{ backgroundColor }}>{children}</StyledAppLayout>
+            <StyledLayout style={{ backgroundColor }}>{children}</StyledLayout>
             {footer && <Footer />}
         </>
     );
 };
 
-export default AppLayout;
+export default Layout;
 
-const StyledAppLayout = styled.section`
+const StyledLayout = styled.section`
     width: 100%;
     min-height: calc(100vh - 118px);
 `;

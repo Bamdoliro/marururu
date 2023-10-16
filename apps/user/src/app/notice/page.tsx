@@ -1,7 +1,7 @@
 'use client';
 
 import { NoticeList } from '@/components/notice';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Loader, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 const NoticePage = () => {
     return (
-        <AppLayout header footer>
+        <Layout header footer>
             <StyledNoticePage>
                 <Text fontType="H1" color={color.gray900}>
                     공지사항
@@ -19,7 +19,7 @@ const NoticePage = () => {
                     <NoticeList />
                 </Suspense>
             </StyledNoticePage>
-        </AppLayout>
+        </Layout>
     );
 };
 

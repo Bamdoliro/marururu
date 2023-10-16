@@ -8,7 +8,7 @@ import {
     VolunteerCalculator,
 } from '@/components/form';
 import { SCORE_STEP_LIST } from '@/constants/form/data';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { color } from '@maru/theme';
 import { Column, Text, UnderlineButton } from '@maru/ui';
@@ -33,7 +33,7 @@ const ScoreSimulation = () => {
     };
 
     return (
-        <AppLayout header footer>
+        <Layout header footer>
             <ScoreSimulationPage>
                 <Column>
                     <Text fontType="H1" color={color.gray900}>
@@ -75,7 +75,7 @@ const ScoreSimulation = () => {
                     />
                 </Column>
             </ScoreSimulationPage>
-        </AppLayout>
+        </Layout>
     );
 };
 

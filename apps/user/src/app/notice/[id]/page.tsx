@@ -2,7 +2,7 @@
 
 import { NoticeDetailContent } from '@/components/notice';
 import { ROUTES } from '@/constants/common/constant';
-import { AppLayout } from '@/layouts';
+import { Layout } from '@/layouts';
 import { IconArrowLeft } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Loader, Text } from '@maru/ui';
@@ -17,7 +17,7 @@ interface Props {
 
 const NoticeDetailPage = ({ params: { id } }: Props) => {
     return (
-        <AppLayout header footer>
+        <Layout header footer>
             <StyledNoticeDetailPage>
                 <BackLink href={ROUTES.NOTICE}>
                     <IconArrowLeft color={color.gray600} width={24} height={24} />
@@ -29,7 +29,7 @@ const NoticeDetailPage = ({ params: { id } }: Props) => {
                     <NoticeDetailContent id={id} />
                 </Suspense>
             </StyledNoticeDetailPage>
-        </AppLayout>
+        </Layout>
     );
 };
 
