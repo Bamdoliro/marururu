@@ -1,0 +1,55 @@
+name: Lighthouse CI
+
+on:
+    pull_request:
+        branches-ignore:
+            - 'dependabot/**'
+            - 'imgbot'
+
+jobs:
+    lhci:
+        name: Measuring the performance
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '19.7.0'
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+              id: pnpm-install
+              with:
+                  version: 8
+                  run_install: false
+
+            - name: Install Dependency
+              run: pnpm install -no-frozen-lockfile
+
+            - name: Install @lhci/cli globally
+              run: pnpm add -g @lhci/cli
+
+            - name: Build the application for production usage
+              run: pnpm build
+
+            - name: Run Lighthouse CI
+              env:
+                  LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+              run: pnpm lighthouse
+
+            - name: Format lighthouse score
+              id: format_lighthouse_score
+              uses: actions/github-script@v3
+              with:
+                  github-token: ${{secrets.GITHUB_TOKEN}}
+                  script: |
+                      const createComments = require(process.cwd() + '/scripts/lighthouse.js');
+                      core.setOutput('comments', createComments());
+
+            - name: Comment PR
+              uses: thollander/actions-comment-pull-request@v2
+              with:
+                  message: ${{ steps.format_lighthouse_score.outputs.comments }}
