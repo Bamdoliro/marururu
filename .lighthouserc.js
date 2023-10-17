@@ -1,7 +1,7 @@
 module.exports = {
     ci: {
         collect: {
-            url: ['http://localhost:3000'],
+            url: ['https://maru.bamdoliro.com'],
             collect: {
                 numberOfRuns: 5,
             },
@@ -20,10 +20,5 @@ module.exports = {
             startServerCommand: 'pnpm run dev',
             target: 'temporary-public-storage',
         },
-    },
-    upload: {
-        target: 'filesystem',
-        outputDir: './lhci_reports',
-        reportFilenamePattern: '%%PATHNAME%%-%%DATETIME%%-report.%%EXTENSION%%',
     },
 };
