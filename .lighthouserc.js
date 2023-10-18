@@ -3,7 +3,7 @@ module.exports = {
         collect: {
             startServerCommand: 'pnpm dev',
             numberOfRuns: 1,
-            url: ['http://localhost:3000', 'http://localhost:3001'],
+            url: ['http://localhost:3000'],
             settings: { preset: 'desktop' },
         },
         upload: {
