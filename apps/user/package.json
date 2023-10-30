@@ -40,6 +40,7 @@
     "@maru/theme": "workspace:*",
     "@maru/ui": "workspace:*",
     "@maru/utils": "workspace:*",
+    "@suspensive/react": "^1.18.1",
     "@tanstack/react-query": "^4.32.6",
     "@tanstack/react-query-devtools": "^4.32.6",
     "@toss/react": "^1.5.0",

@@ -4,7 +4,8 @@ import { CategoryFilter, FaqList } from '@/components/faq';
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Loader, Text } from '@maru/ui';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
+import { Suspense } from '@suspensive/react';
 import styled from 'styled-components';
 
 const FaqPage = () => {
@@ -17,9 +18,9 @@ const FaqPage = () => {
                     자주 묻는 질문
                 </Text>
                 <CategoryFilter setCategory={setCategory} />
-                <Suspense fallback={<Loader />}>
+                <Suspense.CSROnly>
                     <FaqList category={category} />
-                </Suspense>
+                </Suspense.CSROnly>
             </StyledFaqPage>
         </AppLayout>
     );

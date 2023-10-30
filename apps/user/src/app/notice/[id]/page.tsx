@@ -5,10 +5,10 @@ import { ROUTES } from '@/constants/common/constant';
 import { AppLayout } from '@/layouts';
 import { IconArrowLeft } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Loader, Text } from '@maru/ui';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Link from 'next/link';
-import { Suspense } from 'react';
+import { Suspense } from '@suspensive/react';
 import styled from 'styled-components';
 
 interface Props {
@@ -25,9 +25,9 @@ const NoticeDetailPage = ({ params: { id } }: Props) => {
                         공지사항
                     </Text>
                 </BackLink>
-                <Suspense fallback={<Loader />}>
+                <Suspense.CSROnly>
                     <NoticeDetailContent id={id} />
-                </Suspense>
+                </Suspense.CSROnly>
             </StyledNoticeDetailPage>
         </AppLayout>
     );
