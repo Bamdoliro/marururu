@@ -1,4 +1,4 @@
-import { Form, FormStatus, School } from './client';
+import type { Form, FormStatus, School } from './client';
 
 export interface GetSaveFormRes {
   data: Form;

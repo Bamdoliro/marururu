@@ -7,13 +7,14 @@ import {
   useIsSaveFormLoadedStore,
   useSetFormStepStore,
   useSetNewSubjectListStore,
-  useSetNew검정고시SubjectListStore,
+  useSetNewGEDSubjectListStore,
   useSetSubjectListStore,
-  useSet검정고시SubjectListStore,
+  useSetGEDSubjectListStore,
 } from '@/store';
 import { updateSlicedSubjectList } from '@/utils';
 import { useInterval } from '@toss/react';
-import { ReactNode, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { useEffect } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -26,8 +27,8 @@ const FormWrapper = ({ children }: Props) => {
   const [form, setForm] = useFormStore();
   const setSubjectList = useSetSubjectListStore();
   const setNewtSubjectList = useSetNewSubjectListStore();
-  const set검정고시SubjectList = useSet검정고시SubjectListStore();
-  const setNew검정고시SubjectList = useSetNew검정고시SubjectListStore();
+  const setGEDSubjectList = useSetGEDSubjectListStore();
+  const setNewGEDSubjectList = useSetNewGEDSubjectListStore();
   const setFormStep = useSetFormStepStore();
   const { data: formStatusData } = useFormStatusQuery();
 
@@ -45,7 +46,7 @@ const FormWrapper = ({ children }: Props) => {
           break;
       }
     }
-  }, [formStatusData]);
+  }, [formStatusData, setFormStep]);
 
   // 2분마다 자동 저장
   const SAVE_FORM_INTERVAL_MS = 6000 * 10 * 2;
@@ -62,15 +63,24 @@ const FormWrapper = ({ children }: Props) => {
       setForm((prev) => ({ ...prev, ...saveFormData }));
       if (subjectList) {
         if (graduationType === 'QUALIFICATION_EXAMINATION') {
-          set검정고시SubjectList(updateSlicedSubjectList(subjectList, 0, 5));
-          setNew검정고시SubjectList(updateSlicedSubjectList(subjectList, 5));
+          setGEDSubjectList(updateSlicedSubjectList(subjectList, 0, 5));
+          setNewGEDSubjectList(updateSlicedSubjectList(subjectList, 5));
         } else {
           setSubjectList(updateSlicedSubjectList(subjectList, 0, 12));
           setNewtSubjectList(updateSlicedSubjectList(subjectList, 12));
         }
       }
     }
-  }, [saveFormData]);
+  }, [
+    isSaveFormLoaded,
+    saveFormData,
+    setForm,
+    setIsSaveFormLoaded,
+    setNewtSubjectList,
+    setNewGEDSubjectList,
+    setSubjectList,
+    setGEDSubjectList,
+  ]);
 
   return <>{children}</>;
 };

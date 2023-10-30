@@ -19,11 +19,11 @@ export {
   useSubjectListValueStore,
 } from './form/subjectList';
 export {
-  useNew검정고시SubjectListStore,
-  useNew검정고시SubjectListValueStore,
-  useSetNew검정고시SubjectListStore,
-  useSet검정고시SubjectListStore,
-  use검정고시SubjectListStore,
-  use검정고시SubjectListValueStore,
-} from './form/검정고시SubjectList';
+  useNewGEDSubjectListStore,
+  useNewGEDSubjectListValueStore,
+  useSetNewGEDSubjectListStore,
+  useSetGEDSubjectListStore,
+  useGEDSubjectListStore,
+  useGEDSubjectListValueStore,
+} from './form/GEDSubjectList';
 export { useUserStore } from './user/user';

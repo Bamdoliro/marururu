@@ -21,7 +21,7 @@ const 전형선택 = () => {
         setForm((prev) => ({ ...prev, type: 'REGULAR' }));
       }
     }
-  }, [form.type]);
+  }, [form.education.graduationType, form.type, setForm]);
 
   return (
     <FormLayout title="전형 선택">

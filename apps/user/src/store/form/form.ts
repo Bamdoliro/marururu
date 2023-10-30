@@ -1,5 +1,5 @@
 import { FORM } from '@/constants/form/data';
-import { Form } from '@/types/form/client';
+import type { Form } from '@/types/form/client';
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const formDataAtomState = atom<Form>({

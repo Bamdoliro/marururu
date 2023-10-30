@@ -1,10 +1,10 @@
 import { useSchoolListQuery } from '@/services/form/queries';
-import { School } from '@/types/form/client';
+import type { School } from '@/types/form/client';
 import { IconCheck } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {

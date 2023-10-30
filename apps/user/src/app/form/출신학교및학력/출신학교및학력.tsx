@@ -1,12 +1,6 @@
 import { FindSchoolModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import {
-  useFormValueStore,
-  useSetNewSubjectListStore,
-  useSetNew검정고시SubjectListStore,
-  useSetSubjectListStore,
-  useSet검정고시SubjectListStore,
-} from '@/store';
+import { useFormValueStore } from '@/store';
 import { ButtonInput, Input, RadioGroup, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
@@ -16,10 +10,6 @@ import { useCTAButton, useInput } from './출신학교및학력.hooks';
 const 출신학교및학력 = () => {
   const overlay = useOverlay();
   const form = useFormValueStore();
-  const setSubjectList = useSetSubjectListStore();
-  const set검정고시SubjectList = useSet검정고시SubjectListStore();
-  const setNewSubjectList = useSetNewSubjectListStore();
-  const setNew검정고시SubjectList = useSetNew검정고시SubjectListStore();
   const { handle출신학교및학력DataChange } = useInput();
   const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
 

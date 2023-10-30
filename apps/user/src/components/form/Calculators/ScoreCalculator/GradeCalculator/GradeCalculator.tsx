@@ -21,13 +21,15 @@ const GradeCalculator = () => {
 
   useEffect(() => {
     const studentSubjectList = [...subjectList, ...newSubjectList].map(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ({ id, ...rest }) => rest
     );
+
     setForm((prev) => ({
       ...prev,
       grade: { ...prev.grade, subjectList: studentSubjectList },
     }));
-  }, [newSubjectList, subjectList]);
+  }, [newSubjectList, setForm, subjectList]);
 
   return (
     <StyledGradeCalculator>
@@ -51,7 +53,6 @@ const GradeCalculator = () => {
       {newSubjectList.map(({ id }) => (
         <NewGradeCalculatorItem
           id={id}
-          key={`new-subject ${id}`}
           achievementLevels={['-', 'A', 'B', 'C', 'D', 'E']}
         />
       ))}

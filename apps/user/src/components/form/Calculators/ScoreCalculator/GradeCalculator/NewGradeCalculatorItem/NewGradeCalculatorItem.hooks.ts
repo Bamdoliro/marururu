@@ -1,5 +1,5 @@
 import { useSetNewSubjectListStore } from '@/store';
-import { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler } from 'react';
 
 export const useInput = (newSubjectIndex: number) => {
   const setNewSubjectList = useSetNewSubjectListStore();

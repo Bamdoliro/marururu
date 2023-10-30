@@ -1,12 +1,12 @@
 import { useFormStore } from '@/store';
-import { GraduationType } from '@/types/form/client';
+import type { GraduationType } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Row, Switch, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import styled from 'styled-components';
 import GradeCalculator from './GradeCalculator/GradeCalculator';
-import 검정고시Calculator from './검정고시Calculator/검정고시Calculator';
+import GEDCaculator from './GEDCalculator/GEDCalculator';
 
 interface Props {
   option: 'SIMULATION' | 'FORM';
@@ -42,7 +42,7 @@ const ScoreCalculator = ({ option }: Props) => {
       <SwitchCase
         value={form.education.graduationType}
         caseBy={{
-          QUALIFICATION_EXAMINATION: <검정고시Calculator />,
+          QUALIFICATION_EXAMINATION: <GEDCaculator />,
         }}
         defaultComponent={<GradeCalculator />}
       />

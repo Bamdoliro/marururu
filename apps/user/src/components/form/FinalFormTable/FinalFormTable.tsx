@@ -1,6 +1,6 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import styled from 'styled-components';
 
 const FinalFormTable = () => {

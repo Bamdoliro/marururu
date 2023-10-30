@@ -1,4 +1,4 @@
-import { User } from '@/types/user/client';
+import type { User } from '@/types/user/client';
 import { atom, useRecoilState } from 'recoil';
 
 const userAtomState = atom<User>({

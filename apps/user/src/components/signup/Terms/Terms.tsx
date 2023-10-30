@@ -1,7 +1,7 @@
 import { IconArrowRight } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import { useTerms } from './Terms.hooks';
 

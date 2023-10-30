@@ -1,11 +1,6 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
-import {
-  useSetFormStore,
-  useSetFormStepStore,
-  useFormStore,
-  useFormValueStore,
-} from '@/store';
-import { ChangeEventHandler } from 'react';
+import { useSetFormStore, useSetFormStepStore, useFormValueStore } from '@/store';
+import type { ChangeEventHandler } from 'react';
 
 export const useFormSubmitAction = () => {
   const form = useFormValueStore();

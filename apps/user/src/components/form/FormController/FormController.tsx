@@ -1,4 +1,4 @@
-import { FormStep } from '@/types/form/client';
+import type { FormStep } from '@/types/form/client';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';

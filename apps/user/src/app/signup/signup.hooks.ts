@@ -3,9 +3,10 @@ import {
   useRequestVerificationMutation,
   useVerificationMutation,
 } from '@/services/auth/mutations';
-import { Join } from '@/types/auth/client';
+import type { Join } from '@/types/auth/client';
 import { useBooleanState } from '@maru/hooks';
-import { ChangeEventHandler, useState } from 'react';
+import type { ChangeEventHandler } from 'react';
+import { useState } from 'react';
 
 export const useJoinAction = (joinUserData: Join, termsAgree: boolean) => {
   const { joinUserMutate } = useJoinUserMutation(joinUserData);

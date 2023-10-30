@@ -1,15 +1,15 @@
 import { Storage } from '@/apis/storage/storage';
 import { ROUTES, TOKEN } from '@/constants/common/constant';
 import { useApiError } from '@/hooks';
-import {
+import type {
   PatchVerificationReq,
   PostJoinAuthReq,
   PostLoginAuthReq,
 } from '@/types/auth/remote';
 import { useMutation } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import {
   deleteLogoutUser,
   patchVerification,

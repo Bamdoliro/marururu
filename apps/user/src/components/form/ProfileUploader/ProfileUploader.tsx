@@ -4,7 +4,8 @@ import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, DragEvent, useState } from 'react';
+import type { ChangeEventHandler, DragEvent } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const ProfileUploader = () => {

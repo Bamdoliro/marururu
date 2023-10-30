@@ -1,7 +1,11 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import { Form } from '@/types/form/client';
-import { GetSchoolListRes, GetSaveFormRes, GetFormStatusRes } from '@/types/form/remote';
+import type { Form } from '@/types/form/client';
+import type {
+  GetSchoolListRes,
+  GetSaveFormRes,
+  GetFormStatusRes,
+} from '@/types/form/remote';
 
 export const postSubmitFinalForm = async (formUrl: string) => {
   const { data } = await maru.patch('/form', formUrl, authorization());

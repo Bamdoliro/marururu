@@ -2,7 +2,7 @@
 
 import { FinalResultTable, ResultMain } from '@/components/result';
 import { AppLayout } from '@/layouts';
-import { ResultStep } from '@/types/result/client';
+import type { ResultStep } from '@/types/result/client';
 import { color } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';

@@ -1,7 +1,8 @@
 import { color } from '@maru/theme';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import dayjs, { Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
 import styled, { css } from 'styled-components';

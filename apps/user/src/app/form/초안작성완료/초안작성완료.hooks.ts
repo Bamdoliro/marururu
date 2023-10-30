@@ -1,6 +1,6 @@
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useFormValueStore, useSetFormStepStore } from '@/store';
-import { Form } from '@/types/form/client';
+import type { Form } from '@/types/form/client';
 import { useEffect, useState } from 'react';
 
 export const useSubmitDraftFormAction = () => {
@@ -78,15 +78,15 @@ export const useCheckFilledForm = () => {
   const [typeFilledCount, setTypeFilledCount] = useState(0);
   const [documentFilledCount, setDocumentFilledCount] = useState(0);
 
-  useEffect(() => {
-    const filledApplicantFieldsCount = useFilledApplicantFieldsCount(form.applicant);
-    const filledParentFieldsCount = useFilledParentFieldsCount(form.parent);
-    const filledEducationFieldsCount = useFilledEducationFieldsCount(form.education);
-    const filledTypeFieldCount = form.type ? 1 : 0;
-    const filledDocumentFieldsCount = Object.values(form.document).filter(
-      (value) => !!value
-    ).length;
+  const filledApplicantFieldsCount = useFilledApplicantFieldsCount(form.applicant);
+  const filledParentFieldsCount = useFilledParentFieldsCount(form.parent);
+  const filledEducationFieldsCount = useFilledEducationFieldsCount(form.education);
+  const filledTypeFieldCount = form.type ? 1 : 0;
+  const filledDocumentFieldsCount = Object.values(form.document).filter(
+    (value) => !!value
+  ).length;
 
+  useEffect(() => {
     if (
       filledApplicantFieldsCount === 5 &&
       filledParentFieldsCount === 6 &&
@@ -102,7 +102,18 @@ export const useCheckFilledForm = () => {
     setEducationFilledCount(filledEducationFieldsCount);
     setTypeFilledCount(filledTypeFieldCount);
     setDocumentFilledCount(filledDocumentFieldsCount);
-  }, []);
+  }, [
+    filledApplicantFieldsCount,
+    filledDocumentFieldsCount,
+    filledEducationFieldsCount,
+    filledParentFieldsCount,
+    filledTypeFieldCount,
+    form.applicant,
+    form.document,
+    form.education,
+    form.parent,
+    form.type,
+  ]);
 
   return {
     applicantFilledCount,

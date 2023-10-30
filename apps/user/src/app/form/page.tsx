@@ -1,7 +1,7 @@
 'use client';
 
 import { FormWrapper } from '@/components/common';
-import { useFormStepValueStore, useSetFormStepStore } from '@/store';
+import { useFormStepValueStore } from '@/store';
 import { SwitchCase } from '@toss/react';
 import 보호자정보 from './보호자정보/보호자정보';
 import 성적입력 from './성적입력/성적입력';
@@ -16,7 +16,6 @@ import 출신학교및학력 from './출신학교및학력/출신학교및학력
 
 const FormPage = () => {
   const formStep = useFormStepValueStore();
-  const setFormStep = useSetFormStepStore();
 
   return (
     <FormWrapper>

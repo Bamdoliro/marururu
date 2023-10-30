@@ -3,7 +3,7 @@
 import { NoticeList } from '@/components/notice';
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
-import { Loader, Text } from '@maru/ui';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { Suspense } from '@suspensive/react';
 import styled from 'styled-components';

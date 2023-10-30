@@ -1,8 +1,9 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useLoginUserMutation } from '@/services/auth/mutations';
-import { PostLoginAuthReq } from '@/types/auth/remote';
+import type { PostLoginAuthReq } from '@/types/auth/remote';
 import { useRouter } from 'next/navigation';
-import { ChangeEventHandler, useState } from 'react';
+import type { ChangeEventHandler } from 'react';
+import { useState } from 'react';
 
 export const useLoginAction = (loginUserData: PostLoginAuthReq) => {
   const { loginUserMutate } = useLoginUserMutation(loginUserData);

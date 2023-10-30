@@ -1,6 +1,7 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { Dispatch, SetStateAction, useState } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Category from './Category/Category';
 

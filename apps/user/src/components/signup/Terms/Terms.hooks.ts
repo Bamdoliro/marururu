@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useTerms = (setTermsAgree: Dispatch<SetStateAction<boolean>>) => {
   const [allCheck, setAllCheck] = useState(false);
@@ -38,7 +39,7 @@ export const useTerms = (setTermsAgree: Dispatch<SetStateAction<boolean>>) => {
     } else {
       setAllCheck(false);
     }
-  }, [checkOne, checkTwo]);
+  }, [checkOne, checkTwo, setTermsAgree]);
 
   return {
     handleAllCheckButtonClick,

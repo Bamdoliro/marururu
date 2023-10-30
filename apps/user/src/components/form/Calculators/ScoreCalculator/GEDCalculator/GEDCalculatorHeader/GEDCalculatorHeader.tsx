@@ -1,9 +1,9 @@
 import { Row, Th } from '@maru/ui';
 import styled from 'styled-components';
 
-const 검정고시CalculatorHeader = () => {
+const GEDCalculatorHeader = () => {
   return (
-    <Styled검정고시CalculatorHeader>
+    <StyledGEDCalculatorHeader>
       <Row>
         <Th borderTopLeftRadius={12} width={123} height={64}>
           과목
@@ -15,13 +15,13 @@ const 검정고시CalculatorHeader = () => {
           삭제
         </Th>
       </Row>
-    </Styled검정고시CalculatorHeader>
+    </StyledGEDCalculatorHeader>
   );
 };
 
-export default 검정고시CalculatorHeader;
+export default GEDCalculatorHeader;
 
-const Styled검정고시CalculatorHeader = styled.div`
+const StyledGEDCalculatorHeader = styled.div`
   width: 100%;
   height: 64px;
 `;

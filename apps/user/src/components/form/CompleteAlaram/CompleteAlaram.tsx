@@ -9,8 +9,6 @@ interface Props {
 }
 
 const CompleteAlarm = ({ isComplete, completeText, incompleteText }: Props) => {
-  const alarmText = isComplete ? completeText : incompleteText;
-
   return (
     <Column
       style={{ marginTop: '173px' }}

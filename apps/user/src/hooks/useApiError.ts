@@ -1,4 +1,5 @@
-import { AxiosError, isAxiosError } from 'axios';
+import type { AxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 
 type ErrorStatus = 403 | 429 | 500;
 

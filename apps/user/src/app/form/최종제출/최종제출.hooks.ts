@@ -5,7 +5,9 @@ import {
 } from '@/services/form/mutations';
 import { useExportFormQuery } from '@/services/form/queries';
 import { useFormDocumentValueStore, useSetFormDocumentStore } from '@/store';
-import { ChangeEventHandler, useEffect } from 'react';
+import type { ChangeEventHandler } from 'react';
+import { useCallback } from 'react';
+import { useEffect } from 'react';
 
 export const useSubmitFinalFormAction = () => {
   const formDocument = useFormDocumentValueStore();
@@ -26,7 +28,7 @@ export const useExportFormAction = (
   const { data: exportFormData } = useExportFormQuery();
   const pdfUrl = window.URL.createObjectURL(new Blob([exportFormData]));
 
-  const downloadPdf = () => {
+  const downloadPdf = useCallback(() => {
     const link = document.createElement('a');
     link.href = pdfUrl;
     link.setAttribute(
@@ -37,7 +39,7 @@ export const useExportFormAction = (
     link.click();
     link.remove();
     window.URL.revokeObjectURL(pdfUrl);
-  };
+  }, [pdfUrl, userData.name]);
 
   useEffect(() => {
     if (exportFormData) {
@@ -46,7 +48,7 @@ export const useExportFormAction = (
     } else {
       openPdfGeneratedLoader();
     }
-  }, [exportFormData]);
+  }, [closePdfGeneratedLoader, downloadPdf, exportFormData, openPdfGeneratedLoader]);
 
   const handleExportFormButtonClick = () => {
     downloadPdf();

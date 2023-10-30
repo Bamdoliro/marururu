@@ -1,6 +1,6 @@
 import { useSetFormStore } from '@/store';
-import { AttendanceName } from '@/types/form/client';
-import { ChangeEventHandler } from 'react';
+import type { AttendanceName } from '@/types/form/client';
+import type { ChangeEventHandler } from 'react';
 
 export const useInput = () => {
   const setForm = useSetFormStore();

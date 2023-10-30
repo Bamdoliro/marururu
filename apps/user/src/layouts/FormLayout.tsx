@@ -2,12 +2,12 @@ import { Header } from '@/components/common/';
 import { ProgressSteps } from '@/components/form';
 import { color } from '@maru/theme';
 import { Text } from '@maru/ui';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
   children: ReactNode;
-  title: String;
+  title: string;
 }
 
 const FormLayout = ({ children, title }: Props) => {

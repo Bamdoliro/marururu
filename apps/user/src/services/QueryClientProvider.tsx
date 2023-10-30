@@ -5,7 +5,8 @@ import {
   QueryClientProvider as MaruQueryClientProvider,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ReactNode, useState } from 'react';
+import type { ReactNode } from 'react';
+import { useState } from 'react';
 
 interface Props {
   children: ReactNode;

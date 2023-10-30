@@ -1,5 +1,5 @@
 import { useNewSubjectListStore } from '@/store';
-import { Subject } from '@/types/form/client';
+import type { Subject } from '@/types/form/client';
 import { useRef } from 'react';
 
 export const useAddNewSubject = () => {

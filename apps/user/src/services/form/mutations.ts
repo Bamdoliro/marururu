@@ -1,9 +1,9 @@
 import { useApiError } from '@/hooks';
 import { useSetFormStepStore, useSetFormStore } from '@/store';
-import { Form, FormDocument } from '@/types/form/client';
+import type { Form, FormDocument } from '@/types/form/client';
 import { useMutation } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
-import { Dispatch, SetStateAction } from 'react';
+import type { AxiosResponse } from 'axios';
+import type { Dispatch, SetStateAction } from 'react';
 import {
   postSaveForm,
   postSubmitDraftForm,

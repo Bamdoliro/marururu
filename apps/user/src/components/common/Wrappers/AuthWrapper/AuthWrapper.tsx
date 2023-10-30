@@ -2,7 +2,9 @@ import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { useOverlay } from '@toss/use-overlay';
 import { usePathname, useRouter } from 'next/navigation';
-import { ReactNode, useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { useCallback } from 'react';
+import { useEffect } from 'react';
 import FormPeriodModal from './FormPeriodModal/FormPeriodModal';
 import LoginRequiredModal from './LoginRequiredModal/LoginRequiredModal';
 
@@ -23,17 +25,17 @@ const AuthWrapper = ({ children }: Props) => {
   const overlay = useOverlay();
   const { isLoggedIn } = useUser();
 
-  const openRequiredLoginModal = () => {
+  const openRequiredLoginModal = useCallback(() => {
     overlay.open(({ isOpen, close }) => (
       <LoginRequiredModal isOpen={isOpen} onClose={close} />
     ));
-  };
+  }, [overlay]);
 
-  const openFormPeriodModal = () => {
+  const openFormPeriodModal = useCallback(() => {
     overlay.open(({ isOpen, close }) => (
       <FormPeriodModal isOpen={isOpen} onClose={close} />
     ));
-  };
+  }, [overlay]);
 
   useEffect(() => {
     // 로그인이 되었을때
@@ -57,7 +59,7 @@ const AuthWrapper = ({ children }: Props) => {
         router.push(ROUTES.MAIN);
       }
     }
-  }, [isLoggedIn, pathName]);
+  }, [isLoggedIn, openFormPeriodModal, openRequiredLoginModal, pathName, router]);
 
   return <>{children}</>;
 };

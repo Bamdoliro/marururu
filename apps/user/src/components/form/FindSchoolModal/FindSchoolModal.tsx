@@ -1,5 +1,5 @@
 import { useSetFormStore } from '@/store';
-import { School } from '@/types/form/client';
+import type { School } from '@/types/form/client';
 import { useDebounceInput } from '@maru/hooks';
 import { Column, Modal, SearchInput } from '@maru/ui';
 import { useState } from 'react';
