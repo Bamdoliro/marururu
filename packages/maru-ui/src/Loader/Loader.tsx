@@ -1,5 +1,5 @@
 import { color } from '@maru/theme';
-import { CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import styled from 'styled-components';
 

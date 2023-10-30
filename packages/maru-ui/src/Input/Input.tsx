@@ -2,7 +2,7 @@ import { IconError } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import styled, { css } from 'styled-components';
 import ConditionalMessage from './ConditionalMessage';
-import { InputProps } from './Input.type';
+import type { InputProps } from './Input.type';
 
 const Input = ({
   width = 320,

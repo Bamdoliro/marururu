@@ -1,12 +1,12 @@
 import { useInterval } from '@maru/hooks';
 import { color, font } from '@maru/theme';
 import { flex, formatTime } from '@maru/utils';
-import { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';
 import Row from '../Flex/Row';
 import Text from '../Text/Text';
 import ConditionalMessage from './ConditionalMessage';
-import { InputProps } from './Input.type';
+import type { InputProps } from './Input.type';
 
 interface TimeLimitInputProps extends InputProps {
   timerTime: number;

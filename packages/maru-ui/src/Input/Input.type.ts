@@ -1,4 +1,4 @@
-import { CSSProperties, InputHTMLAttributes } from 'react';
+import type { CSSProperties, InputHTMLAttributes } from 'react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: CSSProperties['width'];

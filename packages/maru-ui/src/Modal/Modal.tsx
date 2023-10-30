@@ -1,7 +1,7 @@
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 import Button from '../Button/Button';
 import Column from '../Flex/Column';

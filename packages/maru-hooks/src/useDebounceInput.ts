@@ -1,5 +1,6 @@
 import debounce from 'lodash/debounce';
-import { ChangeEventHandler, useCallback, useMemo, useState } from 'react';
+import type { ChangeEventHandler } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 interface Props {
   initialValue?: string;

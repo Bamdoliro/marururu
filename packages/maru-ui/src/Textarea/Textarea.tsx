@@ -1,5 +1,5 @@
 import { color, font } from '@maru/theme';
-import { TextareaHTMLAttributes } from 'react';
+import type { TextareaHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {

@@ -1,7 +1,7 @@
 import { color, font } from '@maru/theme';
 import { useRef } from 'react';
 import { css, styled } from 'styled-components';
-import { InputProps } from './Input.type';
+import type { InputProps } from './Input.type';
 
 const CellInput = ({
   name,

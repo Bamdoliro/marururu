@@ -1,7 +1,7 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
-import { TableOptionType, TableProps } from './Table.type';
+import type { TableOptionType, TableProps } from './Table.type';
 
 const Td = ({
   children,

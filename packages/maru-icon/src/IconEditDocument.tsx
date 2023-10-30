@@ -1,5 +1,4 @@
 import type { SVGProps } from 'react';
-import React from 'react';
 
 const IconEditDocument = (props: SVGProps<SVGSVGElement>) => {
   return (

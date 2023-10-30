@@ -1,6 +1,6 @@
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { FlexProps } from './Flex.type';
+import type { FlexProps } from './Flex.type';
 
 const Column = ({
   children,

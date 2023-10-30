@@ -2,7 +2,7 @@ import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowBottom, IconArrowTop } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import styled, { css } from 'styled-components';
 import Text from '../Text/Text';
 
@@ -50,7 +50,7 @@ const Dropdown = ({
     <div ref={dropdownRef} style={{ width }}>
       {label && <Label>{label}</Label>}
       <StyledDropdown size={size} onClick={handleToggleButtonClick} $isOpen={isOpen}>
-        <Text fontType="p2" color={!!value ? color.gray900 : color.gray500}>
+        <Text fontType="p2" color={value ? color.gray900 : color.gray500}>
           {value || placeholder}
         </Text>
         {isOpen ? (

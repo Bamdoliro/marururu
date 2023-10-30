@@ -1,8 +1,8 @@
 import { flex } from '@maru/utils';
-import { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {}
+type Props = InputHTMLAttributes<HTMLInputElement>;
 
 const Radio = ({ value, name, checked, onChange }: Props) => {
   return (

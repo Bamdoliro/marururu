@@ -1,5 +1,4 @@
 import type { SVGProps } from 'react';
-import React from 'react';
 
 const IconUpload = (props: SVGProps<SVGSVGElement>) => {
   return (

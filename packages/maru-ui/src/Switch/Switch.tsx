@@ -11,8 +11,12 @@ interface Props {
 const Switch = ({ items, value, onChange }: Props) => {
   return (
     <StyledSwitch>
-      {items.map((item) => (
-        <SwitchButton $active={item.value === value} onClick={() => onChange(item.value)}>
+      {items.map((item, index) => (
+        <SwitchButton
+          key={`${index} Switch`}
+          $active={item.value === value}
+          onClick={() => onChange(item.value)}
+        >
           {item.name}
         </SwitchButton>
       ))}

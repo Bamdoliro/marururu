@@ -1,5 +1,5 @@
 import { color, font } from '@maru/theme';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {

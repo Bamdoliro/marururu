@@ -4,7 +4,7 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
 import ConditionalMessage from './ConditionalMessage';
-import { InputProps } from './Input.type';
+import type { InputProps } from './Input.type';
 
 const PreviewInput = ({
   width = 320,

@@ -1,5 +1,4 @@
 import type { SVGProps } from 'react';
-import React from 'react';
 
 const IconPerson = (props: SVGProps<SVGSVGElement>) => {
   return (

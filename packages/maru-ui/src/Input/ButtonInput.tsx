@@ -2,7 +2,7 @@ import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import Input from './Input';
-import { InputProps } from './Input.type';
+import type { InputProps } from './Input.type';
 
 interface ButtonInputProps extends InputProps {
   buttonText: string;

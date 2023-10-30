@@ -1,5 +1,5 @@
-import { font } from '@maru/theme';
-import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
+import type { font } from '@maru/theme';
+import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 import Text from '../Text/Text';
 

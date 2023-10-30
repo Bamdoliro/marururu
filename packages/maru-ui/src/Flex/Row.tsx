@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { FlexProps } from './Flex.type';
+import type { FlexProps } from './Flex.type';
 
 const Row = ({
   children,

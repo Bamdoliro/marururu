@@ -1,5 +1,5 @@
 import { font } from '@maru/theme';
-import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 type Font = keyof typeof font;

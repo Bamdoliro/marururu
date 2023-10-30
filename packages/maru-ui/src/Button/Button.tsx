@@ -1,10 +1,10 @@
 import { IconAdd, IconShortcuts } from '@maru/icon';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
-import { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 import { getButtonPadding, getButtonSize, getButtonStyle } from './Button.style';
-import { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
+import type { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;

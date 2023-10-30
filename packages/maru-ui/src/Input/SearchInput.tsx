@@ -2,7 +2,7 @@ import { IconSearch } from '@maru/icon';
 import { color } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { InputProps } from './Input.type';
+import type { InputProps } from './Input.type';
 
 const SearchInput = ({
   width = 320,

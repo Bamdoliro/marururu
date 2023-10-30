@@ -1,5 +1,5 @@
 import { color, font } from '@maru/theme';
-import { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 import Row from '../Flex/Row';
 import Radio from '../Radio/Radio';
