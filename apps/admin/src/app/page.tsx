@@ -15,7 +15,6 @@ import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundRe
 import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { useFormListTypeStore } from '@/store/form/type';
 import { IconCheckDocument, IconEditDocument, IconPrint, IconUpload } from '@maru/icon';
-import { color } from '@maru/theme';
 import { Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
@@ -82,7 +81,7 @@ const MainPage = () => {
                             ) : null}
                             {isSecondRoundResultEditing ? (
                                 <ConfirmButton
-                                    onClickConfirm={setIsSecondRoundResultEditingTrue}
+                                    onClickConfirm={setIsSecondRoundResultEditingFalse}
                                     onClickCancel={handleSecondRoundResultEditCompleteButtonClick}
                                 />
                             ) : isFormToPrintSelecting ? (
@@ -95,56 +94,31 @@ const MainPage = () => {
                                 <ButtonMenu
                                     width={280}
                                     menuItemList={[
-                                        <ButtonMenuItem onClick={setFormListTypeReview}>
-                                            <IconCheckDocument
-                                                color={color.gray600}
-                                                width={24}
-                                                height={24}
-                                            />
-                                            <Text fontType="p2" color={color.gray900}>
-                                                검토해야 하는 원서 모아보기
-                                            </Text>
-                                        </ButtonMenuItem>,
-                                        <ButtonMenuItem onClick={openSecondScoreUplaodModal}>
-                                            <IconEditDocument
-                                                color={color.gray600}
-                                                width={24}
-                                                height={24}
-                                            />
-                                            <Text fontType="p2" color={color.gray900}>
-                                                2차 전형 점수 입력하기
-                                            </Text>
-                                        </ButtonMenuItem>,
-                                        <ButtonMenuItem onClick={setIsSecondRoundResultEditingTrue}>
-                                            <IconEditDocument
-                                                color={color.gray600}
-                                                width={24}
-                                                height={24}
-                                            />
-                                            <Text fontType="p2" color={color.gray900}>
-                                                2차 합격 여부 변경하기
-                                            </Text>
-                                        </ButtonMenuItem>,
-                                        <ButtonMenuItem onClick={openExportExcelModal}>
-                                            <IconUpload
-                                                color={color.gray600}
-                                                width={24}
-                                                height={24}
-                                            />
-                                            <Text fontType="p2" color={color.gray900}>
-                                                명단 엑셀로 내보내기
-                                            </Text>
-                                        </ButtonMenuItem>,
-                                        <ButtonMenuItem onClick={setIsFormToPrintSelectingTrue}>
-                                            <IconPrint
-                                                color={color.gray600}
-                                                width={24}
-                                                height={24}
-                                            />
-                                            <Text fontType="p2" color={color.gray900}>
-                                                원서 출력하기
-                                            </Text>
-                                        </ButtonMenuItem>,
+                                        <ButtonMenuItem
+                                            icon={IconCheckDocument}
+                                            text="검토해야 하는 원서 모아보기"
+                                            onClick={setFormListTypeReview}
+                                        />,
+                                        <ButtonMenuItem
+                                            icon={IconEditDocument}
+                                            text="2차 전형 점수 입력하기"
+                                            onClick={openSecondScoreUplaodModal}
+                                        />,
+                                        <ButtonMenuItem
+                                            icon={IconEditDocument}
+                                            text="2차 합격 여부 변경하기"
+                                            onClick={setIsSecondRoundResultEditingTrue}
+                                        />,
+                                        <ButtonMenuItem
+                                            icon={IconUpload}
+                                            text="명단 엑셀로 내보내기"
+                                            onClick={openExportExcelModal}
+                                        />,
+                                        <ButtonMenuItem
+                                            icon={IconPrint}
+                                            text="원서 출력하기"
+                                            onClick={setIsFormToPrintSelectingTrue}
+                                        />,
                                     ]}
                                 />
                             )}
@@ -167,13 +141,4 @@ const StyledMainPage = styled.div`
     padding: 64px 75px;
 
     overflow: auto;
-`;
-
-const ReviewFilterBox = styled.div`
-    ${flex({ alignItems: 'center' })};
-    gap: 12px;
-    height: 40px;
-    padding: 0 10px 0 8px;
-    border-radius: 6px;
-    background: ${color.maruLightBlue};
 `;

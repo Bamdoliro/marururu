@@ -1,14 +1,24 @@
 import { color } from '@maru/theme';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import React, { ButtonHTMLAttributes, SVGProps } from 'react';
 import styled from 'styled-components';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: ReactNode;
+    onClick: () => void;
+    icon: React.ElementType<SVGProps<SVGSVGElement>>;
+    text: string;
 }
 
-const ButtonMenuItem = ({ children, ...props }: Props) => {
-    return <StyledButtonMenuItem {...props}>{children}</StyledButtonMenuItem>;
+const ButtonMenuItem = ({ text, onClick, icon: Icon }: Props) => {
+    return (
+        <StyledButtonMenuItem onClick={onClick}>
+            <Icon color={color.gray600} width={24} height={24} />
+            <Text fontType="p2" color={color.gray900}>
+                {text}
+            </Text>
+        </StyledButtonMenuItem>
+    );
 };
 
 export default ButtonMenuItem;
