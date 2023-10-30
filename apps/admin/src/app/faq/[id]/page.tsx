@@ -12,39 +12,39 @@ import { Suspense } from 'react';
 import { styled } from 'styled-components';
 
 interface Props {
-    params: { id: number };
+  params: { id: number };
 }
 
 const FaqDetailPage = ({ params: { id } }: Props) => {
-    return (
-        <AppLayout>
-            <StyledNoticeDetail>
-                <DirectLink href={ROUTES.FAQ}>
-                    <IconArrowLeft width={18} height={18} />
-                    돌아가기
-                </DirectLink>
-                <Suspense fallback={<Loader />}>
-                    <FaqDetailContent id={id} />
-                </Suspense>
-            </StyledNoticeDetail>
-        </AppLayout>
-    );
+  return (
+    <AppLayout>
+      <StyledNoticeDetail>
+        <DirectLink href={ROUTES.FAQ}>
+          <IconArrowLeft width={18} height={18} />
+          돌아가기
+        </DirectLink>
+        <Suspense fallback={<Loader />}>
+          <FaqDetailContent id={id} />
+        </Suspense>
+      </StyledNoticeDetail>
+    </AppLayout>
+  );
 };
 
 export default FaqDetailPage;
 
 const StyledNoticeDetail = styled.div`
-    position: relative;
-    ${flex({ flexDirection: 'column' })}
-    gap: 24px;
-    width: 100%;
-    min-height: 100vh;
-    padding: 64px 75px;
+  position: relative;
+  ${flex({ flexDirection: 'column' })}
+  gap: 24px;
+  width: 100%;
+  min-height: 100vh;
+  padding: 64px 75px;
 `;
 
 const DirectLink = styled(Link)`
-    ${flex({ alignItems: 'center' })};
-    gap: 2px;
-    ${font.p3};
-    color: ${color.gray600};
+  ${flex({ alignItems: 'center' })};
+  gap: 2px;
+  ${font.p3};
+  color: ${color.gray600};
 `;

@@ -1,12 +1,12 @@
 import { usePostFaqMutation } from '@/services/faq/mutations';
-import { PostFaqReq } from '@/types/faq/remote';
+import type { PostFaqReq } from '@/types/faq/remote';
 
 export const useFaqPostAction = (faqData: PostFaqReq) => {
-    const { postFaqMutate } = usePostFaqMutation(faqData);
+  const { postFaqMutate } = usePostFaqMutation(faqData);
 
-    const handleFaqPostButtonClick = () => {
-        postFaqMutate();
-    };
+  const handleFaqPostButtonClick = () => {
+    postFaqMutate();
+  };
 
-    return { handleFaqPostButtonClick };
+  return { handleFaqPostButtonClick };
 };

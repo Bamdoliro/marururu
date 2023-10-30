@@ -3,20 +3,20 @@ import { useQuery } from '@tanstack/react-query';
 import { getNoticeDetail, getNoticeList } from './api';
 
 export const useNoticeListQuery = () => {
-    const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.NOTICE_LIST],
-        queryFn: getNoticeList,
-        suspense: false,
-    });
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.NOTICE_LIST],
+    queryFn: getNoticeList,
+    suspense: false,
+  });
 
-    return { data: data?.dataList, ...restQuery };
+  return { data: data?.dataList, ...restQuery };
 };
 
 export const useNoticeDetailQuery = (id: number) => {
-    const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.NOTICE_DETAIL, id] as const,
-        queryFn: () => getNoticeDetail(id),
-    });
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.NOTICE_DETAIL, id] as const,
+    queryFn: () => getNoticeDetail(id),
+  });
 
-    return { data: data?.data, ...restQuery };
+  return { data: data?.data, ...restQuery };
 };

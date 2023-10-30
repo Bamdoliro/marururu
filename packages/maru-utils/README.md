@@ -8,5 +8,5 @@ $ yarn add @maru/utils
 
 ### 특징
 
--   styles에는 style 관련 util 함수들이 있습니다.
--   functions에는 기능 관련 util 함수들이 있습니다.
+- styles에는 style 관련 util 함수들이 있습니다.
+- functions에는 기능 관련 util 함수들이 있습니다.

@@ -4,25 +4,25 @@ import styled from 'styled-components';
 import FaqItem from './FaqItem/FaqItem';
 
 interface Props {
-    category: string;
+  category: string;
 }
 
 const FaqList = ({ category }: Props) => {
-    const { data: faqListData } = useFaqListQuery(category);
+  const { data: faqListData } = useFaqListQuery(category);
 
-    return faqListData ? (
-        <StyledFaqList>
-            {faqListData.map(({ title, content }, index) => (
-                <FaqItem key={`faq ${index}`} title={title} content={content} />
-            ))}
-        </StyledFaqList>
-    ) : null;
+  return faqListData ? (
+    <StyledFaqList>
+      {faqListData.map(({ title, content }, index) => (
+        <FaqItem key={`faq ${index}`} title={title} content={content} />
+      ))}
+    </StyledFaqList>
+  ) : null;
 };
 
 export default FaqList;
 
 const StyledFaqList = styled.div`
-    position: relative;
-    ${flex({ flexDirection: 'column' })}
-    width: 100%;
+  position: relative;
+  ${flex({ flexDirection: 'column' })}
+  width: 100%;
 `;

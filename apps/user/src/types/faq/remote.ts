@@ -1,5 +1,5 @@
-import { Faq } from './client';
+import type { Faq } from './client';
 
 export interface GetFaqListRes {
-    dataList: Faq[];
+  dataList: Faq[];
 }

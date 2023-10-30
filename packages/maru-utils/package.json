@@ -8,7 +8,7 @@
     "lint": "eslint \"**/*.ts*\""
   },
   "devDependencies": {
-    "@maru/eslint": "workspace:*",
+    "@maru/eslint-config": "workspace:*",
     "@maru/tsconfig": "workspace:*",
     "@types/react": "18.2.13",
     "axios": "^1.4.0",

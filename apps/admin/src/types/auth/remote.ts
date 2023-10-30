@@ -1,4 +1,4 @@
 export interface PostLoginAuthReq {
-    phoneNumber: string;
-    password: string;
+  phoneNumber: string;
+  password: string;
 }

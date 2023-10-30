@@ -1,5 +1,4 @@
 module.exports = {
-    root: true,
-    // This tells ESLint to load the config from the package `eslint-config-custom`
-    extends: ['@maru/eslint/common', '@maru/eslint/query', 'plugin:storybook/recommended'],
+  root: true,
+  extends: ['@maru/eslint-config/react-ts-noimport', 'plugin:@next/next/recommended'],
 };

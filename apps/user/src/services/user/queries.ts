@@ -4,12 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import { getUser } from './api';
 
 export const useUserQuery = () => {
-    const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.USER] as const,
-        queryFn: getUser,
-        enabled: !!Storage.getItem(TOKEN.ACCESS),
-        suspense: false,
-    });
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.USER] as const,
+    queryFn: getUser,
+    enabled: !!Storage.getItem(TOKEN.ACCESS),
+    suspense: false,
+  });
 
-    return { data: data?.data, ...restQuery };
+  return { data: data?.data, ...restQuery };
 };

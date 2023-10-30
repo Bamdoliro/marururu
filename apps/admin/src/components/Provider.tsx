@@ -2,25 +2,25 @@
 
 import { GlobalStyle } from '@maru/theme';
 import { OverlayProvider } from '@toss/use-overlay';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RecoilRoot } from 'recoil';
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const Provider = ({ children }: Props) => {
-    return (
-        <RecoilRoot>
-            <OverlayProvider>
-                <GlobalStyle />
-                {children}
-                <ToastContainer />
-            </OverlayProvider>
-        </RecoilRoot>
-    );
+  return (
+    <RecoilRoot>
+      <OverlayProvider>
+        <GlobalStyle />
+        {children}
+        <ToastContainer />
+      </OverlayProvider>
+    </RecoilRoot>
+  );
 };
 
 export default Provider;

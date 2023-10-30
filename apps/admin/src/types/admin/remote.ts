@@ -1,5 +1,5 @@
-import { Admin } from './client';
+import type { Admin } from './client';
 
 export interface GetAdminRes {
-    data: Admin;
+  data: Admin;
 }
