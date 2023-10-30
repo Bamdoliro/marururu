@@ -189,6 +189,9 @@ importers:
       '@toss/use-overlay':
         specifier: ^1.3.6
         version: 1.3.6(react@18.2.0)
+      axios:
+        specifier: ^1.4.0
+        version: 1.4.0
       dayjs:
         specifier: ^1.11.8
         version: 1.11.8
@@ -207,6 +210,9 @@ importers:
       recoil:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+      styled-components:
+        specifier: ^6.0.3
+        version: 6.0.3(babel-plugin-styled-components@2.1.4)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@maru/eslint':
         specifier: workspace:*
@@ -253,9 +259,6 @@ importers:
       '@types/styled-components':
         specifier: ^5.1.26
         version: 5.1.26
-      axios:
-        specifier: ^1.4.0
-        version: 1.4.0
       babel-plugin-styled-components:
         specifier: ^2.1.4
         version: 2.1.4(@babel/core@7.22.20)(styled-components@6.0.3)
@@ -268,9 +271,6 @@ importers:
       storybook:
         specifier: ^7.3.1
         version: 7.3.1
-      styled-components:
-        specifier: ^6.0.3
-        version: 6.0.3(babel-plugin-styled-components@2.1.4)(react-dom@18.2.0)(react@18.2.0)
       typescript:
         specifier: 5.1.3
         version: 5.1.3
