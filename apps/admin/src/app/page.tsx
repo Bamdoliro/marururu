@@ -81,13 +81,13 @@ const MainPage = () => {
                             ) : null}
                             {isSecondRoundResultEditing ? (
                                 <ConfirmButton
-                                    onClickConfirm={setIsSecondRoundResultEditingFalse}
-                                    onClickCancel={handleSecondRoundResultEditCompleteButtonClick}
+                                    onClickConfirm={handleSecondRoundResultEditCompleteButtonClick}
+                                    onClickCancel={setIsSecondRoundResultEditingFalse}
                                 />
                             ) : isFormToPrintSelecting ? (
                                 <ConfirmButton
-                                    onClickConfirm={setIsFormToPrintSelectingFalse}
-                                    onClickCancel={handleDownloadFormUrlButtonClick}
+                                    onClickConfirm={handleDownloadFormUrlButtonClick}
+                                    onClickCancel={setIsFormToPrintSelectingFalse}
                                     confirmText="출력하기"
                                 />
                             ) : (
