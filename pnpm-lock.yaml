@@ -171,6 +171,12 @@ importers:
       '@maru/utils':
         specifier: workspace:*
         version: link:../../packages/maru-utils
+      '@suspensive/react':
+        specifier: ^1.18.1
+        version: 1.18.1(react@18.2.0)
+      '@suspensive/react-query':
+        specifier: ^1.18.1
+        version: 1.18.1(@suspensive/react@1.18.1)(@tanstack/react-query@4.32.6)(react@18.2.0)
       '@tanstack/react-query':
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
@@ -183,6 +189,9 @@ importers:
       '@toss/use-overlay':
         specifier: ^1.3.6
         version: 1.3.6(react@18.2.0)
+      axios:
+        specifier: ^1.4.0
+        version: 1.4.0
       dayjs:
         specifier: ^1.11.8
         version: 1.11.8
@@ -201,6 +210,9 @@ importers:
       recoil:
         specifier: ^0.7.7
         version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+      styled-components:
+        specifier: ^6.0.3
+        version: 6.0.3(babel-plugin-styled-components@2.1.4)(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@maru/eslint':
         specifier: workspace:*
@@ -247,9 +259,6 @@ importers:
       '@types/styled-components':
         specifier: ^5.1.26
         version: 5.1.26
-      axios:
-        specifier: ^1.4.0
-        version: 1.4.0
       babel-plugin-styled-components:
         specifier: ^2.1.4
         version: 2.1.4(@babel/core@7.22.20)(styled-components@6.0.3)
@@ -262,9 +271,6 @@ importers:
       storybook:
         specifier: ^7.3.1
         version: 7.3.1
-      styled-components:
-        specifier: ^6.0.3
-        version: 6.0.3(babel-plugin-styled-components@2.1.4)(react-dom@18.2.0)(react@18.2.0)
       typescript:
         specifier: 5.1.3
         version: 5.1.3
@@ -7085,6 +7091,31 @@ packages:
       '@types/express': 4.17.17
       file-system-cache: 2.3.0
     dev: true
+
+  /@suspensive/react-query@1.18.1(@suspensive/react@1.18.1)(@tanstack/react-query@4.32.6)(react@18.2.0):
+    resolution: {integrity: sha512-ZMJ1Ev4eg0A8jcozyNWtROCUzRhKRrVgOI4yQUAO4s2uoFZsk5X4wPYM93fC/CXgQCfD9oGlnPdk0nSMwPkcIQ==}
+    peerDependencies:
+      '@suspensive/react': ^1.18.1
+      '@tanstack/react-query': ^4
+      react: ^16.8 || ^17 || ^18
+    peerDependenciesMeta:
+      '@suspensive/react':
+        optional: true
+    dependencies:
+      '@suspensive/react': 1.18.1(react@18.2.0)
+      '@tanstack/react-query': 4.32.6(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+    dev: false
+    bundledDependencies:
+      - tsd
+
+  /@suspensive/react@1.18.1(react@18.2.0):
+    resolution: {integrity: sha512-53nMtKnh315afFiHf6xfYhHTAvy2u4hOlB+TwOIKmVkQpfZhMdmxVh/ZZNI8hbI3P7fDJwxrcGWTSq47lzvjsA==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@swc/core-darwin-arm64@1.3.77:
     resolution: {integrity: sha512-l4KGQAGB4Ih1Al2tWoUBrtVJCF/xZRjH3jCMCRD52KZDRAnRVDq42JKek7+aHjjH8juzTISaqzsI8Ipv6zvKhA==}

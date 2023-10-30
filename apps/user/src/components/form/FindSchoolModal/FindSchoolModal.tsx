@@ -1,8 +1,9 @@
 import { useSetFormStore } from '@/store';
 import { School } from '@/types/form/client';
 import { useDebounceInput } from '@maru/hooks';
-import { Column, Loader, Modal, SearchInput } from '@maru/ui';
-import { Suspense, useState } from 'react';
+import { Column, Modal, SearchInput } from '@maru/ui';
+import { useState } from 'react';
+import { Suspense } from '@suspensive/react';
 import SchoolList from './SchoolList/SchoolList';
 
 interface Props {
@@ -58,13 +59,13 @@ const FindSchoolModal = ({ isOpen, onClose }: Props) => {
                     placeholder="학교 이름을 입력해주세요."
                 />
             </Column>
-            <Suspense fallback={<Loader />}>
+            <Suspense.CSROnly>
                 <SchoolList
                     school={school}
                     setSchool={setSchool}
                     debouncedSchoolSearchQuery={debouncedSchoolName}
                 />
-            </Suspense>
+            </Suspense.CSROnly>
         </Modal>
     );
 };

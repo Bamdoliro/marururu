@@ -1,10 +1,10 @@
 import { ROUTES } from '@/constants/common/constant';
 import { IconArrowRight } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Loader, Text } from '@maru/ui';
+import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Link from 'next/link';
-import { Suspense } from 'react';
+import { Suspense } from '@suspensive/react';
 import styled from 'styled-components';
 import NoticeBoxList from './NoticeBoxList/NoticeBoxList';
 
@@ -17,9 +17,9 @@ const NoticeBox = () => {
                 </Text>
                 <IconArrowRight color={color.gray900} width={24} height={24} />
             </DirectLink>
-            <Suspense fallback={<Loader />}>
+            <Suspense.CSROnly>
                 <NoticeBoxList />
-            </Suspense>
+            </Suspense.CSROnly>
         </StyledNoticeBox>
     );
 };

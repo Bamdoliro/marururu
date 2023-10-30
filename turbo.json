@@ -4,17 +4,17 @@
     "pipeline": {
         "build": {
             "dependsOn": ["^build"],
-            "env": [
-                "NEXT_PUBLIC_BASE_URL",
-                "NEXT_PUBLIC_GOOGLE_ANALYTICS",
-                "NODE_ENV"
-            ],
-            "outputs": [".next/**", "!.next/cache/**", "storybook-static/**"]
+            "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
         },
         "lint": {},
         "dev": {
             "cache": false,
             "persistent": true
         }
-    }
+    },
+    "globalEnv": [    
+        "NEXT_PUBLIC_BASE_URL",
+        "NEXT_PUBLIC_GOOGLE_ANALYTICS",
+        "NODE_ENV"
+    ]
 }

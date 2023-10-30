@@ -5,7 +5,7 @@ import { AppLayout } from '@/layouts';
 import { color } from '@maru/theme';
 import { Loader, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { Suspense } from 'react';
+import { Suspense } from '@suspensive/react';
 import styled from 'styled-components';
 
 const NoticePage = () => {
@@ -15,9 +15,9 @@ const NoticePage = () => {
                 <Text fontType="H1" color={color.gray900}>
                     공지사항
                 </Text>
-                <Suspense fallback={<Loader />}>
+                <Suspense.CSROnly>
                     <NoticeList />
-                </Suspense>
+                </Suspense.CSROnly>
             </StyledNoticePage>
         </AppLayout>
     );

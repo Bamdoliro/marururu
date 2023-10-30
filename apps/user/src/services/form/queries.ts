@@ -1,16 +1,16 @@
 import { Storage } from '@/apis/storage/storage';
 import { KEY, TOKEN } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@suspensive/react-query';
 import { getExportForm, getFormStatus, getSaveForm, getSchoolList } from './api';
 
 export const useSchoolListQuery = (school: string) => {
-    const { data, ...restQuery } = useQuery({
+    const { data, ...restQuery } = useSuspenseQuery({
         queryKey: [KEY.FORM_SCHOOL_LIST, school],
         queryFn: () => getSchoolList(school),
-        enabled: !!Storage.getItem(TOKEN.ACCESS),
     });
 
-    return { data: data?.dataList, ...restQuery };
+    return { data: data.dataList, ...restQuery };
 };
 
 export const useExportFormQuery = () => {
