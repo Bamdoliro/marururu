@@ -9,30 +9,30 @@ import { RecoilRoot } from 'recoil';
 import { AuthWrapper } from './common';
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const suspensive = new Suspensive({
-    defaultOptions: {
-        suspense: {
-            fallback: <Loader />,
-        },
+  defaultOptions: {
+    suspense: {
+      fallback: <Loader />,
     },
+  },
 });
 
 const Provider = ({ children }: Props) => {
-    return (
-        <SuspensiveProvider value={suspensive}>
-            <RecoilRoot>
-                <OverlayProvider>
-                    <AuthWrapper>
-                        <GlobalStyle />
-                        {children}
-                    </AuthWrapper>
-                </OverlayProvider>
-            </RecoilRoot>
-        </SuspensiveProvider>
-    );
+  return (
+    <SuspensiveProvider value={suspensive}>
+      <RecoilRoot>
+        <OverlayProvider>
+          <AuthWrapper>
+            <GlobalStyle />
+            {children}
+          </AuthWrapper>
+        </OverlayProvider>
+      </RecoilRoot>
+    </SuspensiveProvider>
+  );
 };
 
 export default Provider;

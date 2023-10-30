@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 
 const useOpenFileUploader = () => {
-    const ref = useRef<HTMLInputElement>(null);
+  const ref = useRef<HTMLInputElement>(null);
 
-    const openFileUploader = () => {
-        ref.current?.click();
-    };
+  const openFileUploader = () => {
+    ref.current?.click();
+  };
 
-    return { openFileUploader, ref };
+  return { openFileUploader, ref };
 };
 
 export default useOpenFileUploader;

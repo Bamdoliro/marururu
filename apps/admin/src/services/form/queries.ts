@@ -3,61 +3,61 @@ import { useFormListTypeValueStore } from '@/store/form/type';
 import { ExportExcelType } from '@/types/form/client';
 import { useQuery } from '@tanstack/react-query';
 import {
-    getExportExcel,
-    getFormDetail,
-    getFormList,
-    getFormUrl,
-    getSecondScoreFormat,
+  getExportExcel,
+  getFormDetail,
+  getFormList,
+  getFormUrl,
+  getSecondScoreFormat,
 } from './api';
 
 export const useFormListQuery = () => {
-    const formListType = useFormListTypeValueStore();
+  const formListType = useFormListTypeValueStore();
 
-    const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.FORM_LIST, formListType],
-        queryFn: () => getFormList(formListType),
-        suspense: false,
-    });
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.FORM_LIST, formListType],
+    queryFn: () => getFormList(formListType),
+    suspense: false,
+  });
 
-    return { data: data?.dataList, ...restQuery };
+  return { data: data?.dataList, ...restQuery };
 };
 
 export const useDownloadSecondScoreFormatQuery = () => {
-    const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.SECOND_SCORE_FORMAT],
-        queryFn: getSecondScoreFormat,
-        suspense: false,
-    });
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.SECOND_SCORE_FORMAT],
+    queryFn: getSecondScoreFormat,
+    suspense: false,
+  });
 
-    return { data, ...restQuery };
+  return { data, ...restQuery };
 };
 
 export const useExportExcelQuery = (exportExcelType: ExportExcelType | null) => {
-    const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.EXPORT_EXCEL, exportExcelType],
-        queryFn: () => getExportExcel(exportExcelType as ExportExcelType),
-        suspense: false,
-        enabled: !!exportExcelType,
-    });
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.EXPORT_EXCEL, exportExcelType],
+    queryFn: () => getExportExcel(exportExcelType as ExportExcelType),
+    suspense: false,
+    enabled: !!exportExcelType,
+  });
 
-    return { data, ...restQuery };
+  return { data, ...restQuery };
 };
 
 export const useFormDetailQuery = (id: number) => {
-    const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.FORM_DETAIL, id],
-        queryFn: () => getFormDetail(id),
-    });
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.FORM_DETAIL, id],
+    queryFn: () => getFormDetail(id),
+  });
 
-    return { data: data?.data, ...restQuery };
+  return { data: data?.data, ...restQuery };
 };
 
 export const useDownloadFormUrlQuery = (formIdList: number[]) => {
-    const { data, ...restQuery } = useQuery({
-        queryKey: [KEY.FORM_URL],
-        queryFn: () => getFormUrl(formIdList),
-        enabled: false,
-    });
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.FORM_URL],
+    queryFn: () => getFormUrl(formIdList),
+    enabled: false,
+  });
 
-    return { data: data?.dataList, ...restQuery };
+  return { data: data?.dataList, ...restQuery };
 };

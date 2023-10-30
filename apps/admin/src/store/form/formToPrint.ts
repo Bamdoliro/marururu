@@ -1,8 +1,8 @@
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const formToPrintAtomState = atom<Record<number, boolean>>({
-    key: 'form-to-print',
-    default: {},
+  key: 'form-to-print',
+  default: {},
 });
 
 export const useFormToPrintStore = () => useRecoilState(formToPrintAtomState);

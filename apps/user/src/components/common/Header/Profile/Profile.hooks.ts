@@ -3,21 +3,21 @@ import { useLogoutUserMutation } from '@/services/auth/mutations';
 import { useRouter } from 'next/navigation';
 
 export const useCTAButton = () => {
-    const router = useRouter();
+  const router = useRouter();
 
-    const handleGoFormPageButtonClick = () => {
-        router.push(ROUTES.FORM);
-    };
+  const handleGoFormPageButtonClick = () => {
+    router.push(ROUTES.FORM);
+  };
 
-    return { handleGoFormPageButtonClick };
+  return { handleGoFormPageButtonClick };
 };
 
 export const useLogoutAction = () => {
-    const { logoutUserMutate } = useLogoutUserMutation();
+  const { logoutUserMutate } = useLogoutUserMutation();
 
-    const handleLogoutButtonClick = () => {
-        logoutUserMutate();
-    };
+  const handleLogoutButtonClick = () => {
+    logoutUserMutate();
+  };
 
-    return { handleLogoutButtonClick };
+  return { handleLogoutButtonClick };
 };

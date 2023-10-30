@@ -4,20 +4,20 @@ import NoticeTableHeader from './NoticeTableHeader/NoticeTableHeader';
 import NoticeTableItem from './NoticeTableItem/NoticeTableItem';
 
 const NoticeTable = () => {
-    const { data: noticeList } = useNoticeListQuery();
+  const { data: noticeList } = useNoticeListQuery();
 
-    return (
-        <Column gap={12}>
-            <NoticeTableHeader />
-            {noticeList
-                ? noticeList
-                      .sort((a, b) => a.id - b.id)
-                      .map(({ id, title, createdAt }) => (
-                          <NoticeTableItem id={id} title={title} createdAt={createdAt} />
-                      ))
-                : null}
-        </Column>
-    );
+  return (
+    <Column gap={12}>
+      <NoticeTableHeader />
+      {noticeList
+        ? noticeList
+            .sort((a, b) => a.id - b.id)
+            .map(({ id, title, createdAt }) => (
+              <NoticeTableItem id={id} title={title} createdAt={createdAt} />
+            ))
+        : null}
+    </Column>
+  );
 };
 
 export default NoticeTable;

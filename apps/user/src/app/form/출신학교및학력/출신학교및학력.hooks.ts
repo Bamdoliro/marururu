@@ -3,29 +3,29 @@ import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store
 import { ChangeEventHandler } from 'react';
 
 export const useCTAButton = () => {
-    const form = useFormValueStore();
-    const setFormStep = useSetFormStepStore();
-    const { saveFormMutate } = useSaveFormMutation();
+  const form = useFormValueStore();
+  const setFormStep = useSetFormStepStore();
+  const { saveFormMutate } = useSaveFormMutation();
 
-    const handleNextButtonClick = () => {
-        setFormStep('전형선택');
-        saveFormMutate(form);
-    };
+  const handleNextButtonClick = () => {
+    setFormStep('전형선택');
+    saveFormMutate(form);
+  };
 
-    const handlePreviousButtonClick = () => {
-        setFormStep('보호자정보');
-    };
+  const handlePreviousButtonClick = () => {
+    setFormStep('보호자정보');
+  };
 
-    return { handleNextButtonClick, handlePreviousButtonClick };
+  return { handleNextButtonClick, handlePreviousButtonClick };
 };
 
 export const useInput = () => {
-    const setForm = useSetFormStore();
+  const setForm = useSetFormStore();
 
-    const handle출신학교및학력DataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
-        setForm((prev) => ({ ...prev, education: { ...prev.education, [name]: value } }));
-    };
+  const handle출신학교및학력DataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, education: { ...prev.education, [name]: value } }));
+  };
 
-    return { handle출신학교및학력DataChange };
+  return { handle출신학교및학력DataChange };
 };

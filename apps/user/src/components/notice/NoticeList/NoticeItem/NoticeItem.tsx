@@ -7,36 +7,36 @@ import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 interface Props {
-    id: number;
-    title: string;
-    createdAt: string;
+  id: number;
+  title: string;
+  createdAt: string;
 }
 
 const NoticeItem = ({ id, title, createdAt }: Props) => {
-    const router = useRouter();
+  const router = useRouter();
 
-    return (
-        <StyledNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
-            <Column gap={8} height={55}>
-                <Text fontType="H5" color={color.gray900}>
-                    {title}
-                </Text>
-                <Text fontType="p3" color={color.gray750}>
-                    {formatCreatedAt(createdAt)}
-                </Text>
-            </Column>
-            <IconArrowRight color={color.gray600} width={24} height={24} />
-        </StyledNoticeItem>
-    );
+  return (
+    <StyledNoticeItem onClick={() => router.push(`${ROUTES.NOTICE}/${id}`)}>
+      <Column gap={8} height={55}>
+        <Text fontType="H5" color={color.gray900}>
+          {title}
+        </Text>
+        <Text fontType="p3" color={color.gray750}>
+          {formatCreatedAt(createdAt)}
+        </Text>
+      </Column>
+      <IconArrowRight color={color.gray600} width={24} height={24} />
+    </StyledNoticeItem>
+  );
 };
 
 export default NoticeItem;
 
 const StyledNoticeItem = styled.div`
-    ${flex({ justifyContent: 'space-between' })}
-    width: 100%;
-    height: 71px;
-    border-bottom: 1px solid ${color.gray300};
-    padding-bottom: 16px;
-    cursor: pointer;
+  ${flex({ justifyContent: 'space-between' })}
+  width: 100%;
+  height: 71px;
+  border-bottom: 1px solid ${color.gray300};
+  padding-bottom: 16px;
+  cursor: pointer;
 `;

@@ -2,15 +2,19 @@ import { useChangeFinalScoreStatusMutation } from '@/services/form/mutations';
 import { ApprovalStatus } from '@/types/form/client';
 
 export const useChangeFinalScoreStatusAction = (
-    id: number,
-    status: ApprovalStatus,
-    closeModal: () => void,
+  id: number,
+  status: ApprovalStatus,
+  closeModal: () => void
 ) => {
-    const { changeFinalScoreStatus } = useChangeFinalScoreStatusMutation(id, status, closeModal);
+  const { changeFinalScoreStatus } = useChangeFinalScoreStatusMutation(
+    id,
+    status,
+    closeModal
+  );
 
-    const handleChangeFinalScoreStatusButtonClick = () => {
-        changeFinalScoreStatus();
-    };
+  const handleChangeFinalScoreStatusButtonClick = () => {
+    changeFinalScoreStatus();
+  };
 
-    return { handleChangeFinalScoreStatusButtonClick };
+  return { handleChangeFinalScoreStatusButtonClick };
 };

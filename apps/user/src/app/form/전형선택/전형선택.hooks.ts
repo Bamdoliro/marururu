@@ -3,30 +3,30 @@ import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store
 import { ChangeEventHandler } from 'react';
 
 export const useInput = () => {
-    const setForm = useSetFormStore();
+  const setForm = useSetFormStore();
 
-    const handleFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const { name, value } = e.target;
+  const handleFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { name, value } = e.target;
 
-        setForm((prev) => ({ ...prev, [name]: value }));
-    };
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
-    return { handleFormTypeDataChange };
+  return { handleFormTypeDataChange };
 };
 
 export const useCTAButton = () => {
-    const form = useFormValueStore();
-    const setFormStep = useSetFormStepStore();
-    const { saveFormMutate } = useSaveFormMutation();
+  const form = useFormValueStore();
+  const setFormStep = useSetFormStepStore();
+  const { saveFormMutate } = useSaveFormMutation();
 
-    const handleNextButtonClick = () => {
-        setFormStep('성적입력');
-        saveFormMutate(form);
-    };
+  const handleNextButtonClick = () => {
+    setFormStep('성적입력');
+    saveFormMutate(form);
+  };
 
-    const handlePreviousButtonClick = () => {
-        setFormStep('출신학교및학력');
-    };
+  const handlePreviousButtonClick = () => {
+    setFormStep('출신학교및학력');
+  };
 
-    return { handleNextButtonClick, handlePreviousButtonClick };
+  return { handleNextButtonClick, handlePreviousButtonClick };
 };

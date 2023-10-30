@@ -6,21 +6,23 @@ import { AchievementLevelsGroup, Subject } from '@/types/form/client';
  * @returns
  */
 function getAchievementLevelsGroupList(subjectList?: Subject[]) {
-    if (!subjectList) return [];
-    return subjectList.reduce((acc: AchievementLevelsGroup[], record) => {
-        let existingSubject = acc.find((subject) => subject.subjectName === record.subjectName);
+  if (!subjectList) return [];
+  return subjectList.reduce((acc: AchievementLevelsGroup[], record) => {
+    let existingSubject = acc.find(
+      (subject) => subject.subjectName === record.subjectName
+    );
 
-        if (existingSubject) {
-            existingSubject.achievementLevels.push(record.achievementLevel);
-        } else {
-            acc.push({
-                subjectName: record.subjectName,
-                achievementLevels: [record.achievementLevel],
-            });
-        }
+    if (existingSubject) {
+      existingSubject.achievementLevels.push(record.achievementLevel);
+    } else {
+      acc.push({
+        subjectName: record.subjectName,
+        achievementLevels: [record.achievementLevel],
+      });
+    }
 
-        return acc;
-    }, []);
+    return acc;
+  }, []);
 }
 
 export default getAchievementLevelsGroupList;

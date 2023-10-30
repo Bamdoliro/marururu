@@ -5,25 +5,25 @@ import { ReactNode, useState } from 'react';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const StyledComponentsRegistry = ({ children }: Props) => {
-    const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
+  const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
 
-    useServerInsertedHTML(() => {
-        const styles = styledComponentsStyleSheet.getStyleElement();
-        styledComponentsStyleSheet.instance.clearTag();
-        return <>{styles}</>;
-    });
+  useServerInsertedHTML(() => {
+    const styles = styledComponentsStyleSheet.getStyleElement();
+    styledComponentsStyleSheet.instance.clearTag();
+    return <>{styles}</>;
+  });
 
-    if (typeof window !== 'undefined') return <>{children}</>;
+  if (typeof window !== 'undefined') return <>{children}</>;
 
-    return (
-        <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-            {children}
-        </StyleSheetManager>
-    );
+  return (
+    <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+      {children}
+    </StyleSheetManager>
+  );
 };
 
 export default StyledComponentsRegistry;

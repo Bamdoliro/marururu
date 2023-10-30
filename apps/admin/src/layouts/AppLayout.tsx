@@ -6,28 +6,28 @@ import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const AppLayout = ({ children }: Props) => {
-    return (
-        <StyledAppLayout>
-            <SideBar />
-            <Section>{children}</Section>
-        </StyledAppLayout>
-    );
+  return (
+    <StyledAppLayout>
+      <SideBar />
+      <Section>{children}</Section>
+    </StyledAppLayout>
+  );
 };
 
 export default AppLayout;
 
 const StyledAppLayout = styled.div`
-    ${flex({ flexDirection: 'row' })}
-    width: 100%;
-    height: 100vh;
+  ${flex({ flexDirection: 'row' })}
+  width: 100%;
+  height: 100vh;
 `;
 
 const Section = styled.section`
-    flex: 1;
-    min-width: fit-content;
-    overflow: auto;
+  flex: 1;
+  min-width: fit-content;
+  overflow: auto;
 `;

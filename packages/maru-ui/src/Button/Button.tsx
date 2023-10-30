@@ -7,53 +7,54 @@ import { getButtonPadding, getButtonSize, getButtonStyle } from './Button.style'
 import { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-    children: ReactNode;
-    option?: ButtonOption;
-    icon?: ButtonIcon;
-    size?: ButtonSize;
-    width?: CSSProperties['width'];
+  children: ReactNode;
+  option?: ButtonOption;
+  icon?: ButtonIcon;
+  size?: ButtonSize;
+  width?: CSSProperties['width'];
 }
 
 const Button = ({
-    onClick,
-    children,
-    option = 'PRIMARY',
-    icon = 'NONE',
-    size = 'MEDIUM',
-    width,
-    style,
-    disabled,
+  onClick,
+  children,
+  option = 'PRIMARY',
+  icon = 'NONE',
+  size = 'MEDIUM',
+  width,
+  style,
+  disabled,
 }: Props) => {
-    return (
-        <StyledButton
-            style={{ width, ...style }}
-            onClick={onClick}
-            option={option}
-            icon={icon}
-            size={size}
-            disabled={disabled || option === 'DISABLED'}>
-            {icon === 'ADD_ICON' && <IconAdd color={color.white} width={24} height={24} />}
-            {children}
-            {icon === 'SHORTCUTS_ICON' && (
-                <IconShortcuts color={color.white} width={24} height={24} />
-            )}
-        </StyledButton>
-    );
+  return (
+    <StyledButton
+      style={{ width, ...style }}
+      onClick={onClick}
+      option={option}
+      icon={icon}
+      size={size}
+      disabled={disabled || option === 'DISABLED'}
+    >
+      {icon === 'ADD_ICON' && <IconAdd color={color.white} width={24} height={24} />}
+      {children}
+      {icon === 'SHORTCUTS_ICON' && (
+        <IconShortcuts color={color.white} width={24} height={24} />
+      )}
+    </StyledButton>
+  );
 };
 
 export default Button;
 
 const StyledButton = styled.button<{
-    option: ButtonOption;
-    icon: ButtonIcon;
-    size: ButtonSize;
+  option: ButtonOption;
+  icon: ButtonIcon;
+  size: ButtonSize;
 }>`
-    ${flex({ alignItems: 'center', justifyContent: 'center' })}
-    border-radius: 6px;
-    cursor: pointer;
-    word-break: keep-all;
+  ${flex({ alignItems: 'center', justifyContent: 'center' })}
+  border-radius: 6px;
+  cursor: pointer;
+  word-break: keep-all;
 
-    ${(props) => props.icon && getButtonPadding[props.icon]};
-    ${(props) => props && getButtonStyle[props.option]};
-    ${(props) => props && getButtonSize[props.size]};
+  ${(props) => props.icon && getButtonPadding[props.icon]};
+  ${(props) => props && getButtonStyle[props.option]};
+  ${(props) => props && getButtonSize[props.size]};
 `;

@@ -7,35 +7,35 @@ import { formatPostedAt } from '@maru/utils';
 import Link from 'next/link';
 
 interface Props {
-    id: number;
-    title: string;
-    category: Category;
-    createdAt: string;
+  id: number;
+  title: string;
+  category: Category;
+  createdAt: string;
 }
 
 const FaqTableItem = ({ id, title, category, createdAt }: Props) => {
-    return (
-        <Link href={`${ROUTES.FAQ}/${id}`}>
-            <TableItem>
-                <Row gap={48}>
-                    <Text fontType="p2" width={50} ellipsis>
-                        {id}
-                    </Text>
-                    <Text fontType="p2" width={400} ellipsis>
-                        {title}
-                    </Text>
-                </Row>
-                <Row gap={184}>
-                    <Text fontType="p2" width={120} ellipsis>
-                        {FAQ_CATEGORY[category]}
-                    </Text>
-                    <Text fontType="p2" width={120} ellipsis>
-                        {formatPostedAt(createdAt)}
-                    </Text>
-                </Row>
-            </TableItem>
-        </Link>
-    );
+  return (
+    <Link href={`${ROUTES.FAQ}/${id}`}>
+      <TableItem>
+        <Row gap={48}>
+          <Text fontType="p2" width={50} ellipsis>
+            {id}
+          </Text>
+          <Text fontType="p2" width={400} ellipsis>
+            {title}
+          </Text>
+        </Row>
+        <Row gap={184}>
+          <Text fontType="p2" width={120} ellipsis>
+            {FAQ_CATEGORY[category]}
+          </Text>
+          <Text fontType="p2" width={120} ellipsis>
+            {formatPostedAt(createdAt)}
+          </Text>
+        </Row>
+      </TableItem>
+    </Link>
+  );
 };
 
 export default FaqTableItem;

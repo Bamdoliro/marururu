@@ -8,19 +8,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import { RecoilRoot } from 'recoil';
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const Provider = ({ children }: Props) => {
-    return (
-        <RecoilRoot>
-            <OverlayProvider>
-                <GlobalStyle />
-                {children}
-                <ToastContainer />
-            </OverlayProvider>
-        </RecoilRoot>
-    );
+  return (
+    <RecoilRoot>
+      <OverlayProvider>
+        <GlobalStyle />
+        {children}
+        <ToastContainer />
+      </OverlayProvider>
+    </RecoilRoot>
+  );
 };
 
 export default Provider;

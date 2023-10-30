@@ -5,30 +5,30 @@ import FaqTableHeader from './FaqTableHeader/FaqTableHeader';
 import FaqTableItem from './FaqTableItem/FaqTableItem';
 
 const FaqTable = () => {
-    const { data: faqList } = useFaqListQuery();
-    return (
-        <StyledFaqTable>
-            <FaqTableHeader />
-            {faqList &&
-                faqList
-                    .sort((a, b) => a.id - b.id)
-                    .map(({ id, title, category, createdAt }) => (
-                        <FaqTableItem
-                            id={id}
-                            title={title}
-                            category={category}
-                            createdAt={createdAt}
-                        />
-                    ))}
-        </StyledFaqTable>
-    );
+  const { data: faqList } = useFaqListQuery();
+  return (
+    <StyledFaqTable>
+      <FaqTableHeader />
+      {faqList &&
+        faqList
+          .sort((a, b) => a.id - b.id)
+          .map(({ id, title, category, createdAt }) => (
+            <FaqTableItem
+              id={id}
+              title={title}
+              category={category}
+              createdAt={createdAt}
+            />
+          ))}
+    </StyledFaqTable>
+  );
 };
 
 export default FaqTable;
 
 const StyledFaqTable = styled.div`
-    ${flex({ flexDirection: 'column' })};
-    gap: 12px;
-    width: 100%;
-    height: 100%;
+  ${flex({ flexDirection: 'column' })};
+  gap: 12px;
+  width: 100%;
+  height: 100%;
 `;

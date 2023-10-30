@@ -12,35 +12,35 @@ import { Suspense } from 'react';
 import styled from 'styled-components';
 
 const NoticePostPage = () => {
-    return (
-        <AppLayout>
-            <StyledNoticePost>
-                <DirectLink href={ROUTES.NOTICE}>
-                    <IconArrowLeft width={18} height={18} />
-                    돌아가기
-                </DirectLink>
-                <Suspense fallback={<Loader />}>
-                    <NoticePost />
-                </Suspense>
-            </StyledNoticePost>
-        </AppLayout>
-    );
+  return (
+    <AppLayout>
+      <StyledNoticePost>
+        <DirectLink href={ROUTES.NOTICE}>
+          <IconArrowLeft width={18} height={18} />
+          돌아가기
+        </DirectLink>
+        <Suspense fallback={<Loader />}>
+          <NoticePost />
+        </Suspense>
+      </StyledNoticePost>
+    </AppLayout>
+  );
 };
 
 export default NoticePostPage;
 
 const StyledNoticePost = styled.div`
-    position: relative;
-    ${flex({ flexDirection: 'column' })}
-    gap: 24px;
-    width: 100%;
-    min-height: 100vh;
-    padding: 64px 75px;
+  position: relative;
+  ${flex({ flexDirection: 'column' })}
+  gap: 24px;
+  width: 100%;
+  min-height: 100vh;
+  padding: 64px 75px;
 `;
 
 const DirectLink = styled(Link)`
-    ${flex({ alignItems: 'center' })}
-    gap: 2px;
-    ${font.p3}
-    color: ${color.gray600};
+  ${flex({ alignItems: 'center' })}
+  gap: 2px;
+  ${font.p3}
+  color: ${color.gray600};
 `;

@@ -3,13 +3,13 @@ import { Subject } from '@/types/form/client';
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const subjectListAtomState = atom<Subject[]>({
-    key: 'subject-list',
-    default: SUBJECT_LIST,
+  key: 'subject-list',
+  default: SUBJECT_LIST,
 });
 
 const newSubjectListAtomState = atom<Subject[]>({
-    key: 'new-subject-list',
-    default: [],
+  key: 'new-subject-list',
+  default: [],
 });
 
 export const useSubjectListStore = () => useRecoilState(subjectListAtomState);
