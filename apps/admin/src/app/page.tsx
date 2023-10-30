@@ -1,5 +1,6 @@
 'use client';
 
+import ConfirmButton from '@/components/common/ConfirmButton/ConfirmButton';
 import ButtonMenu from '@/components/form/ButtonMenu/ButtonMenu';
 import ButtonMenuItem from '@/components/form/ButtonMenu/ButtonMenuItem/ButtonMenuItem';
 import ExportExcelModal from '@/components/form/ExportExcelModal/ExportExcelModal';
@@ -15,7 +16,7 @@ import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { useFormListTypeStore } from '@/store/form/type';
 import { IconCheckDocument, IconEditDocument, IconPrint, IconUpload } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
+import { Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
@@ -80,31 +81,16 @@ const MainPage = () => {
                                 <ReviewFilterChip onClose={setFormListTypeAll} />
                             ) : null}
                             {isSecondRoundResultEditing ? (
-                                <Row gap={16}>
-                                    <Button
-                                        option="SECONDARY"
-                                        size="SMALL"
-                                        onClick={setIsSecondRoundResultEditingFalse}>
-                                        취소
-                                    </Button>
-                                    <Button
-                                        size="SMALL"
-                                        onClick={handleSecondRoundResultEditCompleteButtonClick}>
-                                        완료
-                                    </Button>
-                                </Row>
+                                <ConfirmButton
+                                    onClickConfirm={setIsSecondRoundResultEditingTrue}
+                                    onClickCancel={handleSecondRoundResultEditCompleteButtonClick}
+                                />
                             ) : isFormToPrintSelecting ? (
-                                <Row gap={16}>
-                                    <Button
-                                        option="SECONDARY"
-                                        size="SMALL"
-                                        onClick={setIsFormToPrintSelectingFalse}>
-                                        취소
-                                    </Button>
-                                    <Button size="SMALL" onClick={handleDownloadFormUrlButtonClick}>
-                                        출력하기
-                                    </Button>
-                                </Row>
+                                <ConfirmButton
+                                    onClickConfirm={setIsFormToPrintSelectingFalse}
+                                    onClickCancel={handleDownloadFormUrlButtonClick}
+                                    confirmText="출력하기"
+                                />
                             ) : (
                                 <ButtonMenu
                                     width={280}

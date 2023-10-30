@@ -1,7 +1,8 @@
+import ConfirmButton from '@/components/common/ConfirmButton/ConfirmButton';
 import { ExportExcelType } from '@/types/form/client';
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Button, Column, Row, Text } from '@maru/ui';
+import { Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler, useState } from 'react';
 import styled, { css } from 'styled-components';
@@ -116,17 +117,13 @@ const ExportExcelModal = ({ isOpen, onClose }: Props) => {
                         />
                     </CardRadioBox>
                 </Row>
-                <Row gap={16} style={{ alignSelf: 'flex-end' }}>
-                    <Button size="SMALL" option="SECONDARY" onClick={onClose}>
-                        취소
-                    </Button>
-                    <Button
-                        size="SMALL"
-                        option={exportExcelType ? 'PRIMARY' : 'DISABLED'}
-                        onClick={handleExportExcelButtonClick}>
-                        내보내기
-                    </Button>
-                </Row>
+                <ConfirmButton
+                    style={{ alignSelf: 'flex-end' }}
+                    onClickConfirm={handleExportExcelButtonClick}
+                    onClickCancel={onClose}
+                    confirmText="내보내기"
+                    disabled={!exportExcelType}
+                />
             </StyledExportExcelModal>
         </BlurBackground>
     );

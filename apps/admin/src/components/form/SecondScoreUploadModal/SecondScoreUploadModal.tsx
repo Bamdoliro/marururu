@@ -1,7 +1,8 @@
+import ConfirmButton from '@/components/common/ConfirmButton/ConfirmButton';
 import { useSecondScoreFileStore } from '@/store/form/secondScoreFile';
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
-import { Button, Column, Row, Text, TextButton } from '@maru/ui';
+import { Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { ChangeEventHandler, useRef } from 'react';
 import styled from 'styled-components';
@@ -81,17 +82,13 @@ const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
                         [ 엑셀 포맷 다운로드 ]
                     </TextButton>
                 </Column>
-                <Row gap={16} style={{ alignSelf: 'flex-end' }}>
-                    <Button size="SMALL" option="SECONDARY" onClick={removeFileAndCloseModal}>
-                        취소
-                    </Button>
-                    <Button
-                        size="SMALL"
-                        option={fileData ? 'PRIMARY' : 'DISABLED'}
-                        onClick={handleUploadSecondScoreFormatButtonClick}>
-                        입력하기
-                    </Button>
-                </Row>
+                <ConfirmButton
+                    style={{ alignSelf: 'flex-end' }}
+                    onClickConfirm={handleUploadSecondScoreFormatButtonClick}
+                    onClickCancel={removeFileAndCloseModal}
+                    confirmText="입력하기"
+                    disabled={!fileData}
+                />
             </StyledSecondScoreUploadModal>
             <input
                 type="file"
