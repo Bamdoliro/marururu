@@ -28,8 +28,33 @@ if (process.env.NODE_ENV === 'development') {
 const MainPage = () => {
     const [formListType, setFormListType] = useFormListTypeStore();
 
-    const setFormListTypeReview = () => setFormListType('검토해야 하는 원서 모아보기');
     const setFormListTypeAll = () => setFormListType('모두 보기');
+    const setFormListTypeReview = () => setFormListType('검토해야 하는 원서 모아보기');
+
+    const { handleSecondRoundResultEditCompleteButtonClick } = useSecondRoundResultEditAction();
+
+    const [isSecondRoundResultEditing, setIsSecondRoundResultEditing] =
+        useIsSecondRoundResultEditingStore();
+    const secondRoundResult = useSetSecondRoundResultStore();
+
+    const setIsSecondRoundResultEditingFalse = () => {
+        setIsSecondRoundResultEditing(false);
+        secondRoundResult({});
+    };
+    const setIsSecondRoundResultEditingTrue = () => setIsSecondRoundResultEditing(true);
+
+    const { handleDownloadFormUrlButtonClick } = useDownloadFormURLAction();
+
+    const [isFormToPrintSelecting, setIsFormToPrintSelecting] = useIsFormToPrintSelectingStore();
+    const setFormToPrint = useSetFormToPrintStore();
+
+    const setIsFormToPrintSelectingFalse = () => {
+        setIsFormToPrintSelecting(false);
+        setFormToPrint({});
+    };
+    const setIsFormToPrintSelectingTrue = () => {
+        setIsFormToPrintSelecting(true);
+    };
 
     const overlay = useOverlay();
 
@@ -39,34 +64,9 @@ const MainPage = () => {
         ));
     };
 
-    const [isSecondRoundResultEditing, setIsSecondRoundResultEditing] =
-        useIsSecondRoundResultEditingStore();
-    const secondRoundResult = useSetSecondRoundResultStore();
-
-    const setIsSecondRoundResultEditingTrue = () => setIsSecondRoundResultEditing(true);
-    const setIsSecondRoundResultEditingFalse = () => {
-        setIsSecondRoundResultEditing(false);
-        secondRoundResult({});
-    };
-
-    const { handleSecondRoundResultEditCompleteButtonClick } = useSecondRoundResultEditAction();
-
     const openExportExcelModal = () => {
         overlay.open(({ isOpen, close }) => <ExportExcelModal isOpen={isOpen} onClose={close} />);
     };
-
-    const [isFormToPrintSelecting, setIsFormToPrintSelecting] = useIsFormToPrintSelectingStore();
-    const setFormToPrint = useSetFormToPrintStore();
-
-    const setIsFormToPrintSelectingTrue = () => {
-        setIsFormToPrintSelecting(true);
-    };
-    const setIsFormToPrintSelectingFalse = () => {
-        setIsFormToPrintSelecting(false);
-        setFormToPrint({});
-    };
-
-    const { handleDownloadFormUrlButtonClick } = useDownloadFormURLAction();
 
     return (
         <AppLayout>
