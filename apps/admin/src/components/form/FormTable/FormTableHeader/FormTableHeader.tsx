@@ -4,7 +4,7 @@ import { useSetFormToPrintStore } from '@/store/form/formToPrint';
 import { useIsFormToPrintSelectingValueStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { CheckBox, Row, Text } from '@maru/ui';
-import { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler } from 'react';
 
 const FormTableHeader = () => {
   const isSecondRoundResultEditing = useIsSecondRoundResultEditingValueStore();

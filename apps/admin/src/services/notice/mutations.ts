@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useApiError } from '@/hooks';
-import { PostNoticeReq, PutNoticeReq } from '@/types/notice/remote';
+import type { PostNoticeReq, PutNoticeReq } from '@/types/notice/remote';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';

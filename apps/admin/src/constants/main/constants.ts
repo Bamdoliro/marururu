@@ -1,4 +1,4 @@
-import { FormType } from '@/types/form/client';
+import type { FormType } from '@/types/form/client';
 
 export const FORM_TYPE: Record<FormType, string> = {
   REGULAR: '일반전형',

@@ -1,4 +1,4 @@
-import { PassStatusType } from '@/types/form/client';
+import type { PassStatusType } from '@/types/form/client';
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const secondRoundResultAtomState = atom<Record<number, PassStatusType>>({

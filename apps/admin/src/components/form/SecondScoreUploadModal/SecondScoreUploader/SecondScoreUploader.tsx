@@ -3,7 +3,8 @@ import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { DragEvent, useState } from 'react';
+import type { DragEvent } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 interface Props {

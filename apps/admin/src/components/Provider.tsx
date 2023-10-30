@@ -2,7 +2,7 @@
 
 import { GlobalStyle } from '@maru/theme';
 import { OverlayProvider } from '@toss/use-overlay';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RecoilRoot } from 'recoil';

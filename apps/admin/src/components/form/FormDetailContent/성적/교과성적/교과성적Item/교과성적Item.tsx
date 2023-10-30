@@ -1,4 +1,4 @@
-import { AchievementLevel } from '@/types/form/client';
+import type { AchievementLevel } from '@/types/form/client';
 import { CellInput, Row, Td } from '@maru/ui';
 
 interface Props {

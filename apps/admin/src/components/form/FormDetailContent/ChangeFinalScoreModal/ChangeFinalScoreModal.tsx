@@ -1,9 +1,10 @@
-import { ApprovalStatus } from '@/types/form/client';
+import type { ApprovalStatus } from '@/types/form/client';
 import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, useState } from 'react';
+import type { ChangeEventHandler } from 'react';
+import { useState } from 'react';
 import { css, styled } from 'styled-components';
 import { useChangeFinalScoreStatusAction } from './ChangeFinalScoreModal.hooks';
 

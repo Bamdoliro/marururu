@@ -1,11 +1,12 @@
 import { FAQ_CATEGORY } from '@/constants/faq/constants';
 import { useFaqDetailQuery } from '@/services/faq/queries';
-import { Category } from '@/types/faq/client';
+import type { Category } from '@/types/faq/client';
 import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/theme';
 import { Button, Column, Dropdown, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
+import type { ChangeEventHandler } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useFaqEditAction } from './FaqEdit.hooks';
 

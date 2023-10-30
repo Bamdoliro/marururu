@@ -3,7 +3,7 @@ import { IconArrowBottom, IconArrowTop } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {

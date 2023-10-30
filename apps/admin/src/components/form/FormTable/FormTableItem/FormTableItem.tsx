@@ -5,11 +5,11 @@ import { useFormToPrintStore } from '@/store/form/formToPrint';
 import { useIsFormToPrintSelectingValueStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSecondRoundResultStore } from '@/store/form/secondRoundResult';
-import { Form, FormType, PassStatusType } from '@/types/form/client';
+import type { Form, FormType, PassStatusType } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { CheckBox, Dropdown, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
-import { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
 
 const FormTableItem = ({

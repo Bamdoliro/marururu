@@ -1,6 +1,6 @@
 import DataBox from '@/components/common/DataBox/DataBox';
 import { useFormDetailQuery } from '@/services/form/queries';
-import { UserInfo } from '@/types/form/client';
+import type { UserInfo } from '@/types/form/client';
 import { color } from '@maru/theme';
 import { Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';

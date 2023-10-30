@@ -3,7 +3,8 @@ import { IconClose } from '@maru/icon';
 import { color } from '@maru/theme';
 import { Button, Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, useRef } from 'react';
+import type { ChangeEventHandler } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import {
   useDownloadSecondScoreFormatAction,
@@ -129,12 +130,4 @@ const StyledSecondScoreUploadModal = styled.div`
   padding: 36px;
   border-radius: 16px;
   background: ${color.white};
-`;
-
-const UploadFileBox = styled.div`
-  ${flex({ flexDirection: 'column', alignItems: 'center', justifyContent: 'center' })}
-  height: 240px;
-  border: 1px dashed ${color.gray400};
-  border-radius: 6px;
-  background: ${color.gray50};
 `;

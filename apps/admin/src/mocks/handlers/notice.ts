@@ -1,4 +1,4 @@
-import { Notice } from '@/types/notice/client';
+import type { Notice } from '@/types/notice/client';
 import { rest } from 'msw';
 
 const NOTICE_DATA: Notice[] = [

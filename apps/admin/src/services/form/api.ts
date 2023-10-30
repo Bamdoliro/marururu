@@ -1,7 +1,7 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import { ApprovalStatus, ExportExcelType, FormListType } from '@/types/form/client';
-import {
+import type { ApprovalStatus, ExportExcelType, FormListType } from '@/types/form/client';
+import type {
   GetFormDetail,
   GetFormListRes,
   GetFormURLRes,

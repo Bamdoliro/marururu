@@ -45,7 +45,7 @@ export const useDownloadFormURLAction = () => {
         link.remove();
       });
     }
-  }, [formListData]);
+  }, [formListData, status]);
 
   const handleDownloadFormUrlButtonClick = () => {
     refetch();

@@ -3,7 +3,8 @@ import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/theme';
 import { Button, Column } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
+import type { ChangeEventHandler } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNotieEditAction } from './NoticeEdit.hooks';
 

@@ -1,6 +1,6 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import {
+import type {
   GetNoticeDetailRes,
   GetNoticeListRes,
   PostNoticeReq,

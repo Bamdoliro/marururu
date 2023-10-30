@@ -1,4 +1,4 @@
-import { FormListType } from '@/types/form/client';
+import type { FormListType } from '@/types/form/client';
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const formListTypeAtomState = atom<FormListType>({

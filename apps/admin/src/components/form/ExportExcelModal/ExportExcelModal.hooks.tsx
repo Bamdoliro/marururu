@@ -1,5 +1,5 @@
 import { useExportExcelQuery } from '@/services/form/queries';
-import { ExportExcelType } from '@/types/form/client';
+import type { ExportExcelType } from '@/types/form/client';
 
 export const useExportExcelAction = (exportExcelType: ExportExcelType | null) => {
   const { data: exportExcelData } = useExportExcelQuery(exportExcelType);

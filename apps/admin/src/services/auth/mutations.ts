@@ -1,9 +1,9 @@
 import { Storage } from '@/apis/storage/storage';
 import { ROUTES, TOKEN } from '@/constants/common/constant';
 import { useApiError } from '@/hooks';
-import { PostLoginAuthReq } from '@/types/auth/remote';
+import type { PostLoginAuthReq } from '@/types/auth/remote';
 import { useMutation } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
 import { deleteLogoutAdmin, postLoginAdmin } from './api';
 

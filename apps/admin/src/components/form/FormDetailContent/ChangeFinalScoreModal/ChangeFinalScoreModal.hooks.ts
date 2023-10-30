@@ -1,5 +1,5 @@
 import { useChangeFinalScoreStatusMutation } from '@/services/form/mutations';
-import { ApprovalStatus } from '@/types/form/client';
+import type { ApprovalStatus } from '@/types/form/client';
 
 export const useChangeFinalScoreStatusAction = (
   id: number,

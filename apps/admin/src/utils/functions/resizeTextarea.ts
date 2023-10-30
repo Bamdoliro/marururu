@@ -1,4 +1,4 @@
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 
 const resizeTextarea = (textareaRef: RefObject<HTMLTextAreaElement>) => {
   if (!textareaRef.current) return;

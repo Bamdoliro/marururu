@@ -1,13 +1,13 @@
 import { useApiError } from '@/hooks';
 import { useSetIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
-import { PatchSecondRoundResultReq } from '@/types/form/remote';
+import type { PatchSecondRoundResultReq } from '@/types/form/remote';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { patchFinalScore, patchSecondRoundResult, patchSecondScoreFormat } from './api';
 import { useFormListQuery } from './queries';
 
-import { ApprovalStatus } from '@/types/form/client';
+import type { ApprovalStatus } from '@/types/form/client';
 
 export const useUploadSecondScoreFormatMutation = (
   removeFileAndCloseModal: () => void

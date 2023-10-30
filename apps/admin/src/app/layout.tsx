@@ -1,6 +1,6 @@
 import Provider from '@/components/Provider';
 import QueryClientProvider from '@/services/QueryClientProvider';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export const metadata = {
   title: '마루 어드민',
