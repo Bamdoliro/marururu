@@ -129,7 +129,7 @@ export default 출신학교및학력;
 
 const Styled출신학교및학력 = styled.div`
   ${flex({ flexDirection: 'column' })}
-  gap:30px;
+  gap: 30px;
   width: 100%;
   height: 100%;
 `;

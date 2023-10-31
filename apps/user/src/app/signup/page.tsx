@@ -16,20 +16,24 @@ import { flex } from '@maru/utils';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useInput, useJoinAction, useTimer, useVerificationAction } from './signup.hooks';
+import { useInput, useJoinAction, useVerificationAction } from './signup.hooks';
 
 const SignUpPage = () => {
+  const [timerTime, setTimerTime] = useState(0);
   const [termsAgree, setTermsAgree] = useState(false);
-  const { startTimer, timerTime, setTimerTime } = useTimer();
-  const { joinUserData, handleJoinUserDataChange } = useInput();
+  const { joinUser, handleJoinUserChange } = useInput();
   const {
-    handleRequestVerificationButtonClick,
-    handleVerificationButtonClick,
-    isRequestVerificationDisabled,
-    isVerificationDisabled,
-    isVerification,
-  } = useVerificationAction(joinUserData);
-  const { handleJoinButtonClick } = useJoinAction(joinUserData, termsAgree);
+    handleRequestVerificationCode,
+    handleVerificationCodeConfirm,
+    isVerificationCodeDisabled,
+    isVerificationCodeConfirm,
+    isVerificationCodeSend,
+  } = useVerificationAction(joinUser);
+  const { handleJoin } = useJoinAction(joinUser, termsAgree);
+
+  const startTimer = () => {
+    setTimerTime(300); // 5분
+  };
 
   return (
     <AppLayout>
@@ -52,36 +56,36 @@ const SignUpPage = () => {
                 width="100%"
                 name="name"
                 placeholder="이름을 입력해주세요."
-                onChange={handleJoinUserDataChange}
+                onChange={handleJoinUserChange}
               />
               <ButtonInput
                 label="전화번호 인증"
-                buttonText={isVerification ? '재전송' : '인증'}
+                buttonText={isVerificationCodeSend ? '재전송' : '인증'}
                 onClick={() => {
-                  handleRequestVerificationButtonClick();
+                  handleRequestVerificationCode();
                   startTimer();
                 }}
-                enabled={isRequestVerificationDisabled}
+                enabled={isVerificationCodeDisabled}
                 type="phoneNumber"
                 placeholder="- 없이 입력해주세요."
                 width="100%"
                 name="phoneNumber"
-                onChange={handleJoinUserDataChange}
-                value={joinUserData.phoneNumber}
+                onChange={handleJoinUserChange}
+                value={joinUser.phoneNumber}
               />
-              {isVerification && (
+              {isVerificationCodeSend && (
                 <TimeLimitInput
                   label="인증코드"
                   width="100%"
                   maxLength={6}
                   name="code"
-                  onChange={handleJoinUserDataChange}
-                  onClick={handleVerificationButtonClick}
-                  timerTime={isVerificationDisabled ? 0 : timerTime}
+                  onChange={handleJoinUserChange}
+                  onClick={handleVerificationCodeConfirm}
+                  timerTime={isVerificationCodeConfirm ? 0 : timerTime}
                   setTimerTime={setTimerTime}
-                  isError={joinUserData.code.length < 6}
+                  isError={joinUser.code.length < 6}
                   buttonText="인증번호 확인"
-                  enabled={isVerificationDisabled}
+                  enabled={isVerificationCodeConfirm}
                   errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
                 />
               )}
@@ -90,21 +94,21 @@ const SignUpPage = () => {
                 width="100%"
                 name="password"
                 placeholder="비밀번호를 입력해주세요."
-                onChange={handleJoinUserDataChange}
+                onChange={handleJoinUserChange}
               />
               <PreviewInput
                 label="비밀번호 재확인"
                 width="100%"
                 name="password_confirm"
                 placeholder="비밀번호를 다시 입력해주세요."
-                onChange={handleJoinUserDataChange}
-                isError={joinUserData.password !== joinUserData.password_confirm}
+                onChange={handleJoinUserChange}
+                isError={joinUser.password !== joinUser.password_confirm}
                 errorMessage="비밀번호가 맞지 않습니다."
               />
             </Column>
             {/* 이용약관 동의 */}
             <Terms setTermsAgree={setTermsAgree} />
-            <Button width="100%" onClick={handleJoinButtonClick}>
+            <Button width="100%" onClick={handleJoin}>
               회원가입
             </Button>
           </SignUpBox>

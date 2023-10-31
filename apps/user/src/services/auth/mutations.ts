@@ -15,7 +15,7 @@ import {
   patchVerification,
   postJoinUser,
   postLoginUser,
-  postRequestVerification,
+  postRequestVerificationCode,
 } from './api';
 
 export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
@@ -52,20 +52,20 @@ export const useJoinUserMutation = ({ phoneNumber, name, password }: PostJoinAut
   return { joinUserMutate, ...restMutation };
 };
 
-export const useRequestVerificationMutation = (phoneNumber: string) => {
+export const useRequestVerificationCodeMutation = (phoneNumber: string) => {
   const { handleError } = useApiError();
 
-  const { mutate: requestVerificationMutate, ...restMutation } = useMutation({
-    mutationFn: () => postRequestVerification(phoneNumber),
+  const { mutate: requestVerificationCodeMutate, ...restMutation } = useMutation({
+    mutationFn: () => postRequestVerificationCode(phoneNumber),
     onSuccess: () => alert('인증 성공'),
     onError: handleError,
   });
 
-  return { requestVerificationMutate, ...restMutation };
+  return { requestVerificationCodeMutate, ...restMutation };
 };
 
 export const useVerificationMutation = (
-  setIsVerificationDisabled: Dispatch<SetStateAction<boolean>>
+  setIsSuccessVerification: Dispatch<SetStateAction<boolean>>
 ) => {
   const { handleError } = useApiError();
 
@@ -73,7 +73,7 @@ export const useVerificationMutation = (
     mutationFn: ({ code, phoneNumber }: PatchVerificationReq) =>
       patchVerification({ code, phoneNumber }),
     onSuccess: () => {
-      setIsVerificationDisabled(true);
+      setIsSuccessVerification(true);
     },
     onError: handleError,
   });

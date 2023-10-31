@@ -8,32 +8,32 @@ import { useState } from 'react';
 export const useLoginAction = (loginUserData: PostLoginAuthReq) => {
   const { loginUserMutate } = useLoginUserMutation(loginUserData);
 
-  const handleLoginButtonClick = () => {
+  const handleLogin = () => {
     loginUserMutate();
   };
 
-  return { handleLoginButtonClick };
+  return { handleLogin };
 };
 
 export const useInput = () => {
-  const [loginUserData, setLoginUserData] = useState<PostLoginAuthReq>({
+  const [loginUser, setLoginUser] = useState<PostLoginAuthReq>({
     phoneNumber: '',
     password: '',
   });
 
-  const handleLoginUserDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleLoginUserChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-    setLoginUserData({ ...loginUserData, [name]: value });
+    setLoginUser({ ...loginUser, [name]: value });
   };
 
-  return { loginUserData, handleLoginUserDataChange };
+  return { loginUser, handleLoginUserChange };
 };
 
 export const useCTAButton = () => {
   const router = useRouter();
 
-  const handleGoMainPageButtonClick = () => {
+  const handleMoveMainPage = () => {
     router.push(ROUTES.MAIN);
   };
-  return { handleGoMainPageButtonClick };
+  return { handleMoveMainPage };
 };

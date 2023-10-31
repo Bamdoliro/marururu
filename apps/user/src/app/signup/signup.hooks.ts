@@ -1,6 +1,6 @@
 import {
   useJoinUserMutation,
-  useRequestVerificationMutation,
+  useRequestVerificationCodeMutation,
   useVerificationMutation,
 } from '@/services/auth/mutations';
 import type { Join } from '@/types/auth/client';
@@ -11,75 +11,61 @@ import { useState } from 'react';
 export const useJoinAction = (joinUserData: Join, termsAgree: boolean) => {
   const { joinUserMutate } = useJoinUserMutation(joinUserData);
 
-  const handleJoinButtonClick = () => {
+  const handleJoin = () => {
     if (joinUserData.password === joinUserData.password_confirm) {
       if (termsAgree) {
         joinUserMutate();
-      } else if (!termsAgree) {
+      } else {
         alert('이용약관 동의를 해주세요');
       }
-    } else if (joinUserData.password !== joinUserData.password_confirm) {
+    } else {
       alert('비밀번호를 한번만 확인해주세요');
     }
   };
 
-  return { handleJoinButtonClick };
+  return { handleJoin };
 };
 
 export const useVerificationAction = (joinUserData: Join) => {
-  // 전화번호 요청을 보냈는가?
-  const { value: isVerification, setValue: setIsVerification } = useBooleanState(false);
-  // 전화번호 전송 활성화 비활성화
-  const {
-    value: isRequestVerificationDisabled,
-    setValue: setIsRequestVerificationDisabled,
-  } = useBooleanState(false);
-  // 전화번호 인증 확인 여부
-  const { value: isVerificationDisabled, setValue: setIsVerificationDisabled } =
+  const { value: isVerificationCodeSend, setValue: setIsVerificationCodeSend } =
+    useBooleanState(false);
+  const { value: isVerificationCodeDisabled, setValue: setisVerificationCodeDisabled } =
+    useBooleanState(false);
+  const { value: isVerificationCodeConfirm, setValue: setisVerificationCodeConfirm } =
     useBooleanState(false);
 
-  const { verificationMutate } = useVerificationMutation(setIsVerificationDisabled);
-  const { requestVerificationMutate } = useRequestVerificationMutation(
+  const { verificationMutate } = useVerificationMutation(setisVerificationCodeConfirm);
+  const { requestVerificationCodeMutate } = useRequestVerificationCodeMutation(
     joinUserData.phoneNumber
   );
 
-  const handleRequestVerificationButtonClick = () => {
-    requestVerificationMutate();
-    setIsRequestVerificationDisabled(true);
-    setIsVerification(true);
-    setIsVerificationDisabled(false);
+  const handleRequestVerificationCode = () => {
+    requestVerificationCodeMutate();
+    setisVerificationCodeDisabled(true);
+    setIsVerificationCodeSend(true);
+    setisVerificationCodeConfirm(false);
 
     // 5초뒤 비활성화를 풀어줌
     setTimeout(() => {
-      setIsRequestVerificationDisabled(false);
+      setisVerificationCodeDisabled(false);
     }, 7000);
   };
 
-  const handleVerificationButtonClick = () => {
+  const handleVerificationCodeConfirm = () => {
     verificationMutate(joinUserData);
   };
 
   return {
-    handleRequestVerificationButtonClick,
-    handleVerificationButtonClick,
-    isRequestVerificationDisabled,
-    isVerificationDisabled,
-    isVerification,
+    handleRequestVerificationCode,
+    handleVerificationCodeConfirm,
+    isVerificationCodeDisabled,
+    isVerificationCodeConfirm,
+    isVerificationCodeSend,
   };
-};
-
-export const useTimer = () => {
-  const [timerTime, setTimerTime] = useState(0);
-
-  const startTimer = () => {
-    setTimerTime(300); // 5분
-  };
-
-  return { startTimer, timerTime, setTimerTime };
 };
 
 export const useInput = () => {
-  const [joinUserData, setJoinUserData] = useState<Join>({
+  const [joinUser, setJoinUser] = useState<Join>({
     phoneNumber: '',
     code: '',
     name: '',
@@ -87,10 +73,10 @@ export const useInput = () => {
     password_confirm: '',
   });
 
-  const handleJoinUserDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleJoinUserChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-    setJoinUserData({ ...joinUserData, [name]: value });
+    setJoinUser({ ...joinUser, [name]: value });
   };
 
-  return { joinUserData, handleJoinUserDataChange };
+  return { joinUser, handleJoinUserChange };
 };
