@@ -7,11 +7,11 @@ export const useSubmitDraftFormAction = () => {
   const form = useFormValueStore();
   const { submitDraftFormMutate } = useSubmitDraftFormMutation(form);
 
-  const handleSubmitDraftFormButtonClick = () => {
+  const handleDraftFormSubmit = () => {
     submitDraftFormMutate();
   };
 
-  return { handleSubmitDraftFormButtonClick };
+  return { handleDraftFormSubmit };
 };
 
 const useFilledApplicantFieldsCount = (applicant: Form['applicant']) =>
@@ -128,9 +128,9 @@ export const useCheckFilledForm = () => {
 export const useCTAButton = () => {
   const setFormStep = useSetFormStepStore();
 
-  const handleAgainCheckFormButtonClick = () => {
+  const handleCheckAgainForm = () => {
     setFormStep('지원자정보');
   };
 
-  return { handleAgainCheckFormButtonClick };
+  return { handleCheckAgainForm };
 };

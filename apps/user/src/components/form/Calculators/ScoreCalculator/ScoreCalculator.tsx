@@ -15,7 +15,7 @@ interface Props {
 const ScoreCalculator = ({ option }: Props) => {
   const [form, setForm] = useFormStore();
 
-  const handleGraduationTypeSwitchDataChange = (value: string) => {
+  const handleGraduationTypeChange = (value: string) => {
     const graduationType = value as GraduationType;
     setForm((prev) => ({ ...prev, education: { ...prev.education, graduationType } }));
   };
@@ -35,7 +35,7 @@ const ScoreCalculator = ({ option }: Props) => {
               { name: '고입검정', value: 'QUALIFICATION_EXAMINATION' },
             ]}
             value={form.education.graduationType}
-            onChange={handleGraduationTypeSwitchDataChange}
+            onChange={handleGraduationTypeChange}
           />
         )}
       </Row>

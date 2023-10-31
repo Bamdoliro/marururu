@@ -37,18 +37,22 @@ const AuthWrapper = ({ children }: Props) => {
     ));
   }, [overlay]);
 
+  const handleRedirectMainPage = useCallback(() => {
+    router.push(ROUTES.MAIN);
+  }, [router]);
+
   useEffect(() => {
     // 로그인이 되었을때
     if (isLoggedIn) {
       if (LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
         openFormPeriodModal();
-        router.push(ROUTES.MAIN);
+        handleRedirectMainPage();
       }
       // else if (dayjs().isBefore(제출_시작_날짜) || dayjs().isAfter(제출_마감_날짜)) {
       //     if (pathName === ROUTES.FORM) {
-      //         router.push(ROUTES.MAIN);
+      //         handleRedirectMainPage()
       //     } else if (pathName === ROUTES.FIRST_RESULT || pathName === ROUTES.FINAL_RESULT) {
-      //         router.push(ROUTES.MAIN);
+      //         handleRedirectMainPage()
       //     }
       // }
     }
@@ -56,10 +60,17 @@ const AuthWrapper = ({ children }: Props) => {
     else {
       if (NOT_LOGGEDIN_PRIVATE_PAGE.includes(pathName)) {
         openRequiredLoginModal();
-        router.push(ROUTES.MAIN);
+        handleRedirectMainPage();
       }
     }
-  }, [isLoggedIn, openFormPeriodModal, openRequiredLoginModal, pathName, router]);
+  }, [
+    handleRedirectMainPage,
+    isLoggedIn,
+    openFormPeriodModal,
+    openRequiredLoginModal,
+    pathName,
+    router,
+  ]);
 
   return <>{children}</>;
 };

@@ -10,7 +10,7 @@ interface Props {
 }
 
 const GEDCalculatorItem = ({ id, subject, score }: Props) => {
-  const { handleGEDSubjectDataChange } = useInput(id);
+  const { handleGEDSubjectChange } = useInput(id);
 
   return (
     <StyledGEDCalculatorItem>
@@ -18,11 +18,7 @@ const GEDCalculatorItem = ({ id, subject, score }: Props) => {
         {subject}
       </Td>
       <Td width={570} height={64}>
-        <CellInput
-          value={score ?? 0}
-          name="score"
-          onChange={handleGEDSubjectDataChange}
-        />
+        <CellInput value={score ?? 0} name="score" onChange={handleGEDSubjectChange} />
       </Td>
       <Td width={123} height={64}>
         {null}

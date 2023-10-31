@@ -6,13 +6,13 @@ export const useCTAButton = () => {
   const router = useRouter();
   const setFormStep = useSetFormStepStore();
 
-  const handleGoMainPageButtonClick = () => {
+  const handleMovewMainPage = () => {
     router.push(ROUTES.MAIN);
   };
 
-  const handleGo최종제출PageButtonClick = () => {
+  const handleMovew최종제출Page = () => {
     setFormStep('최종제출');
   };
 
-  return { handleGoMainPageButtonClick, handleGo최종제출PageButtonClick };
+  return { handleMovewMainPage, handleMovew최종제출Page };
 };

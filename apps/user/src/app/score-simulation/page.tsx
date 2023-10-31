@@ -20,7 +20,7 @@ const ScoreSimulation = () => {
   const form = useFormValueStore();
   const [currentScoreStep, setCurrentScoreStep] = useState('성적 입력');
 
-  const handleScoreStepButtonClick = (scoreStep: string) => {
+  const handleMoveScoreStep = (scoreStep: string) => {
     if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
       if (scoreStep === '출결상황' || scoreStep === '봉사시간') {
         alert('검정고시 합격자는 기본 점수가 부여돼요.');
@@ -56,7 +56,7 @@ const ScoreSimulation = () => {
               <UnderlineButton
                 key={`field-data ${index}`}
                 active={scoreStep === currentScoreStep}
-                onClick={() => handleScoreStepButtonClick(scoreStep)}
+                onClick={() => handleMoveScoreStep(scoreStep)}
               >
                 {scoreStep}
               </UnderlineButton>

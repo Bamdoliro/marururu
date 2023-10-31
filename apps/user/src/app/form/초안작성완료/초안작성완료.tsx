@@ -20,7 +20,7 @@ import {
 
 const 초안작성완료 = () => {
   const overlay = useOverlay();
-  const { handleAgainCheckFormButtonClick } = useCTAButton();
+  const { handleCheckAgainForm } = useCTAButton();
   const {
     applicantFilledCount,
     parentFilledCount,
@@ -29,7 +29,7 @@ const 초안작성완료 = () => {
     documentFilledCount,
     isFilledForm: isComplete,
   } = useCheckFilledForm();
-  const { handleSubmitDraftFormButtonClick } = useSubmitDraftFormAction();
+  const { handleDraftFormSubmit } = useSubmitDraftFormAction();
 
   const openDraftFormConfrim = () => {
     overlay.open(({ isOpen, close }) => (
@@ -37,7 +37,7 @@ const 초안작성완료 = () => {
         isOpen={isOpen}
         onClose={close}
         onConfirm={() => {
-          handleSubmitDraftFormButtonClick();
+          handleDraftFormSubmit();
           close();
         }}
       />
@@ -94,11 +94,7 @@ const 초안작성완료 = () => {
               제출하시겠습니까?
             </Text>
             <Row gap={16}>
-              <Button
-                onClick={handleAgainCheckFormButtonClick}
-                option="SECONDARY"
-                size="LARGE"
-              >
+              <Button onClick={handleCheckAgainForm} option="SECONDARY" size="LARGE">
                 다시 한번 확인하기
               </Button>
               <Button onClick={openDraftFormConfrim} size="LARGE">

@@ -5,13 +5,12 @@ import type { ChangeEventHandler } from 'react';
 export const useInput = () => {
   const setForm = useSetFormStore();
 
-  const handleFormTypeDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleFormTypeChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  return { handleFormTypeDataChange };
+  return { handleFormTypeChange };
 };
 
 export const useCTAButton = () => {
@@ -19,14 +18,14 @@ export const useCTAButton = () => {
   const setFormStep = useSetFormStepStore();
   const { saveFormMutate } = useSaveFormMutation();
 
-  const handleNextButtonClick = () => {
+  const handleMoveNextStep = () => {
     setFormStep('성적입력');
     saveFormMutate(form);
   };
 
-  const handlePreviousButtonClick = () => {
+  const handleMovePreviousStep = () => {
     setFormStep('출신학교및학력');
   };
 
-  return { handleNextButtonClick, handlePreviousButtonClick };
+  return { handleMoveNextStep, handleMovePreviousStep };
 };

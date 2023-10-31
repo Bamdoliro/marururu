@@ -20,7 +20,7 @@ const ProfileUploader = () => {
   };
 
   // 이미지 데이터 핸들링
-  const handleImageFileDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
     const formData = new FormData();
@@ -97,7 +97,7 @@ const ProfileUploader = () => {
         type="file"
         ref={imageUploaderRef}
         accept=".png, .jpg, .jpeg"
-        onChange={handleImageFileDataChange}
+        onChange={handleImageFileChange}
         hidden
       />
     </StyledProfileUploader>

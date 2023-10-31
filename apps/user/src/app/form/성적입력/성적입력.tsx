@@ -20,14 +20,14 @@ import { useCTAButton } from './성적입력.hooks';
 const 성적입력 = () => {
   const form = useFormValueStore();
   const [currentScoreStep, setCurrentScoreStep] = useState('성적 입력');
-  const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+  const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
   const handleScoreStepButtonClick = (scoreStep: string) => {
     if (
       form.education.graduationType === 'QUALIFICATION_EXAMINATION' &&
       (scoreStep === '출결상황' || scoreStep === '봉사시간')
     ) {
-      alert('검정고시 지원자는 입력하지 않아도돼요');
+      alert('검정고시 지원자는 입력하지 않아도돼요.');
       return;
     }
     setCurrentScoreStep(scoreStep);
@@ -70,8 +70,8 @@ const 성적입력 = () => {
         defaultComponent={<ScoreCalculator option="FORM" />}
       />
       <FormController
-        onPrevious={handlePreviousButtonClick}
-        onNext={handleNextButtonClick}
+        onPrevious={handleMovePreviousStep}
+        onNext={handleMoveNextStep}
         step="성적입력"
       />
     </FormLayout>

@@ -4,7 +4,7 @@ import type { ChangeEventHandler } from 'react';
 export const useInput = (id: number) => {
   const setGEDSubjectList = useSetGEDSubjectListStore();
 
-  const handleGEDSubjectDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleGEDSubjectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
     setGEDSubjectList((prev) => {
       const updatedData = [...prev];
@@ -16,5 +16,5 @@ export const useInput = (id: number) => {
     });
   };
 
-  return { handleGEDSubjectDataChange };
+  return { handleGEDSubjectChange };
 };

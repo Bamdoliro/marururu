@@ -12,9 +12,9 @@ import styled from 'styled-components';
 import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 
 const LoginPage = () => {
-  const { handleGoMainPageButtonClick } = useCTAButton();
-  const { loginUserData, handleLoginUserDataChange } = useInput();
-  const { handleLoginButtonClick } = useLoginAction(loginUserData);
+  const { handleMoveMainPage } = useCTAButton();
+  const { loginUser, handleLoginUserChange } = useInput();
+  const { handleLogin } = useLoginAction(loginUser);
 
   return (
     <AppLayout backgroundColor={color.gray100}>
@@ -29,7 +29,7 @@ const LoginPage = () => {
           >
             <Image
               src="/svg/logo.svg"
-              onClick={handleGoMainPageButtonClick}
+              onClick={handleMoveMainPage}
               style={{ cursor: 'pointer' }}
               width={232}
               height={70}
@@ -42,18 +42,18 @@ const LoginPage = () => {
                   width="100%"
                   name="phoneNumber"
                   placeholder="전화번호를 입력해주세요."
-                  onChange={handleLoginUserDataChange}
+                  onChange={handleLoginUserChange}
                 />
                 <PreviewInput
                   label="비밀번호"
                   width="100%"
                   name="password"
                   placeholder="비밀번호를 입력해주세요."
-                  onChange={handleLoginUserDataChange}
+                  onChange={handleLoginUserChange}
                 />
               </Column>
               <Column gap={16} alignItems="flex-end">
-                <Button width="100%" onClick={handleLoginButtonClick}>
+                <Button width="100%" onClick={handleLogin}>
                   로그인
                 </Button>
                 <FindPasswordLink href={ROUTES.MAIN}>

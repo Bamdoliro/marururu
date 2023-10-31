@@ -11,7 +11,7 @@ interface Props {
 
 const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
   const subjectList = useSubjectListValueStore();
-  const { handleSubjectDataChange } = useInput(id);
+  const { handleSubjectChange } = useInput(id);
 
   return (
     <StyledGradeCalculatorItem>
@@ -24,7 +24,7 @@ const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
           size="SMALL"
           data={achievementLevels}
           width={80}
-          onChange={handleSubjectDataChange}
+          onChange={handleSubjectChange}
           name="achievementLevel21"
         />
       </Td>
@@ -34,7 +34,7 @@ const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
           size="SMALL"
           data={achievementLevels}
           width={80}
-          onChange={handleSubjectDataChange}
+          onChange={handleSubjectChange}
           name="achievementLevel22"
         />
       </Td>
@@ -44,7 +44,7 @@ const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
           size="SMALL"
           data={achievementLevels}
           width={80}
-          onChange={handleSubjectDataChange}
+          onChange={handleSubjectChange}
           name="achievementLevel31"
         />
       </Td>

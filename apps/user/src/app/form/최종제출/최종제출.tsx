@@ -24,12 +24,13 @@ const 최종제출 = () => {
   } = useBooleanState();
   const { openFileUploader: openPdfFileUploader, ref: pdfFileUploaderRef } =
     useOpenFileUploader();
-  const { handleExportFormButtonClick } = useExportFormAction(
+
+  const { handleExportForm } = useExportFormAction(
     openPdfGeneratedLoader,
     closePdfGeneratedLoader
   );
-  const { handleSubmitFinalFormButtonClick } = useSubmitFinalFormAction();
-  const { handleFormDocumentDataChange } = useInput();
+  const { handleSubmitFinalForm } = useSubmitFinalFormAction();
+  const { handleFormDocumentChange } = useInput();
 
   const openFinalFormConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -37,7 +38,7 @@ const 최종제출 = () => {
         isOpen={isOpen}
         onClose={close}
         onConfirm={() => {
-          handleSubmitFinalFormButtonClick();
+          handleSubmitFinalForm();
           close();
         }}
       />
@@ -46,7 +47,6 @@ const 최종제출 = () => {
 
   return (
     <AppLayout header>
-      {/* Loader */}
       <PdfGeneratedLoader isOpen={isOpenPdfGeneratedLoader} />
       <Styled최종제출>
         <ContentBox>
@@ -62,7 +62,7 @@ const 최종제출 = () => {
                 원서를 최종 제출됐을 경우 재업로드는 불가능합니다.
               </Text>
             </Column>
-            <ExportFormButton onClick={handleExportFormButtonClick}>
+            <ExportFormButton onClick={handleExportForm}>
               [ 원서 초안 pdf 다운로드 ]
             </ExportFormButton>
           </Column>
@@ -102,7 +102,7 @@ const 최종제출 = () => {
       </Styled최종제출>
       <input
         ref={pdfFileUploaderRef}
-        onChange={handleFormDocumentDataChange}
+        onChange={handleFormDocumentChange}
         type="file"
         accept=".pdf"
         hidden

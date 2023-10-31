@@ -11,6 +11,10 @@ interface Props {
 const LoginRequiredModal = ({ isOpen, onClose }: Props) => {
   const router = useRouter();
 
+  const handleRedirectLoginPage = () => {
+    router.push(ROUTES.LOGIN);
+  };
+
   return (
     <Confirm
       isOpen={isOpen}
@@ -22,7 +26,7 @@ const LoginRequiredModal = ({ isOpen, onClose }: Props) => {
       }
       onClose={onClose}
       onConfirm={() => {
-        router.push(ROUTES.LOGIN);
+        handleRedirectLoginPage();
         onClose();
       }}
       confirmButtonText="로그인 하러 가기"

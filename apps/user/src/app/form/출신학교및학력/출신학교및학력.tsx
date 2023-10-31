@@ -10,8 +10,8 @@ import { useCTAButton, useInput } from './출신학교및학력.hooks';
 const 출신학교및학력 = () => {
   const overlay = useOverlay();
   const form = useFormValueStore();
-  const { handle출신학교및학력DataChange } = useInput();
-  const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+  const { handle출신학교및학력Change } = useInput();
+  const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
   const openFindSchoolModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -31,7 +31,7 @@ const 출신학교및학력 = () => {
             { value: 'QUALIFICATION_EXAMINATION', label: '고입 검정' },
           ]}
           value={form.education.graduationType}
-          onChange={handle출신학교및학력DataChange}
+          onChange={handle출신학교및학력Change}
         />
         <ButtonInput
           name="schoolName"
@@ -51,7 +51,7 @@ const 출신학교및학력 = () => {
             placeholder="예) 2022"
             width="100%"
             value={form.education.graduationYear}
-            onChange={handle출신학교및학력DataChange}
+            onChange={handle출신학교및학력Change}
             isError={
               !!form.education.graduationYear &&
               form.education.graduationYear.length !== 4
@@ -66,7 +66,7 @@ const 출신학교및학력 = () => {
             errorMessage="20자여야 합니다."
             width="100%"
             value={form.education.schoolLocation}
-            onChange={handle출신학교및학력DataChange}
+            onChange={handle출신학교및학력Change}
           />
         </Row>
         <Row gap={48} alignItems="center">
@@ -76,7 +76,7 @@ const 출신학교및학력 = () => {
             placeholder="학교를 선택하면 자동완성됩니다."
             width="100%"
             value={form.education.schoolCode}
-            onChange={handle출신학교및학력DataChange}
+            onChange={handle출신학교및학력Change}
             isError={
               !!form.education.schoolCode && form.education.schoolCode.length !== 7
             }
@@ -88,7 +88,7 @@ const 출신학교및학력 = () => {
             placeholder="학교의 교무실 연락처를 입력해주세요."
             width="100%"
             value={form.education.teacherPhoneNumber}
-            onChange={handle출신학교및학력DataChange}
+            onChange={handle출신학교및학력Change}
             isError={form.education.teacherPhoneNumber.length > 11}
             errorMessage="11자 이하여야 합니다."
           />
@@ -100,7 +100,7 @@ const 출신학교및학력 = () => {
             placeholder="예) 홍길동"
             width="100%"
             value={form.education.teacherName}
-            onChange={handle출신학교및학력DataChange}
+            onChange={handle출신학교및학력Change}
             isError={form.education.teacherName.length > 20}
             errorMessage="20자 이하여야 합니다."
           />
@@ -110,15 +110,15 @@ const 출신학교및학력 = () => {
             placeholder="- 없이 입력해 주세요"
             width="100%"
             value={form.education.teacherMobilePhoneNumber}
-            onChange={handle출신학교및학력DataChange}
+            onChange={handle출신학교및학력Change}
             isError={form.education.teacherMobilePhoneNumber.length > 11}
             errorMessage="11자 이하여야 합니다."
           />
         </Row>
       </Styled출신학교및학력>
       <FormController
-        onPrevious={handlePreviousButtonClick}
-        onNext={handleNextButtonClick}
+        onPrevious={handleMovePreviousStep}
+        onNext={handleMoveNextStep}
         step="출신학교및학력"
       />
     </FormLayout>
@@ -129,7 +129,7 @@ export default 출신학교및학력;
 
 const Styled출신학교및학력 = styled.div`
   ${flex({ flexDirection: 'column' })}
-  gap:30px;
+  gap: 30px;
   width: 100%;
   height: 100%;
 `;

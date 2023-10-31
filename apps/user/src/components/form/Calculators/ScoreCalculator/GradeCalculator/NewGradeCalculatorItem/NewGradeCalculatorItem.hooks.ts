@@ -4,7 +4,7 @@ import type { ChangeEventHandler } from 'react';
 export const useInput = (newSubjectIndex: number) => {
   const setNewSubjectList = useSetNewSubjectListStore();
 
-  const handleNewSubjectDataChange = (data: string, name: string) => {
+  const handleNewSubjectChange = (data: string, name: string) => {
     setNewSubjectList((prev) => {
       const updatedData = [...prev];
       updatedData[newSubjectIndex] = {
@@ -15,7 +15,7 @@ export const useInput = (newSubjectIndex: number) => {
     });
   };
 
-  const handleNewSubjectNameDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleNewSubjectNameChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
 
     setNewSubjectList((prev) => {
@@ -28,15 +28,15 @@ export const useInput = (newSubjectIndex: number) => {
     });
   };
 
-  return { handleNewSubjectDataChange, handleNewSubjectNameDataChange };
+  return { handleNewSubjectChange, handleNewSubjectNameChange };
 };
 
 export const useDeleteNewSubject = () => {
   const setNewSubjectList = useSetNewSubjectListStore();
 
-  const handleDeleteNewSubjectButtonClick = (id: number) => {
+  const handleDeleteNewSubject = (id: number) => {
     setNewSubjectList((prev) => prev.filter((item) => item.id !== id));
   };
 
-  return { handleDeleteNewSubjectButtonClick };
+  return { handleDeleteNewSubject };
 };

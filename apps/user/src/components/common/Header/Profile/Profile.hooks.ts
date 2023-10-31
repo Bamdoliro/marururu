@@ -5,19 +5,19 @@ import { useRouter } from 'next/navigation';
 export const useCTAButton = () => {
   const router = useRouter();
 
-  const handleGoFormPageButtonClick = () => {
+  const handleMoveFormPage = () => {
     router.push(ROUTES.FORM);
   };
 
-  return { handleGoFormPageButtonClick };
+  return { handleMoveFormPage };
 };
 
 export const useLogoutAction = () => {
   const { logoutUserMutate } = useLogoutUserMutation();
 
-  const handleLogoutButtonClick = () => {
+  const handleLogout = () => {
     logoutUserMutate();
   };
 
-  return { handleLogoutButtonClick };
+  return { handleLogout };
 };

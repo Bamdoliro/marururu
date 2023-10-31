@@ -14,29 +14,25 @@ const NewGEDCalculatorItem = ({ id, score }: Props) => {
   const newGEDSubjectList = useNewGEDSubjectListValueStore();
 
   const newGEDSubjectIndex = newGEDSubjectList.findIndex((item) => item.id === id);
-  const { handleNewGEDSubjectDataChange } = useInput(newGEDSubjectIndex);
-  const { handleDeleteNewGEDSubjectButtonClick } = useDeleteNewGEDSubject();
+  const { handleNewGEDSubjectChange } = useInput(newGEDSubjectIndex);
+  const { handleDeleteNewGEDSubject } = useDeleteNewGEDSubject();
 
   return (
     <StyledNewGEDCalculatorItem>
       <Td option="SECONDARY" width={123} height="100%">
         <NewSubjectInput
-          onChange={handleNewGEDSubjectDataChange}
+          onChange={handleNewGEDSubjectChange}
           name="subjectName"
           value={newGEDSubjectList[newGEDSubjectIndex].subjectName}
           placeholder="과목명 입력"
         />
       </Td>
       <Td width={570} height="100%">
-        <CellInput
-          value={score ?? 0}
-          name="score"
-          onChange={handleNewGEDSubjectDataChange}
-        />
+        <CellInput value={score ?? 0} name="score" onChange={handleNewGEDSubjectChange} />
       </Td>
       <Td width={123} height="100%">
         <Button
-          onClick={() => handleDeleteNewGEDSubjectButtonClick(id)}
+          onClick={() => handleDeleteNewGEDSubject(id)}
           option="DELETE"
           size="SMALL"
         >

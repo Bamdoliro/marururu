@@ -16,7 +16,7 @@ export const postJoinUser = async ({ phoneNumber, name, password }: PostJoinAuth
   return data;
 };
 
-export const postRequestVerification = async (phoneNumber: string) => {
+export const postRequestVerificationCode = async (phoneNumber: string) => {
   const { data } = await maru.post('/user/verification', { phoneNumber });
   return data;
 };
