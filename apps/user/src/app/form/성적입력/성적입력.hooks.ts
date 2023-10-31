@@ -6,7 +6,7 @@ export const useCTAButton = () => {
   const setFormStep = useSetFormStepStore();
   const { saveFormMutate } = useSaveFormMutation();
 
-  const handleNextButtonClick = () => {
+  const handleMoveNextStep = () => {
     const isEmptySubjectName = form.grade.subjectList.some(({ subjectName }) => {
       if (subjectName === '') {
         alert('비어있는 과목명이 있어요');
@@ -22,9 +22,9 @@ export const useCTAButton = () => {
     }
   };
 
-  const handlePreviousButtonClick = () => {
+  const handleMovePreviousStep = () => {
     setFormStep('전형선택');
   };
 
-  return { handleNextButtonClick, handlePreviousButtonClick };
+  return { handleMoveNextStep, handleMovePreviousStep };
 };

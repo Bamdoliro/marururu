@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 export const useCTAButton = () => {
   const router = useRouter();
 
-  const handleGoMainPageButtonClick = () => {
+  const handleMoveMainPage = () => {
     router.push(ROUTES.MAIN);
   };
 
-  return { handleGoMainPageButtonClick };
+  return { handleMoveMainPage };
 };

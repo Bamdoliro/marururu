@@ -7,26 +7,25 @@ export const useCTAButton = () => {
   const { saveFormMutate } = useSaveFormMutation();
   const setFormStep = useSetFormStepStore();
 
-  const handleNextButtonClick = () => {
+  const handleMoveNextStep = () => {
     setFormStep('출신학교및학력');
     saveFormMutate(form);
   };
 
-  const handlePreviousButtonClick = () => {
+  const handleMovePreviousStep = () => {
     setFormStep('지원자정보');
   };
 
-  return { handleNextButtonClick, handlePreviousButtonClick };
+  return { handleMoveNextStep, handleMovePreviousStep };
 };
 
 export const useInput = () => {
   const setForm = useSetFormStore();
 
-  const handle보호자정보DataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handle보호자정보Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-
     setForm((prev) => ({ ...prev, parent: { ...prev.parent, [name]: value } }));
   };
 
-  return { handle보호자정보DataChange };
+  return { handle보호자정보Change };
 };

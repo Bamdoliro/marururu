@@ -13,11 +13,11 @@ export const useSubmitFinalFormAction = () => {
   const formDocument = useFormDocumentValueStore();
   const { submitFinalFormMutate } = useSubmitFinalFormMutation(formDocument.formUrl);
 
-  const handleSubmitFinalFormButtonClick = () => {
+  const handleSubmitFinalForm = () => {
     submitFinalFormMutate();
   };
 
-  return { handleSubmitFinalFormButtonClick };
+  return { handleSubmitFinalForm };
 };
 
 export const useExportFormAction = (
@@ -26,11 +26,11 @@ export const useExportFormAction = (
 ) => {
   const { userData } = useUser();
   const { data: exportFormData } = useExportFormQuery();
-  const pdfUrl = window.URL.createObjectURL(new Blob([exportFormData]));
+  const pdfBlobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
 
   const downloadPdf = useCallback(() => {
     const link = document.createElement('a');
-    link.href = pdfUrl;
+    link.href = pdfBlobUrl;
     link.setAttribute(
       'download',
       `${userData.name} 부산소프트웨어마이스터고등학교 원서접수.pdf`
@@ -38,8 +38,8 @@ export const useExportFormAction = (
     document.body.appendChild(link);
     link.click();
     link.remove();
-    window.URL.revokeObjectURL(pdfUrl);
-  }, [pdfUrl, userData.name]);
+    window.URL.revokeObjectURL(pdfBlobUrl);
+  }, [pdfBlobUrl, userData.name]);
 
   useEffect(() => {
     if (exportFormData) {
@@ -50,19 +50,19 @@ export const useExportFormAction = (
     }
   }, [closePdfGeneratedLoader, downloadPdf, exportFormData, openPdfGeneratedLoader]);
 
-  const handleExportFormButtonClick = () => {
+  const handleExportForm = useCallback(() => {
     downloadPdf();
     closePdfGeneratedLoader();
-  };
+  }, [downloadPdf, closePdfGeneratedLoader]);
 
-  return { handleExportFormButtonClick };
+  return { handleExportForm };
 };
 
 export const useInput = () => {
   const setFormDocument = useSetFormDocumentStore();
   const { uploadFormDocumentMutate } = useUploadFormDocumentMutation(setFormDocument);
 
-  const handleFormDocumentDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleFormDocumentChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
     const formData = new FormData();
@@ -72,5 +72,5 @@ export const useInput = () => {
     uploadFormDocumentMutate(formData);
   };
 
-  return { handleFormDocumentDataChange };
+  return { handleFormDocumentChange };
 };

@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { useCTAButton } from './초안제출완료.hooks';
 
 const 초안제출완료 = () => {
-  const { handleGoMainPageButtonClick, handleGo최종제출PageButtonClick } = useCTAButton();
+  const { handleMovewMainPage, handleMovew최종제출Page } = useCTAButton();
 
   return (
     <AppLayout header>
@@ -31,10 +31,10 @@ const 초안제출완료 = () => {
           </Text>
         </Column>
         <Row gap={16}>
-          <Button onClick={handleGoMainPageButtonClick} option="SECONDARY" size="LARGE">
+          <Button onClick={handleMovewMainPage} option="SECONDARY" size="LARGE">
             홈으로 돌아가기
           </Button>
-          <Button onClick={handleGo최종제출PageButtonClick} size="LARGE">
+          <Button onClick={handleMovew최종제출Page} size="LARGE">
             최종 제출 페이지로 이동하기
           </Button>
         </Row>

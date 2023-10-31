@@ -7,8 +7,8 @@ import { useCTAButton, useInput } from './지원자정보.hooks';
 
 const 지원자정보 = () => {
   const form = useFormValueStore();
-  const { handle지원자정보DataChange } = useInput();
-  const { handleNextButtonClick } = useCTAButton();
+  const { handle지원자정보Change } = useInput();
+  const { handleMoveNextStep } = useCTAButton();
 
   return (
     <FormLayout title="지원자 정보">
@@ -19,7 +19,7 @@ const 지원자정보 = () => {
             <Input
               label="성명"
               value={form.applicant.name}
-              onChange={handle지원자정보DataChange}
+              onChange={handle지원자정보Change}
               name="name"
               placeholder="예) 홍길동"
               width="100%"
@@ -29,7 +29,7 @@ const 지원자정보 = () => {
             <Input
               label="생년월일"
               value={form.applicant.birthday}
-              onChange={handle지원자정보DataChange}
+              onChange={handle지원자정보Change}
               name="birthday"
               placeholder="예) 2006-07-06"
               width="100%"
@@ -38,7 +38,7 @@ const 지원자정보 = () => {
               <RadioGroup
                 label="성별"
                 value={form.applicant.gender}
-                onChange={handle지원자정보DataChange}
+                onChange={handle지원자정보Change}
                 name="gender"
                 items={[
                   { label: '남자', value: 'MALE' },
@@ -49,7 +49,7 @@ const 지원자정보 = () => {
             <Input
               label="전화번호"
               value={form.applicant.phoneNumber}
-              onChange={handle지원자정보DataChange}
+              onChange={handle지원자정보Change}
               name="phoneNumber"
               placeholder="- 없이 입력해주세요."
               width="100%"
@@ -61,7 +61,7 @@ const 지원자정보 = () => {
           </Column>
         </Row>
       </Styled지원자정보>
-      <FormController onNext={handleNextButtonClick} step="지원자정보" />
+      <FormController onNext={handleMoveNextStep} step="지원자정보" />
     </FormLayout>
   );
 };

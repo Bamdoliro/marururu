@@ -7,23 +7,21 @@ export const useCTAButton = () => {
   const setFormStep = useSetFormStepStore();
   const { saveFormMutate } = useSaveFormMutation();
 
-  const handleNextButtonClick = () => {
+  const handleMoveNextStep = () => {
     setFormStep('보호자정보');
-
     saveFormMutate(form);
   };
 
-  return { handleNextButtonClick };
+  return { handleMoveNextStep };
 };
 
 export const useInput = () => {
   const setForm = useSetFormStore();
 
-  const handle지원자정보DataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handle지원자정보Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-
     setForm((prev) => ({ ...prev, applicant: { ...prev.applicant, [name]: value } }));
   };
 
-  return { handle지원자정보DataChange };
+  return { handle지원자정보Change };
 };

@@ -9,11 +9,12 @@ import { useCTAButton, useInput } from './전형선택.hooks';
 
 const 전형선택 = () => {
   const [form, setForm] = useFormStore();
-  const { handleFormTypeDataChange } = useInput();
-  const { handleNextButtonClick, handlePreviousButtonClick } = useCTAButton();
+  const { handleFormTypeChange } = useInput();
+  const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
   useEffect(() => {
     if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+      // 검정고시를 선택하였는데 특별전형으로 지원하였을때 필터링
       if (form.type !== 'REGULAR') {
         alert(
           '서류상으로 검정고시 합격자는 특별전형 지원이 불가능해요. 일반전형으로 지원해주세요!'
@@ -55,7 +56,7 @@ const 전형선택 = () => {
               <Radio
                 name="type"
                 value="REGULAR"
-                onChange={handleFormTypeDataChange}
+                onChange={handleFormTypeChange}
                 checked={form.type === 'REGULAR'}
               />
             </Td>
@@ -76,7 +77,7 @@ const 전형선택 = () => {
                   <Radio
                     name="type"
                     value="MEISTER_TALENT"
-                    onChange={handleFormTypeDataChange}
+                    onChange={handleFormTypeChange}
                     checked={form.type === 'MEISTER_TALENT'}
                   />
                 </Td>
@@ -94,7 +95,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="NATIONAL_BASIC_LIVING"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'NATIONAL_BASIC_LIVING'}
                       />
                     </Td>
@@ -107,7 +108,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="NEAR_POVERTY"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'NEAR_POVERTY'}
                       />
                     </Td>
@@ -120,7 +121,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="NATIONAL_VETERANS"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'NATIONAL_VETERANS'}
                       />
                     </Td>
@@ -133,7 +134,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="ONE_PARENT"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'ONE_PARENT'}
                       />
                     </Td>
@@ -146,7 +147,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="FROM_NORTH_KOREA"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'FROM_NORTH_KOREA'}
                       />
                     </Td>
@@ -166,7 +167,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="MULTICULTURAL"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'MULTICULTURAL'}
                       />
                     </Td>
@@ -179,7 +180,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="TEEN_HOUSEHOLDER"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'TEEN_HOUSEHOLDER'}
                       />
                     </Td>
@@ -192,7 +193,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="MULTI_CHILDREN"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'MULTI_CHILDREN'}
                       />
                     </Td>
@@ -205,7 +206,7 @@ const 전형선택 = () => {
                       <Radio
                         name="type"
                         value="FARMING_AND_FISHING"
-                        onChange={handleFormTypeDataChange}
+                        onChange={handleFormTypeChange}
                         checked={form.type === 'FARMING_AND_FISHING'}
                       />
                     </Td>
@@ -239,7 +240,7 @@ const 전형선택 = () => {
                 <Radio
                   name="type"
                   value="NATIONAL_VETERANS_EDUCATION"
-                  onChange={handleFormTypeDataChange}
+                  onChange={handleFormTypeChange}
                   checked={form.type === 'NATIONAL_VETERANS_EDUCATION'}
                 />
               </Td>
@@ -247,7 +248,7 @@ const 전형선택 = () => {
                 <Radio
                   name="type"
                   value="SPECIAL_ADMISSION"
-                  onChange={handleFormTypeDataChange}
+                  onChange={handleFormTypeChange}
                   checked={form.type === 'SPECIAL_ADMISSION'}
                 />
               </Td>
@@ -256,8 +257,8 @@ const 전형선택 = () => {
         </Table>
       </Styled전형선택>
       <FormController
-        onPrevious={handlePreviousButtonClick}
-        onNext={handleNextButtonClick}
+        onPrevious={handleMovePreviousStep}
+        onNext={handleMoveNextStep}
         step="전형선택"
       />
     </FormLayout>

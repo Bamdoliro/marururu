@@ -1,7 +1,7 @@
 export interface Form {
-  applicant: UserInfo;
-  parent: ParentInfo;
-  education: EducationInfo;
+  applicant: User;
+  parent: Parent;
+  education: Education;
   grade: {
     subjectList: StudentSubject[];
     attendance1: Attendance;
@@ -31,7 +31,7 @@ export type FormStep =
   | '최종제출'
   | '최종제출완료';
 
-export interface UserInfo {
+export interface User {
   identificationPictureUri: string;
   name: string;
   phoneNumber: string;
@@ -39,7 +39,7 @@ export interface UserInfo {
   gender: 'MALE' | 'FEMALE';
 }
 
-export interface ParentInfo {
+export interface Parent {
   name: string;
   phoneNumber: string;
   zoneCode: string;
@@ -48,7 +48,7 @@ export interface ParentInfo {
   relation: string;
 }
 
-export interface EducationInfo {
+export interface Education {
   graduationType: GraduationType;
   graduationYear: string;
   schoolName: string;
