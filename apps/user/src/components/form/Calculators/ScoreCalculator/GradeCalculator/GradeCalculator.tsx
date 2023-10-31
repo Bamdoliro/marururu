@@ -17,7 +17,7 @@ const GradeCalculator = () => {
   const newSubjectList = useNewSubjectListValueStore();
   const subjectList = useSubjectListValueStore();
   const setForm = useSetFormStore();
-  const { handleAddNewSubjectButtonClick } = useAddNewSubject();
+  const { handleAddNewSubject } = useAddNewSubject();
 
   useEffect(() => {
     const studentSubjectList = [...subjectList, ...newSubjectList].map(
@@ -57,7 +57,7 @@ const GradeCalculator = () => {
         />
       ))}
       <GradeCalculatorFooter>
-        <Button onClick={handleAddNewSubjectButtonClick} icon="ADD_ICON" size="SMALL">
+        <Button onClick={handleAddNewSubject} icon="ADD_ICON" size="SMALL">
           과목추가
         </Button>
       </GradeCalculatorFooter>

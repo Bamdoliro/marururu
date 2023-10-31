@@ -7,7 +7,7 @@ import { useInput } from './VolunteerCalculator.hooks';
 
 const VolunteerCalculator = () => {
   const form = useFormValueStore();
-  const { handleVolunteerTimeDataChange } = useInput();
+  const { handleVolunteerTimeChange } = useInput();
 
   return (
     <StyledVolunteerCalculator>
@@ -30,7 +30,7 @@ const VolunteerCalculator = () => {
           <Td width={654} height={56}>
             <CellInput
               name="volunteerTime1"
-              onChange={handleVolunteerTimeDataChange}
+              onChange={handleVolunteerTimeChange}
               value={form.grade.volunteerTime1}
               isError={Number(form.grade.volunteerTime1) < 0}
             />
@@ -44,7 +44,7 @@ const VolunteerCalculator = () => {
           <Td width={654} height={56}>
             <CellInput
               name="volunteerTime2"
-              onChange={handleVolunteerTimeDataChange}
+              onChange={handleVolunteerTimeChange}
               value={form.grade.volunteerTime2}
               isError={Number(form.grade.volunteerTime2) < 0}
             />
@@ -58,7 +58,7 @@ const VolunteerCalculator = () => {
           <Td borderBottomRightRadius={12} width={654} height={56}>
             <CellInput
               name="volunteerTime3"
-              onChange={handleVolunteerTimeDataChange}
+              onChange={handleVolunteerTimeChange}
               value={form.grade.volunteerTime3}
               isError={Number(form.grade.volunteerTime3) < 0}
             />

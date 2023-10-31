@@ -7,7 +7,7 @@ import { useInput } from './CertificateCaculator.hooks';
 
 const CertificateCalculator = () => {
   const form = useFormValueStore();
-  const { handleCertificateListDataChange } = useInput();
+  const { handleCertificateListChange } = useInput();
 
   return (
     <StyledCertificateCalculator>
@@ -46,7 +46,7 @@ const CertificateCalculator = () => {
                   'CRAFTSMAN_INFORMATION_PROCESSING'
                 )}
                 value="CRAFTSMAN_INFORMATION_PROCESSING"
-                onChange={handleCertificateListDataChange}
+                onChange={handleCertificateListChange}
               />
             </Td>
           </Row>
@@ -66,7 +66,7 @@ const CertificateCalculator = () => {
                   'CRAFTSMAN_INFORMATION_EQUIPMENT_OPERATION'
                 )}
                 value="CRAFTSMAN_INFORMATION_EQUIPMENT_OPERATION"
-                onChange={handleCertificateListDataChange}
+                onChange={handleCertificateListChange}
               />
             </Td>
           </Row>
@@ -84,7 +84,7 @@ const CertificateCalculator = () => {
               <CheckBox
                 checked={form.grade.certificateList?.includes('CRAFTSMAN_COMPUTER')}
                 value="CRAFTSMAN_COMPUTER"
-                onChange={handleCertificateListDataChange}
+                onChange={handleCertificateListChange}
               />
             </Td>
           </Row>
@@ -106,7 +106,7 @@ const CertificateCalculator = () => {
                       'COMPUTER_SPECIALIST_LEVEL_1'
                     )}
                     value="COMPUTER_SPECIALIST_LEVEL_1"
-                    onChange={handleCertificateListDataChange}
+                    onChange={handleCertificateListChange}
                   />
                 </Td>
               </Row>
@@ -120,7 +120,7 @@ const CertificateCalculator = () => {
                       'COMPUTER_SPECIALIST_LEVEL_2'
                     )}
                     value="COMPUTER_SPECIALIST_LEVEL_2"
-                    onChange={handleCertificateListDataChange}
+                    onChange={handleCertificateListChange}
                   />
                 </Td>
               </Row>
@@ -134,7 +134,7 @@ const CertificateCalculator = () => {
                       'COMPUTER_SPECIALIST_LEVEL_3'
                     )}
                     value="COMPUTER_SPECIALIST_LEVEL_3"
-                    onChange={handleCertificateListDataChange}
+                    onChange={handleCertificateListChange}
                   />
                 </Td>
               </Row>

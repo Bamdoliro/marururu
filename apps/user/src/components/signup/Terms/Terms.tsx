@@ -2,33 +2,63 @@ import { IconArrowRight } from '@maru/icon';
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import type { Dispatch, SetStateAction } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useTerms } from './Terms.hooks';
 
 interface Props {
   setTermsAgree: Dispatch<SetStateAction<boolean>>;
 }
 
 const Terms = ({ setTermsAgree }: Props) => {
-  const {
-    handleAllCheckButtonClick,
-    handleCheckOneButtonClick,
-    handleCheckTwoButtonClick,
-    allCheck,
-    checkOne,
-    checkTwo,
-  } = useTerms(setTermsAgree);
+  const [checkAll, setCheckAll] = useState(false);
+  const [checkOne, setChecktOne] = useState(false);
+  const [checkTwo, setChecktTwo] = useState(false);
+
+  const handleCheckAll = () => {
+    if (checkAll === false) {
+      setChecktOne(true);
+      setChecktTwo(true);
+    } else {
+      setChecktOne(false);
+      setChecktTwo(false);
+    }
+  };
+
+  const handleCheckOne = () => {
+    if (checkOne === false) {
+      setChecktOne(true);
+    } else {
+      setChecktOne(false);
+    }
+  };
+
+  const handleCheckTwo = () => {
+    if (checkTwo === false) {
+      setChecktTwo(true);
+    } else {
+      setChecktTwo(false);
+    }
+  };
+
+  useEffect(() => {
+    if (checkOne === true && checkTwo === true) {
+      setCheckAll(true);
+      setTermsAgree(true);
+    } else {
+      setCheckAll(false);
+    }
+  }, [checkOne, checkTwo, setTermsAgree]);
 
   return (
     <StyledTerms>
       <Agreement>
         <input
           type="checkbox"
-          id="all-check"
-          checked={allCheck}
-          onChange={handleAllCheckButtonClick}
+          id="check-all"
+          checked={checkAll}
+          onChange={handleCheckAll}
         />
-        <label htmlFor="all-check">이용약관 전체동의</label>
+        <label htmlFor="check-all">이용약관 전체동의</label>
       </Agreement>
       <hr />
       <Agreement>
@@ -36,7 +66,7 @@ const Terms = ({ setTermsAgree }: Props) => {
           type="checkbox"
           id="agreement1"
           checked={checkOne}
-          onChange={handleCheckOneButtonClick}
+          onChange={handleCheckOne}
         />
         <label htmlFor="agreement1">개인정보 수집 이용동의</label>
         <AgreementLink>
@@ -48,7 +78,7 @@ const Terms = ({ setTermsAgree }: Props) => {
           type="checkbox"
           id="agreement2"
           checked={checkTwo}
-          onChange={handleCheckTwoButtonClick}
+          onChange={handleCheckTwo}
         />
         <label htmlFor="agreement2">약관 전체동의</label>
         <AgreementLink>

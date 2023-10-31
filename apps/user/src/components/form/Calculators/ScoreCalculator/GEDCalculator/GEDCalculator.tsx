@@ -17,7 +17,7 @@ const GEDCalculator = () => {
   const newGEDSubjectList = useNewGEDSubjectListValueStore();
   const GEDSubjectList = useGEDSubjectListValueStore();
   const setForm = useSetFormStore();
-  const { handleAddNewGEDSubjectButtonClick } = useAddNewGEDSubject();
+  const { handleAddNewGEDSubject } = useAddNewGEDSubject();
 
   useEffect(() => {
     const studentSubjectList = [...GEDSubjectList, ...newGEDSubjectList].map(
@@ -40,7 +40,7 @@ const GEDCalculator = () => {
         <NewGEDCalculatorItem id={id} score={score} />
       ))}
       <GEDCalculatorFooter>
-        <Button onClick={handleAddNewGEDSubjectButtonClick} icon="ADD_ICON" size="SMALL">
+        <Button onClick={handleAddNewGEDSubject} icon="ADD_ICON" size="SMALL">
           과목추가
         </Button>
       </GEDCalculatorFooter>

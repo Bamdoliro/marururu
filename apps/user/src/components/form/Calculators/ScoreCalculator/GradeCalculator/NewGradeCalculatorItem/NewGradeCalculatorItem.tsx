@@ -14,15 +14,15 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
   const newSubjectList = useNewSubjectListValueStore();
 
   const newSubjectIndex = newSubjectList.findIndex((item) => item.id === id);
-  const { handleNewSubjectDataChange, handleNewSubjectNameDataChange } =
+  const { handleNewSubjectChange, handleNewSubjectNameChange } =
     useInput(newSubjectIndex);
-  const { handleDeleteNewSubjectButtonClick } = useDeleteNewSubject();
+  const { handleDeleteNewSubject } = useDeleteNewSubject();
 
   return (
     <StyledNewGradeCalculatorItem>
       <Td option="SECONDARY" width={123} height="100%">
         <NewSubjectInput
-          onChange={handleNewSubjectNameDataChange}
+          onChange={handleNewSubjectNameChange}
           value={newSubjectList[newSubjectIndex].subjectName}
           placeholder="과목명 입력"
         />
@@ -34,7 +34,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
           data={achievementLevels}
           width={80}
           name="achievementLevel21"
-          onChange={handleNewSubjectDataChange}
+          onChange={handleNewSubjectChange}
         />
       </Td>
       <Td width={190} height="100%">
@@ -44,7 +44,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
           data={achievementLevels}
           width={80}
           name="achievementLevel22"
-          onChange={handleNewSubjectDataChange}
+          onChange={handleNewSubjectChange}
         />
       </Td>
       <Td width={190} height="100%">
@@ -54,15 +54,11 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
           data={achievementLevels}
           width={80}
           name="achievementLevel31"
-          onChange={handleNewSubjectDataChange}
+          onChange={handleNewSubjectChange}
         />
       </Td>
       <Td width={123} height="100%">
-        <Button
-          onClick={() => handleDeleteNewSubjectButtonClick(id)}
-          option="DELETE"
-          size="SMALL"
-        >
+        <Button onClick={() => handleDeleteNewSubject(id)} option="DELETE" size="SMALL">
           삭제
         </Button>
       </Td>

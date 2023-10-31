@@ -5,7 +5,7 @@ import type { ChangeEventHandler } from 'react';
 export const useInput = () => {
   const setForm = useSetFormStore();
 
-  const handleAttendanceInfoDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleAttendanceInfoChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
     const [attendanceName, countName] = name.split('-');
 
@@ -21,5 +21,5 @@ export const useInput = () => {
     }));
   };
 
-  return { handleAttendanceInfoDataChange };
+  return { handleAttendanceInfoChange };
 };

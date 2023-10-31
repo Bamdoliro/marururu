@@ -3,7 +3,7 @@ import { useSetSubjectListStore } from '@/store';
 export const useInput = (id: number) => {
   const setSubjectList = useSetSubjectListStore();
 
-  const handleSubjectDataChange = (data: string, name: string) => {
+  const handleSubjectChange = (data: string, name: string) => {
     setSubjectList((prev) => {
       const updatedData = [...prev];
       updatedData[id] = {
@@ -14,5 +14,5 @@ export const useInput = (id: number) => {
     });
   };
 
-  return { handleSubjectDataChange };
+  return { handleSubjectChange };
 };

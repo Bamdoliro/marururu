@@ -6,7 +6,7 @@ export const useAddNewSubject = () => {
   const [newSubjectList, setNewSubjectList] = useNewSubjectListStore();
 
   const newSubjectIdRef = useRef(newSubjectList.length);
-  const handleAddNewSubjectButtonClick = () => {
+  const handleAddNewSubject = () => {
     const newSubject: Subject = {
       id: newSubjectIdRef.current++,
       subjectName: '',
@@ -18,5 +18,5 @@ export const useAddNewSubject = () => {
     setNewSubjectList((prev) => [...prev, newSubject]);
   };
 
-  return { handleAddNewSubjectButtonClick };
+  return { handleAddNewSubject };
 };

@@ -4,7 +4,7 @@ import type { ChangeEventHandler } from 'react';
 export const useInput = (newGEDSubjectIndex: number) => {
   const setNewGEDSubjectList = useSetNewGEDSubjectListStore();
 
-  const handleNewGEDSubjectDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleNewGEDSubjectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
 
     setNewGEDSubjectList((prev) => {
@@ -17,15 +17,15 @@ export const useInput = (newGEDSubjectIndex: number) => {
     });
   };
 
-  return { handleNewGEDSubjectDataChange };
+  return { handleNewGEDSubjectChange };
 };
 
 export const useDeleteNewGEDSubject = () => {
   const setNewGEDSubjectList = useSetNewGEDSubjectListStore();
 
-  const handleDeleteNewGEDSubjectButtonClick = (id: number) => {
+  const handleDeleteNewGEDSubject = (id: number) => {
     setNewGEDSubjectList((prev) => prev.filter((item) => item.id !== id));
   };
 
-  return { handleDeleteNewGEDSubjectButtonClick };
+  return { handleDeleteNewGEDSubject };
 };

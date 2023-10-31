@@ -4,7 +4,7 @@ import type { ChangeEventHandler } from 'react';
 export const useInput = () => {
   const setForm = useSetFormStore();
 
-  const handleCertificateListDataChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleCertificateListChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { checked, value } = e.target;
 
     setForm((prev) => {
@@ -23,5 +23,5 @@ export const useInput = () => {
     });
   };
 
-  return { handleCertificateListDataChange };
+  return { handleCertificateListChange };
 };

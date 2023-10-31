@@ -6,7 +6,7 @@ export const useAddNewGEDSubject = () => {
   const [newGEDSubjectList, setNewGEDSubjectList] = useNewGEDSubjectListStore();
 
   const newGEDSubjectIdRef = useRef(newGEDSubjectList.length);
-  const handleAddNewGEDSubjectButtonClick = () => {
+  const handleAddNewGEDSubject = () => {
     if (newGEDSubjectList.length >= 1) {
       alert('선택과목은 하나만 추가할 수 있습니다.');
       return;
@@ -22,5 +22,5 @@ export const useAddNewGEDSubject = () => {
     setNewGEDSubjectList((prev) => [...prev, newSubject]);
   };
 
-  return { handleAddNewGEDSubjectButtonClick };
+  return { handleAddNewGEDSubject };
 };

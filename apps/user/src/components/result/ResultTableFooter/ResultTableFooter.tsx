@@ -10,7 +10,7 @@ interface Props {
 }
 
 const ResultTableFooter = ({ option, isPassed }: Props) => {
-  const { handleGoMainPageButtonClick } = useCTAButton();
+  const { handleMoveMainPage } = useCTAButton();
   const { userData } = useUser();
 
   return isPassed ? (
@@ -37,18 +37,18 @@ const ResultTableFooter = ({ option, isPassed }: Props) => {
       {option === 'FIRST' ? (
         <Row gap={16} alignItems="center">
           <Button size="LARGE">수험표 출력하기</Button>
-          <Button onClick={handleGoMainPageButtonClick} option="SECONDARY" size="LARGE">
+          <Button onClick={handleMoveMainPage} option="SECONDARY" size="LARGE">
             홈으로 돌아가기
           </Button>
         </Row>
       ) : (
-        <Button onClick={handleGoMainPageButtonClick} size="LARGE">
+        <Button onClick={handleMoveMainPage} size="LARGE">
           홈으로 돌아가기
         </Button>
       )}
     </Column>
   ) : (
-    <Button onClick={handleGoMainPageButtonClick} size="LARGE">
+    <Button onClick={handleMoveMainPage} size="LARGE">
       홈으로 돌아가기
     </Button>
   );
