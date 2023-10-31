@@ -11,6 +11,10 @@ interface Props {
 const FormPeriodModal = ({ isOpen, onClose }: Props) => {
   const router = useRouter();
 
+  const handleRedirectMainPage = () => {
+    router.push(ROUTES.MAIN);
+  };
+
   return (
     <Confirm
       isOpen={isOpen}
@@ -23,7 +27,7 @@ const FormPeriodModal = ({ isOpen, onClose }: Props) => {
       }
       onClose={onClose}
       onConfirm={() => {
-        router.push(ROUTES.MAIN);
+        handleRedirectMainPage();
         onClose();
       }}
     />

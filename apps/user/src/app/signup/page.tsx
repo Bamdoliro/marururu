@@ -16,7 +16,7 @@ import { flex } from '@maru/utils';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { useInput, useJoinAction, useVerificationAction } from './signup.hooks';
+import { useInput, useJoinAction, useVerificationCodeAction } from './signup.hooks';
 
 const SignUpPage = () => {
   const [timerTime, setTimerTime] = useState(0);
@@ -28,7 +28,7 @@ const SignUpPage = () => {
     isVerificationCodeDisabled,
     isVerificationCodeConfirm,
     isVerificationCodeSend,
-  } = useVerificationAction(joinUser);
+  } = useVerificationCodeAction(joinUser);
   const { handleJoin } = useJoinAction(joinUser, termsAgree);
 
   const startTimer = () => {
