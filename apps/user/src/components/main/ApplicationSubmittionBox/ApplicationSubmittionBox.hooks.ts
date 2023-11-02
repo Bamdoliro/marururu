@@ -49,11 +49,10 @@ export const useButtonStatus = () => {
   const buttonOption: ButtonOption =
     isSubmitPeriod || (-2 < remainDays && remainDays <= 0) ? 'PRIMARY' : 'DISABLED';
 
-  const handleMovePageButtonClick = () => {
-    if (isSubmitPeriod) {
-      router.push(ROUTES.FORM);
-      return;
-    }
+  const handleMoveFormPage = () => {
+    router.push(ROUTES.FORM);
+  };
+  const handleMoveResultPage = () => {
     if (-2 < remainDays && remainDays <= 0) {
       console.log('결과 확인하기 페이지 이동');
     }
@@ -63,7 +62,8 @@ export const useButtonStatus = () => {
 
   return {
     buttonOption,
-    handleMovePageButtonClick,
+    handleMoveFormPage,
+    handleMoveResultPage,
     buttonText,
   };
 };
