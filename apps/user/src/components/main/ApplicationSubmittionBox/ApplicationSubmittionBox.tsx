@@ -2,18 +2,18 @@
 
 import { Button, Column } from '@maru/ui';
 import { styled } from 'styled-components';
-import { useButtonStatus, useDday } from './CurrentScheduleBox.hooks';
+import ApplicationPeriodBox from './ApplicationPeriodBox/ApplicationPeriodBox';
+import { useButtonStatus, useDday } from './ApplicationSubmittionBox.hooks';
 import DdayBox from './DdayBox/DdayBox';
-import SubmitPeriodBox from './SubmitPeriodBox/SubmitPeriodBox';
 
-const CurrentScheduleBox = () => {
+const ApplicationSubmittionBox = () => {
   const { isSubmitPeriod } = useDday();
   const { buttonOption, handleMovePageButtonClick, buttonText } = useButtonStatus();
 
   return (
-    <StyledCurrentScheduleBox>
+    <StyledApplicationSubmittionBox>
       <Column width="100%" height="100%" justifyContent="space-between">
-        {isSubmitPeriod ? <SubmitPeriodBox /> : <DdayBox />}
+        {isSubmitPeriod ? <ApplicationPeriodBox /> : <DdayBox />}
         <Button
           width={250}
           size="LARGE"
@@ -23,13 +23,13 @@ const CurrentScheduleBox = () => {
           {buttonText}
         </Button>
       </Column>
-    </StyledCurrentScheduleBox>
+    </StyledApplicationSubmittionBox>
   );
 };
 
-export default CurrentScheduleBox;
+export default ApplicationSubmittionBox;
 
-const StyledCurrentScheduleBox = styled.div`
+const StyledApplicationSubmittionBox = styled.div`
   width: 708px;
   height: 100%;
   border-radius: 32px;

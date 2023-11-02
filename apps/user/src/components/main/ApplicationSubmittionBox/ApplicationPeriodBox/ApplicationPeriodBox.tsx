@@ -1,8 +1,8 @@
 import { color } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
-import { useSchoolRecruitDate } from './SubmitPeriodBox.hooks';
+import { useSchoolRecruitDate } from './ApplicationPeriodBox.hooks';
 
-const SubmitPeriodBox = () => {
+const ApplicationPeriodBoxPeriodBox = () => {
   const { submitStart, submitEnd } = useSchoolRecruitDate();
 
   return (
@@ -19,4 +19,4 @@ const SubmitPeriodBox = () => {
   );
 };
 
-export default SubmitPeriodBox;
+export default ApplicationPeriodBoxPeriodBox;
