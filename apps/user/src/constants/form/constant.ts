@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+dayjs.locale('ko');
 
 export const 제출_시작_날짜 = dayjs('2023-10-16T00:00:00+09:00');
 export const 제출_마감_날짜 = dayjs('2023-10-19T17:00:00+09:00');
