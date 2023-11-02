@@ -2,7 +2,7 @@
 
 import {
   ApplicationBox,
-  DdayBox,
+  CurrentScheduleBox,
   FaqBox,
   GuidelineBox,
   NoticeBox,
@@ -23,7 +23,7 @@ const MainPage = () => {
     <AppLayout header footer>
       <StyledMainPage>
         <Row gap={48} width="100%" height={450} justifyContent="center">
-          <DdayBox />
+          <CurrentScheduleBox />
           <ScheduleBox />
         </Row>
         <Row gap={48} width="100%" justifyContent="center">

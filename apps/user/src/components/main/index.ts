@@ -1,5 +1,5 @@
 export { default as ApplicationBox } from './ApplicationBox/ApplicationBox';
-export { default as DdayBox } from './DdayBox/DdayBox';
+export { default as CurrentScheduleBox } from './CurrentScheduleBox/CurrentScheduleBox';
 export { default as FaqBox } from './FaqBox/FaqBox';
 export { default as GuidelineBox } from './GuidelineBox/GuidelineBox';
 export { default as NoticeBox } from './NoticeBox/NoticeBox';
