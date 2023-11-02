@@ -5,7 +5,7 @@ import {
 } from '@/constants/form/constant';
 import { formatDay } from '@/utils';
 import dayjs from 'dayjs';
-import { useDday } from '../CurrentScheduleBox';
+import { useDday } from '../CurrentScheduleBox.hooks';
 
 export const useRemainDate = () => {
   const { currentTime, remainDays } = useDday();
