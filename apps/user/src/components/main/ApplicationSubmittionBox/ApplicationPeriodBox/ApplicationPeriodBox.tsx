@@ -2,8 +2,8 @@ import { color } from '@maru/theme';
 import { Column, Text } from '@maru/ui';
 import { useSchoolRecruitDate } from './ApplicationPeriodBox.hooks';
 
-const ApplicationPeriodBoxPeriodBox = () => {
-  const { submitStart, submitEnd } = useSchoolRecruitDate();
+const ApplicationPeriodBox = () => {
+  const { applicationStart, applicationEnd } = useSchoolRecruitDate();
 
   return (
     <Column gap={36}>
@@ -13,10 +13,10 @@ const ApplicationPeriodBoxPeriodBox = () => {
         2024학년도 신입생 모집
       </Text>
       <Text fontType="p2" color={color.gray300}>
-        {submitStart} ~ {submitEnd}
+        {applicationStart} ~ {applicationEnd}
       </Text>
     </Column>
   );
 };
 
-export default ApplicationPeriodBoxPeriodBox;
+export default ApplicationPeriodBox;
