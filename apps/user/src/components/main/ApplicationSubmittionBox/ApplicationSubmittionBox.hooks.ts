@@ -23,7 +23,7 @@ export const useDday = () => {
     ? 제출_시작_날짜
     : dayjs().isBefore(제출_마감_날짜)
     ? 제출_마감_날짜
-    : dayjs().isBefore(일차_합격_발표.clone().add(2, 'days'))
+    : dayjs().isBefore(일차_합격_발표.add(2, 'day'))
     ? 일차_합격_발표
     : 최종_합격_발표;
 
@@ -43,18 +43,25 @@ export const useDday = () => {
 };
 
 export const useButtonStatus = () => {
-  const { remainDays, isSubmitPeriod } = useDday();
+  const { currentTime, remainDays, isSubmitPeriod } = useDday();
   const router = useRouter();
 
+  const isPeriodOfViewing = -2 < remainDays && remainDays <= 0;
+
   const buttonOption: ButtonOption =
-    isSubmitPeriod || (-2 < remainDays && remainDays <= 0) ? 'PRIMARY' : 'DISABLED';
+    isSubmitPeriod || isPeriodOfViewing ? 'PRIMARY' : 'DISABLED';
 
   const handleMoveFormPage = () => {
     router.push(ROUTES.FORM);
   };
   const handleMoveResultPage = () => {
-    if (-2 < remainDays && remainDays <= 0) {
-      console.log('결과 확인하기 페이지 이동');
+    if (isPeriodOfViewing) {
+      if (currentTime === 일차_합격_발표) {
+        router.push(ROUTES.FIRST_RESULT);
+      }
+      if (currentTime === 최종_합격_발표) {
+        router.push(ROUTES.FINAL_RESULT);
+      }
     }
   };
 
