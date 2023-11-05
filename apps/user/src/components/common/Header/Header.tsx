@@ -56,14 +56,14 @@ const Header = () => {
           ) : (
             <Row gap={10} alignItems="center">
               <Button
-                option="QUATERNARY"
+                styleType="QUATERNARY"
                 size="SMALL"
                 onClick={() => router.push(ROUTES.LOGIN)}
               >
                 로그인
               </Button>
               <Button
-                option="PRIMARY"
+                styleType="PRIMARY"
                 size="SMALL"
                 onClick={() => router.push(ROUTES.SIGNUP)}
               >

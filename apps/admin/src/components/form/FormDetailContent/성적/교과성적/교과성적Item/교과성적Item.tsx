@@ -16,7 +16,7 @@ const 교과성적Item = ({
 }: Props) => {
   return (
     <Row height={64}>
-      <Td option="SECONDARY" width={123} height="100%">
+      <Td styleType="SECONDARY" width={123} height="100%">
         {subjectName}
       </Td>
       <Td width={140} height="100%">

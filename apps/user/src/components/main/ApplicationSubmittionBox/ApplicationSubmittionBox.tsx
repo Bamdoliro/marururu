@@ -18,7 +18,7 @@ const ApplicationSubmittionBox = () => {
         <Button
           width={250}
           size="LARGE"
-          option={buttonOption}
+          styleType={buttonOption}
           onClick={isSubmitPeriod ? handleMoveFormPage : handleMoveResultPage}
         >
           {buttonText}

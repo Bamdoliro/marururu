@@ -13,10 +13,10 @@ const GradeCalculatorHeader = () => {
           2학년
         </Th>
         <Row>
-          <Th option="SECONDARY" width="100%" height={50}>
+          <Th styleType="SECONDARY" width="100%" height={50}>
             1학기
           </Th>
-          <Th option="SECONDARY" width="100%" height={50}>
+          <Th styleType="SECONDARY" width="100%" height={50}>
             2학기
           </Th>
         </Row>
@@ -25,7 +25,7 @@ const GradeCalculatorHeader = () => {
         <Th width="100%" height={50}>
           3학년
         </Th>
-        <Th option="SECONDARY" width="100%" height={50}>
+        <Th styleType="SECONDARY" width="100%" height={50}>
           1학기
         </Th>
       </Column>

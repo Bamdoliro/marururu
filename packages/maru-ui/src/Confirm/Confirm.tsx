@@ -62,7 +62,7 @@ const Confirm = ({
           {content}
         </Column>
         <Row gap={16} justifyContent="flex-end">
-          <Button option="SECONDARY" size="SMALL" onClick={onClose}>
+          <Button styleType="SECONDARY" size="SMALL" onClick={onClose}>
             {closeButtonText}
           </Button>
           <Button size="SMALL" onClick={onConfirm}>

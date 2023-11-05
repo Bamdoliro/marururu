@@ -37,7 +37,7 @@ const GradePreview = () => {
           </Th>
         </Row>
         <Row alignItems="center">
-          <Td option="SECONDARY" width="calc(100% / 6)" height={56}>
+          <Td styleType="SECONDARY" width="calc(100% / 6)" height={56}>
             일반전형
           </Td>
           <Td width="calc(100% / 6)" height={56}>
@@ -59,7 +59,7 @@ const GradePreview = () => {
         <Row alignItems="center">
           <Td
             borderBottomLeftRadius={12}
-            option="SECONDARY"
+            styleType="SECONDARY"
             width="calc(100% / 6)"
             height={56}
           >

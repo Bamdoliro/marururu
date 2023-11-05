@@ -18,7 +18,7 @@ const FormController = ({ onPrevious, onNext, step }: Props) => {
         </Button>
       ) : (
         <StyledFormController>
-          <Button width="50%" option="SECONDARY" onClick={onPrevious}>
+          <Button width="50%" styleType="SECONDARY" onClick={onPrevious}>
             이전
           </Button>
           <Button width="50%" onClick={onNext}>

@@ -106,7 +106,7 @@ const MainPage = () => {
               {isSecondRoundResultEditing ? (
                 <Row gap={16}>
                   <Button
-                    option="SECONDARY"
+                    styleType="SECONDARY"
                     size="SMALL"
                     onClick={setIsSecondRoundResultEditingFalse}
                   >
@@ -122,7 +122,7 @@ const MainPage = () => {
               ) : isFormToPrintSelecting ? (
                 <Row gap={16}>
                   <Button
-                    option="SECONDARY"
+                    styleType="SECONDARY"
                     size="SMALL"
                     onClick={setIsFormToPrintSelectingFalse}
                   >

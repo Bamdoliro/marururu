@@ -98,7 +98,7 @@ const FormStatus = ({ id }: Props) => {
         <Button size="SMALL" onClick={openFinalScoreConfirm}>
           최종 접수 상태 변경하기
         </Button>
-        <Button size="SMALL" option="SECONDARY">
+        <Button size="SMALL" styleType="SECONDARY">
           제출 서류 조회하기
         </Button>
       </Column>

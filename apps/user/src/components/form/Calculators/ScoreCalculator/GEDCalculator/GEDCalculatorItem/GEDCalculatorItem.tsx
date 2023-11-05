@@ -14,7 +14,7 @@ const GEDCalculatorItem = ({ id, subject, score }: Props) => {
 
   return (
     <StyledGEDCalculatorItem>
-      <Td option="SECONDARY" width={123} height={64}>
+      <Td styleType="SECONDARY" width={123} height={64}>
         {subject}
       </Td>
       <Td width={570} height={64}>

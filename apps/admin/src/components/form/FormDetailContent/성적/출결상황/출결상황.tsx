@@ -28,7 +28,7 @@ const 출결상황 = ({ id }: Props) => {
         </Th>
       </Row>
       <Row>
-        <Td option="SECONDARY" width={140} height={56}>
+        <Td styleType="SECONDARY" width={140} height={56}>
           1학년
         </Td>
         <Td width={140} height={56}>
@@ -48,7 +48,7 @@ const 출결상황 = ({ id }: Props) => {
         </Td>
       </Row>
       <Row>
-        <Td option="SECONDARY" width={140} height={56}>
+        <Td styleType="SECONDARY" width={140} height={56}>
           2학년
         </Td>
         <Td width={140} height={56}>
@@ -68,7 +68,7 @@ const 출결상황 = ({ id }: Props) => {
         </Td>
       </Row>
       <Row>
-        <Td option="SECONDARY" width={140} height={56} borderBottomLeftRadius={12}>
+        <Td styleType="SECONDARY" width={140} height={56} borderBottomLeftRadius={12}>
           3학년
         </Td>
         <Td width={140} height={56}>

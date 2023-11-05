@@ -114,12 +114,12 @@ const ExportExcelModal = ({ isOpen, onClose }: Props) => {
           </CardRadioBox>
         </Row>
         <Row gap={16} style={{ alignSelf: 'flex-end' }}>
-          <Button size="SMALL" option="SECONDARY" onClick={onClose}>
+          <Button size="SMALL" styleType="SECONDARY" onClick={onClose}>
             취소
           </Button>
           <Button
             size="SMALL"
-            option={exportExcelType ? 'PRIMARY' : 'DISABLED'}
+            styleType={exportExcelType ? 'PRIMARY' : 'DISABLED'}
             onClick={handleExportExcelButtonClick}
           >
             내보내기

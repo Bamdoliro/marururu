@@ -24,7 +24,7 @@ const VolunteerCalculator = () => {
           </Th>
         </Row>
         <Row>
-          <Td width={162} height={56} option="SECONDARY">
+          <Td width={162} height={56} styleType="SECONDARY">
             1학년
           </Td>
           <Td width={654} height={56}>
@@ -38,7 +38,7 @@ const VolunteerCalculator = () => {
           </Td>
         </Row>
         <Row>
-          <Td width={162} height={56} option="SECONDARY">
+          <Td width={162} height={56} styleType="SECONDARY">
             2학년
           </Td>
           <Td width={654} height={56}>
@@ -52,7 +52,7 @@ const VolunteerCalculator = () => {
           </Td>
         </Row>
         <Row>
-          <Td borderBottomLeftRadius={12} width={162} height={56} option="SECONDARY">
+          <Td borderBottomLeftRadius={12} width={162} height={56} styleType="SECONDARY">
             3학년
           </Td>
           <Td borderBottomRightRadius={12} width={654} height={56}>

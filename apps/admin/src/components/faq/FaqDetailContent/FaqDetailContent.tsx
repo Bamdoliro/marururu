@@ -31,7 +31,7 @@ const FaqDetailContent = ({ id }: Props) => {
           </Column>
           <Row gap={16} alignItems="flex-end">
             <Button
-              option="SECONDARY"
+              styleType="SECONDARY"
               size="SMALL"
               width={60}
               onClick={() => router.push(`${ROUTES.FAQ_EDIT}/${id}`)}
@@ -39,7 +39,7 @@ const FaqDetailContent = ({ id }: Props) => {
               수정
             </Button>
             <Button
-              option="DELETE"
+              styleType="DELETE"
               size="SMALL"
               width={60}
               onClick={handleDeleteFaqButtonClick}
