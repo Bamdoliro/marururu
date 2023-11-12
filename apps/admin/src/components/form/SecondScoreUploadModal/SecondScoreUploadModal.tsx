@@ -85,12 +85,12 @@ const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
           </TextButton>
         </Column>
         <Row gap={16} style={{ alignSelf: 'flex-end' }}>
-          <Button size="SMALL" option="SECONDARY" onClick={removeFileAndCloseModal}>
+          <Button size="SMALL" styleType="SECONDARY" onClick={removeFileAndCloseModal}>
             취소
           </Button>
           <Button
             size="SMALL"
-            option={fileData ? 'PRIMARY' : 'DISABLED'}
+            styleType={fileData ? 'PRIMARY' : 'DISABLED'}
             onClick={handleUploadSecondScoreFormatButtonClick}
           >
             입력하기

@@ -31,7 +31,7 @@ const Error = () => {
             이전 페이지로 돌아가기
           </Button>
           <Button
-            option="SECONDARY"
+            styleType="SECONDARY"
             size="LARGE"
             width="fit-content"
             onClick={() => window.location.reload()}

@@ -20,7 +20,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
 
   return (
     <StyledNewGradeCalculatorItem>
-      <Td option="SECONDARY" width={123} height="100%">
+      <Td styleType="SECONDARY" width={123} height="100%">
         <NewSubjectInput
           onChange={handleNewSubjectNameChange}
           value={newSubjectList[newSubjectIndex].subjectName}
@@ -58,7 +58,11 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
         />
       </Td>
       <Td width={123} height="100%">
-        <Button onClick={() => handleDeleteNewSubject(id)} option="DELETE" size="SMALL">
+        <Button
+          onClick={() => handleDeleteNewSubject(id)}
+          styleType="DELETE"
+          size="SMALL"
+        >
           삭제
         </Button>
       </Td>

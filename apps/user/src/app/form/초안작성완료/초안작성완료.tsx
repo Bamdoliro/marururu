@@ -13,8 +13,8 @@ import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
 import {
-  useCheckFilledForm,
   useCTAButton,
+  useCheckFilledForm,
   useSubmitDraftFormAction,
 } from './초안작성완료.hooks';
 
@@ -94,7 +94,7 @@ const 초안작성완료 = () => {
               제출하시겠습니까?
             </Text>
             <Row gap={16}>
-              <Button onClick={handleCheckAgainForm} option="SECONDARY" size="LARGE">
+              <Button onClick={handleCheckAgainForm} styleType="SECONDARY" size="LARGE">
                 다시 한번 확인하기
               </Button>
               <Button onClick={openDraftFormConfrim} size="LARGE">

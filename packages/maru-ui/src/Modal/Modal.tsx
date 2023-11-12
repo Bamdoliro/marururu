@@ -50,7 +50,7 @@ const Modal = ({
         </Row>
         <Column style={{ width: '100%', height: '100%' }}>{children}</Column>
         <Row gap={16} justifyContent="flex-end">
-          <Button option="SECONDARY" size="SMALL" onClick={onClose}>
+          <Button styleType="SECONDARY" size="SMALL" onClick={onClose}>
             취소
           </Button>
           <Button size="SMALL" onClick={onConfirm}>

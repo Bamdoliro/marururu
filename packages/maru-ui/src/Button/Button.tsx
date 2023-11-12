@@ -4,20 +4,20 @@ import { flex } from '@maru/utils';
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 import { getButtonPadding, getButtonSize, getButtonStyle } from './Button.style';
-import type { ButtonIcon, ButtonOption, ButtonSize } from './Button.type';
+import type { ButtonIcon, ButtonSize, ButtonStyleType } from './Button.type';
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+type Props = {
   children: ReactNode;
-  option?: ButtonOption;
+  styleType?: ButtonStyleType;
   icon?: ButtonIcon;
   size?: ButtonSize;
   width?: CSSProperties['width'];
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
   onClick,
   children,
-  option = 'PRIMARY',
+  styleType = 'PRIMARY',
   icon = 'NONE',
   size = 'MEDIUM',
   width,
@@ -28,10 +28,10 @@ const Button = ({
     <StyledButton
       style={{ width, ...style }}
       onClick={onClick}
-      option={option}
+      styleType={styleType}
       icon={icon}
       size={size}
-      disabled={disabled || option === 'DISABLED'}
+      disabled={disabled || styleType === 'DISABLED'}
     >
       {icon === 'ADD_ICON' && <IconAdd color={color.white} width={24} height={24} />}
       {children}
@@ -45,7 +45,7 @@ const Button = ({
 export default Button;
 
 const StyledButton = styled.button<{
-  option: ButtonOption;
+  styleType: ButtonStyleType;
   icon: ButtonIcon;
   size: ButtonSize;
 }>`
@@ -55,6 +55,6 @@ const StyledButton = styled.button<{
   word-break: keep-all;
 
   ${(props) => props.icon && getButtonPadding[props.icon]};
-  ${(props) => props && getButtonStyle[props.option]};
+  ${(props) => props && getButtonStyle[props.styleType]};
   ${(props) => props && getButtonSize[props.size]};
 `;

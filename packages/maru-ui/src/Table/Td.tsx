@@ -1,13 +1,13 @@
 import { color, font } from '@maru/theme';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
-import type { TableOptionType, TableProps } from './Table.type';
+import type { TableProps, TableStyleType } from './Table.type';
 
 const Td = ({
   children,
   width,
   height,
-  option = 'PRIMARY',
+  styleType = 'PRIMARY',
   borderTopLeftRadius,
   borderTopRightRadius,
   borderBottomLeftRadius,
@@ -23,7 +23,7 @@ const Td = ({
         borderBottomLeftRadius,
         borderBottomRightRadius,
       }}
-      option={option}
+      styleType={styleType}
     >
       {children}
     </StyledTd>
@@ -32,14 +32,14 @@ const Td = ({
 
 export default Td;
 
-const StyledTd = styled.div<{ option: TableOptionType }>`
+const StyledTd = styled.div<{ styleType: TableStyleType }>`
   ${flex({ alignItems: 'center', justifyContent: 'center' })}
 
   color: ${color.gray900};
   border: 0.5px solid ${color.gray300};
 
   ${(props) =>
-    props.option === 'PRIMARY'
+    props.styleType === 'PRIMARY'
       ? css`
           ${font.context}
           background-color: ${color.white};

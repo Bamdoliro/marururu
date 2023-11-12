@@ -1,4 +1,4 @@
-export type ButtonOption =
+export type ButtonStyleType =
   | 'PRIMARY'
   | 'SECONDARY'
   | 'TERTIARY'

@@ -11,10 +11,10 @@ const 교과성적Header = () => {
           2학년
         </Th>
         <Row>
-          <Th option="SECONDARY" width="50%" height={50}>
+          <Th styleType="SECONDARY" width="50%" height={50}>
             1학기
           </Th>
-          <Th option="SECONDARY" width="50%" height={50}>
+          <Th styleType="SECONDARY" width="50%" height={50}>
             2학기
           </Th>
         </Row>
@@ -23,7 +23,7 @@ const 교과성적Header = () => {
         <Th width={140} height={50} borderTopRightRadius={12}>
           3학년
         </Th>
-        <Th option="SECONDARY" width={140} height={50}>
+        <Th styleType="SECONDARY" width={140} height={50}>
           1학기
         </Th>
       </Column>

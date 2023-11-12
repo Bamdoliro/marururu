@@ -31,7 +31,7 @@ const 초안제출완료 = () => {
           </Text>
         </Column>
         <Row gap={16}>
-          <Button onClick={handleMovewMainPage} option="SECONDARY" size="LARGE">
+          <Button onClick={handleMovewMainPage} styleType="SECONDARY" size="LARGE">
             홈으로 돌아가기
           </Button>
           <Button onClick={handleMovew최종제출Page} size="LARGE">

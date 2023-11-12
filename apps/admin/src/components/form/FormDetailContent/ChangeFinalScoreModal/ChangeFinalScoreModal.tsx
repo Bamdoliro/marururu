@@ -80,12 +80,12 @@ const FinalScoreConfirm = ({ id, isOpen, onClose }: Props) => {
           </CardRadio>
         </Row>
         <Row gap={16} style={{ alignSelf: 'flex-end' }}>
-          <Button size="SMALL" option="SECONDARY" onClick={onClose}>
+          <Button size="SMALL" styleType="SECONDARY" onClick={onClose}>
             취소
           </Button>
           <Button
             size="SMALL"
-            option={approvalStatus ? 'PRIMARY' : 'DISABLED'}
+            styleType={approvalStatus ? 'PRIMARY' : 'DISABLED'}
             onClick={handleChangeFinalScoreStatusButtonClick}
           >
             변경

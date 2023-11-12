@@ -37,7 +37,7 @@ const ResultTableFooter = ({ option, isPassed }: Props) => {
       {option === 'FIRST' ? (
         <Row gap={16} alignItems="center">
           <Button size="LARGE">수험표 출력하기</Button>
-          <Button onClick={handleMoveMainPage} option="SECONDARY" size="LARGE">
+          <Button onClick={handleMoveMainPage} styleType="SECONDARY" size="LARGE">
             홈으로 돌아가기
           </Button>
         </Row>
