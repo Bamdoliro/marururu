@@ -8,7 +8,7 @@ import DdayBox from './DdayBox/DdayBox';
 
 const ApplicationSubmittionBox = () => {
   const { isSubmitPeriod } = useDday();
-  const { buttonOption, handleMoveFormPage, handleMoveResultPage, buttonText } =
+  const { buttonStyleType, handleMoveFormPage, handleMoveResultPage, buttonText } =
     useButtonStatus();
 
   return (
@@ -18,7 +18,7 @@ const ApplicationSubmittionBox = () => {
         <Button
           width={250}
           size="LARGE"
-          styleType={buttonOption}
+          styleType={buttonStyleType}
           onClick={isSubmitPeriod ? handleMoveFormPage : handleMoveResultPage}
         >
           {buttonText}

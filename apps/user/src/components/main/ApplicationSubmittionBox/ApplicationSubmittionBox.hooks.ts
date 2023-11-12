@@ -6,7 +6,7 @@ import {
   최종_합격_발표,
 } from '@/constants/form/constant';
 import { useInterval } from '@maru/hooks';
-import type { ButtonOption } from '@maru/ui';
+import type { ButtonStyleType } from '@maru/ui';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import isBetween from 'dayjs/plugin/isBetween';
@@ -48,7 +48,7 @@ export const useButtonStatus = () => {
 
   const isPeriodOfViewing = -2 < remainDays && remainDays <= 0;
 
-  const buttonOption: ButtonOption =
+  const buttonStyleType: ButtonStyleType =
     isSubmitPeriod || isPeriodOfViewing ? 'PRIMARY' : 'DISABLED';
 
   const handleMoveFormPage = () => {
@@ -58,8 +58,7 @@ export const useButtonStatus = () => {
     if (isPeriodOfViewing) {
       if (currentTime === 일차_합격_발표) {
         router.push(ROUTES.FIRST_RESULT);
-      }
-      if (currentTime === 최종_합격_발표) {
+      } else if (currentTime === 최종_합격_발표) {
         router.push(ROUTES.FINAL_RESULT);
       }
     }
@@ -68,7 +67,7 @@ export const useButtonStatus = () => {
   const buttonText = dayjs().isBefore(제출_마감_날짜) ? '원서 접수하기' : '결과 확인하기';
 
   return {
-    buttonOption,
+    buttonStyleType,
     handleMoveFormPage,
     handleMoveResultPage,
     buttonText,
