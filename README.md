@@ -6,7 +6,7 @@
 마루는 입학 과정에 있어서 선생님들과 학생들을 편리하게 하는 것을 목적으로 개발하고 있어요.
 
 - [**apps**](https://github.com/Bamdoliro/marururu/tree/develop/apps): 마루의 admin, user 등 다양한 웹이 들어가요. 대표적인 예시로 [user](https://github.com/Bamdoliro/marururu/tree/develop/apps/user), [admin](https://github.com/Bamdoliro/marururu/tree/develop/apps/admin)
-- [**packages**](https://github.com/Bamdoliro/marururu/tree/develop/packages): 마루의 개발을 도와줄 다양한 라이브러리들이 들어가요. 대표적인 예시로 [@maru/ui](https://github.com/Bamdoliro/marururu/tree/develop/packages/maru-ui), [@maru/theme](https://github.com/Bamdoliro/marururu/tree/develop/packages/maru-theme)
+- [**packages**](https://github.com/Bamdoliro/marururu/tree/develop/packages): 마루의 개발을 도와줄 다양한 라이브러리들이 들어가요. 대표적인 예시로 [@maru/ui](https://github.com/Bamdoliro/marururu/tree/develop/packages/ui), [@maru/theme](https://github.com/Bamdoliro/marururu/tree/develop/packages/theme)
 
 ## 라이선스
 
