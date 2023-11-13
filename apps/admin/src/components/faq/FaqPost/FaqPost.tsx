@@ -1,7 +1,7 @@
 import { FAQ_CATEGORY } from '@/constants/faq/constants';
 import type { Category } from '@/types/faq/client';
 import { resizeTextarea } from '@/utils';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Button, Column, Dropdown, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';

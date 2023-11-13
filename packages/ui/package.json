@@ -18,7 +18,7 @@
   "dependencies": {
     "@maru/hooks": "workspace:*",
     "@maru/icon": "workspace:*",
-    "@maru/theme": "workspace:*",
+    "@maru/design-token": "workspace:*",
     "@maru/utils": "workspace:*",
     "react": "18.2.0",
     "react-spinners": "^0.13.8"

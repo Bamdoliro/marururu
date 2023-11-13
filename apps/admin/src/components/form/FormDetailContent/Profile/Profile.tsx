@@ -1,7 +1,7 @@
 import { FORM_TYPE } from '@/constants/main/constants';
 import { useFormDetailQuery } from '@/services/form/queries';
 import { IconBadge, IconCall, IconPerson, IconSchool } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';

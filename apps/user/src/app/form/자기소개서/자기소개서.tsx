@@ -1,7 +1,7 @@
 import { FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Column, Textarea } from '@maru/ui';
 import { useCTAButton, useInput } from './자기소개서.hooks';
 import styled from 'styled-components';

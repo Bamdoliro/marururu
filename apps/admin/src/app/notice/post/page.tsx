@@ -4,7 +4,7 @@ import NoticePost from '@/components/notice/NoticePost/NoticePost';
 import { ROUTES } from '@/constants/common/constant';
 import AppLayout from '@/layouts/AppLayout';
 import { IconArrowLeft } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Loader } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Link from 'next/link';

@@ -1,5 +1,5 @@
 import { useFormValueStore } from '@/store';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { CellInput, Column, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';

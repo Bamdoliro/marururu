@@ -1,7 +1,7 @@
 import { CompleteAlaram } from '@/components/form';
 import { AppLayout } from '@/layouts';
 import { IconCheckCircle } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';

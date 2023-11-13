@@ -10,7 +10,7 @@ import {
 import { SCORE_STEP_LIST } from '@/constants/form/data';
 import { AppLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';

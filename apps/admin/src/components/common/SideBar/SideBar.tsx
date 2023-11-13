@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled, { css } from 'styled-components';
-import { color, font } from '../../../../../../packages/maru-theme';
+import { color, font } from '@maru/design-token';
 
 const NAVIGATION_DATA = [
   {

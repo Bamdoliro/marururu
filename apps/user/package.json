@@ -35,7 +35,7 @@
   "dependencies": {
     "@maru/hooks": "workspace:*",
     "@maru/icon": "workspace:*",
-    "@maru/theme": "workspace:*",
+    "@maru/design-token": "workspace:*",
     "@maru/ui": "workspace:*",
     "@maru/utils": "workspace:*",
     "@suspensive/react": "^1.18.1",

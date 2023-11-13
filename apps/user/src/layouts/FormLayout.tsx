@@ -1,6 +1,6 @@
 import { Header } from '@/components/common/';
 import { ProgressSteps } from '@/components/form';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Text } from '@maru/ui';
 import type { ReactNode } from 'react';
 import styled from 'styled-components';

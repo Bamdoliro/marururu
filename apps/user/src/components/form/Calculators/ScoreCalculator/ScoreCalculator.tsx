@@ -1,6 +1,6 @@
 import { useFormStore } from '@/store';
 import type { GraduationType } from '@/types/form/client';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Row, Switch, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';

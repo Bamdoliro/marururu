@@ -1,7 +1,7 @@
 import { useOpenFileUploader } from '@/hooks';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
 import { useFormValueStore } from '@/store';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler, DragEvent } from 'react';

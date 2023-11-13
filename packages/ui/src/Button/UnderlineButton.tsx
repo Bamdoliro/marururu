@@ -1,4 +1,4 @@
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 

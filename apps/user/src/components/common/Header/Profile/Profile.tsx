@@ -1,7 +1,7 @@
 import { useUser } from '@/hooks';
 import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';

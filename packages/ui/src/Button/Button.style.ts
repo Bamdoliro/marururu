@@ -1,4 +1,4 @@
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { css } from 'styled-components';
 
 export const getButtonStyle = {

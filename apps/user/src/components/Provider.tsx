@@ -1,6 +1,6 @@
 'use client';
 
-import { GlobalStyle } from '@maru/theme';
+import { GlobalStyle } from '@maru/design-token';
 import { Loader } from '@maru/ui';
 import { Suspensive, SuspensiveProvider } from '@suspensive/react';
 import { OverlayProvider } from '@toss/use-overlay';

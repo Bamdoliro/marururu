@@ -37,7 +37,7 @@
   "dependencies": {
     "@maru/hooks": "workspace:*",
     "@maru/icon": "workspace:*",
-    "@maru/theme": "workspace:*",
+    "@maru/design-token": "workspace:*",
     "@maru/ui": "workspace:*",
     "@maru/utils": "workspace:*",
     "@tanstack/react-query": "^4.32.6",

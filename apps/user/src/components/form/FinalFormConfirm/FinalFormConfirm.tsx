@@ -1,4 +1,4 @@
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Confirm, Text } from '@maru/ui';
 
 interface Props {

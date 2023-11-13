@@ -1,5 +1,5 @@
 import { IconCheckDocument, IconEditDocument, IconPrint, IconUpload } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Text } from '@maru/ui';
 import type { Meta, StoryObj } from '@storybook/react';
 import ButtonMenu from './ButtonMenu';

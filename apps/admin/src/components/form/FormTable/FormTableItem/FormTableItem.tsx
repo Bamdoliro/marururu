@@ -6,7 +6,7 @@ import { useIsFormToPrintSelectingValueStore } from '@/store/form/isFormToPrintS
 import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import type { Form, FormType, PassStatusType } from '@/types/form/client';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { CheckBox, Dropdown, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
 import type { ChangeEventHandler } from 'react';

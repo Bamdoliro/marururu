@@ -1,5 +1,5 @@
 import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Text } from '@maru/ui';
 
 interface Props {

@@ -1,5 +1,5 @@
 import { useInterval } from '@maru/hooks';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { flex, formatTime } from '@maru/utils';
 import type { Dispatch, SetStateAction } from 'react';
 import styled, { css } from 'styled-components';

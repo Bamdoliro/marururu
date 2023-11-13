@@ -1,4 +1,4 @@
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Text } from '@maru/ui';
 import { useRemainDate } from './DdayBox.hooks';
 

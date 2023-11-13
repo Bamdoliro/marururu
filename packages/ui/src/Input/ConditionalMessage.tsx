@@ -1,4 +1,4 @@
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import styled, { css } from 'styled-components';
 
 interface Props {

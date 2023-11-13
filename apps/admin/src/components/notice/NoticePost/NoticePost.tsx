@@ -1,5 +1,5 @@
 import { resizeTextarea } from '@/utils';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Button, Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';

@@ -1,4 +1,4 @@
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
 import type { TableProps, TableStyleType } from './Table.type';

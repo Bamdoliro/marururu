@@ -1,4 +1,4 @@
-import { GlobalStyle } from '@maru/theme';
+import { GlobalStyle } from '@maru/design-token';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import type { Preview } from '@storybook/react';
 

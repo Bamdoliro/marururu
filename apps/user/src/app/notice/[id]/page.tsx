@@ -4,7 +4,7 @@ import { NoticeDetailContent } from '@/components/notice';
 import { ROUTES } from '@/constants/common/constant';
 import { AppLayout } from '@/layouts';
 import { IconArrowLeft } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Link from 'next/link';

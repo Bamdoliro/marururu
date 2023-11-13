@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Row, UnderlineButton } from '@maru/ui';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';

@@ -1,6 +1,6 @@
 import { useUser } from '@/hooks';
 import type { ResultOption } from '@/types/result/client';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { useCTAButton } from './ResultTableFooter.hooks';
 

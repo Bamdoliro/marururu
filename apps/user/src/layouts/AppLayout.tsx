@@ -1,6 +1,6 @@
 import { Footer } from '@/components/common';
 import { Header } from '@/components/common/';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import type { CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';
 

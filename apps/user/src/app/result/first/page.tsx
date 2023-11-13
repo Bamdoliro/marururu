@@ -3,7 +3,7 @@
 import { FirstResultTable, ResultMain } from '@/components/result';
 import { AppLayout } from '@/layouts';
 import type { ResultStep } from '@/types/result/client';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';

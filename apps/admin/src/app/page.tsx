@@ -20,7 +20,7 @@ import {
   IconPrint,
   IconUpload,
 } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Row, SearchInput, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';

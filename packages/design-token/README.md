@@ -1,9 +1,9 @@
-# @maru/theme
+# @maru/design-token
 
-@maru/theme 라이브러리는 color, font, global style 등 각종 스타일들이 정의되어 있는 패키지입니다.
+@maru/design-token 라이브러리는 color, font, global style 등 각종 스타일들이 정의되어 있는 패키지입니다.
 
 ```shell
-$ yarn add @maru/theme
+$ yarn add @maru/design-token
 ```
 
 ### 특징

@@ -2,7 +2,7 @@
 
 import { CategoryFilter, FaqList } from '@/components/faq';
 import { AppLayout } from '@/layouts';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Text } from '@maru/ui';
 import { useState } from 'react';
 import { Suspense } from '@suspensive/react';

@@ -1,4 +1,4 @@
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { useRef } from 'react';
 import { css, styled } from 'styled-components';
 import type { InputProps } from './Input.type';

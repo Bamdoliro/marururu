@@ -1,5 +1,5 @@
 import { IconClose } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import type { CSSProperties, ReactNode } from 'react';
 import styled from 'styled-components';

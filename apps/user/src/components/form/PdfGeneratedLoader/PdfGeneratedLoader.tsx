@@ -1,4 +1,4 @@
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Loader, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';

@@ -8,7 +8,7 @@ import {
   제출_시작_날짜,
   최종_합격_발표,
 } from '@/constants/form/constant';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';

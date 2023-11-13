@@ -3,7 +3,7 @@ import {
   useSetFormStore,
   useGEDSubjectListValueStore,
 } from '@/store';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useEffect } from 'react';

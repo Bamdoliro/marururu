@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useNoticeDetailQuery } from '@/services/notice/queries';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { convertLink, flex, formatCreatedAt } from '@maru/utils';
 import { useRouter } from 'next/navigation';

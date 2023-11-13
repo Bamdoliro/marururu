@@ -2,7 +2,7 @@
 
 import Terms from '@/components/signup/Terms/Terms';
 import { AppLayout } from '@/layouts';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import {
   Button,
   ButtonInput,

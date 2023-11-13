@@ -1,6 +1,6 @@
 import type { ExportExcelType } from '@/types/form/client';
 import { IconClose } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';

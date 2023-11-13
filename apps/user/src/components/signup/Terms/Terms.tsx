@@ -1,5 +1,5 @@
 import { IconArrowRight } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import type { Dispatch, SetStateAction } from 'react';
 import { useState, useEffect } from 'react';

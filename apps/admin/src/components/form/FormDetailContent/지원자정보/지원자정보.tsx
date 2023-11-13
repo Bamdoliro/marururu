@@ -1,7 +1,7 @@
 import DataBox from '@/components/common/DataBox/DataBox';
 import { useFormDetailQuery } from '@/services/form/queries';
 import type { UserInfo } from '@/types/form/client';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';

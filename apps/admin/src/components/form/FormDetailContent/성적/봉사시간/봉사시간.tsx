@@ -1,5 +1,5 @@
 import { useFormDetailQuery } from '@/services/form/queries';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { CellInput, Column, Row, Td, Th } from '@maru/ui';
 import { styled } from 'styled-components';
 

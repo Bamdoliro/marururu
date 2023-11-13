@@ -1,4 +1,4 @@
-import { font } from '@maru/theme';
+import { font } from '@maru/design-token';
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 

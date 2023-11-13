@@ -1,5 +1,5 @@
 import { IconError } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import styled, { css } from 'styled-components';
 import ConditionalMessage from './ConditionalMessage';
 import type { InputProps } from './Input.type';

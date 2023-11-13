@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
 import { IconArrowRight } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Column, Text } from '@maru/ui';
 import { flex, formatCreatedAt } from '@maru/utils';
 import { useRouter } from 'next/navigation';

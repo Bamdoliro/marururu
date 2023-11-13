@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/common/constant';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Confirm, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
 

@@ -3,7 +3,7 @@
 import { ROUTES } from '@/constants/common/constant';
 import { AppLayout } from '@/layouts';
 import { IconArrowRight } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';

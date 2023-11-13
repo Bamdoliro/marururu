@@ -1,5 +1,5 @@
 import { useFormListQuery } from '@/services/form/queries';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';

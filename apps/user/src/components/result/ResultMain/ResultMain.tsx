@@ -1,5 +1,5 @@
 import type { ResultOption, ResultStep } from '@/types/result/client';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { Dispatch, SetStateAction } from 'react';

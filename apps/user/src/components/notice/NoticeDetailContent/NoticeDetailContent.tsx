@@ -1,5 +1,5 @@
 import { useNoticeDetailQuery } from '@/services/notice/queries';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Column, Text } from '@maru/ui';
 import { convertLink, flex, formatCreatedAt } from '@maru/utils';
 import styled from 'styled-components';

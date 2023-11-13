@@ -1,6 +1,6 @@
 'use client';
 
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';

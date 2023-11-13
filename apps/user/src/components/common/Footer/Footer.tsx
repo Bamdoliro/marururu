@@ -1,5 +1,5 @@
 import { ROUTES } from '@/constants/common/constant';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';

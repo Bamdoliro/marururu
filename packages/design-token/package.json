@@ -1,5 +1,5 @@
 {
-  "name": "@maru/theme",
+  "name": "@maru/design-token",
   "version": "0.0.0",
   "main": "./index.ts",
   "license": "MIT",

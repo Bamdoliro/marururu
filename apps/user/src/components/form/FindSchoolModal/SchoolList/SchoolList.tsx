@@ -1,7 +1,7 @@
 import { useSchoolListQuery } from '@/services/form/queries';
 import type { School } from '@/types/form/client';
 import { IconCheck } from '@maru/icon';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { Dispatch, SetStateAction } from 'react';

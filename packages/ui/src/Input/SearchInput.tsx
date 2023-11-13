@@ -1,5 +1,5 @@
 import { IconSearch } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import type { InputProps } from './Input.type';

@@ -1,5 +1,5 @@
 import { useNewGEDSubjectListValueStore } from '@/store';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Button, CellInput, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';

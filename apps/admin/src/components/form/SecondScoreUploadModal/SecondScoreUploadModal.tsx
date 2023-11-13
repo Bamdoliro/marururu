@@ -1,6 +1,6 @@
 import { useSecondScoreFileStore } from '@/store/form/secondScoreFile';
 import { IconClose } from '@maru/icon';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Row, Text, TextButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';

@@ -1,4 +1,4 @@
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import type { CSSProperties } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import styled from 'styled-components';

@@ -1,6 +1,6 @@
 'use client';
 
-import { GlobalStyle } from '@maru/theme';
+import { GlobalStyle } from '@maru/design-token';
 import { OverlayProvider } from '@toss/use-overlay';
 import type { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';

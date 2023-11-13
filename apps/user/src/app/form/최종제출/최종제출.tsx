@@ -3,7 +3,7 @@ import { useOpenFileUploader } from '@/hooks';
 import { AppLayout } from '@/layouts';
 import { useFormDocumentValueStore } from '@/store';
 import { useBooleanState } from '@maru/hooks';
-import { color, font } from '@maru/theme';
+import { color, font } from '@maru/design-token';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';

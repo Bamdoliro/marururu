@@ -1,7 +1,7 @@
 'use client';
 
 import { AppLayout } from '@/layouts';
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
