@@ -1,21 +1,21 @@
-import { Faq, FaqDetail } from './client';
+import type { Faq, FaqDetail } from './client';
 
 export interface GetFaqListRes {
-    dataList: Faq[];
+  dataList: Faq[];
 }
 
 export interface GetFaqDetailRes {
-    data: FaqDetail;
+  data: FaqDetail;
 }
 
 export interface PostFaqReq {
-    title: string;
-    content: string;
-    category: string;
+  title: string;
+  content: string;
+  category: string;
 }
 
 export interface PutFaqReq {
-    title: string;
-    content: string;
-    category: string;
+  title: string;
+  content: string;
+  category: string;
 }

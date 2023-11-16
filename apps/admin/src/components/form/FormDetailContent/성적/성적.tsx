@@ -9,34 +9,35 @@ import 자격증 from './자격증/자격증';
 import 출결상황 from './출결상황/출결상황';
 
 interface Props {
-    id: number;
+  id: number;
 }
 
 const 성적 = ({ id }: Props) => {
-    const [currentGraduationStep, setCurrentGraduationStep] = useState('교과 성적');
-    return (
-        <Row gap={48}>
-            <Column gap={10}>
-                {GRADUATION_STEP_LIST.map((graduationStep, index) => (
-                    <SideMenu
-                        key={`graduation-step ${index}`}
-                        active={currentGraduationStep === graduationStep}
-                        onClick={() => setCurrentGraduationStep(graduationStep)}>
-                        {graduationStep}
-                    </SideMenu>
-                ))}
-            </Column>
-            <SwitchCase
-                value={currentGraduationStep}
-                caseBy={{
-                    '교과 성적': <교과성적 id={id} />,
-                    '출결 상황': <출결상황 id={id} />,
-                    '봉사 시간': <봉사시간 id={id} />,
-                    자격증: <자격증 id={id} />,
-                }}
-            />
-        </Row>
-    );
+  const [currentGraduationStep, setCurrentGraduationStep] = useState('교과 성적');
+  return (
+    <Row gap={48}>
+      <Column gap={10}>
+        {GRADUATION_STEP_LIST.map((graduationStep, index) => (
+          <SideMenu
+            key={`graduation-step ${index}`}
+            active={currentGraduationStep === graduationStep}
+            onClick={() => setCurrentGraduationStep(graduationStep)}
+          >
+            {graduationStep}
+          </SideMenu>
+        ))}
+      </Column>
+      <SwitchCase
+        value={currentGraduationStep}
+        caseBy={{
+          '교과 성적': <교과성적 id={id} />,
+          '출결 상황': <출결상황 id={id} />,
+          '봉사 시간': <봉사시간 id={id} />,
+          자격증: <자격증 id={id} />,
+        }}
+      />
+    </Row>
+  );
 };
 
 export default 성적;

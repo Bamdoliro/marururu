@@ -1,23 +1,29 @@
 {
   "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
-  "name": "marururu",
-  "packageManager": "pnpm@8.6.7",
   "workspaces": [
     "apps/*",
     "packages/*",
     "configs/*"
   ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "commit": "cz"
+  },
   "devDependencies": {
-    "@maru/eslint": "workspace:*",
+    "@commitlint/cli": "^17.8.0",
+    "@commitlint/config-conventional": "^17.8.0",
+    "@lhci/cli": "^0.12.0",
     "@turbo/gen": "^1.9.7",
+    "commitizen": "^4.3.0",
     "eslint": "^7.32.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.1",
     "prettier": "^2.5.1",
     "turbo": "latest"
-  }
+  },
+  "packageManager": "pnpm@8.6.7",
+  "name": "marururu"
 }

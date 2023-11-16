@@ -1,11 +1,11 @@
 export interface Notice {
-    id: number;
-    title: string;
-    createdAt: string;
+  id: number;
+  title: string;
+  createdAt: string;
 }
 
 export interface NoticeDetail {
-    title: string;
-    content: string;
-    createdAt: string;
+  title: string;
+  content: string;
+  createdAt: string;
 }
