@@ -1,5 +1,6 @@
 import {
   일차_합격_발표,
+  입학_등록_기간,
   제출_시작_날짜,
   최종_합격_발표,
 } from '@/constants/form/constant';
@@ -13,6 +14,7 @@ export const useRemainDate = () => {
     [제출_시작_날짜, '원서 접수 시작까지'],
     [최종_합격_발표, '최종합격자 발표'],
     [일차_합격_발표, '1차 합격자 발표'],
+    [입학_등록_기간, '입학 등록 기간'],
   ]);
 
   const timeDiff = dayjs.utc(currentTime.diff(dayjs())).format('HH:mm:ss');

@@ -1,6 +1,7 @@
 import { ROUTES } from '@/constants/common/constant';
 import {
   일차_합격_발표,
+  입학_등록_기간,
   제출_마감_날짜,
   제출_시작_날짜,
   최종_합격_발표,
@@ -25,7 +26,9 @@ export const useDday = () => {
     ? 제출_마감_날짜
     : dayjs().isBefore(일차_합격_발표.add(2, 'day'))
     ? 일차_합격_발표
-    : 최종_합격_발표;
+    : dayjs().isBefore(최종_합격_발표)
+    ? 최종_합격_발표
+    : 입학_등록_기간;
 
   const [remainDays, setRemainDays] = useState(currentTime.diff(dayjs(), 'days', true));
 
