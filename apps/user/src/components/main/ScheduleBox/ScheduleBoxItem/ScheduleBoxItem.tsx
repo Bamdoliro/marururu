@@ -18,7 +18,7 @@ interface Props {
 }
 
 const ScheduleBoxItem = ({ plan, date, startTime, endTime }: Props) => {
-  const active = dayjs().isBetween(startTime, endTime);
+  const active = !dayjs().isBetween(startTime, endTime) && dayjs().isBefore(startTime);
 
   return (
     <StyledScheduleBoxItem active={active}>
