@@ -70,7 +70,7 @@ const useFilledEducationFieldsCount = (education: Form['education']) =>
 
 export const useCheckFilledForm = () => {
   const form = useFormValueStore();
-  const [isFilledForm, setIsFilledForm] = useState(false);
+  const [isFilledForm, setIsFilledForm] = useState(true);
 
   const [applicantFilledCount, setApplicantFilledCount] = useState(0);
   const [parentFilledCount, setParentFilledCount] = useState(0);
@@ -95,6 +95,8 @@ export const useCheckFilledForm = () => {
       filledDocumentFieldsCount === 2
     ) {
       setIsFilledForm(true);
+    } else {
+      setIsFilledForm(false);
     }
 
     setApplicantFilledCount(filledApplicantFieldsCount);
