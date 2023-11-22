@@ -22,6 +22,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
     <StyledNewGradeCalculatorItem>
       <Td styleType="SECONDARY" width={123} height="100%">
         <NewSubjectInput
+          name="subjectName"
           onChange={handleNewSubjectNameChange}
           value={newSubjectList[newSubjectIndex].subjectName}
           placeholder="과목명 입력"
