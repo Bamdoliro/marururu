@@ -30,7 +30,7 @@ const Profile = () => {
             <NameMenu>
               <Name>{userData.name}</Name>
               <Text fontType="p3" color={color.gray600}>
-                @{userData.name}
+                @{userData.phoneNumber}
               </Text>
             </NameMenu>
             <MenuItem onClick={handleMoveFormPage}>이어서 원서 작성하기</MenuItem>
