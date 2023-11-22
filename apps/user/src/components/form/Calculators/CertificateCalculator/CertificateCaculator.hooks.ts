@@ -7,20 +7,15 @@ export const useInput = () => {
   const handleCertificateListChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { checked, value } = e.target;
 
-    setForm((prev) => {
-      const { grade } = prev;
-      const certificateList = checked
-        ? [...grade.certificateList, value]
-        : grade.certificateList.filter((certificate) => certificate !== value);
-
-      return {
-        ...prev,
-        grade: {
-          ...grade,
-          certificateList,
-        },
-      };
-    });
+    setForm((prev) => ({
+      ...prev,
+      grade: {
+        ...prev.grade,
+        certificateList: checked
+          ? [...prev.grade.certificateList, value]
+          : prev.grade.certificateList.filter((certificate) => certificate !== value),
+      },
+    }));
   };
 
   return { handleCertificateListChange };
