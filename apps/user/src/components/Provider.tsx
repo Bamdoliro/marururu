@@ -6,7 +6,6 @@ import { Suspensive, SuspensiveProvider } from '@suspensive/react';
 import { OverlayProvider } from '@toss/use-overlay';
 import type { ReactNode } from 'react';
 import { RecoilRoot } from 'recoil';
-import { AuthWrapper } from './common';
 
 interface Props {
   children: ReactNode;
@@ -25,10 +24,8 @@ const Provider = ({ children }: Props) => {
     <SuspensiveProvider value={suspensive}>
       <RecoilRoot>
         <OverlayProvider>
-          <AuthWrapper>
-            <GlobalStyle />
-            {children}
-          </AuthWrapper>
+          <GlobalStyle />
+          {children}
         </OverlayProvider>
       </RecoilRoot>
     </SuspensiveProvider>

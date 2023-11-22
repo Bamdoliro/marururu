@@ -57,7 +57,6 @@ export const useRequestVerificationCodeMutation = (phoneNumber: string) => {
 
   const { mutate: requestVerificationCodeMutate, ...restMutation } = useMutation({
     mutationFn: () => postRequestVerificationCode(phoneNumber),
-    onSuccess: () => alert('인증 성공'),
     onError: handleError,
   });
 
@@ -73,6 +72,7 @@ export const useVerificationMutation = (
     mutationFn: ({ code, phoneNumber }: PatchVerificationReq) =>
       patchVerification({ code, phoneNumber }),
     onSuccess: () => {
+      alert('인증 성공');
       setIsSuccessVerification(true);
     },
     onError: handleError,
