@@ -1,5 +1,6 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store';
+import { formatDate } from '@/utils';
 import type { ChangeEventHandler } from 'react';
 
 export const useCTAButton = () => {
@@ -20,6 +21,14 @@ export const useInput = () => {
 
   const handle지원자정보Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
+    if (name === 'birthday') {
+      setForm((prev) => ({
+        ...prev,
+        applicant: { ...prev.applicant, birthday: formatDate(value) },
+      }));
+      return;
+    }
+
     setForm((prev) => ({ ...prev, applicant: { ...prev.applicant, [name]: value } }));
   };
 
