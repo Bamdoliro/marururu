@@ -63,7 +63,6 @@ const StyledFormDetailContent = styled.div`
   display: flex;
   gap: 48px;
   width: 100%;
-  height: 900px;
 `;
 
 const NavigationBar = styled.div`

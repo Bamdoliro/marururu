@@ -1,15 +1,7 @@
-export interface Date {
-  year: string;
-  month: string;
-  day: string;
-}
+const formatDate = (date: string) => {
+  const formattedDate = date.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
 
-const formatDate = ({ year, month, day }: Date) => {
-  if (year === '' || month === '' || day === '') return '';
-  const date = `${year}-${month.toString().padStart(2, '0')}-${day
-    .toString()
-    .padStart(2, '0')}`;
-  return date;
+  return formattedDate;
 };
 
 export default formatDate;
