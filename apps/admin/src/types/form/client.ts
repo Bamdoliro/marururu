@@ -16,16 +16,16 @@ export type FormType =
 export type GraduationType = 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
 
 export type FormStatus =
-  | '접수됨'
-  | '1차 불합격'
-  | '불합격'
-  | '최종 제출됨'
-  | '제출됨'
-  | '승인됨'
-  | '불참'
-  | '1차 합격'
-  | '최종 합격'
-  | '반려됨';
+  | 'RECEIVED'
+  | 'FIRST_FAILED'
+  | 'FAILED'
+  | 'FINAL_SUBMITTED'
+  | 'SUBMITTED'
+  | 'APPROVED'
+  | 'NO_SHOW'
+  | 'FIRST_PASSED'
+  | 'PASSED'
+  | 'REJECTED';
 
 export interface Form {
   id: number;
