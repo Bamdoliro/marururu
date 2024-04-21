@@ -6,14 +6,26 @@ interface Props {
   id: number;
 }
 
+const getGraduationTypeKorean = (graduationType: string | undefined): string => {
+  const types = {
+    EXPECTED: '졸업예정',
+    GRADUATED: '졸업',
+    QUALIFICATION_EXAMINATION: '검정고시',
+  };
+
+  return graduationType ? types[graduationType as keyof typeof types] ?? '' : '';
+};
+
 const 출신학교및학력 = ({ id }: Props) => {
   const { data: formDetailData } = useFormDetailQuery(id);
 
-  console.log(formDetailData?.education);
   return (
     <Column gap={24}>
       <Row gap={24}>
-        <DataBox label="졸업구분" data={formDetailData?.education.graduationType ?? ''} />
+        <DataBox
+          label="졸업구분"
+          data={getGraduationTypeKorean(formDetailData?.education.graduationType)}
+        />
         <DataBox label="출신학교명" data={formDetailData?.education.schoolName ?? ''} />
       </Row>
       <Row gap={24}>
