@@ -16,6 +16,7 @@ const PreviewInput = ({
   message,
   isError = false,
   onChange,
+  onKeyDown,
 }: InputProps) => {
   const { value: isPreview, toggle: toggleIsPreview } = useBooleanState();
 
@@ -26,6 +27,7 @@ const PreviewInput = ({
         <StyledPreviewInput $isError={isError}>
           <Input
             onChange={onChange}
+            onKeyDown={onKeyDown}
             placeholder={placeholder}
             type={isPreview ? 'text' : 'password'}
             name={name}

@@ -12,6 +12,12 @@ const LoginPage = () => {
   const { loginAdminData, handleLoginAdminDataChange } = useInput();
   const { handleLoginButtonClick } = useLoginAction(loginAdminData);
 
+  const EnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleLoginButtonClick();
+    }
+  };
+
   return (
     <StyledLoginPage>
       <LoginBox>
@@ -37,6 +43,7 @@ const LoginPage = () => {
                 width="100%"
                 name="password"
                 onChange={handleLoginAdminDataChange}
+                onKeyDown={EnterKeyPress}
               />
             </Column>
             <Column gap="16px" alignItems="flex-end">
