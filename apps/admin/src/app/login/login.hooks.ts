@@ -8,11 +8,11 @@ import { useState } from 'react';
 export const useLoginAction = (loginAdminData: PostLoginAuthReq) => {
   const { loginAdminMutate: loginAdminMutate } = useLoginAdminMutation(loginAdminData);
 
-  const handleLoginButtonClick = () => {
+  const handleLogin = () => {
     loginAdminMutate();
   };
 
-  return { handleLoginButtonClick };
+  return { handleLogin };
 };
 
 export const useInput = () => {
