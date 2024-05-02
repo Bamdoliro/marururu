@@ -1,6 +1,6 @@
+import { color, font } from '@maru/design-token';
 import { useBooleanState } from '@maru/hooks';
 import { IconInvisibleEye, IconVisibleEye } from '@maru/icon';
-import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
 import ConditionalMessage from './ConditionalMessage';
@@ -16,6 +16,7 @@ const PreviewInput = ({
   message,
   isError = false,
   onChange,
+  onKeyDown,
 }: InputProps) => {
   const { value: isPreview, toggle: toggleIsPreview } = useBooleanState();
 
@@ -26,6 +27,7 @@ const PreviewInput = ({
         <StyledPreviewInput $isError={isError}>
           <Input
             onChange={onChange}
+            onKeyDown={onKeyDown}
             placeholder={placeholder}
             type={isPreview ? 'text' : 'password'}
             name={name}

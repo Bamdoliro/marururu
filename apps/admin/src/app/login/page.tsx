@@ -10,7 +10,13 @@ import { useCTAButton, useInput, useLoginAction } from './login.hooks';
 const LoginPage = () => {
   const { handleGoMainPageButtonClick } = useCTAButton();
   const { loginAdminData, handleLoginAdminDataChange } = useInput();
-  const { handleLoginButtonClick } = useLoginAction(loginAdminData);
+  const { handleLogin } = useLoginAction(loginAdminData);
+
+  const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
 
   return (
     <StyledLoginPage>
@@ -37,10 +43,11 @@ const LoginPage = () => {
                 width="100%"
                 name="password"
                 onChange={handleLoginAdminDataChange}
+                onKeyDown={handleEnterKeyPress}
               />
             </Column>
             <Column gap="16px" alignItems="flex-end">
-              <Button width="100%" onClick={handleLoginButtonClick}>
+              <Button width="100%" onClick={handleLogin}>
                 로그인
               </Button>
             </Column>

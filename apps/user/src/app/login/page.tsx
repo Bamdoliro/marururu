@@ -16,6 +16,12 @@ const LoginPage = () => {
   const { loginUser, handleLoginUserChange } = useInput();
   const { handleLogin } = useLoginAction(loginUser);
 
+  const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   return (
     <AppLayout backgroundColor={color.gray100}>
       <StyledLoginPage>
@@ -50,6 +56,7 @@ const LoginPage = () => {
                   name="password"
                   placeholder="비밀번호를 입력해주세요."
                   onChange={handleLoginUserChange}
+                  onKeyDown={handleEnterKeyPress}
                 />
               </Column>
               <Column gap={16} alignItems="flex-end">
