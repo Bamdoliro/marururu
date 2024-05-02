@@ -1,6 +1,6 @@
+import { color, font } from '@maru/design-token';
 import { useBooleanState } from '@maru/hooks';
 import { IconInvisibleEye, IconVisibleEye } from '@maru/icon';
-import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import styled, { css } from 'styled-components';
 import ConditionalMessage from './ConditionalMessage';
