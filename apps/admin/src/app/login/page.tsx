@@ -12,7 +12,7 @@ const LoginPage = () => {
   const { loginAdminData, handleLoginAdminDataChange } = useInput();
   const { handleLoginButtonClick } = useLoginAction(loginAdminData);
 
-  const EnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleLoginButtonClick();
     }
