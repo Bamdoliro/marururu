@@ -1,6 +1,6 @@
 'use client';
 
-import { color } from '@maru/theme';
+import { color } from '@maru/design-token';
 import { Button, Column, Input, PreviewInput } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
@@ -11,6 +11,12 @@ const LoginPage = () => {
     const { handleGoMainPageButtonClick } = useCTAButton();
     const { loginAdminData, handleLoginAdminDataChange } = useInput();
     const { handleLoginButtonClick } = useLoginAction(loginAdminData);
+
+    const EnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleLoginButtonClick();
+        }
+    };
 
     return (
         <StyledLoginPage>
@@ -37,6 +43,7 @@ const LoginPage = () => {
                                 width="100%"
                                 name="password"
                                 onChange={handleLoginAdminDataChange}
+                                onKeyDown={EnterKeyPress}
                             />
                         </Column>
                         <Column gap="16px" alignItems="flex-end">
