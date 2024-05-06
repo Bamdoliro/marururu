@@ -19,7 +19,13 @@ const FaqPage = () => {
             <Row gap={16}>
               <SearchInput placeholder="검색어를 입력하세요." />
               <Dropdown
-                data={[]}
+                data={[
+                  '모두 보기',
+                  '학교 생활',
+                  '관련 제출 서류',
+                  '입학 과정',
+                  '질문 TOP',
+                ]}
                 size="SMALL"
                 width={140}
                 placeholder="카테고리"
