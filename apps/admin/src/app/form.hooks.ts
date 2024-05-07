@@ -39,6 +39,7 @@ export const useDownloadFormURLAction = () => {
       formListData.forEach((form) => {
         const link = document.createElement('a');
         link.href = form.formUrl;
+        link.target = '_blank';
         link.download = `${form.examinationNumber}.pdf`;
         document.body.appendChild(link);
         link.click();

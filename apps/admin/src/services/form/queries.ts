@@ -1,7 +1,7 @@
 import { KEY } from '@/constants/common/constant';
 import { useFormListTypeValueStore } from '@/store/form/type';
-import type { ExportExcelType } from '@/types/form/client';
-import { useQuery } from '@tanstack/react-query';
+import { ExportExcelType } from '@/types/form/client';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   getExportExcel,
   getFormDetail,
@@ -60,4 +60,16 @@ export const useDownloadFormUrlQuery = (formIdList: number[]) => {
   });
 
   return { data: data?.dataList, ...restQuery };
+};
+
+export const useCheckFormUrlMutation = () => {
+  const mutation = useMutation((formIdList: number[]) => getFormUrl(formIdList), {
+    onSuccess: (data) => {
+      data.dataList.forEach((form) => {
+        window.open(form.formUrl);
+      });
+    },
+  });
+
+  return mutation;
 };
