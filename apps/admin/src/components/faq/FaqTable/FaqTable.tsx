@@ -4,16 +4,27 @@ import styled from 'styled-components';
 import FaqTableHeader from './FaqTableHeader/FaqTableHeader';
 import FaqTableItem from './FaqTableItem/FaqTableItem';
 
-const FaqTable = () => {
+interface Props {
+  selectedCategory: string;
+}
+
+const FaqTable = ({ selectedCategory }: Props) => {
   const { data: faqList } = useFaqListQuery();
+
+  const filteredFaqList =
+    selectedCategory === 'BOARD_ALL'
+      ? faqList
+      : faqList?.filter((item) => item.category === selectedCategory);
+
   return (
     <StyledFaqTable>
       <FaqTableHeader />
-      {faqList &&
-        faqList
+      {filteredFaqList &&
+        filteredFaqList
           .sort((a, b) => a.id - b.id)
           .map(({ id, title, category, createdAt }) => (
             <FaqTableItem
+              key={id}
               id={id}
               title={title}
               category={category}
