@@ -1,8 +1,9 @@
-import { useEditSecondRoundResultMutation } from '@/services/form/mutations';
-import { useDownloadFormUrlQuery } from '@/services/form/queries';
+import {
+  useEditSecondRoundResultMutation,
+  usePrintFormUrlMutation,
+} from '@/services/form/mutations';
 import { useFormToPrintValueStore } from '@/store/form/formToPrint';
 import { useSecondRoundResultValueStore } from '@/store/form/secondRoundResult';
-import { useEffect } from 'react';
 
 export const useSecondRoundResultEditAction = () => {
   const secondRoundResult = useSecondRoundResultValueStore();
@@ -24,33 +25,19 @@ export const useSecondRoundResultEditAction = () => {
   return { handleSecondRoundResultEditCompleteButtonClick };
 };
 
-export const useDownloadFormURLAction = () => {
+export const usePrintFormURLAction = () => {
   const formToPrint = useFormToPrintValueStore();
   const formIdList = Object.entries(formToPrint).reduce(
     (acc: number[], [formId, isSelected]) =>
       isSelected ? [...acc, Number(formId)] : acc,
     []
   );
-
-  const { data: formListData, refetch, status } = useDownloadFormUrlQuery(formIdList);
-
-  useEffect(() => {
-    if (formListData && status === 'success') {
-      formListData.forEach((form) => {
-        const link = document.createElement('a');
-        link.href = form.formUrl;
-        link.target = '_blank';
-        link.download = `${form.examinationNumber}.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      });
-    }
-  }, [formListData, status]);
-
-  const handleDownloadFormUrlButtonClick = () => {
-    refetch();
+  const { printFormUrl } = usePrintFormUrlMutation();
+  const handlePrintFormUrlButtonClick = () => {
+    const check = window.open('');
+    check?.close();
+    printFormUrl(formIdList);
   };
 
-  return { handleDownloadFormUrlButtonClick };
+  return { handlePrintFormUrlButtonClick };
 };

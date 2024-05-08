@@ -1,7 +1,7 @@
 import { KEY } from '@/constants/common/constant';
 import { useFormListTypeValueStore } from '@/store/form/type';
 import { ExportExcelType } from '@/types/form/client';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import {
   getExportExcel,
   getFormDetail,
@@ -50,26 +50,4 @@ export const useFormDetailQuery = (id: number) => {
   });
 
   return { data: data?.data, ...restQuery };
-};
-
-export const useDownloadFormUrlQuery = (formIdList: number[]) => {
-  const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.FORM_URL],
-    queryFn: () => getFormUrl(formIdList),
-    enabled: false,
-  });
-
-  return { data: data?.dataList, ...restQuery };
-};
-
-export const useCheckFormUrlMutation = () => {
-  const mutation = useMutation((formIdList: number[]) => getFormUrl(formIdList), {
-    onSuccess: (data) => {
-      data.dataList.forEach((form) => {
-        window.open(form.formUrl);
-      });
-    },
-  });
-
-  return mutation;
 };

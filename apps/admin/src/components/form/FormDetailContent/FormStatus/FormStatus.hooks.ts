@@ -1,11 +1,11 @@
-import { useCheckFormUrlMutation } from '@/services/form/queries';
+import { useCheckFormUrlMutation } from '@/services/form/mutations';
 
 export const useCheckFormStatusURLAction = () => {
-  const { mutate: fetchFormUrls, isLoading } = useCheckFormUrlMutation();
+  const { checkFormUrl } = useCheckFormUrlMutation();
 
   const handleCheckFormStatusUrlButtonClick = (id: number) => {
-    fetchFormUrls([id]);
+    checkFormUrl(id);
   };
 
-  return { handleCheckFormStatusUrlButtonClick, isLoading };
+  return { handleCheckFormStatusUrlButtonClick };
 };

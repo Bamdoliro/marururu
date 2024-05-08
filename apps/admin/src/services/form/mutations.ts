@@ -4,7 +4,12 @@ import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import type { PatchSecondRoundResultReq } from '@/types/form/remote';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { patchFinalScore, patchSecondRoundResult, patchSecondScoreFormat } from './api';
+import {
+  patchFinalScore,
+  patchSecondRoundResult,
+  patchSecondScoreFormat,
+  getFormUrl,
+} from './api';
 import { useFormListQuery } from './queries';
 
 import type { ApprovalStatus } from '@/types/form/client';
@@ -67,4 +72,37 @@ export const useChangeFinalScoreStatusMutation = (
     onError: handleError,
   });
   return { changeFinalScoreStatus, ...restMutation };
+};
+
+export const useCheckFormUrlMutation = () => {
+  const { handleError } = useApiError();
+  const { mutate: checkFormUrl, ...restMutation } = useMutation({
+    mutationFn: (formId: number) => getFormUrl([formId]),
+    onSuccess: (formURL) => {
+      if (formURL.dataList.length > 0) {
+        window.open(formURL.dataList[0].formUrl);
+      }
+    },
+    onError: handleError,
+  });
+
+  return { checkFormUrl, ...restMutation };
+};
+
+export const usePrintFormUrlMutation = () => {
+  const { handleError } = useApiError();
+  const { mutate: printFormUrl, ...restMutation } = useMutation({
+    mutationFn: (formIdList: number[]) => getFormUrl(formIdList),
+    onSuccess: (formURL) => {
+      formURL.dataList.forEach((formURL) => {
+        const link = window.open(formURL.formUrl);
+        if (!link || link.closed || typeof link.closed == 'undefined') {
+          alert('팝업 및 리디렉션을 허용해주세요');
+        }
+      });
+    },
+    onError: handleError,
+  });
+
+  return { printFormUrl, ...restMutation };
 };
