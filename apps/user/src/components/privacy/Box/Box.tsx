@@ -18,7 +18,7 @@ const BoxContainer = styled.div<{ backgroundColor?: string }>`
   padding: 24px 70px;
   border-radius: 6px;
   border: 1px solid ${color.gray400};
-  margin: 20px 0;
+  margin: -20px 0px;
   background-color: ${(props) => props.backgroundColor};
   text-align: left;
 `;
