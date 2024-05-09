@@ -1,14 +1,20 @@
+import type { CSSProperties } from 'react';
 import React from 'react';
 import { color } from '@maru/design-token';
 import styled from 'styled-components';
 
-interface BoxProps {
+interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   backgroundColor?: string;
+  padding?: CSSProperties['padding'];
 }
 
-const Box: React.FC<BoxProps> = ({ children, backgroundColor }) => {
-  return <BoxContainer backgroundColor={backgroundColor}>{children}</BoxContainer>;
+const Box: React.FC<BoxProps> = ({ children, backgroundColor, padding }) => {
+  return (
+    <BoxContainer backgroundColor={backgroundColor} style={{ padding }}>
+      {children}
+    </BoxContainer>
+  );
 };
 
 export default Box;
