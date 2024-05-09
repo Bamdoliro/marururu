@@ -20,7 +20,7 @@ export const ROUTES = {
   NOTICE: '/notice',
   SIGNUP: '/signup',
   FIRST_RESULT: '/result/first',
-  FINAL_RESULT: '/result/first',
+  FINAL_RESULT: '/result/final',
   SCORE_SIMULATION: '/score-simulation',
 } as const;
 
