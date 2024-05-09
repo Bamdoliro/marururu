@@ -1,14 +1,21 @@
 'use client';
 
-import FaqTable from '@/components/faq/FaqTable/FaqTable';
-import AppLayout from '@/layouts/AppLayout';
+import { useState } from 'react';
 import { Button, Column, Dropdown, Row, SearchInput, Text } from '@maru/ui';
-import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
 import useCTAButton from './faq.hooks';
+import AppLayout from '@/layouts/AppLayout';
+import FaqTable from '@/components/faq/FaqTable/FaqTable';
+import { flex } from '@maru/utils';
+import type { FaqCategory } from '@/types/faq/client';
 
 const FaqPage = () => {
   const { handleGoFaqPostPageButtonClick } = useCTAButton();
+  const [selectedCategory, setSelectedCategory] = useState<FaqCategory>('BOARD_ALL');
+
+  const handleClassificationCategory = (value: string) => {
+    setSelectedCategory(value as FaqCategory);
+  };
 
   return (
     <AppLayout>
@@ -19,11 +26,17 @@ const FaqPage = () => {
             <Row gap={16}>
               <SearchInput placeholder="검색어를 입력하세요." />
               <Dropdown
-                data={[]}
+                data={[
+                  { value: 'BOARD_ALL', label: '전체 보기' },
+                  { value: 'SCHOOL_LIFE', label: '학교 생활' },
+                  { value: 'SUBMIT_DOCUMENT', label: '관련 제출 서류' },
+                  { value: 'ADMISSION_PROCESS', label: '입학 과정' },
+                  { value: 'TOP_QUESTION', label: '질문 TOP' },
+                ]}
                 size="SMALL"
                 width={140}
                 placeholder="카테고리"
-                onChange={() => console.log('이잉')}
+                onChange={handleClassificationCategory}
                 name="category"
               />
             </Row>
@@ -32,7 +45,7 @@ const FaqPage = () => {
             </Button>
           </Row>
         </Column>
-        <FaqTable />
+        <FaqTable selectedCategory={selectedCategory} />
       </StyledFaqPage>
     </AppLayout>
   );

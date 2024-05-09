@@ -3,23 +3,34 @@ import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import FaqTableHeader from './FaqTableHeader/FaqTableHeader';
 import FaqTableItem from './FaqTableItem/FaqTableItem';
+import type { FaqCategory } from '@/types/faq/client';
 
-const FaqTable = () => {
+interface Props {
+  selectedCategory: FaqCategory;
+}
+
+const FaqTable = ({ selectedCategory }: Props) => {
   const { data: faqList } = useFaqListQuery();
+
+  const filteredFaqList =
+    selectedCategory === 'BOARD_ALL'
+      ? faqList
+      : faqList?.filter((item) => item.category === selectedCategory);
+
   return (
     <StyledFaqTable>
       <FaqTableHeader />
-      {faqList &&
-        faqList
-          .sort((a, b) => a.id - b.id)
-          .map(({ id, title, category, createdAt }) => (
-            <FaqTableItem
-              id={id}
-              title={title}
-              category={category}
-              createdAt={createdAt}
-            />
-          ))}
+      {filteredFaqList
+        ?.sort((a, b) => a.id - b.id)
+        .map(({ id, title, category, createdAt }) => (
+          <FaqTableItem
+            key={id}
+            id={id}
+            title={title}
+            category={category}
+            createdAt={createdAt}
+          />
+        ))}
     </StyledFaqTable>
   );
 };
