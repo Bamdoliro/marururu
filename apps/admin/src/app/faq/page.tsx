@@ -7,13 +7,7 @@ import useCTAButton from './faq.hooks';
 import AppLayout from '@/layouts/AppLayout';
 import FaqTable from '@/components/faq/FaqTable/FaqTable';
 import { flex } from '@maru/utils';
-
-type FaqCategory =
-  | 'BOARD_ALL'
-  | 'SCHOOL_LIFE'
-  | 'SUBMIT_DOCUMENT'
-  | 'ADMISSION_PROCESS'
-  | 'TOP_QUESTION';
+import type { FaqCategory } from '@/types/faq/client';
 
 const FaqPage = () => {
   const { handleGoFaqPostPageButtonClick } = useCTAButton();

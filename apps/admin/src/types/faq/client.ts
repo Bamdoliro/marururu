@@ -18,3 +18,10 @@ export interface FaqDetail {
   category: string;
   createdAt: string;
 }
+
+export type FaqCategory =
+  | 'BOARD_ALL'
+  | 'SCHOOL_LIFE'
+  | 'SUBMIT_DOCUMENT'
+  | 'ADMISSION_PROCESS'
+  | 'TOP_QUESTION';
