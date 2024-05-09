@@ -4,8 +4,15 @@ import styled from 'styled-components';
 import FaqTableHeader from './FaqTableHeader/FaqTableHeader';
 import FaqTableItem from './FaqTableItem/FaqTableItem';
 
+type FaqCategory =
+  | 'BOARD_ALL'
+  | 'SCHOOL_LIFE'
+  | 'SUBMIT_DOCUMENT'
+  | 'ADMISSION_PROCESS'
+  | 'TOP_QUESTION';
+
 interface Props {
-  selectedCategory: string;
+  selectedCategory: FaqCategory;
 }
 
 const FaqTable = ({ selectedCategory }: Props) => {

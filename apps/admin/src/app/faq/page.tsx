@@ -1,6 +1,5 @@
 'use client';
 
-import type { SetStateAction } from 'react';
 import { useState } from 'react';
 import { Button, Column, Dropdown, Row, SearchInput, Text } from '@maru/ui';
 import { styled } from 'styled-components';
@@ -9,12 +8,19 @@ import AppLayout from '@/layouts/AppLayout';
 import FaqTable from '@/components/faq/FaqTable/FaqTable';
 import { flex } from '@maru/utils';
 
+type FaqCategory =
+  | 'BOARD_ALL'
+  | 'SCHOOL_LIFE'
+  | 'SUBMIT_DOCUMENT'
+  | 'ADMISSION_PROCESS'
+  | 'TOP_QUESTION';
+
 const FaqPage = () => {
   const { handleGoFaqPostPageButtonClick } = useCTAButton();
-  const [selectedCategory, setSelectedCategory] = useState('BOARD_ALL');
+  const [selectedCategory, setSelectedCategory] = useState<FaqCategory>('BOARD_ALL');
 
-  const handleClassificationCategory = (value: SetStateAction<string>) => {
-    setSelectedCategory(value);
+  const handleClassificationCategory = (value: string) => {
+    setSelectedCategory(value as FaqCategory);
   };
 
   return (
