@@ -20,16 +20,16 @@ const FaqTable = ({ selectedCategory }: Props) => {
     <StyledFaqTable>
       <FaqTableHeader />
       {filteredFaqList
-         ?.sort((a, b) => a.id - b.id)
-          .map(({ id, title, category, createdAt }) => (
-            <FaqTableItem
-              key={id}
-              id={id}
-              title={title}
-              category={category}
-              createdAt={createdAt}
-            />
-          ))}
+        ?.sort((a, b) => a.id - b.id)
+        .map(({ id, title, category, createdAt }) => (
+          <FaqTableItem
+            key={id}
+            id={id}
+            title={title}
+            category={category}
+            createdAt={createdAt}
+          />
+        ))}
     </StyledFaqTable>
   );
 };
