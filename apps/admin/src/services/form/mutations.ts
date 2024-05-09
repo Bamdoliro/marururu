@@ -94,10 +94,14 @@ export const usePrintFormUrlMutation = () => {
   const { mutate: printFormUrl, ...restMutation } = useMutation({
     mutationFn: (formIdList: number[]) => getFormUrl(formIdList),
     onSuccess: (formURL) => {
+      let hasShownAlert = false;
       formURL.dataList.forEach((formURL) => {
         const link = window.open(formURL.formUrl);
         if (!link || link.closed || typeof link.closed == 'undefined') {
-          alert('팝업 및 리디렉션을 허용해주세요');
+          if (!hasShownAlert) {
+            alert('팝업 및 리디렉션을 허용해주세요');
+            hasShownAlert = true;
+          }
         }
       });
     },
