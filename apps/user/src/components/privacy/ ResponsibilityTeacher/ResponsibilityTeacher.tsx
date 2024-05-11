@@ -55,7 +55,7 @@ const ResponsibilityTeacher = () => {
 export default ResponsibilityTeacher;
 
 const StyledResponsibilityTeacher = styled.div`
-  width: 120%;
+  width: 100%;
 `;
 
 const Table = styled.div`
