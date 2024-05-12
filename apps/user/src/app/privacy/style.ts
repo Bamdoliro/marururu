@@ -20,3 +20,7 @@ export const BigPaddingHeight = styled.div`
 export const SmallPaddingHeight = styled.div`
   padding-top: 8px;
 `;
+
+export const MiddlePaddingHeight = styled.div`
+  padding-top: 32px;
+`;
