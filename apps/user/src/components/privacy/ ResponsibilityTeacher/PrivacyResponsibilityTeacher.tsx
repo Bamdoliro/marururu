@@ -1,9 +1,9 @@
 import { Row, Td, Th } from '@maru/ui';
 import styled from 'styled-components';
 
-const ResponsibilityTeacher = () => {
+const PrivacyResponsibilityTeacher = () => {
   return (
-    <StyledResponsibilityTeacher>
+    <StyledPrivacyResponsibilityTeacher>
       <Table>
         <Row alignItems="center">
           <Th borderTopLeftRadius={12} width="calc(100% / 6)" height={56}>
@@ -48,13 +48,13 @@ const ResponsibilityTeacher = () => {
           </Td>
         </Row>
       </Table>
-    </StyledResponsibilityTeacher>
+    </StyledPrivacyResponsibilityTeacher>
   );
 };
 
-export default ResponsibilityTeacher;
+export default PrivacyResponsibilityTeacher;
 
-const StyledResponsibilityTeacher = styled.div`
+const StyledPrivacyResponsibilityTeacher = styled.div`
   width: 100%;
 `;
 
