@@ -26,3 +26,4 @@ export { default as IconSearch } from './src/IconSearch';
 export { default as IconShortcuts } from './src/IconShortcuts';
 export { default as IconUpload } from './src/IconUpload';
 export { default as IconVisibleEye } from './src/IconVisibleEye';
+export { default as IconTerms } from './src/IconTerms';

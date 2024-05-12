@@ -4,6 +4,7 @@ import { flex } from '@maru/utils';
 import type { Dispatch, SetStateAction } from 'react';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { ROUTES } from '@/constants/common/constant';
 
 interface Props {
   setTermsAgree: Dispatch<SetStateAction<boolean>>;
@@ -13,6 +14,8 @@ const Terms = ({ setTermsAgree }: Props) => {
   const [checkAll, setCheckAll] = useState(false);
   const [checkOne, setChecktOne] = useState(false);
   const [checkTwo, setChecktTwo] = useState(false);
+
+  const handleClickPrivacy = () => window.open(ROUTES.PRIVACY);
 
   const handleCheckAll = () => {
     if (checkAll === false) {
@@ -69,7 +72,7 @@ const Terms = ({ setTermsAgree }: Props) => {
           onChange={handleCheckOne}
         />
         <label htmlFor="agreement1">개인정보 수집 이용동의</label>
-        <AgreementLink>
+        <AgreementLink onClick={handleClickPrivacy}>
           [ 필수 ] <IconArrowRight color={color.maruDefault} width={12} height={12} />
         </AgreementLink>
       </Agreement>
