@@ -70,7 +70,7 @@ const StyledPrivacyPage = styled.div`
   }
 `;
 
-export const Separator = styled.hr`
+const Separator = styled.hr`
   border: 1px solid ${color.gray400};
   margin: 2% 0;
   width: 82%;
