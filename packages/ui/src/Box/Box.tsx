@@ -1,6 +1,6 @@
+import { color } from '@maru/design-token';
 import type { CSSProperties } from 'react';
 import React from 'react';
-import { color } from '@maru/design-token';
 import styled from 'styled-components';
 
 interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {

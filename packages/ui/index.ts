@@ -22,3 +22,4 @@ export { default as Td } from './src/Table/Td';
 export { default as Th } from './src/Table/Th';
 export { default as Text } from './src/Text/Text';
 export { default as Textarea } from './src/Textarea/Textarea';
+export { default as Box } from './src/Box/Box';
