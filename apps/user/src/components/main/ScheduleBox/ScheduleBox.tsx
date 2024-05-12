@@ -77,16 +77,15 @@ export default ScheduleBox;
 
 const StyledScheduleBox = styled.div`
   ${flex({ flexDirection: 'column' })};
-  gap: 25px;
+  gap: 32px;
   width: 492px;
   height: 100%;
-  padding: 36px 32px;
-  border-radius: 32px;
+  padding: 0px 32px;
 `;
 
 const ScheduleBoxList = styled.div`
   ${flex({ flexDirection: 'column' })};
-  gap: 10px;
+  gap: 16px;
   height: 100%;
   width: 100%;
 `;
