@@ -24,6 +24,16 @@ const BoxContainer = styled.div<{ backgroundColor?: string }>`
   padding: 24px 70px;
   border-radius: 6px;
   border: 1px solid ${color.gray400};
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) => props.backgroundColor || 'transparent'};
   text-align: left;
+
+  @media (max-width: 1024px) {
+    padding: 24px 30px;
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px 20px;
+    width: 100%;
+  }
 `;
