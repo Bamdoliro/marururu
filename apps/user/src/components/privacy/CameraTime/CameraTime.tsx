@@ -6,7 +6,7 @@ const FilmingCameraTime = () => {
     <StyledFilmingCameraTime>
       <Table>
         <Row alignItems="center">
-          <Th borderTopLeftRadius={12} width="calc(100% / 8)" height={56}>
+          <Th borderTopLeftRadius={12} width="calc(100% / 7)" height={56}>
             촬영장소
           </Th>
           <Th width="calc(100% / 3)" height={56}>
@@ -17,7 +17,7 @@ const FilmingCameraTime = () => {
           </Th>
         </Row>
         <Row alignItems="center">
-          <Td borderBottomLeftRadius={12} width="calc(100% / 8)" height={56}>
+          <Td borderBottomLeftRadius={12} width="calc(100% / 7)" height={56}>
             24시간
           </Td>
           <Td width="calc(100% / 3)" height={56}>
