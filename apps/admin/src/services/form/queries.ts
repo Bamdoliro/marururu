@@ -1,14 +1,8 @@
 import { KEY } from '@/constants/common/constant';
 import { useFormListTypeValueStore } from '@/store/form/type';
-import { ExportExcelType } from '@/types/form/client';
 import { useQuery } from '@tanstack/react-query';
-import {
-  getExportExcel,
-  getFormDetail,
-  getFormList,
-  getFormUrl,
-  getSecondScoreFormat,
-} from './api';
+import { getExportExcel, getFormDetail, getFormList, getSecondScoreFormat } from './api';
+import type { ExportExcelType } from '@/types/form/client';
 
 export const useFormListQuery = () => {
   const formListType = useFormListTypeValueStore();
