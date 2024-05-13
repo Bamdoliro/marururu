@@ -5,6 +5,7 @@ import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
 import FinalScoreConfirm from '../ChangeFinalScoreModal/ChangeFinalScoreModal';
+import { useCheckFormStatusURLAction } from './FormStatus.hooks';
 
 interface Props {
   id: number;
@@ -38,6 +39,8 @@ const FormStatus = ({ id }: Props) => {
       <FinalScoreConfirm id={id} isOpen={isOpen} onClose={close} />
     ));
   };
+
+  const { handleCheckFormStatusUrlButtonClick } = useCheckFormStatusURLAction();
 
   return (
     <StyledFormStatus>
@@ -98,7 +101,11 @@ const FormStatus = ({ id }: Props) => {
         <Button size="SMALL" onClick={openFinalScoreConfirm}>
           최종 접수 상태 변경하기
         </Button>
-        <Button size="SMALL" styleType="SECONDARY">
+        <Button
+          size="SMALL"
+          styleType="SECONDARY"
+          onClick={() => handleCheckFormStatusUrlButtonClick(id)}
+        >
           제출 서류 조회하기
         </Button>
       </Column>

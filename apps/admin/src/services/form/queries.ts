@@ -1,14 +1,8 @@
 import { KEY } from '@/constants/common/constant';
 import { useFormListTypeValueStore } from '@/store/form/type';
-import type { ExportExcelType } from '@/types/form/client';
 import { useQuery } from '@tanstack/react-query';
-import {
-  getExportExcel,
-  getFormDetail,
-  getFormList,
-  getFormUrl,
-  getSecondScoreFormat,
-} from './api';
+import { getExportExcel, getFormDetail, getFormList, getSecondScoreFormat } from './api';
+import type { ExportExcelType } from '@/types/form/client';
 
 export const useFormListQuery = () => {
   const formListType = useFormListTypeValueStore();
@@ -50,14 +44,4 @@ export const useFormDetailQuery = (id: number) => {
   });
 
   return { data: data?.data, ...restQuery };
-};
-
-export const useDownloadFormUrlQuery = (formIdList: number[]) => {
-  const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.FORM_URL],
-    queryFn: () => getFormUrl(formIdList),
-    enabled: false,
-  });
-
-  return { data: data?.dataList, ...restQuery };
 };
