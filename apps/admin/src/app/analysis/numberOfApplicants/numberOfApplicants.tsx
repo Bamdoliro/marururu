@@ -135,6 +135,35 @@ const NumberOfApplicants = () => {
           </Row>
         </Column>
       </Row>
+      <Row>
+        <Td width={300} height={112} borderBottomLeftRadius={12}>
+          정원 외 전형
+        </Td>
+        <Column>
+          <Row>
+            <Td width={300} height={56}>
+              국가보훈대상자 중 교육지원대상자
+            </Td>
+            <Td width={300} height={56}>
+              <div></div>
+            </Td>
+            <Td width={80} height={56}>
+              <div></div>
+            </Td>
+          </Row>
+          <Row>
+            <Td width={300} height={56}>
+              특례입학 대상자
+            </Td>
+            <Td width={300} height={56}>
+              <div></div>
+            </Td>
+            <Td width={80} height={56} borderBottomRightRadius={12}>
+              <div></div>
+            </Td>
+          </Row>
+        </Column>
+      </Row>
     </Column>
   );
 };
