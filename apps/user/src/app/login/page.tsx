@@ -34,11 +34,11 @@ const LoginPage = () => {
             height="100%"
           >
             <Image
-              src="/svg/logo.svg"
+              src="/svg/simbol.svg"
               onClick={handleMoveMainPage}
               style={{ cursor: 'pointer' }}
-              width={232}
-              height={70}
+              width={170}
+              height={100}
               alt="logo"
             />
             <Column gap={36} width="100%">
