@@ -82,7 +82,11 @@ const 제4조 = () => {
           없이 조치하겠습니다.
           <br />
           <Text fontType="p3" color={color.maruDefault}>
-            &nbsp;&nbsp;[교육부 개인정보 보호지침 별지 제1호]&nbsp;
+            &nbsp;&nbsp;
+            <a href="https://school.busanedu.net/common/nttFileDownload.do?fileKey=32c3be1515ebade91c1dcd3754781e13">
+              [교육부 개인정보 보호지침 별지 제1호]
+            </a>
+            &nbsp;
           </Text>
           개인정보(열람, 정정‧삭제, 처리정지)요구서 다운로드
           <br /> ⑤ 제4항에 따른 권리행사는 정보주체의 법정대리인이나 위임을 받은 자 등
@@ -92,7 +96,11 @@ const 제4조 = () => {
           &nbsp;&nbsp;&nbsp;&nbsp;다.
           <br />
           <Text fontType="p3" color={color.maruDefault}>
-            &nbsp;&nbsp;[교육부 개인정보 보호지침 별지 제2호]&nbsp;
+            &nbsp;&nbsp;
+            <a href="https://school.busanedu.net/common/nttFileDownload.do?fileKey=576ea2bb9fc7a275dd8dff5ae92cdb70">
+              [교육부 개인정보 보호지침 별지 제2호]
+            </a>
+            &nbsp;
           </Text>
           위임장 다운로드
           <br />⑥ 정보주체가 개인정보의 오류 등에 대한 정정 또는 삭제를 요구한 경우에는

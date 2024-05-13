@@ -23,7 +23,7 @@ import 제12조 from './제12조(개인정보처리방침 변경)/제12조(개�
 const PrivacyPage = () => {
   return (
     <AppLayout header footer>
-      <StyledPrivacyPage style={{ minHeight: '880vh' }}>
+      <StyledPrivacyPage>
         <Column gap={5}>
           <Text fontType="H1" color={color.gray900}>
             개인정보처리방침
@@ -53,6 +53,7 @@ const PrivacyPage = () => {
           <제12조 />
         </Column>
       </StyledPrivacyPage>
+      <Column height={80}> </Column>
     </AppLayout>
   );
 };

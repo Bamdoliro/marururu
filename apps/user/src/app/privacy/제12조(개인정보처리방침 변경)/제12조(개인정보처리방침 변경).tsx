@@ -20,8 +20,15 @@ const 제12조 = () => {
           부터 적용됩니다. 이전의 개인정보처리방침은 아래에서 확인하실 수 있습니다.
           <br /> -
           <Text fontType="p3" color={color.maruDefault}>
-            &nbsp;우리학교 홈페이지 {'>'} 정보공개 {'>'} 개인정보처리방침{'>'}
-            「개인정보처리방침 이력」
+            &nbsp;
+            <a
+              href="https://school.busanedu.net/bssm-h/na/ntt/selectNttInfo.do?nttSn=51632058&mi=1036453"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              우리학교 홈페이지 {'>'} 정보공개 {'>'} 개인정보처리방침{'>'}
+              「개인정보처리방침 이력」
+            </a>
             <br />
             &nbsp;&nbsp;(위 링크를 클릭 시, 이전 적용지침을 탑재한 게시판으로 이동할 수
             있도록 링크 적용)

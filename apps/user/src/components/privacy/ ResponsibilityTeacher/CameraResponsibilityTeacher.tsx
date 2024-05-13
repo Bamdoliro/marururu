@@ -1,4 +1,5 @@
-import { Row, Td, Th } from '@maru/ui';
+import { Row, Td, Th, Text } from '@maru/ui';
+import { color } from '@maru/design-token';
 import styled from 'styled-components';
 
 const CameraResponsibilityTeacher = () => {
@@ -33,16 +34,24 @@ const CameraResponsibilityTeacher = () => {
             개인영상정보보호책임자
           </Td>
           <Td width="calc(100% / 9)" height={56}>
-            윤혜정
+            <Text fontType="context" color={color.maruDefault}>
+              윤혜정
+            </Text>
           </Td>
           <Td width="calc(100% / 12)" height={56}>
-            교장
+            <Text fontType="context" color={color.maruDefault}>
+              교장
+            </Text>
           </Td>
           <Td width="calc(100% / 4.79)" height={56}>
-            부산소프트웨어마이스터고등학교
+            <Text fontType="context" color={color.maruDefault}>
+              부산소프트웨어마이스터고등학교
+            </Text>
           </Td>
           <Td width="calc(100% / 8)" height={56}>
-            051-970-1701
+            <Text fontType="context" color={color.maruDefault}>
+              051-970-1701
+            </Text>
           </Td>
         </Row>
         <Row alignItems="center">
@@ -53,16 +62,24 @@ const CameraResponsibilityTeacher = () => {
             개인영상정보보호담당자
           </Td>
           <Td width="calc(100% / 9)" height={56}>
-            김규봉
+            <Text fontType="context" color={color.maruDefault}>
+              김규봉
+            </Text>
           </Td>
           <Td width="calc(100% / 12)" height={56}>
-            교사
+            <Text fontType="context" color={color.maruDefault}>
+              교사
+            </Text>
           </Td>
           <Td width="calc(100% / 4.79)" height={56}>
-            부산소프트웨어마이스터고등학교
+            <Text fontType="context" color={color.maruDefault}>
+              부산소프트웨어마이스터고등학교
+            </Text>
           </Td>
           <Td borderBottomRightRadius={12} width="calc(100% / 8)" height={56}>
-            051-970-1701
+            <Text fontType="context" color={color.maruDefault}>
+              051-970-1701
+            </Text>
           </Td>
         </Row>
       </Table>
