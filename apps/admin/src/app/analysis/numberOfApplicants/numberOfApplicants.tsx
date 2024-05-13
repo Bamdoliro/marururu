@@ -1,171 +1,121 @@
-import { Column, Row, Td, Th } from '@maru/ui';
+import { Column, Row, Td, Th, Text } from '@maru/ui';
+import { color } from '@maru/design-token';
+import { styled } from 'styled-components';
+import { flex } from '@maru/utils';
+import NumberOfApplicantsDetail from './numberOfApplicantsDetail';
 
 const NumberOfApplicants = () => {
   return (
-    <Column>
-      <Row>
-        <Th width={300} height={56} borderTopLeftRadius={12}>
-          전형
-        </Th>
-        <Th width={300} height={56}>
-          유형
-        </Th>
-        <Th width={300} height={56}>
-          구분
-        </Th>
-        <Th width={80} height={56} borderTopRightRadius={12}>
-          지원자
-        </Th>
-      </Row>
-      <Row>
-        <Td width={300} height={56}>
-          일반전형
-        </Td>
-        <Td width={300} height={56}>
-          <div></div>
-        </Td>
-        <Td width={300} height={56}>
-          <div></div>
-        </Td>
-        <Td width={80} height={56}>
-          <div>숫자</div>
-        </Td>
-      </Row>
-      <Row>
-        <Td width={300} height={560} borderBottomLeftRadius={12}>
-          특별전형
-        </Td>
-        <Column>
-          <Row>
-            <Td width={300} height={56}>
-              마이스터 인재 전형
-            </Td>
-            <Td width={300} height={56}>
-              <div></div>
-            </Td>
-            <Td width={80} height={56}>
-              <div></div>
-            </Td>
-          </Row>
-          <Row>
-            <Td width={300} height={280}>
-              기호균등 전형
-            </Td>
-            <Column>
-              <Row>
-                <Td width={300} height={56}>
-                  국민기초생활수급자
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-              <Row>
-                <Td width={300} height={56}>
-                  차상위계층
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-              <Row>
-                <Td width={300} height={56}>
-                  국가보훈대상자 (국가유공자)
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-              <Row>
-                <Td width={300} height={56}>
-                  한부모가정보호대상자
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-              <Row>
-                <Td width={300} height={56}>
-                  북한이탈주민 또는 그 자녀
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-            </Column>
-          </Row>
-          <Row>
-            <Td width={300} height={224}>
-              사회다양성 전형
-            </Td>
-            <Column>
-              <Row>
-                <Td width={300} height={56}>
-                  다문화가정 자녀
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-              <Row>
-                <Td width={300} height={56}>
-                  소년 · 소녀가장
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-              <Row>
-                <Td width={300} height={56}>
-                  다자녀 가정 자녀
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-              <Row>
-                <Td width={300} height={56}>
-                  농어촌지역출신자
-                </Td>
-                <Td width={80} height={56}>
-                  <div></div>
-                </Td>
-              </Row>
-            </Column>
-          </Row>
-        </Column>
-      </Row>
-      <Row>
-        <Td width={300} height={112} borderBottomLeftRadius={12}>
-          정원 외 전형
-        </Td>
-        <Column>
-          <Row>
-            <Td width={300} height={56}>
-              국가보훈대상자 중 교육지원대상자
-            </Td>
-            <Td width={300} height={56}>
-              <div></div>
-            </Td>
-            <Td width={80} height={56}>
-              <div></div>
-            </Td>
-          </Row>
-          <Row>
-            <Td width={300} height={56}>
-              특례입학 대상자
-            </Td>
-            <Td width={300} height={56}>
-              <div></div>
-            </Td>
-            <Td width={80} height={56} borderBottomRightRadius={12}>
-              <div></div>
-            </Td>
-          </Row>
-        </Column>
-      </Row>
-    </Column>
+    <Layout>
+      <LeftBox>
+        <TotalBox>
+          <ApplicantsBox>
+            <Text fontType="H3" color={color.gray750} width={60}>
+              전체 지원자 수
+            </Text>
+            <Text fontType="D1" width={60}>
+              숫자
+            </Text>
+          </ApplicantsBox>
+          <ApplicantsBox>
+            <Text fontType="H3" color={color.gray750} width={60}>
+              전체 경쟁률
+            </Text>
+            <Text fontType="D1" width={60}>
+              숫자
+            </Text>
+          </ApplicantsBox>
+        </TotalBox>
+        <LeftDetailBox>
+          <Text fontType="H3" color={color.gray750} width={60}>
+            전형별 지원자 수와 경쟁률
+          </Text>
+          <Column>
+            <Row>
+              <Th width={112} height={56} borderTopLeftRadius={12}>
+                <div></div>
+              </Th>
+              <Th width={112} height={56}>
+                일반 전형
+              </Th>
+              <Th width={112} height={56}>
+                특별 전형
+              </Th>
+              <Th width={112} height={56} borderTopRightRadius={12}>
+                정원 외 전형
+              </Th>
+            </Row>
+            <Row>
+              <Td styleType="SECONDARY" width={112} height={56}>
+                지원자 수
+              </Td>
+              <Td width={112} height={56}>
+                <div></div>
+              </Td>
+              <Td width={112} height={56}>
+                <div></div>
+              </Td>
+              <Td width={112} height={56}>
+                <div></div>
+              </Td>
+            </Row>
+            <Row>
+              <Td
+                styleType="SECONDARY"
+                width={112}
+                height={56}
+                borderBottomLeftRadius={12}
+              >
+                경쟁률
+              </Td>
+              <Td width={112} height={56}>
+                <div></div>
+              </Td>
+              <Td width={112} height={56}>
+                <div></div>
+              </Td>
+              <Td width={112} height={56} borderBottomRightRadius={12}>
+                <div></div>
+              </Td>
+            </Row>
+          </Column>
+        </LeftDetailBox>
+      </LeftBox>
+      <NumberOfApplicantsDetail />
+    </Layout>
   );
 };
 
 export default NumberOfApplicants;
+
+const Layout = styled.div`
+  ${flex({ flexDirection: 'row' })}
+  width: 100%;
+  height: 100vh;
+`;
+
+const LeftBox = styled.div`
+  ${flex({ justifyContent: 'space-between', flexDirection: 'column' })}
+  width: 100%;
+  height: 100vh;
+`;
+
+const TotalBox = styled.div`
+  ${flex({ flexDirection: 'column' })}
+  width: 100%;
+  height: 100%;
+  margin-top: 36px;
+  gap: 40px;
+`;
+
+const ApplicantsBox = styled.div`
+  ${flex({ flexDirection: 'column' })}
+  width: 100%;
+`;
+
+const LeftDetailBox = styled.section`
+  ${flex({ flexDirection: 'column' })}
+  width: 100%;
+  height: 100%;
+  gap: 24px;
+`;
