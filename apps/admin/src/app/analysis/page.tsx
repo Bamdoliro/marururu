@@ -7,11 +7,11 @@ import { Column, Row, Text } from '@maru/ui';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import { ANALYSIS_STEP_LIST } from '@/constants/form/data';
-import NumberOfApplicants from './numberOfApplicants/numberOfApplicants';
-import GradeDistribution from './gradeDistribution/gradeDistribution';
-import ApplyingType from './applyingType/applyingType';
-import GenderRatio from './genderRatio/genderRatio';
-import SchoolOrigin from './schoolOrigin/schoolOrigin';
+import NumberOfApplicants from '../../components/analysis/numberOfApplicants/numberOfApplicants';
+import GradeDistribution from '../../components/analysis/gradeDistribution/gradeDistribution';
+import ApplyingType from '../../components/analysis/applyingType/applyingType';
+import GenderRatio from '../../components/analysis/genderRatio/genderRatio';
+import SchoolOrigin from '../../components/analysis/schoolOrigin/schoolOrigin';
 import styled from 'styled-components';
 
 const AnalysisPage = () => {
