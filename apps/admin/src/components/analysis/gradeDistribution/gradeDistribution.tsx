@@ -9,8 +9,8 @@ import FirstRoundPassed from './FirstRoundPassed/FirstRoundPassed';
 import SecondRoundPassed from './SecondRoundPassed/SecondRoundPassed';
 import FinalRoundPassed from './FinalRoundPassed/FinalRoundPassedTable';
 
-const gradeDistribution = () => {
-  const [currentPassDetailStep, setcurrentPassDetailStep] = useState('1차 합격자');
+const GradeDistribution = () => {
+  const [currentPassDetailStep, setCurrentPassDetailStep] = useState('1차 합격자');
 
   return (
     <StyledGradeDistribution>
@@ -21,7 +21,7 @@ const gradeDistribution = () => {
               <UnderlineButton
                 key={`form-detail-step ${index}`}
                 active={PassDetailStep === currentPassDetailStep}
-                onClick={() => setcurrentPassDetailStep(PassDetailStep)}
+                onClick={() => setCurrentPassDetailStep(PassDetailStep)}
               >
                 {PassDetailStep}
               </UnderlineButton>
@@ -41,7 +41,7 @@ const gradeDistribution = () => {
   );
 };
 
-export default gradeDistribution;
+export default GradeDistribution;
 
 const StyledGradeDistribution = styled.div`
   display: flex;

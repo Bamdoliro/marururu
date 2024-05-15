@@ -8,7 +8,7 @@ import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import { ANALYSIS_STEP_LIST } from '@/constants/analysis/data';
 import NumberOfApplicants from '@/components/analysis/numberOfApplicants/numberOfApplicants';
-import GradeDistribution from '@/components/analysis/gradeDistribution/GradeDistribution';
+import GradeDistribution from '@/components/analysis/gradeDistribution/gradeDistribution';
 import ApplyingType from '@/components/analysis/applyingType/applyingType';
 import GenderRatio from '@/components/analysis/genderRatio/genderRatio';
 import SchoolOrigin from '@/components/analysis/schoolOrigin/schoolOrigin';
