@@ -10,6 +10,7 @@ export const KEY = {
   FORM_STATUS: 'useFormStatus',
   FIRST_RESULT: 'useFirstResult',
   FINAL_RESULT: 'useFinalResult',
+  ADMISSION_TICKET: 'useAdmissionTicket',
 } as const;
 
 export const ROUTES = {

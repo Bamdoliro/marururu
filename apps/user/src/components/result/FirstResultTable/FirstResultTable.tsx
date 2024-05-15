@@ -15,7 +15,11 @@ const FirstResultTable = () => {
           type={firstResultData.type}
           isPassed={firstResultData.passed}
         />
-        <FirstResultTableFooter option="FIRST" isPassed={firstResultData.passed} />
+        <FirstResultTableFooter
+          option="FIRST"
+          isPassed={firstResultData.passed}
+          id={firstResultData.id}
+        />
       </Column>
     </StyledFirstResultTable>
   ) : null;

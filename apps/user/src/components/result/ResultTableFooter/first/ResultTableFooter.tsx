@@ -1,15 +1,20 @@
 import type { ResultOption } from '@/types/result/client';
 import { color } from '@maru/design-token';
 import { Button, Column, Row, Text } from '@maru/ui';
-import { useCTAButton } from '../ResultTableFooter.hooks';
+import {
+  useCTAButton,
+  usePrintAdmissionTicketURLAction,
+} from '../ResultTableFooter.hooks';
 
 interface Props {
+  id: number;
   option: ResultOption;
   isPassed: boolean;
 }
 
-const ResultTableFooter = ({ option, isPassed }: Props) => {
+const ResultTableFooter = ({ option, isPassed, id }: Props) => {
   const { handleMoveMainPage } = useCTAButton();
+  const { handlePrintAdmissionTicketUrlButtonClick } = usePrintAdmissionTicketURLAction();
 
   const handleAdmissionsGuidelinesDownload = () =>
     window.open(
@@ -29,6 +34,7 @@ const ResultTableFooter = ({ option, isPassed }: Props) => {
         <Button
           size="LARGE"
           style={{ backgroundColor: color.maruDefault, color: color.white }}
+          onClick={() => handlePrintAdmissionTicketUrlButtonClick(id)}
         >
           수험표 출력하기
         </Button>
