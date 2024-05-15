@@ -13,11 +13,3 @@ export const GRADUATION_STEP_LIST = [
   '봉사 시간',
   '자격증',
 ] as const;
-
-export const ANALYSIS_STEP_LIST = [
-  '지원자 수 (경쟁률)',
-  '성적 분포',
-  '지원 전형 비율',
-  '지원자 성비',
-  '출신 학교 현황',
-] as const;
