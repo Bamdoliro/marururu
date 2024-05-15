@@ -17,6 +17,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useInput, useJoinAction, useVerificationCodeAction } from './signup.hooks';
+import { Validate } from '@/components/signup';
 
 const SignUpPage = () => {
   const [timerTime, setTimerTime] = useState(0);
@@ -89,13 +90,16 @@ const SignUpPage = () => {
                   errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
                 />
               )}
-              <PreviewInput
-                label="비밀번호"
-                width="100%"
-                name="password"
-                placeholder="비밀번호를 입력해주세요."
-                onChange={handleJoinUserChange}
-              />
+              <Column gap={12}>
+                <PreviewInput
+                  label="비밀번호"
+                  width="100%"
+                  name="password"
+                  placeholder="비밀번호를 입력해주세요."
+                  onChange={handleJoinUserChange}
+                />
+                {Validate(joinUser.password)}
+              </Column>
               <PreviewInput
                 label="비밀번호 재확인"
                 width="100%"
@@ -141,5 +145,5 @@ const SignUpBox = styled.div`
   gap: 36px;
   width: 446px;
   height: fit-content;
-  margin: 120px 0;
+  margin: 16% 0;
 `;
