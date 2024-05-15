@@ -27,3 +27,5 @@ export { default as IconShortcuts } from './src/IconShortcuts';
 export { default as IconUpload } from './src/IconUpload';
 export { default as IconVisibleEye } from './src/IconVisibleEye';
 export { default as IconTerms } from './src/IconTerms';
+export { default as IconSignUpCheckFalse } from './src/IconSignUpCheckFalse';
+export { default as IconSignUpCheckTrue } from './src/IconSignUpCheckTrue';
