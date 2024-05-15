@@ -16,21 +16,16 @@ const ResultTableFooter = ({ option, isPassed }: Props) => {
       'https://school.busanedu.net/viewer/doc.html?fn=f9ccabacf50aba9dbe108bdbccf244f34b1a4bf9118f8c63e034e9af8c30afc1&rs=/upload/temp/convertToHtml/202308/bssm-h/'
     );
 
-  return isPassed === true && option === 'FINAL' ? (
+  return isPassed === true && option === 'FIRST' ? (
     <Column gap={24} alignItems="center">
       <Text fontType="p2" color={color.gray900} textAlign="center">
         2단계 전형 응시를 위해 수험표를 출력하고 10월 27일에 본교에 방문해주시기 바랍니다.
         <br /> 자세한 내용은 입학 요강에서 확인해주시기 바랍니다.
       </Text>
-      <Text
-        fontType="btn2"
-        color={color.gray500}
-        textAlign="center"
-        onClick={handleAdmissionsGuidelinesDownload}
-      >
-        입학 요강 다운로드
+      <Text fontType="btn2" color={color.gray500} textAlign="center">
+        <a onClick={handleAdmissionsGuidelinesDownload}>입학 요강 다운로드</a>
       </Text>
-      <Row gap={16} alignItems="center">
+      <Row gap={16} alignItems="center" style={{ padding: '10%' }}>
         <Button
           size="LARGE"
           style={{ backgroundColor: color.maruDefault, color: color.white }}
