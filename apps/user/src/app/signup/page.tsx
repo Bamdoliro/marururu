@@ -142,8 +142,8 @@ const ContentBox = styled.div`
 
 const SignUpBox = styled.div`
   ${flex({ flexDirection: 'column' })};
-  gap: 36px;
+  gap: 28px;
   width: 446px;
   height: fit-content;
-  margin: 16% 0;
+  margin: 14% 0;
 `;
