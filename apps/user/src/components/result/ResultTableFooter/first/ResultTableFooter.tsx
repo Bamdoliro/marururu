@@ -7,12 +7,12 @@ import {
 } from '../ResultTableFooter.hooks';
 
 interface Props {
-  id: number;
+  ticketId: number;
   option: ResultOption;
   isPassed: boolean;
 }
 
-const ResultTableFooter = ({ option, isPassed, id }: Props) => {
+const ResultTableFooter = ({ option, isPassed, ticketId }: Props) => {
   const { handleMoveMainPage } = useCTAButton();
   const { handlePrintAdmissionTicketUrlButtonClick } = usePrintAdmissionTicketURLAction();
 
@@ -34,7 +34,7 @@ const ResultTableFooter = ({ option, isPassed, id }: Props) => {
         <Button
           size="LARGE"
           style={{ backgroundColor: color.maruDefault, color: color.white }}
-          onClick={() => handlePrintAdmissionTicketUrlButtonClick(id)}
+          onClick={() => handlePrintAdmissionTicketUrlButtonClick(ticketId)}
         >
           수험표 출력하기
         </Button>

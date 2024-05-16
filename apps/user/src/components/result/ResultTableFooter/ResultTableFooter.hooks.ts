@@ -13,10 +13,10 @@ export const useCTAButton = () => {
 };
 
 export const usePrintAdmissionTicketURLAction = () => {
-  const { PrintAdmissionTicket } = usePrintAdmissionTicket();
+  const { printAdmissionTicket } = usePrintAdmissionTicket();
 
-  const handlePrintAdmissionTicketUrlButtonClick = (id: number) => {
-    PrintAdmissionTicket(id);
+  const handlePrintAdmissionTicketUrlButtonClick = (ticketId: number) => {
+    printAdmissionTicket(ticketId);
   };
 
   return { handlePrintAdmissionTicketUrlButtonClick };
