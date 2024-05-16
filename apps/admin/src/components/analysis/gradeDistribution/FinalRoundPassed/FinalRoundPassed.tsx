@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import FinalRoundPassedScore from './FinalRoundPassedScore';
 import FinalRoundPassedTable from './FinalRoundPassedTable';
+import FinalRoundPassedDetail from './FinalRoundPassedDetail';
 
 // FIX : 성적분포 퍼블리싱 (FirstRoundPassed,SecondRoundPassed)
 const FinalRoundPassed = () => {
@@ -9,8 +10,9 @@ const FinalRoundPassed = () => {
     <Layout>
       <LeftBox>
         <FinalRoundPassedScore />
+        <FinalRoundPassedTable />
       </LeftBox>
-      <FinalRoundPassedTable />
+      <FinalRoundPassedDetail />
     </Layout>
   );
 };
@@ -18,13 +20,12 @@ const FinalRoundPassed = () => {
 export default FinalRoundPassed;
 
 const Layout = styled.div`
-  ${flex({ flexDirection: 'row' })}
+  ${flex({ justifyContent: 'space-between', flexDirection: 'row' })}
   width: 100%;
-  height: 100vh;
+  background-color: aqua;
 `;
 
 const LeftBox = styled.div`
   ${flex({ justifyContent: 'space-between', flexDirection: 'column' })}
   width: 100%;
-  height: 100vh;
 `;

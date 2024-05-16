@@ -1,6 +1,6 @@
 import { Column, Row, Td, Th } from '@maru/ui';
 
-const NumberOfApplicants = () => {
+const FinalRoundPassedDetail = () => {
   return (
     <Column>
       <Row>
@@ -168,4 +168,4 @@ const NumberOfApplicants = () => {
   );
 };
 
-export default NumberOfApplicants;
+export default FinalRoundPassedDetail;

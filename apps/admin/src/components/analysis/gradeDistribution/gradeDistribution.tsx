@@ -7,7 +7,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import FirstRoundPassed from './FirstRoundPassed/FirstRoundPassed';
 import SecondRoundPassed from './SecondRoundPassed/SecondRoundPassed';
-import FinalRoundPassed from './FinalRoundPassed/FinalRoundPassedTable';
+import FinalRoundPassed from './FinalRoundPassed/FinalRoundPassed';
 
 const GradeDistribution = () => {
   const [currentPassDetailStep, setCurrentPassDetailStep] = useState('1차 합격자');

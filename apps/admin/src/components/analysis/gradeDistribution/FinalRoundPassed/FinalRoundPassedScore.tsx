@@ -8,10 +8,10 @@ const FinalRoundPassedScore = () => {
     <TotalBox>
       <ApplicantsBox>
         <Text fontType="H3" color={color.gray750} width={60}>
-          전체 지원자 수
+          최고점 점수
         </Text>
         <Text fontType="D1" width={60}>
-          숫자
+          최하위 점수
         </Text>
       </ApplicantsBox>
       <ApplicantsBox>
@@ -32,11 +32,11 @@ const TotalBox = styled.div`
   ${flex({ flexDirection: 'column' })}
   width: 100%;
   height: 100%;
-  margin-top: 36px;
   gap: 40px;
 `;
 
 const ApplicantsBox = styled.div`
   ${flex({ flexDirection: 'column' })}
   width: 100%;
+  margin-top: 24px;
 `;
