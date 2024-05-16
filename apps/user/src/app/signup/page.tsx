@@ -61,7 +61,7 @@ const SignUpPage = () => {
               />
               <ButtonInput
                 label="전화번호 인증"
-                buttonText={isVerificationCodeSend ? '재전송' : '인증'}
+                buttonText={isVerificationCodeSend ? '재전송' : '인증번호 전송'}
                 onClick={() => {
                   handleRequestVerificationCode();
                   startTimer();
