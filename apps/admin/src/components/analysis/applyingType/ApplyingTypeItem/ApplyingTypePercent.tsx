@@ -3,30 +3,30 @@ import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 
-const FinalRoundPassedScore = () => {
+const ApplyingTypePercent = () => {
   return (
     <TotalBox>
       <ApplicantsBox>
         <Text fontType="H3" color={color.gray750} width={60}>
-          최고점 점수
+          일반 전형 지원 비율
         </Text>
         <Text fontType="D1" width={60}>
-          최하위 점수
+          89%
         </Text>
       </ApplicantsBox>
       <ApplicantsBox>
         <Text fontType="H3" color={color.gray750} width={60}>
-          전체 경쟁률
+          특별 전형 지원 비율
         </Text>
         <Text fontType="D1" width={60}>
-          숫자
+          65%
         </Text>
       </ApplicantsBox>
     </TotalBox>
   );
 };
 
-export default FinalRoundPassedScore;
+export default ApplyingTypePercent;
 
 const TotalBox = styled.div`
   ${flex({ flexDirection: 'column' })}

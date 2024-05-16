@@ -20,9 +20,12 @@ const FinalRoundPassed = () => {
 export default FinalRoundPassed;
 
 const Layout = styled.div`
-  ${flex({ justifyContent: 'space-between', flexDirection: 'row' })}
+  ${flex({
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  })}
   width: 100%;
-  background-color: aqua;
+  gap: 75px;
 `;
 
 const LeftBox = styled.div`

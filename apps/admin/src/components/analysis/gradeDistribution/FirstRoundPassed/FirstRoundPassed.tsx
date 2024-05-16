@@ -1,54 +1,34 @@
-import { Column, Row, Td, Th } from '@maru/ui';
+import { styled } from 'styled-components';
+import { flex } from '@maru/utils';
+import FirstRoundPassedScore from './FirstRoundPassedScore';
+import FirstRoundPassedTable from './FirstRoundPassedTable';
+import FirstRoundPassedDetail from './FirstRoundPassedDetail';
 
+// FIX : 성적분포 퍼블리싱 (FirstRoundPassed,FirstRoundPassed)
 const FirstRoundPassed = () => {
   return (
-    <Column>
-      <Row>
-        <Th width={100} height={56} borderTopLeftRadius={12}>
-          ㅤ
-        </Th>
-        <Th width={100} height={56}>
-          일반전형
-        </Th>
-        <Th width={100} height={56} borderTopRightRadius={12}>
-          특별전형
-        </Th>
-      </Row>
-      <Row>
-        <Td styleType="SECONDARY" width={100} height={56}>
-          최고 점수
-        </Td>
-        <Td width={100} height={56}>
-          240.000
-        </Td>
-        <Td width={100} height={56}>
-          240.000
-        </Td>
-      </Row>
-      <Row>
-        <Td styleType="SECONDARY" width={100} height={56}>
-          최하 점수
-        </Td>
-        <Td width={100} height={56}>
-          112.000
-        </Td>
-        <Td width={100} height={56}>
-          122.000
-        </Td>
-      </Row>
-      <Row>
-        <Td styleType="SECONDARY" width={100} height={56} borderBottomLeftRadius={12}>
-          평균
-        </Td>
-        <Td width={100} height={56}>
-          210.000
-        </Td>
-        <Td width={100} height={56} borderBottomRightRadius={12}>
-          190.000
-        </Td>
-      </Row>
-    </Column>
+    <Layout>
+      <LeftBox>
+        <FirstRoundPassedScore />
+        <FirstRoundPassedTable />
+      </LeftBox>
+      <FirstRoundPassedDetail />
+    </Layout>
   );
 };
 
 export default FirstRoundPassed;
+
+const Layout = styled.div`
+  ${flex({
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  })}
+  width: 100%;
+  gap: 75px;
+`;
+
+const LeftBox = styled.div`
+  ${flex({ justifyContent: 'space-between', flexDirection: 'column' })}
+  width: 100%;
+`;

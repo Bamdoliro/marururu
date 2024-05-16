@@ -15,7 +15,7 @@ const GradeDistribution = () => {
   return (
     <StyledGradeDistribution>
       <Row gap={48}>
-        <Column gap={48}>
+        <Column gap={24}>
           <NavigationBar>
             {ANALYSIS_GREADEDISTRIBUTION_STEP_LIST.map((PassDetailStep, index) => (
               <UnderlineButton

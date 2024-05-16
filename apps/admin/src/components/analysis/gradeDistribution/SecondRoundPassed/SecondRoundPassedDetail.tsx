@@ -1,6 +1,6 @@
 import { Column, Row, Td, Th } from '@maru/ui';
 
-const FirstRoundPassedDetail = () => {
+const SecondRoundPassedDetail = () => {
   return (
     <Column>
       <Row>
@@ -210,4 +210,4 @@ const FirstRoundPassedDetail = () => {
   );
 };
 
-export default FirstRoundPassedDetail;
+export default SecondRoundPassedDetail;

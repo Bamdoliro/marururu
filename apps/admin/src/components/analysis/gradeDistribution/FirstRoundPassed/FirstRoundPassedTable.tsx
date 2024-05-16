@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
 
-const FinalRoundPassedTable = () => {
+const FirstRoundPassedTable = () => {
   return (
     <TableBox>
       <Text fontType="H3" color={color.gray750} width={60}>
@@ -26,7 +26,7 @@ const FinalRoundPassedTable = () => {
             최고 점수
           </Td>
           <Td width={120} height={56}>
-            300.000
+            100.000
           </Td>
           <Td width={120} height={56}>
             240.000
@@ -59,7 +59,7 @@ const FinalRoundPassedTable = () => {
   );
 };
 
-export default FinalRoundPassedTable;
+export default FirstRoundPassedTable;
 
 const TableBox = styled.section`
   ${flex({ flexDirection: 'column' })}

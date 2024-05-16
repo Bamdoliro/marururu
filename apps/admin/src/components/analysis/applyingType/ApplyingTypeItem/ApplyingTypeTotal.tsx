@@ -3,11 +3,11 @@ import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
 
-const FinalRoundPassedTable = () => {
+const ApplyingTypeTotal = () => {
   return (
     <TableBox>
       <Text fontType="H3" color={color.gray750} width={60}>
-        모든 전형의 점수와 평균
+        전형별 지원자 수와 지원 비율
       </Text>
       <Column>
         <Row>
@@ -15,15 +15,15 @@ const FinalRoundPassedTable = () => {
             ㅤ
           </Th>
           <Th width={120} height={56}>
-            일반전형
+            일반 전형
           </Th>
           <Th width={120} height={56} borderTopRightRadius={12}>
-            특별전형
+            특별 전형
           </Th>
         </Row>
         <Row>
           <Td styleType="SECONDARY" width={120} height={56}>
-            최고 점수
+            지원자 수
           </Td>
           <Td width={120} height={56}>
             300.000
@@ -33,25 +33,14 @@ const FinalRoundPassedTable = () => {
           </Td>
         </Row>
         <Row>
-          <Td styleType="SECONDARY" width={120} height={56}>
-            최하 점수
+          <Td styleType="SECONDARY" width={120} height={56} borderBottomLeftRadius={12}>
+            지원 비율
           </Td>
           <Td width={120} height={56}>
             192.000
           </Td>
-          <Td width={120} height={56}>
-            172.000
-          </Td>
-        </Row>
-        <Row>
-          <Td styleType="SECONDARY" width={120} height={56} borderBottomLeftRadius={12}>
-            평균
-          </Td>
-          <Td width={120} height={56}>
-            210.000
-          </Td>
           <Td width={120} height={56} borderBottomRightRadius={12}>
-            190.000
+            172.000
           </Td>
         </Row>
       </Column>
@@ -59,7 +48,7 @@ const FinalRoundPassedTable = () => {
   );
 };
 
-export default FinalRoundPassedTable;
+export default ApplyingTypeTotal;
 
 const TableBox = styled.section`
   ${flex({ flexDirection: 'column' })}

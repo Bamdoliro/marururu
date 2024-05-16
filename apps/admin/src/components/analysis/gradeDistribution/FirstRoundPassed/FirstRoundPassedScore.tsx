@@ -3,7 +3,7 @@ import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 
-const FinalRoundPassedScore = () => {
+const FirstRoundPassedScore = () => {
   return (
     <TotalBox>
       <ApplicantsBox>
@@ -26,7 +26,7 @@ const FinalRoundPassedScore = () => {
   );
 };
 
-export default FinalRoundPassedScore;
+export default FirstRoundPassedScore;
 
 const TotalBox = styled.div`
   ${flex({ flexDirection: 'column' })}

@@ -2,7 +2,7 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import NumberOfApplicantsDetail from './numberOfApplicantsDetail/numberOfApplicantsDetail';
+import NumberOfApplicantsDetail from './NumberOfApplicantsDetail/NumberOfApplicantsDetail';
 
 const NumberOfApplicants = () => {
   return (
