@@ -56,7 +56,11 @@ const 최종제출 = () => {
             </Text>
             <Column gap={4}>
               <Text fontType="p2" color={color.gray900}>
-                제출서류들은 스캔해서 하나의 PDF파일로 첨부해주시기 바랍니다.
+                (공통,해당자)제출서류들은 스캔해서 하나의 PDF파일로 첨부해주시기 바랍니다.
+              </Text>
+              <Text fontType="p2" color={color.red}>
+                사회통합전형 및 정원 외 전형 대상자 제출서류 중 각 지원 자격 증명서류는
+                우편으로 제출해야 합니다.
               </Text>
               <Text fontType="p2" color={color.red}>
                 원서를 최종 제출됐을 경우 재업로드는 불가능합니다.
