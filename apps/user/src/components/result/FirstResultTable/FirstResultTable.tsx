@@ -18,7 +18,7 @@ const FirstResultTable = () => {
         <FirstResultTableFooter
           option="FIRST"
           isPassed={firstResultData.passed}
-          id={firstResultData.id}
+          ticketId={firstResultData.id}
         />
       </Column>
     </StyledFirstResultTable>
