@@ -13,9 +13,3 @@ export interface PostMessageReq {
   content: string;
   category: string;
 }
-
-export interface PutMessageReq {
-  title: string;
-  content: string;
-  category: string;
-}

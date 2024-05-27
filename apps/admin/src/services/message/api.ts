@@ -4,7 +4,6 @@ import type {
   GetMessageDetailRes,
   GetMessageListRes,
   PostMessageReq,
-  PutMessageReq,
 } from '@/types/message/remote';
 
 export const getMessageList = async () => {
@@ -17,17 +16,7 @@ export const getMessageDetail = async (id: number) => {
   return data;
 };
 
-export const deleteMessage = async (id: number) => {
-  const { data } = await maru.delete(`/message/${id}`, authorization());
-  return data;
-};
-
 export const postMessage = async (messageData: PostMessageReq) => {
   const { data } = await maru.post(`/message`, messageData, authorization());
-  return data;
-};
-
-export const putEditMessage = async (id: number, messageData: PutMessageReq) => {
-  const { data } = await maru.put(`/message/${id}`, messageData, authorization());
   return data;
 };
