@@ -11,3 +11,15 @@ export const ANALYSIS_GREADEDISTRIBUTION_STEP_LIST = [
   '2차 전형자',
   '최종 합격자',
 ] as const;
+
+export const ANALYSIS_GENDERRATIO_STEP_LIST = [
+  '1차 합격자',
+  '2차 전형자',
+  '최종 합격자',
+] as const;
+
+export const ANALYSIS_GENDERARERRATIO_STEP_LIST = [
+  '일반 전형 성비',
+  '특별 전형 성비',
+  '특례입학대상자 성비',
+] as const;
