@@ -8,10 +8,10 @@ import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import { ANALYSIS_STEP_LIST } from '@/constants/analysis/data';
 import NumberOfApplicants from '@/components/analysis/NumberOfApplicants/NumberOfApplicants';
-import GradeDistribution from '@/components/analysis/GradeDistribution/gradeDistribution';
-import ApplyingType from '@/components/analysis/applyingType/ApplyingType';
+import GradeDistribution from '@/components/analysis/GradeDistribution/GradeDistribution';
+import ApplyingType from '@/components/analysis/ApplyingType/ApplyingType';
 import GenderRatio from '@/components/analysis/GenderRatio/GenderRatio';
-import SchoolOrigin from '@/components/analysis/SchoolOrigin/schoolOrigin';
+import SchoolOrigin from '@/components/analysis/SchoolOrigin/SchoolOrigin';
 import styled from 'styled-components';
 
 const AnalysisPage = () => {
