@@ -11,7 +11,7 @@ import NumberOfApplicants from '@/components/analysis/NumberOfApplicants/NumberO
 import GradeDistribution from '@/components/analysis/GradeDistribution/GradeDistribution';
 import ApplyingType from '@/components/analysis/ApplyingType/ApplyingType';
 import GenderRatio from '@/components/analysis/GenderRatio/GenderRatio';
-import SchoolOrigin from '@/components/analysis/SchoolOrigin/SchoolOrigin';
+import SchoolOrigin from '@/components/analysis/SchooldOrigin/SchoolOrigin';
 import styled from 'styled-components';
 
 const AnalysisPage = () => {
