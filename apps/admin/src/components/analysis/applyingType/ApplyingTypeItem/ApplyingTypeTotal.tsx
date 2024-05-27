@@ -17,8 +17,11 @@ const ApplyingTypeTotal = () => {
           <Th width={120} height={56}>
             일반 전형
           </Th>
-          <Th width={120} height={56} borderTopRightRadius={12}>
+          <Th width={120} height={56}>
             특별 전형
+          </Th>
+          <Th width={120} height={56} borderTopRightRadius={12}>
+            정원 외 전형
           </Th>
         </Row>
         <Row>
@@ -31,6 +34,9 @@ const ApplyingTypeTotal = () => {
           <Td width={120} height={56}>
             240.000
           </Td>
+          <Td width={120} height={56}>
+            240.000
+          </Td>
         </Row>
         <Row>
           <Td styleType="SECONDARY" width={120} height={56} borderBottomLeftRadius={12}>
@@ -38,6 +44,9 @@ const ApplyingTypeTotal = () => {
           </Td>
           <Td width={120} height={56}>
             192.000
+          </Td>
+          <Td width={120} height={56}>
+            172.000
           </Td>
           <Td width={120} height={56} borderBottomRightRadius={12}>
             172.000
