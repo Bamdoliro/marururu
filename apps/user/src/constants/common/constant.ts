@@ -23,6 +23,7 @@ export const ROUTES = {
   FINAL_RESULT: '/result/final',
   SCORE_SIMULATION: '/score-simulation',
   PRIVACY: '/privacy',
+  FAIR: '/fair',
 } as const;
 
 export const TOKEN = {
