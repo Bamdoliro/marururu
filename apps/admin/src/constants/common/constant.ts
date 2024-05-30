@@ -19,6 +19,7 @@ export const ROUTES = {
   FAQ: '/faq',
   FAQ_EDIT: '/faq/edit',
   FAQ_POST: '/faq/post',
+  MESSAGE: '/message',
   ANALYSIS: '/analysis',
   LOGIN: '/login',
   FORM: '/form',
