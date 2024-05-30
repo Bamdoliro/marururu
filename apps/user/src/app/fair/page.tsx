@@ -90,7 +90,7 @@ const StyledFairPage = styled.div`
 const Separator = styled.p`
   border: 1px solid ${color.gray400};
   margin: 2% 0;
-  width: 800px;
+  width: 830px;
   margin-top: 56px;
   margin-bottom: 56px;
 `;
