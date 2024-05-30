@@ -9,6 +9,8 @@ export const KEY = {
   EXPORT_EXCEL: 'useExportExcel',
   FORM_DETAIL: 'useFormDetail',
   FORM_URL: 'useFormURL',
+  MESSAGE_LIST: 'useMessageList',
+  MESSAGE_DETAIL: 'userMessageDetail',
 };
 
 export const ROUTES = {
