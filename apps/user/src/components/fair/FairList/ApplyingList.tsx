@@ -10,7 +10,10 @@ const ApplyingList = ({ fairType }: Props) => {
   const { data: fairListData } = useFairListQuery(fairType);
 
   return fairListData ? (
-    <StyledFairList itemCount={fairListData.length}>
+    <StyledFairList
+      itemCount={fairListData.length}
+      onClick={() => alert('누르면 구글폼으로')}
+    >
       {fairListData
         .filter(({ status }) => status === 'APPLICATION_IN_PROGRESS' || status === null)
         .map(
