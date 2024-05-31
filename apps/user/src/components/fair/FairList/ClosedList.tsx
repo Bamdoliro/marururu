@@ -14,9 +14,7 @@ const ClosedList = ({ fairType }: Props) => {
       {fairListData
         .filter(
           ({ status }) =>
-            status === 'APPLICATION_CLOSED' ||
-            status === 'APPLICATION_EARLY_CLOSED' ||
-            status === 'CLOSED'
+            status === 'APPLICATION_CLOSED' || status === 'APPLICATION_EARLY_CLOSED'
         )
         .map(
           ({ start, place, status, applicationStartDate, applicationEndDate }, index) => (

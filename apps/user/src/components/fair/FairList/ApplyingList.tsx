@@ -12,12 +12,7 @@ const ApplyingList = ({ fairType }: Props) => {
   return fairListData ? (
     <StyledFairList itemCount={fairListData.length}>
       {fairListData
-        .filter(
-          ({ status }) =>
-            status === 'APPLICATION_IN_PROGRESS' ||
-            status === 'APPLICATION_NOT_STARTED' ||
-            status === null
-        )
+        .filter(({ status }) => status === 'APPLICATION_IN_PROGRESS' || status === null)
         .map(
           ({ start, place, status, applicationStartDate, applicationEndDate }, index) => (
             <ApplyingItem
