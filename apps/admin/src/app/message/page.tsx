@@ -9,7 +9,7 @@ const MessagePage = () => {
   return (
     <AppLayout>
       <StyledMessagePage>
-        <Message></Message>
+        <Message />
       </StyledMessagePage>
     </AppLayout>
   );

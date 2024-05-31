@@ -1,4 +1,10 @@
-export type Category = 'RECEIVED' | 'REJECTED' | 'FIRST_PASSED' | 'PASSED';
+export type Category =
+  | 'RECEIVED'
+  | 'REJECTED'
+  | 'MESTIER'
+  | 'UNMEISTER'
+  | 'FIRST_PASSED'
+  | 'PASSED';
 
 export interface Message {
   title: string;

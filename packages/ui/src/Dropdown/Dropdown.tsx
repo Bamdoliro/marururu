@@ -1,6 +1,6 @@
+import { color, font } from '@maru/design-token';
 import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowBottom, IconArrowTop } from '@maru/icon';
-import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import type { CSSProperties } from 'react';
 import styled, { css } from 'styled-components';

@@ -50,6 +50,8 @@ const Message = () => {
               { value: 'SCHOOL_LIFE', label: '원서 승인 완료자' },
               { value: 'SUBMIT_DOCUMENT', label: '원서 반려자' },
               { value: 'ADMISSION_PROCESS', label: '1차 합격자' },
+              { value: 'MEISTER', label: '마이스터인재전형' },
+              { value: 'UNMEISTER', label: '마이스터 제외 합격자' },
               { value: 'TOP_QUESTION', label: '최종 합격자' },
             ]}
             size="SMALL"
