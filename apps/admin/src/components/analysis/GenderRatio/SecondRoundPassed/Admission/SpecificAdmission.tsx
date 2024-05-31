@@ -183,13 +183,13 @@ const FirstRoundPassedTable = () => {
 
 export default FirstRoundPassedTable;
 
+const TableLayout = styled.section`
+  ${flex({ flexDirection: 'column' })}
+  gap: 40px;
+`;
+
 const TableBox = styled.section`
   ${flex({ flexDirection: 'column' })}
   width: 100%;
   gap: 32px;
-`;
-
-const TableLayout = styled.section`
-  ${flex({ flexDirection: 'column' })}
-  gap: 64px;
 `;
