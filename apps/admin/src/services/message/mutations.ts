@@ -13,7 +13,7 @@ export const usePostMessageMutation = (messageData: PostMessageReq) => {
   const { mutate: postMessageMutate, ...restMutation } = useMutation({
     mutationFn: () => postMessage(messageData),
     onSuccess: ({ data }) => {
-      toast('게시물이 게시되었습니다.', {
+      toast('메시지가 전송되었습니다.', {
         type: 'success',
       });
       router.push(`${ROUTES.MESSAGE}/${data.id}`);
