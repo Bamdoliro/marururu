@@ -10,6 +10,7 @@ export const KEY = {
   FORM_STATUS: 'useFormStatus',
   FIRST_RESULT: 'useFirstResult',
   FINAL_RESULT: 'useFinalResult',
+  FAIR_LIST: 'useFairQuery',
 } as const;
 
 export const ROUTES = {
