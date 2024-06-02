@@ -3,10 +3,15 @@ import { color } from '@maru/design-token';
 import { Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import { ROUTES } from '@/constants/common/constant';
+import { useRouter } from 'next/navigation';
 
 const ApplicationBox = () => {
+  const day = '7월 8일, 8월 26일, 9월 16일, 10월 4일';
+  const router = useRouter();
+
   return (
-    <StyledApplicationBox onClick={() => alert('준비 중입니다.')}>
+    <StyledApplicationBox onClick={() => router.push(ROUTES.FAIR)}>
       <Row gap={8} alignItems="center">
         <Text fontType="H3" color={color.gray900}>
           입학전형 설명회 신청
@@ -14,7 +19,7 @@ const ApplicationBox = () => {
         <IconArrowOutward width={36} height={36} color={color.maruDefault} />
       </Row>
       <Text fontType="p2" color={color.gray500}>
-        일시: 7월 8일, 8월 26일, 9월 16일, 10월 4일
+        일시: {day}
         <br />
         장소: 본교 SRC관 1층
       </Text>

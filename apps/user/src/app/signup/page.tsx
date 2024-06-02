@@ -17,6 +17,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useInput, useJoinAction, useVerificationCodeAction } from './signup.hooks';
+import { Validate } from '@/components/signup';
 
 const SignUpPage = () => {
   const [timerTime, setTimerTime] = useState(0);
@@ -39,10 +40,10 @@ const SignUpPage = () => {
     <AppLayout>
       <StyledSignUpPage>
         <Image
-          src="/svg/colabo_logo.svg"
+          src="/svg/signup_school_logo.svg"
           style={{ margin: '0 auto' }}
-          width={477}
-          height={290}
+          width={480}
+          height={139}
           alt="colabo-logo"
         />
         <ContentBox>
@@ -60,7 +61,7 @@ const SignUpPage = () => {
               />
               <ButtonInput
                 label="전화번호 인증"
-                buttonText={isVerificationCodeSend ? '재전송' : '인증'}
+                buttonText={isVerificationCodeSend ? '재전송' : '인증번호 전송'}
                 onClick={() => {
                   handleRequestVerificationCode();
                   startTimer();
@@ -89,13 +90,16 @@ const SignUpPage = () => {
                   errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
                 />
               )}
-              <PreviewInput
-                label="비밀번호"
-                width="100%"
-                name="password"
-                placeholder="비밀번호를 입력해주세요."
-                onChange={handleJoinUserChange}
-              />
+              <Column gap={12}>
+                <PreviewInput
+                  label="비밀번호"
+                  width="100%"
+                  name="password"
+                  placeholder="비밀번호를 입력해주세요."
+                  onChange={handleJoinUserChange}
+                />
+                {Validate(joinUser.password)}
+              </Column>
               <PreviewInput
                 label="비밀번호 재확인"
                 width="100%"
@@ -138,8 +142,8 @@ const ContentBox = styled.div`
 
 const SignUpBox = styled.div`
   ${flex({ flexDirection: 'column' })};
-  gap: 36px;
+  gap: 28px;
   width: 446px;
   height: fit-content;
-  margin: 120px 0;
+  margin: 14% 0;
 `;

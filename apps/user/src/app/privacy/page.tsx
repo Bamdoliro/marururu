@@ -29,12 +29,15 @@ const PrivacyPage = () => {
             개인정보처리방침
           </Text>
           <Separator />
-          <Text fontType="H1" color={color.gray900}>
-            부산소프트웨어마이스터고등학교 개인정보처리방침
-          </Text>
-          <Column height={10}> </Column>
-          <MainInformationBox />
         </Column>
+      </StyledPrivacyPage>
+      <Center>
+        <Text fontType="H1" color={color.gray900}>
+          부산소프트웨어마이스터고등학교 개인정보처리방침
+        </Text>
+      </Center>
+      <StyledPrivacyPage>
+        <MainInformationBox />
         <Column height={40}> </Column>
         <Column gap={40}>
           <제1조 />
@@ -63,7 +66,7 @@ export default PrivacyPage;
 const StyledPrivacyPage = styled.div`
   width: 100%;
   padding-left: 205px;
-  padding-top: 50px;
+  padding-top: 25px;
 
   @media (max-width: 768px) {
     padding-left: 20px;
@@ -79,4 +82,11 @@ const Separator = styled.hr`
   @media (max-width: 768px) {
     width: 82%;
   }
+`;
+
+const Center = styled.div`
+  align-items: center;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
 `;
