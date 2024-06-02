@@ -2,25 +2,21 @@ import { useFirstResultQuery } from '@/services/result/queries';
 import { Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import ResultTableFooter from '../ResultTableFooter/ResultTableFooter';
-import ResultTableHeader from '../ResultTableHeader/ResultTableHeader';
-import ResultTableItem from '../ResultTableItem/ResultTableItem';
+import FirstResultTableFooter from '../ResultTableFooter/first/ResultTableFooter';
+import FirstResultTableItem from '../FirstResultTableItem/FirstResultTableItem';
 
 const FirstResultTable = () => {
   const { data: firstResultData } = useFirstResultQuery();
 
   return firstResultData ? (
     <StyledFirstResultTable isPassed={firstResultData.passed}>
-      <Column gap={12} width={816}>
-        <ResultTableHeader />
-        <ResultTableItem
-          id={firstResultData.id}
-          name={firstResultData.name}
+      <Column gap={20} width={816}>
+        <FirstResultTableItem
           type={firstResultData.type}
           isPassed={firstResultData.passed}
         />
+        <FirstResultTableFooter option="FIRST" isPassed={firstResultData.passed} />
       </Column>
-      <ResultTableFooter option="FIRST" isPassed={firstResultData.passed} />
     </StyledFirstResultTable>
   ) : null;
 };
@@ -29,5 +25,5 @@ export default FirstResultTable;
 
 const StyledFirstResultTable = styled.div<{ isPassed: boolean }>`
   ${flex({ flexDirection: 'column', alignItems: 'center' })};
-  gap: ${(props) => (props.isPassed ? '64px' : '120px')};
+  gap: ${(props) => (props.isPassed ? '10px' : '120px')};
 `;

@@ -11,6 +11,7 @@ export const KEY = {
   FIRST_RESULT: 'useFirstResult',
   FINAL_RESULT: 'useFinalResult',
   FAIR_LIST: 'useFairQuery',
+  ADMISSION_TICKET: 'useAdmissionTicket',
 } as const;
 
 export const ROUTES = {
