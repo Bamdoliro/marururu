@@ -1,7 +1,7 @@
 import { Storage } from '@/apis/storage/storage';
 import { KEY, TOKEN } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
-import { getAdmisonTicketUrl, getFinalResult, getFirstResult } from './api';
+import { getAdmissionTicket, getFinalResult, getFirstResult } from './api';
 
 export const useFirstResultQuery = () => {
   const { data, ...restQuery } = useQuery({
@@ -25,11 +25,12 @@ export const useFinalResultQuery = () => {
   return { data: data?.data, ...restQuery };
 };
 
-export const useAdmissionTicketQuery = (id: number) => {
+export const useDownloadAdmissionTicketQuery = () => {
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.ADMISSION_TICKET, id],
-    queryFn: () => getAdmisonTicketUrl([id]),
+    queryKey: [KEY.ADMISSION_TICKET],
+    queryFn: getAdmissionTicket,
+    suspense: false,
   });
 
-  return { data: data?.dataList, ...restQuery };
+  return { data, ...restQuery };
 };
