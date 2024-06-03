@@ -14,8 +14,7 @@ const Terms = ({ setTermsAgree }: Props) => {
   const [checkAll, setCheckAll] = useState(false);
   const [checkOne, setChecktOne] = useState(false);
   const [checkTwo, setChecktTwo] = useState(false);
-
-  const handleClickPrivacy = () => window.open(ROUTES.PRIVACY);
+  const [checkThree, setChecktThree] = useState(false);
 
   const handleCheckAll = () => {
     if (checkAll === false) {
@@ -43,6 +42,14 @@ const Terms = ({ setTermsAgree }: Props) => {
     }
   };
 
+  const handleCheckThree = () => {
+    if (checkThree === false) {
+      setChecktThree(true);
+    } else {
+      setChecktThree(false);
+    }
+  };
+
   useEffect(() => {
     if (checkOne === true && checkTwo === true) {
       setCheckAll(true);
@@ -61,7 +68,7 @@ const Terms = ({ setTermsAgree }: Props) => {
           checked={checkAll}
           onChange={handleCheckAll}
         />
-        <label htmlFor="check-all">이용약관 전체동의</label>
+        <label htmlFor="check-all">약관 전체동의</label>
       </Agreement>
       <hr />
       <Agreement>
@@ -71,8 +78,8 @@ const Terms = ({ setTermsAgree }: Props) => {
           checked={checkOne}
           onChange={handleCheckOne}
         />
-        <label htmlFor="agreement1">개인정보 수집 이용동의</label>
-        <AgreementLink onClick={handleClickPrivacy}>
+        <label htmlFor="agreement1">이용약관 동의</label>
+        <AgreementLink onClick={() => window.open(ROUTES.TERMUSE)}>
           [ 필수 ] <IconArrowRight color={color.maruDefault} width={12} height={12} />
         </AgreementLink>
       </Agreement>
@@ -83,8 +90,20 @@ const Terms = ({ setTermsAgree }: Props) => {
           checked={checkTwo}
           onChange={handleCheckTwo}
         />
-        <label htmlFor="agreement2">약관 전체동의</label>
-        <AgreementLink>
+        <label htmlFor="agreement2">개인정보 수집 이용동의</label>
+        <AgreementLink onClick={() => window.open(ROUTES.PRIVACYCOLLECTION)}>
+          [ 필수 ] <IconArrowRight color={color.maruDefault} width={12} height={12} />
+        </AgreementLink>
+      </Agreement>
+      <Agreement>
+        <input
+          type="checkbox"
+          id="agreement3"
+          checked={checkThree}
+          onChange={handleCheckThree}
+        />
+        <label htmlFor="agreement3">개인정보 처리 방침 동의</label>
+        <AgreementLink onClick={() => window.open(ROUTES.PRIVACY)}>
           [ 필수 ] <IconArrowRight color={color.maruDefault} width={12} height={12} />
         </AgreementLink>
       </Agreement>
