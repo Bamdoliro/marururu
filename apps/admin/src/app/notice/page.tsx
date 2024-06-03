@@ -7,8 +7,10 @@ import { flex } from '@maru/utils';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
 import useCTAButton from './notice.hooks';
+import { useCheckAuth } from '@/hooks/useCheckAuth';
 
 const NoticePage = () => {
+  useCheckAuth();
   const { handleGoNoticePostPageButtonClick } = useCTAButton();
 
   return (
