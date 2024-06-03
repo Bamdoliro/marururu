@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Storage } from '@/apis/storage/storage';
 import { TOKEN, ROUTES } from '@/constants/common/constant';
+import { useRouter } from 'next/navigation';
 
-export const withAuth = (Component: React.ComponentType) => {
+const withAuth = (Component: React.ComponentType) => {
   const WrappedComponent = () => {
+    const router = useRouter();
     const [mounted, setMounted] = useState(false);
-    const [accessToken, setAccessToken] = useState<string | null>(null);
+    const accessToken = Storage.getItem(TOKEN.ACCESS);
 
     useEffect(() => {
       if (typeof window !== 'undefined') {
-        setAccessToken(Storage.getItem(TOKEN.ACCESS));
         setMounted(true);
       }
     }, []);
@@ -17,7 +18,7 @@ export const withAuth = (Component: React.ComponentType) => {
     useEffect(() => {
       if (mounted && !accessToken) {
         alert('이용하시려면 로그인이 필요합니다.');
-        window.location.href = ROUTES.LOGIN;
+        router.push(ROUTES.LOGIN);
       }
     }, [mounted, accessToken]);
     return <Component />;
