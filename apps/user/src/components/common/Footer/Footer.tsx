@@ -38,8 +38,9 @@ const Footer = () => {
               <DirectLink href={ROUTES.MAIN}>학교소개</DirectLink>
             </Column>
             <Column gap={24}>
-              <DirectLink href={ROUTES.MAIN}>이용약관</DirectLink>
+              <DirectLink href={ROUTES.TERMUSE}>이용약관</DirectLink>
               <DirectLink href={ROUTES.PRIVACY}>개인정보처리방침</DirectLink>
+              <DirectLink href={ROUTES.PRIVACYCOLLECTION}>개인정보 수집</DirectLink>
               <DirectLink href={ROUTES.MAIN}>학교 홈페이지</DirectLink>
             </Column>
           </Row>
