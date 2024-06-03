@@ -8,10 +8,9 @@ import AppLayout from '@/layouts/AppLayout';
 import FaqTable from '@/components/faq/FaqTable/FaqTable';
 import { flex } from '@maru/utils';
 import type { FaqCategory } from '@/types/faq/client';
-import { useCheckAuth } from '@/hooks/useCheckAuth';
+import withAuth from '@/hocs/withAuth';
 
 const FaqPage = () => {
-  useCheckAuth();
   const { handleGoFaqPostPageButtonClick } = useCTAButton();
   const [selectedCategory, setSelectedCategory] = useState<FaqCategory>('BOARD_ALL');
 
@@ -53,7 +52,7 @@ const FaqPage = () => {
   );
 };
 
-export default FaqPage;
+export default withAuth(FaqPage);
 
 const StyledFaqPage = styled.div`
   ${flex({ flexDirection: 'column' })}

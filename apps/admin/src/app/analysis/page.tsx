@@ -3,10 +3,9 @@
 import AppLayout from '@/layouts/AppLayout';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useCheckAuth } from '@/hooks/useCheckAuth';
+import withAuth from '@/hocs/withAuth';
 
 const AnalysisPage = () => {
-  useCheckAuth();
   return (
     <AppLayout>
       <StyledAnalysisPage>아직 준비되지 않은 페이지입니다 😅</StyledAnalysisPage>
@@ -14,7 +13,7 @@ const AnalysisPage = () => {
   );
 };
 
-export default AnalysisPage;
+export default withAuth(AnalysisPage);
 
 const StyledAnalysisPage = styled.div`
   ${flex({ alignItems: 'center', justifyContent: 'center' })}
