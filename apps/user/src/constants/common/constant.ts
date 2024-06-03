@@ -26,6 +26,8 @@ export const ROUTES = {
   SCORE_SIMULATION: '/score-simulation',
   PRIVACY: '/privacy',
   FAIR: '/fair',
+  PRIVACYCOLLECTION: '/privacy-collection',
+  TERMUSE: '/term-use',
 } as const;
 
 export const TOKEN = {
