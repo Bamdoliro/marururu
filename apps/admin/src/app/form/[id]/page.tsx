@@ -10,14 +10,12 @@ import { flex } from '@maru/utils';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import styled from 'styled-components';
-import { useCheckAuth } from '@/hooks/useCheckAuth';
 
 interface Props {
   params: { id: number };
 }
 
 const FormDetailPage = ({ params: { id } }: Props) => {
-  useCheckAuth();
   return (
     <AppLayout>
       <StyledFormDetail>
