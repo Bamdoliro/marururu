@@ -20,9 +20,11 @@ const Terms = ({ setTermsAgree }: Props) => {
     if (checkAll === false) {
       setChecktOne(true);
       setChecktTwo(true);
+      setChecktThree(true);
     } else {
       setChecktOne(false);
       setChecktTwo(false);
+      setChecktThree(false);
     }
   };
 
