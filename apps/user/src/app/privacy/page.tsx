@@ -77,10 +77,10 @@ const StyledPrivacyPage = styled.div`
 const Separator = styled.hr`
   border: 1px solid ${color.gray400};
   margin: 2% 0;
-  width: 85%;
+  width: 82%;
 
   @media (max-width: 768px) {
-    width: 85%;
+    width: 82%;
   }
 `;
 
