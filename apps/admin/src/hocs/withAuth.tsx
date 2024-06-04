@@ -6,21 +6,21 @@ import { useRouter } from 'next/navigation';
 const withAuth = (Component: React.ComponentType) => {
   const WrappedComponent = () => {
     const router = useRouter();
-    const [mounted, setMounted] = useState(false);
-    const accessToken = Storage.getItem(TOKEN.ACCESS);
+    const [isMounted, setIsMounted] = useState(false);
+    const hasAccessToken = Boolean(Storage.getItem(TOKEN.ACCESS));
 
     useEffect(() => {
       if (typeof window !== 'undefined') {
-        setMounted(true);
+        setIsMounted(true);
       }
     }, []);
 
     useEffect(() => {
-      if (mounted && !accessToken) {
+      if (isMounted && !hasAccessToken) {
         alert('이용하시려면 로그인이 필요합니다.');
-        router.push(ROUTES.LOGIN);
+        router.replace(ROUTES.LOGIN);
       }
-    }, [mounted, accessToken]);
+    }, [isMounted, hasAccessToken]);
     return <Component />;
   };
 
