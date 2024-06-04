@@ -3,6 +3,7 @@
 import AppLayout from '@/layouts/AppLayout';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import withAuth from '@/hocs/withAuth';
 
 const AnalysisPage = () => {
   return (
@@ -12,7 +13,7 @@ const AnalysisPage = () => {
   );
 };
 
-export default AnalysisPage;
+export default withAuth(AnalysisPage);
 
 const StyledAnalysisPage = styled.div`
   ${flex({ alignItems: 'center', justifyContent: 'center' })}
