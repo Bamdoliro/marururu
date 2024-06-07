@@ -71,11 +71,11 @@ const CollectionItem = () => {
           </Column>
         </Row>
         <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={112}>
+          <Td width="calc(100% / 4.9)" height={112} borderBottomLeftRadius={12}>
             일반
           </Td>
           <Column width="calc(100% / 1.64)">
-            <Td width="100%" height={56} borderBottomLeftRadius={12}>
+            <Td width="100%" height={56}>
               필수 : 가입자이름, 생년월일, 소속기관
             </Td>
             <Td width="100%" height={56} borderBottomRightRadius={12}>
