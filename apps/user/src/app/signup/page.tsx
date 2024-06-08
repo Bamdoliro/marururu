@@ -40,11 +40,11 @@ const SignUpPage = () => {
     <AppLayout>
       <StyledSignUpPage>
         <Image
-          src="/svg/signup_school_logo.svg"
+          src="/svg/logo.svg"
           style={{ margin: '0 auto' }}
           width={480}
           height={139}
-          alt="colabo-logo"
+          alt="logo"
         />
         <ContentBox>
           <SignUpBox>
@@ -90,7 +90,7 @@ const SignUpPage = () => {
                   errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
                 />
               )}
-              <Column gap={12}>
+              <Column gap={6}>
                 <PreviewInput
                   label="비밀번호"
                   width="100%"
