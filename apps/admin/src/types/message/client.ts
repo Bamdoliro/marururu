@@ -1,7 +1,7 @@
 export type Category =
   | 'RECEIVED'
   | 'REJECTED'
-  | 'MESTIER'
+  | 'MEISTER'
   | 'UNMEISTER'
   | 'FIRST_PASSED'
   | 'PASSED';
