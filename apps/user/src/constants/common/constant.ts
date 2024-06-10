@@ -28,6 +28,7 @@ export const ROUTES = {
   FAIR: '/fair',
   PRIVACYCOLLECTION: '/privacy-collection',
   TERMUSE: '/term-use',
+  FORM_MANAGEMENT: '/form-management',
 } as const;
 
 export const TOKEN = {
