@@ -14,7 +14,7 @@ const ApplyingTypeDetail = () => {
           구분
         </Th>
         <Th width={80} height={56} borderTopRightRadius={12}>
-          구분
+          지원자
         </Th>
       </Row>
       <Row>
