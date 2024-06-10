@@ -12,12 +12,12 @@ const NAVIGATION_LIST = [
     route: ROUTES.MAIN,
   },
   {
-    name: '성적 모의 계산',
-    route: ROUTES.SCORE_SIMULATION,
-  },
-  {
     name: '원서작성',
     route: ROUTES.FORM,
+  },
+  {
+    name: '원서관리',
+    route: ROUTES.FORM_MANAGEMENT,
   },
   {
     name: '공지사항',
