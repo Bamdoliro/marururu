@@ -3,9 +3,14 @@
 import { AppLayout } from '@/layouts';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import { Column, Text } from '@maru/ui';
+import { Column, Row, Text } from '@maru/ui';
 import { color } from '@maru/design-token';
-import { CallForInquiries } from '@/components/form-management';
+import {
+  CallForInquiries,
+  FormStatus,
+  CheckForm,
+  WriteNextForm,
+} from '@/components/form-management';
 
 const FormManagementPage = () => {
   return (
@@ -14,9 +19,16 @@ const FormManagementPage = () => {
         <Text fontType="H1" color={color.gray900}>
           원서 관리
         </Text>
-        <Column gap={30}>
-          <CallForInquiries />
-        </Column>
+        <Row gap={48} alignItems="center">
+          <Column gap={30}>
+            <FormStatus />
+            <CheckForm />
+          </Column>
+          <Column gap={30}>
+            <WriteNextForm />
+            <CallForInquiries />
+          </Column>
+        </Row>
       </StyledFormManagementPage>
     </AppLayout>
   );
