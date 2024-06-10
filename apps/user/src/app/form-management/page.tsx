@@ -11,8 +11,11 @@ import {
   CheckForm,
   WriteNextForm,
 } from '@/components/form-management';
+import { useFormStatusQuery } from '@/services/form/queries';
 
 const FormManagementPage = () => {
+  const { data: handleFormStatus } = useFormStatusQuery();
+
   return (
     <AppLayout header footer>
       <StyledFormManagementPage>
@@ -21,7 +24,7 @@ const FormManagementPage = () => {
         </Text>
         <Row gap={48} alignItems="center">
           <Column gap={30}>
-            <FormStatus />
+            <FormStatus status={handleFormStatus?.status} />
             <CheckForm />
           </Column>
           <Column gap={30}>
