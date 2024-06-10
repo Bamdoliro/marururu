@@ -1,6 +1,6 @@
 import { Column, Row, Td, Th } from '@maru/ui';
 
-const FirstRoundPassedDetail = () => {
+const FinalRoundPassedDetail = () => {
   return (
     <Column>
       <Row>
@@ -34,7 +34,7 @@ const FirstRoundPassedDetail = () => {
           <div>숫자</div>
         </Td>
         <Td width={80} height={56}>
-          <div></div>
+          <div>숫자</div>
         </Td>
       </Row>
       <Row>
@@ -210,4 +210,4 @@ const FirstRoundPassedDetail = () => {
   );
 };
 
-export default FirstRoundPassedDetail;
+export default FinalRoundPassedDetail;
