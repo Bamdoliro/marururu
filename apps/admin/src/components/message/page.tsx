@@ -13,8 +13,8 @@ const Message = () => {
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
   const [messageData, setMessageData] = useState({
     title: '',
-    content: '',
-    category: '',
+    text: '',
+    status: '',
   });
 
   const { handleMessagePostButtonClick } = useMessagePostAction(messageData);
@@ -24,7 +24,6 @@ const Message = () => {
   > = (e) => {
     const { name, value } = e.target;
     setMessageData({ ...messageData, [name]: value });
-
     resizeTextarea(contentTextareaRef);
   };
 
@@ -40,22 +39,22 @@ const Message = () => {
       <MessageHeader>
         <TitleInput
           name="title"
+          value={messageData.title}
           onChange={handleMessageDataChange}
           placeholder="제목을 입력해주세요"
         ></TitleInput>
         <Row gap={32}>
           <Dropdown
-            name="mail"
+            name="status"
             data={[
-              { value: 'SCHOOL_LIFE', label: '원서 승인 완료자' },
-              { value: 'SUBMIT_DOCUMENT', label: '원서 반려자' },
-              { value: 'ADMISSION_PROCESS', label: '1차 합격자' },
-              { value: 'MEISTER', label: '마이스터인재전형' },
-              { value: 'UNMEISTER', label: '마이스터 제외 합격자' },
-              { value: 'TOP_QUESTION', label: '최종 합격자' },
+              { value: 'APPROVED', label: '원서 승인 완료자' },
+              { value: 'REJECTED', label: '원서 반려자' },
+              { value: 'FIRST_PASSED', label: '1차 합격자' },
+              { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
+              { value: 'FINAL_SUBMITTED', label: '최종 합격자' },
             ]}
             size="SMALL"
-            value={MESSAGE_CATEGORY[messageData.category as Category]}
+            value={MESSAGE_CATEGORY[messageData.status as Category]}
             placeholder="받는 사람"
             width="160px"
             onChange={handleMessageCategoryChange}
@@ -68,8 +67,8 @@ const Message = () => {
       <Separator></Separator>
       <ContentTextarea
         ref={contentTextareaRef}
-        name="content"
-        value={messageData.content}
+        name="text"
+        value={messageData.text}
         onChange={handleMessageDataChange}
         placeholder="내용을 작성해주세요."
         rows={1}

@@ -1,20 +1,12 @@
 export type Category =
-  | 'RECEIVED'
+  | 'APPROVED'
   | 'REJECTED'
-  | 'MEISTER'
-  | 'UNMEISTER'
   | 'FIRST_PASSED'
-  | 'PASSED';
+  | 'MEISTER_TALENT'
+  | 'FINAL_SUBMITTED';
 
 export interface Message {
   title: string;
   text: string;
   status: Category;
 }
-
-export interface MessageDetail {
-  text: string;
-  status: Category;
-}
-
-export type MessageCategory = 'RECEIVED' | 'REJECTED' | 'FIRST_PASSED' | 'PASSED';

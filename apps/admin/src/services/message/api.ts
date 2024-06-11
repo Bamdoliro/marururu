@@ -3,6 +3,6 @@ import { authorization } from '@/apis/token';
 import type { PostMessageReq } from '@/types/message/remote';
 
 export const postMessage = async (messageData: PostMessageReq) => {
-  const { data } = await maru.post(`/message`, messageData, authorization());
+  const { data } = await maru.post(`/message/status`, messageData, authorization());
   return data;
 };
