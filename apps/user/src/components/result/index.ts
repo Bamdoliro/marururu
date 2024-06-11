@@ -1,6 +1,7 @@
 export { default as ResultMain } from './ResultMain/ResultMain';
-export { default as ResultTableItem } from './ResultTableItem/ResultTableItem';
-export { default as ResultTableFooter } from './ResultTableFooter/ResultTableFooter';
-export { default as ResultTableHeader } from './ResultTableHeader/ResultTableHeader';
+export { default as FirstResultTableItem } from './FirstResultTableItem/FirstResultTableItem';
+export { default as FinalResultTableFooter } from './ResultTableFooter/final/ResultTableFooter';
+export { default as FirstResultTableFooter } from './ResultTableFooter/first/ResultTableFooter';
 export { default as FirstResultTable } from './FirstResultTable/FirstResultTable';
 export { default as FinalResultTable } from './FinalResultTable/FinalResultTable';
+export { default as FinalResultTableItem } from './FinalResultTableItem/FinalResultTableItem';

@@ -13,6 +13,7 @@ import ApplyingType from '@/components/analysis/ApplyingType/ApplyingType';
 import GenderRatio from '@/components/analysis/GenderRatio/GenderRatio';
 import SchoolOrigin from '@/components/analysis/SchoolOrigin/SchoolOrigin';
 import styled from 'styled-components';
+import withAuth from '@/hocs/withAuth';
 
 const AnalysisPage = () => {
   const [currentAnalysisStep, setCurrentAnalysisStep] = useState('지원자 수 (경쟁률)');
@@ -48,7 +49,8 @@ const AnalysisPage = () => {
     </AppLayout>
   );
 };
-export default AnalysisPage;
+
+export default withAuth(AnalysisPage);
 
 const StyledAnalysisPage = styled.div`
   position: relative;

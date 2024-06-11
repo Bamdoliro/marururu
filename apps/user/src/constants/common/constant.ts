@@ -10,6 +10,8 @@ export const KEY = {
   FORM_STATUS: 'useFormStatus',
   FIRST_RESULT: 'useFirstResult',
   FINAL_RESULT: 'useFinalResult',
+  FAIR_LIST: 'useFairQuery',
+  ADMISSION_TICKET: 'useAdmissionTicket',
 } as const;
 
 export const ROUTES = {
@@ -23,6 +25,10 @@ export const ROUTES = {
   FINAL_RESULT: '/result/final',
   SCORE_SIMULATION: '/score-simulation',
   PRIVACY: '/privacy',
+  FAIR: '/fair',
+  PRIVACYCOLLECTION: '/privacy-collection',
+  TERMUSE: '/term-use',
+  FORM_MANAGEMENT: '/form-management',
 } as const;
 
 export const TOKEN = {

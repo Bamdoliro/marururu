@@ -26,6 +26,7 @@ import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
 import { usePrintFormURLAction, useSecondRoundResultEditAction } from './form.hooks';
+import withAuth from '@/hocs/withAuth';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();
@@ -178,7 +179,7 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default withAuth(MainPage);
 
 const StyledMainPage = styled.div`
   ${flex({ flexDirection: 'column' })}
