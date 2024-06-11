@@ -5,9 +5,9 @@ import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import FirstRoundPassed from './FirstRoundPassed/FirstRoundPassed';
-import SecondRoundPassed from './SecondRoundPassed/SecondRoundPassed';
-import FinalRoundPassed from './FinalRoundPassed/FinalRoundPassed';
+import FirstRoundPassedTable from './FirstRoundPassed/FirstRoundPassedTable';
+import SecondRoundPassedTable from './SecondRoundPassed/SecondRoundPassedTable';
+import FinalRoundPassedTable from './FinalRoundPassed/FinalRoundPassedTable';
 
 const GradeDistribution = () => {
   const [currentPassDetailStep, setCurrentPassDetailStep] = useState('1차 합격자');
@@ -30,9 +30,9 @@ const GradeDistribution = () => {
           <SwitchCase
             value={currentPassDetailStep}
             caseBy={{
-              '1차 합격자': <FirstRoundPassed />,
-              '2차 전형자': <SecondRoundPassed />,
-              '최종 합격자': <FinalRoundPassed />,
+              '1차 합격자': <FirstRoundPassedTable />,
+              '2차 전형자': <SecondRoundPassedTable />,
+              '최종 합격자': <FinalRoundPassedTable />,
             }}
           />
         </Column>

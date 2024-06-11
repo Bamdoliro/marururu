@@ -34,7 +34,7 @@ const SecondRoundPassedDetail = () => {
           <div>숫자</div>
         </Td>
         <Td width={80} height={56}>
-          <div></div>
+          <div>숫자</div>
         </Td>
       </Row>
       <Row>
