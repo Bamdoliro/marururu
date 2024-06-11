@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const maru = axios.create({
-  baseURL: 'https://maru-base.com',
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
