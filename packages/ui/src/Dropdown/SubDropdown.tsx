@@ -173,7 +173,7 @@ const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }
       : css`
           height: 40px;
           padding: 10px 10px 10px 16px;
-        `}
+        `};
 `;
 
 const DropdownListBox = styled.div<{ $isOpen: boolean }>`
@@ -186,7 +186,7 @@ const ChildDropdownListBox = styled.div<{ $isOpen: boolean }>`
   left: 100%;
   top: 0;
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
-  width: 280px; /* 두 줄로 표시하기 위해 너비를 늘림 */
+  width: 280px;
 `;
 
 const DropdownList = styled.div<{ $isMultiple?: boolean }>`
@@ -200,8 +200,7 @@ const DropdownList = styled.div<{ $isMultiple?: boolean }>`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   display: grid;
-  grid-template-columns: ${(props) =>
-    props.$isMultiple ? '1fr 1fr' : '1fr'}; /* 두 줄로 표시 */
+  grid-template-columns: ${(props) => (props.$isMultiple ? '1fr 1fr' : '1fr')};
   gap: 4px;
 `;
 
@@ -211,6 +210,7 @@ const DropdownItem = styled.button`
   width: 100%;
   height: 48px;
   cursor: pointer;
+
   &:hover {
     background-color: ${color.gray200};
   }
