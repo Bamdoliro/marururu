@@ -5,7 +5,6 @@ import { SwitchCase } from '@toss/react';
 import { flex } from '@maru/utils';
 import { useState } from 'react';
 import styled from 'styled-components';
-
 import FirstRoundPassed from './FirstRoundPassed/FirstRoundPassed';
 import SecondRoundPassed from './SecondRoundPassed/SecondRoundPassed';
 import FinalRoundPassed from './FinalRoundPassed/FinalRoundPassed';
