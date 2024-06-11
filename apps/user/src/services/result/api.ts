@@ -11,3 +11,11 @@ export const getFinalResult = async () => {
   const { data } = await maru.get<GetResultRes>('/form/result/final', authorization());
   return data;
 };
+
+export const getAdmissionTicket = async () => {
+  const { data } = await maru.get('/form/admission-ticket', {
+    ...authorization(),
+    responseType: 'blob',
+  });
+  return data;
+};
