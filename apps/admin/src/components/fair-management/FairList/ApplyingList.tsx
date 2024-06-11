@@ -33,8 +33,8 @@ export default ApplyingList;
 
 const StyledFairList = styled.div<{ itemCount: number }>`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 16px;
+  grid-template-columns: ${({ itemCount }) => (itemCount > 1 ? 'repeat(2, 1fr)' : '1fr')};
+  gap: 8px;
 
   @media (min-width: 800px) {
     grid-template-columns: ${({ itemCount }) =>

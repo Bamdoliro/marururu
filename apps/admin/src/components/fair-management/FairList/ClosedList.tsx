@@ -37,7 +37,7 @@ export default ClosedList;
 const StyledFairList = styled.div<{ itemCount: number }>`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 16px;
+  gap: 8px;
 
   @media (min-width: 800px) {
     grid-template-columns: ${({ itemCount }) =>
