@@ -4,6 +4,7 @@ export const KEY = {
   SECOND_SCORE_FORMAT: 'useSecondScoreFormat',
   ADMIN: 'useAdmin',
   FAQ_LIST: 'useFaqList',
+  ANALYSIS_LIST: 'useAnalysisList',
   FAQ_DETAIL: 'useFaqDetail',
   NOTICE_DETAIL: 'useNoticeDetail',
   EXPORT_EXCEL: 'useExportExcel',
