@@ -34,11 +34,11 @@ const LoginPage = () => {
             height="100%"
           >
             <Image
-              src="/svg/simbol.svg"
+              src="/svg/logo.svg"
               onClick={handleMoveMainPage}
               style={{ cursor: 'pointer' }}
-              width={170}
-              height={100}
+              width={232}
+              height={70}
               alt="logo"
             />
             <Column gap={36} width="100%">
@@ -63,8 +63,8 @@ const LoginPage = () => {
                 <Button width="100%" onClick={handleLogin}>
                   로그인
                 </Button>
-                <FindPasswordLink href={ROUTES.MAIN}>
-                  비밀번호 찾기
+                <FindPasswordLink href={ROUTES.CHANGE_PASSWORD}>
+                  비밀번호 변경
                   <IconArrowRight color={color.gray500} width={16} height={16} />
                 </FindPasswordLink>
               </Column>

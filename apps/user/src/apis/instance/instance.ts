@@ -2,7 +2,7 @@ import axios from 'axios';
 import { refreshToken } from '../token';
 
 export const maru = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: 'https://maru-base.com',
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
