@@ -35,11 +35,12 @@
     "typescript": "5.1.6"
   },
   "dependencies": {
+    "@maru/design-token": "workspace:*",
     "@maru/hooks": "workspace:*",
     "@maru/icon": "workspace:*",
-    "@maru/design-token": "workspace:*",
     "@maru/ui": "workspace:*",
     "@maru/utils": "workspace:*",
+    "@suspensive/react-query": "^1.18.1",
     "@tanstack/react-query": "^4.32.6",
     "@tanstack/react-query-devtools": "^4.32.6",
     "@toss/react": "^1.5.0",
