@@ -22,7 +22,7 @@ const FormManagementPage = () => {
         <Text fontType="H1" color={color.gray900}>
           원서 관리
         </Text>
-        <Row gap={48} alignItems="center">
+        <Row gap={24} alignItems="center">
           <Column gap={30}>
             <FormStatus status={handleFormStatus?.status} />
             <CheckForm />
