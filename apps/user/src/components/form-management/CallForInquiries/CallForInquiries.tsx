@@ -30,7 +30,7 @@ export default CallForInquiries;
 
 const StyledApplicationBox = styled.div`
   ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
-  width: 492px;
+  width: 400px;
   height: 260px;
   padding: 36px 32px;
   background-color: ${color.white};
