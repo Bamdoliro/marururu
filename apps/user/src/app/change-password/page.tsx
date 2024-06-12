@@ -14,19 +14,24 @@ import {
   TimeLimitInput,
 } from '@maru/ui';
 import { useState } from 'react';
-import { useInput, useVerificationCodeAction } from '../signup/signup.hooks';
+import {
+  useInput,
+  useUpdateAction,
+  useVerificationCodeAction,
+} from './change-password.hooks';
 import { Validate } from '@/components/signup';
 
 const ChangePasswordPage = () => {
   const [timerTime, setTimerTime] = useState(0);
-  const { joinUser, handleJoinUserChange } = useInput();
+  const { updateUser, handleUpdateUserChange } = useInput();
   const {
     handleRequestVerificationCode,
     handleVerificationCodeConfirm,
     isVerificationCodeDisabled,
     isVerificationCodeConfirm,
     isVerificationCodeSend,
-  } = useVerificationCodeAction(joinUser);
+  } = useVerificationCodeAction(updateUser);
+  const { handleUpdate } = useUpdateAction(updateUser);
 
   const startTimer = () => {
     setTimerTime(300);
@@ -51,8 +56,8 @@ const ChangePasswordPage = () => {
               placeholder="- 없이 입력해주세요."
               width="100%"
               name="phoneNumber"
-              onChange={handleJoinUserChange}
-              value={joinUser.phoneNumber}
+              onChange={handleUpdateUserChange}
+              value={updateUser.phoneNumber}
             />
             {isVerificationCodeSend && (
               <TimeLimitInput
@@ -60,11 +65,11 @@ const ChangePasswordPage = () => {
                 width="100%"
                 maxLength={6}
                 name="code"
-                onChange={handleJoinUserChange}
+                onChange={handleUpdateUserChange}
                 onClick={handleVerificationCodeConfirm}
                 timerTime={isVerificationCodeConfirm ? 0 : timerTime}
                 setTimerTime={setTimerTime}
-                isError={joinUser.code.length < 6}
+                isError={updateUser.code.length < 6}
                 buttonText="인증번호 확인"
                 enabled={isVerificationCodeConfirm}
                 errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
@@ -76,17 +81,18 @@ const ChangePasswordPage = () => {
                 width="100%"
                 name="password"
                 placeholder="새 비밀번호를 입력해주세요."
-                onChange={handleJoinUserChange}
+                onChange={handleUpdateUserChange}
               />
-              {Validate(joinUser.password)}
+              {Validate(updateUser.password)}
             </Column>
             <PreviewInput
               label="비밀번호 재입력"
               width="100%"
               name="password_confirm"
               placeholder="비밀번호를 다시 입력해주세요."
+              onChange={handleUpdateUserChange}
             />
-            <Button>비밀번호 변경</Button>
+            <Button onClick={handleUpdate}>비밀번호 변경</Button>
           </Column>
         </ChagePasswordBox>
       </StyledChangePasswordPage>

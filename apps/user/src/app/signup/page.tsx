@@ -110,7 +110,6 @@ const SignUpPage = () => {
                 errorMessage="비밀번호가 맞지 않습니다."
               />
             </Column>
-            {/* 이용약관 동의 */}
             <Terms setTermsAgree={setTermsAgree} />
             <Button width="100%" onClick={handleJoin}>
               회원가입
