@@ -8,7 +8,7 @@ import { useFairPostAction } from './Post.hooks';
 
 const FairPost = () => {
   const [fairData, setFairData] = useState({
-    formUrl: '',
+    applicationUrl: '',
     type: 'STUDENT_AND_PARENT',
     place: '',
     capacity: 0,
@@ -44,7 +44,7 @@ const FairPost = () => {
               label="폼 링크"
               width="100%"
               name="formUrl"
-              value={fairData.formUrl}
+              value={fairData.applicationUrl}
               placeholder="폼의 링크를 삽입해주세요."
               onChange={handleInputChange}
             />
