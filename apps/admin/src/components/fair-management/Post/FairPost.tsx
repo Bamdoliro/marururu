@@ -9,15 +9,15 @@ import { formatDate, formatTime } from '@/utils';
 
 const FairPost = () => {
   const [fairData, setFairData] = useState({
-    applicationUrl: '',
-    type: 'STUDENT_AND_PARENT',
-    place: '',
-    capacity: 100,
-    applicationStartDate: '',
-    applicationEndDate: '',
+    start: '',
     startDate: '',
     startHour: '',
-    start: '',
+    capacity: 100,
+    place: '',
+    applicationUrl: '',
+    type: '',
+    applicationStartDate: '',
+    applicationEndDate: '',
   });
 
   useEffect(() => {

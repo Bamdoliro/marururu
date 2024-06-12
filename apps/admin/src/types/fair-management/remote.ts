@@ -5,10 +5,10 @@ export interface GetFairListRes {
 }
 
 export interface PostFairReq {
-  applicationUrl: string;
   start: string;
   capacity: number;
   place: string;
+  applicationUrl: string;
   type: string;
   applicationStartDate: string;
   applicationEndDate: string;
