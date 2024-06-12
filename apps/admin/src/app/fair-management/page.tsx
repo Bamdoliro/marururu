@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-const FairManagement = () => {
+const FairManagementPage = () => {
   const [status, setStatus] = useState('진행 중인 신청');
   const routes = useRouter();
 
@@ -68,7 +68,7 @@ const FairManagement = () => {
   );
 };
 
-export default withAuth(FairManagement);
+export default withAuth(FairManagementPage);
 
 const StyledFairManagementPage = styled.div`
   ${flex({ flexDirection: 'column' })}
