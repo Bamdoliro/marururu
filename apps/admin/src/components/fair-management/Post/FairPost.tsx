@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import { color } from '@maru/design-token';
-import { Button, Column, Input, RadioGroup } from '@maru/ui';
+import { Button, Column, Input, RadioGroup, Row } from '@maru/ui';
 import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { useFairPostAction } from './Post.hooks';
@@ -39,7 +39,7 @@ const FairPost = () => {
     <StyledCreateFairBox>
       <Column gap={58} alignItems="center" width={360}>
         <Column gap="36px" width="100%">
-          <Column gap="24px">
+          <Column gap="18px">
             <Input
               label="폼 링크"
               width="100%"
@@ -66,6 +66,40 @@ const FairPost = () => {
               value={fairData.place}
               onChange={handleInputChange}
             />
+            <Input
+              label="입학설명회 날짜(yyyymmdd)"
+              width="100%"
+              name="startDate"
+              placeholder="날짜를 입력해주세요."
+              value={fairData.start}
+              onChange={handleInputChange}
+            />
+            <Input
+              label="시간(hhmm)"
+              width="100%"
+              name="startHour"
+              placeholder="시간을 입력해주세요."
+              value={fairData.start}
+              onChange={handleInputChange}
+            />
+            <Row gap={5} alignItems="center">
+              <Input
+                label="신청 기한(yyyymmdd)"
+                width="50%"
+                name="applicationStartDate"
+                placeholder="시작일"
+                value={fairData.applicationStartDate}
+                onChange={handleInputChange}
+              />
+              <Input
+                label="ㅤ"
+                width="50%"
+                name="applicationEndDate"
+                placeholder="마감일"
+                value={fairData.applicationEndDate}
+                onChange={handleInputChange}
+              />
+            </Row>
           </Column>
         </Column>
         <Button size="SMALL" onClick={handleFairPostButtonClick}>
@@ -85,7 +119,7 @@ const StyledCreateFairBox = styled.div`
     alignItems: 'center',
   })}
   width: 500px;
-  height: 703px;
+  height: 690px;
   padding: 28px 32px;
   background-color: ${color.gray50};
   border: 1px solid ${color.gray200};
