@@ -58,7 +58,7 @@ importers:
         version: link:../../packages/utils
       '@suspensive/react-query':
         specifier: ^1.18.1
-        version: 1.18.1(@tanstack/react-query@4.32.6)(react@18.2.0)
+        version: 1.18.1(@suspensive/react@1.18.1)(@tanstack/react-query@4.32.6)(react@18.2.0)
       '@tanstack/react-query':
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
@@ -6415,22 +6415,6 @@ packages:
         optional: true
     dependencies:
       '@suspensive/react': 1.18.1(react@18.2.0)
-      '@tanstack/react-query': 4.32.6(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-    dev: false
-    bundledDependencies:
-      - tsd
-
-  /@suspensive/react-query@1.18.1(@tanstack/react-query@4.32.6)(react@18.2.0):
-    resolution: {integrity: sha512-ZMJ1Ev4eg0A8jcozyNWtROCUzRhKRrVgOI4yQUAO4s2uoFZsk5X4wPYM93fC/CXgQCfD9oGlnPdk0nSMwPkcIQ==}
-    peerDependencies:
-      '@suspensive/react': ^1.18.1
-      '@tanstack/react-query': ^4
-      react: ^16.8 || ^17 || ^18
-    peerDependenciesMeta:
-      '@suspensive/react':
-        optional: true
-    dependencies:
       '@tanstack/react-query': 4.32.6(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
     dev: false
