@@ -1,0 +1,12 @@
+{
+  "name": "@maru/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.13"
+  }
+}
