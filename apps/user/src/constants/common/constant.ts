@@ -28,6 +28,7 @@ export const ROUTES = {
   FAIR: '/fair',
   PRIVACYCOLLECTION: '/privacy-collection',
   TERMUSE: '/term-use',
+  CHANGE_PASSWORD: '/change-password',
   FORM_MANAGEMENT: '/form-management',
 } as const;
 
