@@ -1,28 +1,58 @@
+import { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import { color } from '@maru/design-token';
 import { Button, Column, Input, RadioGroup, Row } from '@maru/ui';
-import type { ChangeEvent } from 'react';
-import { useState } from 'react';
 import { useFairPostAction } from './Post.hooks';
+import type { ChangeEvent } from 'react';
+import { formatDate, formatTime } from '@/utils';
 
 const FairPost = () => {
   const [fairData, setFairData] = useState({
     applicationUrl: '',
     type: 'STUDENT_AND_PARENT',
     place: '',
-    capacity: 0,
+    capacity: 100,
     applicationStartDate: '',
     applicationEndDate: '',
+    startDate: '',
+    startHour: '',
     start: '',
   });
 
+  useEffect(() => {
+    if (fairData.startDate && fairData.startHour) {
+      const combinedStart = `${fairData.startDate}T${fairData.startHour}:00`;
+      setFairData((prevData) => ({
+        ...prevData,
+        start: combinedStart,
+      }));
+    }
+  }, [fairData.startDate, fairData.startHour]);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFairData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    if (
+      name === 'startDate' ||
+      name === 'applicationStartDate' ||
+      name === 'applicationEndDate'
+    ) {
+      setFairData((prevData) => ({
+        ...prevData,
+        [name]: formatDate(value),
+      }));
+    } else if (name === 'startHour') {
+      setFairData((prevData) => ({
+        ...prevData,
+        [name]: formatTime(value),
+      }));
+    } else {
+      setFairData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +73,7 @@ const FairPost = () => {
             <Input
               label="폼 링크"
               width="100%"
-              name="formUrl"
+              name="applicationUrl"
               value={fairData.applicationUrl}
               placeholder="폼의 링크를 삽입해주세요."
               onChange={handleInputChange}
@@ -71,7 +101,7 @@ const FairPost = () => {
               width="100%"
               name="startDate"
               placeholder="날짜를 입력해주세요."
-              value={fairData.start}
+              value={fairData.startDate}
               onChange={handleInputChange}
             />
             <Input
@@ -79,7 +109,7 @@ const FairPost = () => {
               width="100%"
               name="startHour"
               placeholder="시간을 입력해주세요."
-              value={fairData.start}
+              value={fairData.startHour}
               onChange={handleInputChange}
             />
             <Row gap={5} alignItems="center">
