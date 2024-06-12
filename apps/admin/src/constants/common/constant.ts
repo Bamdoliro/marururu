@@ -24,7 +24,7 @@ export const ROUTES = {
   LOGIN: '/login',
   FORM: '/form',
   FAIR_MANAGEMENT: '/fair-management',
-  CREATE_FAIR: '/fair-management/create',
+  CREATE_FAIR: '/fair-management/post',
 } as const;
 
 export const TOKEN = {
