@@ -5,7 +5,12 @@ import { Button, Row, UnderlineButton } from '@maru/ui';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
 import Profile from './Profile/Profile';
+import { 제출_마감_날짜, 제출_시작_날짜 } from '@/constants/form/constant';
+import GuardFormModal from '@/components/main/GuardFormModal/GuardFormModal';
+import { useOverlay } from '@toss/use-overlay';
+
 const NAVIGATION_LIST = [
   {
     name: '홈',
@@ -33,6 +38,20 @@ const Header = () => {
   const router = useRouter();
   const pathName = usePathname();
   const { isLoggedIn } = useUser();
+  const overlay = useOverlay();
+
+  const handleNavigationClick = (route: string) => {
+    if (route === ROUTES.FORM) {
+      const now = dayjs();
+      if (!now.isBetween(제출_시작_날짜, 제출_마감_날짜)) {
+        overlay.open(({ isOpen, close }) => (
+          <GuardFormModal isOpen={isOpen} onClose={close} />
+        ));
+        return;
+      }
+    }
+    router.push(route);
+  };
 
   return (
     <StyledHeader>
@@ -73,17 +92,15 @@ const Header = () => {
           )}
         </Row>
         <Row style={{ padding: '0px 96px' }} alignItems="center">
-          {NAVIGATION_LIST.map(({ route, name }, index) => {
-            return (
-              <UnderlineButton
-                key={`navigation ${index}`}
-                active={route === pathName}
-                onClick={() => router.push(route)}
-              >
-                {name}
-              </UnderlineButton>
-            );
-          })}
+          {NAVIGATION_LIST.map(({ route, name }, index) => (
+            <UnderlineButton
+              key={`navigation ${index}`}
+              active={route === pathName}
+              onClick={() => handleNavigationClick(route)}
+            >
+              {name}
+            </UnderlineButton>
+          ))}
         </Row>
       </HeaderBox>
     </StyledHeader>
