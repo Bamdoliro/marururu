@@ -9,7 +9,6 @@ export const KEY = {
   EXPORT_EXCEL: 'useExportExcel',
   FORM_DETAIL: 'useFormDetail',
   FORM_URL: 'useFormURL',
-  FAIR_LIST: 'useFairQuery',
 };
 
 export const ROUTES = {
@@ -23,8 +22,6 @@ export const ROUTES = {
   ANALYSIS: '/analysis',
   LOGIN: '/login',
   FORM: '/form',
-  FAIR_MANAGEMENT: '/fair-management',
-  CREATE_FAIR: '/fair-management/post',
 } as const;
 
 export const TOKEN = {
