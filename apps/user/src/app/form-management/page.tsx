@@ -27,7 +27,7 @@ const FormManagementPage = () => {
             <FormStatus status={handleFormStatus?.status} />
             <CheckForm />
           </Column>
-          <Column gap={30}>
+          <Column gap={15}>
             <WriteNextForm />
             <CallForInquiries />
           </Column>
