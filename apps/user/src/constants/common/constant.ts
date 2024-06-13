@@ -29,7 +29,10 @@ export const ROUTES = {
   PRIVACYCOLLECTION: '/privacy-collection',
   TERMUSE: '/term-use',
   CHANGE_PASSWORD: '/change-password',
+<<<<<<< HEAD
   FORM_MANAGEMENT: '/form-management',
+=======
+>>>>>>> parent of 041e7eb9 (Merge branch 'develop' of https://github.com/Bamdoliro/marururu into feat/#499)
 } as const;
 
 export const TOKEN = {
