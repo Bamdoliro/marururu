@@ -1,39 +1,35 @@
 import {
-  useJoinUserMutation,
+  useUpdateUserMutation,
   useRequestVerificationCodeMutation,
   useVerificationMutation,
 } from '@/services/auth/mutations';
-import type { Join } from '@/types/auth/client';
+import type { Update } from '@/types/auth/client';
 import type { ChangeEventHandler } from 'react';
 import { useState } from 'react';
 
-export const useJoinAction = (joinUserData: Join, termsAgree: boolean) => {
-  const { joinUserMutate } = useJoinUserMutation(joinUserData);
+export const useUpdateAction = (updateUserData: Update) => {
+  const { updateUserMutate } = useUpdateUserMutation(updateUserData);
 
-  const handleJoin = () => {
-    if (joinUserData.password === joinUserData.password_confirm) {
-      if (termsAgree) {
-        joinUserMutate();
-      } else {
-        alert('이용약관 동의를 해주세요');
-      }
+  const handleUpdate = () => {
+    if (updateUserData.password === updateUserData.password_confirm) {
+      updateUserMutate();
     } else {
       alert('비밀번호를 한번만 확인해주세요');
     }
   };
 
-  return { handleJoin };
+  return { handleUpdate };
 };
 
-export const useVerificationCodeAction = (joinUserData: Join) => {
+export const useVerificationCodeAction = (updateUserData: Update) => {
   const [isVerificationCodeSend, setIsVerificationCodeSend] = useState(false);
   const [isVerificationCodeDisabled, setisVerificationCodeDisabled] = useState(false);
   const [isVerificationCodeConfirm, setisVerificationCodeConfirm] = useState(false);
 
   const { verificationMutate } = useVerificationMutation(setisVerificationCodeConfirm);
   const { requestVerificationCodeMutate } = useRequestVerificationCodeMutation(
-    joinUserData.phoneNumber,
-    'SIGNUP'
+    updateUserData.phoneNumber,
+    'UPDATE_PASSWORD'
   );
 
   const handleRequestVerificationCode = () => {
@@ -49,7 +45,7 @@ export const useVerificationCodeAction = (joinUserData: Join) => {
   };
 
   const handleVerificationCodeConfirm = () => {
-    verificationMutate(joinUserData);
+    verificationMutate(updateUserData);
   };
 
   return {
@@ -62,19 +58,19 @@ export const useVerificationCodeAction = (joinUserData: Join) => {
 };
 
 export const useInput = () => {
-  const [joinUser, setJoinUser] = useState<Join>({
+  const [updateUser, setUpdateUser] = useState<Update>({
     phoneNumber: '',
     code: '',
     name: '',
     password: '',
     password_confirm: '',
-    type: 'SIGNUP',
+    type: 'UPDATE_PASSWORD',
   });
 
-  const handleJoinUserChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleUpdateUserChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-    setJoinUser({ ...joinUser, [name]: value });
+    setUpdateUser({ ...updateUser, [name]: value });
   };
 
-  return { joinUser, handleJoinUserChange };
+  return { updateUser, handleUpdateUserChange };
 };

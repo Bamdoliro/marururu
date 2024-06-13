@@ -4,4 +4,14 @@ export interface Join {
   name: string;
   password: string;
   password_confirm?: string;
+  type: string;
+}
+
+export interface Update {
+  phoneNumber: string;
+  code: string;
+  name: string;
+  password: string;
+  password_confirm?: string;
+  type: string;
 }
