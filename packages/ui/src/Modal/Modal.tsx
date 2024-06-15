@@ -2,6 +2,7 @@ import { color } from '@maru/design-token';
 import { IconClose } from '@maru/icon';
 import { flex } from '@maru/utils';
 import type { CSSProperties, ReactNode } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Button from '../Button/Button';
 import Column from '../Flex/Column';
@@ -17,7 +18,7 @@ interface Props {
   style?: CSSProperties;
   height?: CSSProperties['height'];
   width?: CSSProperties['width'];
-  mode: 'complete' | 'check';
+  mode: 'complete' | 'check' | 'login';
 }
 
 const Modal = ({
@@ -59,6 +60,15 @@ const Modal = ({
               </Button>
               <Button size="SMALL" onClick={onConfirm}>
                 완료
+              </Button>
+            </>
+          ) : mode === 'login' ? (
+            <>
+              <Button styleType="SECONDARY" size="SMALL" onClick={onClose}>
+                닫기
+              </Button>
+              <Button size="SMALL" onClick={onConfirm}>
+                로그인 하러 가기
               </Button>
             </>
           ) : (
