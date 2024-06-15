@@ -14,6 +14,45 @@ const nextConfig = {
   //     },
   //   ];
   // },
+  async redirects() {
+    return [
+      {
+        source: '/login',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/form',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/form-management',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/error',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/not-found',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/result/first',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/result/final',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

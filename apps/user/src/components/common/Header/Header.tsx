@@ -8,14 +8,14 @@ import styled from 'styled-components';
 import dayjs from 'dayjs';
 import Profile from './Profile/Profile';
 import {
-  // 이차_전형_끝,
-  // 이차_전형_시작,
-  // 일차_합격_발표,
-  // 입학_등록_기간,
-  // 입학_등록_기간_마감,
+  이차_전형_끝,
+  이차_전형_시작,
+  일차_합격_발표,
+  입학_등록_기간,
+  입학_등록_기간_마감,
   제출_마감_날짜,
   제출_시작_날짜,
-  // 최종_합격_발표,
+  최종_합격_발표,
 } from '@/constants/form/constant';
 import GuardFormModal from '@/components/main/GuardFormModal/GuardFormModal';
 import { useOverlay } from '@toss/use-overlay';
@@ -28,12 +28,12 @@ const NAVIGATION_LIST = [
     route: ROUTES.MAIN,
   },
   {
-    name: '성적 모의 계산',
-    route: ROUTES.SCORE_SIMULATION,
-  },
-  {
     name: '원서작성',
     route: ROUTES.FORM,
+  },
+  {
+    name: '원서관리',
+    route: ROUTES.FORM_MANAGEMENT,
   },
   {
     name: '공지사항',
@@ -74,6 +74,24 @@ const Header = () => {
         return;
       }
     }
+
+    if (route === ROUTES.FORM_MANAGEMENT) {
+      const now = dayjs();
+      const notAdmissionProcess = !(
+        now.isBetween(제출_시작_날짜, 제출_마감_날짜) ||
+        now.isBetween(이차_전형_시작, 이차_전형_끝) ||
+        now.isBetween(일차_합격_발표, 최종_합격_발표) ||
+        now.isBetween(입학_등록_기간, 입학_등록_기간_마감)
+      );
+
+      if (notAdmissionProcess) {
+        overlay.open(({ isOpen, close }) => (
+          <GuardFormModal isOpen={isOpen} onClose={close} />
+        ));
+        return;
+      }
+    }
+
     router.push(route);
   };
 
