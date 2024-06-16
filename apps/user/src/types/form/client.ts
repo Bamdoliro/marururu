@@ -91,6 +91,7 @@ export interface VolunteerInfo {
 export interface School {
   name: string;
   location: string;
+  address: string;
   code: string;
 }
 
