@@ -18,11 +18,11 @@ const SchoolList = ({ school, setSchool, debouncedSchoolSearchQuery }: Props) =>
 
   return schoolListData ? (
     <StyledSchoolList>
-      {schoolListData.map(({ name, location, code }: School) => (
+      {schoolListData.map(({ name, location, code, address }: School) => (
         <SchoolItem
           key={code}
           selected={school.code === code}
-          onClick={() => setSchool({ name, location, code })}
+          onClick={() => setSchool({ name, location, code, address })}
         >
           <SchoolName>
             {school.code === code && (
