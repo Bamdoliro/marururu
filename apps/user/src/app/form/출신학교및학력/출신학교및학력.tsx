@@ -33,17 +33,31 @@ const 출신학교및학력 = () => {
           value={form.education.graduationType}
           onChange={handle출신학교및학력Change}
         />
-        <ButtonInput
-          name="schoolName"
-          label="출신학교"
-          value={form.education.schoolName}
-          buttonText="검색"
-          onClick={openFindSchoolModal}
-          placeholder="검색 버튼을 눌러 학교를 검색하세요."
-          readOnly
-          isError={form.education.schoolName.length > 20}
-          errorMessage="20자 이하여야 합니다."
-        />
+        <Row gap={48} alignItems="center">
+          <ButtonInput
+            name="schoolName"
+            label="출신학교"
+            value={form.education.schoolName}
+            buttonText="검색"
+            onClick={openFindSchoolModal}
+            placeholder="검색 버튼을 눌러 학교를 검색하세요."
+            readOnly
+            isError={form.education.schoolName.length > 20}
+            errorMessage="20자 이하여야 합니다."
+          />
+          <Input
+            name="schoolAddress"
+            label="도로명주소"
+            placeholder="학교를 선택하면 자동완성됩니다."
+            width="100%"
+            value={form.education.schoolAddress}
+            onChange={handle출신학교및학력Change}
+            isError={
+              !!form.education.schoolAddress && form.education.schoolAddress.length > 20
+            }
+            errorMessage="20자 이하여야 합니다."
+          />
+        </Row>
         <Row gap={48} alignItems="center">
           <Input
             name="graduationYear"
