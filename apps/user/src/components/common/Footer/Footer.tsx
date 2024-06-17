@@ -50,12 +50,14 @@ const Footer = () => {
               width={36}
               height={36}
               alt="round-instagram"
+              onClick={() => window.open('https://www.instagram.com/bamdoliro/')}
             />
             <Image
               src="/svg/round_bamdoliro.svg"
               width={36}
               height={36}
               alt="round-bamdoliro"
+              onClick={() => window.open('https://github.com/Bamdoliro')}
             />
           </Row>
         </Row>
