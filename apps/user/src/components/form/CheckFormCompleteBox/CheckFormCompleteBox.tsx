@@ -36,7 +36,7 @@ const CheckFormCompleteBox = ({
       <CheckFormComplete
         onClick={() => setFormStep('출신학교및학력')}
         formStep="출신학교 및 학력"
-        maxCompleteOfNumber={8}
+        maxCompleteOfNumber={9}
         completeOfNumber={educationFilledCount}
       />
       <CheckFormComplete
