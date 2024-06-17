@@ -58,3 +58,8 @@ export const getFormStatus = async () => {
   const { data } = await maru.get<GetFormStatusRes>('/form/status', authorization());
   return data;
 };
+
+export const putCorrectionForm = async (formId: number, formData: Form) => {
+  const { data } = await maru.put(`/form/${formId}`, formData, authorization());
+  return data;
+};

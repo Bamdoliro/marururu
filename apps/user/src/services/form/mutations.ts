@@ -10,6 +10,7 @@ import {
   postSubmitFinalForm,
   postUploadFormDocumnet,
   postUploadProfileImage,
+  putCorrectionForm,
 } from './api';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
@@ -83,4 +84,19 @@ export const useUploadProfileImageMutation = () => {
   });
 
   return { uploadProfileImageMutate, ...restMutation };
+};
+
+export const useCorrectionTestMutation = (formId: number, formData: Form) => {
+  const { handleError } = useApiError();
+  const setFormStep = useSetFormStepStore();
+
+  const { mutate: correctionFormMutate, ...restMutation } = useMutation({
+    mutationFn: () => putCorrectionForm(formId, formData),
+    onSuccess: () => {
+      setFormStep('최종제출완료');
+    },
+    onError: handleError,
+  });
+
+  return { correctionFormMutate, ...restMutation };
 };
