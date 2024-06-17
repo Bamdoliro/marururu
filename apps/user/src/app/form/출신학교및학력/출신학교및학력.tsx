@@ -53,9 +53,9 @@ const 출신학교및학력 = () => {
             value={form.education.schoolAddress}
             onChange={handle출신학교및학력Change}
             isError={
-              !!form.education.schoolAddress && form.education.schoolAddress.length > 20
+              !!form.education.schoolAddress && form.education.schoolAddress.length > 40
             }
-            errorMessage="20자 이하여야 합니다."
+            errorMessage="40자 이하여야 합니다."
           />
         </Row>
         <Row gap={48} alignItems="center">
