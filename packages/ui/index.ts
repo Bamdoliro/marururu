@@ -5,6 +5,7 @@ export { default as UnderlineButton } from './src/Button/UnderlineButton';
 export { default as CheckBox } from './src/CheckBox/CheckBox';
 export { default as Confirm } from './src/Confirm/Confirm';
 export { default as Dropdown } from './src/Dropdown/Dropdown';
+export { default as SubDropdown } from './src/Dropdown/SubDropdown';
 export { default as Column } from './src/Flex/Column';
 export { default as Row } from './src/Flex/Row';
 export { default as ButtonInput } from './src/Input/ButtonInput';

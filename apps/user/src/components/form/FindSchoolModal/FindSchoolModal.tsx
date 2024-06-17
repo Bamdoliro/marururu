@@ -52,6 +52,7 @@ const FindSchoolModal = ({ isOpen, onClose }: Props) => {
       title="학교 검색"
       onClose={handleCloseModal}
       onConfirm={handleConfirmModal}
+      mode="complete"
     >
       <Column gap={16}>
         <SearchInput

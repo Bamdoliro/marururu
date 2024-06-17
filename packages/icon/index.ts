@@ -29,4 +29,4 @@ export { default as IconVisibleEye } from './src/IconVisibleEye';
 export { default as IconTerms } from './src/IconTerms';
 export { default as IconSignUpCheckFalse } from './src/IconSignUpCheckFalse';
 export { default as IconSignUpCheckTrue } from './src/IconSignUpCheckTrue';
-export { default as IconPhone } from './src/IconPhone';
+export { default as IconCalendar } from './src/IconCalender';

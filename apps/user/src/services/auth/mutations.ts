@@ -4,6 +4,7 @@ import { useApiError } from '@/hooks';
 import type {
   PatchVerificationReq,
   PostJoinAuthReq,
+  PatchUpdateAuthReq,
   PostLoginAuthReq,
 } from '@/types/auth/remote';
 import { useMutation } from '@tanstack/react-query';
@@ -14,6 +15,7 @@ import {
   deleteLogoutUser,
   patchVerification,
   postJoinUser,
+  patchUpdateUser,
   postLoginUser,
   postRequestVerificationCode,
 } from './api';
@@ -52,11 +54,27 @@ export const useJoinUserMutation = ({ phoneNumber, name, password }: PostJoinAut
   return { joinUserMutate, ...restMutation };
 };
 
-export const useRequestVerificationCodeMutation = (phoneNumber: string) => {
+export const useUpdateUserMutation = ({ phoneNumber, password }: PatchUpdateAuthReq) => {
+  const router = useRouter();
+  const { handleError } = useApiError();
+
+  const { mutate: updateUserMutate, ...restMutation } = useMutation({
+    mutationFn: () => patchUpdateUser({ phoneNumber, password }),
+    onSuccess: () => {
+      alert('비밀번호 변경 성공');
+      router.push(ROUTES.LOGIN);
+    },
+    onError: handleError,
+  });
+
+  return { updateUserMutate, ...restMutation };
+};
+
+export const useRequestVerificationCodeMutation = (phoneNumber: string, type: string) => {
   const { handleError } = useApiError();
 
   const { mutate: requestVerificationCodeMutate, ...restMutation } = useMutation({
-    mutationFn: () => postRequestVerificationCode(phoneNumber),
+    mutationFn: () => postRequestVerificationCode(phoneNumber, type),
     onError: handleError,
   });
 
@@ -69,8 +87,8 @@ export const useVerificationMutation = (
   const { handleError } = useApiError();
 
   const { mutate: verificationMutate, ...restMutation } = useMutation({
-    mutationFn: ({ code, phoneNumber }: PatchVerificationReq) =>
-      patchVerification({ code, phoneNumber }),
+    mutationFn: ({ code, phoneNumber, type }: PatchVerificationReq) =>
+      patchVerification({ code, phoneNumber, type }),
     onSuccess: () => {
       alert('인증 성공');
       setIsSuccessVerification(true);

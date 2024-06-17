@@ -4,11 +4,14 @@ export const KEY = {
   SECOND_SCORE_FORMAT: 'useSecondScoreFormat',
   ADMIN: 'useAdmin',
   FAQ_LIST: 'useFaqList',
+  ANALYSIS_LIST: 'useAnalysisList',
   FAQ_DETAIL: 'useFaqDetail',
   NOTICE_DETAIL: 'useNoticeDetail',
   EXPORT_EXCEL: 'useExportExcel',
   FORM_DETAIL: 'useFormDetail',
   FORM_URL: 'useFormURL',
+  MESSAGE_LIST: 'useMessageList',
+  MESSAGE_DETAIL: 'userMessageDetail',
 };
 
 export const ROUTES = {
@@ -19,6 +22,7 @@ export const ROUTES = {
   FAQ: '/faq',
   FAQ_EDIT: '/faq/edit',
   FAQ_POST: '/faq/post',
+  MESSAGE: '/message',
   ANALYSIS: '/analysis',
   LOGIN: '/login',
   FORM: '/form',

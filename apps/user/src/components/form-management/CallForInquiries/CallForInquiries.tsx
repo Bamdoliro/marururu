@@ -2,14 +2,12 @@ import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
-import { IconPhone } from '@maru/icon';
 
 const CallForInquiries = () => {
   return (
     <StyledApplicationBox>
       <Column gap={5} alignItems="left">
         <Row gap={12} alignItems="center">
-          <IconPhone width={28.44} height={29.55} />
           <Text fontType="H2" color={color.gray900}>
             입학 문의 전화
           </Text>
@@ -30,7 +28,7 @@ export default CallForInquiries;
 
 const StyledApplicationBox = styled.div`
   ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
-  width: 492px;
+  width: 400px;
   height: 260px;
   padding: 36px 32px;
   background-color: ${color.white};
