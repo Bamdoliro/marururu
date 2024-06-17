@@ -148,19 +148,14 @@ const FormStatus = ({ status }: Props) => {
         return (
           <StyledApplicationBox>
             <Column>
-              <Row>
-                <Column gap={4}>
-                  <Text fontType="p1" color={color.gray600}>
-                    원서 상태
-                  </Text>
-                  <Text fontType="H1" color={color.gray900}>
-                    제출됨
-                  </Text>
-                </Column>
-                <MoveIcon>
-                  <IconCancelCircle width={120} height={120} />
-                </MoveIcon>
-              </Row>
+              <Column gap={4}>
+                <Text fontType="p1" color={color.gray600}>
+                  원서 상태
+                </Text>
+                <Text fontType="H1" color={color.gray900}>
+                  제출됨
+                </Text>
+              </Column>
               <Text fontType="p2" color={color.gray600}>
                 원서 초안이 제출되었습니다. <br />
                 담당 선생님의 원서 승인을 기다려주세요.
