@@ -40,3 +40,23 @@ export type AreaCategory =
   | 'SEJONG'
   | 'GYEONGSANGNAM_DO'
   | 'JEJU';
+
+export type FormType =
+  | 'REGULAR'
+  | 'MEISTER_TALENT'
+  | 'NATIONAL_BASIC_LIVING'
+  | 'NEAR_POVERTY'
+  | 'NATIONAL_VETERANS'
+  | 'ONE_PARENT'
+  | 'FROM_NORTH_KOREA'
+  | 'MULTICULTURAL'
+  | 'TEEN_HOUSEHOLDER'
+  | 'MULTI_CHILDREN'
+  | 'FARMING_AND_FISHING'
+  | 'SPECIAL_ADMISSION'
+  | 'NATIONAL_VETERANS_EDUCATION';
+
+export interface NumberOfApplicants {
+  type: FormType;
+  count: number;
+}

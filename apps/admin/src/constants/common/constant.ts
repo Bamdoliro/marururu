@@ -4,12 +4,13 @@ export const KEY = {
   SECOND_SCORE_FORMAT: 'useSecondScoreFormat',
   ADMIN: 'useAdmin',
   FAQ_LIST: 'useFaqList',
-  ANALYSIS_LIST: 'useAnalysisList',
   FAQ_DETAIL: 'useFaqDetail',
   NOTICE_DETAIL: 'useNoticeDetail',
   EXPORT_EXCEL: 'useExportExcel',
   FORM_DETAIL: 'useFormDetail',
   FORM_URL: 'useFormURL',
+  ANALYSIS_LIST: 'useAnalysisList',
+  ANALYSIS_APPLICANTS_COUNT: 'useApplicantsCount',
 };
 
 export const ROUTES = {

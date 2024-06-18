@@ -3,8 +3,41 @@ import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import NumberOfApplicantsDetail from './NumberOfApplicantsDetail/NumberOfApplicantsDetail';
+import { useNumberOfApplicantsListQuery } from '@/services/analysis/queries';
 
 const NumberOfApplicants = () => {
+  const { data: formList } = useNumberOfApplicantsListQuery();
+
+  const totalCount = formList?.reduce((sum, item) => sum + item.count, 0);
+  const competitionRate = totalCount ? (totalCount / 64).toFixed(2) : '0.00';
+
+  const regularCount =
+    formList
+      ?.filter((item) => item.type === 'REGULAR')
+      .reduce((sum, item) => sum + item.count, 0) || 0;
+
+  const specialAdmissionCount =
+    formList
+      ?.filter(
+        (item) =>
+          !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+            item.type
+          )
+      )
+      .reduce((sum, item) => sum + item.count, 0) || 0;
+
+  const otherCount =
+    formList
+      ?.filter(
+        (item) =>
+          item.type === 'SPECIAL_ADMISSION' || item.type === 'NATIONAL_VETERANS_EDUCATION'
+      )
+      .reduce((sum, item) => sum + item.count, 0) || 0;
+
+  const regularCompetitionRate = (regularCount / 64).toFixed(2);
+  const specialAdmissionCompetitionRate = (specialAdmissionCount / 64).toFixed(2);
+  const otherCompetitionRate = (otherCount / 64).toFixed(2);
+
   return (
     <Layout>
       <LeftBox>
@@ -14,7 +47,7 @@ const NumberOfApplicants = () => {
               전체 지원자 수
             </Text>
             <Text fontType="D1" width={60}>
-              숫자
+              {totalCount}
             </Text>
           </ApplicantsBox>
           <ApplicantsBox>
@@ -22,7 +55,7 @@ const NumberOfApplicants = () => {
               전체 경쟁률
             </Text>
             <Text fontType="D1" width={60}>
-              숫자
+              {competitionRate} : 1
             </Text>
           </ApplicantsBox>
         </TotalBox>
@@ -33,7 +66,7 @@ const NumberOfApplicants = () => {
           <Column>
             <Row>
               <Th width={112} height={56} borderTopLeftRadius={12}>
-                <div></div>
+                <></>
               </Th>
               <Th width={112} height={56}>
                 일반 전형
@@ -50,13 +83,13 @@ const NumberOfApplicants = () => {
                 지원자 수
               </Td>
               <Td width={112} height={56}>
-                <div></div>
+                {regularCount}
               </Td>
               <Td width={112} height={56}>
-                <div></div>
+                {specialAdmissionCount}
               </Td>
               <Td width={112} height={56}>
-                <div></div>
+                {otherCount}
               </Td>
             </Row>
             <Row>
@@ -69,13 +102,13 @@ const NumberOfApplicants = () => {
                 경쟁률
               </Td>
               <Td width={112} height={56}>
-                <div></div>
+                {regularCompetitionRate}
               </Td>
               <Td width={112} height={56}>
-                <div></div>
+                {specialAdmissionCompetitionRate}
               </Td>
               <Td width={112} height={56} borderBottomRightRadius={12}>
-                <div></div>
+                {otherCompetitionRate}
               </Td>
             </Row>
           </Column>
