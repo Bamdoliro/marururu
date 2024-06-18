@@ -17,7 +17,7 @@ export const useLoginAdminMutation = ({ phoneNumber, password }: PostLoginAuthRe
       const { accessToken, refreshToken } = res.data;
       Storage.setItem(TOKEN.ACCESS, accessToken);
       Storage.setItem(TOKEN.REFRESH, refreshToken);
-      router.push(ROUTES.MAIN);
+      router.replace(ROUTES.MAIN);
     },
     onError: handleError,
   });
