@@ -4,4 +4,5 @@ export interface Fair {
   applicationStartDate: string;
   applicationEndDate: string;
   status: string;
+  applicationUrl: string;
 }
