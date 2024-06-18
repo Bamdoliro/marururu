@@ -7,6 +7,7 @@ import AppLayout from '@/layouts/AppLayout';
 import { ApplyingList, ClosedList, Header } from '@/components/fair';
 import { Suspense } from '@suspensive/react';
 import { useEffect, useState } from 'react';
+import withAuth from '@/hocs/withAuth';
 
 const FairPage = () => {
   const [status, setStatus] = useState('진행 중인 신청');
@@ -52,7 +53,7 @@ const FairPage = () => {
   );
 };
 
-export default FairPage;
+export default withAuth(FairPage);
 
 const StyledFairPage = styled.div`
   ${flex({ flexDirection: 'column' })}
