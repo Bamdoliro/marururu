@@ -98,6 +98,9 @@ const FormStatus = ({ status }: Props) => {
                 <Text fontType="H1" color={color.gray900}>
                   접수됨
                 </Text>
+                <MoveIcon>
+                  <IconCheckCircle width={120} height={120} />
+                </MoveIcon>
               </Column>
               <Text fontType="p2" color={color.gray600}>
                 원서가 접수되었습니다. <br />
