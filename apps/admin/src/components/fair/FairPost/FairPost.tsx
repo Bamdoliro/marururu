@@ -1,11 +1,11 @@
 import { color } from '@maru/design-token';
-import { flex, formatTime } from '@maru/utils';
+import { flex } from '@maru/utils';
 import type { ChangeEvent } from 'react';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-import { useFairPostAction } from './FairPost.hooks';
 import { Button, Column, Input, RadioGroup, Row } from '@maru/ui';
-import { formatDate } from '@/utils';
+import { formatDate, formatTime } from '@/utils';
+import { useFairPostAction } from './FairPost.hooks';
 
 const FairPost = () => {
   const [fairData, setFairData] = useState({
@@ -47,7 +47,7 @@ const FairPost = () => {
     } else if (name === 'startHour') {
       setFairData((prevData) => ({
         ...prevData,
-        [name]: formatTime(Number(value)),
+        [name]: formatTime(value),
       }));
     } else {
       setFairData((prevData) => ({
@@ -64,7 +64,6 @@ const FairPost = () => {
       [name]: value,
     }));
   };
-
   return (
     <StyledPostFairBox>
       <Column gap={30} alignItems="center" width={360}>
@@ -75,7 +74,6 @@ const FairPost = () => {
               width="100%"
               name="applicationUrl"
               value={fairData.applicationUrl}
-              placeholder="폼의 링크를 삽입해주세요."
               onChange={handleInputChange}
             />
             <RadioGroup
@@ -106,9 +104,10 @@ const FairPost = () => {
             />
             <Input
               label="시간 (4자리)"
+              type="text"
               width="100%"
-              name="startHour"
-              placeholder="시간을 입력해주세요."
+              name="startTime"
+              placeholder="시간을 입력해주세요"
               value={fairData.startTime}
               onChange={handleInputChange}
             />
