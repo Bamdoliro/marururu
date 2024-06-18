@@ -5,7 +5,7 @@ import { useFormToPrintStore } from '@/store/form/formToPrint';
 import { useIsFormToPrintSelectingValueStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSecondRoundResultStore } from '@/store/form/secondRoundResult';
-import type { Form, FormType, PassStatusType } from '@/types/form/client';
+import type { Form, FormType, PassStatusType, FormStatus } from '@/types/form/client';
 import { color } from '@maru/design-token';
 import { CheckBox, Dropdown, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
@@ -18,19 +18,34 @@ const FormTableItem = ({
   graduationType,
   school,
   type,
-  totalScore,
   hasDocument,
+  status,
+  totalScore,
   firstRoundPassed,
   secondRoundPassed,
 }: Form) => {
   const router = useRouter();
 
-  const getStatusColor = (status: boolean | null) => {
+  const getStatusColor = (status: boolean | null | string) => {
     return typeof status !== 'boolean'
       ? color.gray600
       : status
       ? color.maruDefault
       : color.red;
+  };
+
+  const getDocumentStatusColor = (status: FormStatus) => {
+    switch (status) {
+      case 'APPROVED':
+      case 'FIRST_PASSED':
+      case 'FAILED':
+      case 'FINAL_SUBMITTED':
+        return color.maruDefault;
+      case 'REJECTED':
+        return color.red;
+      default:
+        return color.gray600;
+    }
   };
 
   const getStatusString = (
@@ -39,6 +54,22 @@ const FormTableItem = ({
     falseString: string
   ) => {
     return typeof status !== 'boolean' ? '미정' : status ? trueString : falseString;
+  };
+
+  const getDocumentStatusString = (status: FormStatus) => {
+    switch (status) {
+      case 'APPROVED':
+      case 'FIRST_PASSED':
+      case 'FAILED':
+      case 'FINAL_SUBMITTED':
+        return '승인';
+      case 'REJECTED':
+        return '반려';
+      case 'RECEIVED':
+        return '도착 안함';
+      case 'SUBMITTED':
+        return '학교 도착';
+    }
   };
 
   const isSecondRoundResultEditing = useIsSecondRoundResultEditingValueStore();
@@ -94,8 +125,11 @@ const FormTableItem = ({
           </Text>
         </Row>
         <Row gap={48} alignItems="center">
-          <Text fontType="p2" width={60} color={getStatusColor(hasDocument)}>
-            {getStatusString(hasDocument, '제출', '미제출')}
+          <Text fontType="p2" width={60} color={color.gray900}>
+            {getStatusString(hasDocument, '최종 제출', '초안 제출')}
+          </Text>
+          <Text fontType="p2" width={60} color={getDocumentStatusColor(status)}>
+            {getDocumentStatusString(status)}
           </Text>
           <Text fontType="p2" width={60} color={getStatusColor(firstRoundPassed)}>
             {getStatusString(firstRoundPassed, '합격', '불합격')}
