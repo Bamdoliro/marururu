@@ -10,14 +10,21 @@ const ApplyingList = ({ fairType }: Props) => {
   const { data: fairListData } = useFairListQuery(fairType);
 
   return fairListData ? (
-    <StyledFairList
-      itemCount={fairListData.length}
-      onClick={() => alert('누르면 구글폼으로')}
-    >
+    <StyledFairList itemCount={fairListData.length}>
       {fairListData
         .filter(({ status }) => status === 'APPLICATION_IN_PROGRESS' || status === null)
         .map(
-          ({ start, place, status, applicationStartDate, applicationEndDate }, index) => (
+          (
+            {
+              start,
+              place,
+              status,
+              applicationStartDate,
+              applicationEndDate,
+              applicationUrl,
+            },
+            index
+          ) => (
             <ApplyingItem
               key={`applying ${index}`}
               place={place}
@@ -25,6 +32,7 @@ const ApplyingList = ({ fairType }: Props) => {
               applicationEndDate={applicationEndDate}
               start={start}
               status={status}
+              applicationUrl={applicationUrl}
             />
           )
         )}
