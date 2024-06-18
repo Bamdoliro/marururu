@@ -37,14 +37,11 @@ const FormTableItem = ({
   const getDocumentStatusColor = (status: FormStatus) => {
     switch (status) {
       case 'APPROVED':
-      case 'FIRST_PASSED':
-      case 'FAILED':
-      case 'FINAL_SUBMITTED':
         return color.maruDefault;
       case 'REJECTED':
         return color.red;
       default:
-        return color.gray600;
+        return color.gray900;
     }
   };
 
@@ -59,16 +56,11 @@ const FormTableItem = ({
   const getDocumentStatusString = (status: FormStatus) => {
     switch (status) {
       case 'APPROVED':
-      case 'FIRST_PASSED':
-      case 'FAILED':
-      case 'FINAL_SUBMITTED':
         return '승인';
       case 'REJECTED':
         return '반려';
-      case 'RECEIVED':
-        return '도착 안함';
-      case 'SUBMITTED':
-        return '학교 도착';
+      default:
+        return '접수';
     }
   };
 

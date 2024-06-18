@@ -121,4 +121,4 @@ export interface Attendance {
   classAbsenceCount: number;
 }
 
-export type ApprovalStatus = '승인' | '반려' | '';
+export type ApprovalStatus = '승인' | '반려' | '접수' | '';

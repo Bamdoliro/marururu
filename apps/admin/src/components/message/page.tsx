@@ -40,7 +40,9 @@ const Message = () => {
   const handleMessageCategoryChange = (value: string, name: string) => {
     setMessageData({ ...messageData, [name]: value });
   };
+
   const handleMeisterMessageCategoryChange = (value: string) => {
+    console.log(value);
     if (value === 'TRUE_REGULAR')
       setMeisterMessageData({
         ...meisterMessageData,
