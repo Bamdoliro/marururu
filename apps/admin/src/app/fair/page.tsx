@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import { Text } from '@maru/ui';
 import AppLayout from '@/layouts/AppLayout';
-import { ApplyingList, Header } from '@/components/fair';
+import { ApplyingList, ClosedList, Header } from '@/components/fair';
 import { Suspense } from '@suspensive/react';
 import { useEffect, useState } from 'react';
 
@@ -32,7 +32,12 @@ const FairPage = () => {
         </>
       );
     } else if (status === '마감된 신청') {
-      return <></>;
+      return (
+        <>
+          <ClosedList fairType="STUDENT_AND_PARENT" />
+          <ClosedList fairType="TEACHER" />
+        </>
+      );
     }
   };
 
