@@ -26,11 +26,12 @@ export const useLoginAdminMutation = ({ phoneNumber, password }: PostLoginAuthRe
 };
 
 export const useLogoutAdminMutation = () => {
+  const router = useRouter();
   const { mutate: logoutAdminMutate, ...restMutation } = useMutation({
     mutationFn: deleteLogoutAdmin,
     onSuccess: () => {
       localStorage.clear();
-      window.location.href = ROUTES.MAIN;
+      router.replace(ROUTES.LOGIN);
     },
     onError: () => localStorage.clear(),
   });
