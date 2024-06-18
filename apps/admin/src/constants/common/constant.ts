@@ -28,6 +28,7 @@ export const ROUTES = {
   LOGIN: '/login',
   FORM: '/form',
   FAIR: '/fair',
+  FAIR_POST: '/fair/post',
 } as const;
 
 export const TOKEN = {

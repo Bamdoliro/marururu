@@ -1,5 +1,7 @@
+import { ROUTES } from '@/constants/common/constant';
 import { color } from '@maru/design-token';
-import { Row, UnderlineButton } from '@maru/ui';
+import { Button, Row, UnderlineButton } from '@maru/ui';
+import { useRouter } from 'next/navigation';
 import { styled } from 'styled-components';
 
 const NAVIGATION_LIST = [
@@ -17,6 +19,8 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ selectedTab, handleTabClick }) => {
+  const router = useRouter();
+
   return (
     <StyledHeader>
       <Row alignItems="center" justifyContent="space-between">
@@ -31,6 +35,9 @@ const Header: React.FC<Props> = ({ selectedTab, handleTabClick }) => {
             </UnderlineButton>
           ))}
         </Row>
+        <Button onClick={() => router.push(ROUTES.FAIR_POST)} icon="ADD_ICON">
+          입학 설명회 생성
+        </Button>
       </Row>
     </StyledHeader>
   );
