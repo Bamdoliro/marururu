@@ -44,7 +44,7 @@ const FairPost = () => {
         ...prevData,
         [name]: formatDate(value),
       }));
-    } else if (name === 'startHour') {
+    } else if (name === 'startTime') {
       setFairData((prevData) => ({
         ...prevData,
         [name]: formatTime(value),
@@ -73,6 +73,7 @@ const FairPost = () => {
               label="폼 링크"
               width="100%"
               name="applicationUrl"
+              placeholder="폼의 링크를 삽입해주세요."
               value={fairData.applicationUrl}
               onChange={handleInputChange}
             />
