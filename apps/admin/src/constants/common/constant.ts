@@ -1,4 +1,5 @@
 export const KEY = {
+  LOGIN_CHECK: 'useLoginCheck',
   NOTICE_LIST: 'useNoticeList',
   FORM_LIST: 'useFormList',
   SECOND_SCORE_FORMAT: 'useSecondScoreFormat',
