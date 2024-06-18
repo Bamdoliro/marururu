@@ -53,6 +53,7 @@ export interface Education {
   graduationYear: string;
   schoolName: string;
   schoolLocation: string;
+  schoolAddress: string;
   schoolCode: string;
   teacherName: string;
   teacherPhoneNumber: string;
@@ -90,6 +91,7 @@ export interface VolunteerInfo {
 export interface School {
   name: string;
   location: string;
+  address: string;
   code: string;
 }
 

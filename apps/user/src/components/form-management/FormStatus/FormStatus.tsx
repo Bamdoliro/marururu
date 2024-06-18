@@ -24,7 +24,7 @@ const FormStatus = ({ status }: Props) => {
                     원서 상태
                   </Text>
                   <Text fontType="H1" color={color.gray900}>
-                    최종 제출됨
+                    제출됨
                   </Text>
                 </Column>
                 <MoveIcon>

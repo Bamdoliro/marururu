@@ -67,7 +67,7 @@ const FairPage = () => {
     <AppLayout header footer>
       <StyledFairPage>
         <Text fontType="H1" color={color.gray900}>
-          2024학년도 부산소프트웨어마이스터고등학교 <br /> 입학전형 설명회 참가 신청
+          2025학년도 부산소프트웨어마이스터고등학교 <br /> 입학전형 설명회 참가 신청
         </Text>
         <Header selectedTab={status} handleTabClick={handleTabClick} />
         <Suspense.CSROnly>{renderContent()}</Suspense.CSROnly>
