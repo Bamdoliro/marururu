@@ -104,7 +104,7 @@ const FormStatus = ({ status }: Props) => {
               </Column>
               <Text fontType="p2" color={color.gray600}>
                 원서가 접수되었습니다. <br />
-                원서 승인을 기다려주세요.
+                1차 결과 발표는 10월 21일입니다.
               </Text>
             </Column>
           </StyledApplicationBox>
