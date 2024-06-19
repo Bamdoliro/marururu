@@ -3,12 +3,17 @@ import { Row, Text } from '@maru/ui';
 
 interface Props {
   id: number;
-  title: string;
-  schoolOrigin: string;
-  schoolLocation: string;
+  applicantName: string;
+  schoolName: string;
+  schoolAddress: string;
 }
 
-const SchoolOriginTableItem = ({ id, title, schoolOrigin, schoolLocation }: Props) => {
+const SchoolOriginTableItem: React.FC<Props> = ({
+  id,
+  applicantName,
+  schoolName,
+  schoolAddress,
+}) => {
   return (
     <>
       <TableItem>
@@ -17,15 +22,15 @@ const SchoolOriginTableItem = ({ id, title, schoolOrigin, schoolLocation }: Prop
             {id}
           </Text>
           <Text fontType="p2" width={400} ellipsis>
-            {title}
+            {applicantName}
           </Text>
         </Row>
         <Row gap={184}>
           <Text fontType="p2" width={120} ellipsis>
-            {schoolOrigin}
+            {schoolName}
           </Text>
           <Text fontType="p2" width={400} ellipsis>
-            {schoolLocation}
+            {schoolAddress}
           </Text>
         </Row>
       </TableItem>

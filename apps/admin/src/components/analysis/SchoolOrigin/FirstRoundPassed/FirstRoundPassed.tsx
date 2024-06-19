@@ -6,7 +6,7 @@ import type { AreaCategory } from '@/types/analysis/client';
 import SchoolOriginTable from './SchoolOriginTable/GenderRatioTable/SchoolOriginTable';
 
 const FirstRoundPassed = () => {
-  const [selectedCategory, setSelectedCategory] = useState<AreaCategory>('BUSAN');
+  const [selectedCategory, setSelectedCategory] = useState<AreaCategory>('');
 
   const handleClassificationCategory = (value: string) => {
     setSelectedCategory(value as AreaCategory);
@@ -22,49 +22,28 @@ const FirstRoundPassed = () => {
                 value: 'BUSAN',
                 label: '부산 지역',
                 children: [
-                  { value: 'JUNG_GU', label: '중구' },
-                  { value: 'HAEUNDAE_GU', label: '해운대구' },
-                  { value: 'SEO_GU', label: '서구' },
-                  { value: 'SAHA_GU', label: '사하구' },
-                  { value: 'DONG_GU', label: '동구' },
-                  { value: 'GEUMJUNG_GU', label: '금정구' },
-                  { value: 'YOUNGDO_GU', label: '영도구' },
-                  { value: 'GANGSEO_GU', label: '강서구' },
-                  { value: 'BUSAN_JING_GU', label: '부산진구' },
-                  { value: 'YEONJA_GU', label: '연제구' },
-                  { value: 'DONGNAE_GU', label: '동래구' },
-                  { value: 'SUYOUND_GU', label: '수영구' },
-                  { value: 'NANM_GU', label: '남구' },
-                  { value: 'SASANG_GU', label: '사상구' },
-                  { value: 'BUG_GU', label: '북구' },
-                  { value: 'GIJANG_GU', label: '기장군' },
-                  { value: 'BUSAN_ALL', label: '부산 전체' },
+                  { value: '중구', label: '중구' },
+                  { value: '해운대구', label: '해운대구' },
+                  { value: '서구', label: '서구' },
+                  { value: '사하구', label: '사하구' },
+                  { value: '동구', label: '동구' },
+                  { value: '금정구', label: '금정구' },
+                  { value: '영도구', label: '영도구' },
+                  { value: '강서구', label: '강서구' },
+                  { value: '부산진구', label: '부산진구' },
+                  { value: '연제구', label: '연제구' },
+                  { value: '동래구', label: '동래구' },
+                  { value: '수영구', label: '수영구' },
+                  { value: '남구', label: '남구' },
+                  { value: '사상구', label: '사상구' },
+                  { value: '북구', label: '북구' },
+                  { value: '기장군', label: '기장군' },
+                  { value: '', label: '부산 전체' },
                 ],
               },
               {
                 value: 'OTHER_AREA',
                 label: '타 지역',
-                children: [
-                  {
-                    value: 'SEOUL',
-                    label: '서울특별시',
-                  },
-                  { value: 'GYEONGGI_DO', label: '경기도' },
-                  { value: 'GANGWON_DO', label: '강원도' },
-                  { value: 'DAEGU', label: '대구광역시' },
-                  { value: 'CHUNCHEONGBUK_DO', label: '충청북도' },
-                  { value: 'INCHEON', label: '인천광역시' },
-                  { value: 'CHUNCHEONGNAM_DO', label: '충청남도' },
-                  { value: 'DAEJEON', label: '대전광역시' },
-                  { value: 'JUNLABUK_DO', label: '전라북도' },
-                  { value: 'CHUNJU', label: '청주광역시' },
-                  { value: 'JUNLANAM_DO', label: '전라남도' },
-                  { value: 'ULSAN', label: '울산광역시' },
-                  { value: 'GYEONGSANGBUK_DO', label: '경상북도' },
-                  { value: 'SEJONG', label: '세종특별자치시' },
-                  { value: 'GYEONGSANGNAM_DO', label: '경상남도' },
-                  { value: 'JEJU', label: '제주특별자치도' },
-                ],
               },
             ]}
             size="SMALL"

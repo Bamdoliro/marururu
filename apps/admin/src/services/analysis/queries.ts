@@ -1,14 +1,14 @@
 import { KEY } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
-import { getAnalysisList, getNumberOfApplicantsList } from './api';
+import { getSchoolOrigin, getNumberOfApplicantsList } from './api';
+import type { SchoolStatusReq } from '@/types/analysis/remote';
 
-export const useSchoolOriginListQuery = () => {
+export const useSchoolOriginListQuery = (params: SchoolStatusReq) => {
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.ANALYSIS_LIST],
-    queryFn: getAnalysisList,
+    queryKey: [KEY.ANALYSIS_SCHOOL_ORIGIN, params],
+    queryFn: () => getSchoolOrigin(params),
     suspense: false,
   });
-
   return { data: data?.dataList, ...restQuery };
 };
 

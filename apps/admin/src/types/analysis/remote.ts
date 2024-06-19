@@ -1,9 +1,19 @@
-import type { Analysis, NumberOfApplicants } from './client';
+import type {
+  SchoolOrigin,
+  NumberOfApplicants,
+  AnalysisApplicantType,
+  AreaCategory,
+} from './client';
 
-export interface GetAnalysisListRes {
-  dataList: Analysis[];
+export interface GetNumberOfApplicantsRes {
+  dataList: NumberOfApplicants[];
 }
 
-export interface GetNumberOfApplicants {
-  dataList: NumberOfApplicants[];
+export interface SchoolStatusReq {
+  statusList: AnalysisApplicantType;
+  isBusan: boolean;
+  gu?: AreaCategory | null;
+}
+export interface GetSchoolOriginRes {
+  dataList: SchoolOrigin[];
 }

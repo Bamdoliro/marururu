@@ -9,7 +9,7 @@ export const KEY = {
   EXPORT_EXCEL: 'useExportExcel',
   FORM_DETAIL: 'useFormDetail',
   FORM_URL: 'useFormURL',
-  ANALYSIS_LIST: 'useAnalysisList',
+  ANALYSIS_SCHOOL_ORIGIN: 'useSchoolOrigin',
   ANALYSIS_APPLICANTS_COUNT: 'useApplicantsCount',
 };
 

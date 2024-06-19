@@ -9,30 +9,25 @@ interface Props {
   selectedCategory: AreaCategory;
 }
 
-const SchoolOriginTable = ({ selectedCategory }: Props) => {
-  const { data: schoolOriginList } = useSchoolOriginListQuery();
-
-  const filteredSchoolOriginList =
-    selectedCategory === 'BUSAN'
-      ? schoolOriginList
-      : schoolOriginList?.filter((item) =>
-          item.schoolLocation.includes(selectedCategory)
-        );
+const SchoolOriginTable: React.FC<Props> = ({ selectedCategory }) => {
+  const { data: schoolOriginList } = useSchoolOriginListQuery({
+    statusList: ['FAILED', 'PASSED'],
+    isBusan: selectedCategory === 'OTHER_AREA' ? false : true,
+    gu: selectedCategory === 'OTHER_AREA' ? null : selectedCategory,
+  });
 
   return (
     <StyledSchoolOriginTable>
       <SchoolOriginTableHeader />
-      {filteredSchoolOriginList
-        ?.sort((a, b) => a.id - b.id)
-        .map(({ id, title, schoolOrigin, schoolLocation }) => (
-          <SchoolOriginTableItem
-            key={id}
-            id={id}
-            title={title}
-            schoolOrigin={schoolOrigin}
-            schoolLocation={schoolLocation}
-          />
-        ))}
+      {schoolOriginList?.map((item, index) => (
+        <SchoolOriginTableItem
+          key={index + 1}
+          id={index + 1}
+          applicantName={item.applicantName}
+          schoolName={item.schoolName}
+          schoolAddress={item.schoolAddress}
+        />
+      ))}
     </StyledSchoolOriginTable>
   );
 };
