@@ -6,6 +6,15 @@ interface Props {
   fairType: string;
 }
 
+interface FairItem {
+  start: string;
+  place: string;
+  status: string | null;
+  applicationStartDate: string;
+  applicationEndDate: string;
+  applicationUrl: string;
+}
+
 const ClosedList = ({ fairType }: Props) => {
   const { data: fairListData } = useFairListQuery(fairType);
 
@@ -13,7 +22,7 @@ const ClosedList = ({ fairType }: Props) => {
     <StyledFairList fairClosedItemCount={fairListData.length}>
       {fairListData
         .filter(
-          ({ status }) =>
+          ({ status }: FairItem) =>
             status === 'APPLICATION_CLOSED' || status === 'APPLICATION_EARLY_CLOSED'
         )
         .map(
@@ -24,14 +33,14 @@ const ClosedList = ({ fairType }: Props) => {
             applicationStartDate,
             applicationEndDate,
             applicationUrl,
-          }) => (
+          }: FairItem) => (
             <ClosedItem
               key={applicationUrl}
               place={place}
               applicationStartDate={applicationStartDate}
               applicationEndDate={applicationEndDate}
               start={start}
-              status={status}
+              status={status !== null ? status : ''}
               applicationUrl={applicationUrl}
             />
           )

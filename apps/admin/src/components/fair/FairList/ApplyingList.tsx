@@ -6,13 +6,25 @@ interface Props {
   fairType: string;
 }
 
+interface FairItem {
+  start: string;
+  place: string;
+  status: string | null;
+  applicationStartDate: string;
+  applicationEndDate: string;
+  applicationUrl: string;
+}
+
 const ApplyingList = ({ fairType }: Props) => {
   const { data: fairListData } = useFairListQuery(fairType);
 
   return fairListData ? (
     <StyledFairList fairApplyingItemCount={fairListData.length}>
       {fairListData
-        .filter(({ status }) => status === 'APPLICATION_IN_PROGRESS' || status === null)
+        .filter(
+          ({ status }: FairItem) =>
+            status === 'APPLICATION_IN_PROGRESS' || status === null
+        )
         .map(
           ({
             start,
@@ -21,14 +33,14 @@ const ApplyingList = ({ fairType }: Props) => {
             applicationStartDate,
             applicationEndDate,
             applicationUrl,
-          }) => (
+          }: FairItem) => (
             <ApplyingItem
               key={applicationUrl}
               place={place}
               applicationStartDate={applicationStartDate}
               applicationEndDate={applicationEndDate}
               start={start}
-              status={status}
+              status={status !== null ? status : ''}
               applicationUrl={applicationUrl}
             />
           )
