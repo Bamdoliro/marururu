@@ -12,7 +12,6 @@ import {
   postUploadProfileImage,
   putCorrectionForm,
 } from './api';
-import type { PutFormReq } from '@/types/form/remote';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
   const setFormStep = useSetFormStepStore();
@@ -87,7 +86,7 @@ export const useUploadProfileImageMutation = () => {
   return { uploadProfileImageMutate, ...restMutation };
 };
 
-export const useCorrectionFormMutation = (formId: number, formData: PutFormReq) => {
+export const useCorrectionFormMutation = (formId: number, formData: Form) => {
   const { handleError } = useApiError();
   const setFormStep = useSetFormStepStore();
 
