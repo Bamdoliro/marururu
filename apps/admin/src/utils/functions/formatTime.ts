@@ -13,7 +13,7 @@ const formatTime = (time: string) => {
   const formattedHour = hour.toString().padStart(2, '0');
   const formattedMinute = minute.toString().padStart(2, '0');
 
-  return `${formattedHour} : ${formattedMinute}`;
+  return `${formattedHour}:${formattedMinute}`;
 };
 
 export default formatTime;
