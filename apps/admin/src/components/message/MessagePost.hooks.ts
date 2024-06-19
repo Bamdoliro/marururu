@@ -1,5 +1,8 @@
-import { usePostMessageMutation } from '@/services/message/mutations';
-import type { PostMessageReq } from '@/types/message/remote';
+import {
+  usePostMessageMutation,
+  usePostMeisterMessageMutaion,
+} from '@/services/message/mutations';
+import type { PostMessageReq, PostMeisterMessageReq } from '@/types/message/remote';
 
 export const useMessagePostAction = (messageData: PostMessageReq) => {
   const { postMessageMutate } = usePostMessageMutation(messageData);
@@ -9,4 +12,16 @@ export const useMessagePostAction = (messageData: PostMessageReq) => {
   };
 
   return { handleMessagePostButtonClick };
+};
+
+export const useMeisterMessagePostAction = (
+  meisterMessageData: PostMeisterMessageReq
+) => {
+  const { postMeisterMessageMutate } = usePostMeisterMessageMutaion(meisterMessageData);
+
+  const handleMeisterMessagePostButtonClick = () => {
+    postMeisterMessageMutate();
+  };
+
+  return { handleMeisterMessagePostButtonClick };
 };

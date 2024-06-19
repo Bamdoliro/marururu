@@ -1,5 +1,7 @@
+import { ROUTES } from '@/constants/common/constant';
 import { useChangeFinalScoreStatusMutation } from '@/services/form/mutations';
 import type { ApprovalStatus } from '@/types/form/client';
+import { useRouter } from 'next/navigation';
 
 export const useChangeFinalScoreStatusAction = (
   id: number,
@@ -12,8 +14,11 @@ export const useChangeFinalScoreStatusAction = (
     closeModal
   );
 
+  const router = useRouter();
+
   const handleChangeFinalScoreStatusButtonClick = () => {
     changeFinalScoreStatus();
+    router.push(ROUTES.MAIN);
   };
 
   return { handleChangeFinalScoreStatusButtonClick };

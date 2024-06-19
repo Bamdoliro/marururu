@@ -13,6 +13,8 @@ interface Data {
   value: string;
   label: string;
   children?: Data[];
+  onChange?: (value: string) => void;
+  setNext?: boolean;
 }
 
 interface Props {
@@ -45,12 +47,20 @@ const SubDropdown: FC<Props> = ({
   const [selectedParent, setSelectedParent] = useState<string | null>(null);
   const [isSubOpen, setIsSubOpen] = useState<boolean>(false);
 
-  const handleDropdownItemButtonClick = (value: string, children?: Data[]) => {
+  const handleDropdownItemButtonClick = (
+    value: string,
+    children?: Data[],
+    itemOnChange?: (value: string) => void
+  ) => {
     if (children && children.length > 0) {
       setSelectedParent(value);
       setIsSubOpen(true);
     } else {
-      onChange(value, name);
+      if (itemOnChange) {
+        itemOnChange(value);
+      } else {
+        onChange(value, name);
+      }
       closeDropdown();
       setIsSubOpen(false);
     }
@@ -80,7 +90,9 @@ const SubDropdown: FC<Props> = ({
           {data.map((item, index) => (
             <DropdownItem
               key={`dropdown ${index}`}
-              onClick={() => handleDropdownItemButtonClick(item.value, item.children)}
+              onClick={() =>
+                handleDropdownItemButtonClick(item.value, item.children, item.onChange)
+              }
             >
               {item.label}
               {item.children && item.children.length > 0}
@@ -139,8 +151,6 @@ const ChildDropdown: FC<ChildDropdownProps> = ({
   );
 };
 
-export default SubDropdown;
-
 const Label = styled.p`
   ${font.context}
   color: ${color.gray700};
@@ -186,7 +196,7 @@ const ChildDropdownListBox = styled.div<{ $isOpen: boolean }>`
   left: 100%;
   top: 0;
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
-  width: 280px; /* 두 줄로 표시하기 위해 너비를 늘림 */
+  width: 280px;
 `;
 
 const DropdownList = styled.div<{ $isMultiple?: boolean }>`
@@ -200,8 +210,7 @@ const DropdownList = styled.div<{ $isMultiple?: boolean }>`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   display: grid;
-  grid-template-columns: ${(props) =>
-    props.$isMultiple ? '1fr 1fr' : '1fr'}; /* 두 줄로 표시 */
+  grid-template-columns: ${(props) => (props.$isMultiple ? '1fr 1fr' : '1fr')};
   gap: 4px;
 `;
 
@@ -215,3 +224,5 @@ const DropdownItem = styled.button`
     background-color: ${color.gray200};
   }
 `;
+
+export default SubDropdown;
