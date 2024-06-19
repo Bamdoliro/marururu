@@ -47,6 +47,9 @@ const FormTableHeader = () => {
       </Row>
       <Row gap={48}>
         <Text fontType="p2" width={60}>
+          제출상태
+        </Text>
+        <Text fontType="p2" width={60}>
           제출서류
         </Text>
         <Text fontType="p2" width={60}>
