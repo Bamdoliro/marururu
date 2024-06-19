@@ -1,4 +1,7 @@
-import { useSubmitDraftFormMutation } from '@/services/form/mutations';
+import {
+  useCorrectionFormMutation,
+  useSubmitDraftFormMutation,
+} from '@/services/form/mutations';
 import { useFormValueStore, useSetFormStepStore } from '@/store';
 import type { Form } from '@/types/form/client';
 import { useEffect, useState } from 'react';
@@ -12,6 +15,19 @@ export const useSubmitDraftFormAction = () => {
   };
 
   return { handleDraftFormSubmit };
+};
+
+export const useSubmitCorrectionFormAction = (formId?: number) => {
+  const form = useFormValueStore();
+  const { correctionFormMutate } = useCorrectionFormMutation(formId!, form);
+
+  const handleCorrectionFormSubmit = () => {
+    if (formId) {
+      correctionFormMutate();
+    }
+  };
+
+  return { handleCorrectionFormSubmit };
 };
 
 const useFilledApplicantFieldsCount = (applicant: Form['applicant']) =>

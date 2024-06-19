@@ -16,7 +16,9 @@ import {
   useCTAButton,
   useCheckFilledForm,
   useSubmitDraftFormAction,
+  useSubmitCorrectionFormAction,
 } from './초안작성완료.hooks';
+import { useFormStatusQuery } from '@/services/form/queries';
 
 const 초안작성완료 = () => {
   const overlay = useOverlay();
@@ -30,6 +32,19 @@ const 초안작성완료 = () => {
     isFilledForm: isComplete,
   } = useCheckFilledForm();
   const { handleDraftFormSubmit } = useSubmitDraftFormAction();
+  const { data: handleFormStatus } = useFormStatusQuery();
+  const formId = handleFormStatus?.id;
+
+  const handleCorrectionFormSubmit =
+    useSubmitCorrectionFormAction(formId).handleCorrectionFormSubmit;
+
+  const handleSubmitBtnClick = () => {
+    if (handleFormStatus?.status === 'REJECTED') {
+      handleCorrectionFormSubmit();
+      return;
+    }
+    handleDraftFormSubmit();
+  };
 
   const openDraftFormConfrim = () => {
     overlay.open(({ isOpen, close }) => (
@@ -37,7 +52,7 @@ const 초안작성완료 = () => {
         isOpen={isOpen}
         onClose={close}
         onConfirm={() => {
-          handleDraftFormSubmit();
+          handleSubmitBtnClick();
           close();
         }}
       />
