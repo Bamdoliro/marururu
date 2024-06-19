@@ -17,19 +17,16 @@ const ClosedList = ({ fairType }: Props) => {
             status === 'APPLICATION_CLOSED' || status === 'APPLICATION_EARLY_CLOSED'
         )
         .map(
-          (
-            {
-              start,
-              place,
-              status,
-              applicationStartDate,
-              applicationEndDate,
-              applicationUrl,
-            },
-            index
-          ) => (
+          ({
+            start,
+            place,
+            status,
+            applicationStartDate,
+            applicationEndDate,
+            applicationUrl,
+          }) => (
             <ClosedItem
-              key={`closed ${index}`}
+              key={applicationUrl}
               place={place}
               applicationStartDate={applicationStartDate}
               applicationEndDate={applicationEndDate}

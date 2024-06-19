@@ -14,19 +14,16 @@ const ApplyingList = ({ fairType }: Props) => {
       {fairListData
         .filter(({ status }) => status === 'APPLICATION_IN_PROGRESS' || status === null)
         .map(
-          (
-            {
-              start,
-              place,
-              status,
-              applicationStartDate,
-              applicationEndDate,
-              applicationUrl,
-            },
-            index
-          ) => (
+          ({
+            start,
+            place,
+            status,
+            applicationStartDate,
+            applicationEndDate,
+            applicationUrl,
+          }) => (
             <ApplyingItem
-              key={`applying ${index}`}
+              key={applicationUrl}
               place={place}
               applicationStartDate={applicationStartDate}
               applicationEndDate={applicationEndDate}
