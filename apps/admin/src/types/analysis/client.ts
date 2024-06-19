@@ -13,6 +13,8 @@ export type FormType =
   | 'SPECIAL_ADMISSION'
   | 'NATIONAL_VETERANS_EDUCATION';
 
+export type AnalysisApplicantType = ('FIRST_PASSED' | 'FAILED' | 'PASSED')[];
+
 export interface NumberOfApplicants {
   type: FormType;
   count: number;
@@ -23,7 +25,16 @@ export interface SchoolOrigin {
   schoolName: string;
   schoolAddress: string;
 }
-export type AnalysisApplicantType = ('FIRST_PASSED' | 'FAILED' | 'PASSED')[];
+
+export interface GradeDistribution {
+  type: FormType;
+  firstRoundMax: number;
+  firstRoundMin: number;
+  firstRoundAvg: number;
+  totalMax: number;
+  totalMin: number;
+  totalAvg: number;
+}
 
 export type AreaCategory =
   | 'BUSAN'

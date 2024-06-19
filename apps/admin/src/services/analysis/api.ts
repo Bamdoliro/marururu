@@ -1,9 +1,11 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
 import type {
-  GetSchoolOriginRes,
   GetNumberOfApplicantsRes,
+  AnalysisApplicantTypeReq,
+  GetGradeDistributionRes,
   SchoolStatusReq,
+  GetSchoolOriginRes,
 } from '@/types/analysis/remote';
 
 export const getNumberOfApplicantsList = async () => {
@@ -14,7 +16,21 @@ export const getNumberOfApplicantsList = async () => {
   return data;
 };
 
-export const getSchoolOrigin = async ({ statusList, isBusan, gu }: SchoolStatusReq) => {
+export const getGradeDistributionList = async ({
+  statusList,
+}: AnalysisApplicantTypeReq) => {
+  const { data } = await maru.get<GetGradeDistributionRes>(
+    `/analysis/grade-distribution?statusList=${statusList.join('&statusList=')}`,
+    authorization()
+  );
+  return data;
+};
+
+export const getSchoolOriginList = async ({
+  statusList,
+  isBusan,
+  gu,
+}: SchoolStatusReq) => {
   const { data } = await maru.get<GetSchoolOriginRes>(
     `/analysis/school-status?statusList=${statusList.join(
       '&statusList='
