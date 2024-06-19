@@ -10,10 +10,7 @@ const ClosedList = ({ fairType }: Props) => {
   const { data: fairListData } = useFairListQuery(fairType);
 
   return fairListData ? (
-    <StyledFairList
-      itemCount={fairListData.length}
-      onClick={() => alert('마감되어 신청 불가')}
-    >
+    <StyledFairList itemCount={fairListData.length}>
       {fairListData
         .filter(
           ({ status }) =>

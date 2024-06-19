@@ -12,6 +12,7 @@ export const KEY = {
   FORM_URL: 'useFormURL',
   MESSAGE_LIST: 'useMessageList',
   MESSAGE_DETAIL: 'userMessageDetail',
+  FAIR_LIST: 'useFairQuery',
 };
 
 export const ROUTES = {
@@ -26,6 +27,8 @@ export const ROUTES = {
   ANALYSIS: '/analysis',
   LOGIN: '/login',
   FORM: '/form',
+  FAIR: '/fair',
+  FAIR_POST: '/fair/post',
 } as const;
 
 export const TOKEN = {
