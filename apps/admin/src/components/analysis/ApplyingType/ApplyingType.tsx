@@ -3,8 +3,42 @@ import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import ApplyingTypeDetail from './ApplyingTypeDetail/ApplyingTypeDetail';
+import { useNumberOfApplicantsListQuery } from '@/services/analysis/queries';
 
 const ApplyingType = () => {
+  const { data: formList } = useNumberOfApplicantsListQuery();
+
+  const totalCount = formList?.reduce((sum, item) => sum + item.count, 0) || 0;
+
+  const regularCount =
+    formList
+      ?.filter((item) => item.type === 'REGULAR')
+      .reduce((sum, item) => sum + item.count, 0) || 0;
+
+  const specialAdmissionCount =
+    formList
+      ?.filter(
+        (item) =>
+          !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+            item.type
+          )
+      )
+      .reduce((sum, item) => sum + item.count, 0) || 0;
+
+  const otherCount =
+    formList
+      ?.filter(
+        (item) =>
+          item.type === 'SPECIAL_ADMISSION' || item.type === 'NATIONAL_VETERANS_EDUCATION'
+      )
+      .reduce((sum, item) => sum + item.count, 0) || 0;
+
+  const regularRatio =
+    totalCount !== 0 ? ((regularCount / totalCount) * 100).toFixed(1) + '%' : 0;
+  const specialAdmissionRatio =
+    totalCount !== 0 ? ((specialAdmissionCount / totalCount) * 100).toFixed(1) + '%' : 0;
+  const otherRatio =
+    totalCount !== 0 ? ((otherCount / totalCount) * 100).toFixed(1) + '%' : 0;
   return (
     <Layout>
       <LeftBox>
@@ -14,7 +48,7 @@ const ApplyingType = () => {
               일반 전형 지원 비율
             </Text>
             <Text fontType="D1" width={60}>
-              43.4 %
+              {regularRatio}
             </Text>
           </ApplicantsBox>
           <ApplicantsBox>
@@ -22,7 +56,7 @@ const ApplyingType = () => {
               특수 전형 지원 비율
             </Text>
             <Text fontType="D1" width={60}>
-              56.6 %
+              {specialAdmissionRatio}
             </Text>
           </ApplicantsBox>
         </TotalBox>
@@ -50,13 +84,13 @@ const ApplyingType = () => {
                 지원자 수
               </Td>
               <Td width={112} height={56}>
-                37
+                {regularCount}
               </Td>
               <Td width={112} height={56}>
-                59
+                {specialAdmissionCount}
               </Td>
               <Td width={112} height={56}>
-                0
+                {otherCount}
               </Td>
             </Row>
             <Row>
@@ -69,13 +103,13 @@ const ApplyingType = () => {
                 지원 비율
               </Td>
               <Td width={112} height={56}>
-                43.4 %
+                {regularRatio}
               </Td>
               <Td width={112} height={56}>
-                56.6 %
+                {specialAdmissionRatio}
               </Td>
               <Td width={112} height={56} borderBottomRightRadius={12}>
-                0 %
+                {otherRatio}
               </Td>
             </Row>
           </Column>
