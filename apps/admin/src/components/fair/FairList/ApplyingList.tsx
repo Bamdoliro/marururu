@@ -44,11 +44,11 @@ export default ApplyingList;
 
 const StyledFairList = styled.div<{ itemCount: number }>`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, 400px);
+  gap: 32px;
 
   @media (min-width: 800px) {
     grid-template-columns: ${({ itemCount }) =>
-      itemCount <= 2 ? 'repeat(2, 1fr)' : 'repeat(2, 1fr)'};
+      itemCount <= 2 ? 'repeat(2, 400px)' : 'repeat(auto-fill, 400px)'};
   }
 `;

@@ -50,7 +50,7 @@ const ApplyingItem = ({
 export default ApplyingItem;
 
 const StyledBox = styled.div`
-  ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
+  ${flex({ flexDirection: 'column', justifyContent: 'center' })}
   width: 400px;
   height: 180px;
   padding: 28px 32px;
@@ -58,8 +58,6 @@ const StyledBox = styled.div`
   border: 1px solid ${color.gray200};
   border-radius: 12px;
   cursor: pointer;
-  margin-bottom: 16px;
-  margin-right: 16px;
 `;
 
 const StyledStatusBox = styled.div`
