@@ -10,7 +10,7 @@ const ApplyingList = ({ fairType }: Props) => {
   const { data: fairListData } = useFairListQuery(fairType);
 
   return fairListData ? (
-    <StyledFairList itemCount={fairListData.length}>
+    <StyledFairList fairApplyingItemCount={fairListData.length}>
       {fairListData
         .filter(({ status }) => status === 'APPLICATION_IN_PROGRESS' || status === null)
         .map(
@@ -42,13 +42,13 @@ const ApplyingList = ({ fairType }: Props) => {
 
 export default ApplyingList;
 
-const StyledFairList = styled.div<{ itemCount: number }>`
+const StyledFairList = styled.div<{ fairApplyingItemCount: number }>`
   display: grid;
   grid-template-columns: repeat(auto-fill, 400px);
   gap: 32px;
 
   @media (min-width: 800px) {
-    grid-template-columns: ${({ itemCount }) =>
-      itemCount <= 2 ? 'repeat(2, 400px)' : 'repeat(auto-fill, 400px)'};
+    grid-template-columns: ${({ fairApplyingItemCount }) =>
+      fairApplyingItemCount <= 2 ? 'repeat(2, 400px)' : 'repeat(auto-fill, 400px)'};
   }
 `;

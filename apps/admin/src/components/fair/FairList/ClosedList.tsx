@@ -10,7 +10,7 @@ const ClosedList = ({ fairType }: Props) => {
   const { data: fairListData } = useFairListQuery(fairType);
 
   return fairListData ? (
-    <StyledFairList itemCount={fairListData.length}>
+    <StyledFairList fairClosedItemCount={fairListData.length}>
       {fairListData
         .filter(
           ({ status }) =>
@@ -45,13 +45,13 @@ const ClosedList = ({ fairType }: Props) => {
 
 export default ClosedList;
 
-const StyledFairList = styled.div<{ itemCount: number }>`
+const StyledFairList = styled.div<{ fairClosedItemCount: number }>`
   display: grid;
   grid-template-columns: repeat(auto-fill, 400px);
   gap: 32px;
 
   @media (min-width: 800px) {
-    grid-template-columns: ${({ itemCount }) =>
-      itemCount <= 2 ? 'repeat(2, 400px)' : 'repeat(auto-fill, 400px)'};
+    grid-template-columns: ${({ fairClosedItemCount }) =>
+      fairClosedItemCount <= 2 ? 'repeat(2, 400px)' : 'repeat(auto-fill, 400px)'};
   }
 `;
