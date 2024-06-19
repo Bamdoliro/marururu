@@ -9,8 +9,10 @@ export const KEY = {
   EXPORT_EXCEL: 'useExportExcel',
   FORM_DETAIL: 'useFormDetail',
   FORM_URL: 'useFormURL',
-  ANALYSIS_SCHOOL_ORIGIN: 'useSchoolOrigin',
   ANALYSIS_APPLICANTS_COUNT: 'useApplicantsCount',
+  ANALYSIS_GRADE_DISTRIBUTION: 'useGradeDistribution',
+  ANALYSIS_GENDER_RATIO: 'useGenderRatio',
+  ANALYSIS_SCHOOL_ORIGIN: 'useSchoolOrigin',
 };
 
 export const ROUTES = {
