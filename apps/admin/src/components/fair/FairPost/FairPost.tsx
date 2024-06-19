@@ -1,69 +1,86 @@
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import type { ChangeEvent } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import { styled } from 'styled-components';
 import { Button, Column, Input, RadioGroup, Row } from '@maru/ui';
 import { formatDate, formatTime } from '@/utils';
 import { useFairPostAction } from './FairPost.hooks';
 
+interface FairData {
+  start: string;
+  startDate: string;
+  startTime: string;
+  capacity: number;
+  place: string;
+  applicationUrl: string;
+  applicationStartDate: string;
+  applicationEndDate: string;
+  type: string;
+}
+
+interface Action {
+  name: string;
+  value: string;
+}
+
+const initialFairData: FairData = {
+  start: '',
+  startDate: '',
+  startTime: '',
+  capacity: 100,
+  place: '',
+  applicationUrl: '',
+  applicationStartDate: '',
+  applicationEndDate: '',
+  type: 'STUDENT_AND_PARENT',
+};
+
+const fairDataReducer = (state: FairData, action: Action): FairData => {
+  const { name, value } = action;
+  switch (name) {
+    case 'startDate':
+    case 'applicationStartDate':
+    case 'applicationEndDate':
+      return {
+        ...state,
+        [name]: formatDate(value),
+      };
+    case 'startTime':
+      return {
+        ...state,
+        [name]: formatTime(value),
+      };
+    default:
+      return {
+        ...state,
+        [name]: value,
+      };
+  }
+};
+
 const FairPost = () => {
-  const [fairData, setFairData] = useState({
-    start: '',
-    startDate: '',
-    startTime: '',
-    capacity: 100,
-    place: '',
-    applicationUrl: '',
-    applicationStartDate: '',
-    applicationEndDate: '',
-    type: 'STUDENT_AND_PARENT',
-  });
+  const [fairData, dispatch] = useReducer(fairDataReducer, initialFairData);
 
   const { handleFairPostButtonClick } = useFairPostAction(fairData);
 
   useEffect(() => {
     if (fairData.startDate && fairData.startTime) {
       const combinedStart = `${fairData.startDate}T${fairData.startTime}:00`;
-      setFairData((prevData) => ({
-        ...prevData,
-        start: combinedStart,
-      }));
+      dispatch({ name: 'start', value: combinedStart });
     }
   }, [fairData.startDate, fairData.startTime]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    if (
-      name === 'startDate' ||
-      name === 'applicationStartDate' ||
-      name === 'applicationEndDate'
-    ) {
-      setFairData((prevData) => ({
-        ...prevData,
-        [name]: formatDate(value),
-      }));
-    } else if (name === 'startTime') {
-      setFairData((prevData) => ({
-        ...prevData,
-        [name]: formatTime(value),
-      }));
-    } else {
-      setFairData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
+    dispatch({ name, value });
   };
 
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFairData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    dispatch({ name, value });
   };
+
   return (
     <StyledPostFairBox>
       <Column gap={30} alignItems="center" width={360}>
