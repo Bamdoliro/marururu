@@ -20,7 +20,9 @@ export const usePostMessageMutation = (messageData: PostMessageReq) => {
   return { postMessageMutate, ...restMutation };
 };
 
-export const usePostMeisterMessageMutaion = (meisterMessageData: PostMeisterMessageReq) => {
+export const usePostMeisterMessageMutaion = (
+  meisterMessageData: PostMeisterMessageReq
+) => {
   const { handleError } = useApiError();
 
   const { mutate: postMeisterMessageMutate, ...restMutation } = useMutation({
