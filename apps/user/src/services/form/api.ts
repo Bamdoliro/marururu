@@ -5,6 +5,7 @@ import type {
   GetSchoolListRes,
   GetSaveFormRes,
   GetFormStatusRes,
+  PutFormReq,
 } from '@/types/form/remote';
 
 export const postSubmitFinalForm = async (formUrl: string) => {
@@ -59,7 +60,7 @@ export const getFormStatus = async () => {
   return data;
 };
 
-export const putCorrectionForm = async (formId: number, formData: Form) => {
+export const putCorrectionForm = async (formId: number, formData: PutFormReq) => {
   const { data } = await maru.put(`/form/${formId}`, formData, authorization());
   return data;
 };

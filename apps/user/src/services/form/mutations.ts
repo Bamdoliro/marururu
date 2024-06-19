@@ -12,6 +12,7 @@ import {
   postUploadProfileImage,
   putCorrectionForm,
 } from './api';
+import type { PutFormReq } from '@/types/form/remote';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
   const setFormStep = useSetFormStepStore();
@@ -86,15 +87,13 @@ export const useUploadProfileImageMutation = () => {
   return { uploadProfileImageMutate, ...restMutation };
 };
 
-export const useCorrectionTestMutation = (formId: number, formData: Form) => {
+export const useCorrectionFormMutation = (formId: number, formData: PutFormReq) => {
   const { handleError } = useApiError();
   const setFormStep = useSetFormStepStore();
 
   const { mutate: correctionFormMutate, ...restMutation } = useMutation({
     mutationFn: () => putCorrectionForm(formId, formData),
-    onSuccess: () => {
-      setFormStep('최종제출완료');
-    },
+    onSuccess: () => setFormStep('초안제출완료'),
     onError: handleError,
   });
 
