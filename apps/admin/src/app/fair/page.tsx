@@ -2,12 +2,12 @@
 
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import { Column, Loader, Text } from '@maru/ui';
+import { Text } from '@maru/ui';
 import AppLayout from '@/layouts/AppLayout';
 import { ApplyingList, ClosedList, Header } from '@/components/fair';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from '@suspensive/react';
+import { useEffect, useState } from 'react';
 import withAuth from '@/hocs/withAuth';
-import { color } from '@maru/design-token';
 
 const FairPage = () => {
   const [status, setStatus] = useState('진행 중인 신청');
@@ -28,35 +28,15 @@ const FairPage = () => {
     if (status === '진행 중인 신청') {
       return (
         <>
-          <Column gap={16}>
-            <Text fontType="H3" color={color.gray900}>
-              학생
-            </Text>
-            <ApplyingList fairType="STUDENT_AND_PARENT" />
-          </Column>
-          <Column gap={16}>
-            <Text fontType="H3" color={color.gray900}>
-              교사
-            </Text>
-            <ApplyingList fairType="TEACHER" />
-          </Column>
+          <ApplyingList fairType="STUDENT_AND_PARENT" />
+          <ApplyingList fairType="TEACHER" />
         </>
       );
     } else if (status === '마감된 신청') {
       return (
         <>
-          <Column gap={16}>
-            <Text fontType="H3" color={color.gray900}>
-              학생
-            </Text>
-            <ClosedList fairType="STUDENT_AND_PARENT" />
-          </Column>
-          <Column gap={16}>
-            <Text fontType="H3" color={color.gray900}>
-              교사
-            </Text>
-            <ClosedList fairType="TEACHER" />
-          </Column>
+          <ClosedList fairType="STUDENT_AND_PARENT" />
+          <ClosedList fairType="TEACHER" />
         </>
       );
     }
@@ -67,7 +47,7 @@ const FairPage = () => {
       <StyledFairPage>
         <Text fontType="H1">입학전형 설명회 관리</Text>
         <Header selectedTab={status} handleTabClick={handleTabClick} />
-        <Suspense fallback={<Loader />}>{renderContent()}</Suspense>
+        <Suspense.CSROnly>{renderContent()}</Suspense.CSROnly>
       </StyledFairPage>
     </AppLayout>
   );
