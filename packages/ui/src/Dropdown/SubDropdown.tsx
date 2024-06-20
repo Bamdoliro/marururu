@@ -159,7 +159,7 @@ const Label = styled.p`
 
 const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }>`
   ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
-  width: 100%;
+  width: 178px;
   background-color: ${color.white};
   border-radius: 6px;
   cursor: pointer;
@@ -204,7 +204,7 @@ const DropdownList = styled.div<{ $isMultiple?: boolean }>`
   position: absolute;
   margin-top: 8px;
   padding: 8px 0px;
-  width: 100%;
+  width: 178px;
   background-color: ${color.white};
   border: 1px solid ${color.gray200};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -217,7 +217,6 @@ const DropdownList = styled.div<{ $isMultiple?: boolean }>`
 const DropdownItem = styled.button`
   ${flex({ alignItems: 'center' })}
   padding: 10px 16px;
-  width: 100%;
   height: 48px;
   cursor: pointer;
   &:hover {

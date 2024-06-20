@@ -9,15 +9,26 @@ import { useRef, useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useMessagePostAction, useMeisterMessagePostAction } from './MessagePost.hooks';
 
+type FormType = 'MEISTER_TALENT' | 'REGULAR' | 'TRUE_REGULAR' | 'FALSE_REGULAR' | '';
+
 const Message = () => {
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
-  const [messageData, setMessageData] = useState({
+  const [messageData, setMessageData] = useState<{
+    title: string;
+    text: string;
+    status: string;
+  }>({
     title: '',
     text: '',
     status: '',
   });
 
-  const [meisterMessageData, setMeisterMessageData] = useState({
+  const [meisterMessageData, setMeisterMessageData] = useState<{
+    title: string;
+    text: string;
+    formType: FormType;
+    isChangeToRegular: boolean;
+  }>({
     title: '',
     text: '',
     formType: '',
@@ -62,7 +73,7 @@ const Message = () => {
   };
 
   const handleSendMessages = () => {
-    if (meisterMessageData.formType != '') {
+    if (meisterMessageData.formType !== '') {
       handleMeisterMessagePostButtonClick();
     } else {
       handleMessagePostButtonClick();
@@ -100,8 +111,8 @@ const Message = () => {
                 label: '1차 합격자',
                 children: [
                   { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
-                  { value: 'TRUE_REGULAR', label: '마이스터 -> 일반' },
-                  { value: 'FALSE_REGULAR', label: '마이스터 -> 일반 제외' },
+                  { value: 'TRUE_REGULAR', label: '마이스터 → 일반' },
+                  { value: 'FALSE_REGULAR', label: '마이스터 → 일반 제외' },
                 ],
                 onChange: handleMeisterMessageCategoryChange,
                 setNext: true,
@@ -112,7 +123,7 @@ const Message = () => {
             size="SMALL"
             value={MESSAGE_CATEGORY[messageData.status as Category]}
             placeholder="받는 사람"
-            width="160px"
+            width="180px"
             onChange={handleMessageCategoryChange}
           />
           <Button size="SMALL" onClick={handleSendMessages}>
