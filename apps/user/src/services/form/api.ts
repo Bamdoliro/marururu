@@ -7,7 +7,7 @@ import type {
   GetFormStatusRes,
 } from '@/types/form/remote';
 
-export const postSubmitFinalForm = async (formUrl: string) => {
+export const patchSubmitFinalForm = async (formUrl: string) => {
   const { data } = await maru.patch('/form', formUrl, authorization());
   return data;
 };
