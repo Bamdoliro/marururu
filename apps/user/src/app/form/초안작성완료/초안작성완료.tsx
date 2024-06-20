@@ -113,7 +113,12 @@ const 초안작성완료 = () => {
             <Text fontType="H3" color={color.gray900}>
               돌아가시겠습니까?
             </Text>
-            <Button onClick={handleCheckAgainForm} styleType="SECONDARY" size="LARGE">
+            <Button
+              onClick={handleCheckAgainForm}
+              styleType="SECONDARY"
+              size="LARGE"
+              width={173}
+            >
               처음으로 돌아가기
             </Button>
           </Column>
