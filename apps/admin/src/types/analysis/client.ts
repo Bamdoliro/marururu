@@ -36,6 +36,16 @@ export interface GradeDistribution {
   totalAvg: number;
 }
 
+export type FormTypeMainCategory = 'REGULAR' | 'SPECIAL' | 'SUPERNUMERARY';
+
+export interface GenderRatio {
+  category: FormType;
+  busanMale: number;
+  busanFemale: number;
+  otherLocationMale: number;
+  otherLocationFemale: number;
+}
+
 export type AreaCategory =
   | 'BUSAN'
   | 'OTHER_AREA'

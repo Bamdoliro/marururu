@@ -4,8 +4,13 @@ import {
   getNumberOfApplicantsList,
   getGradeDistributionList,
   getSchoolOriginList,
+  getGenderRatioList,
 } from './api';
-import type { SchoolStatusReq, AnalysisApplicantTypeReq } from '@/types/analysis/remote';
+import type {
+  SchoolStatusReq,
+  AnalysisApplicantTypeReq,
+  GenderRatioStatusReq,
+} from '@/types/analysis/remote';
 
 export const useNumberOfApplicantsListQuery = () => {
   const { data, ...restQuery } = useQuery({
@@ -19,8 +24,17 @@ export const useNumberOfApplicantsListQuery = () => {
 
 export const useGradeDistributionListQuery = (params: AnalysisApplicantTypeReq) => {
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.ANALYSIS_SCHOOL_ORIGIN, params],
+    queryKey: [KEY.ANALYSIS_GRADE_DISTRIBUTION, params],
     queryFn: () => getGradeDistributionList(params),
+    suspense: false,
+  });
+  return { data: data?.dataList, ...restQuery };
+};
+
+export const useGenderRatioListQuery = (params: GenderRatioStatusReq) => {
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.ANALYSIS_GENDER_RATIO, params],
+    queryFn: () => getGenderRatioList(params),
     suspense: false,
   });
   return { data: data?.dataList, ...restQuery };
