@@ -91,14 +91,19 @@ const FormStatus = ({ status }: Props) => {
         return (
           <StyledApplicationBox>
             <Column>
-              <Column gap={4}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  접수됨
-                </Text>
-              </Column>
+              <Row>
+                <Column gap={4}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    접수됨
+                  </Text>
+                </Column>
+                <MoveIcon>
+                  <IconCheckCircle width={120} height={120} />
+                </MoveIcon>
+              </Row>
               <Text fontType="p2" color={color.gray600}>
                 원서가 접수되었습니다. <br />
                 원서 승인을 기다려주세요.
@@ -110,14 +115,19 @@ const FormStatus = ({ status }: Props) => {
         return (
           <StyledApplicationBox>
             <Column>
-              <Column gap={4}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  1차 불합격
-                </Text>
-              </Column>
+              <Row>
+                <Column gap={4}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    1차 불합격
+                  </Text>
+                </Column>
+                <MoveIcon>
+                  <IconCancelCircle width={120} height={120} />
+                </MoveIcon>
+              </Row>
               <Text fontType="p2" color={color.gray600}>
                 1차 전형에서 불합격하셨습니다. <br />
                 관심을 가지고 지원해 주셔서 감사합니다.
@@ -129,14 +139,19 @@ const FormStatus = ({ status }: Props) => {
         return (
           <StyledApplicationBox>
             <Column>
-              <Column gap={4}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  최종 불합격
-                </Text>
-              </Column>
+              <Row>
+                <Column gap={4}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    최종 불합격
+                  </Text>
+                </Column>
+                <MoveIcon>
+                  <IconCancelCircle width={120} height={120} />
+                </MoveIcon>
+              </Row>
               <Text fontType="p2" color={color.gray600}>
                 2차 전형에서 불합격하셨습니다. <br />
                 관심을 가지고 지원해 주셔서 감사합니다.
@@ -172,14 +187,19 @@ const FormStatus = ({ status }: Props) => {
         return (
           <StyledApplicationBox>
             <Column>
-              <Column gap={4}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  불참
-                </Text>
-              </Column>
+              <Row>
+                <Column gap={4}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    불참
+                  </Text>
+                </Column>
+                <MoveIcon>
+                  <IconCancelCircle width={120} height={120} />
+                </MoveIcon>
+              </Row>
               <Text fontType="p2" color={color.gray600}>
                 2차 전형에 참여하지 않으셨기에 <br />
                 자동으로 불합격 처리되셨습니다.
@@ -191,14 +211,19 @@ const FormStatus = ({ status }: Props) => {
         return (
           <StyledApplicationBox>
             <Column>
-              <Column gap={4}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  1차 합격
-                </Text>
-              </Column>
+              <Row>
+                <Column gap={4}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    1차 합격
+                  </Text>
+                </Column>
+                <MoveIcon>
+                  <IconCheckCircle width={120} height={120} />
+                </MoveIcon>
+              </Row>
               <Text fontType="p2" color={color.gray600}>
                 1차 합격하셨습니다. <br />
                 남은 전형도 힘내시길 바랍니다.
