@@ -1,7 +1,8 @@
 'use client';
 
+import { useEffect } from 'react';
 import { FormWrapper } from '@/components/common';
-import { useFormStepValueStore } from '@/store';
+import { useFormStepStore } from '@/store';
 import { SwitchCase } from '@toss/react';
 import 보호자정보 from './보호자정보/보호자정보';
 import 성적입력 from './성적입력/성적입력';
@@ -13,9 +14,17 @@ import 초안제출완료 from './초안제출완료/초안제출완료';
 import 최종제출 from './최종제출/최종제출';
 import 최종제출완료 from './최종제출완료/최종제출완료';
 import 출신학교및학력 from './출신학교및학력/출신학교및학력';
+import { useFormStatusQuery } from '@/services/form/queries';
 
 const FormPage = () => {
-  const formStep = useFormStepValueStore();
+  const [formStep, setFormStep] = useFormStepStore();
+  const formStatusData = useFormStatusQuery().data;
+
+  useEffect(() => {
+    if (formStatusData?.status === 'REJECTED') {
+      setFormStep('최종제출');
+    }
+  }, [formStatusData, setFormStep]);
 
   return (
     <FormWrapper>
