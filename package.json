@@ -25,5 +25,8 @@
     "turbo": "latest"
   },
   "packageManager": "pnpm@8.6.7",
-  "name": "marururu"
+  "name": "marururu",
+  "dependencies": {
+    "msw": "^2.3.0"
+  }
 }

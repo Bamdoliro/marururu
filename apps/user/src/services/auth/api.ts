@@ -3,6 +3,7 @@ import { authorization } from '@/apis/token';
 import type {
   PatchVerificationReq,
   PostJoinAuthReq,
+  PatchUpdateAuthReq,
   PostLoginAuthReq,
 } from '@/types/auth/remote';
 
@@ -16,13 +17,22 @@ export const postJoinUser = async ({ phoneNumber, name, password }: PostJoinAuth
   return data;
 };
 
-export const postRequestVerificationCode = async (phoneNumber: string) => {
-  const { data } = await maru.post('/user/verification', { phoneNumber });
+export const patchUpdateUser = async ({ phoneNumber, password }: PatchUpdateAuthReq) => {
+  const { data } = await maru.patch('/user/password', { phoneNumber, password });
   return data;
 };
 
-export const patchVerification = async ({ code, phoneNumber }: PatchVerificationReq) => {
-  const { data } = await maru.patch('/user/verification', { code, phoneNumber });
+export const postRequestVerificationCode = async (phoneNumber: string, type: string) => {
+  const { data } = await maru.post('/user/verification', { phoneNumber, type });
+  return data;
+};
+
+export const patchVerification = async ({
+  code,
+  phoneNumber,
+  type,
+}: PatchVerificationReq) => {
+  const { data } = await maru.patch('/user/verification', { phoneNumber, code, type });
   return data;
 };
 

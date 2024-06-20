@@ -1,19 +1,12 @@
-import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { useExportFormQuery } from '@/services/form/queries';
-import { useRouter } from 'next/navigation';
 
 export const useDownloadForm = () => {
   const { userData } = useUser();
   const { data: exportFormData } = useExportFormQuery();
-  const router = useRouter();
 
   const handlleDownloadFormButtonClick = () => {
-    if (!exportFormData) {
-      alert('로그인이 필요합니다.');
-      router.push(ROUTES.LOGIN);
-      return;
-    }
+    if (!exportFormData) return;
     const pdfBlobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
 
     const link = document.createElement('a');

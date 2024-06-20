@@ -26,7 +26,7 @@ export default WriteNextForm;
 
 const StyledApplicationBox = styled.div`
   ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
-  width: 492px;
+  width: 400px;
   height: 125px;
   padding: 24px 32px;
   background-color: ${color.white};

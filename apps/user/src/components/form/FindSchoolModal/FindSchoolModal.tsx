@@ -16,6 +16,7 @@ const FindSchoolModal = ({ isOpen, onClose }: Props) => {
   const [school, setSchool] = useState<School>({
     name: '',
     location: '',
+    address: '',
     code: '',
   });
   const {
@@ -25,7 +26,7 @@ const FindSchoolModal = ({ isOpen, onClose }: Props) => {
   } = useDebounceInput({ initialValue: '' });
 
   const handleConfirmModal = () => {
-    const { name, location, code } = school;
+    const { name, location, code, address } = school;
     setForm((prev) => ({
       ...prev,
       education: {
@@ -33,13 +34,14 @@ const FindSchoolModal = ({ isOpen, onClose }: Props) => {
         schoolName: name,
         schoolLocation: location,
         schoolCode: code,
+        schoolAddress: address,
       },
     }));
     onClose();
   };
 
   const handleCloseModal = () => {
-    setSchool({ name: '', location: '', code: '' });
+    setSchool({ name: '', location: '', code: '', address: '' });
     onClose();
   };
 
@@ -52,6 +54,7 @@ const FindSchoolModal = ({ isOpen, onClose }: Props) => {
       title="학교 검색"
       onClose={handleCloseModal}
       onConfirm={handleConfirmModal}
+      mode="complete"
     >
       <Column gap={16}>
         <SearchInput

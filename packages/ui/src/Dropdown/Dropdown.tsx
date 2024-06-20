@@ -1,6 +1,6 @@
+import { color, font } from '@maru/design-token';
 import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowBottom, IconArrowTop } from '@maru/icon';
-import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import type { CSSProperties } from 'react';
 import styled, { css } from 'styled-components';
@@ -65,7 +65,6 @@ const Dropdown = ({
             const isString = typeof item === 'string';
             const dropdownLabel = isString ? item : item.label;
             const dropdownValue = isString ? item : item.value;
-
             return (
               <DropdownItem
                 key={`dropdown ${index}`}

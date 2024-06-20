@@ -32,7 +32,8 @@ export const useVerificationCodeAction = (joinUserData: Join) => {
 
   const { verificationMutate } = useVerificationMutation(setisVerificationCodeConfirm);
   const { requestVerificationCodeMutate } = useRequestVerificationCodeMutation(
-    joinUserData.phoneNumber
+    joinUserData.phoneNumber,
+    'SIGNUP'
   );
 
   const handleRequestVerificationCode = () => {
@@ -67,6 +68,7 @@ export const useInput = () => {
     name: '',
     password: '',
     password_confirm: '',
+    type: 'SIGNUP',
   });
 
   const handleJoinUserChange: ChangeEventHandler<HTMLInputElement> = (e) => {

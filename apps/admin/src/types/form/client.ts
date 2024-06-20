@@ -1,3 +1,15 @@
+export type FormStatus =
+  | 'RECEIVED'
+  | 'FIRST_FAILED'
+  | 'FAILED'
+  | 'FINAL_SUBMITTED'
+  | 'SUBMITTED'
+  | 'APPROVED'
+  | 'NO_SHOW'
+  | 'FIRST_PASSED'
+  | 'PASSED'
+  | 'REJECTED';
+
 export type FormType =
   | 'REGULAR'
   | 'MEISTER_TALENT'
@@ -15,18 +27,6 @@ export type FormType =
 
 export type GraduationType = 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
 
-export type FormStatus =
-  | 'RECEIVED'
-  | 'FIRST_FAILED'
-  | 'FAILED'
-  | 'FINAL_SUBMITTED'
-  | 'SUBMITTED'
-  | 'APPROVED'
-  | 'NO_SHOW'
-  | 'FIRST_PASSED'
-  | 'PASSED'
-  | 'REJECTED';
-
 export interface Form {
   id: number;
   name: string;
@@ -36,7 +36,7 @@ export interface Form {
   status: FormStatus;
   type: FormType;
   totalScore: number | null;
-  hasDocument: boolean;
+  hasDocument: boolean | null;
   firstRoundPassed: boolean | null;
   secondRoundPassed: boolean | null;
 }
@@ -94,6 +94,7 @@ export interface EducationInfo {
   graduationYear: string;
   schoolName: string;
   schoolLocation: string;
+  schoolAddress: string;
   schoolCode: string;
   teacherName: string;
   teacherPhoneNumber: string;
@@ -121,4 +122,4 @@ export interface Attendance {
   classAbsenceCount: number;
 }
 
-export type ApprovalStatus = '승인' | '반려' | '';
+export type ApprovalStatus = '승인' | '반려' | '접수' | '';
