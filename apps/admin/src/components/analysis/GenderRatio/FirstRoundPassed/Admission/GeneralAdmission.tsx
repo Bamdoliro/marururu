@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
 
-const FirstRoundPassedTable = () => {
+const GeneralAdmission = () => {
   return (
     <TableBox>
       <Text fontType="H3" color={color.gray750} width={60}>
@@ -65,7 +65,7 @@ const FirstRoundPassedTable = () => {
   );
 };
 
-export default FirstRoundPassedTable;
+export default GeneralAdmission;
 
 const TableBox = styled.section`
   ${flex({ flexDirection: 'column' })}

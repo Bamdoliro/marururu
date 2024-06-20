@@ -35,7 +35,7 @@ const SecondRoundPassedDetail = () => {
             caseBy={{
               '일반 전형 성비': <GeneralAdmission />,
               '특별 전형 성비': <SpecificAdmission />,
-              '특례입학대상자 성비': <ExceptionalAdmission />,
+              '정원 외 전형 성비': <ExceptionalAdmission />,
             }}
           />
         </Column>
