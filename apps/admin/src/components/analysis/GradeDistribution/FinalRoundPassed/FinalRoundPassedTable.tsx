@@ -10,43 +10,23 @@ const FinalRoundPassedTable = () => {
     statusList: ['PASSED'],
   });
 
-  const maxFirstRoundMax = dataList
-    ? Math.min(...dataList.map((data) => data.firstRoundMax))
-    : undefined;
-  const minFirstRoundMin = dataList
-    ? Math.min(...dataList.map((data) => data.firstRoundMin))
+  const entireFinalRoundMax = dataList
+    ? Math.max(...dataList.map((item) => item.totalMax)).toFixed(3)
     : undefined;
 
-  const regularFirstRoundMax = dataList
+  const entireFinalRoundMin = dataList
+    ? Math.min(
+        ...dataList.map((item) => item.totalMin).filter((value) => value !== 0)
+      ).toFixed(3)
+    : undefined;
+
+  const regularFinalRoundMax = dataList
     ? Math.max(
-        ...dataList
-          .filter((item) => item.type === 'REGULAR')
-          .map((item) => item.firstRoundMax)
-      )
+        ...dataList.filter((item) => item.type === 'REGULAR').map((item) => item.totalMax)
+      ).toFixed(3)
     : undefined;
 
-  const SpecialAdmissionFirstRoundMax = dataList
-    ? Math.max(
-        ...dataList
-          .filter(
-            (item) =>
-              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
-                item.type
-              )
-          )
-          .map((item) => item.firstRoundMax)
-      )
-    : undefined;
-
-  const regularFirstRoundMin = dataList
-    ? Math.max(
-        ...dataList
-          .filter((item) => item.type === 'REGULAR')
-          .map((item) => item.firstRoundMin)
-      )
-    : undefined;
-
-  const SpecialAdmissionFirstRoundMin = dataList
+  const SpecialAdmissionFinalRoundMax = dataList
     ? Math.max(
         ...dataList
           .filter(
@@ -55,26 +35,55 @@ const FinalRoundPassedTable = () => {
                 item.type
               )
           )
-          .map((item) => item.firstRoundMin)
-      )
+          .map((item) => item.totalMax)
+      ).toFixed(3)
     : undefined;
 
-  const regularFirstRoundAvg = dataList
-    ?.filter((item) => ['REGULAR'].includes(item.type))
-    .map((item) => item.firstRoundAvg);
+  const regularFinalRoundMin = dataList
+    ? Math.min(
+        ...dataList.filter((item) => item.type === 'REGULAR').map((item) => item.totalMin)
+      ).toFixed(3)
+    : undefined;
+
+  const specialAdmissionFinalRoundMin = dataList
+    ? Math.min(
+        ...dataList
+          .filter(
+            (item) =>
+              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+                item.type
+              )
+          )
+          .filter((item) => item.totalMin !== 0)
+          .map((item) => item.totalMin)
+      ).toFixed(3)
+    : undefined;
+
+  const regularFinalRoundAvg = dataList
+    ?.filter((item) => item.type === 'REGULAR')
+    .map((item) => item.totalAvg)
+    .reduce((sum, value) => sum + (value || 0), 0)
+    .toFixed(3);
 
   const SpecialAdmissionData =
-    dataList?.filter(
-      (item) =>
-        !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
-          item.type
-        )
-    ) || [];
-  const totalFirstRoundAvg = SpecialAdmissionData.reduce(
-    (sum, item) => sum + item.firstRoundAvg,
+    dataList
+      ?.filter(
+        (item) =>
+          !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+            item.type
+          )
+      )
+      .filter((item) => item.totalAvg !== 0) || [];
+
+  const finalRoundAvgSum = SpecialAdmissionData.reduce(
+    (sum, item) => sum + item.totalAvg,
     0
   );
-  const SpecialAdmissionFirstRoundAvg = (totalFirstRoundAvg / 10).toFixed(3);
+
+  const SpecialAdmissionFinalRoundAvg =
+    finalRoundAvgSum !== 0
+      ? (finalRoundAvgSum / SpecialAdmissionData.length).toFixed(3)
+      : '0.000';
 
   return (
     <Layout>
@@ -85,7 +94,7 @@ const FinalRoundPassedTable = () => {
               최고점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              {maxFirstRoundMax}
+              {entireFinalRoundMax}
             </Text>
           </ApplicantsBox>
           <ApplicantsBox>
@@ -93,7 +102,7 @@ const FinalRoundPassedTable = () => {
               최하점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              {minFirstRoundMin}
+              {entireFinalRoundMin}
             </Text>
           </ApplicantsBox>
         </TotalBox>
@@ -118,10 +127,10 @@ const FinalRoundPassedTable = () => {
                 최고 점수
               </Td>
               <Td width={112} height={56}>
-                {regularFirstRoundMax}
+                {regularFinalRoundMax}
               </Td>
               <Td width={112} height={56}>
-                {SpecialAdmissionFirstRoundMax}
+                {SpecialAdmissionFinalRoundMax}
               </Td>
             </Row>
             <Row>
@@ -129,10 +138,10 @@ const FinalRoundPassedTable = () => {
                 최하 점수
               </Td>
               <Td width={112} height={56}>
-                {regularFirstRoundMin}
+                {regularFinalRoundMin}
               </Td>
               <Td width={112} height={56}>
-                {SpecialAdmissionFirstRoundMin}
+                {specialAdmissionFinalRoundMin}
               </Td>
             </Row>
             <Row>
@@ -145,10 +154,10 @@ const FinalRoundPassedTable = () => {
                 평균
               </Td>
               <Td width={112} height={56}>
-                {regularFirstRoundAvg}
+                {regularFinalRoundAvg}
               </Td>
               <Td width={112} height={56} borderBottomRightRadius={12}>
-                {SpecialAdmissionFirstRoundAvg}
+                {SpecialAdmissionFinalRoundAvg}
               </Td>
             </Row>
           </Column>

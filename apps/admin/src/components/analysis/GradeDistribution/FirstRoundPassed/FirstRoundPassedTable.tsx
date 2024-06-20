@@ -10,11 +10,14 @@ const FirstRoundPassedTable = () => {
     statusList: ['FIRST_PASSED', 'FAILED', 'PASSED'],
   });
 
-  const maxFirstRoundMax = dataList
-    ? Math.min(...dataList.map((data) => data.firstRoundMax))
+  const entireFirstRoundMax = dataList
+    ? Math.max(...dataList.map((item) => item.firstRoundMax)).toFixed(3)
     : undefined;
-  const minFirstRoundMin = dataList
-    ? Math.min(...dataList.map((data) => data.firstRoundMin))
+
+  const entireFirstRoundMin = dataList
+    ? Math.min(
+        ...dataList.map((item) => item.firstRoundMin).filter((value) => value !== 0)
+      ).toFixed(3)
     : undefined;
 
   const regularFirstRoundMax = dataList
@@ -22,7 +25,7 @@ const FirstRoundPassedTable = () => {
         ...dataList
           .filter((item) => item.type === 'REGULAR')
           .map((item) => item.firstRoundMax)
-      )
+      ).toFixed(3)
     : undefined;
 
   const SpecialAdmissionFirstRoundMax = dataList
@@ -35,19 +38,19 @@ const FirstRoundPassedTable = () => {
               )
           )
           .map((item) => item.firstRoundMax)
-      )
+      ).toFixed(3)
     : undefined;
 
   const regularFirstRoundMin = dataList
-    ? Math.max(
+    ? Math.min(
         ...dataList
           .filter((item) => item.type === 'REGULAR')
           .map((item) => item.firstRoundMin)
-      )
+      ).toFixed(3)
     : undefined;
 
-  const SpecialAdmissionFirstRoundMin = dataList
-    ? Math.max(
+  const specialAdmissionFirstRoundMin = dataList
+    ? Math.min(
         ...dataList
           .filter(
             (item) =>
@@ -55,26 +58,34 @@ const FirstRoundPassedTable = () => {
                 item.type
               )
           )
+          .filter((item) => item.firstRoundMin !== 0)
           .map((item) => item.firstRoundMin)
-      )
+      ).toFixed(3)
     : undefined;
 
   const regularFirstRoundAvg = dataList
     ?.filter((item) => ['REGULAR'].includes(item.type))
-    .map((item) => item.firstRoundAvg);
+    .map((item) => item.firstRoundAvg.toFixed(3));
 
   const SpecialAdmissionData =
-    dataList?.filter(
-      (item) =>
-        !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
-          item.type
-        )
-    ) || [];
+    dataList
+      ?.filter(
+        (item) =>
+          !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+            item.type
+          )
+      )
+      .filter((item) => item.firstRoundAvg !== 0) || [];
+
   const totalFirstRoundAvg = SpecialAdmissionData.reduce(
     (sum, item) => sum + item.firstRoundAvg,
     0
   );
-  const SpecialAdmissionFirstRoundAvg = (totalFirstRoundAvg / 10).toFixed(3);
+
+  const SpecialAdmissionFirstRoundAvg =
+    totalFirstRoundAvg !== 0
+      ? (totalFirstRoundAvg / SpecialAdmissionData.length).toFixed(3)
+      : '0.000';
 
   return (
     <Layout>
@@ -85,7 +96,7 @@ const FirstRoundPassedTable = () => {
               최고점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              {maxFirstRoundMax}
+              {entireFirstRoundMax}
             </Text>
           </ApplicantsBox>
           <ApplicantsBox>
@@ -93,7 +104,7 @@ const FirstRoundPassedTable = () => {
               최하점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              {minFirstRoundMin}
+              {entireFirstRoundMin}
             </Text>
           </ApplicantsBox>
         </TotalBox>
@@ -132,7 +143,7 @@ const FirstRoundPassedTable = () => {
                 {regularFirstRoundMin}
               </Td>
               <Td width={112} height={56}>
-                {SpecialAdmissionFirstRoundMin}
+                {specialAdmissionFirstRoundMin}
               </Td>
             </Row>
             <Row>

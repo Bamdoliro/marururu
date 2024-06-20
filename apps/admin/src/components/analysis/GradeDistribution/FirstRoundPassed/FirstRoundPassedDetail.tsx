@@ -11,8 +11,8 @@ const FirstRoundPassedDetail = () => {
     if (!entries || entries.length === 0) {
       return { max: 0, min: 0 };
     }
-    const max = Math.max(...entries.map((item) => item.firstRoundMax));
-    const min = Math.min(...entries.map((item) => item.firstRoundMin));
+    const max = Math.max(...entries.map((item) => item.firstRoundMax)).toFixed(3);
+    const min = Math.min(...entries.map((item) => item.firstRoundMin)).toFixed(3);
     return { max, min };
   };
 
