@@ -158,7 +158,7 @@ const FormStatus = ({ status }: Props) => {
                   </Text>
                 </Column>
                 <MoveIcon>
-                  <IconCancelCircle width={120} height={120} />
+                  <IconCheckCircle width={120} height={120} />
                 </MoveIcon>
               </Row>
               <Text fontType="p2" color={color.gray600}>

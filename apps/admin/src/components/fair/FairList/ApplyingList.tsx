@@ -1,59 +1,63 @@
 import { useFairListQuery } from '@/services/fair/queries';
 import ApplyingItem from '../FairItem/ApplyingItem';
 import { styled } from 'styled-components';
-import { useMemo } from 'react';
 
 interface Props {
   fairType: string;
 }
 
+interface FairItem {
+  start: string;
+  place: string;
+  status: string | null;
+  applicationStartDate: string;
+  applicationEndDate: string;
+  applicationUrl: string;
+}
+
 const ApplyingList = ({ fairType }: Props) => {
   const { data: fairListData } = useFairListQuery(fairType);
 
-  const filteredFairListData = useMemo(() => {
-    return (
-      fairListData?.filter(
-        ({ status }) => status === 'APPLICATION_IN_PROGRESS' || status === null
-      ) || []
-    );
-  }, [fairListData]);
-
-  const gridTemplateColumns = useMemo(() => {
-    return filteredFairListData.length <= 2
-      ? 'repeat(2, 400px)'
-      : 'repeat(auto-fill, 400px)';
-  }, [filteredFairListData.length]);
-
-  return filteredFairListData.length > 0 ? (
-    <StyledFairList gridTemplateColumns={gridTemplateColumns}>
-      {filteredFairListData.map(
-        ({
-          start,
-          place,
-          status,
-          applicationStartDate,
-          applicationEndDate,
-          applicationUrl,
-        }) => (
-          <ApplyingItem
-            key={applicationUrl}
-            place={place}
-            applicationStartDate={applicationStartDate}
-            applicationEndDate={applicationEndDate}
-            start={start}
-            status={status}
-            applicationUrl={applicationUrl}
-          />
+  return fairListData ? (
+    <StyledFairList fairApplyingItemCount={fairListData.length}>
+      {fairListData
+        .filter(
+          ({ status }: FairItem) =>
+            status === 'APPLICATION_IN_PROGRESS' || status === null
         )
-      )}
+        .map(
+          ({
+            start,
+            place,
+            status,
+            applicationStartDate,
+            applicationEndDate,
+            applicationUrl,
+          }: FairItem) => (
+            <ApplyingItem
+              key={applicationUrl}
+              place={place}
+              applicationStartDate={applicationStartDate}
+              applicationEndDate={applicationEndDate}
+              start={start}
+              status={status !== null ? status : ''}
+              applicationUrl={applicationUrl}
+            />
+          )
+        )}
     </StyledFairList>
   ) : null;
 };
 
 export default ApplyingList;
 
-const StyledFairList = styled.div<{ gridTemplateColumns: string }>`
+const StyledFairList = styled.div<{ fairApplyingItemCount: number }>`
   display: grid;
-  grid-template-columns: ${({ gridTemplateColumns }) => gridTemplateColumns};
+  grid-template-columns: repeat(auto-fill, 400px);
   gap: 32px;
+
+  @media (min-width: 800px) {
+    grid-template-columns: ${({ fairApplyingItemCount }) =>
+      fairApplyingItemCount <= 2 ? 'repeat(2, 400px)' : 'repeat(auto-fill, 400px)'};
+  }
 `;

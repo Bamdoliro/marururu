@@ -48,6 +48,5 @@ export default Header;
 const StyledHeader = styled.div`
   width: 100%;
   background-color: ${color.white};
-  padding-bottom: 36px;
   padding-top: 36px;
 `;

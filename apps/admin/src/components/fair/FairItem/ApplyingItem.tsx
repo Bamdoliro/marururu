@@ -50,7 +50,7 @@ const ApplyingItem = ({
 export default ApplyingItem;
 
 const StyledBox = styled.div`
-  ${flex({ flexDirection: 'column', justifyContent: 'center' })}
+  ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
   width: 400px;
   height: 180px;
   padding: 28px 32px;
