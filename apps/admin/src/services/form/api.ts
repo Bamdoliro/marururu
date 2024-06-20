@@ -30,7 +30,7 @@ export const getSecondScoreFormat = async () => {
 
 export const patchSecondScoreFormat = async (formData: FormData) => {
   const { data } = await maru.patch(
-    '/form/second-round',
+    '/form/second-round/score',
     formData,
     authorization.FormData()
   );
