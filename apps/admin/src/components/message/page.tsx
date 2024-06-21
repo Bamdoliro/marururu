@@ -93,12 +93,14 @@ const Message = () => {
     }));
   };
 
-
   const handleSendMessages = () => {
-    if (meisterMessageData.formType !== '') {
-      handleMeisterMessagePostButtonClick();
-    } else {
-      handleMessagePostButtonClick();
+    if (messageData.status === '') alert('받는 사람을 선택해주세요');
+    else {
+      if (meisterMessageData.formType !== '') {
+        handleMeisterMessagePostButtonClick();
+      } else {
+        handleMessagePostButtonClick();
+      }
     }
   };
 
