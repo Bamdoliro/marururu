@@ -47,7 +47,14 @@ const Message = () => {
     if (name === 'MEISTER_TALENT') {
       setMeisterMessageData((prevData) => ({
         ...prevData,
-        formType: value === 'MEISTER_TALENT' ? 'MEISTER_TALENT' : 'REGULAR',
+        formType:
+          value === 'MEISTER_TALENT'
+            ? 'MEISTER_TALENT'
+            : value === 'TRUE_REGULAR'
+            ? 'REGULAR'
+            : value === 'FALSE_REGULAR'
+            ? 'REGULAR'
+            : '',
         isChangeToRegular: value === 'TRUE_REGULAR',
       }));
     }
@@ -58,7 +65,14 @@ const Message = () => {
     setMessageData((prevData) => ({ ...prevData, [name]: value }));
     setMeisterMessageData((prevData) => ({
       ...prevData,
-      formType: value === 'MEISTER_TALENT' ? 'MEISTER_TALENT' : 'REGULAR',
+      formType:
+        value === 'MEISTER_TALENT'
+          ? 'MEISTER_TALENT'
+          : value === 'TRUE_REGULAR'
+          ? 'REGULAR'
+          : value === 'FALSE_REGULAR'
+          ? 'REGULAR'
+          : '',
       isChangeToRegular: value === 'TRUE_REGULAR',
     }));
   };
@@ -67,10 +81,18 @@ const Message = () => {
     setMessageData((prevData) => ({ ...prevData, status: value }));
     setMeisterMessageData((prevData) => ({
       ...prevData,
-      formType: value === 'MEISTER_TALENT' ? 'MEISTER_TALENT' : 'REGULAR',
+      formType:
+        value === 'MEISTER_TALENT'
+          ? 'MEISTER_TALENT'
+          : value === 'TRUE_REGULAR'
+          ? 'REGULAR'
+          : value === 'FALSE_REGULAR'
+          ? 'REGULAR'
+          : '',
       isChangeToRegular: value === 'TRUE_REGULAR',
     }));
   };
+
 
   const handleSendMessages = () => {
     if (meisterMessageData.formType !== '') {
