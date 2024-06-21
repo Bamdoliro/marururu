@@ -20,11 +20,13 @@ export const usePostMessageMutation = (messageData: PostMessageReq) => {
   return { postMessageMutate, ...restMutation };
 };
 
-export const usePostMeisterMessageMutaion = (messageData: PostMeisterMessageReq) => {
+export const usePostMeisterMessageMutaion = (
+  meisterMessageData: PostMeisterMessageReq
+) => {
   const { handleError } = useApiError();
 
   const { mutate: postMeisterMessageMutate, ...restMutation } = useMutation({
-    mutationFn: () => postMeisterMessage(messageData),
+    mutationFn: () => postMeisterMessage(meisterMessageData),
     onSuccess: () => {
       toast('메시지가 전송되었습니다.', {
         type: 'success',

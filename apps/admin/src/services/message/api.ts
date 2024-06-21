@@ -7,7 +7,7 @@ export const postMessage = async (messageData: PostMessageReq) => {
   return data;
 };
 
-export const postMeisterMessage = async (messageData: PostMeisterMessageReq) => {
-  const { data } = await maru.post(`/message/type`, messageData, authorization());
+export const postMeisterMessage = async (meisterMessageData: PostMeisterMessageReq) => {
+  const { data } = await maru.post(`/message/type`, meisterMessageData, authorization());
   return data;
 };

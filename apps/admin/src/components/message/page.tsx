@@ -5,19 +5,30 @@ import { resizeTextarea } from '@/utils';
 import { Button, Row, SubDropdown, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useMessagePostAction, useMeisterMessagePostAction } from './MessagePost.hooks';
 
+type FormType = 'MEISTER_TALENT' | 'REGULAR' | 'TRUE_REGULAR' | 'FALSE_REGULAR' | '';
+
 const Message = () => {
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
-  const [messageData, setMessageData] = useState({
+  const [messageData, setMessageData] = useState<{
+    title: string;
+    text: string;
+    status: string;
+  }>({
     title: '',
     text: '',
     status: '',
   });
 
-  const [meisterMessageData, setMeisterMessageData] = useState({
+  const [meisterMessageData, setMeisterMessageData] = useState<{
+    title: string;
+    text: string;
+    formType: FormType;
+    isChangeToRegular: boolean;
+  }>({
     title: '',
     text: '',
     formType: '',
@@ -32,36 +43,74 @@ const Message = () => {
     HTMLInputElement | HTMLTextAreaElement
   > = (e) => {
     const { name, value } = e.target;
-    setMessageData({ ...messageData, [name]: value });
-    setMeisterMessageData({ ...meisterMessageData, [name]: value });
+    setMessageData((prevData) => ({ ...prevData, [name]: value }));
+    if (name === 'MEISTER_TALENT') {
+      setMeisterMessageData((prevData) => ({
+        ...prevData,
+        formType:
+          value === 'MEISTER_TALENT'
+            ? 'MEISTER_TALENT'
+            : value === 'TRUE_REGULAR'
+            ? 'REGULAR'
+            : value === 'FALSE_REGULAR'
+            ? 'REGULAR'
+            : '',
+        isChangeToRegular: value === 'TRUE_REGULAR',
+      }));
+    }
     resizeTextarea(contentTextareaRef);
   };
 
   const handleMessageCategoryChange = (value: string, name: string) => {
-    setMessageData({ ...messageData, [name]: value });
+    setMessageData((prevData) => ({ ...prevData, [name]: value }));
+    setMeisterMessageData((prevData) => ({
+      ...prevData,
+      formType:
+        value === 'MEISTER_TALENT'
+          ? 'MEISTER_TALENT'
+          : value === 'TRUE_REGULAR'
+          ? 'REGULAR'
+          : value === 'FALSE_REGULAR'
+          ? 'REGULAR'
+          : '',
+      isChangeToRegular: value === 'TRUE_REGULAR',
+    }));
   };
 
   const handleMeisterMessageCategoryChange = (value: string) => {
-    console.log(value);
-    if (value === 'TRUE_REGULAR')
-      setMeisterMessageData({
-        ...meisterMessageData,
-        formType: 'REGULAR',
-        isChangeToRegular: true,
-      });
-    else if (value === 'FALSE_REGULAR')
-      setMeisterMessageData({
-        ...meisterMessageData,
-        formType: 'REGULAR',
-        isChangeToRegular: false,
-      });
-    else if (value === 'MEISTER_TALENT')
-      setMeisterMessageData({
-        ...meisterMessageData,
-        formType: 'MEISTER_TALENT',
-        isChangeToRegular: false,
-      });
+    setMessageData((prevData) => ({ ...prevData, status: value }));
+    setMeisterMessageData((prevData) => ({
+      ...prevData,
+      formType:
+        value === 'MEISTER_TALENT'
+          ? 'MEISTER_TALENT'
+          : value === 'TRUE_REGULAR'
+          ? 'REGULAR'
+          : value === 'FALSE_REGULAR'
+          ? 'REGULAR'
+          : '',
+      isChangeToRegular: value === 'TRUE_REGULAR',
+    }));
   };
+
+  const handleSendMessages = () => {
+    if (messageData.status === '') alert('받는 사람을 선택해주세요');
+    else {
+      if (meisterMessageData.formType !== '') {
+        handleMeisterMessagePostButtonClick();
+      } else {
+        handleMessagePostButtonClick();
+      }
+    }
+  };
+
+  useEffect(() => {
+    setMeisterMessageData((prevData) => ({
+      ...prevData,
+      title: messageData.title,
+      text: messageData.text,
+    }));
+  }, [messageData.title, messageData.text]);
 
   return (
     <StyledMessage>
@@ -74,7 +123,7 @@ const Message = () => {
           value={messageData.title}
           onChange={handleMessageDataChange}
           placeholder="제목을 입력해주세요"
-        ></TitleInput>
+        />
         <Row gap={32}>
           <SubDropdown
             name="status"
@@ -86,8 +135,8 @@ const Message = () => {
                 label: '1차 합격자',
                 children: [
                   { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
-                  { value: 'TRUE_REGULAR', label: '마이스터 -> 일반' },
-                  { value: 'FALSE_REGULAR', label: '마이스터 -> 일반 제외' },
+                  { value: 'TRUE_REGULAR', label: '마이스터 → 일반' },
+                  { value: 'FALSE_REGULAR', label: '마이스터 → 일반 제외' },
                 ],
                 onChange: handleMeisterMessageCategoryChange,
                 setNext: true,
@@ -98,21 +147,15 @@ const Message = () => {
             size="SMALL"
             value={MESSAGE_CATEGORY[messageData.status as Category]}
             placeholder="받는 사람"
-            width="160px"
+            width="180px"
             onChange={handleMessageCategoryChange}
           />
-          <Button
-            size="SMALL"
-            onClick={() => {
-              handleMessagePostButtonClick();
-              handleMeisterMessagePostButtonClick();
-            }}
-          >
+          <Button size="SMALL" onClick={handleSendMessages}>
             발송하기
           </Button>
         </Row>
       </MessageHeader>
-      <Separator></Separator>
+      <Separator />
       <ContentTextarea
         ref={contentTextareaRef}
         name="text"
@@ -146,6 +189,7 @@ const TitleInput = styled.input`
     color: ${color.gray400};
   }
 `;
+
 const Separator = styled.p`
   border: 1px solid ${color.gray200};
   margin-bottom: 16px 0;
