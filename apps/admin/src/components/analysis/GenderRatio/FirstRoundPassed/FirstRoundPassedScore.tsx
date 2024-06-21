@@ -2,8 +2,13 @@ import { Text } from '@maru/ui';
 import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
+import useGenderRatioData from './FirstRoundPassedGenderRatio.hooks';
+import type { FormTypeMainCategory } from '@/types/analysis/client';
 
 const FirstRoundPassedScore = () => {
+  const mainCategories: FormTypeMainCategory[] = ['REGULAR', 'SPECIAL', 'SUPERNUMERARY'];
+  const { overallMale, overallFemale } = useGenderRatioData(mainCategories);
+
   return (
     <TotalBox>
       <ApplicantsBox>
@@ -11,7 +16,7 @@ const FirstRoundPassedScore = () => {
           전체 남학생 지원 인원
         </Text>
         <Text fontType="D1" width={60}>
-          최하위 점수
+          {overallMale}
         </Text>
       </ApplicantsBox>
       <ApplicantsBox>
@@ -19,7 +24,7 @@ const FirstRoundPassedScore = () => {
           전체 여학생 지원 인원
         </Text>
         <Text fontType="D1" width={60}>
-          숫자
+          {overallFemale}
         </Text>
       </ApplicantsBox>
     </TotalBox>

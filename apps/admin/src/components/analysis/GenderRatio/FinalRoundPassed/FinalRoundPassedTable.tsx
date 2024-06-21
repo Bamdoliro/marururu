@@ -2,8 +2,21 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
+import useGenderRatioData from './FinalRoundPassedGenderRatio.hooks';
+import type { FormTypeMainCategory } from '@/types/analysis/client';
 
 const FinalRoundPassedTable = () => {
+  const mainCategories: FormTypeMainCategory[] = ['REGULAR', 'SPECIAL', 'SUPERNUMERARY'];
+  const { categories, overallMale, overallFemale } = useGenderRatioData(mainCategories);
+
+  const RegularMaleCount = categories.REGULAR.male;
+  const RegularFemaleCount = categories.REGULAR.female;
+  const SpecialMaleCount = categories.SPECIAL.male;
+  const SpecialFemaleCount = categories.SPECIAL.female;
+  const SupernumeraryMaleCount = categories.SUPERNUMERARY.male;
+  const SupernumeraryFemaleCount = categories.SUPERNUMERARY.female;
+  const TotalMaleCountNoSupernumerary = overallMale - SupernumeraryMaleCount;
+  const TotalFemaleCountNoSupernumerary = overallFemale - SupernumeraryFemaleCount;
   return (
     <TableBox>
       <Text fontType="H3" color={color.gray750} width={60}>
@@ -26,10 +39,10 @@ const FinalRoundPassedTable = () => {
             일반 전형
           </Td>
           <Td width={160} height={56}>
-            134
+            {RegularMaleCount}
           </Td>
           <Td width={160} height={56}>
-            12
+            {RegularFemaleCount}
           </Td>
         </Row>
         <Row>
@@ -37,10 +50,10 @@ const FinalRoundPassedTable = () => {
             특별 전형
           </Td>
           <Td width={160} height={56}>
-            192
+            {SpecialMaleCount}
           </Td>
           <Td width={160} height={56}>
-            34
+            {SpecialFemaleCount}
           </Td>
         </Row>
         <Row>
@@ -48,10 +61,10 @@ const FinalRoundPassedTable = () => {
             정원 외 전형
           </Td>
           <Td width={160} height={56}>
-            12
+            {SupernumeraryMaleCount}
           </Td>
           <Td width={160} height={56} borderBottomRightRadius={12}>
-            11
+            {SupernumeraryFemaleCount}
           </Td>
         </Row>
         <Row>
@@ -59,10 +72,10 @@ const FinalRoundPassedTable = () => {
             전체 (정원 외 제외)
           </Td>
           <Td width={160} height={56}>
-            104
+            {TotalMaleCountNoSupernumerary}
           </Td>
           <Td width={160} height={56} borderBottomRightRadius={12}>
-            11
+            {TotalFemaleCountNoSupernumerary}
           </Td>
         </Row>
       </Column>

@@ -4,7 +4,6 @@ import FinalRoundPassedScore from './FinalRoundPassedScore';
 import FinalRoundPassedTable from './FinalRoundPassedTable';
 import FinalRoundPassedDetail from './FinalRoundPassedDetail';
 
-// FIX : 성적분포 퍼블리싱 (FinalRoundPassed,FinalRoundPassed)
 const FinalRoundPassed = () => {
   return (
     <Layout>

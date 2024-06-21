@@ -4,7 +4,6 @@ import SecondRoundPassedScore from './SecondRoundPassedScore';
 import SecondRoundPassedTable from './SecondRoundPassedTable';
 import SecondRoundPassedDetail from './SecondRoundPassedDetail';
 
-// FIX : 성적분포 퍼블리싱 (SecondRoundPassed,SecondRoundPassed)
 const FirstRoundPassed = () => {
   return (
     <Layout>

@@ -2,8 +2,19 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
+import useAdmissionData from './FirstRoundPassedAdmission.hooks';
 
 const GeneralAdmission = () => {
+  const data = useAdmissionData('REGULAR', ['REGULAR']);
+
+  const regularBusanMale = data.REGULARBusanMale;
+  const regularBusanFemale = data.REGULARBusanFemale;
+  const regularOtherLocationMale = data.REGULAROtherLocationMale;
+  const regularOtherLocationFemale = data.REGULAROtherLocationFemale;
+  const regularBusanTotal = regularBusanMale + regularBusanFemale;
+  const regularOtherLocationTotal = regularOtherLocationMale + regularOtherLocationFemale;
+  const regularTotal = regularBusanTotal + regularOtherLocationTotal;
+
   return (
     <TableBox>
       <Text fontType="H3" color={color.gray750} width={60}>
@@ -29,13 +40,13 @@ const GeneralAdmission = () => {
             부산 지역
           </Td>
           <Td width={160} height={56}>
-            134
+            {regularBusanMale}
           </Td>
           <Td width={160} height={56}>
-            12
+            {regularBusanFemale}
           </Td>
           <Td width={160} height={56}>
-            23
+            {regularBusanTotal}
           </Td>
         </Row>
         <Row>
@@ -43,13 +54,13 @@ const GeneralAdmission = () => {
             타 지역
           </Td>
           <Td width={160} height={56}>
-            12
+            {regularOtherLocationMale}
           </Td>
           <Td width={160} height={56} borderBottomRightRadius={12}>
-            11
+            {regularOtherLocationFemale}
           </Td>
           <Td width={160} height={56} borderBottomRightRadius={12}>
-            13
+            {regularOtherLocationTotal}
           </Td>
         </Row>
         <Row>
@@ -57,7 +68,7 @@ const GeneralAdmission = () => {
             지역 합계
           </Td>
           <Td width={480} height={56} borderBottomRightRadius={12}>
-            37
+            {regularTotal}
           </Td>
         </Row>
       </Column>

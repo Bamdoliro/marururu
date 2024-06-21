@@ -2,8 +2,35 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
+import useAdmissionData from './FinalRoundPassedAdmission.hooks';
 
 const SpecificAdmission = () => {
+  const data = useAdmissionData('SPECIAL', ['MEISTER_TALENT', 'SOCIAL_INTEGRATION']);
+
+  const meisterTalentBusanMale = data.MEISTER_TALENTBusanMale;
+  const meisterTalentBusanFemale = data.MEISTER_TALENTBusanFemale;
+  const meisterTalentBusanTotal = meisterTalentBusanMale + meisterTalentBusanFemale;
+
+  const meisterTalentOtherLocationMale = data.MEISTER_TALENTOtherLocationMale;
+  const meisterTalentOtherLocationFemale = data.MEISTER_TALENTOtherLocationFemale;
+  const meisterTalentOtherLocationTotal =
+    meisterTalentOtherLocationMale + meisterTalentOtherLocationFemale;
+
+  const meisterTalentTotal = meisterTalentBusanTotal + meisterTalentOtherLocationTotal;
+
+  const socialIntegrationBusanMale = data.SOCIAL_INTEGRATIONBusanMale;
+  const socialIntegrationBusanFemale = data.SOCIAL_INTEGRATIONBusanFemale;
+  const socialIntegrationBusanTotal =
+    socialIntegrationBusanMale + socialIntegrationBusanFemale;
+
+  const socialIntegrationOtherLocationMale = data.SOCIAL_INTEGRATIONOtherLocationMale;
+  const socialIntegrationOtherLocationFemale = data.SOCIAL_INTEGRATIONOtherLocationFemale;
+  const socialIntegrationOtherLocationTotal =
+    socialIntegrationOtherLocationMale + socialIntegrationOtherLocationFemale;
+
+  const socialIntegrationTotal =
+    socialIntegrationBusanTotal + socialIntegrationOtherLocationTotal;
+
   return (
     <TableLayout>
       <TableBox>
@@ -30,13 +57,13 @@ const SpecificAdmission = () => {
               부산 지역
             </Td>
             <Td width={160} height={56}>
-              134
+              {meisterTalentBusanMale}
             </Td>
             <Td width={160} height={56}>
-              12
+              {meisterTalentBusanFemale}
             </Td>
             <Td width={160} height={56}>
-              23
+              {meisterTalentBusanTotal}
             </Td>
           </Row>
           <Row>
@@ -44,13 +71,13 @@ const SpecificAdmission = () => {
               타 지역
             </Td>
             <Td width={160} height={56}>
-              12
+              {meisterTalentOtherLocationMale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              11
+              {meisterTalentOtherLocationFemale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              13
+              {meisterTalentOtherLocationTotal}
             </Td>
           </Row>
           <Row>
@@ -58,7 +85,7 @@ const SpecificAdmission = () => {
               지역 합계
             </Td>
             <Td width={480} height={56} borderBottomRightRadius={12}>
-              37
+              {meisterTalentTotal}
             </Td>
           </Row>
         </Column>
@@ -87,13 +114,13 @@ const SpecificAdmission = () => {
               부산 지역
             </Td>
             <Td width={160} height={56}>
-              23
+              {socialIntegrationBusanMale}
             </Td>
             <Td width={160} height={56}>
-              112
+              {socialIntegrationBusanFemale}
             </Td>
             <Td width={160} height={56}>
-              213
+              {socialIntegrationBusanTotal}
             </Td>
           </Row>
           <Row>
@@ -101,13 +128,13 @@ const SpecificAdmission = () => {
               타 지역
             </Td>
             <Td width={160} height={56}>
-              152
+              {socialIntegrationOtherLocationMale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              161
+              {socialIntegrationOtherLocationFemale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              113
+              {socialIntegrationOtherLocationTotal}
             </Td>
           </Row>
           <Row>
@@ -115,7 +142,7 @@ const SpecificAdmission = () => {
               지역 합계
             </Td>
             <Td width={480} height={56} borderBottomRightRadius={12}>
-              7
+              {socialIntegrationTotal}
             </Td>
           </Row>
         </Column>

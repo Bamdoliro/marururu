@@ -2,8 +2,42 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
+import useAdmissionData from './FinalRoundPassedAdmission.hooks';
 
 const ExceptionalAdmission = () => {
+  const data = useAdmissionData('SUPERNUMERARY', [
+    'SPECIAL_ADMISSION',
+    'NATIONAL_VETERANS_EDUCATION',
+  ]);
+
+  const specialAdmissionBusanMale = data.SPECIAL_ADMISSIONBusanMale;
+  const specialAdmissionBusanFemale = data.SPECIAL_ADMISSIONBusanFemale;
+  const specialAdmissionBusanTotal =
+    specialAdmissionBusanMale + specialAdmissionBusanFemale;
+
+  const specialAdmissionOtherLocationMale = data.SPECIAL_ADMISSIONOtherLocationMale;
+  const specialAdmissionOtherLocationFemale = data.SPECIAL_ADMISSIONOtherLocationFemale;
+  const specialAdmissionOtherLocationTotal =
+    specialAdmissionOtherLocationMale + specialAdmissionOtherLocationFemale;
+
+  const specialAdmissionTotal =
+    specialAdmissionBusanTotal + specialAdmissionOtherLocationTotal;
+
+  const nationalVeteransBusanMale = data.NATIONAL_VETERANS_EDUCATIONBusanMale;
+  const nationalVeteransBusanFemale = data.NATIONAL_VETERANS_EDUCATIONBusanFemale;
+  const nationalVeteransBusanTotal =
+    nationalVeteransBusanMale + nationalVeteransBusanFemale;
+
+  const nationalVeteransOtherLocationMale =
+    data.NATIONAL_VETERANS_EDUCATIONOtherLocationMale;
+  const nationalVeteransOtherLocationFemale =
+    data.NATIONAL_VETERANS_EDUCATIONOtherLocationFemale;
+  const nationalVeteransOtherLocationTotal =
+    nationalVeteransOtherLocationMale + nationalVeteransOtherLocationFemale;
+
+  const nationalVeteransTotal =
+    nationalVeteransBusanTotal + nationalVeteransOtherLocationTotal;
+
   return (
     <TableLayout>
       <TableBox>
@@ -30,13 +64,13 @@ const ExceptionalAdmission = () => {
               부산 지역
             </Td>
             <Td width={160} height={56}>
-              134
+              {specialAdmissionBusanMale}
             </Td>
             <Td width={160} height={56}>
-              12
+              {specialAdmissionBusanFemale}
             </Td>
             <Td width={160} height={56}>
-              23
+              {specialAdmissionBusanTotal}
             </Td>
           </Row>
           <Row>
@@ -44,13 +78,13 @@ const ExceptionalAdmission = () => {
               타 지역
             </Td>
             <Td width={160} height={56}>
-              12
+              {specialAdmissionOtherLocationMale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              11
+              {specialAdmissionOtherLocationFemale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              13
+              {specialAdmissionOtherLocationTotal}
             </Td>
           </Row>
           <Row>
@@ -58,7 +92,7 @@ const ExceptionalAdmission = () => {
               지역 합계
             </Td>
             <Td width={480} height={56} borderBottomRightRadius={12}>
-              37
+              {specialAdmissionTotal}
             </Td>
           </Row>
         </Column>
@@ -87,13 +121,13 @@ const ExceptionalAdmission = () => {
               부산 지역
             </Td>
             <Td width={160} height={56}>
-              23
+              {nationalVeteransBusanMale}
             </Td>
             <Td width={160} height={56}>
-              112
+              {nationalVeteransBusanFemale}
             </Td>
             <Td width={160} height={56}>
-              213
+              {nationalVeteransBusanTotal}
             </Td>
           </Row>
           <Row>
@@ -101,13 +135,13 @@ const ExceptionalAdmission = () => {
               타 지역
             </Td>
             <Td width={160} height={56}>
-              152
+              {nationalVeteransOtherLocationMale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              161
+              {nationalVeteransOtherLocationFemale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              113
+              {nationalVeteransOtherLocationTotal}
             </Td>
           </Row>
           <Row>
@@ -115,7 +149,7 @@ const ExceptionalAdmission = () => {
               지역 합계
             </Td>
             <Td width={480} height={56} borderBottomRightRadius={12}>
-              7
+              {nationalVeteransTotal}
             </Td>
           </Row>
         </Column>
