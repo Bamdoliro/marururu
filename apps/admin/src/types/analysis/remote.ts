@@ -1,5 +1,4 @@
 import type {
-  FormType,
   FormTypeMainCategory,
   SchoolOrigin,
   NumberOfApplicants,

@@ -1,6 +1,6 @@
 import { Column, Row, Td, Th } from '@maru/ui';
 import { useNumberOfApplicantsListQuery } from '@/services/analysis/queries';
-import { FormType } from '@/types/analysis/client';
+import type { FormType } from '@/types/analysis/client';
 
 const NumberOfApplicants = () => {
   const { data: formList } = useNumberOfApplicantsListQuery();
