@@ -2,17 +2,19 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
-import useAdmissionData from './FinalRoundPassedAdmission.hooks';
+import useAdmissionData from '../../GenderRatio.hooks';
 
 const GeneralAdmission = () => {
-  const data = useAdmissionData('REGULAR', ['REGULAR']);
+  const { data } = useAdmissionData(['PASSED'], 'REGULAR');
 
-  const regularBusanMale = data.REGULARBusanMale;
-  const regularBusanFemale = data.REGULARBusanFemale;
-  const regularOtherLocationMale = data.REGULAROtherLocationMale;
-  const regularOtherLocationFemale = data.REGULAROtherLocationFemale;
+  const regularBusanMale = data.categories.REGULAR?.busanMale || 0;
+  const regularBusanFemale = data.categories.REGULAR?.busanFemale || 0;
   const regularBusanTotal = regularBusanMale + regularBusanFemale;
+
+  const regularOtherLocationMale = data.categories.REGULAR?.otherLocationMale || 0;
+  const regularOtherLocationFemale = data.categories.REGULAR?.otherLocationFemale || 0;
   const regularOtherLocationTotal = regularOtherLocationMale + regularOtherLocationFemale;
+
   const regularTotal = regularBusanTotal + regularOtherLocationTotal;
 
   return (

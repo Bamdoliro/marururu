@@ -2,29 +2,34 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
-import useAdmissionData from './SecondRoundPassedAdmission.hooks';
+import useAdmissionData from '../../GenderRatio.hooks';
 
 const SpecificAdmission = () => {
-  const data = useAdmissionData('SPECIAL', ['MEISTER_TALENT', 'SOCIAL_INTEGRATION']);
+  const { data } = useAdmissionData(['FAILED', 'PASSED'], 'SPECIAL');
 
-  const meisterTalentBusanMale = data.MEISTER_TALENTBusanMale;
-  const meisterTalentBusanFemale = data.MEISTER_TALENTBusanFemale;
+  const meisterTalentBusanMale = data.categories.MEISTER_TALENT?.busanMale || 0;
+  const meisterTalentBusanFemale = data.categories.MEISTER_TALENT?.busanFemale || 0;
   const meisterTalentBusanTotal = meisterTalentBusanMale + meisterTalentBusanFemale;
 
-  const meisterTalentOtherLocationMale = data.MEISTER_TALENTOtherLocationMale;
-  const meisterTalentOtherLocationFemale = data.MEISTER_TALENTOtherLocationFemale;
+  const meisterTalentOtherLocationMale =
+    data.categories.MEISTER_TALENT?.otherLocationMale || 0;
+  const meisterTalentOtherLocationFemale =
+    data.categories.MEISTER_TALENT?.otherLocationFemale || 0;
   const meisterTalentOtherLocationTotal =
     meisterTalentOtherLocationMale + meisterTalentOtherLocationFemale;
 
   const meisterTalentTotal = meisterTalentBusanTotal + meisterTalentOtherLocationTotal;
 
-  const socialIntegrationBusanMale = data.SOCIAL_INTEGRATIONBusanMale;
-  const socialIntegrationBusanFemale = data.SOCIAL_INTEGRATIONBusanFemale;
+  const socialIntegrationBusanMale = data.categories.SOCIAL_INTEGRATION?.busanMale || 0;
+  const socialIntegrationBusanFemale =
+    data.categories.SOCIAL_INTEGRATION?.busanFemale || 0;
   const socialIntegrationBusanTotal =
     socialIntegrationBusanMale + socialIntegrationBusanFemale;
 
-  const socialIntegrationOtherLocationMale = data.SOCIAL_INTEGRATIONOtherLocationMale;
-  const socialIntegrationOtherLocationFemale = data.SOCIAL_INTEGRATIONOtherLocationFemale;
+  const socialIntegrationOtherLocationMale =
+    data.categories.SOCIAL_INTEGRATION?.otherLocationMale || 0;
+  const socialIntegrationOtherLocationFemale =
+    data.categories.SOCIAL_INTEGRATION?.otherLocationFemale || 0;
   const socialIntegrationOtherLocationTotal =
     socialIntegrationOtherLocationMale + socialIntegrationOtherLocationFemale;
 

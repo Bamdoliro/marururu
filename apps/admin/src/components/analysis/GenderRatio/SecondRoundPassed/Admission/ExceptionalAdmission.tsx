@@ -2,36 +2,37 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
-import useAdmissionData from './SecondRoundPassedAdmission.hooks';
+import useAdmissionData from '../../GenderRatio.hooks';
 
 const ExceptionalAdmission = () => {
-  const data = useAdmissionData('SUPERNUMERARY', [
-    'SPECIAL_ADMISSION',
-    'NATIONAL_VETERANS_EDUCATION',
-  ]);
+  const { data } = useAdmissionData(['FAILED', 'PASSED'], 'SUPERNUMERARY');
 
-  const specialAdmissionBusanMale = data.SPECIAL_ADMISSIONBusanMale;
-  const specialAdmissionBusanFemale = data.SPECIAL_ADMISSIONBusanFemale;
+  const specialAdmissionBusanMale = data.categories.SPECIAL_ADMISSION?.busanMale || 0;
+  const specialAdmissionBusanFemale = data.categories.SPECIAL_ADMISSION?.busanFemale || 0;
   const specialAdmissionBusanTotal =
     specialAdmissionBusanMale + specialAdmissionBusanFemale;
 
-  const specialAdmissionOtherLocationMale = data.SPECIAL_ADMISSIONOtherLocationMale;
-  const specialAdmissionOtherLocationFemale = data.SPECIAL_ADMISSIONOtherLocationFemale;
+  const specialAdmissionOtherLocationMale =
+    data.categories.SPECIAL_ADMISSION?.otherLocationMale || 0;
+  const specialAdmissionOtherLocationFemale =
+    data.categories.SPECIAL_ADMISSION?.otherLocationFemale || 0;
   const specialAdmissionOtherLocationTotal =
     specialAdmissionOtherLocationMale + specialAdmissionOtherLocationFemale;
 
   const specialAdmissionTotal =
     specialAdmissionBusanTotal + specialAdmissionOtherLocationTotal;
 
-  const nationalVeteransBusanMale = data.NATIONAL_VETERANS_EDUCATIONBusanMale;
-  const nationalVeteransBusanFemale = data.NATIONAL_VETERANS_EDUCATIONBusanFemale;
+  const nationalVeteransBusanMale =
+    data.categories.NATIONAL_VETERANS_EDUCATION?.busanMale || 0;
+  const nationalVeteransBusanFemale =
+    data.categories.NATIONAL_VETERANS_EDUCATION?.busanFemale || 0;
   const nationalVeteransBusanTotal =
     nationalVeteransBusanMale + nationalVeteransBusanFemale;
 
   const nationalVeteransOtherLocationMale =
-    data.NATIONAL_VETERANS_EDUCATIONOtherLocationMale;
+    data.categories.NATIONAL_VETERANS_EDUCATION?.otherLocationMale || 0;
   const nationalVeteransOtherLocationFemale =
-    data.NATIONAL_VETERANS_EDUCATIONOtherLocationFemale;
+    data.categories.NATIONAL_VETERANS_EDUCATION?.otherLocationFemale || 0;
   const nationalVeteransOtherLocationTotal =
     nationalVeteransOtherLocationMale + nationalVeteransOtherLocationFemale;
 
