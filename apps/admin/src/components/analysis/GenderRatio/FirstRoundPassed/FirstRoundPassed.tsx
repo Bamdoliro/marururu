@@ -1,16 +1,12 @@
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import FirstRoundPassedScore from './FirstRoundPassedScore';
-import FirstRoundPassedTable from './FirstRoundPassedTable';
+import FirstRoundPassedMain from './FirstRoundPassedMain';
 import FirstRoundPassedDetail from './FirstRoundPassedDetail';
 
 const FirstRoundPassed = () => {
   return (
     <Layout>
-      <LeftBox>
-        <FirstRoundPassedScore />
-        <FirstRoundPassedTable />
-      </LeftBox>
+      <FirstRoundPassedMain />
       <FirstRoundPassedDetail />
     </Layout>
   );
@@ -25,10 +21,4 @@ const Layout = styled.div`
   })}
   width: 100%;
   gap: 75px;
-`;
-
-const LeftBox = styled.div`
-  ${flex({ flexDirection: 'column' })}
-  width: 100%;
-  gap: 100px;
 `;
