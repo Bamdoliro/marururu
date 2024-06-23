@@ -21,5 +21,5 @@ export const ANALYSIS_GENDERRATIO_STEP_LIST = [
 export const ANALYSIS_GENDERARERRATIO_STEP_LIST = [
   '일반 전형 성비',
   '특별 전형 성비',
-  '특례입학대상자 성비',
+  '정원 외 전형 성비',
 ] as const;

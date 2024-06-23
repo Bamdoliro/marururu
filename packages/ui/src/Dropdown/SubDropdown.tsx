@@ -183,7 +183,7 @@ const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }
       : css`
           height: 40px;
           padding: 10px 10px 10px 16px;
-        `}
+        `};
 `;
 
 const DropdownListBox = styled.div<{ $isOpen: boolean }>`
@@ -219,6 +219,7 @@ const DropdownItem = styled.button`
   padding: 10px 16px;
   height: 48px;
   cursor: pointer;
+
   &:hover {
     background-color: ${color.gray200};
   }

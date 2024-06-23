@@ -3,8 +3,90 @@ import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import FirstRoundPassedDetail from './FirstRoundPassedDetail';
+import { useGradeDistributionListQuery } from '@/services/analysis/queries';
 
 const FirstRoundPassedTable = () => {
+  const { data: dataList } = useGradeDistributionListQuery({
+    statusList: ['FIRST_PASSED', 'FAILED', 'PASSED', 'NO_SHOW'],
+  });
+
+  const entireFirstRoundMax = dataList
+    ? Math.max(...dataList.map((item) => item.firstRoundMax)).toFixed(3)
+    : undefined;
+
+  const entireFirstRoundMin = dataList
+    ? Math.min(
+        ...dataList.map((item) => item.firstRoundMin).filter((value) => value !== 0)
+      ).toFixed(3)
+    : undefined;
+
+  const regularFirstRoundMax = dataList
+    ? Math.max(
+        ...dataList
+          .filter((item) => item.type === 'REGULAR')
+          .map((item) => item.firstRoundMax)
+      ).toFixed(3)
+    : undefined;
+
+  const SpecialAdmissionFirstRoundMax = dataList
+    ? Math.max(
+        ...dataList
+          .filter(
+            (item) =>
+              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+                item.type
+              )
+          )
+          .map((item) => item.firstRoundMax)
+      ).toFixed(3)
+    : undefined;
+
+  const regularFirstRoundMin = dataList
+    ? Math.min(
+        ...dataList
+          .filter((item) => item.type === 'REGULAR')
+          .map((item) => item.firstRoundMin)
+      ).toFixed(3)
+    : undefined;
+
+  const specialAdmissionFirstRoundMin = dataList
+    ? Math.min(
+        ...dataList
+          .filter(
+            (item) =>
+              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+                item.type
+              )
+          )
+          .filter((item) => item.firstRoundMin !== 0)
+          .map((item) => item.firstRoundMin)
+      ).toFixed(3)
+    : undefined;
+
+  const regularFirstRoundAvg = dataList
+    ?.filter((item) => ['REGULAR'].includes(item.type))
+    .map((item) => item.firstRoundAvg.toFixed(3));
+
+  const SpecialAdmissionData =
+    dataList
+      ?.filter(
+        (item) =>
+          !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+            item.type
+          )
+      )
+      .filter((item) => item.firstRoundAvg !== 0) || [];
+
+  const totalFirstRoundAvg = SpecialAdmissionData.reduce(
+    (sum, item) => sum + item.firstRoundAvg,
+    0
+  );
+
+  const SpecialAdmissionFirstRoundAvg =
+    totalFirstRoundAvg !== 0
+      ? (totalFirstRoundAvg / SpecialAdmissionData.length).toFixed(3)
+      : '0.000';
+
   return (
     <Layout>
       <LeftBox>
@@ -14,7 +96,7 @@ const FirstRoundPassedTable = () => {
               최고점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              240.000
+              {entireFirstRoundMax}
             </Text>
           </ApplicantsBox>
           <ApplicantsBox>
@@ -22,7 +104,7 @@ const FirstRoundPassedTable = () => {
               최하점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              167.823
+              {entireFirstRoundMin}
             </Text>
           </ApplicantsBox>
         </TotalBox>
@@ -47,10 +129,10 @@ const FirstRoundPassedTable = () => {
                 최고 점수
               </Td>
               <Td width={112} height={56}>
-                240.000
+                {regularFirstRoundMax}
               </Td>
               <Td width={112} height={56}>
-                240.000
+                {SpecialAdmissionFirstRoundMax}
               </Td>
             </Row>
             <Row>
@@ -58,10 +140,10 @@ const FirstRoundPassedTable = () => {
                 최하 점수
               </Td>
               <Td width={112} height={56}>
-                175.765
+                {regularFirstRoundMin}
               </Td>
               <Td width={112} height={56}>
-                163.908
+                {specialAdmissionFirstRoundMin}
               </Td>
             </Row>
             <Row>
@@ -74,10 +156,10 @@ const FirstRoundPassedTable = () => {
                 평균
               </Td>
               <Td width={112} height={56}>
-                185.390
+                {regularFirstRoundAvg}
               </Td>
               <Td width={112} height={56} borderBottomRightRadius={12}>
-                179.456
+                {SpecialAdmissionFirstRoundAvg}
               </Td>
             </Row>
           </Column>

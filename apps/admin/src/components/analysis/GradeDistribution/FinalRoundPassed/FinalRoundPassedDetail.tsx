@@ -1,6 +1,37 @@
 import { Column, Row, Td, Th } from '@maru/ui';
+import { useGradeDistributionListQuery } from '@/services/analysis/queries';
+import type { FormType } from '@/types/analysis/client';
 
 const FinalRoundPassedDetail = () => {
+  const { data: dataList } = useGradeDistributionListQuery({
+    statusList: ['FAILED', 'PASSED'],
+  });
+  const getMaxMinByType = (type: FormType) => {
+    const entries = dataList?.filter((item) => item.type === type);
+    if (!entries || entries.length === 0) {
+      return { max: 0, min: 0 };
+    }
+    const max = Math.max(...entries.map((item) => item.totalMax)).toFixed(3);
+    const min = Math.min(...entries.map((item) => item.totalMin)).toFixed(3);
+    return { max, min };
+  };
+
+  const regularApplicant = getMaxMinByType('REGULAR');
+  const meisterTalentApplicant = getMaxMinByType('MEISTER_TALENT');
+  const nationalBasicLivingApplicant = getMaxMinByType('NATIONAL_BASIC_LIVING');
+  const nearPovertyApplicant = getMaxMinByType('NEAR_POVERTY');
+  const nationalVeteransApplicant = getMaxMinByType('NATIONAL_VETERANS');
+  const oneParentApplicant = getMaxMinByType('ONE_PARENT');
+  const fromNorthKoreaApplicant = getMaxMinByType('FROM_NORTH_KOREA');
+  const multiculturalApplicant = getMaxMinByType('MULTICULTURAL');
+  const teenHouseholderApplicant = getMaxMinByType('TEEN_HOUSEHOLDER');
+  const multiChildrenApplicant = getMaxMinByType('MULTI_CHILDREN');
+  const farmingAndFishingApplicant = getMaxMinByType('FARMING_AND_FISHING');
+  const specialAdmissionApplicant = getMaxMinByType('SPECIAL_ADMISSION');
+  const nationalVeteransEducationApplicant = getMaxMinByType(
+    'NATIONAL_VETERANS_EDUCATION'
+  );
+
   return (
     <Column>
       <Row>
@@ -31,10 +62,10 @@ const FinalRoundPassedDetail = () => {
           <div></div>
         </Td>
         <Td width={80} height={56}>
-          <div>숫자</div>
+          {regularApplicant.max}
         </Td>
         <Td width={80} height={56}>
-          <div>숫자</div>
+          {regularApplicant.min}
         </Td>
       </Row>
       <Row>
@@ -50,15 +81,15 @@ const FinalRoundPassedDetail = () => {
               <div></div>
             </Td>
             <Td width={80} height={56}>
-              <div></div>
+              {meisterTalentApplicant.max}
             </Td>
             <Td width={80} height={56}>
-              <div></div>
+              {meisterTalentApplicant.min}
             </Td>
           </Row>
           <Row>
             <Td width={240} height={280}>
-              기호균등 전형
+              기회균등 전형
             </Td>
             <Column>
               <Row>
@@ -66,10 +97,10 @@ const FinalRoundPassedDetail = () => {
                   국민기초생활수급자
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {nationalBasicLivingApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {nationalBasicLivingApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -77,10 +108,10 @@ const FinalRoundPassedDetail = () => {
                   차상위계층
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {nearPovertyApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {nearPovertyApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -88,10 +119,10 @@ const FinalRoundPassedDetail = () => {
                   국가보훈대상자 (국가유공자)
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {nationalVeteransApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {nationalVeteransApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -99,10 +130,10 @@ const FinalRoundPassedDetail = () => {
                   한부모가정보호대상자
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {oneParentApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {oneParentApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -110,10 +141,10 @@ const FinalRoundPassedDetail = () => {
                   북한이탈주민 또는 그 자녀
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {fromNorthKoreaApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {fromNorthKoreaApplicant.min}
                 </Td>
               </Row>
             </Column>
@@ -128,10 +159,10 @@ const FinalRoundPassedDetail = () => {
                   다문화가정 자녀
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {multiculturalApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {multiculturalApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -139,10 +170,10 @@ const FinalRoundPassedDetail = () => {
                   소년 · 소녀가장
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {teenHouseholderApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {teenHouseholderApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -150,10 +181,10 @@ const FinalRoundPassedDetail = () => {
                   다자녀 가정 자녀
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {multiChildrenApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {multiChildrenApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -161,10 +192,10 @@ const FinalRoundPassedDetail = () => {
                   농어촌지역출신자
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {farmingAndFishingApplicant.max}
                 </Td>
                 <Td width={80} height={56}>
-                  <div></div>
+                  {farmingAndFishingApplicant.min}
                 </Td>
               </Row>
             </Column>
@@ -184,10 +215,10 @@ const FinalRoundPassedDetail = () => {
               <div></div>
             </Td>
             <Td width={80} height={56}>
-              <div></div>
+              {nationalVeteransEducationApplicant.max}
             </Td>
             <Td width={80} height={56}>
-              <div></div>
+              {nationalVeteransEducationApplicant.min}
             </Td>
           </Row>
           <Row>
@@ -198,10 +229,10 @@ const FinalRoundPassedDetail = () => {
               <div></div>
             </Td>
             <Td width={80} height={56}>
-              <div></div>
+              {specialAdmissionApplicant.max}
             </Td>
             <Td width={80} height={56} borderBottomRightRadius={12}>
-              <div></div>
+              {specialAdmissionApplicant.min}
             </Td>
           </Row>
         </Column>

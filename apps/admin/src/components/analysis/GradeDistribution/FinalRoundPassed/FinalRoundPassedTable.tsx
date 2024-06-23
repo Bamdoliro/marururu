@@ -3,8 +3,88 @@ import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import FinalRoundPassedDetail from './FinalRoundPassedDetail';
+import { useGradeDistributionListQuery } from '@/services/analysis/queries';
 
 const FinalRoundPassedTable = () => {
+  const { data: dataList } = useGradeDistributionListQuery({
+    statusList: ['PASSED'],
+  });
+
+  const entireFinalRoundMax = dataList
+    ? Math.max(...dataList.map((item) => item.totalMax)).toFixed(3)
+    : undefined;
+
+  const entireFinalRoundMin = dataList
+    ? Math.min(
+        ...dataList.map((item) => item.totalMin).filter((value) => value !== 0)
+      ).toFixed(3)
+    : undefined;
+
+  const regularFinalRoundMax = dataList
+    ? Math.max(
+        ...dataList.filter((item) => item.type === 'REGULAR').map((item) => item.totalMax)
+      ).toFixed(3)
+    : undefined;
+
+  const SpecialAdmissionFinalRoundMax = dataList
+    ? Math.max(
+        ...dataList
+          .filter(
+            (item) =>
+              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+                item.type
+              )
+          )
+          .map((item) => item.totalMax)
+      ).toFixed(3)
+    : undefined;
+
+  const regularFinalRoundMin = dataList
+    ? Math.min(
+        ...dataList.filter((item) => item.type === 'REGULAR').map((item) => item.totalMin)
+      ).toFixed(3)
+    : undefined;
+
+  const specialAdmissionFinalRoundMin = dataList
+    ? Math.min(
+        ...dataList
+          .filter(
+            (item) =>
+              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+                item.type
+              )
+          )
+          .filter((item) => item.totalMin !== 0)
+          .map((item) => item.totalMin)
+      ).toFixed(3)
+    : undefined;
+
+  const regularFinalRoundAvg = dataList
+    ?.filter((item) => item.type === 'REGULAR')
+    .map((item) => item.totalAvg)
+    .reduce((sum, value) => sum + (value || 0), 0)
+    .toFixed(3);
+
+  const SpecialAdmissionData =
+    dataList
+      ?.filter(
+        (item) =>
+          !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+            item.type
+          )
+      )
+      .filter((item) => item.totalAvg !== 0) || [];
+
+  const finalRoundAvgSum = SpecialAdmissionData.reduce(
+    (sum, item) => sum + item.totalAvg,
+    0
+  );
+
+  const SpecialAdmissionFinalRoundAvg =
+    finalRoundAvgSum !== 0
+      ? (finalRoundAvgSum / SpecialAdmissionData.length).toFixed(3)
+      : '0.000';
+
   return (
     <Layout>
       <LeftBox>
@@ -14,7 +94,7 @@ const FinalRoundPassedTable = () => {
               최고점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              240.000
+              {entireFinalRoundMax}
             </Text>
           </ApplicantsBox>
           <ApplicantsBox>
@@ -22,7 +102,7 @@ const FinalRoundPassedTable = () => {
               최하점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              167.823
+              {entireFinalRoundMin}
             </Text>
           </ApplicantsBox>
         </TotalBox>
@@ -47,10 +127,10 @@ const FinalRoundPassedTable = () => {
                 최고 점수
               </Td>
               <Td width={112} height={56}>
-                240.000
+                {regularFinalRoundMax}
               </Td>
               <Td width={112} height={56}>
-                240.000
+                {SpecialAdmissionFinalRoundMax}
               </Td>
             </Row>
             <Row>
@@ -58,10 +138,10 @@ const FinalRoundPassedTable = () => {
                 최하 점수
               </Td>
               <Td width={112} height={56}>
-                175.765
+                {regularFinalRoundMin}
               </Td>
               <Td width={112} height={56}>
-                163.908
+                {specialAdmissionFinalRoundMin}
               </Td>
             </Row>
             <Row>
@@ -74,10 +154,10 @@ const FinalRoundPassedTable = () => {
                 평균
               </Td>
               <Td width={112} height={56}>
-                185.390
+                {regularFinalRoundAvg}
               </Td>
               <Td width={112} height={56} borderBottomRightRadius={12}>
-                179.456
+                {SpecialAdmissionFinalRoundAvg}
               </Td>
             </Row>
           </Column>

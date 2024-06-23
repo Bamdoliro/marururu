@@ -1,17 +1,12 @@
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import SecondRoundPassedScore from './SecondRoundPassedScore';
-import SecondRoundPassedTable from './SecondRoundPassedTable';
+import SecondRoundPassedMain from './SecondRoundPassedMain';
 import SecondRoundPassedDetail from './SecondRoundPassedDetail';
 
-// FIX : 성적분포 퍼블리싱 (SecondRoundPassed,SecondRoundPassed)
 const FirstRoundPassed = () => {
   return (
     <Layout>
-      <LeftBox>
-        <SecondRoundPassedScore />
-        <SecondRoundPassedTable />
-      </LeftBox>
+      <SecondRoundPassedMain />
       <SecondRoundPassedDetail />
     </Layout>
   );
@@ -26,10 +21,4 @@ const Layout = styled.div`
   })}
   width: 100%;
   gap: 75px;
-`;
-
-const LeftBox = styled.div`
-  ${flex({ flexDirection: 'column' })}
-  width: 100%;
-  gap: 100px;
 `;

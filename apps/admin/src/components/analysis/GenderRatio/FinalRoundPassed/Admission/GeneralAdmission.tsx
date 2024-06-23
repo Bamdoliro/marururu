@@ -2,8 +2,21 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
+import useAdmissionData from '../../GenderRatio.hooks';
 
-const FirstRoundPassedTable = () => {
+const GeneralAdmission = () => {
+  const { data } = useAdmissionData(['PASSED'], 'REGULAR');
+
+  const regularBusanMale = data.categories.REGULAR?.busanMale || 0;
+  const regularBusanFemale = data.categories.REGULAR?.busanFemale || 0;
+  const regularBusanTotal = regularBusanMale + regularBusanFemale;
+
+  const regularOtherLocationMale = data.categories.REGULAR?.otherLocationMale || 0;
+  const regularOtherLocationFemale = data.categories.REGULAR?.otherLocationFemale || 0;
+  const regularOtherLocationTotal = regularOtherLocationMale + regularOtherLocationFemale;
+
+  const regularTotal = regularBusanTotal + regularOtherLocationTotal;
+
   return (
     <TableBox>
       <Text fontType="H3" color={color.gray750} width={60}>
@@ -29,13 +42,13 @@ const FirstRoundPassedTable = () => {
             부산 지역
           </Td>
           <Td width={160} height={56}>
-            134
+            {regularBusanMale}
           </Td>
           <Td width={160} height={56}>
-            12
+            {regularBusanFemale}
           </Td>
           <Td width={160} height={56}>
-            23
+            {regularBusanTotal}
           </Td>
         </Row>
         <Row>
@@ -43,13 +56,13 @@ const FirstRoundPassedTable = () => {
             타 지역
           </Td>
           <Td width={160} height={56}>
-            12
+            {regularOtherLocationMale}
           </Td>
           <Td width={160} height={56} borderBottomRightRadius={12}>
-            11
+            {regularOtherLocationFemale}
           </Td>
           <Td width={160} height={56} borderBottomRightRadius={12}>
-            13
+            {regularOtherLocationTotal}
           </Td>
         </Row>
         <Row>
@@ -57,7 +70,7 @@ const FirstRoundPassedTable = () => {
             지역 합계
           </Td>
           <Td width={480} height={56} borderBottomRightRadius={12}>
-            37
+            {regularTotal}
           </Td>
         </Row>
       </Column>
@@ -65,7 +78,7 @@ const FirstRoundPassedTable = () => {
   );
 };
 
-export default FirstRoundPassedTable;
+export default GeneralAdmission;
 
 const TableBox = styled.section`
   ${flex({ flexDirection: 'column' })}

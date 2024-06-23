@@ -3,8 +3,88 @@ import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import SecondRoundPassedDetail from './SecondRoundPassedDetail';
+import { useGradeDistributionListQuery } from '@/services/analysis/queries';
 
 const SecondRoundPassedTable = () => {
+  const { data: dataList } = useGradeDistributionListQuery({
+    statusList: ['FAILED', 'PASSED'],
+  });
+
+  const entireSecondRoundMax = dataList
+    ? Math.max(...dataList.map((item) => item.totalMax)).toFixed(3)
+    : undefined;
+
+  const entireSecondRoundMin = dataList
+    ? Math.min(
+        ...dataList.map((item) => item.totalMin).filter((value) => value !== 0)
+      ).toFixed(3)
+    : undefined;
+
+  const regularSecondRoundMax = dataList
+    ? Math.max(
+        ...dataList.filter((item) => item.type === 'REGULAR').map((item) => item.totalMax)
+      ).toFixed(3)
+    : undefined;
+
+  const SpecialAdmissionSecondRoundMax = dataList
+    ? Math.max(
+        ...dataList
+          .filter(
+            (item) =>
+              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+                item.type
+              )
+          )
+          .map((item) => item.totalMax)
+      ).toFixed(3)
+    : undefined;
+
+  const regularSecondRoundMin = dataList
+    ? Math.min(
+        ...dataList.filter((item) => item.type === 'REGULAR').map((item) => item.totalMin)
+      ).toFixed(3)
+    : undefined;
+
+  const specialAdmissionSecondRoundMin = dataList
+    ? Math.min(
+        ...dataList
+          .filter(
+            (item) =>
+              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+                item.type
+              )
+          )
+          .filter((item) => item.totalMin !== 0)
+          .map((item) => item.totalMin)
+      ).toFixed(3)
+    : undefined;
+
+  const regularSecondRoundAvg = dataList
+    ?.filter((item) => item.type === 'REGULAR')
+    .map((item) => item.totalAvg)
+    .reduce((sum, value) => sum + (value || 0), 0)
+    .toFixed(3);
+
+  const SpecialAdmissionData =
+    dataList
+      ?.filter(
+        (item) =>
+          !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+            item.type
+          )
+      )
+      .filter((item) => item.totalAvg !== 0) || [];
+
+  const secondRoundAvgSum = SpecialAdmissionData.reduce(
+    (sum, item) => sum + item.totalAvg,
+    0
+  );
+
+  const SpecialAdmissionSecondRoundAvg =
+    secondRoundAvgSum !== 0
+      ? (secondRoundAvgSum / SpecialAdmissionData.length).toFixed(3)
+      : '0.000';
+
   return (
     <Layout>
       <LeftBox>
@@ -14,7 +94,7 @@ const SecondRoundPassedTable = () => {
               최고점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              240.000
+              {entireSecondRoundMax}
             </Text>
           </ApplicantsBox>
           <ApplicantsBox>
@@ -22,7 +102,7 @@ const SecondRoundPassedTable = () => {
               최하점 점수
             </Text>
             <Text fontType="D1" width={60}>
-              167.823
+              {entireSecondRoundMin}
             </Text>
           </ApplicantsBox>
         </TotalBox>
@@ -47,10 +127,10 @@ const SecondRoundPassedTable = () => {
                 최고 점수
               </Td>
               <Td width={112} height={56}>
-                240.000
+                {regularSecondRoundMax}
               </Td>
               <Td width={112} height={56}>
-                240.000
+                {SpecialAdmissionSecondRoundMax}
               </Td>
             </Row>
             <Row>
@@ -58,10 +138,10 @@ const SecondRoundPassedTable = () => {
                 최하 점수
               </Td>
               <Td width={112} height={56}>
-                175.765
+                {regularSecondRoundMin}
               </Td>
               <Td width={112} height={56}>
-                163.908
+                {specialAdmissionSecondRoundMin}
               </Td>
             </Row>
             <Row>
@@ -74,10 +154,10 @@ const SecondRoundPassedTable = () => {
                 평균
               </Td>
               <Td width={112} height={56}>
-                185.390
+                {regularSecondRoundAvg}
               </Td>
               <Td width={112} height={56} borderBottomRightRadius={12}>
-                179.456
+                {SpecialAdmissionSecondRoundAvg}
               </Td>
             </Row>
           </Column>

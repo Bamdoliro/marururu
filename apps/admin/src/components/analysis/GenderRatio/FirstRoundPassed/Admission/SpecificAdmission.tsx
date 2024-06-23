@@ -2,8 +2,43 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
+import useAdmissionData from '../../GenderRatio.hooks';
 
-const FirstRoundPassedTable = () => {
+const SpecificAdmission = () => {
+  const { data } = useAdmissionData(
+    ['NO_SHOW', 'FIRST_PASSED', 'FAILED', 'PASSED'],
+    'SPECIAL'
+  );
+
+  const meisterTalentBusanMale = data.categories.MEISTER_TALENT?.busanMale || 0;
+  const meisterTalentBusanFemale = data.categories.MEISTER_TALENT?.busanFemale || 0;
+  const meisterTalentBusanTotal = meisterTalentBusanMale + meisterTalentBusanFemale;
+
+  const meisterTalentOtherLocationMale =
+    data.categories.MEISTER_TALENT?.otherLocationMale || 0;
+  const meisterTalentOtherLocationFemale =
+    data.categories.MEISTER_TALENT?.otherLocationFemale || 0;
+  const meisterTalentOtherLocationTotal =
+    meisterTalentOtherLocationMale + meisterTalentOtherLocationFemale;
+
+  const meisterTalentTotal = meisterTalentBusanTotal + meisterTalentOtherLocationTotal;
+
+  const socialIntegrationBusanMale = data.categories.SOCIAL_INTEGRATION?.busanMale || 0;
+  const socialIntegrationBusanFemale =
+    data.categories.SOCIAL_INTEGRATION?.busanFemale || 0;
+  const socialIntegrationBusanTotal =
+    socialIntegrationBusanMale + socialIntegrationBusanFemale;
+
+  const socialIntegrationOtherLocationMale =
+    data.categories.SOCIAL_INTEGRATION?.otherLocationMale || 0;
+  const socialIntegrationOtherLocationFemale =
+    data.categories.SOCIAL_INTEGRATION?.otherLocationFemale || 0;
+  const socialIntegrationOtherLocationTotal =
+    socialIntegrationOtherLocationMale + socialIntegrationOtherLocationFemale;
+
+  const socialIntegrationTotal =
+    socialIntegrationBusanTotal + socialIntegrationOtherLocationTotal;
+
   return (
     <TableLayout>
       <TableBox>
@@ -30,13 +65,13 @@ const FirstRoundPassedTable = () => {
               부산 지역
             </Td>
             <Td width={160} height={56}>
-              134
+              {meisterTalentBusanMale}
             </Td>
             <Td width={160} height={56}>
-              12
+              {meisterTalentBusanFemale}
             </Td>
             <Td width={160} height={56}>
-              23
+              {meisterTalentBusanTotal}
             </Td>
           </Row>
           <Row>
@@ -44,13 +79,13 @@ const FirstRoundPassedTable = () => {
               타 지역
             </Td>
             <Td width={160} height={56}>
-              12
+              {meisterTalentOtherLocationMale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              11
+              {meisterTalentOtherLocationFemale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              13
+              {meisterTalentOtherLocationTotal}
             </Td>
           </Row>
           <Row>
@@ -58,7 +93,7 @@ const FirstRoundPassedTable = () => {
               지역 합계
             </Td>
             <Td width={480} height={56} borderBottomRightRadius={12}>
-              37
+              {meisterTalentTotal}
             </Td>
           </Row>
         </Column>
@@ -87,13 +122,13 @@ const FirstRoundPassedTable = () => {
               부산 지역
             </Td>
             <Td width={160} height={56}>
-              23
+              {socialIntegrationBusanMale}
             </Td>
             <Td width={160} height={56}>
-              112
+              {socialIntegrationBusanFemale}
             </Td>
             <Td width={160} height={56}>
-              213
+              {socialIntegrationBusanTotal}
             </Td>
           </Row>
           <Row>
@@ -101,13 +136,13 @@ const FirstRoundPassedTable = () => {
               타 지역
             </Td>
             <Td width={160} height={56}>
-              152
+              {socialIntegrationOtherLocationMale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              161
+              {socialIntegrationOtherLocationFemale}
             </Td>
             <Td width={160} height={56} borderBottomRightRadius={12}>
-              113
+              {socialIntegrationOtherLocationTotal}
             </Td>
           </Row>
           <Row>
@@ -115,64 +150,7 @@ const FirstRoundPassedTable = () => {
               지역 합계
             </Td>
             <Td width={480} height={56} borderBottomRightRadius={12}>
-              7
-            </Td>
-          </Row>
-        </Column>
-      </TableBox>
-      <TableBox>
-        <Text fontType="H3" color={color.gray750} width={60}>
-          사회통합 - 정원외 지역별 성비
-        </Text>
-        <Column>
-          <Row>
-            <Th width={160} height={56} borderTopLeftRadius={12}>
-              ㅤ
-            </Th>
-            <Th width={160} height={56}>
-              남학생
-            </Th>
-            <Th width={160} height={56}>
-              여학생
-            </Th>
-            <Th width={160} height={56} borderTopRightRadius={12}>
-              합계
-            </Th>
-          </Row>
-          <Row>
-            <Td styleType="SECONDARY" width={160} height={56}>
-              부산 지역
-            </Td>
-            <Td width={160} height={56}>
-              0
-            </Td>
-            <Td width={160} height={56}>
-              0
-            </Td>
-            <Td width={160} height={56}>
-              0
-            </Td>
-          </Row>
-          <Row>
-            <Td styleType="SECONDARY" width={160} height={56}>
-              타 지역
-            </Td>
-            <Td width={160} height={56}>
-              0
-            </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
-              0
-            </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
-              0
-            </Td>
-          </Row>
-          <Row>
-            <Td styleType="SECONDARY" width={160} height={56} borderBottomLeftRadius={12}>
-              지역 합계
-            </Td>
-            <Td width={480} height={56} borderBottomRightRadius={12}>
-              0
+              {socialIntegrationTotal}
             </Td>
           </Row>
         </Column>
@@ -181,7 +159,7 @@ const FirstRoundPassedTable = () => {
   );
 };
 
-export default FirstRoundPassedTable;
+export default SpecificAdmission;
 
 const TableLayout = styled.section`
   ${flex({ flexDirection: 'column' })}
