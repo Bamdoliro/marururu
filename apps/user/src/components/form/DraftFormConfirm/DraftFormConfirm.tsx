@@ -1,5 +1,7 @@
 import { color } from '@maru/design-token';
-import { Column, Confirm, Text } from '@maru/ui';
+import { CheckInput, Column, Confirm, Text } from '@maru/ui';
+import type { ChangeEvent } from 'react';
+import { useState } from 'react';
 
 interface Props {
   isOpen: boolean;
@@ -8,6 +10,15 @@ interface Props {
 }
 
 const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
+  const [inputValue, setInputValue] = useState('');
+  const [isInputValid, setIsInputValid] = useState(false);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setInputValue(value);
+    setIsInputValid(value === '확인했습니다');
+  };
+
   return (
     <Confirm
       isOpen={isOpen}
@@ -22,10 +33,27 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
           <Text color={color.gray900} fontType="p2">
             잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
           </Text>
+          <Column height={28}> </Column>
+          <Text color={color.gray900} fontType="p2">
+            ‘확인했습니다'를 입력할 시 그 이후 발생하는 사고에는
+            부산소프트웨어마이스터고등
+            <br />
+            학교와{' '}
+            <Text color={color.red} fontType="p2">
+              밤돌이로팀은 전혀 책임지지 않음에 동의하는 것으로 간주됩니다.
+            </Text>
+          </Text>
+          <Column height={8}> </Column>
+          <CheckInput
+            width="100%"
+            placeholder="입력 칸을 채워주세요"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
         </Column>
       }
       onClose={onClose}
-      onConfirm={onConfirm}
+      onConfirm={isInputValid ? onConfirm : () => {}}
       confirmButtonText="원서 초안 제출하기"
     />
   );

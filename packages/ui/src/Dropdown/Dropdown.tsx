@@ -65,7 +65,6 @@ const Dropdown = ({
             const isString = typeof item === 'string';
             const dropdownLabel = isString ? item : item.label;
             const dropdownValue = isString ? item : item.value;
-
             return (
               <DropdownItem
                 key={`dropdown ${index}`}

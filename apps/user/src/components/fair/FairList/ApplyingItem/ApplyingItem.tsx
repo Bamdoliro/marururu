@@ -10,6 +10,7 @@ interface Props {
   applicationEndDate: string;
   start: string;
   status: string;
+  applicationUrl: string;
 }
 
 const ApplyingItem = ({
@@ -18,9 +19,14 @@ const ApplyingItem = ({
   applicationStartDate,
   start,
   status,
+  applicationUrl,
 }: Props) => {
+  const handleClick = () => {
+    window.location.href = applicationUrl;
+  };
+
   return (
-    <StyledBox>
+    <StyledBox onClick={handleClick}>
       <Row gap={30} alignItems="center">
         <Text fontType="H3" color={color.gray900}>
           {formatStartDate(start)}

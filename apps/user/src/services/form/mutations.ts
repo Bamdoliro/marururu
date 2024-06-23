@@ -5,9 +5,9 @@ import { useMutation } from '@tanstack/react-query';
 import type { AxiosResponse } from 'axios';
 import type { Dispatch, SetStateAction } from 'react';
 import {
+  patchSubmitFinalForm,
   postSaveForm,
   postSubmitDraftForm,
-  postSubmitFinalForm,
   postUploadFormDocumnet,
   postUploadProfileImage,
 } from './api';
@@ -17,7 +17,7 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
   const { handleError } = useApiError();
 
   const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
-    mutationFn: () => postSubmitFinalForm(formUrl),
+    mutationFn: () => patchSubmitFinalForm(formUrl),
     onSuccess: () => {
       setFormStep('최종제출완료');
     },

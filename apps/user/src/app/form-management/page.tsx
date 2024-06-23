@@ -5,13 +5,13 @@ import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import { Column, Row, Text } from '@maru/ui';
 import { color } from '@maru/design-token';
+import { useFormStatusQuery } from '@/services/form/queries';
 import {
   CallForInquiries,
-  FormStatus,
   CheckForm,
+  FormStatus,
   WriteNextForm,
 } from '@/components/form-management';
-import { useFormStatusQuery } from '@/services/form/queries';
 
 const FormManagementPage = () => {
   const { data: handleFormStatus } = useFormStatusQuery();
@@ -22,12 +22,12 @@ const FormManagementPage = () => {
         <Text fontType="H1" color={color.gray900}>
           원서 관리
         </Text>
-        <Row gap={48} alignItems="center">
+        <Row gap={24} alignItems="center">
           <Column gap={30}>
             <FormStatus status={handleFormStatus?.status} />
             <CheckForm />
           </Column>
-          <Column gap={30}>
+          <Column gap={15}>
             <WriteNextForm />
             <CallForInquiries />
           </Column>

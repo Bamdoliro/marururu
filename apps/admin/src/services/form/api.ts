@@ -30,7 +30,7 @@ export const getSecondScoreFormat = async () => {
 
 export const patchSecondScoreFormat = async (formData: FormData) => {
   const { data } = await maru.patch(
-    '/form/second-round',
+    '/form/second-round/score',
     formData,
     authorization.FormData()
   );
@@ -77,9 +77,12 @@ export const patchFinalScore = async (id: number, status: ApprovalStatus) => {
     const { data } = await maru.patch(`/form/${id}/approve`, {}, authorization());
 
     return data;
-  }
+  } else if (status === '반려') {
+    const { data } = await maru.patch(`/form/${id}/reject`, {}, authorization());
 
-  const { data } = await maru.patch(`/form/${id}/reject`, {}, authorization());
+    return data;
+  }
+  const { data } = await maru.patch(`/form/${id}/receive`, {}, authorization());
 
   return data;
 };

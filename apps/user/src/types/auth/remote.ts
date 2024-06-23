@@ -9,7 +9,13 @@ export interface PostJoinAuthReq {
   password: string;
 }
 
-export interface PatchVerificationReq {
-  code: string;
+export interface PatchUpdateAuthReq {
   phoneNumber: string;
+  password: string;
+}
+
+export interface PatchVerificationReq {
+  phoneNumber: string;
+  code: string;
+  type: string;
 }

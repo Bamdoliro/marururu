@@ -1,7 +1,8 @@
-import { IconClose } from '@maru/icon';
 import { color } from '@maru/design-token';
+import { IconClose } from '@maru/icon';
 import { flex } from '@maru/utils';
 import type { CSSProperties, ReactNode } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Button from '../Button/Button';
 import Column from '../Flex/Column';
@@ -17,6 +18,7 @@ interface Props {
   style?: CSSProperties;
   height?: CSSProperties['height'];
   width?: CSSProperties['width'];
+  mode: 'complete' | 'check' | 'login';
 }
 
 const Modal = ({
@@ -28,6 +30,7 @@ const Modal = ({
   style,
   height,
   width,
+  mode,
 }: Props) => {
   return (
     <BlurBackground $isOpen={isOpen}>
@@ -50,12 +53,29 @@ const Modal = ({
         </Row>
         <Column style={{ width: '100%', height: '100%' }}>{children}</Column>
         <Row gap={16} justifyContent="flex-end">
-          <Button styleType="SECONDARY" size="SMALL" onClick={onClose}>
-            취소
-          </Button>
-          <Button size="SMALL" onClick={onConfirm}>
-            완료
-          </Button>
+          {mode === 'complete' ? (
+            <>
+              <Button styleType="SECONDARY" size="SMALL" onClick={onClose}>
+                취소
+              </Button>
+              <Button size="SMALL" onClick={onConfirm}>
+                완료
+              </Button>
+            </>
+          ) : mode === 'login' ? (
+            <>
+              <Button styleType="SECONDARY" size="SMALL" onClick={onClose}>
+                닫기
+              </Button>
+              <Button size="SMALL" onClick={onConfirm}>
+                로그인 하러 가기
+              </Button>
+            </>
+          ) : (
+            <Button size="SMALL" onClick={onConfirm}>
+              확인
+            </Button>
+          )}
         </Row>
       </StyledModal>
     </BlurBackground>

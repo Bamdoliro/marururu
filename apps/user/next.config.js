@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ['@maru/design-token'],
   images: {
