@@ -13,11 +13,11 @@ export interface GetNumberOfApplicantsRes {
 }
 
 export interface AnalysisApplicantTypeReq {
-  statusList: AnalysisApplicantType;
+  statusList: AnalysisApplicantType[];
 }
 
 export interface SchoolStatusReq {
-  statusList: AnalysisApplicantType;
+  statusList: AnalysisApplicantType[];
   isBusan: boolean;
   gu?: AreaCategory | null;
 }
@@ -26,7 +26,7 @@ export interface GetGradeDistributionRes {
 }
 
 export interface GenderRatioStatusReq {
-  statusList: AnalysisApplicantType;
+  statusList: AnalysisApplicantType[];
   mainCategory: FormTypeMainCategory;
 }
 

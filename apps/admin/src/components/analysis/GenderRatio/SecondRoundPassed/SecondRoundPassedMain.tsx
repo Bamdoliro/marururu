@@ -2,21 +2,34 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import useGenderRatioData from './SecondRoundPassedGenderRatio.hooks';
-import type { FormTypeMainCategory } from '@/types/analysis/client';
+import useAdmissionData from '../GenderRatio.hooks';
+import type {
+  AnalysisApplicantType,
+  FormTypeMainCategory,
+} from '@/types/analysis/client';
 
 const SecondRoundPassedMain = () => {
-  const mainCategories: FormTypeMainCategory[] = ['REGULAR', 'SPECIAL', 'SUPERNUMERARY'];
-  const { categories, overallMale, overallFemale } = useGenderRatioData(mainCategories);
+  const statusList: AnalysisApplicantType[] = ['FAILED', 'PASSED'];
 
-  const RegularMaleCount = categories.REGULAR.male;
-  const RegularFemaleCount = categories.REGULAR.female;
-  const SpecialMaleCount = categories.SPECIAL.male;
-  const SpecialFemaleCount = categories.SPECIAL.female;
-  const SupernumeraryMaleCount = categories.SUPERNUMERARY.male;
-  const SupernumeraryFemaleCount = categories.SUPERNUMERARY.female;
-  const TotalMaleCountNoSupernumerary = overallMale - SupernumeraryMaleCount;
-  const TotalFemaleCountNoSupernumerary = overallFemale - SupernumeraryFemaleCount;
+  const useAdmissionDataWithStatus = (type: FormTypeMainCategory) => {
+    return useAdmissionData(statusList, type);
+  };
+
+  const { data: RegularData } = useAdmissionDataWithStatus('REGULAR');
+  const { data: SpecialData } = useAdmissionDataWithStatus('SPECIAL');
+  const { data: SupernumeraryData } = useAdmissionDataWithStatus('SUPERNUMERARY');
+
+  const RegularMaleCount = RegularData.overallMale || 0;
+  const RegularFemaleCount = RegularData.overallFemale || 0;
+  const SpecialMaleCount = SpecialData.overallMale || 0;
+  const SpecialFemaleCount = SpecialData.overallFemale || 0;
+  const SupernumeraryMaleCount = SupernumeraryData.overallMale || 0;
+  const SupernumeraryFemaleCount = SupernumeraryData.overallFemale || 0;
+  const overallMale = RegularMaleCount + SpecialMaleCount + SupernumeraryMaleCount;
+  const overallFemale =
+    RegularFemaleCount + SpecialFemaleCount + SupernumeraryFemaleCount;
+  const TotalMaleCountNoSupernumerary = RegularMaleCount + SpecialMaleCount;
+  const TotalFemaleCountNoSupernumerary = RegularFemaleCount + SpecialFemaleCount;
 
   return (
     <LeftBox>
