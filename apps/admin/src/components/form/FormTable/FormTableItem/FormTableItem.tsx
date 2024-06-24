@@ -58,6 +58,8 @@ const FormTableItem = ({
         return '승인';
       case 'REJECTED':
         return '반려';
+      case 'SUBMITTED':
+        return '접수 중';
       default:
         return '접수';
     }
