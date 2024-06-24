@@ -59,7 +59,7 @@ const QuestionBox = styled.div`
 `;
 
 const AnswerBox = styled.div`
-  height: fit-content;
+  height: inline-block;
   padding: 16px 24px;
   ${flex({ alignItems: 'center' })}
   background-color: ${color.white};
@@ -74,9 +74,9 @@ const Question = styled.p`
 const Answer = styled.p`
   ${font.p2};
   color: ${color.gray900};
-  width: calc(100% - 48px);
+  width: calc(100%);
   margin-left: 12px;
-  margin-top: 8px;
+  margin-top: 2px;
   margin-bottom: 8px;
   line-height: 1.5;
 `;
