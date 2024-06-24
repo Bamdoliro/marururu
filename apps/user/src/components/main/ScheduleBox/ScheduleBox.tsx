@@ -17,14 +17,14 @@ import ScheduleItem from './ScheduleBoxItem/ScheduleBoxItem';
 const SCHEDULE_DATA = [
   {
     id: 0,
-    date: '2024년 06월 24일 ~ 06월29일 17:00',
+    date: '2024년 06월 24일 ~ 06월28일 17:00',
     plan: '1차 원서접수',
     startTime: 제출_시작_날짜,
     endTime: 제출_마감_날짜,
   },
   {
     id: 1,
-    date: '2024년 06월 30일 15:00',
+    date: '2024년 07월 01일 15:00',
     plan: '1차 합격자 발표',
     startTime: 일차_합격_발표,
     endTime: 이차_전형_시작,
