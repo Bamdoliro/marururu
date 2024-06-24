@@ -18,7 +18,6 @@ const FormTableItem = ({
   graduationType,
   school,
   type,
-  hasDocument,
   status,
   totalScore,
   firstRoundPassed,
@@ -61,6 +60,15 @@ const FormTableItem = ({
         return '반려';
       default:
         return '접수';
+    }
+  };
+
+  const getSubmittedStatusString = (status: FormStatus) => {
+    switch (status) {
+      case 'SUBMITTED':
+        return '초안 제출';
+      default:
+        return '최종 제출';
     }
   };
 
@@ -118,7 +126,7 @@ const FormTableItem = ({
         </Row>
         <Row gap={48} alignItems="center">
           <Text fontType="p2" width={60} color={color.gray900}>
-            {getStatusString(hasDocument, '최종 제출', '초안 제출')}
+            {getSubmittedStatusString(status)}
           </Text>
           <Text fontType="p2" width={60} color={getDocumentStatusColor(status)}>
             {getDocumentStatusString(status)}
