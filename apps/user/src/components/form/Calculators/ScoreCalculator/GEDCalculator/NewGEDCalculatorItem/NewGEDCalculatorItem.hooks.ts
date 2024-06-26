@@ -6,15 +6,34 @@ export const useInput = (newGEDSubjectIndex: number) => {
 
   const handleNewGEDSubjectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
+    if (name === 'subjectName') {
+      setNewGEDSubjectList((prev) => {
+        const updatedData = [...prev];
+        updatedData[newGEDSubjectIndex] = {
+          ...updatedData[newGEDSubjectIndex],
+          [name]: value,
+        };
+        return updatedData;
+      });
+    } else if (name === 'score') {
+      const trimmedValue = value.replace(/^0+/, '');
 
-    setNewGEDSubjectList((prev) => {
-      const updatedData = [...prev];
-      updatedData[newGEDSubjectIndex] = {
-        ...updatedData[newGEDSubjectIndex],
-        [name]: value,
-      };
-      return updatedData;
-    });
+      const processValue =
+        Number(value) == 100
+          ? 100
+          : value.length > 2
+          ? Number(trimmedValue.slice(1))
+          : Number(trimmedValue);
+
+      setNewGEDSubjectList((prev) => {
+        const updatedData = [...prev];
+        updatedData[newGEDSubjectIndex] = {
+          ...updatedData[newGEDSubjectIndex],
+          [name]: processValue,
+        };
+        return updatedData;
+      });
+    }
   };
 
   return { handleNewGEDSubjectChange };
