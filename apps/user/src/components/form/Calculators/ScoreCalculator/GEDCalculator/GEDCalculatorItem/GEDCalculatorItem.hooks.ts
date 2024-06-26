@@ -6,11 +6,12 @@ export const useInput = (id: number) => {
 
   const handleGEDSubjectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
+    const processValue = Math.min(Number(value), 100);
     setGEDSubjectList((prev) => {
       const updatedData = [...prev];
       updatedData[id] = {
         ...updatedData[id],
-        [name]: value,
+        [name]: processValue,
       };
       return updatedData;
     });
