@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import color from './color';
 
 const GlobalStyle = createGlobalStyle`
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 * {
   box-sizing: border-box;
