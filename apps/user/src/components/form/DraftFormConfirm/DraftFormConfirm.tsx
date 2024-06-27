@@ -15,8 +15,15 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    setInputValue(value);
-    setIsInputValid(value === '확인했습니다');
+
+    if (value === '확인했습니다') {
+      setInputValue(value);
+      setIsInputValid(true);
+    } else {
+      alert('다시 작성해주시길 바랍니다.');
+      setInputValue('');
+      setIsInputValid(false);
+    }
   };
 
   return (
