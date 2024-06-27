@@ -17,49 +17,22 @@ const Terms = ({ setTermsAgree }: Props) => {
   const [checkThree, setChecktThree] = useState(false);
 
   const handleCheckAll = () => {
-    if (checkAll === false) {
-      setChecktOne(true);
-      setChecktTwo(true);
-      setChecktThree(true);
-    } else {
-      setChecktOne(false);
-      setChecktTwo(false);
-      setChecktThree(false);
-    }
+    const newCheckAll = !checkAll;
+    setCheckAll(newCheckAll);
+    setChecktOne(newCheckAll);
+    setChecktTwo(newCheckAll);
+    setChecktThree(newCheckAll);
   };
 
-  const handleCheckOne = () => {
-    if (checkOne === false) {
-      setChecktOne(true);
-    } else {
-      setChecktOne(false);
-    }
-  };
-
-  const handleCheckTwo = () => {
-    if (checkTwo === false) {
-      setChecktTwo(true);
-    } else {
-      setChecktTwo(false);
-    }
-  };
-
-  const handleCheckThree = () => {
-    if (checkThree === false) {
-      setChecktThree(true);
-    } else {
-      setChecktThree(false);
-    }
-  };
+  const handleCheckOne = () => setChecktOne(!checkOne);
+  const handleCheckTwo = () => setChecktTwo(!checkTwo);
+  const handleCheckThree = () => setChecktThree(!checkThree);
 
   useEffect(() => {
-    if (checkOne === true && checkTwo === true) {
-      setCheckAll(true);
-      setTermsAgree(true);
-    } else {
-      setCheckAll(false);
-    }
-  }, [checkOne, checkTwo, setTermsAgree]);
+    const allChecked = checkOne && checkTwo && checkThree;
+    setCheckAll(allChecked);
+    setTermsAgree(allChecked);
+  }, [checkOne, checkTwo, checkThree, setTermsAgree]);
 
   return (
     <StyledTerms>

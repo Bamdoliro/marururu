@@ -1,6 +1,6 @@
 import { font } from '@maru/design-token';
-import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import React from 'react';
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 
 type Font = keyof typeof font;

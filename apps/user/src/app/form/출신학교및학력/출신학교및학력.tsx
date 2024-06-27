@@ -62,7 +62,7 @@ const 출신학교및학력 = () => {
           <Input
             name="graduationYear"
             label="졸업 년도, 합격 년도"
-            placeholder="예) 2022"
+            placeholder="예) 2024"
             width="100%"
             value={form.education.graduationYear}
             onChange={handle출신학교및학력Change}
