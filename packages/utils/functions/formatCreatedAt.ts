@@ -7,7 +7,10 @@ const formatCreatedAt = (createdAt: string) => {
     hours = date.getHours(),
     minutes = date.getMinutes();
 
-  return `${year}년 ${month}월 ${day}일 ${hours}:${minutes}`;
+  return `${year}년 ${month}월 ${day}일 ${`${hours}`.padStart(
+    2,
+    '0'
+  )}:${`${minutes}`.padStart(2, '0')}`;
 };
 
 export default formatCreatedAt;
