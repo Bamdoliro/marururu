@@ -27,7 +27,7 @@ const GuardFormModal = ({ isOpen, onClose }: Props) => {
       mode="check"
     >
       <Column gap={20} width={528}>
-        <hr />
+        <hr color={color.gray200} />
         <Text fontType="p1" color={color.gray900}>
           원서 접수 기간에만 원서 작성이 가능합니다. <br />
           원서 접수 기간까지 조금만 기다려 주세요.

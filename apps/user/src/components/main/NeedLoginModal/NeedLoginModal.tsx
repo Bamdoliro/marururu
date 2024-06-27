@@ -35,7 +35,7 @@ const NeedLoginModal = ({ isOpen, onClose }: Props) => {
         <Text fontType="p2" color={color.gray600}>
           이 페이지는 로그인이 필요한 페이지입니다.
         </Text>
-        <hr />
+        <hr color={color.gray200} />
         <Text fontType="p1" color={color.gray600}>
           이 페이지는 로그인하지 않으면 접근할 수 없습니다. <br />
           로그인 후에 편리하게 서비스를 이용하실 수 있습니다.
