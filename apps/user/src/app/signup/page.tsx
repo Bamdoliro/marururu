@@ -87,7 +87,7 @@ const SignUpPage = () => {
                   isError={joinUser.code.length < 6}
                   buttonText="인증번호 확인"
                   enabled={isVerificationCodeConfirm}
-                  errorMessage="발송된 전화번호의 인증번호를 입력해주세요."
+                  placeholder="인증번호를 입력해주세요."
                 />
               )}
               <Column gap={6}>

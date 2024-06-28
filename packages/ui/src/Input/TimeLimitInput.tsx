@@ -1,7 +1,8 @@
-import { useInterval } from '@maru/hooks';
 import { color, font } from '@maru/design-token';
+import { useInterval } from '@maru/hooks';
 import { flex, formatTime } from '@maru/utils';
 import type { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import Row from '../Flex/Row';
 import Text from '../Text/Text';
@@ -20,6 +21,7 @@ const TimeLimitInput = ({
   width = 320,
   name,
   label,
+  placeholder,
   message,
   onChange,
   maxLength,
@@ -43,7 +45,13 @@ const TimeLimitInput = ({
       {label && <Label>{label}</Label>}
       <Row gap={8} alignItems="center" style={{ position: 'relative' }}>
         <StyledTimeLimitInput $isError={isError}>
-          <Input onChange={onChange} type="text" name={name} maxLength={maxLength} />
+          <StyledInput
+            onChange={onChange}
+            placeholder={placeholder}
+            type="text"
+            name={name}
+            maxLength={maxLength}
+          />
           <Text fontType="p3" color={color.red}>
             {formatTime(timerTime)}
           </Text>
@@ -94,7 +102,7 @@ const StyledTimeLimitInput = styled.div<{ $isError: boolean }>`
     `};
 `;
 
-const Input = styled.input`
+const StyledInput = styled.input`
   ${font.p2}
   color: ${color.gray800};
   width: 100%;
@@ -105,7 +113,7 @@ const Input = styled.input`
   }
 `;
 
-export const Button = styled.button<{ enabled: boolean }>`
+const Button = styled.button<{ enabled: boolean }>`
   ${font.btn2};
   color: ${color.white};
   background-color: ${(props) => (props.enabled ? color.gray400 : color.maruDefault)};
