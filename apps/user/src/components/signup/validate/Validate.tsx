@@ -16,7 +16,7 @@ const Validate = (password: string) => (
     {renderCheckItem(password.length >= 8, '8자리')}
     {renderCheckItem(/[a-zA-Z]/.test(password), '영어')}
     {renderCheckItem(/\d/.test(password), '숫자')}
-    {renderCheckItem(/[!@#$%&*?]/.test(password), '특수문자')}
+    {renderCheckItem(/[!@#$%&*?]/.test(password), '특수문자(!@#$%&*?)')}
   </Row>
 );
 
