@@ -1,5 +1,6 @@
 import { useSetFormStore } from '@/store';
 import { useOutsideClick } from '@maru/hooks';
+import { useEffect } from 'react';
 import type { Address } from 'react-daum-postcode';
 import DaumPostcode from 'react-daum-postcode';
 import styled from 'styled-components';
@@ -20,6 +21,18 @@ const FindAddressModal = ({ isOpen, onClose }: Props) => {
     }));
     onClose();
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
 
   return (
     <BlurBackground $isOpen={isOpen}>
