@@ -27,7 +27,7 @@ const withAuth = (Component: React.ComponentType) => {
         alert('이용하시려면 로그인이 필요합니다.');
         router.replace(ROUTES.LOGIN);
       }
-    }, [isMounted, hasAccessToken, router]);
+    }, [isMounted, hasAccessToken, router, LOGIN_TYPE]);
     return <Component />;
   };
 
