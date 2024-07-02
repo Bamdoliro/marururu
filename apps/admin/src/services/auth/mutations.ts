@@ -31,7 +31,7 @@ export const useLogoutAdminMutation = () => {
     mutationFn: deleteLogoutAdmin,
     onSuccess: () => {
       localStorage.clear();
-      router.replace(ROUTES.LOGIN);
+      router.replace(ROUTES.MAIN);
     },
     onError: () => localStorage.clear(),
   });

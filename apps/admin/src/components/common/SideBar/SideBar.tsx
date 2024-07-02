@@ -13,7 +13,7 @@ import { color, font } from '@maru/design-token';
 const NAVIGATION_DATA = [
   {
     name: '원서 관리',
-    route: ROUTES.MAIN,
+    route: ROUTES.FORM,
   },
   {
     name: '공지사항',
@@ -76,7 +76,7 @@ const SideBar = () => {
       {isLoggedIn ? (
         <LogoutButton onClick={handleLogoutAdmin}>로그아웃</LogoutButton>
       ) : (
-        <LoginLink href="/login">로그인</LoginLink>
+        <LoginLink href="/">로그인</LoginLink>
       )}
     </StyledSideBar>
   );
