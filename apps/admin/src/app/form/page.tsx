@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'development') {
   initMockAPI();
 }
 
-const MainPage = () => {
+const FormPage = () => {
   const [formListType, setFormListType] = useFormListTypeStore();
 
   const handleFormListTypeReview = () => setFormListType('검토해야 하는 원서 모아보기');
@@ -179,7 +179,7 @@ const MainPage = () => {
   );
 };
 
-export default withAuth(MainPage);
+export default withAuth(FormPage);
 
 const StyledMainPage = styled.div`
   ${flex({ flexDirection: 'column' })}
