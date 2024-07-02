@@ -28,12 +28,12 @@ const NAVIGATION_DATA = [
     route: ROUTES.MESSAGE,
   },
   {
-    name: '분석',
-    route: ROUTES.ANALYSIS,
-  },
-  {
     name: '입학 설명회 관리',
     route: ROUTES.FAIR,
+  },
+  {
+    name: '분석',
+    route: ROUTES.ANALYSIS,
   },
 ] as const;
 
