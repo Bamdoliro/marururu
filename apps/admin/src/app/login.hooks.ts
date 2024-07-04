@@ -1,7 +1,5 @@
-import { ROUTES } from '@/constants/common/constant';
 import { useLoginAdminMutation } from '@/services/auth/mutations';
 import type { PostLoginAuthReq } from '@/types/auth/remote';
-import { useRouter } from 'next/navigation';
 import type { ChangeEventHandler } from 'react';
 import { useState } from 'react';
 
@@ -30,13 +28,4 @@ export const useInput = () => {
     loginAdminData,
     handleLoginAdminDataChange,
   };
-};
-
-export const useCTAButton = () => {
-  const router = useRouter();
-
-  const handleGoMainPageButtonClick = () => {
-    router.push(ROUTES.MAIN);
-  };
-  return { handleGoMainPageButtonClick };
 };
