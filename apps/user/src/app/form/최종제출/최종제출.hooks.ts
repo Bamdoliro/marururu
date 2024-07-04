@@ -43,7 +43,6 @@ export const useExportFormAction = (
 
   useEffect(() => {
     if (exportFormData) {
-      downloadPdf();
       closePdfGeneratedLoader();
     } else {
       openPdfGeneratedLoader();
@@ -51,9 +50,11 @@ export const useExportFormAction = (
   }, [closePdfGeneratedLoader, downloadPdf, exportFormData, openPdfGeneratedLoader]);
 
   const handleExportForm = useCallback(() => {
-    downloadPdf();
-    closePdfGeneratedLoader();
-  }, [downloadPdf, closePdfGeneratedLoader]);
+    if (exportFormData) {
+      downloadPdf();
+      closePdfGeneratedLoader();
+    }
+  }, [downloadPdf, closePdfGeneratedLoader, exportFormData]);
 
   return { handleExportForm };
 };
