@@ -15,7 +15,7 @@ export const useChangeFinalScoreStatusAction = (
 
   const handleChangeFinalScoreStatusButtonClick = () => {
     changeFinalScoreStatus();
-    window.location.href = ROUTES.MAIN;
+    window.location.href = ROUTES.FORM;
   };
 
   return { handleChangeFinalScoreStatusButtonClick };

@@ -15,3 +15,9 @@ export interface Update {
   password_confirm?: string;
   type: string;
 }
+
+export interface CheckLoginType {
+  phoneNumber: string;
+  name: string;
+  authority: string;
+}
