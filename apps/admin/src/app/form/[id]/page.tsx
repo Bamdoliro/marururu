@@ -19,7 +19,7 @@ const FormDetailPage = ({ params: { id } }: Props) => {
   return (
     <AppLayout>
       <StyledFormDetail>
-        <DirectLink href={ROUTES.MAIN}>
+        <DirectLink href={ROUTES.FORM}>
           <IconArrowLeft width={18} height={18} />
           돌아가기
         </DirectLink>
