@@ -1,7 +1,6 @@
 import { color } from '@maru/design-token';
 import { CheckInput, Column, Confirm, Text } from '@maru/ui';
-import type { ChangeEvent } from 'react';
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 
 interface Props {
   isOpen: boolean;

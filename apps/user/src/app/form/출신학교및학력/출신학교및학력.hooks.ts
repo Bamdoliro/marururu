@@ -24,6 +24,11 @@ export const useInput = () => {
 
   const handle출신학교및학력Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
+
+    if (name === 'graduationYear' && !/^\d*$/.test(value)) {
+      return;
+    }
+
     setForm((prev) => ({ ...prev, education: { ...prev.education, [name]: value } }));
   };
 

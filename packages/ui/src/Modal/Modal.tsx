@@ -2,7 +2,7 @@ import { color } from '@maru/design-token';
 import { IconClose } from '@maru/icon';
 import { flex } from '@maru/utils';
 import type { CSSProperties, ReactNode } from 'react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Button from '../Button/Button';
 import Column from '../Flex/Column';
@@ -32,6 +32,18 @@ const Modal = ({
   width,
   mode,
 }: Props) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   return (
     <BlurBackground $isOpen={isOpen}>
       <StyledModal style={{ width, height, ...style }}>

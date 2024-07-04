@@ -29,7 +29,7 @@ const 지원자정보 = () => {
             value={form.applicant.birthday}
             onChange={handle지원자정보Change}
             name="birthday"
-            placeholder="생년월일을 입력해 주세요."
+            placeholder="예) 20061103"
             width="100%"
           />
           <Row gap={40} alignItems="flex-end">

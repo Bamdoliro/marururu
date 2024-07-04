@@ -17,7 +17,7 @@ export const useLoginAdminMutation = ({ phoneNumber, password }: PostLoginAuthRe
       const { accessToken, refreshToken } = res.data;
       Storage.setItem(TOKEN.ACCESS, accessToken);
       Storage.setItem(TOKEN.REFRESH, refreshToken);
-      router.replace(ROUTES.MAIN);
+      router.replace(ROUTES.FORM);
     },
     onError: handleError,
   });
@@ -31,7 +31,7 @@ export const useLogoutAdminMutation = () => {
     mutationFn: deleteLogoutAdmin,
     onSuccess: () => {
       localStorage.clear();
-      router.replace(ROUTES.LOGIN);
+      router.replace(ROUTES.MAIN);
     },
     onError: () => localStorage.clear(),
   });

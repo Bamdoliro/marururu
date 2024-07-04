@@ -5,7 +5,7 @@ import { useEffect, useReducer } from 'react';
 import { styled } from 'styled-components';
 import { Button, Column, Input, RadioGroup, Row } from '@maru/ui';
 import { formatDate, formatTime } from '@/utils';
-import { useFairPostAction } from './FairPost.hooks';
+import { useFairPostAction } from './FairPost.hook';
 
 interface FairData {
   start: string;

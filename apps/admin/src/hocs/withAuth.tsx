@@ -21,13 +21,13 @@ const withAuth = (Component: React.ComponentType) => {
     useEffect(() => {
       if (isMounted && LOGIN_TYPE === 'USER') {
         alert('잘못된 접근 입니다.');
-        router.replace(ROUTES.LOGIN);
+        router.replace(ROUTES.MAIN);
         localStorage.clear();
       } else if (isMounted && !hasAccessToken) {
         alert('이용하시려면 로그인이 필요합니다.');
-        router.replace(ROUTES.LOGIN);
+        router.replace(ROUTES.MAIN);
       }
-    }, [isMounted, hasAccessToken, router]);
+    }, [isMounted, hasAccessToken, router, LOGIN_TYPE]);
     return <Component />;
   };
 

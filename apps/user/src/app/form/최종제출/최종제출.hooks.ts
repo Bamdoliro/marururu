@@ -6,7 +6,7 @@ import {
 import { useExportFormQuery } from '@/services/form/queries';
 import { useFormDocumentValueStore, useSetFormDocumentStore } from '@/store';
 import type { ChangeEventHandler } from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
 
 export const useSubmitFinalFormAction = () => {
@@ -26,9 +26,12 @@ export const useExportFormAction = (
 ) => {
   const { userData } = useUser();
   const { data: exportFormData } = useExportFormQuery();
-  const pdfBlobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
+  const [pdfBlobUrl, setPdfBlobUrl] = useState('');
+  const [hasDownloaded, setHasDownloaded] = useState(false);
 
   const downloadPdf = useCallback(() => {
+    if (!pdfBlobUrl) return;
+
     const link = document.createElement('a');
     link.href = pdfBlobUrl;
     link.setAttribute(
@@ -39,21 +42,38 @@ export const useExportFormAction = (
     link.click();
     link.remove();
     window.URL.revokeObjectURL(pdfBlobUrl);
+    setPdfBlobUrl('');
+    setHasDownloaded(true);
   }, [pdfBlobUrl, userData.name]);
 
   useEffect(() => {
-    if (exportFormData) {
+    if (exportFormData && !hasDownloaded) {
+      const blobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
+      setPdfBlobUrl(blobUrl);
       downloadPdf();
       closePdfGeneratedLoader();
+    } else if (!exportFormData) {
+      openPdfGeneratedLoader();
+    }
+  }, [
+    exportFormData,
+    hasDownloaded,
+    closePdfGeneratedLoader,
+    openPdfGeneratedLoader,
+    downloadPdf,
+  ]);
+
+  const handleExportForm = useCallback(() => {
+    if (pdfBlobUrl) {
+      downloadPdf();
+    } else if (exportFormData) {
+      const blobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
+      setPdfBlobUrl(blobUrl);
+      downloadPdf();
     } else {
       openPdfGeneratedLoader();
     }
-  }, [closePdfGeneratedLoader, downloadPdf, exportFormData, openPdfGeneratedLoader]);
-
-  const handleExportForm = useCallback(() => {
-    downloadPdf();
-    closePdfGeneratedLoader();
-  }, [downloadPdf, closePdfGeneratedLoader]);
+  }, [downloadPdf, openPdfGeneratedLoader, exportFormData, pdfBlobUrl]);
 
   return { handleExportForm };
 };

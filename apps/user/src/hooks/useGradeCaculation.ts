@@ -152,9 +152,9 @@ const useGradeCalculation = () => {
 
       if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_1'))
         certificateScore += 3;
-      if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_2'))
+      else if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_2'))
         certificateScore += 2;
-      if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_3'))
+      else if (form.grade.certificateList.includes('COMPUTER_SPECIALIST_LEVEL_3'))
         certificateScore += 1;
     }
 

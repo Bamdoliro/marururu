@@ -1,11 +1,11 @@
 'use client';
 
-import { styled } from 'styled-components';
-import { flex } from '@maru/utils';
-import { Column, Loader, Text } from '@maru/ui';
-import AppLayout from '@/layouts/AppLayout';
+import React, { useState, useEffect } from 'react';
+import { Column, Text } from '@maru/ui';
+import styled from 'styled-components';
+import { Suspense } from '@suspensive/react';
 import { ApplyingList, ClosedList, Header } from '@/components/fair';
-import { Suspense, useEffect, useState } from 'react';
+import AppLayout from '@/layouts/AppLayout';
 import withAuth from '@/hocs/withAuth';
 
 const FairPage = () => {
@@ -54,7 +54,7 @@ const FairPage = () => {
       <StyledFairPage>
         <Text fontType="H1">입학전형 설명회 관리</Text>
         <Header selectedTab={status} handleTabClick={handleTabClick} />
-        <Suspense fallback={<Loader />}>{renderContent()}</Suspense>
+        <Suspense.CSROnly>{renderContent()}</Suspense.CSROnly>
       </StyledFairPage>
     </AppLayout>
   );
@@ -63,9 +63,10 @@ const FairPage = () => {
 export default withAuth(FairPage);
 
 const StyledFairPage = styled.div`
-  ${flex({ flexDirection: 'column' })}
-  gap: 40px;
+  position: relative;
   width: 100%;
-  min-height: 100vh;
-  padding: 64px 75px;
+  max-width: 1240px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 82px 204px 240px;
 `;
