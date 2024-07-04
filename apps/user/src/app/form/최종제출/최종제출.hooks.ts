@@ -50,7 +50,7 @@ export const useExportFormAction = (
     if (exportFormData && !hasDownloaded) {
       const blobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
       setPdfBlobUrl(blobUrl);
-      downloadPdf(); // 다운로드 실행
+      downloadPdf();
       closePdfGeneratedLoader();
     } else if (!exportFormData) {
       openPdfGeneratedLoader();
