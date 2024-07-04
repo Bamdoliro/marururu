@@ -1,7 +1,6 @@
 import { color } from '@maru/design-token';
 import { CheckInput, Column, Confirm, Text } from '@maru/ui';
-import type { ChangeEvent } from 'react';
-import { useState } from 'react';
+import { useState, type ChangeEvent } from 'react';
 
 interface Props {
   isOpen: boolean;
@@ -15,15 +14,8 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-
-    if (value === '확인했습니다') {
-      setInputValue(value);
-      setIsInputValid(true);
-    } else {
-      alert('다시 작성해주시길 바랍니다.');
-      setInputValue('');
-      setIsInputValid(false);
-    }
+    setInputValue(value);
+    setIsInputValid(value === '확인했습니다');
   };
 
   return (
