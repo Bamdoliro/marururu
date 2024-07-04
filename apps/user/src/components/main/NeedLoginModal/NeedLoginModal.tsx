@@ -1,3 +1,4 @@
+import React from 'react';
 import { ROUTES } from '@/constants/common/constant';
 import { color } from '@maru/design-token';
 import { Column, Modal, Text } from '@maru/ui';
@@ -17,6 +18,7 @@ const NeedLoginModal = ({ isOpen, onClose }: Props) => {
   };
 
   const handleCloseModal = () => {
+    router.replace('/');
     onClose();
   };
 

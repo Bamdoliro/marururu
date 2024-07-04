@@ -15,6 +15,7 @@ import 최종제출 from './최종제출/최종제출';
 import 최종제출완료 from './최종제출완료/최종제출완료';
 import 출신학교및학력 from './출신학교및학력/출신학교및학력';
 import { useFormStatusQuery } from '@/services/form/queries';
+import withAuth from '@/hocs/withAuth';
 
 const FormPage = () => {
   const [formStep, setFormStep] = useFormStepStore();
@@ -48,4 +49,4 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+export default withAuth(FormPage);
