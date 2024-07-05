@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
 import Profile from './Profile/Profile';
 import {
   이차_전형_끝,
@@ -22,8 +21,6 @@ import GuardFormModal from '@/components/main/GuardFormModal/GuardFormModal';
 import { useOverlay } from '@toss/use-overlay';
 import { Storage } from '@/apis/storage/storage';
 import NeedLoginModal from '@/components/main/NeedLoginModal/NeedLoginModal';
-
-dayjs.extend(isBetween);
 
 const NAVIGATION_LIST = [
   {

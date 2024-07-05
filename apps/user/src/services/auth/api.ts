@@ -5,7 +5,6 @@ import type {
   PostJoinAuthReq,
   PatchUpdateAuthReq,
   PostLoginAuthReq,
-  GetCheckLoginRes,
 } from '@/types/auth/remote';
 
 export const postLoginUser = async ({ phoneNumber, password }: PostLoginAuthReq) => {
@@ -39,9 +38,4 @@ export const patchVerification = async ({
 
 export const deleteLogoutUser = async () => {
   await maru.delete('/auth', authorization());
-};
-
-export const getCheckLogin = async () => {
-  const { data } = await maru.get<GetCheckLoginRes>('/user', authorization());
-  return data;
 };
