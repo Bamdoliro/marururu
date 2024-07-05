@@ -9,7 +9,11 @@ export const useCTAButton = () => {
     router.push(ROUTES.FORM);
   };
 
-  return { handleMoveFormPage };
+  const handleChangePassword = () => {
+    router.push(ROUTES.CHANGE_PASSWORD);
+  };
+
+  return { handleMoveFormPage, handleChangePassword };
 };
 
 export const useLogoutAction = () => {
