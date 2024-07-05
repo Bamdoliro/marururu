@@ -22,18 +22,38 @@ const CellInput = ({
     }
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let newValue = e.target.value;
+
+    if (!isNaN(Number(newValue)) && Number(newValue) >= 0) {
+      newValue = newValue.replace(/^0+/, '') || '0';
+      if (onChange) {
+        e.target.value = newValue;
+        onChange(e);
+      }
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === '.' || e.key === ',') {
+      e.preventDefault();
+    }
+  };
+
   return (
     <StyledCellInput
       ref={cellInputRef}
       name={name}
       style={{ width, textAlign }}
-      onChange={onChange}
+      onChange={handleChange}
       onClick={handleSelectAllClick}
+      onKeyPress={handleKeyPress}
       type={type}
       value={value}
       placeholder={placeholder}
       $isError={isError}
       min={0}
+      step="1"
       readOnly={readOnly}
     />
   );
