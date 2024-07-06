@@ -235,14 +235,19 @@ const FormStatus = ({ status }: Props) => {
         return (
           <StyledApplicationBox>
             <Column>
-              <Column gap={4}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  최종 합격
-                </Text>
-              </Column>
+              <Row>
+                <Column gap={4}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    최종 합격
+                  </Text>
+                </Column>
+                <MoveIcon>
+                  <IconCheckCircle width={120} height={120} />
+                </MoveIcon>
+              </Row>
               <Text fontType="p2" color={color.gray600}>
                 최종 합격하셨습니다. <br />
                 위대한 여정의 시작을 축하드립니다.
@@ -262,9 +267,6 @@ const FormStatus = ({ status }: Props) => {
                   제출 전
                 </Text>
               </Column>
-              <Text fontType="p2" color={color.gray600}>
-                아직 원서 제출전 입니다.
-              </Text>
             </Column>
           </StyledApplicationBox>
         );
