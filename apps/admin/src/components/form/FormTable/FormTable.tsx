@@ -14,6 +14,7 @@ const FormTable = () => {
         formList.map((item) => (
           <FormTableItem
             id={item.id}
+            examinationNumber={item.examinationNumber}
             name={item.name}
             birthday={item.birthday}
             graduationType={item.graduationType}

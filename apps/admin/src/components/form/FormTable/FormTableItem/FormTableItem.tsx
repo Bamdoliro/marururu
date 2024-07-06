@@ -14,6 +14,7 @@ import styled from 'styled-components';
 
 const FormTableItem = ({
   id,
+  examinationNumber,
   name,
   graduationType,
   school,
@@ -115,7 +116,7 @@ const FormTableItem = ({
             />
           ) : null}
           <Text fontType="p2" width={60}>
-            {id}
+            {examinationNumber}
           </Text>
           <Text fontType="p2" width={60}>
             {name}

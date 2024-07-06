@@ -48,7 +48,7 @@ const SideBar = () => {
 
   return (
     <StyledSideBar>
-      <Link href={ROUTES.MAIN}>
+      <Link href={ROUTES.FORM}>
         <Image
           style={{
             position: 'absolute',
