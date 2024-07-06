@@ -7,6 +7,7 @@ import { Suspense } from '@suspensive/react';
 import { ApplyingList, ClosedList, Header } from '@/components/fair';
 import AppLayout from '@/layouts/AppLayout';
 import withAuth from '@/hocs/withAuth';
+import { flex } from '@maru/utils';
 
 const FairPage = () => {
   const [status, setStatus] = useState('진행 중인 신청');
@@ -63,10 +64,9 @@ const FairPage = () => {
 export default withAuth(FairPage);
 
 const StyledFairPage = styled.div`
-  position: relative;
+  ${flex({ flexDirection: 'column' })}
+  gap: 40px;
   width: 100%;
-  max-width: 1240px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 82px 204px 240px;
+  min-height: 100vh;
+  padding: 64px 75px;
 `;
