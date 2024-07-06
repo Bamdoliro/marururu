@@ -5,7 +5,6 @@ import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import styled from 'styled-components';
 import FinalScoreConfirm from '../ChangeFinalScoreModal/ChangeFinalScoreModal';
-import type { FormStatus } from '@/types/form/client';
 import { useCheckFormStatusURLAction } from './FormStatus.hooks';
 
 interface Props {
