@@ -1,3 +1,4 @@
+import { ROUTES } from '@/constants/common/constant';
 import { color } from '@maru/design-token';
 import { Column, Modal, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
@@ -10,12 +11,12 @@ interface Props {
 const GuardFormModal = ({ isOpen, onClose }: Props) => {
   const router = useRouter();
   const handleConfirmModal = () => {
-    router.replace('/');
+    router.replace(ROUTES.MAIN);
     onClose();
   };
 
   const handleCloseModal = () => {
-    router.replace('/');
+    router.replace(ROUTES.MAIN);
     onClose();
   };
 
