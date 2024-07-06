@@ -63,6 +63,7 @@ export const useUpdateUserMutation = ({ phoneNumber, password }: PatchUpdateAuth
     onSuccess: () => {
       alert('비밀번호 변경 성공');
       router.push(ROUTES.LOGIN);
+      localStorage.clear();
     },
     onError: handleError,
   });

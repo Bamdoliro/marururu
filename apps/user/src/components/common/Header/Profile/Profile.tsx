@@ -14,7 +14,7 @@ const Profile = () => {
     toggle: toggleMenuOpen,
     setFalse: closeMenu,
   } = useBooleanState();
-  const { handleMoveFormPage } = useCTAButton();
+  const { handleMoveFormPage, handleChangePassword } = useCTAButton();
   const { handleLogout } = useLogoutAction();
   const profileRef = useOutsideClick(closeMenu);
 
@@ -34,6 +34,7 @@ const Profile = () => {
               </Text>
             </NameMenu>
             <MenuItem onClick={handleMoveFormPage}>이어서 원서 작성하기</MenuItem>
+            <MenuItem onClick={handleChangePassword}>비밀번호 변경</MenuItem>
             <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
           </MenuList>
         </MenuListBox>

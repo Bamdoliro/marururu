@@ -35,7 +35,7 @@ const Profile = ({ id }: Props) => {
           <Row gap={10}>
             <IconBadge width={24} height={24} />
             <Text fontType="p2" color={color.gray900}>
-              {formDetailData?.applicant.name}
+              {formDetailData?.examinationNumber}
             </Text>
           </Row>
           <Row gap={10}>

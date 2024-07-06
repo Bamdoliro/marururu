@@ -18,7 +18,6 @@ const NeedLoginModal = ({ isOpen, onClose }: Props) => {
   };
 
   const handleCloseModal = () => {
-    router.replace('/');
     onClose();
   };
 

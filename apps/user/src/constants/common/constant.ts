@@ -1,5 +1,4 @@
 export const KEY = {
-  LOGIN_CHECK: 'useLoginCheck',
   NOTICE_LIST: 'useNoticeList',
   NOTICE_DETAIL: 'useNoticeDetail',
   FAQ_CATEGORY_LIST: 'useFaqCategoryListQuery',

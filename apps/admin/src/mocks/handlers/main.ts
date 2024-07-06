@@ -4,6 +4,7 @@ import type { Form } from '@/types/form/client';
 const MAIN_FORM_DATA: Form[] = [
   {
     id: 0,
+    examinationNumber: 2000,
     name: '김밤돌',
     birthday: '2005-04-15',
     graduationType: 'EXPECTED',
@@ -17,6 +18,7 @@ const MAIN_FORM_DATA: Form[] = [
   },
   {
     id: 1,
+    examinationNumber: 2001,
     name: '김밤돌',
     birthday: '2005-04-15',
     graduationType: 'QUALIFICATION_EXAMINATION',
@@ -30,6 +32,7 @@ const MAIN_FORM_DATA: Form[] = [
   },
   {
     id: 2,
+    examinationNumber: 2002,
     name: '김밤돌',
     birthday: '2005-04-15',
     graduationType: 'EXPECTED',

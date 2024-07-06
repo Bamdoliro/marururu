@@ -33,7 +33,7 @@ const FormTableHeader = () => {
           <CheckBox onChange={handleAllFormToPrintSelectChange} />
         ) : null}
         <Text fontType="p2" width={60}>
-          접수번호
+          수험번호
         </Text>
         <Text fontType="p2" width={60}>
           이름

@@ -29,6 +29,7 @@ export type GraduationType = 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATI
 
 export interface Form {
   id: number;
+  examinationNumber: number | null;
   name: string;
   birthday: string;
   graduationType: GraduationType;
@@ -52,6 +53,7 @@ export type ExportExcelType =
 export type PassStatusType = '합격' | '불합격' | '미정';
 
 export interface FormDetail {
+  examinationNumber: number | null;
   applicant: UserInfo;
   parent: ParentInfo;
   education: EducationInfo;

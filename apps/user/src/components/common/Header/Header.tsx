@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
 import Profile from './Profile/Profile';
 import { useOverlay } from '@toss/use-overlay';
 import NeedLoginModal from '@/components/main/NeedLoginModal/NeedLoginModal';
@@ -21,8 +20,6 @@ import {
   제출_시작_날짜,
   최종_합격_발표,
 } from '@/constants/form/constant';
-
-dayjs.extend(isBetween);
 
 const NAVIGATION_LIST = [
   {

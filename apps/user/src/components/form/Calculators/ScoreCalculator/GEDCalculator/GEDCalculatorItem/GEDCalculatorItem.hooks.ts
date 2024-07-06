@@ -6,14 +6,13 @@ export const useInput = (id: number) => {
 
   const handleGEDSubjectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-    const trimmedValue = value.replace(/^0+/, '');
+    const numericValue = Number(value);
 
+    if (numericValue > 100) return;
+
+    const trimmedValue = value.replace(/^0+/, '');
     const processValue =
-      Number(value) == 100
-        ? 100
-        : value.length > 2
-        ? Number(trimmedValue.slice(1))
-        : Number(trimmedValue);
+      numericValue === 100 ? 100 : numericValue >= 10 ? numericValue : trimmedValue;
 
     setGEDSubjectList((prev) => {
       const updatedData = [...prev];
