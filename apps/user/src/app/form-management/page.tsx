@@ -12,6 +12,7 @@ import {
   FormStatus,
   WriteNextForm,
 } from '@/components/form-management';
+import withFormManageAuth from '@/hocs/withFormManageAuth';
 
 const FormManagementPage = () => {
   const { data: handleFormStatus } = useFormStatusQuery();
@@ -37,7 +38,7 @@ const FormManagementPage = () => {
   );
 };
 
-export default FormManagementPage;
+export default withFormManageAuth(FormManagementPage);
 
 const StyledFormManagementPage = styled.div`
   position: relative;
