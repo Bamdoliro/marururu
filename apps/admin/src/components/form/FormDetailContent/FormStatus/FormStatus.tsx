@@ -42,6 +42,17 @@ const FormStatus = ({ id }: Props) => {
 
   const { handleCheckFormStatusUrlButtonClick } = useCheckFormStatusURLAction();
 
+  const handleButtonClick = () => {
+    const status = formDetailData?.status;
+    console.log(formDetailData);
+    console.log(status);
+    if (status === 'SUBMITTED') {
+      alert('초안 제출은 제출 서류를 조회할 수 없습니다.');
+    } else {
+      handleCheckFormStatusUrlButtonClick(id);
+    }
+  };
+
   return (
     <StyledFormStatus>
       <FormStatusBox>
@@ -101,11 +112,7 @@ const FormStatus = ({ id }: Props) => {
         <Button size="SMALL" onClick={openFinalScoreConfirm}>
           최종 접수 상태 변경하기
         </Button>
-        <Button
-          size="SMALL"
-          styleType="SECONDARY"
-          onClick={() => handleCheckFormStatusUrlButtonClick(id)}
-        >
+        <Button size="SMALL" styleType="SECONDARY" onClick={handleButtonClick}>
           제출 서류 조회하기
         </Button>
       </Column>
