@@ -1,7 +1,9 @@
-import { useSaveFormMutation } from '@/services/form/mutations';
-import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store';
-import { formatDate } from '@/utils';
 import type { ChangeEventHandler } from 'react';
+import { useEffect } from 'react';
+import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store';
+import useUser from '@/hooks/useUser';
+import { formatDate } from '@/utils';
+import { useSaveFormMutation } from '@/services/form/mutations';
 
 export const useCTAButton = () => {
   const form = useFormValueStore();
@@ -18,6 +20,20 @@ export const useCTAButton = () => {
 
 export const useInput = () => {
   const setForm = useSetFormStore();
+  const user = useUser();
+
+  useEffect(() => {
+    if (user.userData.name && user.userData.phoneNumber) {
+      setForm((prev) => ({
+        ...prev,
+        applicant: {
+          ...prev.applicant,
+          name: user.userData.name,
+          phoneNumber: user.userData.phoneNumber,
+        },
+      }));
+    }
+  }, [setForm, user.userData]);
 
   const handle지원자정보Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
@@ -28,6 +44,8 @@ export const useInput = () => {
       }));
       return;
     }
+
+    if (name === 'name' || name === 'phoneNumber') return;
 
     setForm((prev) => ({ ...prev, applicant: { ...prev.applicant, [name]: value } }));
   };
