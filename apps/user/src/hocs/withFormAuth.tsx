@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Storage } from '@/apis/storage/storage';
-import { useLoginCheckQuery } from '@/services/auth/queries';
 import { TOKEN, ROUTES } from '@/constants/common/constant';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
@@ -9,10 +8,11 @@ import NeedLoginModal from '@/components/main/NeedLoginModal/NeedLoginModal';
 import GuardFormModal from '@/components/main/GuardFormModal/GuardFormModal';
 import { useOverlay } from '@toss/use-overlay';
 import { 제출_마감_날짜, 제출_시작_날짜 } from '@/constants/form/constant';
+import { useLoginCheckQuery } from '@/services/auth/queries';
 
 dayjs.extend(isBetween);
 
-const withAuth = (Component: React.ComponentType) => {
+const withFormAuth = (Component: React.ComponentType) => {
   const WrappedComponent = () => {
     const { data } = useLoginCheckQuery();
     const router = useRouter();
@@ -53,4 +53,4 @@ const withAuth = (Component: React.ComponentType) => {
   return WrappedComponent;
 };
 
-export default withAuth;
+export default withFormAuth;

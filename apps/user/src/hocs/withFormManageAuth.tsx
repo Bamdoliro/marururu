@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Storage } from '@/apis/storage/storage';
-import { useLoginCheckQuery } from '@/services/auth/queries';
 import { TOKEN, ROUTES } from '@/constants/common/constant';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
@@ -18,10 +17,11 @@ import {
   제출_시작_날짜,
   최종_합격_발표,
 } from '@/constants/form/constant';
+import { useLoginCheckQuery } from '@/services/auth/queries';
 
 dayjs.extend(isBetween);
 
-const withAuth = (Component: React.ComponentType) => {
+const withFormManageAuth = (Component: React.ComponentType) => {
   const WrappedComponent = () => {
     const { data } = useLoginCheckQuery();
     const router = useRouter();
@@ -69,4 +69,4 @@ const withAuth = (Component: React.ComponentType) => {
   return WrappedComponent;
 };
 
-export default withAuth;
+export default withFormManageAuth;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Storage } from '@/apis/storage/storage';
-import { useLoginCheckQuery } from '@/services/auth/queries';
 import { TOKEN, ROUTES } from '@/constants/common/constant';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
@@ -8,10 +7,11 @@ import isBetween from 'dayjs/plugin/isBetween';
 import NeedLoginModal from '@/components/main/NeedLoginModal/NeedLoginModal';
 import { useOverlay } from '@toss/use-overlay';
 import { 입학_등록_기간, 최종_합격_발표 } from '@/constants/form/constant';
+import { useLoginCheckQuery } from '@/services/auth/queries';
 
 dayjs.extend(isBetween);
 
-const withAuth = (Component: React.ComponentType) => {
+const withResultFinalAuth = (Component: React.ComponentType) => {
   const WrappedComponent = () => {
     const { data } = useLoginCheckQuery();
     const router = useRouter();
@@ -29,9 +29,10 @@ const withAuth = (Component: React.ComponentType) => {
     useEffect(() => {
       if (isMounted) {
         if (!now.isBetween(최종_합격_발표, 입학_등록_기간)) {
-          alert('1차 합격 발표 일자가 압니다.');
+          alert('최종 합격 발표 일자가 아닙니다.');
+          router.replace(ROUTES.MAIN);
         } else if (loginType === 'ADMIN') {
-          alert('권한이 없어 원서 작성이 불가합니다.');
+          alert('권한이 없어 확인이 불가합니다.');
           router.replace(ROUTES.MAIN);
         } else if (!hasAccessToken) {
           overlay.open(({ isOpen, close }) => (
@@ -49,4 +50,4 @@ const withAuth = (Component: React.ComponentType) => {
   return WrappedComponent;
 };
 
-export default withAuth;
+export default withResultFinalAuth;
