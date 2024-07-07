@@ -5,8 +5,10 @@ import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useCTAButton } from './출결상황.hooks';
+import { useFormValueStore } from '@/store';
 
 const 출결상황 = () => {
+  const form = useFormValueStore();
   const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
   return (
@@ -27,7 +29,11 @@ const 출결상황 = () => {
       <NavigationBar>
         <UnderlineButton active={true}>출결 상황</UnderlineButton>
       </NavigationBar>
-      <AttendanceCalculator />
+      <AttendanceCalculatorWrapper
+        disabled={form.education.graduationType === 'QUALIFICATION_EXAMINATION'}
+      >
+        <AttendanceCalculator />
+      </AttendanceCalculatorWrapper>
       <FormController
         onPrevious={handleMovePreviousStep}
         onNext={handleMoveNextStep}
@@ -44,4 +50,13 @@ const NavigationBar = styled.div`
   width: 100%;
   margin: 64px 0 16px;
   background-color: ${color.white};
+`;
+
+const AttendanceCalculatorWrapper = styled.div<{ disabled: boolean }>`
+  ${({ disabled }) =>
+    disabled &&
+    `
+    pointer-events: none;
+    opacity: 0.5;
+  `}
 `;
