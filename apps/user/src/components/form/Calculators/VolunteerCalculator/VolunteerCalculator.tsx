@@ -9,6 +9,8 @@ const VolunteerCalculator = () => {
   const form = useFormValueStore();
   const { handleVolunteerTimeChange } = useInput();
 
+  const isReadOnly = form.education.graduationType === 'QUALIFICATION_EXAMINATION';
+
   return (
     <StyledVolunteerCalculator>
       <Text fontType="p3" color={color.red}>
@@ -33,6 +35,7 @@ const VolunteerCalculator = () => {
               onChange={handleVolunteerTimeChange}
               value={form.grade.volunteerTime1}
               isError={Number(form.grade.volunteerTime1) < 0}
+              readOnly={isReadOnly}
             />
             <Hour>시간</Hour>
           </Td>
@@ -47,6 +50,7 @@ const VolunteerCalculator = () => {
               onChange={handleVolunteerTimeChange}
               value={form.grade.volunteerTime2}
               isError={Number(form.grade.volunteerTime2) < 0}
+              readOnly={isReadOnly}
             />
             <Hour>시간</Hour>
           </Td>
@@ -61,6 +65,7 @@ const VolunteerCalculator = () => {
               onChange={handleVolunteerTimeChange}
               value={form.grade.volunteerTime3}
               isError={Number(form.grade.volunteerTime3) < 0}
+              readOnly={isReadOnly}
             />
             <Hour>시간</Hour>
           </Td>
