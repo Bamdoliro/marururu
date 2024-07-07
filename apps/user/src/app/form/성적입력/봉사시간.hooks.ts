@@ -1,9 +1,10 @@
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { useFormValueStore, useSetFormStepStore } from '@/store';
+import { useFormValueStore, useSetFormStepStore, useSet성적입력StepStore } from '@/store';
 
 export const useCTAButton = () => {
   const form = useFormValueStore();
   const setFormStep = useSetFormStepStore();
+  const set성적입력Step = useSet성적입력StepStore();
   const { saveFormMutate } = useSaveFormMutation();
 
   const handleMoveNextStep = () => {
@@ -17,13 +18,13 @@ export const useCTAButton = () => {
     });
 
     if (!isEmptySubjectName) {
-      setFormStep('자기소개서');
+      set성적입력Step('자격증');
       saveFormMutate(form);
     }
   };
 
   const handleMovePreviousStep = () => {
-    setFormStep('전형선택');
+    set성적입력Step('출결상황');
   };
 
   return { handleMoveNextStep, handleMovePreviousStep };
