@@ -7,6 +7,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import Profile from './Profile/Profile';
+import { useOverlay } from '@toss/use-overlay';
+import NeedLoginModal from '@/components/main/NeedLoginModal/NeedLoginModal';
+import GuardFormModal from '@/components/main/GuardFormModal/GuardFormModal';
 import {
   이차_전형_끝,
   이차_전형_시작,
@@ -17,10 +20,6 @@ import {
   제출_시작_날짜,
   최종_합격_발표,
 } from '@/constants/form/constant';
-import GuardFormModal from '@/components/main/GuardFormModal/GuardFormModal';
-import { useOverlay } from '@toss/use-overlay';
-import { Storage } from '@/apis/storage/storage';
-import NeedLoginModal from '@/components/main/NeedLoginModal/NeedLoginModal';
 
 const NAVIGATION_LIST = [
   {
@@ -48,16 +47,17 @@ const NAVIGATION_LIST = [
 const Header = () => {
   const router = useRouter();
   const pathName = usePathname();
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, userData } = useUser();
   const overlay = useOverlay();
+  const loginType = userData.authority;
 
   const handleNavigationClickForm = (route: string) => {
-    const accessToken = Storage.getItem(TOKEN.ACCESS);
-    const refreshToken = Storage.getItem(TOKEN.REFRESH);
+    const accessToken = localStorage.getItem(TOKEN.ACCESS);
+    const refreshToken = localStorage.getItem(TOKEN.REFRESH);
 
     if (
       (route === ROUTES.FORM_MANAGEMENT || route === ROUTES.FORM) &&
-      (!accessToken || !refreshToken)
+      (!accessToken || !refreshToken || loginType !== 'USER')
     ) {
       overlay.open(({ isOpen, close }) => (
         <NeedLoginModal isOpen={isOpen} onClose={close} />
