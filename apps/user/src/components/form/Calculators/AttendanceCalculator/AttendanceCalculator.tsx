@@ -9,6 +9,8 @@ const AttendanceCalculator = () => {
   const form = useFormValueStore();
   const { handleAttendanceInfoChange } = useInput();
 
+  const isReadOnly = form.education.graduationType === 'QUALIFICATION_EXAMINATION';
+
   return (
     <StyledAttendanceCalculator>
       <Text fontType="p3" color={color.red}>
@@ -42,6 +44,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance1.absenceCount}
               isError={Number(form.grade.attendance1.absenceCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td width="100%" height={56}>
@@ -50,6 +53,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance1.latenessCount}
               isError={Number(form.grade.attendance1.latenessCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td width="100%" height={56}>
@@ -58,6 +62,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance1.earlyLeaveCount}
               isError={Number(form.grade.attendance1.earlyLeaveCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td width="100%" height={56}>
@@ -66,6 +71,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance1.classAbsenceCount}
               isError={Number(form.grade.attendance1.classAbsenceCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
         </Row>
@@ -79,6 +85,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance2.absenceCount}
               isError={Number(form.grade.attendance2.absenceCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td width="100%" height={56}>
@@ -87,6 +94,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance2.latenessCount}
               isError={Number(form.grade.attendance2.latenessCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td width="100%" height={56}>
@@ -95,6 +103,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance2.earlyLeaveCount}
               isError={Number(form.grade.attendance2.earlyLeaveCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td width="100%" height={56}>
@@ -103,6 +112,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance2.classAbsenceCount}
               isError={Number(form.grade.attendance2.classAbsenceCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
         </Row>
@@ -116,6 +126,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance3.absenceCount}
               isError={Number(form.grade.attendance3.absenceCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td width="100%" height={56}>
@@ -124,6 +135,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance3.latenessCount}
               isError={Number(form.grade.attendance3.latenessCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td width="100%" height={56}>
@@ -132,6 +144,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance3.earlyLeaveCount}
               isError={Number(form.grade.attendance3.earlyLeaveCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
           <Td borderBottomRightRadius={12} width="100%" height={56}>
@@ -140,6 +153,7 @@ const AttendanceCalculator = () => {
               onChange={handleAttendanceInfoChange}
               value={form.grade.attendance3.classAbsenceCount}
               isError={Number(form.grade.attendance3.classAbsenceCount) < 0}
+              readOnly={isReadOnly}
             />
           </Td>
         </Row>

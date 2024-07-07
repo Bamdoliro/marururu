@@ -27,3 +27,5 @@ export {
   useGEDSubjectListValueStore,
 } from './form/GEDSubjectList';
 export { useUserStore } from './user/user';
+
+export { use성적입력StepStore, useSet성적입력StepStore } from './form/성적입력Step';
