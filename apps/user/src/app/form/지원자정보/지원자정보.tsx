@@ -23,6 +23,7 @@ const 지원자정보 = () => {
             width="100%"
             isError={form.applicant.name.length > 20}
             errorMessage="20자 이하여야 합니다."
+            readOnly
           />
           <Input
             label="생년월일"
@@ -55,6 +56,7 @@ const 지원자정보 = () => {
               !!form.applicant.phoneNumber && form.applicant.phoneNumber.length !== 11
             }
             errorMessage="11글자여야 합니다"
+            readOnly
           />
         </Column>
       </Row>
