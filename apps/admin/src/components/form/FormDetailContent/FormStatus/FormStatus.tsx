@@ -44,8 +44,6 @@ const FormStatus = ({ id }: Props) => {
 
   const handleButtonClick = () => {
     const status = formDetailData?.status;
-    console.log(formDetailData);
-    console.log(status);
     if (status === 'SUBMITTED') {
       alert('초안 제출은 제출 서류를 조회할 수 없습니다.');
     } else {
