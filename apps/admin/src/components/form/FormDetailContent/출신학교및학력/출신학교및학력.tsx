@@ -58,7 +58,7 @@ const 출신학교및학력 = ({ id }: Props) => {
       <Row gap={24}>
         <DataBox
           label="학교 연락처"
-          data={formDetailData?.education.teacherPhoneNumber ?? ''}
+          data={formDetailData?.education.schoolPhoneNumber ?? ''}
         />
       </Row>
     </Column>
