@@ -3,11 +3,11 @@ import 'dayjs/locale/ko';
 dayjs.locale('ko');
 
 export const 제출_시작_날짜 = dayjs('2024-07-09T00:00:00+09:00');
-export const 제출_마감_날짜 = dayjs('2024-07-09T16:28:00+09:00');
-export const 일차_합격_발표 = dayjs('2024-07-09T16:30:00+09:00');
-export const 이차_전형_시작 = dayjs('2024-07-09T16:32:30+09:00');
-export const 이차_전형_끝 = dayjs('2024-07-09T16:34:00+09:00');
-export const 최종_합격_발표 = dayjs('2024-07-09T16:36:00+09:00');
+export const 제출_마감_날짜 = dayjs('2024-07-09T16:38:00+09:00');
+export const 일차_합격_발표 = dayjs('2024-07-09T16:43:00+09:00');
+export const 이차_전형_시작 = dayjs('2024-07-09T16:48:30+09:00');
+export const 이차_전형_끝 = dayjs('2024-07-09T16:53:00+09:00');
+export const 최종_합격_발표 = dayjs('2024-07-09T16:58:00+09:00');
 export const 입학_등록_기간 = dayjs('2024-07-10T00:00:00+09:00');
 export const 입학_등록_기간_마감 = dayjs('2024-07-10T00:00:00+09:00');
 
