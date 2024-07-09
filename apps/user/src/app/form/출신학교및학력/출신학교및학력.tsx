@@ -42,7 +42,7 @@ const 출신학교및학력 = () => {
             onClick={openFindSchoolModal}
             placeholder="검색 버튼을 눌러 학교를 검색하세요."
             readOnly
-            isError={form.education.schoolName.length > 20}
+            isError={!!form.education.schoolName && form.education.schoolName.length > 20}
             errorMessage="20자 이하여야 합니다."
           />
           <Input
@@ -76,7 +76,9 @@ const 출신학교및학력 = () => {
             name="schoolLocation"
             label="지역"
             placeholder="학교를 선택하면 자동완성됩니다."
-            isError={form.education.schoolLocation.length > 20}
+            isError={
+              !!form.education.schoolLocation && form.education.schoolLocation.length > 20
+            }
             errorMessage="20자여야 합니다."
             width="100%"
             value={form.education.schoolLocation}
@@ -103,7 +105,10 @@ const 출신학교및학력 = () => {
             width="100%"
             value={form.education.schoolPhoneNumber}
             onChange={handle출신학교및학력Change}
-            isError={form.education.schoolPhoneNumber.length > 11}
+            isError={
+              !!form.education.schoolPhoneNumber &&
+              form.education.schoolPhoneNumber.length > 11
+            }
             errorMessage="11자 이하여야 합니다."
           />
         </Row>
@@ -115,7 +120,9 @@ const 출신학교및학력 = () => {
             width="100%"
             value={form.education.teacherName}
             onChange={handle출신학교및학력Change}
-            isError={form.education.teacherName.length > 20}
+            isError={
+              !!form.education.teacherName && form.education.teacherName.length > 20
+            }
             errorMessage="20자 이하여야 합니다."
           />
           <Input
@@ -125,7 +132,10 @@ const 출신학교및학력 = () => {
             width="100%"
             value={form.education.teacherMobilePhoneNumber}
             onChange={handle출신학교및학력Change}
-            isError={form.education.teacherMobilePhoneNumber.length > 11}
+            isError={
+              !!form.education.teacherMobilePhoneNumber &&
+              form.education.teacherMobilePhoneNumber.length > 11
+            }
             errorMessage="11자 이하여야 합니다."
           />
         </Row>
