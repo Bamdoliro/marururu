@@ -36,7 +36,7 @@ const useGradeCalculation = () => {
   const form = useFormValueStore();
 
   const getScoreOf = (achievementLevelKey: AchievementLevelKey) => {
-    let flag: number = 0;
+    let hyphenLength = 0;
     const scoreTotal = form.grade.subjectList?.reduce((acc, subject) => {
       const achievementLevel = subject[achievementLevelKey];
       const subjectName = subject.subjectName;
@@ -44,7 +44,7 @@ const useGradeCalculation = () => {
         (subjectName === '국어' || subjectName === '수학' || subjectName === '영어') &&
         achievementLevel === null
       ) {
-        flag += 1;
+        hyphenLength += 1;
         return acc + AchievementScore['C'];
       }
       if (subjectName === '수학' && achievementLevel !== null) {
@@ -57,7 +57,7 @@ const useGradeCalculation = () => {
       form.grade.subjectList?.filter((subject) => subject[achievementLevelKey] !== null)
         .length +
       1 +
-      flag;
+      hyphenLength;
 
     return scoreTotal / scoreLength;
   };
