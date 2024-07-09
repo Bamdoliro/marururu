@@ -9,16 +9,13 @@ const FormStatusManager = () => {
   useEffect(() => {
     if (formStatusData) {
       const { status } = formStatusData;
-      switch (status) {
-        case 'SUBMITTED':
-          setFormStep('초안제출완료');
-          break;
-        case 'FINAL_SUBMITTED':
-          setFormStep('최종제출완료');
-          break;
-        default:
-          break;
-      }
+      if (status === 'SUBMITTED') setFormStep('초안제출완료');
+      else if (
+        status === 'RECEIVED' ||
+        status === 'APPROVED' ||
+        status === 'FINAL_SUBMITTED'
+      )
+        setFormStep('최종제출완료');
     }
   }, [formStatusData, setFormStep]);
 
