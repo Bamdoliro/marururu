@@ -143,7 +143,7 @@ const FormTableItem = ({
             width={60}
             color={typeof totalScore !== 'number' ? color.gray600 : color.gray900}
           >
-            {typeof totalScore !== 'number' ? '미정' : totalScore}
+            {typeof totalScore !== 'number' ? '미정' : Number(totalScore.toFixed(3))}
           </Text>
           {isSecondRoundResultEditing ? (
             <Dropdown
