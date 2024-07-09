@@ -97,13 +97,13 @@ const 출신학교및학력 = () => {
             errorMessage="7자여야 합니다."
           />
           <Input
-            name="teacherPhoneNumber"
+            name="schoolPhoneNumber"
             label="학교 연락처"
             placeholder="학교의 교무실 연락처를 입력해주세요."
             width="100%"
-            value={form.education.teacherPhoneNumber}
+            value={form.education.schoolPhoneNumber}
             onChange={handle출신학교및학력Change}
-            isError={form.education.teacherPhoneNumber.length > 11}
+            isError={form.education.schoolPhoneNumber.length > 11}
             errorMessage="11자 이하여야 합니다."
           />
         </Row>

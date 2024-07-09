@@ -58,7 +58,7 @@ export interface Education {
   schoolAddress: string;
   schoolCode: string;
   teacherName: string;
-  teacherPhoneNumber: string;
+  schoolPhoneNumber: string;
   teacherMobilePhoneNumber: string;
 }
 
