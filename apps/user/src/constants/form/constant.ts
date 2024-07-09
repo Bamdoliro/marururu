@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 dayjs.locale('ko');
 
-export const 제출_시작_날짜 = dayjs('2024-07-10T00:00:00+09:00');
+export const 제출_시작_날짜 = dayjs('2024-07-09T00:00:00+09:00');
 export const 제출_마감_날짜 = dayjs('2024-07-11T17:00:00+09:00');
 export const 일차_합격_발표 = dayjs('2024-07-12T15:00:00+09:00');
 export const 이차_전형_시작 = dayjs('2024-07-13T13:00:00+09:00');
