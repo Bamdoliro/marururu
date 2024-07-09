@@ -24,8 +24,11 @@ const ScoreCalculator = ({ option }: Props) => {
     <StyledScoreCalculator>
       <Row alignItems="center" justifyContent="space-between">
         <Text fontType="p3" color={color.red}>
-          *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
-          <br /> *해당 과목이 없을 시 과목추가버튼으로 성적을 입력할 수 있습니다.
+          *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인해주시기 바랍니다.
+          <br />
+          *선택과목은 응시한 과목을 선택하여 성적을 입력해주시기 바랍니다.
+          <br />
+          *국어•영어•수학에서 값 없음 ( - ) 입력 시 자동으로 C로 처리됩니다.
         </Text>
         {option === 'SIMULATION' && (
           <Switch
