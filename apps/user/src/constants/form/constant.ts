@@ -8,7 +8,7 @@ export const 일차_합격_발표 = dayjs('2024-07-09T16:30:00+09:00');
 export const 이차_전형_시작 = dayjs('2024-07-09T16:32:30+09:00');
 export const 이차_전형_끝 = dayjs('2024-07-09T16:34:00+09:00');
 export const 최종_합격_발표 = dayjs('2024-07-09T16:36:00+09:00');
-export const 입학_등록_기간 = dayjs('2024-07-09T16:38:00+09:00');
+export const 입학_등록_기간 = dayjs('2024-07-10T00:00:00+09:00');
 export const 입학_등록_기간_마감 = dayjs('2024-07-10T00:00:00+09:00');
 
 export const REGULAR_TYPE_DEFAULT_SCORE = 80;
