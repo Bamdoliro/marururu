@@ -127,7 +127,7 @@ const FinalRoundPassedDetail = () => {
               </Row>
               <Row>
                 <Td width={240} height={56}>
-                  한부모가정보호대상자
+                  한부모가정
                 </Td>
                 <Td width={80} height={56}>
                   {oneParentApplicant.max}
