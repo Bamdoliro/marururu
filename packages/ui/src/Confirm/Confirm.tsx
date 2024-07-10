@@ -92,7 +92,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
 const StyledConfirm = styled.div`
   ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
   width: 600px;
-  padding: 36px;
+  padding: 40px;
   background-color: ${color.white};
   border-radius: 16px;
 `;
