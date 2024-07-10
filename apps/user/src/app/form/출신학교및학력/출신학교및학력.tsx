@@ -50,6 +50,7 @@ const 출신학교및학력 = () => {
             label="도로명주소"
             placeholder="학교를 선택하면 자동완성됩니다."
             width="100%"
+            readOnly
             value={form.education.schoolAddress}
             onChange={handle출신학교및학력Change}
             isError={
@@ -76,6 +77,7 @@ const 출신학교및학력 = () => {
             name="schoolLocation"
             label="지역"
             placeholder="학교를 선택하면 자동완성됩니다."
+            readOnly
             isError={
               !!form.education.schoolLocation && form.education.schoolLocation.length > 20
             }
@@ -90,6 +92,7 @@ const 출신학교및학력 = () => {
             name="schoolCode"
             label="표준 학교 코드"
             placeholder="학교를 선택하면 자동완성됩니다."
+            readOnly
             width="100%"
             value={form.education.schoolCode}
             onChange={handle출신학교및학력Change}
