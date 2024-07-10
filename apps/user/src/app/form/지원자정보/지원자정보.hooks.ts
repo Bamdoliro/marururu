@@ -18,6 +18,10 @@ export const useCTAButton = () => {
   return { handleMoveNextStep };
 };
 
+const formatBirthday = (value: string) => {
+  return formatDate(value.replace(/\D/g, ''));
+};
+
 export const useInput = () => {
   const setForm = useSetFormStore();
   const user = useUser();
@@ -38,9 +42,10 @@ export const useInput = () => {
   const handle지원자정보Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
     if (name === 'birthday') {
+      const formattedValue = formatBirthday(value);
       setForm((prev) => ({
         ...prev,
-        applicant: { ...prev.applicant, birthday: formatDate(value) },
+        applicant: { ...prev.applicant, birthday: formattedValue },
       }));
       return;
     }
