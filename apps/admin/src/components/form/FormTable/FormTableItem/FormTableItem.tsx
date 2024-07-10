@@ -154,7 +154,7 @@ const FormTableItem = ({
                 secondRoundResult[id] ||
                 getStatusString(secondRoundPassed, '합격', '불합격')
               }
-              data={['합격', '불합격', '미정']}
+              data={['합격', '불합격']}
               onChange={handleSecondPassResultDropdownChange}
             />
           ) : (
