@@ -148,7 +148,7 @@ const NumberOfApplicants = () => {
               </Row>
               <Row>
                 <Td width={240} height={56}>
-                  농어촌 지역 출신자
+                  농어촌지역출신자
                 </Td>
                 <Td width={80} height={56}>
                   {farmingAndFishingApplicant}
