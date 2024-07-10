@@ -7,3 +7,8 @@ export { default as MainInformationBox } from './InformationBox/MainInformationB
 export { default as PseudonymInformationBox } from './InformationBox/Pseudonym InformationBox';
 export { default as PrivacyInformationBox } from './InformationBox/PrivactInformationBox';
 export { default as ManagerTable } from './ManagerTable/ManagerTable';
+export { default as InformationLocation } from './InformationLocation/InformationLocation';
+export { default as OpenRequestBox } from './InformationBox/OpenRequestBox';
+export { default as DeviceType } from './DeviceType/DeviceType';
+export { default as ProcessingRestrictionsBox } from './InformationBox/ProcessingRestrictionsBox';
+export { default as FilmingDay } from './FilmingDay/FilmingDay';
