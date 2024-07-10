@@ -29,20 +29,17 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
             <br />
             처리되며 더 이상 입학원서 수정이 불가능합니다.
           </Text>
-          <Text color={color.gray900} fontType="p2">
-            잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.
-          </Text>
           <Column height={28}> </Column>
           <Text color={color.gray900} fontType="p2">
-            ‘확인했습니다'를 입력할 시 그 이후 발생하는 사고에는
-            부산소프트웨어마이스터고등
-            <br />
-            학교와{' '}
-            <Text color={color.red} fontType="p2">
-              밤돌이로팀은 전혀 책임지지 않음에 동의하는 것으로 간주됩니다.
+            원서 초안을 다시 한번 확인 하시고 잘못 입력한 부분이 없다고 판단되시는 경우
+            아래
+            <br />의 입력 칸에{' '}
+            <Text fontType="H5" color={color.gray900}>
+              ‘확인했습니다’
             </Text>
+            를 입력해 주세요.
           </Text>
-          <Column height={8}> </Column>
+          <Column height={30}> </Column>
           <CheckInput
             width="100%"
             placeholder="'확인했습니다'를 정확하게 입력해주세요"
@@ -54,6 +51,10 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
       onClose={onClose}
       onConfirm={isInputValid ? onConfirm : () => {}}
       confirmButtonText="원서 초안 제출하기"
+      confirmButtonStyle={{
+        backgroundColor: isInputValid ? color.maruDefault : color.gray500,
+        cursor: isInputValid ? 'pointer' : 'unset',
+      }}
     />
   );
 };
