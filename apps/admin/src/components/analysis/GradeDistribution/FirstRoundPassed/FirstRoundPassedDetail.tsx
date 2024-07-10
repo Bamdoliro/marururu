@@ -156,7 +156,7 @@ const FirstRoundPassedDetail = () => {
             <Column>
               <Row>
                 <Td width={240} height={56}>
-                  다문화가정 자녀
+                  다문화가족 자녀
                 </Td>
                 <Td width={80} height={56}>
                   {multiculturalApplicant.max}
