@@ -82,7 +82,7 @@ const 전형선택 = () => {
               </Td>
             </Row>
             <Row>
-              <Td width="calc(736px/3)" height={280}>
+              <Td width="calc(736px/3)" height={224}>
                 기회균등 전형
               </Td>
               <Column>
@@ -127,7 +127,7 @@ const 전형선택 = () => {
                 </Row>
                 <Row>
                   <Td width="calc(736px/3)" height={56}>
-                    한부모가정보호대상자
+                    한부모가정
                   </Td>
                   <Td width={80} height={56}>
                     <Radio
@@ -138,9 +138,16 @@ const 전형선택 = () => {
                     />
                   </Td>
                 </Row>
+              </Column>
+            </Row>
+            <Row>
+              <Td width="calc(736px/3)" height={280}>
+                사회다양성 전형
+              </Td>
+              <Column>
                 <Row>
                   <Td width="calc(736px/3)" height={56}>
-                    북한이탈주민 또는 그 자녀
+                    북한이탈청소년
                   </Td>
                   <Td width={80} height={56}>
                     <Radio
@@ -151,16 +158,9 @@ const 전형선택 = () => {
                     />
                   </Td>
                 </Row>
-              </Column>
-            </Row>
-            <Row>
-              <Td width="calc(736px/3)" height={224}>
-                사회다양성 전형
-              </Td>
-              <Column>
                 <Row>
                   <Td width="calc(736px/3)" height={56}>
-                    다문화가정 자녀
+                    다문화가족 자녀
                   </Td>
                   <Td width={80} height={56}>
                     <Radio
