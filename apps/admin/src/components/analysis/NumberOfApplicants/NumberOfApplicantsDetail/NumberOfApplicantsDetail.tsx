@@ -71,8 +71,8 @@ const NumberOfApplicants = () => {
             </Td>
           </Row>
           <Row>
-            <Td width={240} height={280}>
-              기호균등 전형
+            <Td width={240} height={224}>
+              기회균등 전형
             </Td>
             <Column>
               <Row>
@@ -101,30 +101,30 @@ const NumberOfApplicants = () => {
               </Row>
               <Row>
                 <Td width={240} height={56}>
-                  한부모가정보호대상자
+                  한부모가정
                 </Td>
                 <Td width={80} height={56}>
                   {oneParentApplicant}
                 </Td>
               </Row>
-              <Row>
-                <Td width={240} height={56}>
-                  북한이탈주민 또는 그 자녀
-                </Td>
-                <Td width={80} height={56}>
-                  {fromNorthKoreaApplicant}
-                </Td>
-              </Row>
             </Column>
           </Row>
           <Row>
-            <Td width={240} height={224}>
+            <Td width={240} height={280}>
               사회다양성 전형
             </Td>
             <Column>
               <Row>
                 <Td width={240} height={56}>
-                  다문화가정 자녀
+                  북한이탈청소년
+                </Td>
+                <Td width={80} height={56}>
+                  {fromNorthKoreaApplicant}
+                </Td>
+              </Row>
+              <Row>
+                <Td width={240} height={56}>
+                  다문화가족 자녀
                 </Td>
                 <Td width={80} height={56}>
                   {multiculturalApplicant}
@@ -148,7 +148,7 @@ const NumberOfApplicants = () => {
               </Row>
               <Row>
                 <Td width={240} height={56}>
-                  농어촌지역출신자
+                  농어촌 지역 출신자
                 </Td>
                 <Td width={80} height={56}>
                   {farmingAndFishingApplicant}
