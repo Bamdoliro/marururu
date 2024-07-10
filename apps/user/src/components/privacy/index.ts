@@ -6,3 +6,4 @@ export { default as CameraTime } from './CameraTime/CameraTime';
 export { default as MainInformationBox } from './InformationBox/MainInformationBox';
 export { default as PseudonymInformationBox } from './InformationBox/Pseudonym InformationBox';
 export { default as PrivacyInformationBox } from './InformationBox/PrivactInformationBox';
+export { default as ManagerTable } from './ManagerTable/ManagerTable';
