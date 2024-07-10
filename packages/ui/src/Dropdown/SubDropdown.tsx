@@ -193,7 +193,7 @@ const DropdownListBox = styled.div<{ $isOpen: boolean }>`
 
 const ChildDropdownListBox = styled.div<{ $isOpen: boolean }>`
   position: absolute;
-  left: 100%;
+  left: 178px;
   top: 0;
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
   width: 280px;
@@ -220,7 +220,8 @@ const DropdownItem = styled.button`
   height: 48px;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${color.gray200};
   }
 `;
