@@ -6,13 +6,7 @@ import styled from 'styled-components';
 
 const GuidelineBox = () => {
   return (
-    <StyledGuidelineBox
-      onClick={() =>
-        window.open(
-          'https://school.busanedu.net/viewer/doc.html?fn=f9ccabacf50aba9dbe108bdbccf244f34b1a4bf9118f8c63e034e9af8c30afc1&rs=/upload/temp/convertToHtml/202308/bssm-h/'
-        )
-      }
-    >
+    <StyledGuidelineBox onClick={() => window.open('/pdf/2025AdmissionsGuidelines.pdf')}>
       <Row gap={8} alignItems="center">
         <Text fontType="H3" color={color.gray900}>
           입학 전형 요강
