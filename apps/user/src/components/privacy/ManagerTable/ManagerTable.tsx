@@ -30,7 +30,7 @@ const ManagerTable = () => {
             <Td width="100%" height={56}>
               도상백 (051-970-1706)
             </Td>
-            <Td width="100%" height={56} borderBottomLeftRadius={12}>
+            <Td width="100%" height={56} borderBottomRightRadius={12}>
               장원제 (051-970-1706)
             </Td>
           </Column>
