@@ -1,8 +1,7 @@
-import { color } from '@maru/design-token';
 import { IconAdd, IconShortcuts } from '@maru/icon';
+import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
-import React from 'react';
 import styled from 'styled-components';
 import { getButtonPadding, getButtonSize, getButtonStyle } from './Button.style';
 import type { ButtonIcon, ButtonSize, ButtonStyleType } from './Button.type';
