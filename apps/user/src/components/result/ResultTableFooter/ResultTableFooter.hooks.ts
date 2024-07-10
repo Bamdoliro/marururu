@@ -1,4 +1,5 @@
 import { ROUTES } from '@/constants/common/constant';
+import { useUser } from '@/hooks';
 import { useDownloadAdmissionTicketQuery } from '@/services/result/queries';
 import { useRouter } from 'next/navigation';
 
@@ -14,6 +15,7 @@ export const useCTAButton = () => {
 
 export const useDownloadAdmissionTicket = () => {
   const { data: admissionTicketData } = useDownloadAdmissionTicketQuery();
+  const user = useUser();
 
   const handleDownloadAdmissionTicketButtonClick = () => {
     if (!admissionTicketData) return;
@@ -23,7 +25,7 @@ export const useDownloadAdmissionTicket = () => {
 
     const link = document.createElement('a');
     link.href = admissionTicketUrl;
-    link.download = '수험표.pdf';
+    link.download = user.userData.name + '수험표.pdf';
     document.body.appendChild(link);
     link.click();
     link.remove();
