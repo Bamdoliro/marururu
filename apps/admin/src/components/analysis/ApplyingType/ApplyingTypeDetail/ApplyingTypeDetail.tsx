@@ -73,7 +73,7 @@ const ApplyingTypeDetail = () => {
             </Td>
           </Row>
           <Row>
-            <Td width={240} height={280}>
+            <Td width={240} height={224}>
               기회균등 전형
             </Td>
             <Column>
@@ -109,6 +109,13 @@ const ApplyingTypeDetail = () => {
                   {oneParentApplicant}
                 </Td>
               </Row>
+            </Column>
+          </Row>
+          <Row>
+            <Td width={240} height={280}>
+              사회다양성 전형
+            </Td>
+            <Column>
               <Row>
                 <Td width={240} height={56}>
                   북한이탈청소년
@@ -117,13 +124,6 @@ const ApplyingTypeDetail = () => {
                   {fromNorthKoreaApplicant}
                 </Td>
               </Row>
-            </Column>
-          </Row>
-          <Row>
-            <Td width={240} height={224}>
-              사회다양성 전형
-            </Td>
-            <Column>
               <Row>
                 <Td width={240} height={56}>
                   다문화가족 자녀
