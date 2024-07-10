@@ -62,6 +62,9 @@ const 최종제출 = () => {
                 사회통합전형 및 정원 외 전형 대상자 제출서류 중 각 지원 자격 증명서류는
                 우편으로 제출해야 합니다.
               </Text>
+              <Text fontType="p2" color={color.red}>
+                원서를 최종 제출했을 경우 재업로드는 불가능합니다.
+              </Text>
             </Column>
             <ExportFormButton onClick={handleExportForm}>
               [ 원서 초안 pdf 다운로드 ]
