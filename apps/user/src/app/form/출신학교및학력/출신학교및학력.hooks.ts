@@ -28,7 +28,7 @@ export const useInput = () => {
     if (
       (name === 'graduationYear' ||
         name === 'teacherPhoneNumber' ||
-        name === 'teacherName') &&
+        name === 'teacherMobilePhoneNumber') &&
       !/^\d*$/.test(value)
     ) {
       return;
