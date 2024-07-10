@@ -111,7 +111,7 @@ const ApplyingTypeDetail = () => {
               </Row>
               <Row>
                 <Td width={240} height={56}>
-                  북한이탈주민 또는 그 자녀
+                  북한이탈청소년
                 </Td>
                 <Td width={80} height={56}>
                   {fromNorthKoreaApplicant}
