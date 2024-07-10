@@ -25,7 +25,12 @@ export const useInput = () => {
   const handle출신학교및학력Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'graduationYear' && !/^\d*$/.test(value)) {
+    if (
+      (name === 'graduationYear' ||
+        name === 'teacherPhoneNumber' ||
+        name === 'teacherMobilePhoneNumber') &&
+      !/^\d*$/.test(value)
+    ) {
       return;
     }
 

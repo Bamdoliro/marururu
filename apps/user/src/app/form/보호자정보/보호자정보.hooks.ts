@@ -19,11 +19,23 @@ export const useCTAButton = () => {
   return { handleMoveNextStep, handleMovePreviousStep };
 };
 
+const formatParentPhoneNumber = (value: string) => {
+  return value.replace(/\D/g, '');
+};
+
 export const useInput = () => {
   const setForm = useSetFormStore();
 
   const handle보호자정보Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
+    if (name === 'phoneNumber') {
+      const partentPhoneNumber = formatParentPhoneNumber(value);
+      setForm((prev) => ({
+        ...prev,
+        parent: { ...prev.parent, phoneNumber: partentPhoneNumber },
+      }));
+      return;
+    }
     setForm((prev) => ({ ...prev, parent: { ...prev.parent, [name]: value } }));
   };
 
