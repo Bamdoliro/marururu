@@ -2,10 +2,16 @@ import { useUser } from '@/hooks';
 import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowDropdown } from '@maru/icon';
 import { color, font } from '@maru/design-token';
-import { Text } from '@maru/ui';
+import { Loader, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useCTAButton, useLogoutAction } from './Profile.hooks';
+import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
+import { 제출_마감_날짜, 제출_시작_날짜 } from '@/constants/form/constant';
+import { Suspense } from 'react';
+
+dayjs.extend(isBetween);
 
 const Profile = () => {
   const { userData } = useUser();
@@ -17,6 +23,25 @@ const Profile = () => {
   const { handleMoveFormPage, handleChangePassword } = useCTAButton();
   const { handleLogout } = useLogoutAction();
   const profileRef = useOutsideClick(closeMenu);
+  const now = dayjs();
+
+  const handleMenuItem = () => {
+    if (!now.isBetween(제출_시작_날짜, 제출_마감_날짜)) {
+      return (
+        <>
+          <MenuItem onClick={handleChangePassword}>비밀번호 변경</MenuItem>
+          <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
+        </>
+      );
+    }
+    return (
+      <>
+        <MenuItem onClick={handleMoveFormPage}>이어서 원서 작성하기</MenuItem>
+        <MenuItem onClick={handleChangePassword}>비밀번호 변경</MenuItem>
+        <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
+      </>
+    );
+  };
 
   return (
     <StyledProfile ref={profileRef}>
@@ -33,9 +58,7 @@ const Profile = () => {
                 @{userData.phoneNumber}
               </Text>
             </NameMenu>
-            <MenuItem onClick={handleMoveFormPage}>이어서 원서 작성하기</MenuItem>
-            <MenuItem onClick={handleChangePassword}>비밀번호 변경</MenuItem>
-            <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
+            <Suspense fallback={<Loader />}>{handleMenuItem()}</Suspense>
           </MenuList>
         </MenuListBox>
       )}
