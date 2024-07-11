@@ -1,4 +1,5 @@
 import { color, font } from '@maru/design-token';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {

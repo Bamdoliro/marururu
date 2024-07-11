@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
@@ -9,10 +10,46 @@ const 지원자정보 = () => {
   const { handle지원자정보Change } = useInput();
   const { handleMoveNextStep } = useCTAButton();
 
+  const [isNextClicked, setIsNextClicked] = useState(false);
+  const [isBirthdayError, setIsBirthdayError] = useState(false);
+  const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
+  const [isPhotoError, setIsPhotoError] = useState(false);
+
+  const validateForm = () => {
+    const birthdayValid = form.applicant.birthday?.length === 10;
+    const photoValid = isPhotoUploaded;
+    return birthdayValid && photoValid;
+  };
+
+  const handleNextClick = () => {
+    setIsNextClicked(true);
+    setIsPhotoError(!isPhotoUploaded);
+
+    if (validateForm()) {
+      handleMoveNextStep();
+    } else {
+      setIsBirthdayError(form.applicant.birthday?.length !== 10);
+    }
+  };
+
+  const handleBirthdayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handle지원자정보Change(e);
+    if (isNextClicked) {
+      setIsBirthdayError(e.target.value.length !== 10);
+    }
+  };
+
+  const handlePhotoUpload = (status: boolean) => {
+    setIsPhotoUploaded(status);
+    setIsPhotoError(!status);
+  };
+
   return (
     <FormLayout title="지원자 정보">
       <Row width="100%" justifyContent="space-between">
-        <ProfileUploader />
+        <Column gap={40} alignItems="center">
+          <ProfileUploader onPhotoUpload={handlePhotoUpload} isError={isPhotoError} />
+        </Column>
         <Column gap={30} width={492}>
           <Input
             label="성명"
@@ -21,16 +58,16 @@ const 지원자정보 = () => {
             name="name"
             placeholder="예) 홍길동"
             width="100%"
-            isError={form.applicant.name.length > 20}
-            errorMessage="20자 이하여야 합니다."
             readOnly
           />
           <Input
             label="생년월일"
             value={form.applicant.birthday}
-            onChange={handle지원자정보Change}
+            onChange={handleBirthdayChange}
             name="birthday"
             placeholder="예) 20061103"
+            isError={isBirthdayError}
+            errorMessage=""
             width="100%"
           />
           <Row gap={40} alignItems="flex-end">
@@ -52,15 +89,11 @@ const 지원자정보 = () => {
             name="phoneNumber"
             placeholder="- 없이 입력해주세요."
             width="100%"
-            isError={
-              !!form.applicant.phoneNumber && form.applicant.phoneNumber.length !== 11
-            }
-            errorMessage="11글자여야 합니다"
             readOnly
           />
         </Column>
       </Row>
-      <FormController onNext={handleMoveNextStep} step="지원자정보" />
+      <FormController onNext={handleNextClick} step="지원자정보" />
     </FormLayout>
   );
 };
