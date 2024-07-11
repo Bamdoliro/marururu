@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import type { ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
@@ -15,8 +16,17 @@ const 지원자정보 = () => {
   const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
   const [isPhotoError, setIsPhotoError] = useState(false);
 
+  useEffect(() => {
+    const birthdayValid = form.applicant.birthday.length === 10;
+    setIsBirthdayError(!birthdayValid);
+
+    const photoValid = !!form.applicant.identificationPictureUri;
+    setIsPhotoUploaded(photoValid);
+    setIsPhotoError(!photoValid);
+  }, [form.applicant.birthday, form.applicant.identificationPictureUri]);
+
   const validateForm = () => {
-    const birthdayValid = form.applicant.birthday?.length === 10;
+    const birthdayValid = form.applicant.birthday.length === 10;
     const photoValid = isPhotoUploaded;
     return birthdayValid && photoValid;
   };
@@ -28,27 +38,27 @@ const 지원자정보 = () => {
     if (validateForm()) {
       handleMoveNextStep();
     } else {
-      setIsBirthdayError(form.applicant.birthday?.length !== 10);
+      setIsBirthdayError(form.applicant.birthday.length !== 10);
     }
   };
 
-  const handleBirthdayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBirthdayChange = (e: ChangeEvent<HTMLInputElement>) => {
     handle지원자정보Change(e);
     if (isNextClicked) {
       setIsBirthdayError(e.target.value.length !== 10);
     }
   };
 
-  const handlePhotoUpload = (status: boolean) => {
-    setIsPhotoUploaded(status);
-    setIsPhotoError(!status);
+  const handlePhotoUpload = (success: boolean) => {
+    setIsPhotoUploaded(success);
+    setIsPhotoError(!success);
   };
 
   return (
     <FormLayout title="지원자 정보">
       <Row width="100%" justifyContent="space-between">
         <Column gap={40} alignItems="center">
-          <ProfileUploader onPhotoUpload={handlePhotoUpload} isError={isPhotoError} />
+          <ProfileUploader isError={isPhotoError} onPhotoUpload={handlePhotoUpload} />
         </Column>
         <Column gap={30} width={492}>
           <Input
@@ -65,7 +75,7 @@ const 지원자정보 = () => {
             value={form.applicant.birthday}
             onChange={handleBirthdayChange}
             name="birthday"
-            placeholder="예) 20061103"
+            placeholder="예) 2006-11-03"
             isError={isBirthdayError}
             errorMessage=""
             width="100%"
