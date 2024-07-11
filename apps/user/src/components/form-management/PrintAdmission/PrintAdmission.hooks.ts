@@ -1,17 +1,5 @@
-import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { useDownloadAdmissionTicketQuery } from '@/services/result/queries';
-import { useRouter } from 'next/navigation';
-
-export const useCTAButton = () => {
-  const router = useRouter();
-
-  const handleMoveMainPage = () => {
-    router.push(ROUTES.MAIN);
-  };
-
-  return { handleMoveMainPage };
-};
 
 export const useDownloadAdmissionTicket = () => {
   const { data: admissionTicketData } = useDownloadAdmissionTicketQuery();

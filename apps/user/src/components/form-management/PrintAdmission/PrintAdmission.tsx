@@ -1,24 +1,24 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
 import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
 import { IconArrowOutward } from '@maru/icon';
-import { useDownloadForm } from './CheckForm.hooks';
+import { useDownloadAdmissionTicket } from './PrintAdmission.hooks';
 
 const CheckForm = () => {
-  const { handlleDownloadFormButtonClick } = useDownloadForm();
+  const { handleDownloadAdmissionTicketButtonClick } = useDownloadAdmissionTicket();
 
   return (
-    <StyledApplicationBox onClick={handlleDownloadFormButtonClick}>
+    <StyledApplicationBox onClick={handleDownloadAdmissionTicketButtonClick}>
       <Column gap={9}>
         <Row gap={4} alignItems="center">
           <Text fontType="H3" color={color.gray900}>
-            내 원서 확인하기
+            수험표 출력하기
           </Text>
           <IconArrowOutward width={36} height={36} color={color.maruDefault} />
         </Row>
         <Text fontType="p2" color={color.gray600}>
-          클릭해서 원서를 다운로드 받으세요.
+          클릭해서 수험표를 출력하세요.
         </Text>
       </Column>
     </StyledApplicationBox>
