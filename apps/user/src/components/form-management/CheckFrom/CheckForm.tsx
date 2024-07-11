@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { flex } from '@maru/utils';
 import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
