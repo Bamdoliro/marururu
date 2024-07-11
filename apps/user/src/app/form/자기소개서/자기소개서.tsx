@@ -5,11 +5,55 @@ import { color, font } from '@maru/design-token';
 import { Column, Textarea } from '@maru/ui';
 import { useCTAButton, useInput } from './자기소개서.hooks';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const 자기소개서 = () => {
   const form = useFormValueStore();
   const { handle자기소개서Change } = useInput();
   const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
+
+  const [isNextClicked, setIsNextClicked] = useState(false);
+  const [isCoverLetterError, setIsCoverLetterError] = useState(false);
+  const [isStatementOfPurposeError, setIsStatementOfPurposeError] = useState(false);
+
+  const validateForm = () => {
+    const coverLetterValid =
+      form.document.coverLetter.length > 0 && form.document.coverLetter.length <= 1000;
+    const statementOfPurposeValid =
+      form.document.statementOfPurpose.length > 0 &&
+      form.document.statementOfPurpose.length <= 1000;
+
+    return coverLetterValid && statementOfPurposeValid;
+  };
+
+  const handleNextClick = () => {
+    setIsNextClicked(true);
+
+    const coverLetterValid =
+      form.document.coverLetter.length > 0 && form.document.coverLetter.length <= 1000;
+    const statementOfPurposeValid =
+      form.document.statementOfPurpose.length > 0 &&
+      form.document.statementOfPurpose.length <= 1000;
+
+    setIsCoverLetterError(!coverLetterValid);
+    setIsStatementOfPurposeError(!statementOfPurposeValid);
+
+    if (validateForm()) {
+      handleMoveNextStep();
+    }
+  };
+
+  const handle자기소개서ErrorChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    handle자기소개서Change(e);
+    if (isNextClicked) {
+      const { name, value } = e.target;
+      if (name === 'coverLetter') {
+        setIsCoverLetterError(!(value.length > 0 && value.length <= 1000));
+      } else if (name === 'statementOfPurpose') {
+        setIsStatementOfPurposeError(!(value.length > 0 && value.length <= 1000));
+      }
+    }
+  };
 
   return (
     <FormLayout title="자기소개서">
@@ -21,20 +65,24 @@ const 자기소개서 = () => {
             limit={1000}
             label="자기소개서"
             value={form.document.coverLetter}
-            onChange={handle자기소개서Change}
+            onChange={handle자기소개서ErrorChange}
+            isError={isCoverLetterError}
+            errorMessage=""
           />
           <Textarea
             name="statementOfPurpose"
             limit={1000}
             label="학업계획서"
             value={form.document.statementOfPurpose}
-            onChange={handle자기소개서Change}
+            onChange={handle자기소개서ErrorChange}
+            isError={isStatementOfPurposeError}
+            errorMessage=""
           />
         </Column>
       </Column>
       <FormController
         onPrevious={handleMovePreviousStep}
-        onNext={handleMoveNextStep}
+        onNext={handleNextClick}
         step="자기소개서"
       />
     </FormLayout>

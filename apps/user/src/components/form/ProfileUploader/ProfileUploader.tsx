@@ -6,20 +6,31 @@ import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler, DragEvent } from 'react';
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const ProfileUploader = () => {
+const ProfileUploader = ({
+  onPhotoUpload,
+  isError,
+}: {
+  onPhotoUpload: (success: boolean) => void;
+  isError: boolean;
+}) => {
   const form = useFormValueStore();
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
-  // Mutation
   const { uploadProfileImageMutate } = useUploadProfileImageMutation();
   const uploadProfileImageFile = (image: FormData) => {
-    uploadProfileImageMutate(image);
+    uploadProfileImageMutate(image, {
+      onSuccess: () => {
+        onPhotoUpload(true);
+      },
+      onError: () => {
+        onPhotoUpload(false);
+      },
+    });
   };
 
-  // 이미지 데이터 핸들링
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
@@ -28,7 +39,6 @@ const ProfileUploader = () => {
     uploadProfileImageFile(formData);
   };
 
-  // 드래그 앤 드랍
   const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -69,6 +79,7 @@ const ProfileUploader = () => {
           onDragOver={onDragOver}
           onDrop={onDrop}
           $isDragging={isDragging}
+          $isError={isError}
         >
           <Column gap={12} alignItems="center">
             <Button size="SMALL" onClick={openImageFileUploader}>
@@ -111,13 +122,20 @@ const StyledProfileUploader = styled.div`
   gap: 8px;
 `;
 
-const UploadImageBox = styled.div<{ $isDragging: boolean }>`
+const UploadImageBox = styled.div<{ $isDragging: boolean; $isError: boolean }>`
   ${flex({ alignItems: 'center', justifyContent: 'center' })}
   width: 225px;
   height: 300px;
   border-radius: 6px;
-  border: 1px dashed ${(props) => (props.$isDragging ? color.maruDefault : color.gray400)};
+  border: 1px dashed
+    ${(props) =>
+      props.$isDragging ? color.maruDefault : props.$isError ? color.red : color.gray400};
   background-color: ${color.gray50};
+  ${(props) =>
+    props.$isError &&
+    css`
+      outline: 3px solid rgba(244, 67, 54, 0.25);
+    `}
 `;
 
 const ImagePreview = styled.img`
