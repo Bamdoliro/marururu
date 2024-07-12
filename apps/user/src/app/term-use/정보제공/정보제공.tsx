@@ -1,8 +1,8 @@
-import { color } from '@maru/design-token';
 import { IconTerms } from '@maru/icon';
 import { Column, Row, Text } from '@maru/ui';
+import { color } from '@maru/design-token';
 
-const ProvideInformation = () => {
+const 정보제공 = () => {
   return (
     <Column gap={6}>
       <Row gap={3} alignItems="center">
@@ -19,4 +19,4 @@ const ProvideInformation = () => {
   );
 };
 
-export default ProvideInformation;
+export default 정보제공;
