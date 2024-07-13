@@ -1,6 +1,7 @@
+import React, { useEffect } from 'react';
 import { FindSchoolModal, FormController } from '@/components/form';
 import { FormLayout } from '@/layouts';
-import { useFormValueStore } from '@/store';
+import { useFormValueStore, useSetFormStore } from '@/store';
 import { ButtonInput, Input, RadioGroup, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
@@ -10,8 +11,27 @@ import { useCTAButton, useInput } from './출신학교및학력.hooks';
 const 출신학교및학력 = () => {
   const overlay = useOverlay();
   const form = useFormValueStore();
+  const setForm = useSetFormStore();
   const { handle출신학교및학력Change } = useInput();
   const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
+
+  useEffect(() => {
+    if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
+      setForm((prev) => ({
+        ...prev,
+        education: {
+          ...prev.education,
+          schoolName: null,
+          schoolAddress: null,
+          schoolLocation: null,
+          schoolCode: null,
+          teacherPhoneNumber: null,
+          teacherName: null,
+          teacherMobilePhoneNumber: null,
+        },
+      }));
+    }
+  }, [form.education.graduationType, setForm]);
 
   const openFindSchoolModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -34,37 +54,51 @@ const 출신학교및학력 = () => {
           onChange={handle출신학교및학력Change}
         />
         <Row gap={48} alignItems="center">
-          <ButtonInput
-            name="schoolName"
-            label="출신학교"
-            value={form.education.schoolName}
-            buttonText="검색"
-            onClick={openFindSchoolModal}
-            placeholder="검색 버튼을 눌러 학교를 검색하세요."
-            readOnly
-            isError={!!form.education.schoolName && form.education.schoolName.length > 20}
-            errorMessage="20자 이하여야 합니다."
-          />
-          <Input
-            name="schoolAddress"
-            label="도로명주소"
-            placeholder="학교를 선택하면 자동완성됩니다."
-            width="100%"
-            readOnly
-            value={form.education.schoolAddress}
-            onChange={handle출신학교및학력Change}
-            isError={
-              !!form.education.schoolAddress && form.education.schoolAddress.length > 40
-            }
-            errorMessage="40자 이하여야 합니다."
-          />
+          {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+            <ButtonInput
+              name="schoolName"
+              label="출신학교"
+              value={form.education.schoolName ?? ''}
+              buttonText="검색"
+              onClick={openFindSchoolModal}
+              placeholder="검색 버튼을 눌러 학교를 검색하세요."
+              readOnly
+              isError={
+                !!form.education.schoolName && form.education.schoolName.length > 20
+              }
+              errorMessage="20자 이하여야 합니다."
+            />
+          )}
+          {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+            <Input
+              name="schoolAddress"
+              label="도로명주소"
+              placeholder="학교를 선택하면 자동완성됩니다."
+              width="100%"
+              readOnly
+              value={form.education.schoolAddress ?? ''}
+              onChange={handle출신학교및학력Change}
+              isError={
+                !!form.education.schoolAddress && form.education.schoolAddress.length > 40
+              }
+              errorMessage="40자 이하여야 합니다."
+            />
+          )}
         </Row>
         <Row gap={48} alignItems="center">
           <Input
             name="graduationYear"
-            label="졸업 연도, 합격 연도"
+            label={
+              form.education.graduationType === 'QUALIFICATION_EXAMINATION'
+                ? '합격연도'
+                : '졸업연도'
+            }
             placeholder="예) 2024"
-            width="100%"
+            width={
+              form.education.graduationType === 'QUALIFICATION_EXAMINATION'
+                ? '50%'
+                : '100%'
+            }
             value={form.education.graduationYear}
             onChange={handle출신학교및학력Change}
             isError={
@@ -73,74 +107,85 @@ const 출신학교및학력 = () => {
             }
             errorMessage="4자여야 합니다."
           />
-          <Input
-            name="schoolLocation"
-            label="지역"
-            placeholder="학교를 선택하면 자동완성됩니다."
-            readOnly
-            isError={
-              !!form.education.schoolLocation && form.education.schoolLocation.length > 20
-            }
-            errorMessage="20자여야 합니다."
-            width="100%"
-            value={form.education.schoolLocation}
-            onChange={handle출신학교및학력Change}
-          />
+          {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+            <Input
+              name="schoolLocation"
+              label="지역"
+              placeholder="학교를 선택하면 자동완성됩니다."
+              readOnly
+              isError={
+                !!form.education.schoolLocation &&
+                form.education.schoolLocation.length > 20
+              }
+              errorMessage="20자여야 합니다."
+              width="100%"
+              value={form.education.schoolLocation ?? ''}
+              onChange={handle출신학교및학력Change}
+            />
+          )}
         </Row>
         <Row gap={48} alignItems="center">
-          <Input
-            name="schoolCode"
-            label="표준 학교 코드"
-            placeholder="학교를 선택하면 자동완성됩니다."
-            readOnly
-            width="100%"
-            value={form.education.schoolCode}
-            onChange={handle출신학교및학력Change}
-            isError={
-              !!form.education.schoolCode && form.education.schoolCode.length !== 7
-            }
-            errorMessage="7자여야 합니다."
-          />
-          <Input
-            name="teacherPhoneNumber"
-            label="학교 연락처"
-            placeholder="학교의 교무실 연락처를 입력해주세요."
-            width="100%"
-            value={form.education.teacherPhoneNumber}
-            onChange={handle출신학교및학력Change}
-            isError={
-              !!form.education.teacherPhoneNumber &&
-              form.education.teacherPhoneNumber.length > 11
-            }
-            errorMessage="11자 이하여야 합니다."
-          />
+          {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+            <Input
+              name="schoolCode"
+              label="표준 학교 코드"
+              placeholder="학교를 선택하면 자동완성됩니다."
+              readOnly
+              width="100%"
+              value={form.education.schoolCode ?? ''}
+              onChange={handle출신학교및학력Change}
+              isError={
+                !!form.education.schoolCode && form.education.schoolCode.length !== 7
+              }
+              errorMessage="7자여야 합니다."
+            />
+          )}
+          {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+            <Input
+              name="teacherPhoneNumber"
+              label="학교 연락처"
+              placeholder="학교의 교무실 연락처를 입력해주세요."
+              width="100%"
+              value={form.education.teacherPhoneNumber ?? ''}
+              onChange={handle출신학교및학력Change}
+              isError={
+                !!form.education.teacherPhoneNumber &&
+                form.education.teacherPhoneNumber.length > 11
+              }
+              errorMessage="11자 이하여야 합니다."
+            />
+          )}
         </Row>
         <Row gap={48} alignItems="center">
-          <Input
-            name="teacherName"
-            label="작성 교사 이름"
-            placeholder="예) 홍길동"
-            width="100%"
-            value={form.education.teacherName}
-            onChange={handle출신학교및학력Change}
-            isError={
-              !!form.education.teacherName && form.education.teacherName.length > 20
-            }
-            errorMessage="20자 이하여야 합니다."
-          />
-          <Input
-            name="teacherMobilePhoneNumber"
-            label="작성 교사 연락처"
-            placeholder="- 없이 입력해 주세요"
-            width="100%"
-            value={form.education.teacherMobilePhoneNumber}
-            onChange={handle출신학교및학력Change}
-            isError={
-              !!form.education.teacherMobilePhoneNumber &&
-              form.education.teacherMobilePhoneNumber.length > 11
-            }
-            errorMessage="11자 이하여야 합니다."
-          />
+          {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+            <Input
+              name="teacherName"
+              label="작성 교사 이름"
+              placeholder="예) 홍길동"
+              width="100%"
+              value={form.education.teacherName ?? ''}
+              onChange={handle출신학교및학력Change}
+              isError={
+                !!form.education.teacherName && form.education.teacherName.length > 20
+              }
+              errorMessage="20자 이하여야 합니다."
+            />
+          )}
+          {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+            <Input
+              name="teacherMobilePhoneNumber"
+              label="작성 교사 연락처"
+              placeholder="- 없이 입력해 주세요"
+              width="100%"
+              value={form.education.teacherMobilePhoneNumber ?? ''}
+              onChange={handle출신학교및학력Change}
+              isError={
+                !!form.education.teacherMobilePhoneNumber &&
+                form.education.teacherMobilePhoneNumber.length > 11
+              }
+              errorMessage="11자 이하여야 합니다."
+            />
+          )}
         </Row>
       </Styled출신학교및학력>
       <FormController

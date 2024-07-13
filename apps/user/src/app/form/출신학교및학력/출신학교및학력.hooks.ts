@@ -34,7 +34,10 @@ export const useInput = () => {
       return;
     }
 
-    setForm((prev) => ({ ...prev, education: { ...prev.education, [name]: value } }));
+    setForm((prev) => ({
+      ...prev,
+      education: { ...prev.education, [name]: value },
+    }));
   };
 
   return { handle출신학교및학력Change };
