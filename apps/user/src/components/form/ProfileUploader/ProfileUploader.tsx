@@ -1,11 +1,11 @@
 import { useOpenFileUploader } from '@/hooks';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
-import { useFormValueStore } from '@/store';
+import { useFormValueStore, useSetFormStore } from '@/store';
 import { color, font } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler, DragEvent } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
 const ProfileUploader = ({
@@ -16,13 +16,25 @@ const ProfileUploader = ({
   isError: boolean;
 }) => {
   const form = useFormValueStore();
+  const setForm = useSetFormStore();
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
   const { uploadProfileImageMutate } = useUploadProfileImageMutation();
+
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(
+    form.applicant.identificationPictureUri
+  );
+
   const uploadProfileImageFile = (image: FormData) => {
     uploadProfileImageMutate(image, {
-      onSuccess: () => {
+      onSuccess: (res) => {
+        const newImageUrl = `${res.data.url}?${new Date().getTime()}`;
+        setImagePreviewUrl(newImageUrl);
+        setForm((prev) => ({
+          ...prev,
+          applicant: { ...prev.applicant, identificationPictureUri: newImageUrl },
+        }));
         onPhotoUpload(true);
       },
       onError: () => {
@@ -65,13 +77,17 @@ const ProfileUploader = ({
     setIsDragging(false);
   };
 
+  useEffect(() => {
+    setImagePreviewUrl(form.applicant.identificationPictureUri);
+  }, [form.applicant.identificationPictureUri]);
+
   return (
     <StyledProfileUploader>
       <Text fontType="context" color={color.gray700}>
         증명사진
       </Text>
-      {form.applicant.identificationPictureUri ? (
-        <ImagePreview src={form.applicant.identificationPictureUri} alt="profile-image" />
+      {imagePreviewUrl ? (
+        <ImagePreview src={imagePreviewUrl} alt="profile-image" />
       ) : (
         <UploadImageBox
           onDragEnter={onDragEnter}
@@ -94,7 +110,7 @@ const ProfileUploader = ({
           </Column>
         </UploadImageBox>
       )}
-      {form.applicant.identificationPictureUri && (
+      {imagePreviewUrl && (
         <Button size="SMALL" onClick={openImageFileUploader}>
           재업로드
         </Button>
