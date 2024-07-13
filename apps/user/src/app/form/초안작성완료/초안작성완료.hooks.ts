@@ -49,12 +49,10 @@ const useFilledParentFieldsCount = (parent: Form['parent']) =>
 
 const useFilledEducationFieldsCount = (education: Form['education']) => {
   return Object.entries(education).reduce((acc, [key, value]) => {
-    // 고입 검정일 때 모든 필드가 null이어도 됨
     if (education.graduationType === 'QUALIFICATION_EXAMINATION') {
-      return acc + 1; // graduationType 필드만 포함되므로 +1
+      return acc + 1;
     }
 
-    // 고입 검정이 아닐 때 값이 비어 있으면 카운트하지 않음
     if (!value) {
       return acc;
     }
