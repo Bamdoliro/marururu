@@ -47,13 +47,22 @@ const useFilledParentFieldsCount = (parent: Form['parent']) =>
     }
   }, 0);
 
-const useFilledEducationFieldsCount = (education: Form['education']) =>
-  Object.entries(education).reduce((acc, [key, value]) => {
-    if (!value) return acc;
+const useFilledEducationFieldsCount = (education: Form['education']) => {
+  return Object.entries(education).reduce((acc, [key, value]) => {
+    // 고입 검정일 때 모든 필드가 null이어도 됨
+    if (education.graduationType === 'QUALIFICATION_EXAMINATION') {
+      return acc + 1; // graduationType 필드만 포함되므로 +1
+    }
+
+    // 고입 검정이 아닐 때 값이 비어 있으면 카운트하지 않음
+    if (!value) {
+      return acc;
+    }
 
     switch (key) {
       case 'schoolName':
       case 'schoolLocation':
+      case 'schoolAddress':
       case 'teacherName':
         return acc + Number(value.length <= 20);
       case 'graduationYear':
@@ -67,6 +76,7 @@ const useFilledEducationFieldsCount = (education: Form['education']) =>
         return acc + 1;
     }
   }, 0);
+};
 
 export const useCheckFilledForm = () => {
   const form = useFormValueStore();
