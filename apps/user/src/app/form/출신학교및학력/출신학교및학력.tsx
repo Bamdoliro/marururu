@@ -88,7 +88,11 @@ const 출신학교및학력 = () => {
         <Row gap={48} alignItems="center">
           <Input
             name="graduationYear"
-            label="졸업 연도, 합격 연도"
+            label={
+              form.education.graduationType === 'QUALIFICATION_EXAMINATION'
+                ? '합격연도'
+                : '졸업연도'
+            }
             placeholder="예) 2024"
             width={
               form.education.graduationType === 'QUALIFICATION_EXAMINATION'
