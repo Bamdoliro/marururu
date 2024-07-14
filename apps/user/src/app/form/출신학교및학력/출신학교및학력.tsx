@@ -28,7 +28,7 @@ const 출신학교및학력 = () => {
   const [isTeacherNameError, setIsTeacherNameError] = useState(false);
   const [isTeacherMobilePhoneNumberError, setIsTeacherMobilePhoneNumberError] =
     useState(false);
-  const [isGraduationYeareError, setIsGraduationYearError] = useState(false);
+  const [isGraduationYearError, setIsGraduationYearError] = useState(false);
 
   const validateForm = () => {
     const {
@@ -46,14 +46,18 @@ const 출신학교및학력 = () => {
     if (graduationType === 'QUALIFICATION_EXAMINATION') {
       return graduationYear.length === 4;
     } else {
-      const schoolNameValid = (schoolName ?? '').length === null;
-      const schoolAddressValid = (schoolAddress ?? '').length === null;
-      const schoolLocationValid = (schoolLocation ?? '').length === null;
-      const schoolCodeValid = (schoolCode ?? '').length === null;
-      const teacherPhoneNumberValid = (teacherPhoneNumber ?? '').length === null;
-      const teacherNameValid = (teacherName ?? '').length === null;
+      const schoolNameValid =
+        (schoolName ?? '').length > 0 && (schoolName ?? '').length < 30;
+      const schoolAddressValid =
+        (schoolAddress ?? '').length > 0 && (schoolAddress ?? '').length < 40;
+      const schoolLocationValid =
+        (schoolLocation ?? '').length > 0 && (schoolLocation ?? '').length < 10;
+      const schoolCodeValid = (schoolCode ?? '').length === 7;
+      const teacherPhoneNumberValid = (teacherPhoneNumber ?? '').length === 11;
+      const teacherNameValid =
+        (teacherName ?? '').length > 0 && (teacherName ?? '').length < 20;
       const teacherMobilePhoneNumberValid =
-        (teacherMobilePhoneNumber ?? '').length === null;
+        (teacherMobilePhoneNumber ?? '').length === 11;
       const graduationYearValid = (graduationYear ?? '').length === 4;
 
       return (
@@ -99,32 +103,36 @@ const 출신학교및학력 = () => {
     const isValid = validateForm();
 
     setIsSchoolNameError(
-      (form.education.schoolName ?? '').length === 0 ||
-        ((form.education.schoolName ?? '').length >= 25 &&
-          (form.education.schoolName ?? '').length < 0)
+      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+        ((form.education.schoolName ?? '').length === 0 ||
+          (form.education.schoolName ?? '').length >= 30)
     );
     setIsSchoolAddressError(
-      (form.education.schoolAddress ?? '').length === 0 ||
-        ((form.education.schoolAddress ?? '').length > 40 &&
-          (form.education.schoolName ?? '').length < 0)
+      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+        ((form.education.schoolAddress ?? '').length === 0 ||
+          (form.education.schoolAddress ?? '').length >= 40)
     );
     setIsSchoolLocationError(
-      (form.education.schoolLocation ?? '').length === 0 ||
-        ((form.education.schoolLocation ?? '').length > 20 &&
-          (form.education.schoolName ?? '').length < 0)
+      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+        ((form.education.schoolLocation ?? '').length === 0 ||
+          (form.education.schoolLocation ?? '').length >= 10)
     );
-    setIsSchoolCodeError((form.education.schoolCode ?? '').length !== 7);
+    setIsSchoolCodeError(
+      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+        (form.education.schoolCode ?? '').length !== 7
+    );
     setIsTeacherPhoneNumberError(
-      (form.education.teacherPhoneNumber ?? '').length === 0 ||
+      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
         (form.education.teacherPhoneNumber ?? '').length !== 11
     );
     setIsTeacherNameError(
-      (form.education.teacherName ?? '').length === 0 ||
-        ((form.education.teacherName ?? '').length > 20 &&
-          (form.education.schoolName ?? '').length < 0)
+      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+        ((form.education.teacherName ?? '').length === 0 ||
+          (form.education.teacherName ?? '').length >= 20)
     );
     setIsTeacherMobilePhoneNumberError(
-      (form.education.teacherMobilePhoneNumber ?? '').length !== 11
+      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+        (form.education.teacherMobilePhoneNumber ?? '').length !== 11
     );
     setIsGraduationYearError((form.education.graduationYear ?? '').length !== 4);
 
@@ -136,32 +144,36 @@ const 출신학교및학력 = () => {
   useEffect(() => {
     if (isNextClicked) {
       setIsSchoolNameError(
-        (form.education.schoolName ?? '').length === 0 ||
-          ((form.education.schoolName ?? '').length >= 25 &&
-            (form.education.schoolName ?? '').length < 0)
+        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+          ((form.education.schoolName ?? '').length === 0 ||
+            (form.education.schoolName ?? '').length >= 30)
       );
       setIsSchoolAddressError(
-        (form.education.schoolAddress ?? '').length === 0 ||
-          ((form.education.schoolAddress ?? '').length > 40 &&
-            (form.education.schoolName ?? '').length < 0)
+        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+          ((form.education.schoolAddress ?? '').length === 0 ||
+            (form.education.schoolAddress ?? '').length >= 40)
       );
       setIsSchoolLocationError(
-        (form.education.schoolLocation ?? '').length === 0 ||
-          ((form.education.schoolLocation ?? '').length > 20 &&
-            (form.education.schoolName ?? '').length < 0)
+        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+          ((form.education.schoolLocation ?? '').length === 0 ||
+            (form.education.schoolLocation ?? '').length >= 10)
       );
-      setIsSchoolCodeError((form.education.schoolCode ?? '').length !== 7);
+      setIsSchoolCodeError(
+        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+          (form.education.schoolCode ?? '').length !== 7
+      );
       setIsTeacherPhoneNumberError(
-        (form.education.teacherPhoneNumber ?? '').length === 0 ||
+        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
           (form.education.teacherPhoneNumber ?? '').length !== 11
       );
       setIsTeacherNameError(
-        (form.education.teacherName ?? '').length === 0 ||
-          ((form.education.teacherName ?? '').length > 20 &&
-            (form.education.schoolName ?? '').length < 0)
+        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+          ((form.education.teacherName ?? '').length === 0 ||
+            (form.education.teacherName ?? '').length >= 20)
       );
       setIsTeacherMobilePhoneNumberError(
-        (form.education.teacherMobilePhoneNumber ?? '').length !== 11
+        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+          (form.education.teacherMobilePhoneNumber ?? '').length !== 11
       );
       setIsGraduationYearError((form.education.graduationYear ?? '').length !== 4);
     }
@@ -225,7 +237,7 @@ const 출신학교및학력 = () => {
             }
             value={form.education.graduationYear}
             onChange={handle출신학교및학력Change}
-            isError={isGraduationYeareError}
+            isError={isGraduationYearError}
             errorMessage=""
           />
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
