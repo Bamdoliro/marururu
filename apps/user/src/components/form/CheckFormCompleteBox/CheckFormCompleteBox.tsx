@@ -1,4 +1,4 @@
-import { useSetFormStepStore } from '@/store';
+import { useFormValueStore, useSetFormStepStore } from '@/store';
 import { styled } from 'styled-components';
 import CheckFormComplete from './CheckFormComplete/CheckFormComplete';
 
@@ -18,6 +18,7 @@ const CheckFormCompleteBox = ({
   documentFilledCount,
 }: Props) => {
   const setFormStep = useSetFormStepStore();
+  const form = useFormValueStore();
 
   return (
     <StyledCheckFormCompleteBox>
@@ -36,7 +37,9 @@ const CheckFormCompleteBox = ({
       <CheckFormComplete
         onClick={() => setFormStep('출신학교및학력')}
         formStep="출신학교 및 학력"
-        maxCompleteOfNumber={9}
+        maxCompleteOfNumber={
+          form.education.graduationType === 'QUALIFICATION_EXAMINATION' ? +'2' : 9
+        }
         completeOfNumber={educationFilledCount}
       />
       <CheckFormComplete

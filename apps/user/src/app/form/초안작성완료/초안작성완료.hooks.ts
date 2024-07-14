@@ -50,7 +50,13 @@ const useFilledParentFieldsCount = (parent: Form['parent']) =>
 const useFilledEducationFieldsCount = (education: Form['education']) => {
   return Object.entries(education).reduce((acc, [key, value]) => {
     if (education.graduationType === 'QUALIFICATION_EXAMINATION') {
-      return acc + 1;
+      switch (key) {
+        case 'graduationType':
+        case 'graduationYear':
+          return acc + 1;
+        default:
+          return acc;
+      }
     }
 
     if (!value) {
@@ -59,6 +65,7 @@ const useFilledEducationFieldsCount = (education: Form['education']) => {
 
     switch (key) {
       case 'schoolName':
+        return acc + Number(value.length <= 30);
       case 'schoolLocation':
       case 'schoolAddress':
       case 'teacherName':
@@ -98,7 +105,8 @@ export const useCheckFilledForm = () => {
     if (
       filledApplicantFieldsCount === 5 &&
       filledParentFieldsCount === 6 &&
-      filledEducationFieldsCount === 9 &&
+      filledEducationFieldsCount ===
+        (form.education.graduationType === 'QUALIFICATION_EXAMINATION' ? 2 : 9) &&
       filledTypeFieldCount === 1 &&
       filledDocumentFieldsCount === 2
     ) {
