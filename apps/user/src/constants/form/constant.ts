@@ -2,14 +2,14 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 dayjs.locale('ko');
 
-export const 제출_시작_날짜 = dayjs('2024-07-09T00:00:00+09:00');
-export const 제출_마감_날짜 = dayjs('2024-07-14T17:00:00+09:00');
-export const 일차_합격_발표 = dayjs('2024-07-15T15:00:00+09:00');
-export const 이차_전형_시작 = dayjs('2024-07-16T13:00:00+09:00');
-export const 이차_전형_끝 = dayjs('2024-07-17T16:00:00+09:00');
-export const 최종_합격_발표 = dayjs('2024-07-18T15:00:00+09:00');
-export const 입학_등록_기간 = dayjs('2024-07-18T00:00:00+09:00');
-export const 입학_등록_기간_마감 = dayjs('2024-07-19T00:00:00+09:00');
+export const 제출_시작_날짜 = dayjs('2024-07-15T00:00:00+09:00');
+export const 제출_마감_날짜 = dayjs('2024-07-21T17:00:00+09:00');
+export const 일차_합격_발표 = dayjs('2024-07-22T15:00:00+09:00');
+export const 이차_전형_시작 = dayjs('2024-07-23T13:00:00+09:00');
+export const 이차_전형_끝 = dayjs('2024-07-24T16:00:00+09:00');
+export const 최종_합격_발표 = dayjs('2024-07-25T15:00:00+09:00');
+export const 입학_등록_기간 = dayjs('2024-07-26T00:00:00+09:00');
+export const 입학_등록_기간_마감 = dayjs('2024-07-27T00:00:00+09:00');
 
 export const REGULAR_TYPE_DEFAULT_SCORE = 80;
 export const SPECIAL_TYPE_DEFAULT_SCORE = 48;
