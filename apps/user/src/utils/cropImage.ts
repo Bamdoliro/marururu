@@ -14,7 +14,7 @@ interface PixelCrop {
   height: number;
 }
 
-export const getCroppedImg = async (
+export const getCropImg = async (
   imageSrc: string,
   pixelCrop: PixelCrop,
   outputWidth = 117,

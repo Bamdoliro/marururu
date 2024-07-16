@@ -5,7 +5,7 @@ import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import type { Area } from 'react-easy-crop';
 import Cropper from 'react-easy-crop';
-import { getCroppedImg } from '@/utils';
+import { getCropImg } from '@/utils';
 
 interface Props {
   isOpen: boolean;
@@ -16,25 +16,25 @@ interface Props {
 
 const CropImageModal = ({ isOpen, imageSrc, onClose, onCropComplete }: Props) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
-  const [croppedArea, setCroppedArea] = useState<Area | null>(null);
+  const [cropArea, setCropArea] = useState<Area | null>(null);
 
   const onCropCompleteInternal = useCallback(
-    (croppedArea: Area, croppedAreaPixels: Area) => {
-      setCroppedArea(croppedAreaPixels);
+    (cropArea: Area, croppedAreaPixels: Area) => {
+      setCropArea(croppedAreaPixels);
     },
     []
   );
 
-  const applyCrop = useCallback(async () => {
-    if (!croppedArea) return;
-    const croppedImage = await getCroppedImg(imageSrc, croppedArea, 117, 156);
+  const handleApplyCrop = useCallback(async () => {
+    if (!cropArea) return;
+    const croppedImage = await getCropImg(imageSrc, cropArea, 117, 156);
 
     const response = await fetch(croppedImage as string);
     const blob = await response.blob();
 
     onCropComplete(blob);
     onClose();
-  }, [imageSrc, croppedArea, onCropComplete, onClose]);
+  }, [imageSrc, cropArea, onCropComplete, onClose]);
 
   if (!isOpen) return null;
 
@@ -54,7 +54,7 @@ const CropImageModal = ({ isOpen, imageSrc, onClose, onCropComplete }: Props) =>
               }}
             />
           </CropImageModalStyle>
-          <Button onClick={applyCrop}>
+          <Button onClick={handleApplyCrop}>
             <Text fontType="btn1" color={color.white}>
               사진 자르기 적용
             </Text>
