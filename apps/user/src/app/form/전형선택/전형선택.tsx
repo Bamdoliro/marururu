@@ -12,6 +12,9 @@ const 전형선택 = () => {
   const { handleFormTypeChange } = useInput();
   const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
+  const isQualificationExamination =
+    form.education.graduationType === 'QUALIFICATION_EXAMINATION';
+
   useEffect(() => {
     if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
       // 검정고시를 선택하였는데 특별전형으로 지원하였을때 필터링
@@ -78,6 +81,7 @@ const 전형선택 = () => {
                   value="MEISTER_TALENT"
                   onChange={handleFormTypeChange}
                   checked={form.type === 'MEISTER_TALENT'}
+                  disabled={isQualificationExamination}
                 />
               </Td>
             </Row>
@@ -96,6 +100,7 @@ const 전형선택 = () => {
                       value="NATIONAL_BASIC_LIVING"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'NATIONAL_BASIC_LIVING'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -109,6 +114,7 @@ const 전형선택 = () => {
                       value="NEAR_POVERTY"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'NEAR_POVERTY'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -122,6 +128,7 @@ const 전형선택 = () => {
                       value="NATIONAL_VETERANS"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'NATIONAL_VETERANS'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -135,6 +142,7 @@ const 전형선택 = () => {
                       value="ONE_PARENT"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'ONE_PARENT'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -155,6 +163,7 @@ const 전형선택 = () => {
                       value="FROM_NORTH_KOREA"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'FROM_NORTH_KOREA'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -168,6 +177,7 @@ const 전형선택 = () => {
                       value="MULTICULTURAL"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'MULTICULTURAL'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -181,6 +191,7 @@ const 전형선택 = () => {
                       value="TEEN_HOUSEHOLDER"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'TEEN_HOUSEHOLDER'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -194,6 +205,7 @@ const 전형선택 = () => {
                       value="MULTI_CHILDREN"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'MULTI_CHILDREN'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -207,6 +219,7 @@ const 전형선택 = () => {
                       value="FARMING_AND_FISHING"
                       onChange={handleFormTypeChange}
                       checked={form.type === 'FARMING_AND_FISHING'}
+                      disabled={isQualificationExamination}
                     />
                   </Td>
                 </Row>
@@ -241,6 +254,7 @@ const 전형선택 = () => {
                 value="NATIONAL_VETERANS_EDUCATION"
                 onChange={handleFormTypeChange}
                 checked={form.type === 'NATIONAL_VETERANS_EDUCATION'}
+                disabled={isQualificationExamination}
               />
             </Td>
             <Td width={80} height={56} borderBottomRightRadius={12}>
@@ -249,6 +263,7 @@ const 전형선택 = () => {
                 value="SPECIAL_ADMISSION"
                 onChange={handleFormTypeChange}
                 checked={form.type === 'SPECIAL_ADMISSION'}
+                disabled={isQualificationExamination}
               />
             </Td>
           </Column>
