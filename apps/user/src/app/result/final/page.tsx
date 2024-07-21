@@ -1,7 +1,6 @@
 'use client';
 
 import { FinalResultTable, ResultMain } from '@/components/result';
-import withResultFinalAuth from '@/hocs/withResultFinalAuth';
 import { AppLayout } from '@/layouts';
 import type { ResultStep } from '@/types/result/client';
 import { color } from '@maru/design-token';
@@ -37,7 +36,7 @@ const FinalResultPage = () => {
   );
 };
 
-export default withResultFinalAuth(FinalResultPage);
+export default FinalResultPage;
 
 const StyledFinalResultPage = styled.div`
   padding-top: 82px;
