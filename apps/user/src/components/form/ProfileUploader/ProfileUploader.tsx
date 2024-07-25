@@ -168,9 +168,10 @@ const ProfileUploader = ({
           onClose={() => setIsModalOpen(false)}
           onCropComplete={(croppedImage) => {
             const formData = new FormData();
-            formData.append('image', croppedImage, 'image.jpg');
+            formData.append('image', croppedImage, 'image.png, image.jpg, image.jpeg');
             uploadProfileImageFile(formData);
           }}
+          zoom={1}
         />
       )}
     </StyledProfileUploader>

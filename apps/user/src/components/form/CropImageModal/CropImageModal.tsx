@@ -8,15 +8,17 @@ import Cropper from 'react-easy-crop';
 import { getCropImg } from '@/utils';
 
 interface Props {
+  zoom: number;
   isOpen: boolean;
   imageSrc: string;
   onClose: () => void;
   onCropComplete: (croppedImage: Blob) => void;
 }
 
-const CropImageModal = ({ isOpen, imageSrc, onClose, onCropComplete }: Props) => {
+const CropImageModal = ({ zoom, isOpen, imageSrc, onClose, onCropComplete }: Props) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [cropArea, setCropArea] = useState<Area | null>(null);
+  const [currentZoom, setCurrentZoom] = useState(zoom);
 
   const onCropCompleteInternal = useCallback(
     (cropArea: Area, croppedAreaPixels: Area) => {
@@ -36,6 +38,10 @@ const CropImageModal = ({ isOpen, imageSrc, onClose, onCropComplete }: Props) =>
     onClose();
   }, [imageSrc, cropArea, onCropComplete, onClose]);
 
+  const handleZoomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentZoom(Number(e.target.value));
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -46,14 +52,26 @@ const CropImageModal = ({ isOpen, imageSrc, onClose, onCropComplete }: Props) =>
             <Cropper
               image={imageSrc}
               crop={crop}
+              zoom={currentZoom}
               aspect={117 / 156}
               onCropChange={setCrop}
               onCropComplete={onCropCompleteInternal}
+              onZoomChange={setCurrentZoom}
               style={{
                 containerStyle: { width: '100%', height: '100%', position: 'relative' },
               }}
             />
           </CropImageModalStyle>
+          <ZoomBoxStyle>
+            <InputStyle
+              type="range"
+              min="1"
+              max="3"
+              step="0.1"
+              value={currentZoom}
+              onChange={handleZoomChange}
+            />
+          </ZoomBoxStyle>
           <Button onClick={handleApplyCrop}>
             <Text fontType="btn1" color={color.white}>
               사진 자르기 적용
@@ -69,7 +87,6 @@ export default CropImageModal;
 
 const BlurBackground = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   position: fixed;
   top: 0;
@@ -81,9 +98,10 @@ const BlurBackground = styled.div`
 `;
 
 const ModalContainer = styled.div`
+  margin-top: 10%;
   padding: 20px;
   border-radius: 10px;
-  max-width: 466px;
+  max-width: 468px;
   width: 100%;
   text-align: center;
   height: 357px;
@@ -97,4 +115,38 @@ const CropImageModalStyle = styled.div`
   border: 3px solid ${color.gray300};
   position: relative;
   overflow: hidden;
+`;
+
+const ZoomBoxStyle = styled.div`
+  background-color: ${color.white};
+  width: 80%;
+  height: 60px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+`;
+
+const InputStyle = styled.input.attrs({ type: 'range' })`
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: ${color.gray300};
+  border-radius: 999px;
+  height: 8px;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: ${color.white};
+    border: 1px solid ${color.maruDefault};
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 0 2px ${color.maruLightBlue};
+  }
 `;
