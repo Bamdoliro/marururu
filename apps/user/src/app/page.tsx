@@ -14,7 +14,8 @@ import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ROUTES } from '@/constants/common/constant';
 
 if (process.env.NODE_ENV === 'development') {
   // initMockAPI();
@@ -22,13 +23,15 @@ if (process.env.NODE_ENV === 'development') {
 
 const MainPage = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const message = searchParams.get('message');
 
   useEffect(() => {
     if (message) {
       alert(message);
+      router.replace(ROUTES.MAIN);
     }
-  }, [message]);
+  }, [message, router]);
 
   return (
     <AppLayout header footer>
