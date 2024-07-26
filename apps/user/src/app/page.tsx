@@ -13,12 +13,23 @@ import { AppLayout } from '@/layouts';
 import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 if (process.env.NODE_ENV === 'development') {
   // initMockAPI();
 }
 
 const MainPage = () => {
+  const searchParams = useSearchParams();
+  const message = searchParams.get('message');
+
+  useEffect(() => {
+    if (message) {
+      alert(message);
+    }
+  }, [message]);
+
   return (
     <AppLayout header footer>
       <StyledMainPage>
