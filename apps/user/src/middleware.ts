@@ -18,7 +18,7 @@ export const middleware = (request: NextRequest) => {
 
   if (url === '/form' && !now.isBetween(제출_시작_날짜, 제출_마감_날짜, 'minute', '[]')) {
     const redirectUrl = new URL('/', request.url);
-    redirectUrl.searchParams.set('message', '원서작성 기간이 아닙니다.');
+    redirectUrl.searchParams.set('message', '정상적인 경로를 통해 원서를 작성해주세요.');
     return NextResponse.redirect(redirectUrl);
   }
 
