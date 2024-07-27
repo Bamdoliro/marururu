@@ -44,12 +44,14 @@ const Profile = ({ id }: Props) => {
               {formDetailData?.type ? FORM_TYPE[formDetailData.type] : null}
             </Text>
           </Row>
-          <Row gap={10}>
-            <IconSchool width={24} height={24} />
-            <Text fontType="p2" color={color.gray900}>
-              {formDetailData?.education.schoolName}
-            </Text>
-          </Row>
+          {formDetailData?.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+            <Row gap={10}>
+              <IconSchool width={24} height={24} />
+              <Text fontType="p2" color={color.gray900}>
+                {formDetailData?.education.schoolName}
+              </Text>
+            </Row>
+          )}
           <Row gap={10}>
             <IconCall width={24} height={24} />
             <Text fontType="p2" color={color.gray900}>

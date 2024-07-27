@@ -31,36 +31,46 @@ const 출신학교및학력 = ({ id }: Props) => {
           data={formDetailData?.education.graduationYear ?? ''}
         />
       </Row>
-      <Row gap={24}>
-        <DataBox label="출신학교명" data={formDetailData?.education.schoolName ?? ''} />
-        <DataBox
-          label="학교 도로명 주소"
-          data={formDetailData?.education.schoolAddress ?? ''}
-        />
-      </Row>
-      <Row gap={24}>
-        <DataBox
-          label="학교 지역"
-          data={formDetailData?.education.schoolLocation ?? ''}
-        />
-        <DataBox label="표준학교코드" data={formDetailData?.education.schoolCode ?? ''} />
-      </Row>
-      <Row gap={24}>
-        <DataBox
-          label="작성교사 이름"
-          data={formDetailData?.education.teacherName ?? ''}
-        />
-        <DataBox
-          label="작성교사 연락처"
-          data={formDetailData?.education.teacherMobilePhoneNumber ?? ''}
-        />
-      </Row>
-      <Row gap={24}>
-        <DataBox
-          label="학교 연락처"
-          data={formDetailData?.education.schoolPhoneNumber ?? ''}
-        />
-      </Row>
+      {formDetailData?.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
+        <>
+          <Row gap={24}>
+            <DataBox
+              label="출신학교명"
+              data={formDetailData?.education.schoolName ?? ''}
+            />
+            <DataBox
+              label="학교 도로명 주소"
+              data={formDetailData?.education.schoolAddress ?? ''}
+            />
+          </Row>
+          <Row gap={24}>
+            <DataBox
+              label="학교 지역"
+              data={formDetailData?.education.schoolLocation ?? ''}
+            />
+            <DataBox
+              label="표준학교코드"
+              data={formDetailData?.education.schoolCode ?? ''}
+            />
+          </Row>
+          <Row gap={24}>
+            <DataBox
+              label="작성교사 이름"
+              data={formDetailData?.education.teacherName ?? ''}
+            />
+            <DataBox
+              label="작성교사 연락처"
+              data={formDetailData?.education.teacherMobilePhoneNumber ?? ''}
+            />
+          </Row>
+          <Row gap={24}>
+            <DataBox
+              label="학교 연락처"
+              data={formDetailData?.education.schoolPhoneNumber ?? ''}
+            />
+          </Row>
+        </>
+      )}
     </Column>
   );
 };
