@@ -2,14 +2,18 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 dayjs.locale('ko');
 
-export const 제출_시작_날짜 = dayjs('2024-07-15T00:00:00+09:00');
-export const 제출_마감_날짜 = dayjs('2024-07-21T17:00:00+09:00');
-export const 일차_합격_발표 = dayjs('2024-07-22T15:00:00+09:00');
-export const 이차_전형_시작 = dayjs('2024-07-23T13:00:00+09:00');
-export const 이차_전형_끝 = dayjs('2024-07-24T16:00:00+09:00');
-export const 최종_합격_발표 = dayjs('2024-07-25T15:00:00+09:00');
-export const 입학_등록_기간 = dayjs('2024-07-26T00:00:00+09:00');
-export const 입학_등록_기간_마감 = dayjs('2024-07-27T00:00:00+09:00');
+export const 제출_시작_날짜 = dayjs(process.env.NEXT_PUBLIC_SUBMIT_START_DAY);
+export const 제출_마감_날짜 = dayjs(process.env.NEXT_PUBLIC_SUBMIT_END_DAY);
+export const 일차_합격_발표 = dayjs(process.env.NEXT_PUBLIC_FIRST_RESULT_DAY);
+export const 이차_전형_시작 = dayjs(process.env.NEXT_PUBLIC_SECOND_EXAM_START_DAY);
+export const 이차_전형_끝 = dayjs(process.env.NEXT_PUBLIC_SECOND_EXAM_END_DAY);
+export const 최종_합격_발표 = dayjs(process.env.NEXT_PUBLIC_FINAL_RESULT_DAY);
+export const 입학_등록_기간 = dayjs(
+  process.env.NEXT_PUBLIC_ADMISSION_REGISTRATION_START_DAY
+);
+export const 입학_등록_기간_마감 = dayjs(
+  process.env.NEXT_PUBLIC_ADMISSION_REGISTRATION_END_DAY
+);
 
 export const REGULAR_TYPE_DEFAULT_SCORE = 80;
 export const SPECIAL_TYPE_DEFAULT_SCORE = 48;

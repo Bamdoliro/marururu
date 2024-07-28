@@ -9,8 +9,8 @@ export const middleware = (request: NextRequest) => {
   const { device } = userAgent(request);
   const url = request.nextUrl.pathname;
   const now = dayjs();
-  const 제출_시작_날짜 = dayjs('2024-07-15T00:00:00+09:00');
-  const 제출_마감_날짜 = dayjs('2024-07-21T17:00:00+09:00');
+  const 제출_시작_날짜 = dayjs(process.env.NEXT_PUBLIC_SUBMIT_START_DAY);
+  const 제출_마감_날짜 = dayjs(process.env.NEXT_PUBLIC_SUBMIT_END_DAY);
 
   if ((device.type === 'mobile' || device.type === 'tablet') && url !== '/mobile') {
     return NextResponse.rewrite(new URL('/mobile', request.url));
