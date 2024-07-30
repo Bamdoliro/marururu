@@ -7,6 +7,7 @@ import { flex } from '@maru/utils';
 import type { ChangeEventHandler, DragEvent } from 'react';
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
+import CropImageModal from '../CropImageModal/CropImageModal';
 
 const ProfileUploader = ({
   onPhotoUpload,
@@ -20,11 +21,13 @@ const ProfileUploader = ({
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
-  const { uploadProfileImageMutate } = useUploadProfileImageMutation();
-
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [imagePreviewUrl, setImagePreviewUrl] = useState(
     form.applicant.identificationPictureUri
   );
+
+  const { uploadProfileImageMutate } = useUploadProfileImageMutation();
 
   const uploadProfileImageFile = (image: FormData) => {
     uploadProfileImageMutate(image, {
@@ -46,9 +49,25 @@ const ProfileUploader = ({
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
-    const formData = new FormData();
-    formData.append('image', files[0]);
-    uploadProfileImageFile(formData);
+
+    const file = files[0];
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      if (img.width < 117 || img.height < 156) {
+        alert('사진 크기가 너무 작습니다.');
+        return;
+      }
+
+      if (img.width > 117 || img.height > 156) {
+        setImageSrc(URL.createObjectURL(file));
+        setIsModalOpen(true);
+      } else {
+        const formData = new FormData();
+        formData.append('image', file, 'image.jpg');
+        uploadProfileImageFile(formData);
+      }
+    };
   };
 
   const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
@@ -71,9 +90,24 @@ const ProfileUploader = ({
   const onDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const formData = new FormData();
-    formData.append('image', e.dataTransfer.files[0]);
-    uploadProfileImageFile(formData);
+    const file = e.dataTransfer.files[0];
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      if (img.width < 117 || img.height < 156) {
+        alert('사진 크기가 너무 작습니다.');
+        return;
+      }
+
+      if (img.width > 117 || img.height > 156) {
+        setImageSrc(URL.createObjectURL(file));
+        setIsModalOpen(true);
+      } else {
+        const formData = new FormData();
+        formData.append('image', file, 'image.jpg');
+        uploadProfileImageFile(formData);
+      }
+    };
     setIsDragging(false);
   };
 
@@ -127,6 +161,19 @@ const ProfileUploader = ({
         onChange={handleImageFileChange}
         hidden
       />
+      {imageSrc && (
+        <CropImageModal
+          isOpen={isModalOpen}
+          imageSrc={imageSrc}
+          onClose={() => setIsModalOpen(false)}
+          onCropComplete={(croppedImage) => {
+            const formData = new FormData();
+            formData.append('image', croppedImage, 'image.png, image.jpg, image.jpeg');
+            uploadProfileImageFile(formData);
+          }}
+          zoom={1}
+        />
+      )}
     </StyledProfileUploader>
   );
 };
