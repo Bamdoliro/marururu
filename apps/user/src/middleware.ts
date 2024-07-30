@@ -56,6 +56,8 @@ export const middleware = (request: NextRequest) => {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('message', '입학전형 기간이 아닙니다.');
       return NextResponse.redirect(redirectUrl);
+    } else {
+      return NextResponse.rewrite(new URL('/form-management', request.url));
     }
   }
 
@@ -71,6 +73,8 @@ export const middleware = (request: NextRequest) => {
         '정상적인 경로를 통해 1차 결과를 확인해주세요.'
       );
       return NextResponse.redirect(redirectUrl);
+    } else {
+      return NextResponse.rewrite(new URL('/result/first', request.url));
     }
   }
 
@@ -86,6 +90,19 @@ export const middleware = (request: NextRequest) => {
         '정상적인 경로를 통해 최종 결과를 확인해주세요.'
       );
       return NextResponse.redirect(redirectUrl);
+    } else {
+      return NextResponse.rewrite(new URL('/result/final', request.url));
+    }
+  }
+
+  if (url === '/login' || url === '/signup') {
+    if (accessToken) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set(
+        'message',
+        '로그인이 되어 있을 경우 접속이 불가합니다.'
+      );
+      return NextResponse.redirect(redirectUrl);
     }
   }
 
@@ -99,6 +116,8 @@ export const config = {
     '/form-management',
     '/result/first',
     '/result/final',
+    '/login',
+    '/signup',
     '/((?!api|_next/static|_next/image|favicon.ico|svg).*)',
   ],
 };
