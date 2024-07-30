@@ -26,6 +26,10 @@ export const middleware = (request: NextRequest) => {
     return NextResponse.rewrite(new URL('/mobile', request.url));
   }
 
+  if (!(device.type === 'mobile' || device.type === 'tablet') && url === '/mobile') {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
   if (url === '/form') {
     if (!accessToken) {
       const redirectUrl = new URL('/', request.url);
