@@ -11,6 +11,7 @@ export const middleware = (request: NextRequest) => {
   const now = dayjs();
   const 제출_시작_날짜 = dayjs(process.env.NEXT_PUBLIC_SUBMIT_START_DAY);
   const 제출_마감_날짜 = dayjs(process.env.NEXT_PUBLIC_SUBMIT_END_DAY);
+  const 입학_등록_기간 = dayjs(process.env.NEXT_PUBLIC_ADMISSION_REGISTRATION_START_DAY);
 
   const cookies = request.headers.get('cookie');
   const accessToken = cookies
@@ -39,9 +40,26 @@ export const middleware = (request: NextRequest) => {
     }
   }
 
+  if (url === '/form-management') {
+    if (!accessToken) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set('warning', '로그인이 필요합니다.');
+      return NextResponse.redirect(redirectUrl);
+    } else if (!now.isBetween(제출_시작_날짜, 입학_등록_기간, 'minute', '[]')) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set('message', '입학 전형 기간이 아닙니다.');
+      return NextResponse.redirect(redirectUrl);
+    }
+  }
+
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ['/mobile', '/form', '/((?!api|_next/static|_next/image|favicon.ico|svg).*)'],
+  matcher: [
+    '/mobile',
+    '/form',
+    '/form-management',
+    '/((?!api|_next/static|_next/image|favicon.ico|svg).*)',
+  ],
 };
