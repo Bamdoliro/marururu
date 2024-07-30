@@ -25,13 +25,17 @@ const MainPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const message = searchParams.get('message');
+  const warning = searchParams.get('warning');
 
   useEffect(() => {
     if (message) {
       alert(message);
       router.replace(ROUTES.MAIN);
+    } else if (warning) {
+      alert(warning);
+      router.replace(ROUTES.LOGIN);
     }
-  }, [message, router]);
+  }, [message, warning, router]);
 
   return (
     <AppLayout header footer>
