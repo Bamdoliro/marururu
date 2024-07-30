@@ -47,7 +47,7 @@ export const middleware = (request: NextRequest) => {
       return NextResponse.redirect(redirectUrl);
     } else if (!now.isBetween(제출_시작_날짜, 입학_등록_기간, 'minute', '[]')) {
       const redirectUrl = new URL('/', request.url);
-      redirectUrl.searchParams.set('message', '입학 전형 기간이 아닙니다.');
+      redirectUrl.searchParams.set('message', '입학전형 기간이 아닙니다.');
       return NextResponse.redirect(redirectUrl);
     }
   }
