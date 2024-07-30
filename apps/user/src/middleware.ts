@@ -11,6 +11,9 @@ export const middleware = (request: NextRequest) => {
   const now = dayjs();
   const 제출_시작_날짜 = dayjs(process.env.NEXT_PUBLIC_SUBMIT_START_DAY);
   const 제출_마감_날짜 = dayjs(process.env.NEXT_PUBLIC_SUBMIT_END_DAY);
+  const 일차_합격_발표 = dayjs(process.env.NEXT_PUBLIC_FIRST_RESULT_DAY);
+  const 이차_전형_시작 = dayjs(process.env.NEXT_PUBLIC_SECOND_EXAM_START_DAY);
+  const 최종_합격_발표 = dayjs(process.env.NEXT_PUBLIC_FINAL_RESULT_DAY);
   const 입학_등록_기간 = dayjs(process.env.NEXT_PUBLIC_ADMISSION_REGISTRATION_START_DAY);
 
   const cookies = request.headers.get('cookie');
@@ -26,7 +29,7 @@ export const middleware = (request: NextRequest) => {
   if (url === '/form') {
     if (!accessToken) {
       const redirectUrl = new URL('/', request.url);
-      redirectUrl.searchParams.set('warning', '로그인이 필요합니다.');
+      redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
     } else if (!now.isBetween(제출_시작_날짜, 제출_마감_날짜, 'minute', '[]')) {
       const redirectUrl = new URL('/', request.url);
@@ -43,11 +46,41 @@ export const middleware = (request: NextRequest) => {
   if (url === '/form-management') {
     if (!accessToken) {
       const redirectUrl = new URL('/', request.url);
-      redirectUrl.searchParams.set('warning', '로그인이 필요합니다.');
+      redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
     } else if (!now.isBetween(제출_시작_날짜, 입학_등록_기간, 'minute', '[]')) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('message', '입학전형 기간이 아닙니다.');
+      return NextResponse.redirect(redirectUrl);
+    }
+  }
+
+  if (url === '/result/first') {
+    if (!accessToken) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
+      return NextResponse.redirect(redirectUrl);
+    } else if (!now.isBetween(일차_합격_발표, 이차_전형_시작, 'minute', '[]')) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set(
+        'message',
+        '정상적인 경로를 통해 1차 결과를 확인해주세요.'
+      );
+      return NextResponse.redirect(redirectUrl);
+    }
+  }
+
+  if (url === '/result/final') {
+    if (!accessToken) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
+      return NextResponse.redirect(redirectUrl);
+    } else if (!now.isBetween(최종_합격_발표, 입학_등록_기간, 'minute', '[]')) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set(
+        'message',
+        '정상적인 경로를 통해 최종 결과를 확인해주세요.'
+      );
       return NextResponse.redirect(redirectUrl);
     }
   }
@@ -60,6 +93,8 @@ export const config = {
     '/mobile',
     '/form',
     '/form-management',
+    '/result/first',
+    '/result/final',
     '/((?!api|_next/static|_next/image|favicon.ico|svg).*)',
   ],
 };
