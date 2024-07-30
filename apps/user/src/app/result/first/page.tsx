@@ -1,7 +1,6 @@
 'use client';
 
 import { FirstResultTable, ResultMain } from '@/components/result';
-import withResultFirstAuth from '@/hocs/withResultFirstAuth';
 import { AppLayout } from '@/layouts';
 import type { ResultStep } from '@/types/result/client';
 import { color } from '@maru/design-token';
@@ -37,7 +36,7 @@ const FirstResultPage = () => {
   );
 };
 
-export default withResultFirstAuth(FirstResultPage);
+export default FirstResultPage;
 
 const StyledFirstResultPage = styled.div`
   padding-top: 82px;

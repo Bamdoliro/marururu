@@ -1,4 +1,4 @@
-import { ROUTES, TOKEN } from '@/constants/common/constant';
+import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { color } from '@maru/design-token';
 import { Button, Row, UnderlineButton } from '@maru/ui';
@@ -7,9 +7,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import Profile from './Profile/Profile';
-import { useOverlay } from '@toss/use-overlay';
-import NeedLoginModal from '@/components/main/NeedLoginModal/NeedLoginModal';
-import GuardFormModal from '@/components/main/GuardFormModal/GuardFormModal';
 import {
   이차_전형_끝,
   이차_전형_시작,
@@ -24,9 +21,7 @@ import {
 const Header = () => {
   const router = useRouter();
   const pathName = usePathname();
-  const { isLoggedIn, userData } = useUser();
-  const overlay = useOverlay();
-  const loginType = userData.authority;
+  const { isLoggedIn } = useUser();
   const now = dayjs();
 
   const isFormSubmittedPeriod = now.isBetween(제출_시작_날짜, 제출_마감_날짜);
@@ -63,48 +58,6 @@ const Header = () => {
       ];
     }
   })();
-
-  const handleNavigationClickForm = (route: string) => {
-    const accessToken = localStorage.getItem(TOKEN.ACCESS);
-    const refreshToken = localStorage.getItem(TOKEN.REFRESH);
-
-    if (
-      (route === ROUTES.FORM_MANAGEMENT || route === ROUTES.FORM) &&
-      (!accessToken || !refreshToken || loginType !== 'USER')
-    ) {
-      overlay.open(({ isOpen, close }) => (
-        <NeedLoginModal isOpen={isOpen} onClose={close} />
-      ));
-      return;
-    }
-
-    if (route === ROUTES.FORM) {
-      if (!now.isBetween(제출_시작_날짜, 제출_마감_날짜)) {
-        overlay.open(({ isOpen, close }) => (
-          <GuardFormModal isOpen={isOpen} onClose={close} />
-        ));
-        return;
-      }
-    }
-
-    if (route === ROUTES.FORM_MANAGEMENT) {
-      const notAdmissionProcess = !(
-        now.isBetween(제출_시작_날짜, 제출_마감_날짜) ||
-        now.isBetween(이차_전형_시작, 이차_전형_끝) ||
-        now.isBetween(일차_합격_발표, 최종_합격_발표) ||
-        now.isBetween(입학_등록_기간, 입학_등록_기간_마감)
-      );
-
-      if (notAdmissionProcess) {
-        overlay.open(({ isOpen, close }) => (
-          <GuardFormModal isOpen={isOpen} onClose={close} />
-        ));
-        return;
-      }
-    }
-
-    router.push(route);
-  };
 
   return (
     <StyledHeader>
@@ -149,7 +102,7 @@ const Header = () => {
             <UnderlineButton
               key={`navigation ${index}`}
               active={route === pathName}
-              onClick={() => handleNavigationClickForm(route)}
+              onClick={() => router.push(route)}
             >
               {name}
             </UnderlineButton>
