@@ -30,6 +30,7 @@ import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
 import { usePrintFormURLAction, useSecondRoundResultEditAction } from './form.hooks';
 import { useEffect, useState } from 'react';
+import withAuth from '@/hoc/withAuth';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();
@@ -196,7 +197,7 @@ const FormPage = () => {
   );
 };
 
-export default FormPage;
+export default withAuth(FormPage);
 
 const StyledMainPage = styled.div`
   ${flex({ flexDirection: 'column' })}
