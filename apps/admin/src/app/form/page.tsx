@@ -29,8 +29,8 @@ import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
 import { usePrintFormURLAction, useSecondRoundResultEditAction } from './form.hooks';
-import withAuth from '@/hocs/withAuth';
 import { useEffect, useState } from 'react';
+import withAuth from '@/hoc/withAuth';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();

@@ -103,13 +103,14 @@ export const useVerificationMutation = (
 
 export const useLogoutUserMutation = () => {
   const [, , removeCookie] = useCookies(['access-token', 'refresh-token']);
+  const router = useRouter();
 
   const { mutate: logoutUserMutate, ...restMutation } = useMutation({
     mutationFn: deleteLogoutUser,
     onSuccess: () => {
       removeCookie('access-token', { path: '/' });
       removeCookie('refresh-token', { path: '/' });
-      window.location.href = ROUTES.MAIN;
+      router.replace(ROUTES.MAIN);
     },
     onError: () => {
       removeCookie('access-token', { path: '/' });
