@@ -11,7 +11,7 @@ const refreshToken = async () => {
     });
     Storage.setItem(TOKEN.ACCESS, data.data.accessToken);
   } catch {
-    window.location.href = ROUTES.LOGIN;
+    window.location.href = ROUTES.MAIN;
     alert('다시 로그인 해주세요');
     localStorage.clear();
   }
