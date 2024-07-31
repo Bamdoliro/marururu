@@ -7,7 +7,6 @@ import { flex } from '@maru/utils';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
 import useCTAButton from './notice.hooks';
-import withAuth from '@/hocs/withAuth';
 
 const NoticePage = () => {
   const { handleGoNoticePostPageButtonClick } = useCTAButton();
@@ -36,7 +35,7 @@ const NoticePage = () => {
   );
 };
 
-export default withAuth(NoticePage);
+export default NoticePage;
 
 const StyledNoticePage = styled.div`
   position: relative;

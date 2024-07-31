@@ -29,7 +29,6 @@ import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
 import { usePrintFormURLAction, useSecondRoundResultEditAction } from './form.hooks';
-import withAuth from '@/hocs/withAuth';
 import { useEffect, useState } from 'react';
 
 if (process.env.NODE_ENV === 'development') {
@@ -197,7 +196,7 @@ const FormPage = () => {
   );
 };
 
-export default withAuth(FormPage);
+export default FormPage;
 
 const StyledMainPage = styled.div`
   ${flex({ flexDirection: 'column' })}
