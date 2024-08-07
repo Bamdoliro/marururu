@@ -110,11 +110,13 @@ export const useLogoutUserMutation = () => {
     onSuccess: () => {
       removeCookie('access-token', { path: '/' });
       removeCookie('refresh-token', { path: '/' });
+      window.location.reload();
       router.replace(ROUTES.MAIN);
     },
     onError: () => {
       removeCookie('access-token', { path: '/' });
       removeCookie('refresh-token', { path: '/' });
+      window.location.reload();
     },
   });
 
