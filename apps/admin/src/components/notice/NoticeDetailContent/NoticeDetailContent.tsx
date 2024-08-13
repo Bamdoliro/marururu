@@ -29,6 +29,9 @@ const NoticeDetailContent = ({ id }: Props) => {
             </Text>
           </Column>
           <Row gap={16} alignItems="flex-end">
+            <Button styleType="SECONDARY" size="SMALL" icon="CLIP_ICON">
+              파일 첨부
+            </Button>
             <Button
               styleType="SECONDARY"
               size="SMALL"

@@ -1,12 +1,14 @@
 import { useNoticeDetailQuery } from '@/services/notice/queries';
 import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/design-token';
-import { Button, Column } from '@maru/ui';
+import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNotieEditAction } from './NoticeEdit.hooks';
+import NoticeUploadModal from '../NoticeUploadModal/NoticeUploadModal';
+import { useOverlay } from '@toss/use-overlay';
 
 interface Props {
   id: number;
@@ -22,6 +24,7 @@ const NoticeEdit = ({ id }: Props) => {
   });
 
   const { handleNoticeEditButtonClick } = useNotieEditAction(id, noticeData);
+  const overlay = useOverlay();
 
   const handleNoticeDataChange: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
@@ -34,6 +37,12 @@ const NoticeEdit = ({ id }: Props) => {
 
   useEffect(() => resizeTextarea(contentTextareaRef), []);
 
+  const handleNoticeFileModalButtonClick = () => {
+    overlay.open(({ isOpen, close }) => (
+      <NoticeUploadModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
   return (
     <StyledNoticeEdit>
       <Column gap={36}>
@@ -44,9 +53,20 @@ const NoticeEdit = ({ id }: Props) => {
             onChange={handleNoticeDataChange}
             placeholder="제목을 입력해주세요"
           />
-          <Button size="SMALL" onClick={handleNoticeEditButtonClick}>
-            수정하기
-          </Button>
+          <Row gap={10} alignItems="flex-end">
+            <Button
+              size="SMALL"
+              icon="CLIP_ICON"
+              styleType="SECONDARY"
+              width={124}
+              onClick={handleNoticeFileModalButtonClick}
+            >
+              파일 첨부
+            </Button>
+            <Button size="SMALL" onClick={handleNoticeEditButtonClick}>
+              수정하기
+            </Button>
+          </Row>
         </NoticeHeader>
         <ContentTextarea
           ref={contentTextareaRef}
