@@ -9,10 +9,11 @@ const authorization = () => {
   };
 };
 
-authorization.Admin = () => {
+authorization.FormData = () => {
   return {
     headers: {
       Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
+      'Content-Type': 'multipart/form-data',
     },
   };
 };
