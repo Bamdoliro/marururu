@@ -34,23 +34,23 @@ export const deleteNotice = async (id: number) => {
   return data;
 };
 
-export const postNoticePresignedUrl = async (): Promise<PresignedDatReq[]> => {
-  const { data } = await maru.post<PresignedDatReq[]>(
-    `/notice/file`,
-    null,
-    authorization.Binary()
-  );
-  return data;
+export const postNoticePresignedUrl = async (): Promise<PresignedDatReq> => {
+  const response = await maru.post(`/notice/file`, null, authorization.Binary());
+  const { url, fields } = response.data.data;
+  return { url: url.uploadUrl, fields: fields || {} };
 };
 
 export const putNoticeFileUrl = async (file: File, presignedData: PresignedDatReq) => {
-  const { url } = presignedData;
+  const { url, fields } = presignedData;
+  let response;
 
-  const response = await axios.put(url, file, {
-    headers: {
-      'Content-Type': file.type,
-    },
-  });
+  if (Object.keys(fields).length === 0) {
+    response = await axios.put(url, file, {
+      headers: {
+        'Content-Type': file.type,
+      },
+    });
+  }
 
   return response;
 };

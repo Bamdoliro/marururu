@@ -4,7 +4,13 @@ import type { PostNoticeReq, PutNoticeReq } from '@/types/notice/remote';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { deleteNotice, postNotice, putEditNotice } from './api';
+import {
+  deleteNotice,
+  postNotice,
+  postNoticePresignedUrl,
+  putEditNotice,
+  putNoticeFileUrl,
+} from './api';
 
 export const usePostNoticeMutation = ({ title, content }: PostNoticeReq) => {
   const { handleError } = useApiError();
@@ -57,4 +63,25 @@ export const useDeleteNoticeMutation = (id: number) => {
     onError: handleError,
   });
   return { deleteNoticeMutate, ...restMutation };
+};
+
+export const useUploadFileWithPresignedUrl = () => {
+  const { handleError } = useApiError();
+
+  const mutation = useMutation(
+    async (file: File) => {
+      const presignedData = await postNoticePresignedUrl();
+      return putNoticeFileUrl(file, presignedData);
+    },
+    {
+      onError: handleError,
+      onSuccess: () => {
+        toast('파일이 업로드되었습니다.', {
+          type: 'success',
+        });
+      },
+    }
+  );
+
+  return mutation;
 };

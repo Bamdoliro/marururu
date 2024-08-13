@@ -23,6 +23,6 @@ export interface PutNoticeReq {
 export interface PresignedDatReq {
   url: string;
   fields: {
-    [key: string]: string;
+    [key: string]: string | Blob;
   };
 }
