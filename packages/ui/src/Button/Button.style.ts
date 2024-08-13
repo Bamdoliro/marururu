@@ -60,6 +60,10 @@ export const getButtonPadding = {
     gap: 10px;
     padding: 0px 20px 0px 22px;
   `,
+  CLIP_ICON: css`
+    gap: 4px;
+    padding: 10px 16px 10px 10px;
+  `,
 };
 
 export const getButtonSize = {

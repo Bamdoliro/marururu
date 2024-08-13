@@ -1,7 +1,8 @@
-import { IconAdd, IconShortcuts } from '@maru/icon';
 import { color } from '@maru/design-token';
+import { IconAdd, IconClip, IconShortcuts } from '@maru/icon';
 import { flex } from '@maru/utils';
 import type { ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { getButtonPadding, getButtonSize, getButtonStyle } from './Button.style';
 import type { ButtonIcon, ButtonSize, ButtonStyleType } from './Button.type';
@@ -34,6 +35,7 @@ const Button = ({
       disabled={disabled || styleType === 'DISABLED'}
     >
       {icon === 'ADD_ICON' && <IconAdd color={color.white} width={24} height={24} />}
+      {icon === 'CLIP_ICON' && <IconClip color={color.white} width={24} height={24} />}
       {children}
       {icon === 'SHORTCUTS_ICON' && (
         <IconShortcuts color={color.white} width={24} height={24} />
