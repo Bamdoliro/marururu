@@ -11,11 +11,13 @@ export interface GetNoticeDetailRes {
 export interface PostNoticeReq {
   title: string;
   content: string;
+  fileUrl?: string;
 }
 
 export interface PutNoticeReq {
   title: string;
   content: string;
+  fileUrl?: string;
 }
 
 export interface PresignedDatReq {
