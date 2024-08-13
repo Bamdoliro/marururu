@@ -17,3 +17,10 @@ export interface PutNoticeReq {
   title: string;
   content: string;
 }
+
+export interface PresignedDatReq {
+  url: string;
+  fields: {
+    [key: string]: string;
+  };
+}
