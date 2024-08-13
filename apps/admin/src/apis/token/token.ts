@@ -1,5 +1,4 @@
 import { TOKEN } from '@/constants/common/constant';
-
 import { Storage } from '../storage/storage';
 
 const authorization = () => {
@@ -10,11 +9,19 @@ const authorization = () => {
   };
 };
 
-authorization.FormData = () => {
+authorization.Admin = () => {
   return {
     headers: {
       Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
-      'Content-Type': 'multipart/form-data',
+    },
+  };
+};
+
+authorization.Binary = () => {
+  return {
+    headers: {
+      Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
+      'Content-Type': 'application/octet-stream',
     },
   };
 };
