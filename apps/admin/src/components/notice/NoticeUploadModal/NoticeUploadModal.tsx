@@ -69,7 +69,7 @@ const NoticeUploadModal = ({ isOpen, onClose }: Props) => {
             취소
           </Button>
           <Button size="SMALL" styleType={fileData ? 'PRIMARY' : 'DISABLED'}>
-            입력하기
+            첨부하기
           </Button>
         </Row>
       </StyledNoticeUploadModal>
