@@ -44,7 +44,7 @@ const NoticePost = () => {
             onChange={handleNoticeDataChange}
             placeholder="제목을 입력해주세요"
           />
-          <Row gap={10} alignItems="center">
+          <Row gap={10} alignItems="flex-end">
             <Button
               size="SMALL"
               icon="CLIP_ICON"
