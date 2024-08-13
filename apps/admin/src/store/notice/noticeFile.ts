@@ -5,6 +5,6 @@ const noticeFileAtomState = atom<File | null>({
   default: null,
 });
 
-export const useSecondScoreFileStore = () => useRecoilState(noticeFileAtomState);
-export const useSecondScoreFileValueStore = () => useRecoilValue(noticeFileAtomState);
-export const useSetSecondScoreFileStore = () => useSetRecoilState(noticeFileAtomState);
+export const useNoticeFileStore = () => useRecoilState(noticeFileAtomState);
+export const useNoticeFileValueStore = () => useRecoilValue(noticeFileAtomState);
+export const useSetNoticeFileStore = () => useSetRecoilState(noticeFileAtomState);
