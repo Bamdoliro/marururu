@@ -32,13 +32,13 @@ export const usePostNoticeMutation = () => {
 
 export const useEditNoticeMutation = (
   id: number,
-  { title, content, fileUrl }: PutNoticeReq
+  { title, content, fileUuid }: PutNoticeReq
 ) => {
   const { handleError } = useApiError();
   const router = useRouter();
 
   const { mutate: editNoticeMutate, ...restMutation } = useMutation({
-    mutationFn: () => putEditNotice(id, { title, content, fileUrl }),
+    mutationFn: () => putEditNotice(id, { title, content, fileUuid }),
     onSuccess: () => {
       toast('공지사항이 수정되었습니다.', {
         type: 'success',

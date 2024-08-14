@@ -11,18 +11,22 @@ export interface GetNoticeDetailRes {
 export interface PostNoticeReq {
   title: string;
   content: string;
-  fileUrl?: string;
+  fileUuid?: string | null;
 }
 
 export interface PutNoticeReq {
   title: string;
   content: string;
-  fileUrl?: string;
+  fileUuid?: string;
 }
 
 export interface PresignedDatReq {
-  url: string;
+  url: {
+    uploadUrl: string;
+    downloadUrl?: string | null;
+  };
   fields: {
     [key: string]: string | Blob;
   };
+  fileUuid: string;
 }

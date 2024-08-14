@@ -9,14 +9,14 @@ export const useNoticePostAction = (noticeData: PostNoticeReq, file?: File) => {
   const { mutateAsync: uploadFile } = useUploadFileWithPresignedUrl();
 
   const handleNoticePostButtonClick = async () => {
-    let fileUrl = noticeData.fileUrl;
+    let fileUuid = noticeData.fileUuid;
 
     if (file) {
       const response = await uploadFile(file);
-      fileUrl = response?.data?.url;
+      fileUuid = response?.data?.url;
     }
 
-    postNoticeMutate({ ...noticeData, fileUrl });
+    postNoticeMutate({ ...noticeData, fileUuid });
   };
 
   return { handleNoticePostButtonClick };

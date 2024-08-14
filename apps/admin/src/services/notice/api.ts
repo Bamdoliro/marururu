@@ -19,10 +19,10 @@ export const getNoticeDetail = async (id: number) => {
   return data;
 };
 
-export const postNotice = async ({ title, content, fileUrl }: PostNoticeReq) => {
+export const postNotice = async ({ title, content, fileUuid }: PostNoticeReq) => {
   const { data } = await maru.post(
     '/notice',
-    { title, content, fileUrl },
+    { title, content, fileUuid },
     authorization()
   );
   return data;
@@ -30,11 +30,11 @@ export const postNotice = async ({ title, content, fileUrl }: PostNoticeReq) => 
 
 export const putEditNotice = async (
   id: number,
-  { title, content, fileUrl }: PutNoticeReq
+  { title, content, fileUuid }: PutNoticeReq
 ) => {
   const { data } = await maru.put(
     `/notice/${id}`,
-    { title, content, fileUrl },
+    { title, content, fileUuid },
     authorization()
   );
   return { data };
@@ -48,13 +48,13 @@ export const deleteNotice = async (id: number) => {
 export const postNoticePresignedUrl = async (): Promise<PresignedDatReq> => {
   const response = await maru.post(`/notice/file`, null, authorization.Binary());
   const { url, fields } = response.data.data;
-  return { url: url.uploadUrl, fields: fields || {} };
+  return { url: url.uploadUrl, fields: fields || {} } as PresignedDatReq;
 };
 
 export const putNoticeFileUrl = async (file: File, presignedData: PresignedDatReq) => {
   const { url } = presignedData;
 
-  const response = await axios.put(url, file, {
+  const response = await axios.put(url.uploadUrl, file, {
     headers: {
       'Content-Type': file.type,
     },
