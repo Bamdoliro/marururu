@@ -12,12 +12,12 @@ import {
   putNoticeFileUrl,
 } from './api';
 
-export const usePostNoticeMutation = ({ title, content }: PostNoticeReq) => {
+export const usePostNoticeMutation = () => {
   const { handleError } = useApiError();
   const router = useRouter();
 
   const { mutate: postNoticeMutate, ...restMutation } = useMutation({
-    mutationFn: () => postNotice({ title, content }),
+    mutationFn: (noticeData: PostNoticeReq) => postNotice(noticeData),
     onSuccess: ({ data }) => {
       toast('공지사항이 게시되었습니다.', {
         type: 'success',
@@ -30,12 +30,15 @@ export const usePostNoticeMutation = ({ title, content }: PostNoticeReq) => {
   return { postNoticeMutate, ...restMutation };
 };
 
-export const useEditNoticeMutation = (id: number, { title, content }: PutNoticeReq) => {
+export const useEditNoticeMutation = (
+  id: number,
+  { title, content, fileUrl }: PutNoticeReq
+) => {
   const { handleError } = useApiError();
   const router = useRouter();
 
   const { mutate: editNoticeMutate, ...restMutation } = useMutation({
-    mutationFn: () => putEditNotice(id, { title, content }),
+    mutationFn: () => putEditNotice(id, { title, content, fileUrl }),
     onSuccess: () => {
       toast('공지사항이 수정되었습니다.', {
         type: 'success',
