@@ -7,7 +7,6 @@ import type { ChangeEventHandler } from 'react';
 import { useRef } from 'react';
 import styled from 'styled-components';
 import NoticeUploader from './NoticeUploader/NoticeUploader';
-import { useUploadFileWithPresignedUrl } from '@/services/notice/mutations';
 
 interface Props {
   isOpen: boolean;
@@ -17,8 +16,6 @@ interface Props {
 const NoticeUploadModal = ({ isOpen, onClose }: Props) => {
   const [fileData, setFileData] = useNoticeFileStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const { mutate: uploadFile } = useUploadFileWithPresignedUrl();
 
   const handleUploadFileButtonClick = () => {
     fileInputRef.current?.click();
@@ -44,12 +41,7 @@ const NoticeUploadModal = ({ isOpen, onClose }: Props) => {
 
   const handleAttachFile = () => {
     if (fileData) {
-      uploadFile(fileData, {
-        onSuccess: () => {
-          console.log('File uploaded successfully');
-          removeFileAndCloseModal();
-        },
-      });
+      onClose();
     }
   };
 

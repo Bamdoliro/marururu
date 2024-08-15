@@ -47,8 +47,13 @@ export const deleteNotice = async (id: number) => {
 
 export const postNoticePresignedUrl = async (): Promise<PresignedDatReq> => {
   const response = await maru.post(`/notice/file`, null, authorization.Binary());
-  const { url, fields } = response.data.data;
-  return { url: url.uploadUrl, fields: fields || {} } as PresignedDatReq;
+  const { url, fields, fileUuid } = response.data.data;
+
+  return {
+    url,
+    fields: fields || {},
+    fileUuid: fileUuid,
+  } as PresignedDatReq;
 };
 
 export const putNoticeFileUrl = async (file: File, presignedData: PresignedDatReq) => {

@@ -15,7 +15,6 @@ const NoticePost = () => {
   const [noticeData, setNoticeData] = useState({
     title: '',
     content: '',
-    fileUrl: '',
   });
 
   const { handleNoticePostButtonClick } = useNoticePostAction(noticeData);

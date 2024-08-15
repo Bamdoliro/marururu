@@ -74,7 +74,8 @@ export const useUploadFileWithPresignedUrl = () => {
   const mutation = useMutation(
     async (file: File) => {
       const presignedData = await postNoticePresignedUrl();
-      return putNoticeFileUrl(file, presignedData);
+      await putNoticeFileUrl(file, presignedData);
+      return presignedData.fileUuid;
     },
     {
       onError: handleError,
