@@ -1,4 +1,5 @@
 import { useNoticeDetailQuery } from '@/services/notice/queries';
+import { formatFileName } from '@/utils';
 import { color, font } from '@maru/design-token';
 import { IconClip } from '@maru/icon';
 import { Column, Row, Text } from '@maru/ui';
@@ -11,6 +12,12 @@ interface Props {
 
 const NoticeDetailContent = ({ id }: Props) => {
   const { data: noticeDetailData } = useNoticeDetailQuery(id);
+
+  const handleFileDownload = () => {
+    if (noticeDetailData?.fileUrl) {
+      window.open(noticeDetailData.fileUrl, '_blank');
+    }
+  };
 
   return noticeDetailData ? (
     <StyledNoticeDetailContent>
@@ -29,11 +36,11 @@ const NoticeDetailContent = ({ id }: Props) => {
           dangerouslySetInnerHTML={{ __html: convertLink(noticeDetailData.content) }}
         />
         {noticeDetailData.fileUrl && (
-          <StyledNoticeFile>
+          <StyledNoticeFile onClick={handleFileDownload}>
             <Row alignItems="center" gap={10}>
               <IconClip width={19} height={12} />
               <Text fontType="p3" color={color.gray750}>
-                {noticeDetailData.fileUrl}
+                {formatFileName(noticeDetailData.fileName || '')}
               </Text>
             </Row>
           </StyledNoticeFile>
@@ -76,4 +83,9 @@ const StyledNoticeFile = styled.div`
   max-width: fit-content;
   white-space: nowrap;
   text-overflow: ellipsis;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${color.gray300};
+  }
 `;

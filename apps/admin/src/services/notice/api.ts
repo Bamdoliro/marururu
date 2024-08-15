@@ -19,6 +19,13 @@ export const getNoticeDetail = async (id: number) => {
   return data;
 };
 
+export const downloadFile = async (fileUrl: string) => {
+  const response = await maru.get(fileUrl, {
+    responseType: 'blob',
+  });
+  return response.data;
+};
+
 export const postNotice = async ({ title, content, fileName }: PostNoticeReq) => {
   const { data } = await maru.post(
     '/notice',
