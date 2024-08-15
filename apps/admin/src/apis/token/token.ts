@@ -18,13 +18,4 @@ authorization.FormData = () => {
   };
 };
 
-authorization.Binary = () => {
-  return {
-    headers: {
-      Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
-      'Content-Type': 'application/octet-stream',
-    },
-  };
-};
-
 export default authorization;

@@ -11,13 +11,13 @@ export interface GetNoticeDetailRes {
 export interface PostNoticeReq {
   title: string;
   content: string;
-  fileUuid?: string | null;
+  fileName?: string | null;
 }
 
 export interface PutNoticeReq {
   title: string;
   content: string;
-  fileUuid?: string;
+  fileName?: string;
 }
 
 export interface PresignedDatReq {
@@ -28,5 +28,5 @@ export interface PresignedDatReq {
   fields: {
     [key: string]: string | Blob;
   };
-  fileUuid: string;
+  fileName: string;
 }

@@ -32,13 +32,13 @@ export const usePostNoticeMutation = () => {
 
 export const useEditNoticeMutation = (
   id: number,
-  { title, content, fileUuid }: PutNoticeReq
+  { title, content, fileName }: PutNoticeReq
 ) => {
   const { handleError } = useApiError();
   const router = useRouter();
 
   const { mutate: editNoticeMutate, ...restMutation } = useMutation({
-    mutationFn: () => putEditNotice(id, { title, content, fileUuid }),
+    mutationFn: () => putEditNotice(id, { title, content, fileName }),
     onSuccess: () => {
       toast('공지사항이 수정되었습니다.', {
         type: 'success',
@@ -68,14 +68,21 @@ export const useDeleteNoticeMutation = (id: number) => {
   return { deleteNoticeMutate, ...restMutation };
 };
 
+import { useNoticeFileValueStore } from '@/store/notice/noticeFile';
+
 export const useUploadFileWithPresignedUrl = () => {
   const { handleError } = useApiError();
+  const fileData = useNoticeFileValueStore();
 
   const mutation = useMutation(
     async (file: File) => {
-      const presignedData = await postNoticePresignedUrl();
+      if (!fileData) {
+        throw new Error('파일이 선택되지 않았습니다.');
+      }
+
+      const presignedData = await postNoticePresignedUrl(fileData.name);
       await putNoticeFileUrl(file, presignedData);
-      return presignedData.fileUuid;
+      return presignedData.fileName;
     },
     {
       onError: handleError,
