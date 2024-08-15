@@ -6,3 +6,4 @@ export { default as formatApplicationDate } from './formatApplicationDate';
 export { default as formatStartDate } from './formatStartDate';
 export { formatStatus } from './formatStatus';
 export { getCropImg } from './cropImage';
+export { default as formatFileName } from './formatFileName';
