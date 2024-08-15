@@ -17,7 +17,7 @@ export interface PostNoticeReq {
 export interface PutNoticeReq {
   title: string;
   content: string;
-  fileName?: string;
+  fileName?: string | null;
 }
 
 export interface PresignedDatReq {

@@ -21,6 +21,7 @@ const NoticeEdit = ({ id }: Props) => {
   const [noticeData, setNoticeData] = useState({
     title: noticeDetailData?.title ?? '',
     content: noticeDetailData?.content ?? '',
+    fileName: noticeDetailData?.fileName ?? '',
   });
 
   const { handleNoticeEditButtonClick } = useNotieEditAction(id, noticeData);
