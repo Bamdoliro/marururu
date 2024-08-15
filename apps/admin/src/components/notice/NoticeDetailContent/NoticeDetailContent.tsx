@@ -6,6 +6,7 @@ import { convertLink, flex, formatCreatedAt } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import { useNoticeDeleteAction } from './NoticeDetailContent.hooks';
+import { IconClip } from '@maru/icon';
 
 interface Props {
   id: number;
@@ -29,9 +30,6 @@ const NoticeDetailContent = ({ id }: Props) => {
             </Text>
           </Column>
           <Row gap={16} alignItems="flex-end">
-            <Button styleType="SECONDARY" size="SMALL" icon="CLIP_ICON">
-              파일 첨부
-            </Button>
             <Button
               styleType="SECONDARY"
               size="SMALL"
@@ -50,9 +48,21 @@ const NoticeDetailContent = ({ id }: Props) => {
             </Button>
           </Row>
         </NoticeHeader>
-        <Content
-          dangerouslySetInnerHTML={{ __html: convertLink(noticeDetailData.content) }}
-        />
+        <Column gap={36} alignItems="flex-start">
+          <Content
+            dangerouslySetInnerHTML={{ __html: convertLink(noticeDetailData.content) }}
+          />
+          {noticeDetailData.fileUrl && (
+            <StyledNoticeFile>
+              <Row alignItems="center" gap={10}>
+                <IconClip width={19} height={12} />
+                <Text fontType="p3" color={color.gray750}>
+                  {noticeDetailData.fileUrl}
+                </Text>
+              </Row>
+            </StyledNoticeFile>
+          )}
+        </Column>
       </Column>
     </StyledNoticeDetailContent>
   ) : null;
@@ -74,4 +84,18 @@ const NoticeHeader = styled.div`
 const Content = styled.div`
   ${font.p2};
   color: ${color.gray900};
+`;
+
+const StyledNoticeFile = styled.div`
+  ${flex({ justifyContent: 'space-between', alignItems: 'center' })};
+  gap: 12px;
+  height: 36px;
+  padding: 0 15px 0 15px;
+  border-radius: 999px;
+  background: ${color.gray200};
+  width: auto;
+  min-width: fit-content;
+  max-width: fit-content;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
