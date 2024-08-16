@@ -13,9 +13,21 @@ export const getFormList = async (formListType: FormListType) => {
     const { data } = await maru.get<GetFormListRes>('/form/review', authorization());
 
     return data;
-  }
-  const { data } = await maru.get<GetFormListRes>('/form', authorization());
+  } else if (formListType === '전형 별') {
+    const { data } = await maru.get<GetFormListRes>('/form/전형별', authorization());
 
+    return data;
+  } else if (formListType === '최종 점수 높은 순') {
+    const { data } = await maru.get<GetFormListRes>('/form/최종점높순', authorization());
+
+    return data;
+  } else if (formListType === '최종 점수 낮은 순') {
+    const { data } = await maru.get<GetFormListRes>('/form/최종점낮순', authorization());
+
+    return data;
+  }
+
+  const { data } = await maru.get<GetFormListRes>('/form', authorization());
   return data;
 };
 

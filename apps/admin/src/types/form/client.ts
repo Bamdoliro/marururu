@@ -1,3 +1,8 @@
+export type SortCategory =
+  | 'BOARD_ALL'
+  | 'SCHOOL_LIFE'
+  | 'TOP_QUESTION';
+
 export type FormStatus =
   | 'RECEIVED'
   | 'FIRST_FAILED'
@@ -42,7 +47,12 @@ export interface Form {
   secondRoundPassed: boolean | null;
 }
 
-export type FormListType = '모두 보기' | '검토해야 하는 원서 모아보기';
+export type FormListType =
+  | '모두 보기'
+  | '검토해야 하는 원서 모아보기'
+  | '전형 별'
+  | '최종 점수 높은 순'
+  | '최종 점수 낮은 순';
 
 export type ExportExcelType =
   | '전체 내보내기'
