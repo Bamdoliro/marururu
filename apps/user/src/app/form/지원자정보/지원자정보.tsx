@@ -5,12 +5,12 @@ import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { Column, Input, RadioGroup, Row } from '@maru/ui';
 import { useCTAButton, useInput } from './지원자정보.hooks';
+import { Storage } from '@/apis/storage/storage';
 
 const 지원자정보 = () => {
   const form = useFormValueStore();
   const { handle지원자정보Change } = useInput();
   const { handleMoveNextStep } = useCTAButton();
-
   const [isNextClicked, setIsNextClicked] = useState(false);
   const [isBirthdayError, setIsBirthdayError] = useState(false);
   const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
@@ -20,10 +20,10 @@ const 지원자정보 = () => {
     const birthdayValid = form.applicant.birthday.length === 10;
     setIsBirthdayError(!birthdayValid);
 
-    const photoValid = !!form.applicant.identificationPictureUri;
+    const photoValid = !!Storage.getLocalItem('downloadUrl');
     setIsPhotoUploaded(photoValid);
     setIsPhotoError(!photoValid);
-  }, [form.applicant.birthday, form.applicant.identificationPictureUri]);
+  }, [form.applicant.birthday]);
 
   const validateForm = () => {
     const birthdayValid = form.applicant.birthday.length === 10;

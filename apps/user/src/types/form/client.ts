@@ -34,7 +34,6 @@ export type FormStep =
 export type 성적입력Step = '교과성적' | '출결상황' | '봉사시간' | '자격증';
 
 export interface User {
-  identificationPictureUri: string;
   name: string;
   phoneNumber: string;
   birthday: string;

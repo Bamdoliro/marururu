@@ -1,5 +1,5 @@
 import { useApiError } from '@/hooks';
-import { useSetFormStepStore, useSetFormStore } from '@/store';
+import { useSetFormStepStore } from '@/store';
 import type { Form, FormDocument } from '@/types/form/client';
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosResponse } from 'axios';
@@ -72,7 +72,6 @@ export const useUploadFormDocumentMutation = (
 
 export const useUploadProfileImageMutation = () => {
   const { handleError } = useApiError();
-  const setForm = useSetFormStore();
 
   const mutation = useMutation(
     async (file: File) => {
@@ -86,12 +85,9 @@ export const useUploadProfileImageMutation = () => {
     },
     {
       onError: handleError,
-      onSuccess: (downloadUrl) => {
+      onSuccess: () => {
         alert('프로필 이미지가 업로드되었습니다.');
-        setForm((prev) => ({
-          ...prev,
-          applicant: { ...prev.applicant, identificationPictureUri: downloadUrl },
-        }));
+        // 더 이상 form.applicant.identificationPictureUri를 업데이트하지 않음
       },
     }
   );

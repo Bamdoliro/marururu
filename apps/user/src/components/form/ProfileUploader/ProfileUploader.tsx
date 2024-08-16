@@ -1,6 +1,5 @@
 import { useOpenFileUploader } from '@/hooks';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
-import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -17,7 +16,6 @@ const ProfileUploader = ({
   onPhotoUpload: (success: boolean) => void;
   isError: boolean;
 }) => {
-  const form = useFormValueStore();
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
@@ -26,22 +24,17 @@ const ProfileUploader = ({
 
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
-      return (
-        Storage.getLocalItem('downloadUrl') || form.applicant.identificationPictureUri
-      );
+      return Storage.getLocalItem('downloadUrl');
     }
-    return form.applicant.identificationPictureUri;
+    return null;
   });
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setImagePreviewUrl(
-        Storage.getLocalItem('downloadUrl') || form.applicant.identificationPictureUri
-      );
+      setImagePreviewUrl(Storage.getLocalItem('downloadUrl'));
     }
-  }, [form.applicant.identificationPictureUri]);
+  }, []);
 
-  // useUploadProfileImageMutation을 컴포넌트 최상단에서 호출
   const { mutate: uploadProfileImageMutate } = useUploadProfileImageMutation();
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
