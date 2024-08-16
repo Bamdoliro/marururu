@@ -1,6 +1,5 @@
 import { useOpenFileUploader } from '@/hooks';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
-import { useFormValueStore, useSetFormStore } from '@/store';
 import { color, font } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -8,49 +7,47 @@ import type { ChangeEventHandler, DragEvent } from 'react';
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
+import { Storage } from '@/apis/storage/storage';
+
+type ProfileUploaderProps = {
+  onPhotoUpload: (success: boolean, url?: string) => void;
+  isError: boolean;
+  previewUrl: string | null;
+};
 
 const ProfileUploader = ({
   onPhotoUpload,
   isError,
-}: {
-  onPhotoUpload: (success: boolean) => void;
-  isError: boolean;
-}) => {
-  const form = useFormValueStore();
-  const setForm = useSetFormStore();
+  previewUrl,
+}: ProfileUploaderProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(
-    form.applicant.identificationPictureUri
-  );
 
-  const { uploadProfileImageMutate } = useUploadProfileImageMutation();
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setImageSrc(Storage.getLocalItem('downloadUrl'));
+    }
+  }, []);
 
-  const uploadProfileImageFile = (image: FormData) => {
-    uploadProfileImageMutate(image, {
-      onSuccess: (res) => {
-        const newImageUrl = `${res.data.url}?${new Date().getTime()}`;
-        setImagePreviewUrl(newImageUrl);
-        setForm((prev) => ({
-          ...prev,
-          applicant: { ...prev.applicant, identificationPictureUri: newImageUrl },
-        }));
-        onPhotoUpload(true);
-      },
-      onError: () => {
-        onPhotoUpload(false);
-      },
-    });
+  const { mutate: uploadProfileImageMutate } = useUploadProfileImageMutation();
+
+  const handleUploadSuccess = (downloadUrl: string) => {
+    Storage.setLocalItem('downloadUrl', downloadUrl);
+    onPhotoUpload(true, downloadUrl);
   };
 
-  const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
 
     const file = files[0];
+    processImageFile(file);
+  };
+
+  const processImageFile = (file: File) => {
     const img = new Image();
     img.src = URL.createObjectURL(file);
     img.onload = () => {
@@ -63,70 +60,42 @@ const ProfileUploader = ({
         setImageSrc(URL.createObjectURL(file));
         setIsModalOpen(true);
       } else {
-        const formData = new FormData();
-        formData.append('image', file, 'image.jpg');
-        uploadProfileImageFile(formData);
+        uploadProfileImageMutate(file, {
+          onSuccess: handleUploadSuccess,
+        });
       }
     };
   };
 
-  const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
-  };
-  const onDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-  };
-  const onDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.dataTransfer.files) {
-      setIsDragging(true);
-    }
-  };
   const onDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const file = e.dataTransfer.files[0];
-    const img = new Image();
-    img.src = URL.createObjectURL(file);
-    img.onload = () => {
-      if (img.width < 117 || img.height < 156) {
-        alert('사진 크기가 너무 작습니다.');
-        return;
-      }
-
-      if (img.width > 117 || img.height > 156) {
-        setImageSrc(URL.createObjectURL(file));
-        setIsModalOpen(true);
-      } else {
-        const formData = new FormData();
-        formData.append('image', file, 'image.jpg');
-        uploadProfileImageFile(formData);
-      }
-    };
+    processImageFile(file);
     setIsDragging(false);
   };
-
-  useEffect(() => {
-    setImagePreviewUrl(form.applicant.identificationPictureUri);
-  }, [form.applicant.identificationPictureUri]);
 
   return (
     <StyledProfileUploader>
       <Text fontType="context" color={color.gray700}>
         증명사진
       </Text>
-      {imagePreviewUrl ? (
-        <ImagePreview src={imagePreviewUrl} alt="profile-image" />
+      {previewUrl ? (
+        <ImagePreview src={previewUrl} alt="profile-image" />
       ) : (
         <UploadImageBox
-          onDragEnter={onDragEnter}
-          onDragLeave={onDragLeave}
-          onDragOver={onDragOver}
+          onDragEnter={(e: DragEvent<HTMLDivElement>) => {
+            e.preventDefault();
+            setIsDragging(true);
+          }}
+          onDragLeave={(e: DragEvent<HTMLDivElement>) => {
+            e.preventDefault();
+            setIsDragging(false);
+          }}
+          onDragOver={(e: DragEvent<HTMLDivElement>) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
           onDrop={onDrop}
           $isDragging={isDragging}
           $isError={isError}
@@ -144,7 +113,7 @@ const ProfileUploader = ({
           </Column>
         </UploadImageBox>
       )}
-      {imagePreviewUrl && (
+      {previewUrl && (
         <Button size="SMALL" onClick={openImageFileUploader}>
           재업로드
         </Button>
@@ -167,9 +136,12 @@ const ProfileUploader = ({
           imageSrc={imageSrc}
           onClose={() => setIsModalOpen(false)}
           onCropComplete={(croppedImage) => {
-            const formData = new FormData();
-            formData.append('image', croppedImage, 'image.png, image.jpg, image.jpeg');
-            uploadProfileImageFile(formData);
+            const croppedFile = new File([croppedImage], 'image.jpg', {
+              type: 'image/jpeg',
+            });
+            uploadProfileImageMutate(croppedFile, {
+              onSuccess: handleUploadSuccess,
+            });
           }}
           zoom={1}
         />

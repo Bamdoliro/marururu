@@ -1,16 +1,20 @@
 import { useApiError } from '@/hooks';
-import { useSetFormStepStore, useSetFormStore } from '@/store';
+import { useSetFormStepStore } from '@/store';
 import type { Form, FormDocument } from '@/types/form/client';
 import { useMutation } from '@tanstack/react-query';
-import type { AxiosResponse } from 'axios';
-import type { Dispatch, SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction } from 'react';
 import {
+  getUploadProfile,
   patchSubmitFinalForm,
   postSaveForm,
   postSubmitDraftForm,
   postUploadFormDocumnet,
   postUploadProfileImage,
+  putProfileUpoload,
+  putUpoloadFormDocument,
 } from './api';
+import { Storage } from '@/apis/storage/storage';
+import type { FormPresignedUrlData } from '@/types/form/remote';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
   const setFormStep = useSetFormStepStore();
@@ -57,9 +61,19 @@ export const useUploadFormDocumentMutation = (
   const { handleError } = useApiError();
 
   const { mutate: uploadFormDocumentMutate, ...restMutation } = useMutation({
-    mutationFn: (file: FormData) => postUploadFormDocumnet(file),
-    onSuccess: (res: AxiosResponse) => {
-      setFormDocument((prev) => ({ ...prev, formUrl: res.data.url }));
+    mutationFn: async (file: File) => {
+      const presignedData = await postUploadFormDocumnet();
+
+      await putUpoloadFormDocument(file, presignedData);
+
+      return presignedData;
+    },
+    onSuccess: (presignedData: FormPresignedUrlData) => {
+      setFormDocument((prev) => ({
+        ...prev,
+        formUrl: presignedData.downloadUrl,
+        downloadUrl: presignedData.downloadUrl,
+      }));
     },
     onError: handleError,
   });
@@ -68,19 +82,22 @@ export const useUploadFormDocumentMutation = (
 };
 
 export const useUploadProfileImageMutation = () => {
-  const setForm = useSetFormStore();
   const { handleError } = useApiError();
 
-  const { mutate: uploadProfileImageMutate, ...restMutation } = useMutation({
-    mutationFn: (image: FormData) => postUploadProfileImage(image),
-    onSuccess: (res: AxiosResponse) => {
-      setForm((prev) => ({
-        ...prev,
-        applicant: { ...prev.applicant, identificationPictureUri: res.data.url },
-      }));
-    },
-    onError: handleError,
-  });
+  const mutation = useMutation(
+    async (file: File) => {
+      const presignedData = await postUploadProfileImage();
+      await putProfileUpoload(file, presignedData);
+      const downloadUrl = await getUploadProfile(presignedData.downloadUrl);
 
-  return { uploadProfileImageMutate, ...restMutation };
+      Storage.setLocalItem('downloadUrl', downloadUrl);
+
+      return downloadUrl;
+    },
+    {
+      onError: handleError,
+    }
+  );
+
+  return mutation;
 };

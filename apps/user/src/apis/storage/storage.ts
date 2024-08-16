@@ -12,4 +12,18 @@ export class Storage {
     if (typeof window === 'undefined') return;
     cookies.set(key, value, { path: '/' });
   }
+
+  static getLocalItem(key: string) {
+    return typeof window !== 'undefined' ? localStorage.getItem(key) : null;
+  }
+
+  static setLocalItem(key: string, value: string) {
+    if (typeof window === 'undefined') return;
+    localStorage.setItem(key, value);
+  }
+
+  static removeLocalItem(key: string) {
+    if (typeof window === 'undefined') return;
+    localStorage.removeItem(key);
+  }
 }
