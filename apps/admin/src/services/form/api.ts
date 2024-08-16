@@ -66,6 +66,12 @@ export const patchSecondRoundResult = async (
   return data;
 };
 
+export const postSecondScoreResultAuto = async () => {
+  const { data } = await maru.post('/secound-round/select', authorization());
+
+  return data;
+};
+
 export const getFormDetail = async (id: number) => {
   const { data } = await maru.get<GetFormDetail>(`/form/${id}`, authorization());
 

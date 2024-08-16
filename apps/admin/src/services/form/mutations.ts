@@ -8,6 +8,7 @@ import {
   patchFinalScore,
   patchSecondRoundResult,
   patchSecondScoreFormat,
+  postSecondScoreResultAuto,
   getFormUrl,
 } from './api';
 import { useFormListQuery } from './queries';
@@ -57,6 +58,25 @@ export const useEditSecondRoundResultMutation = (
 
   return { editSecondRoundResult, restMutation };
 };
+
+export const useEditSecondRoundResultAutoMutation = () => {
+  const { handleError } = useApiError();
+  const { refetch } = useFormListQuery();
+
+  const { mutate: editSecondResultAuto, ...restMutation } = useMutation({
+    mutationFn: () => postSecondScoreResultAuto(),
+    onSuccess: () => {
+      toast('2차 합격 여부가 반영되었습니다.', {
+        type: 'success',
+      });
+      refetch();
+    },
+    onError: handleError,
+  });
+
+  return { editSecondResultAuto, ...restMutation };
+};
+
 export const useChangeFinalScoreStatusMutation = (
   id: number,
   status: ApprovalStatus,

@@ -14,6 +14,7 @@ export { default as IconCheckCircle } from './src/IconCheckCircle';
 export { default as IconCheckDocument } from './src/IconCheckDocument';
 export { default as IconClose } from './src/IconClose';
 export { default as IconEditDocument } from './src/IconEditDocument';
+export { default as IconEditAllDocument } from './src/IconEditAllDocument';
 export { default as IconError } from './src/IconError';
 export { default as IconFaq } from './src/IconFaq';
 export { default as IconFilter } from './src/IconFilter';
