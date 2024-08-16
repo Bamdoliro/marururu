@@ -11,3 +11,11 @@ export interface GetSchoolListRes {
 export interface GetFormStatusRes {
   data: FormStatus;
 }
+
+export interface PresignedUrlData {
+  uploadUrl: string;
+  downloadUrl: string;
+  fields: {
+    [key: string]: string | Blob;
+  };
+}

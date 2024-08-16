@@ -1,6 +1,6 @@
 import { useOpenFileUploader } from '@/hooks';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
-import { useFormValueStore, useSetFormStore } from '@/store';
+import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -17,7 +17,6 @@ const ProfileUploader = ({
   isError: boolean;
 }) => {
   const form = useFormValueStore();
-  const setForm = useSetFormStore();
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
@@ -27,33 +26,16 @@ const ProfileUploader = ({
     form.applicant.identificationPictureUri
   );
 
-  const { uploadProfileImageMutate } = useUploadProfileImageMutation();
+  const { mutateAsync: uploadProfileImageMutate } = useUploadProfileImageMutation();
 
-  const uploadProfileImageFile = (image: FormData) => {
-    uploadProfileImageMutate(image, {
-      onSuccess: (res) => {
-        const newImageUrl = `${res.data.url}?${new Date().getTime()}`;
-        setImagePreviewUrl(newImageUrl);
-        setForm((prev) => ({
-          ...prev,
-          applicant: { ...prev.applicant, identificationPictureUri: newImageUrl },
-        }));
-        onPhotoUpload(true);
-      },
-      onError: () => {
-        onPhotoUpload(false);
-      },
-    });
-  };
-
-  const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
 
     const file = files[0];
     const img = new Image();
     img.src = URL.createObjectURL(file);
-    img.onload = () => {
+    img.onload = async () => {
       if (img.width < 117 || img.height < 156) {
         alert('사진 크기가 너무 작습니다.');
         return;
@@ -63,37 +45,21 @@ const ProfileUploader = ({
         setImageSrc(URL.createObjectURL(file));
         setIsModalOpen(true);
       } else {
-        const formData = new FormData();
-        formData.append('image', file, 'image.jpg');
-        uploadProfileImageFile(formData);
+        const downloadUrl = await uploadProfileImageMutate(file);
+
+        setImagePreviewUrl(downloadUrl);
+        onPhotoUpload(true);
       }
     };
   };
 
-  const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
-  };
-  const onDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-  };
-  const onDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.dataTransfer.files) {
-      setIsDragging(true);
-    }
-  };
-  const onDrop = (e: DragEvent<HTMLDivElement>) => {
+  const onDrop = async (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const file = e.dataTransfer.files[0];
     const img = new Image();
     img.src = URL.createObjectURL(file);
-    img.onload = () => {
+    img.onload = async () => {
       if (img.width < 117 || img.height < 156) {
         alert('사진 크기가 너무 작습니다.');
         return;
@@ -103,9 +69,12 @@ const ProfileUploader = ({
         setImageSrc(URL.createObjectURL(file));
         setIsModalOpen(true);
       } else {
-        const formData = new FormData();
-        formData.append('image', file, 'image.jpg');
-        uploadProfileImageFile(formData);
+        // 1. 파일 업로드 및 다운로드 URL 가져오기
+        const downloadUrl = await uploadProfileImageMutate(file);
+
+        // 2. 이미지 미리보기 업데이트
+        setImagePreviewUrl(downloadUrl);
+        onPhotoUpload(true);
       }
     };
     setIsDragging(false);
@@ -124,9 +93,18 @@ const ProfileUploader = ({
         <ImagePreview src={imagePreviewUrl} alt="profile-image" />
       ) : (
         <UploadImageBox
-          onDragEnter={onDragEnter}
-          onDragLeave={onDragLeave}
-          onDragOver={onDragOver}
+          onDragEnter={(e: DragEvent<HTMLDivElement>) => {
+            e.preventDefault();
+            setIsDragging(true);
+          }}
+          onDragLeave={(e: DragEvent<HTMLDivElement>) => {
+            e.preventDefault();
+            setIsDragging(false);
+          }}
+          onDragOver={(e: DragEvent<HTMLDivElement>) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
           onDrop={onDrop}
           $isDragging={isDragging}
           $isError={isError}
@@ -167,9 +145,10 @@ const ProfileUploader = ({
           imageSrc={imageSrc}
           onClose={() => setIsModalOpen(false)}
           onCropComplete={(croppedImage) => {
-            const formData = new FormData();
-            formData.append('image', croppedImage, 'image.png, image.jpg, image.jpeg');
-            uploadProfileImageFile(formData);
+            const croppedFile = new File([croppedImage], 'image.jpg', {
+              type: 'image/jpeg',
+            });
+            uploadProfileImageMutate(croppedFile);
           }}
           zoom={1}
         />
