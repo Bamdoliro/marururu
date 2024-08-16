@@ -13,6 +13,7 @@ import {
   postUploadProfileImage,
   putProfileUpoload,
 } from './api';
+import { Storage } from '@/apis/storage/storage';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
   const setFormStep = useSetFormStepStore();
@@ -75,24 +76,18 @@ export const useUploadProfileImageMutation = () => {
 
   const mutation = useMutation(
     async (file: File) => {
-      // 1. Presigned URL 가져오기
       const presignedData = await postUploadProfileImage();
-
-      // 2. 파일 업로드
       await putProfileUpoload(file, presignedData);
-
-      // 3. 업로드된 파일의 다운로드 URL 가져오기
       const downloadUrl = await getUploadProfile(presignedData.downloadUrl);
 
-      return downloadUrl; // 다운로드 URL 반환 (미리보기용 URL)
+      Storage.setLocalItem('downloadUrl', downloadUrl);
+
+      return downloadUrl;
     },
     {
       onError: handleError,
       onSuccess: (downloadUrl) => {
-        // 4. 성공 시 사용자에게 알림 및 상태 업데이트
         alert('프로필 이미지가 업로드되었습니다.');
-
-        // 5. 업로드된 파일의 미리보기 URL을 이용해 상태 업데이트
         setForm((prev) => ({
           ...prev,
           applicant: { ...prev.applicant, identificationPictureUri: downloadUrl },

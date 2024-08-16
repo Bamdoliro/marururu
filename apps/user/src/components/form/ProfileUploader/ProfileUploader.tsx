@@ -8,6 +8,7 @@ import type { ChangeEventHandler, DragEvent } from 'react';
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
+import { Storage } from '@/apis/storage/storage';
 
 const ProfileUploader = ({
   onPhotoUpload,
@@ -22,11 +23,26 @@ const ProfileUploader = ({
     useOpenFileUploader();
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(
-    form.applicant.identificationPictureUri
-  );
 
-  const { mutateAsync: uploadProfileImageMutate } = useUploadProfileImageMutation();
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      return (
+        Storage.getLocalItem('downloadUrl') || form.applicant.identificationPictureUri
+      );
+    }
+    return form.applicant.identificationPictureUri;
+  });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setImagePreviewUrl(
+        Storage.getLocalItem('downloadUrl') || form.applicant.identificationPictureUri
+      );
+    }
+  }, [form.applicant.identificationPictureUri]);
+
+  // useUploadProfileImageMutation을 컴포넌트 최상단에서 호출
+  const { mutate: uploadProfileImageMutate } = useUploadProfileImageMutation();
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
     const { files } = e.target;
@@ -45,10 +61,13 @@ const ProfileUploader = ({
         setImageSrc(URL.createObjectURL(file));
         setIsModalOpen(true);
       } else {
-        const downloadUrl = await uploadProfileImageMutate(file);
-
-        setImagePreviewUrl(downloadUrl);
-        onPhotoUpload(true);
+        uploadProfileImageMutate(file, {
+          onSuccess: (downloadUrl) => {
+            Storage.setLocalItem('downloadUrl', downloadUrl);
+            setImagePreviewUrl(downloadUrl);
+            onPhotoUpload(true);
+          },
+        });
       }
     };
   };
@@ -69,20 +88,17 @@ const ProfileUploader = ({
         setImageSrc(URL.createObjectURL(file));
         setIsModalOpen(true);
       } else {
-        // 1. 파일 업로드 및 다운로드 URL 가져오기
-        const downloadUrl = await uploadProfileImageMutate(file);
-
-        // 2. 이미지 미리보기 업데이트
-        setImagePreviewUrl(downloadUrl);
-        onPhotoUpload(true);
+        uploadProfileImageMutate(file, {
+          onSuccess: (downloadUrl) => {
+            Storage.setLocalItem('downloadUrl', downloadUrl);
+            setImagePreviewUrl(downloadUrl);
+            onPhotoUpload(true);
+          },
+        });
       }
     };
     setIsDragging(false);
   };
-
-  useEffect(() => {
-    setImagePreviewUrl(form.applicant.identificationPictureUri);
-  }, [form.applicant.identificationPictureUri]);
 
   return (
     <StyledProfileUploader>
@@ -148,7 +164,13 @@ const ProfileUploader = ({
             const croppedFile = new File([croppedImage], 'image.jpg', {
               type: 'image/jpeg',
             });
-            uploadProfileImageMutate(croppedFile);
+            uploadProfileImageMutate(croppedFile, {
+              onSuccess: (downloadUrl) => {
+                Storage.setLocalItem('downloadUrl', downloadUrl);
+                setImagePreviewUrl(downloadUrl);
+                onPhotoUpload(true);
+              },
+            });
           }}
           zoom={1}
         />
