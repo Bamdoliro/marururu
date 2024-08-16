@@ -2,7 +2,6 @@ import { useApiError } from '@/hooks';
 import { useSetFormStepStore } from '@/store';
 import type { Form, FormDocument } from '@/types/form/client';
 import { useMutation } from '@tanstack/react-query';
-import type { AxiosResponse } from 'axios';
 import { type Dispatch, type SetStateAction } from 'react';
 import {
   getUploadProfile,
@@ -12,8 +11,10 @@ import {
   postUploadFormDocumnet,
   postUploadProfileImage,
   putProfileUpoload,
+  putUpoloadFormDocument,
 } from './api';
 import { Storage } from '@/apis/storage/storage';
+import type { FormPresignedUrlData } from '@/types/form/remote';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
   const setFormStep = useSetFormStepStore();
@@ -60,9 +61,19 @@ export const useUploadFormDocumentMutation = (
   const { handleError } = useApiError();
 
   const { mutate: uploadFormDocumentMutate, ...restMutation } = useMutation({
-    mutationFn: (file: FormData) => postUploadFormDocumnet(file),
-    onSuccess: (res: AxiosResponse) => {
-      setFormDocument((prev) => ({ ...prev, formUrl: res.data.url }));
+    mutationFn: async (file: File) => {
+      const presignedData = await postUploadFormDocumnet();
+
+      await putUpoloadFormDocument(file, presignedData);
+
+      return presignedData;
+    },
+    onSuccess: (presignedData: FormPresignedUrlData) => {
+      setFormDocument((prev) => ({
+        ...prev,
+        formUrl: presignedData.downloadUrl,
+        downloadUrl: presignedData.downloadUrl,
+      }));
     },
     onError: handleError,
   });
@@ -85,10 +96,6 @@ export const useUploadProfileImageMutation = () => {
     },
     {
       onError: handleError,
-      onSuccess: () => {
-        alert('프로필 이미지가 업로드되었습니다.');
-        // 더 이상 form.applicant.identificationPictureUri를 업데이트하지 않음
-      },
     }
   );
 

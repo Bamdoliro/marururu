@@ -85,11 +85,11 @@ export const useInput = () => {
   const handleFormDocumentChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
-    const formData = new FormData();
-    formData.append('file', files[0]);
 
-    setFormDocument((prev) => ({ ...prev, fileName: files[0].name }));
-    uploadFormDocumentMutate(formData);
+    const file = files[0];
+    setFormDocument((prev) => ({ ...prev, fileName: file.name }));
+
+    uploadFormDocumentMutate(file);
   };
 
   return { handleFormDocumentChange };

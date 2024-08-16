@@ -6,6 +6,7 @@ import type {
   GetSaveFormRes,
   GetFormStatusRes,
   PresignedUrlData,
+  FormPresignedUrlData,
 } from '@/types/form/remote';
 import axios from 'axios';
 
@@ -37,9 +38,33 @@ export const postSaveForm = async (formData: Form) => {
   return data;
 };
 
-export const postUploadFormDocumnet = async (file: FormData) => {
-  const { data } = await maru.post('/form/form-document', file, authorization.FormData());
-  return data;
+export const postUploadFormDocumnet = async (): Promise<FormPresignedUrlData> => {
+  const { data } = await maru.post('/form/form-document', null, authorization());
+
+  const uploadUrl = data?.data?.uploadUrl;
+  const downloadUrl = data?.data?.downloadUrl;
+  const fields = data?.data?.fields;
+
+  return {
+    uploadUrl,
+    downloadUrl,
+    fields: fields || {},
+  } as PresignedUrlData;
+};
+
+export const putUpoloadFormDocument = async (
+  file: File,
+  presignedData: FormPresignedUrlData
+) => {
+  const { uploadUrl } = presignedData;
+
+  const response = await axios.put(uploadUrl, file, {
+    headers: {
+      'Content-Type': file.type,
+    },
+  });
+
+  return response;
 };
 
 export const postUploadProfileImage = async (): Promise<PresignedUrlData> => {

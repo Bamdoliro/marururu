@@ -19,3 +19,11 @@ export interface PresignedUrlData {
     [key: string]: string | Blob;
   };
 }
+
+export interface FormPresignedUrlData {
+  uploadUrl: string;
+  downloadUrl: string;
+  fields: {
+    [key: string]: string | Blob;
+  };
+}
