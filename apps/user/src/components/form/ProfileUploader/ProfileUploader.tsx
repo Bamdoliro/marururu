@@ -9,42 +9,48 @@ import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
 import { Storage } from '@/apis/storage/storage';
 
+type ProfileUploaderProps = {
+  onPhotoUpload: (success: boolean, url?: string) => void;
+  isError: boolean;
+  previewUrl: string | null;
+};
+
 const ProfileUploader = ({
   onPhotoUpload,
   isError,
-}: {
-  onPhotoUpload: (success: boolean) => void;
-  isError: boolean;
-}) => {
+  previewUrl,
+}: ProfileUploaderProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(() => {
-    if (typeof window !== 'undefined') {
-      return Storage.getLocalItem('downloadUrl');
-    }
-    return null;
-  });
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setImagePreviewUrl(Storage.getLocalItem('downloadUrl'));
+      setImageSrc(Storage.getLocalItem('downloadUrl'));
     }
   }, []);
 
   const { mutate: uploadProfileImageMutate } = useUploadProfileImageMutation();
+
+  const handleUploadSuccess = (downloadUrl: string) => {
+    Storage.setLocalItem('downloadUrl', downloadUrl);
+    onPhotoUpload(true, downloadUrl);
+  };
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
 
     const file = files[0];
+    processImageFile(file);
+  };
+
+  const processImageFile = (file: File) => {
     const img = new Image();
     img.src = URL.createObjectURL(file);
-    img.onload = async () => {
+    img.onload = () => {
       if (img.width < 117 || img.height < 156) {
         alert('사진 크기가 너무 작습니다.');
         return;
@@ -55,41 +61,17 @@ const ProfileUploader = ({
         setIsModalOpen(true);
       } else {
         uploadProfileImageMutate(file, {
-          onSuccess: (downloadUrl) => {
-            Storage.setLocalItem('downloadUrl', downloadUrl);
-            setImagePreviewUrl(downloadUrl);
-            onPhotoUpload(true);
-          },
+          onSuccess: handleUploadSuccess,
         });
       }
     };
   };
 
-  const onDrop = async (e: DragEvent<HTMLDivElement>) => {
+  const onDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const file = e.dataTransfer.files[0];
-    const img = new Image();
-    img.src = URL.createObjectURL(file);
-    img.onload = async () => {
-      if (img.width < 117 || img.height < 156) {
-        alert('사진 크기가 너무 작습니다.');
-        return;
-      }
-
-      if (img.width > 117 || img.height > 156) {
-        setImageSrc(URL.createObjectURL(file));
-        setIsModalOpen(true);
-      } else {
-        uploadProfileImageMutate(file, {
-          onSuccess: (downloadUrl) => {
-            Storage.setLocalItem('downloadUrl', downloadUrl);
-            setImagePreviewUrl(downloadUrl);
-            onPhotoUpload(true);
-          },
-        });
-      }
-    };
+    processImageFile(file);
     setIsDragging(false);
   };
 
@@ -98,8 +80,8 @@ const ProfileUploader = ({
       <Text fontType="context" color={color.gray700}>
         증명사진
       </Text>
-      {imagePreviewUrl ? (
-        <ImagePreview src={imagePreviewUrl} alt="profile-image" />
+      {previewUrl ? (
+        <ImagePreview src={previewUrl} alt="profile-image" />
       ) : (
         <UploadImageBox
           onDragEnter={(e: DragEvent<HTMLDivElement>) => {
@@ -131,7 +113,7 @@ const ProfileUploader = ({
           </Column>
         </UploadImageBox>
       )}
-      {imagePreviewUrl && (
+      {previewUrl && (
         <Button size="SMALL" onClick={openImageFileUploader}>
           재업로드
         </Button>
@@ -158,11 +140,7 @@ const ProfileUploader = ({
               type: 'image/jpeg',
             });
             uploadProfileImageMutate(croppedFile, {
-              onSuccess: (downloadUrl) => {
-                Storage.setLocalItem('downloadUrl', downloadUrl);
-                setImagePreviewUrl(downloadUrl);
-                onPhotoUpload(true);
-              },
+              onSuccess: handleUploadSuccess,
             });
           }}
           zoom={1}
@@ -174,6 +152,7 @@ const ProfileUploader = ({
 
 export default ProfileUploader;
 
+// Styled components
 const StyledProfileUploader = styled.div`
   ${flex({ flexDirection: 'column' })}
   gap: 8px;

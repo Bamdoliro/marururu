@@ -15,14 +15,24 @@ const 지원자정보 = () => {
   const [isBirthdayError, setIsBirthdayError] = useState(false);
   const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
   const [isPhotoError, setIsPhotoError] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedImage = Storage.getLocalItem('downloadUrl');
+
+    if (storedImage) {
+      setPreviewUrl(storedImage);
+      setIsPhotoUploaded(true);
+      setIsPhotoError(false);
+    } else {
+      setIsPhotoUploaded(false);
+      setIsPhotoError(true);
+    }
+  }, []);
 
   useEffect(() => {
     const birthdayValid = form.applicant.birthday.length === 10;
     setIsBirthdayError(!birthdayValid);
-
-    const photoValid = !!Storage.getLocalItem('downloadUrl');
-    setIsPhotoUploaded(photoValid);
-    setIsPhotoError(!photoValid);
   }, [form.applicant.birthday]);
 
   const validateForm = () => {
@@ -49,16 +59,27 @@ const 지원자정보 = () => {
     }
   };
 
-  const handlePhotoUpload = (success: boolean) => {
-    setIsPhotoUploaded(success);
-    setIsPhotoError(!success);
+  const handlePhotoUpload = (success: boolean, url?: string) => {
+    if (success && url) {
+      setPreviewUrl(url);
+      setIsPhotoUploaded(true);
+      setIsPhotoError(false);
+      Storage.setLocalItem('downloadUrl', url);
+    } else {
+      setIsPhotoUploaded(false);
+      setIsPhotoError(true);
+    }
   };
 
   return (
     <FormLayout title="지원자 정보">
       <Row width="100%" justifyContent="space-between">
         <Column gap={40} alignItems="center">
-          <ProfileUploader isError={isPhotoError} onPhotoUpload={handlePhotoUpload} />
+          <ProfileUploader
+            isError={isPhotoError}
+            onPhotoUpload={handlePhotoUpload}
+            previewUrl={previewUrl}
+          />
         </Column>
         <Column gap={30} width={492}>
           <Input
