@@ -167,15 +167,22 @@ const FormPage = () => {
                   value: 'MEISTER_CASE',
                   label: '상태 별',
                   children: [
-                    { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
-                    { value: 'TRUE_REGULAR', label: '마이스터 → 일반' },
-                    { value: 'FALSE_REGULAR', label: '마이스터 → 일반 제외' },
+                    { value: 'RECEIVED', label: '접수' },
+                    { value: 'FIRST_FAILED', label: '1차 불합격' },
+                    { value: 'FAILED', label: '불합격' },
+                    { value: 'FINAL_SUBMITTED', label: '최종 제출' },
+                    { value: 'SUBMITTED', label: '제출' },
+                    { value: 'APPROVED', label: '승인' },
+                    { value: 'NO_SHOW', label: '불참' },
+                    { value: 'FIRST_PASSED', label: '1차 합격' },
+                    { value: 'PASSED', label: '최종 합격' },
+                    { value: 'REJECTED', label: '반려' },
                   ],
                   onChange: handleTypeCategoryChange,
                   setNext: true,
                 },
                 {
-                  value: 'MEISTER_CASE',
+                  value: 'ㅇㅇ',
                   label: '전형 별',
                   children: [
                     { value: 'REGULAR', label: '일반전형' },
@@ -199,15 +206,15 @@ const FormPage = () => {
                   setNext: true,
                 },
                 {
-                  value: 'FIRST_PASSED',
+                  value: 'TOTAL_SCORE_DESC',
                   label: '최종 점수 높은 순',
                 },
-                { value: 'FINAL_SUBMITTED', label: '최종 점수 낮은 순' },
+                { value: 'TOTAL_SCORE_ASC', label: '최종 점수 낮은 순' },
               ]}
               size="SMALL"
               value={MESSAGE_CATEGORY[messageData.status as Category]}
               placeholder="정렬"
-              width="180px"
+              width={400}
               onChange={handleMessageCategoryChange}
             />
             <Row gap={16}>

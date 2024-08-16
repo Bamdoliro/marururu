@@ -8,4 +8,5 @@ export const MESSAGE_CATEGORY: Record<Category, string> = {
   FALSE_REGULAR: '마이스터 -> 일반 제외',
   FIRST_PASSED: '전체 1차 합격자',
   FINAL_SUBMITTED: '최종 합격자',
+  TOTAL_SCORE_DESC: '최종 점수 높은 순',
 } as const;

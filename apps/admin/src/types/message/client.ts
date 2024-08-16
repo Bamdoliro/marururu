@@ -5,7 +5,8 @@ export type Category =
   | 'MEISTER_TALENT'
   | 'TRUE_REGULAR'
   | 'FALSE_REGULAR'
-  | 'FINAL_SUBMITTED';
+  | 'FINAL_SUBMITTED'
+  | 'TOTAL_SCORE_DESC';
 
 export interface Message {
   title: string;
