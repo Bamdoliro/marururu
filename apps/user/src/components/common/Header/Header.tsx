@@ -1,4 +1,4 @@
-import { ROUTES, TOKEN } from '@/constants/common/constant';
+import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { color } from '@maru/design-token';
 import { Button, Row, UnderlineButton } from '@maru/ui';
@@ -7,9 +7,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import styled from 'styled-components';
 import dayjs from 'dayjs';
 import Profile from './Profile/Profile';
-import { useOverlay } from '@toss/use-overlay';
-import NeedLoginModal from '@/components/main/NeedLoginModal/NeedLoginModal';
-import GuardFormModal from '@/components/main/GuardFormModal/GuardFormModal';
 import {
   이차_전형_끝,
   이차_전형_시작,
@@ -21,79 +18,46 @@ import {
   최종_합격_발표,
 } from '@/constants/form/constant';
 
-const NAVIGATION_LIST = [
-  {
-    name: '홈',
-    route: ROUTES.MAIN,
-  },
-  {
-    name: '원서작성',
-    route: ROUTES.FORM,
-  },
-  {
-    name: '원서관리',
-    route: ROUTES.FORM_MANAGEMENT,
-  },
-  {
-    name: '공지사항',
-    route: ROUTES.NOTICE,
-  },
-  {
-    name: '자주 묻는 질문',
-    route: ROUTES.FAQ,
-  },
-] as const;
-
 const Header = () => {
   const router = useRouter();
   const pathName = usePathname();
-  const { isLoggedIn, userData } = useUser();
-  const overlay = useOverlay();
-  const loginType = userData.authority;
+  const { isLoggedIn } = useUser();
+  const now = dayjs();
 
-  const handleNavigationClickForm = (route: string) => {
-    const accessToken = localStorage.getItem(TOKEN.ACCESS);
-    const refreshToken = localStorage.getItem(TOKEN.REFRESH);
+  const isFormSubmittedPeriod = now.isBetween(제출_시작_날짜, 제출_마감_날짜);
+  const isAdmissionPeriod =
+    now.isBetween(제출_마감_날짜, 일차_합격_발표) ||
+    now.isBetween(일차_합격_발표, 이차_전형_시작) ||
+    now.isBetween(이차_전형_시작, 이차_전형_끝) ||
+    now.isBetween(이차_전형_끝, 최종_합격_발표) ||
+    now.isBetween(최종_합격_발표, 입학_등록_기간) ||
+    now.isBetween(입학_등록_기간, 입학_등록_기간_마감);
 
-    if (
-      (route === ROUTES.FORM_MANAGEMENT || route === ROUTES.FORM) &&
-      (!accessToken || !refreshToken || loginType !== 'USER')
-    ) {
-      overlay.open(({ isOpen, close }) => (
-        <NeedLoginModal isOpen={isOpen} onClose={close} />
-      ));
-      return;
+  const NAVIGATION_LIST = (() => {
+    if (isFormSubmittedPeriod) {
+      return [
+        { name: '홈', route: ROUTES.MAIN },
+        { name: '원서작성', route: ROUTES.FORM },
+        { name: '원서관리', route: ROUTES.FORM_MANAGEMENT },
+        { name: '공지사항', route: ROUTES.NOTICE },
+        { name: '자주 묻는 질문', route: ROUTES.FAQ },
+      ];
+    } else if (isAdmissionPeriod) {
+      return [
+        { name: '홈', route: ROUTES.MAIN },
+        { name: '원서관리', route: ROUTES.FORM_MANAGEMENT },
+        { name: '공지사항', route: ROUTES.NOTICE },
+        { name: '자주 묻는 질문', route: ROUTES.FAQ },
+      ];
+    } else {
+      return [
+        { name: '홈', route: ROUTES.MAIN },
+        { name: '성적 모의 계산', route: ROUTES.SCORE_SIMULATION },
+        { name: '공지사항', route: ROUTES.NOTICE },
+        { name: '자주 묻는 질문', route: ROUTES.FAQ },
+      ];
     }
-
-    if (route === ROUTES.FORM) {
-      const now = dayjs();
-      if (!now.isBetween(제출_시작_날짜, 제출_마감_날짜)) {
-        overlay.open(({ isOpen, close }) => (
-          <GuardFormModal isOpen={isOpen} onClose={close} />
-        ));
-        return;
-      }
-    }
-
-    if (route === ROUTES.FORM_MANAGEMENT) {
-      const now = dayjs();
-      const notAdmissionProcess = !(
-        now.isBetween(제출_시작_날짜, 제출_마감_날짜) ||
-        now.isBetween(이차_전형_시작, 이차_전형_끝) ||
-        now.isBetween(일차_합격_발표, 최종_합격_발표) ||
-        now.isBetween(입학_등록_기간, 입학_등록_기간_마감)
-      );
-
-      if (notAdmissionProcess) {
-        overlay.open(({ isOpen, close }) => (
-          <GuardFormModal isOpen={isOpen} onClose={close} />
-        ));
-        return;
-      }
-    }
-
-    router.push(route);
-  };
+  })();
 
   return (
     <StyledHeader>
@@ -138,7 +102,7 @@ const Header = () => {
             <UnderlineButton
               key={`navigation ${index}`}
               active={route === pathName}
-              onClick={() => handleNavigationClickForm(route)}
+              onClick={() => router.push(route)}
             >
               {name}
             </UnderlineButton>

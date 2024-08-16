@@ -41,11 +41,14 @@ const useGradeCalculation = () => {
       const achievementLevel = subject[achievementLevelKey];
       const subjectName = subject.subjectName;
       if (
-        (subjectName === '국어' || subjectName === '수학' || subjectName === '영어') &&
+        (subjectName === '국어' || subjectName === '영어') &&
         achievementLevel === null
       ) {
         hyphenLength += 1;
         return acc + AchievementScore['C'];
+      } else if (subjectName === '수학' && achievementLevel === null) {
+        hyphenLength += 1;
+        return acc + AchievementScore['C'] * 2;
       }
       if (subjectName === '수학' && achievementLevel !== null) {
         return acc + AchievementScore[achievementLevel] * 2;

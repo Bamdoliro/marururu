@@ -1,5 +1,4 @@
-import { Row, Td, Th, Text } from '@maru/ui';
-import { color } from '@maru/design-token';
+import { Column, Row, Td, Th } from '@maru/ui';
 import styled from 'styled-components';
 
 const CameraLocation = () => {
@@ -7,600 +6,80 @@ const CameraLocation = () => {
     <StyleCameraLocation>
       <Table>
         <Row alignItems="center">
-          <Th borderTopLeftRadius={12} width="calc(100% / 4.9)" height={56}>
-            설치 대수
-          </Th>
-          <Th borderTopRightRadius={12} width="calc(100% / 1.66)" height={56}>
-            설치 위치 및 촬영 범위
-          </Th>
+          <StyledTh borderTopLeftRadius={12} width="14.28%" height={56}>
+            시설물 명
+          </StyledTh>
+          <StyledTh width="20%" height={56}>
+            위치
+          </StyledTh>
+          <StyledTh width="14.28%" height={56}>
+            카메라 대수
+          </StyledTh>
+          <StyledTh width="13.16%" height={56}>
+            성능
+          </StyledTh>
+          <StyledTh borderTopRightRadius={12} width="20%" height={56}>
+            촬영범위
+          </StyledTh>
         </Row>
         <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              3
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              융합관 3층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              창의관 1층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              SRC 2층 엘리베이터 홀
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 2층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              SRC 엘리베이터
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 3층 계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 엘리베이터
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              SRC 1층 입구
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 1층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              4
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              본관 2층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 3층 통로
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 4층 옥상계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              SRC 2층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              융합관 1층 계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 2층 계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사B 3층 통로
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              3
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              융합관 2층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              SRC 1층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 1층 입구
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              본관 2층 계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              5
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              본관 1층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              본관 3층 옥상계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              3
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              융합관 1층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              SRC 2층 입구
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              본관 2층 쉼터
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              본관 엘리베이터
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              융합관 엘리베이터
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 3층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              융합관 2층 계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              융합관 3층 계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사B 3층 엘리베이터 홀
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              4
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사B 3층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사B 4층 통로
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사B 4층 엘리베이터 홀
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              4
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사B 4층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              4
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사B 4층 복도
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사B 5층 옥상계단
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              본관쉼터
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              정문입구
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              3
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              주차장
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              운동장
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              본관 앞
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              SRC관 입구
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 통로
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기숙사A 앞
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              강당입구
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              1
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              강당주차장
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              강당뒤
-            </Text>
-          </Td>
-        </Row>
-        <Row alignItems="center">
-          <Td borderBottomLeftRadius={12} width="calc(100% / 4.9)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              2
-            </Text>
-          </Td>
-          <Td borderBottomRightRadius={12} width="calc(100% / 1.66)" height={56}>
-            <Text fontType="context" color={color.maruDefault}>
-              기계실
-            </Text>
-          </Td>
+          <StyledTd width="14.28%" height={280} borderBottomLeftRadius={12}>
+            <CenteredContent>
+              부산소프트웨어
+              <br />
+              마이스터고
+              <br />
+              (85대)
+            </CenteredContent>
+          </StyledTd>
+          <StyledColumn width="20%">
+            <StyledTd width="100%" height={56}>
+              본관
+            </StyledTd>
+            <StyledTd width="100%" height={56}>
+              융합관
+            </StyledTd>
+            <StyledTd width="100%" height={56}>
+              SRC관 기숙사 B동
+            </StyledTd>
+            <StyledTd width="100%" height={56}>
+              기숙사 A동
+            </StyledTd>
+            <StyledTd width="100%" height={56}>
+              외부
+            </StyledTd>
+          </StyledColumn>
+          <StyledColumn width="14.28%">
+            <StyledTd width="100%" height={56}>
+              13대
+            </StyledTd>
+            <StyledTd width="100%" height={56}>
+              16대
+            </StyledTd>
+            <StyledTd width="100%" height={56}>
+              21대
+            </StyledTd>
+            <StyledTd width="100%" height={56}>
+              13대
+            </StyledTd>
+            <StyledTd width="100%" height={56}>
+              20대
+            </StyledTd>
+          </StyledColumn>
+          <StyledTd width="13.16%" height={280}>
+            <CenteredContent>
+              1080p
+              <br />
+              화소
+            </CenteredContent>
+          </StyledTd>
+          <StyledTd width="20%" height={280} borderBottomRightRadius={12}>
+            <CenteredContent>
+              *CCTV 상세 현황
+              <br />
+              별도 첨부
+            </CenteredContent>
+          </StyledTd>
         </Row>
       </Table>
     </StyleCameraLocation>
@@ -615,4 +94,54 @@ const StyleCameraLocation = styled.div`
 
 const Table = styled.div`
   width: 100%;
+  border-collapse: collapse;
+`;
+
+const CenteredContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+`;
+
+const StyledColumn = styled(Column)`
+  width: ${(props) => props.width || '100%'};
+`;
+
+const StyledTh = styled(Th)<{
+  width: string;
+  height?: number;
+  borderTopLeftRadius?: number;
+  borderTopRightRadius?: number;
+}>`
+  width: ${(props) => props.width};
+  height: ${(props) => (props.height ? `${props.height}px` : 'auto')};
+  border-top-left-radius: ${(props) =>
+    props.borderTopLeftRadius ? `${props.borderTopLeftRadius}px` : '0'};
+  border-top-right-radius: ${(props) =>
+    props.borderTopRightRadius ? `${props.borderTopRightRadius}px` : '0'};
+  background-color: #0066cc;
+  color: #fff;
+  text-align: center;
+  border: 1px solid #ddd;
+`;
+
+const StyledTd = styled(Td)<{
+  width: string;
+  height?: number;
+  borderBottomLeftRadius?: number;
+  borderBottomRightRadius?: number;
+}>`
+  width: ${(props) => props.width};
+  height: ${(props) => (props.height ? `${props.height}px` : 'auto')};
+  border-bottom-left-radius: ${(props) =>
+    props.borderBottomLeftRadius ? `${props.borderBottomLeftRadius}px` : '0'};
+  border-bottom-right-radius: ${(props) =>
+    props.borderBottomRightRadius ? `${props.borderBottomRightRadius}px` : '0'};
+  border: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
 `;

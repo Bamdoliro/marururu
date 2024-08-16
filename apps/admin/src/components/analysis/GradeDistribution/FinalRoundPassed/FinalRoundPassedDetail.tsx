@@ -88,7 +88,7 @@ const FinalRoundPassedDetail = () => {
             </Td>
           </Row>
           <Row>
-            <Td width={240} height={280}>
+            <Td width={240} height={224}>
               기회균등 전형
             </Td>
             <Column>
@@ -127,7 +127,7 @@ const FinalRoundPassedDetail = () => {
               </Row>
               <Row>
                 <Td width={240} height={56}>
-                  한부모가정보호대상자
+                  한부모가정
                 </Td>
                 <Td width={80} height={56}>
                   {oneParentApplicant.max}
@@ -136,9 +136,16 @@ const FinalRoundPassedDetail = () => {
                   {oneParentApplicant.min}
                 </Td>
               </Row>
+            </Column>
+          </Row>
+          <Row>
+            <Td width={240} height={280}>
+              사회다양성 전형
+            </Td>
+            <Column>
               <Row>
                 <Td width={240} height={56}>
-                  북한이탈주민 또는 그 자녀
+                  북한이탈청소년
                 </Td>
                 <Td width={80} height={56}>
                   {fromNorthKoreaApplicant.max}
@@ -147,16 +154,9 @@ const FinalRoundPassedDetail = () => {
                   {fromNorthKoreaApplicant.min}
                 </Td>
               </Row>
-            </Column>
-          </Row>
-          <Row>
-            <Td width={240} height={224}>
-              사회다양성 전형
-            </Td>
-            <Column>
               <Row>
                 <Td width={240} height={56}>
-                  다문화가정 자녀
+                  다문화가족 자녀
                 </Td>
                 <Td width={80} height={56}>
                   {multiculturalApplicant.max}

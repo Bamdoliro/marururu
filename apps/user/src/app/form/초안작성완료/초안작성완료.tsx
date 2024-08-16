@@ -87,7 +87,7 @@ const 초안작성완료 = () => {
               : '또한 잘못 입력한 곳이 없는지 면밀히 검토해주시기 바랍니다.'}
           </Text>
         </Column>
-        <CheckFormCompleteBox
+        <StyledCheckFormCompleteBox
           applicantFilledCount={applicantFilledCount}
           parentFilledCount={parentFilledCount}
           educationFilledCount={educationFilledCount}
@@ -140,13 +140,16 @@ const Styled초안작성완료 = styled.div<{ isComplete: boolean }>`
   opacity: 0;
   animation: show 1.2s 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 
+  pointer-events: none;
+
   @keyframes show {
     from {
       transform: translateY(200px);
     }
     to {
       transform: translateY(0);
-      opacity: 100;
+      opacity: 1;
+      pointer-events: auto;
     }
   }
 `;
@@ -165,6 +168,18 @@ const CompleteAlarmBox = styled.div`
       transform: translateY(-300px);
       opacity: 0;
       display: none;
+    }
+  }
+`;
+
+const StyledCheckFormCompleteBox = styled(CheckFormCompleteBox)`
+  pointer-events: none;
+
+  animation: enablePointerEvents 1.2s 2s forwards;
+
+  @keyframes enablePointerEvents {
+    to {
+      pointer-events: auto;
     }
   }
 `;

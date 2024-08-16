@@ -11,3 +11,4 @@ export { default as GradePreview } from './GradePreview/GradePreview';
 export { default as PdfGeneratedLoader } from './PdfGeneratedLoader/PdfGeneratedLoader';
 export { default as ProfileUploader } from './ProfileUploader/ProfileUploader';
 export { default as ProgressSteps } from './ProgressSteps/ProgressSteps';
+export { default as CropImageModal } from './CropImageModal/CropImageModal';

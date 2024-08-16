@@ -14,7 +14,7 @@ const NeedLoginModal = ({ isOpen, onClose }: Props) => {
 
   const handleConfirmModal = () => {
     onClose();
-    router.push(ROUTES.LOGIN);
+    router.replace(ROUTES.LOGIN);
   };
 
   const handleCloseModal = () => {

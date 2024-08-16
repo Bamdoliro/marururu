@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { flex } from '@maru/utils';
 import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
@@ -29,7 +29,7 @@ export default CheckForm;
 
 const StyledApplicationBox = styled.div`
   ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
-  width: 492px;
+  width: 450px;
   height: 125px;
   padding: 24px 32px;
   background-color: ${color.white};

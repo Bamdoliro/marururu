@@ -6,6 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import type { AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
 import { deleteLogoutAdmin, postLoginAdmin } from './api';
+import { useCookies } from 'react-cookie';
 
 export const useLoginAdminMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
   const router = useRouter();
@@ -27,13 +28,19 @@ export const useLoginAdminMutation = ({ phoneNumber, password }: PostLoginAuthRe
 
 export const useLogoutAdminMutation = () => {
   const router = useRouter();
+  const [, , removeCookie] = useCookies(['access-token', 'refresh-token']);
+
   const { mutate: logoutAdminMutate, ...restMutation } = useMutation({
     mutationFn: deleteLogoutAdmin,
     onSuccess: () => {
-      localStorage.clear();
+      removeCookie('access-token', { path: '/' });
+      removeCookie('refresh-token', { path: '/' });
       router.replace(ROUTES.MAIN);
     },
-    onError: () => localStorage.clear(),
+    onError: () => {
+      removeCookie('access-token', { path: '/' });
+      removeCookie('refresh-token', { path: '/' });
+    },
   });
   return { logoutAdminMutate, ...restMutation };
 };

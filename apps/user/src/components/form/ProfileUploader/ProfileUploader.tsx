@@ -1,34 +1,75 @@
 import { useOpenFileUploader } from '@/hooks';
 import { useUploadProfileImageMutation } from '@/services/form/mutations';
-import { useFormValueStore } from '@/store';
+import { useFormValueStore, useSetFormStore } from '@/store';
 import { color, font } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler, DragEvent } from 'react';
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import styled, { css } from 'styled-components';
+import CropImageModal from '../CropImageModal/CropImageModal';
 
-const ProfileUploader = () => {
+const ProfileUploader = ({
+  onPhotoUpload,
+  isError,
+}: {
+  onPhotoUpload: (success: boolean) => void;
+  isError: boolean;
+}) => {
   const form = useFormValueStore();
+  const setForm = useSetFormStore();
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
-  // Mutation
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(
+    form.applicant.identificationPictureUri
+  );
+
   const { uploadProfileImageMutate } = useUploadProfileImageMutation();
+
   const uploadProfileImageFile = (image: FormData) => {
-    uploadProfileImageMutate(image);
+    uploadProfileImageMutate(image, {
+      onSuccess: (res) => {
+        const newImageUrl = `${res.data.url}?${new Date().getTime()}`;
+        setImagePreviewUrl(newImageUrl);
+        setForm((prev) => ({
+          ...prev,
+          applicant: { ...prev.applicant, identificationPictureUri: newImageUrl },
+        }));
+        onPhotoUpload(true);
+      },
+      onError: () => {
+        onPhotoUpload(false);
+      },
+    });
   };
 
-  // 이미지 데이터 핸들링
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
-    const formData = new FormData();
-    formData.append('image', files[0]);
-    uploadProfileImageFile(formData);
+
+    const file = files[0];
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      if (img.width < 117 || img.height < 156) {
+        alert('사진 크기가 너무 작습니다.');
+        return;
+      }
+
+      if (img.width > 117 || img.height > 156) {
+        setImageSrc(URL.createObjectURL(file));
+        setIsModalOpen(true);
+      } else {
+        const formData = new FormData();
+        formData.append('image', file, 'image.jpg');
+        uploadProfileImageFile(formData);
+      }
+    };
   };
 
-  // 드래그 앤 드랍
   const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -49,19 +90,38 @@ const ProfileUploader = () => {
   const onDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const formData = new FormData();
-    formData.append('image', e.dataTransfer.files[0]);
-    uploadProfileImageFile(formData);
+    const file = e.dataTransfer.files[0];
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+    img.onload = () => {
+      if (img.width < 117 || img.height < 156) {
+        alert('사진 크기가 너무 작습니다.');
+        return;
+      }
+
+      if (img.width > 117 || img.height > 156) {
+        setImageSrc(URL.createObjectURL(file));
+        setIsModalOpen(true);
+      } else {
+        const formData = new FormData();
+        formData.append('image', file, 'image.jpg');
+        uploadProfileImageFile(formData);
+      }
+    };
     setIsDragging(false);
   };
+
+  useEffect(() => {
+    setImagePreviewUrl(form.applicant.identificationPictureUri);
+  }, [form.applicant.identificationPictureUri]);
 
   return (
     <StyledProfileUploader>
       <Text fontType="context" color={color.gray700}>
         증명사진
       </Text>
-      {form.applicant.identificationPictureUri ? (
-        <ImagePreview src={form.applicant.identificationPictureUri} alt="profile-image" />
+      {imagePreviewUrl ? (
+        <ImagePreview src={imagePreviewUrl} alt="profile-image" />
       ) : (
         <UploadImageBox
           onDragEnter={onDragEnter}
@@ -69,6 +129,7 @@ const ProfileUploader = () => {
           onDragOver={onDragOver}
           onDrop={onDrop}
           $isDragging={isDragging}
+          $isError={isError}
         >
           <Column gap={12} alignItems="center">
             <Button size="SMALL" onClick={openImageFileUploader}>
@@ -83,7 +144,7 @@ const ProfileUploader = () => {
           </Column>
         </UploadImageBox>
       )}
-      {form.applicant.identificationPictureUri && (
+      {imagePreviewUrl && (
         <Button size="SMALL" onClick={openImageFileUploader}>
           재업로드
         </Button>
@@ -100,6 +161,19 @@ const ProfileUploader = () => {
         onChange={handleImageFileChange}
         hidden
       />
+      {imageSrc && (
+        <CropImageModal
+          isOpen={isModalOpen}
+          imageSrc={imageSrc}
+          onClose={() => setIsModalOpen(false)}
+          onCropComplete={(croppedImage) => {
+            const formData = new FormData();
+            formData.append('image', croppedImage, 'image.png, image.jpg, image.jpeg');
+            uploadProfileImageFile(formData);
+          }}
+          zoom={1}
+        />
+      )}
     </StyledProfileUploader>
   );
 };
@@ -111,13 +185,20 @@ const StyledProfileUploader = styled.div`
   gap: 8px;
 `;
 
-const UploadImageBox = styled.div<{ $isDragging: boolean }>`
+const UploadImageBox = styled.div<{ $isDragging: boolean; $isError: boolean }>`
   ${flex({ alignItems: 'center', justifyContent: 'center' })}
   width: 225px;
   height: 300px;
   border-radius: 6px;
-  border: 1px dashed ${(props) => (props.$isDragging ? color.maruDefault : color.gray400)};
+  border: 1px dashed
+    ${(props) =>
+      props.$isDragging ? color.maruDefault : props.$isError ? color.red : color.gray400};
   background-color: ${color.gray50};
+  ${(props) =>
+    props.$isError &&
+    css`
+      outline: 3px solid rgba(244, 67, 54, 0.25);
+    `}
 `;
 
 const ImagePreview = styled.img`

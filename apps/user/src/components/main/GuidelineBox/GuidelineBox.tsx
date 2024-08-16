@@ -9,7 +9,7 @@ const GuidelineBox = () => {
     <StyledGuidelineBox
       onClick={() =>
         window.open(
-          'https://school.busanedu.net/viewer/doc.html?fn=f9ccabacf50aba9dbe108bdbccf244f34b1a4bf9118f8c63e034e9af8c30afc1&rs=/upload/temp/convertToHtml/202308/bssm-h/'
+          'https://school.busanedu.net/viewer/doc.html?fn=b25ea8f05bc715f06fc798cd9e58f42cee9eb81e421c5f6da1c1217364cda834&rs=/upload/temp/convertToHtml/202407/bssm-h/'
         )
       }
     >

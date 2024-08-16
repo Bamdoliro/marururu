@@ -1,11 +1,15 @@
-type LocalStorageKey = 'access-token' | 'refresh-token';
+import { Cookies } from 'react-cookie';
+
+type CookieKey = 'access-token' | 'refresh-token';
+const cookies = new Cookies();
+
 export class Storage {
-  static getItem(key: LocalStorageKey) {
-    return typeof window !== 'undefined' ? localStorage.getItem(key) : null;
+  static getItem(key: CookieKey) {
+    return typeof window !== 'undefined' ? cookies.get(key) : null;
   }
 
-  static setItem(key: LocalStorageKey, value: string) {
+  static setItem(key: CookieKey, value: string) {
     if (typeof window === 'undefined') return;
-    localStorage.setItem(key, value);
+    cookies.set(key, value, { path: '/' });
   }
 }

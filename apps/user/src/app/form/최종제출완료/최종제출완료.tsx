@@ -30,12 +30,12 @@ const 최종제출완료 = () => {
               부산소프트웨어마이스터고에 지원해주셔서 감사합니다.
             </Text>
             <Text fontType="p2" color={color.gray900} textAlign="center">
-              {userData.name} 님, 부산소프트웨어마이스터고에 지원해주셔서 대단히
+              {userData.name}님, 부산소프트웨어마이스터고에 지원해주셔서 대단히
               감사드립니다.
               <br />
               1차 합격자는 10월 21일에 발표됩니다.
               <br />
-              {userData.name} 님의 1차 합격을 기원합니다.
+              {userData.name}님의 1차 합격을 기원합니다.
             </Text>
           </Column>
           <Button onClick={handleMoveMainPage} size="SMALL">

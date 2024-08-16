@@ -1,13 +1,16 @@
 import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/design-token';
-import { Button, Column } from '@maru/ui';
+import { Button, Column, Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNoticePostAction } from './NoticePost.hooks';
+import { useOverlay } from '@toss/use-overlay';
+import NoticeUploadModal from '../NoticeUploadModal/NoticeUploadModal';
 
 const NoticePost = () => {
+  const overlay = useOverlay();
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
   const [noticeData, setNoticeData] = useState({
     title: '',
@@ -25,6 +28,12 @@ const NoticePost = () => {
     resizeTextarea(contentTextareaRef);
   };
 
+  const handleNoticeFileModalButtonClick = () => {
+    overlay.open(({ isOpen, close }) => (
+      <NoticeUploadModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
   return (
     <StyledNoticePost>
       <Column gap={36}>
@@ -35,9 +44,20 @@ const NoticePost = () => {
             onChange={handleNoticeDataChange}
             placeholder="제목을 입력해주세요"
           />
-          <Button size="SMALL" onClick={handleNoticePostButtonClick}>
-            게시하기
-          </Button>
+          <Row gap={10} alignItems="flex-end">
+            <Button
+              size="SMALL"
+              icon="CLIP_ICON"
+              styleType="SECONDARY"
+              width={124}
+              onClick={handleNoticeFileModalButtonClick}
+            >
+              파일 첨부
+            </Button>
+            <Button size="SMALL" onClick={handleNoticePostButtonClick}>
+              게시하기
+            </Button>
+          </Row>
         </NoticeHeader>
         <ContentTextarea
           ref={contentTextareaRef}
