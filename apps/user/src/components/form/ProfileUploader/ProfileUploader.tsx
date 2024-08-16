@@ -152,7 +152,6 @@ const ProfileUploader = ({
 
 export default ProfileUploader;
 
-// Styled components
 const StyledProfileUploader = styled.div`
   ${flex({ flexDirection: 'column' })}
   gap: 8px;
