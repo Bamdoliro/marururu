@@ -58,7 +58,6 @@ const FaqPost = () => {
             size="SMALL"
             width={140}
             value={FAQ_CATEGORY[faqData.category as Category]}
-            width={140}
             placeholder="카테고리"
             onChange={handleFaqCategoryChange}
           />

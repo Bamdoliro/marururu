@@ -34,8 +34,8 @@ import {
   useSecondRoundResultEditAction,
   useSecondRoundResultEditAutoAction,
 } from './form.hooks';
-import withAuth from '@/hocs/withAuth';
-
+import withAuth from '@/hoc/withAuth';
+import { useState, useEffect } from 'react';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();
