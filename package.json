@@ -7,26 +7,19 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --filter=./apps/**",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "commit": "cz"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@commitlint/cli": "^17.8.0",
     "@commitlint/config-conventional": "^17.8.0",
-    "@lhci/cli": "^0.12.0",
-    "@turbo/gen": "^1.9.7",
-    "commitizen": "^4.3.0",
     "eslint": "^7.32.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.0.1",
     "prettier": "^2.5.1",
-    "turbo": "latest"
+    "turbo": "^2.0.11"
   },
   "packageManager": "pnpm@8.6.7",
-  "name": "marururu",
-  "dependencies": {
-    "msw": "^2.3.0"
-  }
+  "name": "marururu"
 }
