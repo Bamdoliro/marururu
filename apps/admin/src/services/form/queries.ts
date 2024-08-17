@@ -4,12 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import { getExportExcel, getFormDetail, getFormList, getSecondScoreFormat } from './api';
 import type { ExportExcelType } from '@/types/form/client';
 
-export const useFormListQuery = () => {
+export const useFormListQuery = (status?: string, type?: string) => {
   const formListType = useFormListTypeValueStore();
 
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.FORM_LIST, formListType],
-    queryFn: () => getFormList(formListType),
+    queryFn: () => getFormList(formListType, status, type),
     suspense: false,
   });
 

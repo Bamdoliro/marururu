@@ -8,21 +8,20 @@ import type {
   PatchSecondRoundResultReq,
 } from '@/types/form/remote';
 
-export const getFormList = async (formListType: FormListType) => {
+export const getFormList = async (
+  formListType: FormListType,
+  status?: string,
+  type?: string
+) => {
   if (formListType === '검토해야 하는 원서 모아보기') {
     const { data } = await maru.get<GetFormListRes>('/form/review', authorization());
 
     return data;
-  } else if (formListType === '전형 별') {
-    const { data } = await maru.get<GetFormListRes>('/form/전형별', authorization());
-
-    return data;
-  } else if (formListType === '최종 점수 높은 순') {
-    const { data } = await maru.get<GetFormListRes>('/form/최종점높순', authorization());
-
-    return data;
-  } else if (formListType === '최종 점수 낮은 순') {
-    const { data } = await maru.get<GetFormListRes>('/form/최종점낮순', authorization());
+  } else if (formListType === '정렬') {
+    const { data } = await maru.get<GetFormListRes>(
+      `/form?status=${status}&type=${type}`,
+      authorization()
+    );
 
     return data;
   }

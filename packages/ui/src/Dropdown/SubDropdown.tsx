@@ -3,7 +3,7 @@ import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowBottom, IconArrowTop } from '@maru/icon';
 import { flex } from '@maru/utils';
 import React, { useState } from 'react';
-import type { CSSProperties, FC } from 'react';
+import type { FC } from 'react';
 import styled, { css } from 'styled-components';
 import Text from '../Text/Text';
 
@@ -106,7 +106,7 @@ const SubDropdown: FC<Props> = ({
             name={name}
             isOpen={isSubOpen}
             setIsSubOpen={setIsSubOpen}
-            width={width} // width 전달
+            width={width}
           />
         )}
       </DropdownListBox>
@@ -120,7 +120,7 @@ interface ChildDropdownProps {
   name: string;
   isOpen: boolean;
   setIsSubOpen: (open: boolean) => void;
-  width?: CSSProperties['width']; // width prop 추가
+  width?: number; // width는 number 타입으로 설정
 }
 
 const ChildDropdown: FC<ChildDropdownProps> = ({
@@ -224,6 +224,7 @@ const DropdownItem = styled.button`
   ${flex({ alignItems: 'center' })}
   padding: 10px 16px;
   height: 48px;
+  text-align: left;
   cursor: pointer;
 
   &:hover,

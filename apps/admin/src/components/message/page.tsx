@@ -147,7 +147,7 @@ const Message = () => {
             size="SMALL"
             value={MESSAGE_CATEGORY[messageData.status as Category]}
             placeholder="받는 사람"
-            width="180px"
+            width={180}
             onChange={handleMessageCategoryChange}
           />
           <Button size="SMALL" onClick={handleSendMessages}>
