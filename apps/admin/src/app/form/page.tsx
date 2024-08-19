@@ -104,7 +104,7 @@ const FormPage = () => {
   };
 
   const getSelectedValue = (sortingType: FormListSortingType) => {
-    return sortingType.status || sortingType.type || sortingType.sort || 'APPROVED';
+    return sortingType.status || sortingType.type || sortingType.sort;
   };
 
   return (
@@ -167,7 +167,9 @@ const FormPage = () => {
               size="SMALL"
               placeholder="정렬"
               width={300}
-              value={FORM_SORTING_CATEGORY[getSelectedValue(formListSortingType)]}
+              value={
+                FORM_SORTING_CATEGORY[getSelectedValue(formListSortingType) ?? 'SORTING']
+              }
               onChange={handleMessageCategoryChange}
             />
             <Row gap={16}>
