@@ -8,12 +8,17 @@ import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/Sec
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
 import { FORM_SORTING_CATEGORY } from '@/constants/form/constants';
-import type { Category } from '@/types/message/client';
+import type {
+  FormStatus,
+  FormType,
+  FormSort,
+  FormListSortingType,
+} from '@/types/form/client';
 import { useSetFormToPrintStore } from '@/store/form/formToPrint';
 import { useIsFormToPrintSelectingStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
-import { useFormListTypeStore } from '@/store/form/type';
+import { useFormListTypeStore, useFormListSortingTypeStore } from '@/store/form/type';
 import {
   IconCheckDocument,
   IconClose,
@@ -36,6 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const FormPage = () => {
   const [formListType, setFormListType] = useFormListTypeStore();
+  const [formListSortingType, setFormListSortingType] = useFormListSortingTypeStore();
 
   const handleFormListTypeReview = () => setFormListType('검토해야 하는 원서 모아보기');
   const handleFormListTypeAll = () => setFormListType('모두 보기');
@@ -83,11 +89,23 @@ const FormPage = () => {
 
   const handleStatusCategoryChange = (value: string) => {
     setFormListType('정렬');
+    console.log(value);
+    setFormListSortingType((prev) => ({ ...prev, status: value as FormStatus }));
   };
 
-  const handleTypeCategoryChange = (value: string) => {};
+  const handleTypeCategoryChange = (value: string) => {
+    setFormListType('정렬');
+    setFormListSortingType((prev) => ({ ...prev, type: value as FormType }));
+  };
 
-  const handleMessageCategoryChange = (value: string, name: string) => {};
+  const handleMessageCategoryChange = (value: string) => {
+    setFormListType('정렬');
+    setFormListSortingType((prev) => ({ ...prev, sort: value as FormSort }));
+  };
+
+  const getSelectedValue = (sortingType: FormListSortingType) => {
+    return sortingType.status || sortingType.type || sortingType.sort || 'APPROVED';
+  };
 
   return (
     <AppLayout>
@@ -149,6 +167,7 @@ const FormPage = () => {
               size="SMALL"
               placeholder="정렬"
               width={300}
+              value={FORM_SORTING_CATEGORY[getSelectedValue(formListSortingType)]}
               onChange={handleMessageCategoryChange}
             />
             <Row gap={16}>
