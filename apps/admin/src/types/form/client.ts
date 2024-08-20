@@ -44,12 +44,7 @@ export interface Form {
 
 export type FormListType = '모두 보기' | '검토해야 하는 원서 모아보기' | '정렬';
 
-export type FormSort = 'TOTAL_SCORE_ASC' | 'TOTAL_SCORE_DESC';
-export interface FormListSortingType {
-  status: FormStatus | null;
-  type: FormType | null;
-  sort: FormSort | null;
-}
+export type FormListSortingType = 'TOTAL_SCORE_ASC' | 'TOTAL_SCORE_DESC' | null;
 
 export type ExportExcelType =
   | '전체 내보내기'

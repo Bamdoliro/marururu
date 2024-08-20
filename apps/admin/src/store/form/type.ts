@@ -8,11 +8,7 @@ const formListTypeAtomState = atom<FormListType>({
 
 const formListSortingTypeAtomState = atom<FormListSortingType>({
   key: 'form-sort-type',
-  default: {
-    status: null,
-    type: null,
-    sort: null,
-  },
+  default: null,
 });
 
 export const useFormListTypeStore = () => useRecoilState(formListTypeAtomState);
