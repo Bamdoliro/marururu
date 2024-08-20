@@ -3,7 +3,7 @@ import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowBottom, IconArrowTop } from '@maru/icon';
 import { flex } from '@maru/utils';
 import React, { useState } from 'react';
-import type { CSSProperties, FC } from 'react';
+import type { FC } from 'react';
 import styled, { css } from 'styled-components';
 import Text from '../Text/Text';
 
@@ -20,7 +20,7 @@ interface Data {
 interface Props {
   label?: string;
   data: Data[];
-  width?: CSSProperties['width'];
+  width?: number;
   size?: DropdownSizeOption;
   value?: string;
   onChange: (value: string, name: string) => void;
@@ -31,7 +31,7 @@ interface Props {
 const SubDropdown: FC<Props> = ({
   label,
   data,
-  width = '320px',
+  width = 320,
   size = 'MEDIUM',
   value = '',
   onChange,
@@ -86,7 +86,7 @@ const SubDropdown: FC<Props> = ({
         )}
       </StyledDropdown>
       <DropdownListBox $isOpen={isOpen}>
-        <DropdownList>
+        <DropdownList $isMultiple={data.length > 7}>
           {data.map((item, index) => (
             <DropdownItem
               key={`dropdown ${index}`}
@@ -106,6 +106,7 @@ const SubDropdown: FC<Props> = ({
             name={name}
             isOpen={isSubOpen}
             setIsSubOpen={setIsSubOpen}
+            width={width}
           />
         )}
       </DropdownListBox>
@@ -119,6 +120,7 @@ interface ChildDropdownProps {
   name: string;
   isOpen: boolean;
   setIsSubOpen: (open: boolean) => void;
+  width?: number;
 }
 
 const ChildDropdown: FC<ChildDropdownProps> = ({
@@ -127,6 +129,7 @@ const ChildDropdown: FC<ChildDropdownProps> = ({
   name,
   isOpen,
   setIsSubOpen,
+  width,
 }) => {
   const dropdownRef = useOutsideClick(() => setIsSubOpen(false));
 
@@ -137,7 +140,7 @@ const ChildDropdown: FC<ChildDropdownProps> = ({
 
   return (
     <ChildDropdownListBox ref={dropdownRef} $isOpen={isOpen}>
-      <DropdownList $isMultiple={data.length > 7}>
+      <DropdownList width={width} $isMultiple={data.length > 7}>
         {data.map((item, index) => (
           <DropdownItem
             key={`child-dropdown ${index}`}
@@ -199,12 +202,15 @@ const ChildDropdownListBox = styled.div<{ $isOpen: boolean }>`
   width: 280px;
 `;
 
-const DropdownList = styled.div<{ $isMultiple?: boolean }>`
+const DropdownList = styled.div<{
+  $isMultiple?: boolean;
+  width?: number;
+}>`
   z-index: 1;
   position: absolute;
   margin-top: 8px;
   padding: 8px 0px;
-  width: 178px;
+  width: ${(props) => (props.width !== undefined ? `${props.width}px` : '178px')};
   background-color: ${color.white};
   border: 1px solid ${color.gray200};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -218,6 +224,7 @@ const DropdownItem = styled.button`
   ${flex({ alignItems: 'center' })}
   padding: 10px 16px;
   height: 48px;
+  text-align: left;
   cursor: pointer;
 
   &:hover,

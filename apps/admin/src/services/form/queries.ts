@@ -1,15 +1,19 @@
 import { KEY } from '@/constants/common/constant';
-import { useFormListTypeValueStore } from '@/store/form/type';
+import {
+  useFormListTypeValueStore,
+  useFormListSortingTypeValueStore,
+} from '@/store/form/type';
 import { useQuery } from '@tanstack/react-query';
 import { getExportExcel, getFormDetail, getFormList, getSecondScoreFormat } from './api';
 import type { ExportExcelType } from '@/types/form/client';
 
 export const useFormListQuery = () => {
   const formListType = useFormListTypeValueStore();
+  const formListSortingType = useFormListSortingTypeValueStore();
 
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.FORM_LIST, formListType],
-    queryFn: () => getFormList(formListType),
+    queryKey: [KEY.FORM_LIST, formListType, formListSortingType],
+    queryFn: () => getFormList(formListType, formListSortingType),
     suspense: false,
   });
 

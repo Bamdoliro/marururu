@@ -1,6 +1,11 @@
 import { maru } from '@/apis/instance/instance';
 import { authorization } from '@/apis/token';
-import type { ApprovalStatus, ExportExcelType, FormListType } from '@/types/form/client';
+import type {
+  ApprovalStatus,
+  ExportExcelType,
+  FormListType,
+  FormListSortingType,
+} from '@/types/form/client';
 import type {
   GetFormDetail,
   GetFormListRes,
@@ -8,14 +13,29 @@ import type {
   PatchSecondRoundResultReq,
 } from '@/types/form/remote';
 
-export const getFormList = async (formListType: FormListType) => {
+export const getFormList = async (
+  formListType: FormListType,
+  formListSortingType: FormListSortingType
+) => {
   if (formListType === '검토해야 하는 원서 모아보기') {
     const { data } = await maru.get<GetFormListRes>('/form/review', authorization());
-
     return data;
   }
-  const { data } = await maru.get<GetFormListRes>('/form', authorization());
 
+  if (formListType === '정렬') {
+    const params = new URLSearchParams();
+
+    if (formListSortingType.status) params.append('status', formListSortingType.status);
+    if (formListSortingType.type) params.append('type', formListSortingType.type);
+    if (formListSortingType.sort) params.append('sort', formListSortingType.sort);
+
+    const queryString = params.toString();
+    const url = `/form${`?${queryString}`}`;
+    const { data } = await maru.get<GetFormListRes>(url, authorization());
+    return data;
+  }
+
+  const { data } = await maru.get<GetFormListRes>('/form', authorization());
   return data;
 };
 

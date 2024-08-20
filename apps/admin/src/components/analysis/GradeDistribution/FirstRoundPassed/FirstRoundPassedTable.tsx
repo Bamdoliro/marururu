@@ -13,7 +13,6 @@ const FirstRoundPassedTable = () => {
   const entireFirstRoundMax = dataList
     ? Math.max(...dataList.map((item) => item.firstRoundMax)).toFixed(3)
     : undefined;
-
   const entireFirstRoundMin = dataList
     ? Math.min(
         ...dataList.map((item) => item.firstRoundMin).filter((value) => value !== 0)
