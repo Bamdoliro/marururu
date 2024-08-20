@@ -135,7 +135,11 @@ const FormPage = () => {
                 placeholder="상태 별"
                 onChange={handleSortStatus}
                 name="category"
-                value={FORM_SORTING_CATEGORY[formListSortingType.status ?? 'ALL']}
+                value={
+                  formListSortingType.status
+                    ? FORM_SORTING_CATEGORY[formListSortingType.status]
+                    : undefined
+                }
                 doubled={5}
               />
               <Dropdown
@@ -163,7 +167,11 @@ const FormPage = () => {
                 placeholder="전형 별"
                 onChange={handleSortType}
                 name="category"
-                value={FORM_SORTING_CATEGORY[formListSortingType.type ?? 'ALL']}
+                value={
+                  formListSortingType.type
+                    ? FORM_SORTING_CATEGORY[formListSortingType.type]
+                    : undefined
+                }
                 doubled={5}
               />
               <Dropdown
@@ -177,7 +185,11 @@ const FormPage = () => {
                 placeholder="최종 점수"
                 onChange={handleSortSort}
                 name="category"
-                value={FORM_SORTING_CATEGORY[formListSortingType.sort ?? 'ALL']}
+                value={
+                  formListSortingType.sort
+                    ? FORM_SORTING_CATEGORY[formListSortingType.sort]
+                    : undefined
+                }
               />
             </Row>
             <Row gap={16}>

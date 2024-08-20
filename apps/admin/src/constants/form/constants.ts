@@ -34,5 +34,4 @@ export const FORM_SORTING_CATEGORY = {
   ...FORM_TYPE_CATEGORY,
   TOTAL_SCORE_DESC: '높은 순',
   TOTAL_SCORE_ASC: '낮은 순',
-  ALL: '-',
 } as const;
