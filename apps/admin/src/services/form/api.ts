@@ -67,7 +67,7 @@ export const patchSecondRoundResult = async (
 };
 
 export const patchSecondScoreResultAuto = async () => {
-  const { data } = await maru.patch('/form/second-round/select', authorization());
+  const { data } = await maru.patch('/form/second-round/select', null, authorization());
 
   return data;
 };
