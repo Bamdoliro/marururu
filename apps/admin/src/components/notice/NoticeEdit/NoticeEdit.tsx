@@ -1,7 +1,7 @@
 import { useNoticeDetailQuery } from '@/services/notice/queries';
-import { resizeTextarea } from '@/utils';
+import { formatFileName, resizeTextarea } from '@/utils';
 import { color, font } from '@maru/design-token';
-import { Button, Column, Row } from '@maru/ui';
+import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';
 import { useEffect, useRef, useState } from 'react';
@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { useNotieEditAction } from './NoticeEdit.hooks';
 import NoticeUploadModal from '../NoticeUploadModal/NoticeUploadModal';
 import { useOverlay } from '@toss/use-overlay';
+import { IconClip } from '@maru/icon';
 
 interface Props {
   id: number;
@@ -40,7 +41,15 @@ const NoticeEdit = ({ id }: Props) => {
 
   const handleNoticeFileModalButtonClick = () => {
     overlay.open(({ isOpen, close }) => (
-      <NoticeUploadModal isOpen={isOpen} onClose={close} />
+      <NoticeUploadModal
+        isOpen={isOpen}
+        onClose={close}
+        onFileAttach={(file) => {
+          if (file) {
+            setNoticeData({ ...noticeData, fileName: file.name });
+          }
+        }}
+      />
     ));
   };
 
@@ -77,6 +86,16 @@ const NoticeEdit = ({ id }: Props) => {
           placeholder="내용을 작성해주세요."
           rows={1}
         />
+        {noticeData.fileName && (
+          <StyledNoticeFile>
+            <Row alignItems="center" gap={10}>
+              <IconClip width={19} height={12} />
+              <Text fontType="p3" color={color.gray750}>
+                {formatFileName(noticeData.fileName || '')}
+              </Text>
+            </Row>
+          </StyledNoticeFile>
+        )}
       </Column>
     </StyledNoticeEdit>
   );
@@ -116,4 +135,23 @@ const ContentTextarea = styled.textarea`
     color: ${color.gray500};
   }
   resize: none;
+`;
+
+const StyledNoticeFile = styled.div`
+  ${flex({ justifyContent: 'space-between', alignItems: 'center' })};
+  gap: 12px;
+  height: 36px;
+  padding: 0 15px 0 15px;
+  border-radius: 999px;
+  background: ${color.gray200};
+  width: auto;
+  min-width: fit-content;
+  max-width: fit-content;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${color.gray300};
+  }
 `;

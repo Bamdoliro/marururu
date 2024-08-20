@@ -11,9 +11,10 @@ import NoticeUploader from './NoticeUploader/NoticeUploader';
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  onFileAttach: (file: File | null) => void;
 }
 
-const NoticeUploadModal = ({ isOpen, onClose }: Props) => {
+const NoticeUploadModal = ({ isOpen, onClose, onFileAttach }: Props) => {
   const [fileData, setFileData] = useNoticeFileStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -30,12 +31,15 @@ const NoticeUploadModal = ({ isOpen, onClose }: Props) => {
     const { files } = e.target;
 
     if (!files || files.length === 0) return;
-    setFileData(files[0]);
+    const selectedFile = files[0];
+    setFileData(selectedFile);
+    onFileAttach(selectedFile);
   };
 
   const removeFileAndCloseModal = () => {
     setFileData(null);
     removeFileInputValue();
+    onFileAttach(null);
     onClose();
   };
 

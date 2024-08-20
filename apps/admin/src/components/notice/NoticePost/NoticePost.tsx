@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { useNoticePostAction } from './NoticePost.hooks';
 import { useOverlay } from '@toss/use-overlay';
 import NoticeUploadModal from '../NoticeUploadModal/NoticeUploadModal';
+import { IconClip } from '@maru/icon';
 
 const NoticePost = () => {
   const overlay = useOverlay();
@@ -16,6 +17,7 @@ const NoticePost = () => {
     title: '',
     content: '',
   });
+  const [fileName, setFileName] = useState<string | null>(null);
 
   const { handleNoticePostButtonClick } = useNoticePostAction(noticeData);
 
@@ -30,7 +32,11 @@ const NoticePost = () => {
 
   const handleNoticeFileModalButtonClick = () => {
     overlay.open(({ isOpen, close }) => (
-      <NoticeUploadModal isOpen={isOpen} onClose={close} />
+      <NoticeUploadModal
+        isOpen={isOpen}
+        onClose={close}
+        onFileAttach={(file) => setFileName(file?.name || null)}
+      />
     ));
   };
 
@@ -67,6 +73,14 @@ const NoticePost = () => {
           placeholder="내용을 작성해주세요."
           rows={1}
         />
+        {fileName && (
+          <StyledNoticeFile>
+            <Row alignItems="center" gap={10}>
+              <IconClip width={19} height={12} />
+              {fileName}
+            </Row>
+          </StyledNoticeFile>
+        )}
       </Column>
     </StyledNoticePost>
   );
@@ -106,4 +120,23 @@ const ContentTextarea = styled.textarea`
     color: ${color.gray500};
   }
   resize: none;
+`;
+
+const StyledNoticeFile = styled.div`
+  ${flex({ justifyContent: 'space-between', alignItems: 'center' })};
+  gap: 12px;
+  height: 36px;
+  padding: 0 15px 0 15px;
+  border-radius: 999px;
+  background: ${color.gray200};
+  width: auto;
+  min-width: fit-content;
+  max-width: fit-content;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${color.gray300};
+  }
 `;
