@@ -1,6 +1,7 @@
 export type Category =
   | 'APPROVED'
   | 'REJECTED'
+  | 'RECEIVED'
   | 'FIRST_PASSED'
   | 'MEISTER_TALENT'
   | 'TRUE_REGULAR'

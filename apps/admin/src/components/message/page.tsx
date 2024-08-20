@@ -130,6 +130,7 @@ const Message = () => {
             data={[
               { value: 'APPROVED', label: '원서 승인 완료자' },
               { value: 'REJECTED', label: '원서 반려자' },
+              { value: 'RECEIVED', label: '접수 완료' },
               {
                 value: 'MEISTER_CASE',
                 label: '1차 합격자',
