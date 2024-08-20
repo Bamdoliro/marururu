@@ -28,7 +28,7 @@ import {
   IconUpload,
 } from '@maru/icon';
 import { color } from '@maru/design-token';
-import { Button, Column, Row, SubDropdown, Text } from '@maru/ui';
+import { Button, Column, Row, Dropdown, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
@@ -87,24 +87,16 @@ const FormPage = () => {
 
   const { handlePrintFormUrlButtonClick } = usePrintFormURLAction();
 
-  const handleStatusCategoryChange = (value: string) => {
-    setFormListType('정렬');
-    console.log(value);
+  const handleSortStatus = (value: string) => {
     setFormListSortingType((prev) => ({ ...prev, status: value as FormStatus }));
   };
 
-  const handleTypeCategoryChange = (value: string) => {
-    setFormListType('정렬');
+  const handleSortType = (value: string) => {
     setFormListSortingType((prev) => ({ ...prev, type: value as FormType }));
   };
 
-  const handleMessageCategoryChange = (value: string) => {
-    setFormListType('정렬');
+  const handleSortSort = (value: string) => {
     setFormListSortingType((prev) => ({ ...prev, sort: value as FormSort }));
-  };
-
-  const getSelectedValue = (sortingType: FormListSortingType) => {
-    return sortingType.status || sortingType.type || sortingType.sort;
   };
 
   return (
@@ -113,65 +105,68 @@ const FormPage = () => {
         <Text fontType="H1">원서 관리</Text>
         <Column gap={36}>
           <Row justifyContent="space-between">
-            <SubDropdown
-              name="sorting"
-              data={[
-                {
-                  value: 'BY_STATUS',
-                  label: '상태 별',
-                  children: [
-                    { value: 'RECEIVED', label: '접수' },
-                    { value: 'FIRST_FAILED', label: '1차 불합격' },
-                    { value: 'FAILED', label: '불합격' },
-                    { value: 'FINAL_SUBMITTED', label: '최종 제출' },
-                    { value: 'SUBMITTED', label: '제출' },
-                    { value: 'APPROVED', label: '승인' },
-                    { value: 'NO_SHOW', label: '불참' },
-                    { value: 'FIRST_PASSED', label: '1차 합격' },
-                    { value: 'PASSED', label: '최종 합격' },
-                    { value: 'REJECTED', label: '반려' },
-                  ],
-                  onChange: handleStatusCategoryChange,
-                  setNext: true,
-                },
-                {
-                  value: 'BY_TYPE',
-                  label: '전형 별',
-                  children: [
-                    { value: 'REGULAR', label: '일반전형' },
-                    { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
-                    { value: 'NATIONAL_BASIC_LIVING', label: '국가기초생활수급권자' },
-                    {
-                      value: 'NATIONAL_VETERANS_EDUCATION',
-                      label: '국가보훈대상자 중 교육지원대상자녀',
-                    },
-                    { value: 'NEAR_POVERTY', label: '차상위계층' },
-                    { value: 'NATIONAL_VETERANS', label: '국가보훈자녀' },
-                    { value: 'ONE_PARENT', label: '한부모가정' },
-                    { value: 'FROM_NORTH_KOREA', label: '북한이탈주민' },
-                    { value: 'MULTICULTURAL', label: '다문화가정' },
-                    { value: 'TEEN_HOUSEHOLDER', label: '소년소녀가장' },
-                    { value: 'MULTI_CHILDREN', label: '다자녀가정자녀' },
-                    { value: 'FARMING_AND_FISHING', label: '농어촌지역출신자' },
-                    { value: 'SPECIAL_ADMISSION', label: '특례입학대상자' },
-                  ],
-                  onChange: handleTypeCategoryChange,
-                  setNext: true,
-                },
-                {
-                  value: 'TOTAL_SCORE_DESC',
-                  label: '최종 점수 높은 순',
-                },
-                { value: 'TOTAL_SCORE_ASC', label: '최종 점수 낮은 순' },
-              ]}
-              size="SMALL"
-              placeholder="정렬"
-              width={300}
-              value={
-                FORM_SORTING_CATEGORY[getSelectedValue(formListSortingType) ?? 'SORTING']
-              }
-              onChange={handleMessageCategoryChange}
-            />
+            <Row gap={8}>
+              <Dropdown
+                data={[
+                  { value: 'RECEIVED', label: '접수' },
+                  { value: 'FIRST_FAILED', label: '1차 불합격' },
+                  { value: 'FAILED', label: '불합격' },
+                  { value: 'FINAL_SUBMITTED', label: '최종 제출' },
+                  { value: 'SUBMITTED', label: '제출' },
+                  { value: 'APPROVED', label: '승인' },
+                  { value: 'NO_SHOW', label: '불참' },
+                  { value: 'FIRST_PASSED', label: '1차 합격' },
+                  { value: 'PASSED', label: '최종 합격' },
+                  { value: 'REJECTED', label: '반려' },
+                ]}
+                size="SMALL"
+                width={140}
+                placeholder="상태 별"
+                onChange={handleSortStatus}
+                name="category"
+                value={FORM_SORTING_CATEGORY[formListSortingType.status ?? 'ALL']}
+                doubled={5}
+              />
+              <Dropdown
+                data={[
+                  { value: 'REGULAR', label: '일반전형' },
+                  { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
+                  { value: 'NATIONAL_BASIC_LIVING', label: '국가기초생활수급권자' },
+                  {
+                    value: 'NATIONAL_VETERANS_EDUCATION',
+                    label: '국가보훈대상자 중 교육지원대상자녀',
+                  },
+                  { value: 'NEAR_POVERTY', label: '차상위계층' },
+                  { value: 'NATIONAL_VETERANS', label: '국가보훈자녀' },
+                  { value: 'ONE_PARENT', label: '한부모가정' },
+                  { value: 'FROM_NORTH_KOREA', label: '북한이탈주민' },
+                  { value: 'MULTICULTURAL', label: '다문화가정' },
+                  { value: 'TEEN_HOUSEHOLDER', label: '소년소녀가장' },
+                  { value: 'MULTI_CHILDREN', label: '다자녀가정자녀' },
+                  { value: 'FARMING_AND_FISHING', label: '농어촌지역출신자' },
+                  { value: 'SPECIAL_ADMISSION', label: '특례입학대상자' },
+                ]}
+                size="SMALL"
+                width={140}
+                placeholder="전형 별"
+                onChange={handleSortType}
+                name="category"
+                value={FORM_SORTING_CATEGORY[formListSortingType.type ?? 'ALL']}
+                doubled={5}
+              />
+              <Dropdown
+                data={[
+                  { value: 'TOTAL_SCORE_DESC', label: '높은 순' },
+                  { value: 'TOTAL_SCORE_ASC', label: '낮은 순' },
+                ]}
+                size="SMALL"
+                width={140}
+                placeholder="최종 점수"
+                onChange={handleSortSort}
+                name="category"
+                value={FORM_SORTING_CATEGORY[formListSortingType.sort ?? 'ALL']}
+              />
+            </Row>
             <Row gap={16}>
               {formListType === '검토해야 하는 원서 모아보기' ? (
                 <ReviewFilterBox>

@@ -120,7 +120,7 @@ interface ChildDropdownProps {
   name: string;
   isOpen: boolean;
   setIsSubOpen: (open: boolean) => void;
-  width?: number; // width는 number 타입으로 설정
+  width?: number;
 }
 
 const ChildDropdown: FC<ChildDropdownProps> = ({
