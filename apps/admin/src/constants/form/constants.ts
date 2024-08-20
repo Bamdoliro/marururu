@@ -30,8 +30,6 @@ export const FORM_TYPE_CATEGORY: Record<FormType, string> = {
 } as const;
 
 export const FORM_SORTING_CATEGORY = {
-  ...FORM_STATUS_CATEGORY,
-  ...FORM_TYPE_CATEGORY,
   TOTAL_SCORE_DESC: '높은 순',
   TOTAL_SCORE_ASC: '낮은 순',
 } as const;
