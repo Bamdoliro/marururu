@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Column, Dropdown, Row, SearchInput, Text } from '@maru/ui';
+import { Button, Column, Dropdown, Row, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import useCTAButton from './faq.hooks';
 import AppLayout from '@/layouts/AppLayout';
@@ -24,7 +24,6 @@ const FaqPage = () => {
         <Column gap={36}>
           <Row justifyContent="space-between">
             <Row gap={16}>
-              <SearchInput placeholder="검색어를 입력하세요." />
               <Dropdown
                 data={[
                   { value: 'BOARD_ALL', label: '전체 보기' },

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import { SubDropdown, SearchInput, Column, Row } from '@maru/ui';
+import { SubDropdown, Column, Row } from '@maru/ui';
 import type { AreaCategory } from '@/types/analysis/client';
 import SchoolOriginTable from './SchoolOriginTable/GenderRatioTable/SchoolOriginTable';
 
@@ -52,7 +52,6 @@ const SecondRoundPassed = () => {
             onChange={handleClassificationCategory}
             name="category"
           />
-          <SearchInput placeholder="검색어를 입력하세요." />
         </Row>
         <SchoolOriginTable selectedCategory={selectedCategory} />
       </Column>

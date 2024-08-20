@@ -2,7 +2,7 @@
 
 import NoticeTable from '@/components/notice/NoticeTable/NoticeTable';
 import AppLayout from '@/layouts/AppLayout';
-import { Button, Column, Loader, Row, SearchInput, Text } from '@maru/ui';
+import { Button, Column, Loader, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
@@ -16,8 +16,7 @@ const NoticePage = () => {
       <StyledNoticePage>
         <Text fontType="H1">공지사항</Text>
         <Column gap={36}>
-          <Row justifyContent="space-between">
-            <SearchInput placeholder="검색어를 입력하세요." />
+          <Row justifyContent="flex-end">
             <Button
               size="SMALL"
               icon="ADD_ICON"
