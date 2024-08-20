@@ -32,10 +32,11 @@ export const useDownloadSecondScoreFormatQuery = () => {
 
 export const useFormListSecodnQuery = () => {
   const formListType = useFormListTypeValueStore();
+  const formListSortingType = useFormListSortingTypeValueStore();
 
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.FORM_LIST, formListType],
-    queryFn: () => getFormList(formListType),
+    queryKey: [KEY.FORM_LIST, formListType, formListSortingType],
+    queryFn: () => getFormList(formListType, formListSortingType),
     suspense: false,
   });
 
