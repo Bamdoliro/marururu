@@ -1,10 +1,10 @@
 import {
   useEditSecondRoundResultMutation,
+  useEditSecondRoundResultAutoMutation,
   usePrintFormUrlMutation,
 } from '@/services/form/mutations';
 import { useFormToPrintValueStore } from '@/store/form/formToPrint';
 import { useSecondRoundResultValueStore } from '@/store/form/secondRoundResult';
-
 export const useSecondRoundResultEditAction = () => {
   const secondRoundResult = useSecondRoundResultValueStore();
   const secondRoundResultData = {
@@ -23,6 +23,18 @@ export const useSecondRoundResultEditAction = () => {
   };
 
   return { handleSecondRoundResultEditCompleteButtonClick };
+};
+
+export const useSecondRoundResultEditAutoAction = () => {
+  const { editSecondResultAuto } = useEditSecondRoundResultAutoMutation();
+
+  const handleSecondRoundResultEditAuto = () => {
+    editSecondResultAuto();
+  };
+
+  return {
+    handleSecondRoundResultEditAuto,
+  };
 };
 
 export const usePrintFormURLAction = () => {

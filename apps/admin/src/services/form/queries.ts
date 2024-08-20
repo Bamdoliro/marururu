@@ -30,6 +30,18 @@ export const useDownloadSecondScoreFormatQuery = () => {
   return { data, ...restQuery };
 };
 
+export const useFormListSecodnQuery = () => {
+  const formListType = useFormListTypeValueStore();
+
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.FORM_LIST, formListType],
+    queryFn: () => getFormList(formListType),
+    suspense: false,
+  });
+
+  return { data: data?.dataList, ...restQuery };
+};
+
 export const useExportExcelQuery = (exportExcelType: ExportExcelType | null) => {
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.EXPORT_EXCEL, exportExcelType],

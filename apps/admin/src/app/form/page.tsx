@@ -21,6 +21,7 @@ import {
   IconCheckDocument,
   IconClose,
   IconEditDocument,
+  IconEditAllDocument,
   IconFilter,
   IconPrint,
   IconUpload,
@@ -30,9 +31,13 @@ import { Button, Column, Row, Dropdown, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
-import { usePrintFormURLAction, useSecondRoundResultEditAction } from './form.hooks';
-import { useEffect, useState } from 'react';
+import {
+  usePrintFormURLAction,
+  useSecondRoundResultEditAction,
+  useSecondRoundResultEditAutoAction,
+} from './form.hooks';
 import withAuth from '@/hoc/withAuth';
+import { useState, useEffect } from 'react';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();
@@ -64,6 +69,8 @@ const FormPage = () => {
     setIsSecondRoundResultEditing(false);
     secondRoundResult({});
   };
+
+  const { handleSecondRoundResultEditAuto } = useSecondRoundResultEditAutoAction();
 
   const { handleSecondRoundResultEditCompleteButtonClick } =
     useSecondRoundResultEditAction();
@@ -277,6 +284,12 @@ const FormPage = () => {
                       <IconEditDocument color={color.gray600} width={24} height={24} />
                       <Text fontType="p2" color={color.gray900}>
                         2차 합격 여부 변경하기
+                      </Text>
+                    </ButtonMenuItem>,
+                    <ButtonMenuItem onClick={handleSecondRoundResultEditAuto}>
+                      <IconEditAllDocument color={color.gray600} width={24} height={24} />
+                      <Text fontType="p2" color={color.gray900}>
+                        2차 합격자 자동 선발
                       </Text>
                     </ButtonMenuItem>,
                     <ButtonMenuItem onClick={openExportExcelModal}>
