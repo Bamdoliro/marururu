@@ -8,12 +8,7 @@ import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/Sec
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
 import { FORM_SORTING_CATEGORY } from '@/constants/form/constants';
-import type {
-  FormStatus,
-  FormType,
-  FormSort,
-  FormListSortingType,
-} from '@/types/form/client';
+import type { FormStatus, FormType, FormSort } from '@/types/form/client';
 import { useSetFormToPrintStore } from '@/store/form/formToPrint';
 import { useIsFormToPrintSelectingStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
@@ -88,14 +83,17 @@ const FormPage = () => {
   const { handlePrintFormUrlButtonClick } = usePrintFormURLAction();
 
   const handleSortStatus = (value: string) => {
+    setFormListType('정렬');
     setFormListSortingType((prev) => ({ ...prev, status: value as FormStatus }));
   };
 
   const handleSortType = (value: string) => {
+    setFormListType('정렬');
     setFormListSortingType((prev) => ({ ...prev, type: value as FormType }));
   };
 
   const handleSortSort = (value: string) => {
+    setFormListType('정렬');
     setFormListSortingType((prev) => ({ ...prev, sort: value as FormSort }));
   };
 

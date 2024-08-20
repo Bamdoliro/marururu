@@ -30,7 +30,7 @@ export const getFormList = async (
     if (formListSortingType.sort) params.append('sort', formListSortingType.sort);
 
     const queryString = params.toString();
-    const url = `/form${queryString ? `?${queryString}` : ''}`;
+    const url = `/form${`?${queryString}`}`;
     const { data } = await maru.get<GetFormListRes>(url, authorization());
     return data;
   }
