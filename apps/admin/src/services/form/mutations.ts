@@ -8,7 +8,7 @@ import {
   patchFinalScore,
   patchSecondRoundResult,
   patchSecondScoreFormat,
-  postSecondScoreResultAuto,
+  patchSecondScoreResultAuto,
   getFormUrl,
 } from './api';
 import { useFormListQuery } from './queries';
@@ -64,7 +64,7 @@ export const useEditSecondRoundResultAutoMutation = () => {
   const { refetch } = useFormListQuery();
 
   const { mutate: editSecondResultAuto, ...restMutation } = useMutation({
-    mutationFn: () => postSecondScoreResultAuto(),
+    mutationFn: () => patchSecondScoreResultAuto(),
     onSuccess: () => {
       toast('2차 합격 여부가 반영되었습니다.', {
         type: 'success',

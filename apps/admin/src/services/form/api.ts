@@ -66,8 +66,8 @@ export const patchSecondRoundResult = async (
   return data;
 };
 
-export const postSecondScoreResultAuto = async () => {
-  const { data } = await maru.post('/second-round/select', authorization());
+export const patchSecondScoreResultAuto = async () => {
+  const { data } = await maru.patch('/second-round/result', authorization());
 
   return data;
 };
