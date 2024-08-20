@@ -84,17 +84,29 @@ const FormPage = () => {
 
   const handleSortStatus = (value: string) => {
     setFormListType('정렬');
-    setFormListSortingType((prev) => ({ ...prev, status: value as FormStatus }));
+    if (value === 'RESET') {
+      setFormListSortingType((prev) => ({ ...prev, status: null }));
+    } else {
+      setFormListSortingType((prev) => ({ ...prev, status: value as FormStatus }));
+    }
   };
 
   const handleSortType = (value: string) => {
     setFormListType('정렬');
-    setFormListSortingType((prev) => ({ ...prev, type: value as FormType }));
+    if (value === 'RESET') {
+      setFormListSortingType((prev) => ({ ...prev, type: null }));
+    } else {
+      setFormListSortingType((prev) => ({ ...prev, type: value as FormType }));
+    }
   };
 
   const handleSortSort = (value: string) => {
     setFormListType('정렬');
-    setFormListSortingType((prev) => ({ ...prev, sort: value as FormSort }));
+    if (value === 'RESET') {
+      setFormListSortingType((prev) => ({ ...prev, sort: null }));
+    } else {
+      setFormListSortingType((prev) => ({ ...prev, sort: value as FormSort }));
+    }
   };
 
   return (
@@ -106,6 +118,7 @@ const FormPage = () => {
             <Row gap={8}>
               <Dropdown
                 data={[
+                  { value: 'RESET', label: '정렬 초기화' },
                   { value: 'RECEIVED', label: '접수' },
                   { value: 'FIRST_FAILED', label: '1차 불합격' },
                   { value: 'FAILED', label: '불합격' },
@@ -127,6 +140,7 @@ const FormPage = () => {
               />
               <Dropdown
                 data={[
+                  { value: 'RESET', label: '정렬 초기화' },
                   { value: 'REGULAR', label: '일반전형' },
                   { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
                   { value: 'NATIONAL_BASIC_LIVING', label: '국가기초생활수급권자' },
@@ -154,6 +168,7 @@ const FormPage = () => {
               />
               <Dropdown
                 data={[
+                  { value: 'RESET', label: '정렬 초기화' },
                   { value: 'TOTAL_SCORE_DESC', label: '높은 순' },
                   { value: 'TOTAL_SCORE_ASC', label: '낮은 순' },
                 ]}

@@ -25,7 +25,8 @@ export const getFormList = async (
   if (formListType === '정렬') {
     const params = new URLSearchParams();
 
-    if (formListSortingType.status) params.append('status', formListSortingType.status);
+    if (formListSortingType.status)
+      params.append('status', formListSortingType.status);
     if (formListSortingType.type) params.append('type', formListSortingType.type);
     if (formListSortingType.sort) params.append('sort', formListSortingType.sort);
 
