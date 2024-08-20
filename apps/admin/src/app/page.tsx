@@ -1,21 +1,34 @@
 'use client';
 
 import { color } from '@maru/design-token';
-import { Button, Column, Input, PreviewInput } from '@maru/ui';
+import { Button, Column, Input, Loader, PreviewInput } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
 import { styled } from 'styled-components';
 import { useInput, useLoginAction } from './login.hooks';
+import { useEffect, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { ROUTES } from '@/constants/common/constant';
 
-const LoginPage = () => {
+const LoginContent = () => {
   const { loginAdminData, handleLoginAdminDataChange } = useInput();
   const { handleLogin } = useLoginAction(loginAdminData);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const message = searchParams.get('message');
 
   const handleEnterKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleLogin();
     }
   };
+
+  useEffect(() => {
+    if (message) {
+      alert(message);
+      router.replace(ROUTES.MAIN);
+    }
+  }, [message, router]);
 
   return (
     <StyledLoginPage>
@@ -49,6 +62,12 @@ const LoginPage = () => {
     </StyledLoginPage>
   );
 };
+
+const LoginPage = () => (
+  <Suspense fallback={<Loader />}>
+    <LoginContent />
+  </Suspense>
+);
 
 export default LoginPage;
 

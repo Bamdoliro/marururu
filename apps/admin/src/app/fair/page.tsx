@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { Suspense } from '@suspensive/react';
 import { ApplyingList, ClosedList, Header } from '@/components/fair';
 import AppLayout from '@/layouts/AppLayout';
-import withAuth from '@/hocs/withAuth';
 import { flex } from '@maru/utils';
 
 const FairPage = () => {
@@ -61,7 +60,7 @@ const FairPage = () => {
   );
 };
 
-export default withAuth(FairPage);
+export default FairPage;
 
 const StyledFairPage = styled.div`
   ${flex({ flexDirection: 'column' })}

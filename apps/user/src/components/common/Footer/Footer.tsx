@@ -1,5 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
 import { color, font } from '@maru/design-token';
+import { IconRoundBamdoliro, IconRoundInstagram } from '@maru/icon';
 import { Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import Image from 'next/image';
@@ -45,18 +46,14 @@ const Footer = () => {
             </Column>
           </Row>
           <Row gap={16} alignItems="center">
-            <Image
-              src="/svg/round_instagram.svg"
+            <HoverRoundInstagram
               width={36}
               height={36}
-              alt="round-instagram"
               onClick={() => window.open('https://www.instagram.com/bamdoliro/')}
             />
-            <Image
-              src="/svg/round_bamdoliro.svg"
+            <HoverRoundBamdoliro
               width={36}
               height={36}
-              alt="round-bamdoliro"
               onClick={() => window.open('https://github.com/Bamdoliro')}
             />
           </Row>
@@ -91,4 +88,20 @@ const ContentBox = styled.div`
 const DirectLink = styled(Link)`
   ${font.p3}
   color: ${color.gray600};
+`;
+
+const HoverRoundBamdoliro = styled(IconRoundBamdoliro)`
+  :hover path:first-child {
+    fill: ${color.bamdoliro};
+  }
+
+  cursor: pointer;
+`;
+
+const HoverRoundInstagram = styled(IconRoundInstagram)`
+  :hover path:first-child {
+    fill: ${color.bamdoliro};
+  }
+
+  cursor: pointer;
 `;

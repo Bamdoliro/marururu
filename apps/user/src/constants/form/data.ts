@@ -2,7 +2,6 @@ import type { Form, Subject } from '@/types/form/client';
 
 export const FORM: Form = {
   applicant: {
-    identificationPictureUri: '',
     name: '',
     phoneNumber: '',
     birthday: '',

@@ -5,7 +5,10 @@ import type {
   GetSchoolListRes,
   GetSaveFormRes,
   GetFormStatusRes,
+  PresignedUrlData,
+  FormPresignedUrlData,
 } from '@/types/form/remote';
+import axios from 'axios';
 
 export const patchSubmitFinalForm = async (formUrl: string) => {
   const { data } = await maru.patch('/form', formUrl, authorization());
@@ -35,18 +38,64 @@ export const postSaveForm = async (formData: Form) => {
   return data;
 };
 
-export const postUploadFormDocumnet = async (file: FormData) => {
-  const { data } = await maru.post('/form/form-document', file, authorization.FormData());
-  return data;
+export const postUploadFormDocumnet = async (): Promise<FormPresignedUrlData> => {
+  const { data } = await maru.post('/form/form-document', null, authorization());
+
+  const uploadUrl = data?.data?.uploadUrl;
+  const downloadUrl = data?.data?.downloadUrl;
+  const fields = data?.data?.fields;
+
+  return {
+    uploadUrl,
+    downloadUrl,
+    fields: fields || {},
+  } as PresignedUrlData;
 };
 
-export const postUploadProfileImage = async (image: FormData) => {
-  const { data } = await maru.post(
-    '/form/identification-picture',
-    image,
-    authorization.FormData()
-  );
-  return data;
+export const putUpoloadFormDocument = async (
+  file: File,
+  presignedData: FormPresignedUrlData
+) => {
+  const { uploadUrl } = presignedData;
+
+  const response = await axios.put(uploadUrl, file, {
+    headers: {
+      'Content-Type': file.type,
+    },
+  });
+
+  return response;
+};
+
+export const postUploadProfileImage = async (): Promise<PresignedUrlData> => {
+  const { data } = await maru.post('/form/identification-picture', null, authorization());
+
+  const uploadUrl = data?.data?.uploadUrl;
+  const downloadUrl = data?.data?.downloadUrl;
+  const fields = data?.data?.fields;
+
+  return {
+    uploadUrl,
+    downloadUrl,
+    fields: fields || {},
+  } as PresignedUrlData;
+};
+
+export const putProfileUpoload = async (file: File, presignedData: PresignedUrlData) => {
+  const { uploadUrl } = presignedData;
+
+  const response = await axios.put(uploadUrl, file, {
+    headers: {
+      'Content-Type': file.type,
+    },
+  });
+
+  return response;
+};
+
+export const getUploadProfile = async (fileUrl: string) => {
+  const { data } = await maru.get(fileUrl, { responseType: 'blob' });
+  return URL.createObjectURL(data);
 };
 
 export const getSchoolList = async (school: string) => {

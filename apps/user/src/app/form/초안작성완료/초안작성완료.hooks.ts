@@ -1,3 +1,4 @@
+import { Storage } from '@/apis/storage/storage';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useFormValueStore, useSetFormStepStore } from '@/store';
 import type { Form } from '@/types/form/client';
@@ -14,19 +15,23 @@ export const useSubmitDraftFormAction = () => {
   return { handleDraftFormSubmit };
 };
 
-const useFilledApplicantFieldsCount = (applicant: Form['applicant']) =>
-  Object.entries(applicant).reduce((acc, [key, value]) => {
-    if (!value) return acc;
+const useFilledApplicantFieldsCount = (applicant: Form['applicant']) => {
+  return Object.entries(applicant).reduce(
+    (acc, [key, value]) => {
+      if (!value) return acc;
 
-    switch (key) {
-      case 'name':
-        return acc + Number(value.length <= 20);
-      case 'phoneNumber':
-        return acc + Number(value.length === 11);
-      default:
-        return acc + 1;
-    }
-  }, 0);
+      switch (key) {
+        case 'name':
+          return acc + Number(value.length <= 20);
+        case 'phoneNumber':
+          return acc + Number(value.length === 11);
+        default:
+          return acc + 1;
+      }
+    },
+    Storage.getLocalItem('downloadUrl') ? 1 : 0
+  );
+};
 
 const useFilledParentFieldsCount = (parent: Form['parent']) =>
   Object.entries(parent).reduce((acc, [key, value]) => {
@@ -47,13 +52,27 @@ const useFilledParentFieldsCount = (parent: Form['parent']) =>
     }
   }, 0);
 
-const useFilledEducationFieldsCount = (education: Form['education']) =>
-  Object.entries(education).reduce((acc, [key, value]) => {
-    if (!value) return acc;
+const useFilledEducationFieldsCount = (education: Form['education']) => {
+  return Object.entries(education).reduce((acc, [key, value]) => {
+    if (education.graduationType === 'QUALIFICATION_EXAMINATION') {
+      switch (key) {
+        case 'graduationType':
+        case 'graduationYear':
+          return acc + 1;
+        default:
+          return acc;
+      }
+    }
+
+    if (!value) {
+      return acc;
+    }
 
     switch (key) {
       case 'schoolName':
+        return acc + Number(value.length <= 30);
       case 'schoolLocation':
+      case 'schoolAddress':
       case 'teacherName':
         return acc + Number(value.length <= 20);
       case 'graduationYear':
@@ -67,6 +86,7 @@ const useFilledEducationFieldsCount = (education: Form['education']) =>
         return acc + 1;
     }
   }, 0);
+};
 
 export const useCheckFilledForm = () => {
   const form = useFormValueStore();
@@ -90,7 +110,8 @@ export const useCheckFilledForm = () => {
     if (
       filledApplicantFieldsCount === 5 &&
       filledParentFieldsCount === 6 &&
-      filledEducationFieldsCount === 9 &&
+      filledEducationFieldsCount ===
+        (form.education.graduationType === 'QUALIFICATION_EXAMINATION' ? 2 : 9) &&
       filledTypeFieldCount === 1 &&
       filledDocumentFieldsCount === 2
     ) {

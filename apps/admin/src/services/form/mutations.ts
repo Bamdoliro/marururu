@@ -79,7 +79,9 @@ export const useCheckFormUrlMutation = () => {
   const { mutate: checkFormUrl, ...restMutation } = useMutation({
     mutationFn: (formId: number) => getFormUrl([formId]),
     onSuccess: (formURL) => {
-      if (formURL.dataList.length > 0) {
+      if (formURL.dataList[0].formUrl == null) {
+        alert('최종제출이 완료되지 않은 학생입니다.');
+      } else if (formURL.dataList.length > 0) {
         window.open(formURL.dataList[0].formUrl);
       }
     },

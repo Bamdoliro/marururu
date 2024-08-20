@@ -1,33 +1,55 @@
 import { color, font } from '@maru/design-token';
 import type { TextareaHTMLAttributes } from 'react';
-import styled from 'styled-components';
+import React from 'react';
+import styled, { css } from 'styled-components';
+import ConditionalMessage from './ConditionalMessage';
 
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   limit: number;
   label: string;
+  isError?: boolean;
+  errorMessage?: string;
+  message?: string;
 }
 
-const Textarea = ({ limit, label, name, value, onChange }: Props) => {
+const Textarea = ({
+  limit,
+  label,
+  name,
+  value,
+  onChange,
+  isError = false,
+  errorMessage,
+  message,
+}: Props) => {
   const textValue = value as string;
 
   return (
     <div style={{ position: 'relative' }}>
       {label && <Label>{label}</Label>}
-      <StyledTextarea
-        value={textValue}
-        name={name}
-        onChange={onChange}
-        placeholder={`${limit}자 이내로 작성해주세요.`}
-        maxLength={limit}
-      />
+      <div style={{ position: 'relative' }}>
+        <StyledTextarea
+          value={textValue}
+          name={name}
+          onChange={onChange}
+          placeholder={`${limit}자 이내로 작성해주세요.`}
+          maxLength={limit}
+          $isError={isError}
+        />
+      </div>
       <TextCount>{limit - textValue.length}</TextCount>
+      <ConditionalMessage
+        isError={isError}
+        errorMessage={errorMessage}
+        message={message}
+      />
     </div>
   );
 };
 
 export default Textarea;
 
-const StyledTextarea = styled.textarea`
+const StyledTextarea = styled.textarea<{ $isError: boolean }>`
   ${font.p2}
   resize: none;
   padding: 10px 16px;
@@ -38,6 +60,18 @@ const StyledTextarea = styled.textarea`
   &::placeholder {
     color: ${color.gray500};
   }
+
+  ${(props) =>
+    props.$isError &&
+    css`
+      border: 1px solid ${color.red};
+      outline: 2px solid rgba(244, 67, 54, 0.25);
+
+      &:focus {
+        border: 1px solid ${color.red};
+        outline: 2px solid rgba(244, 67, 54, 0.25);
+      }
+    `}
 `;
 
 const TextCount = styled.span`

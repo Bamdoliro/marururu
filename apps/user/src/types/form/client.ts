@@ -34,7 +34,6 @@ export type FormStep =
 export type 성적입력Step = '교과성적' | '출결상황' | '봉사시간' | '자격증';
 
 export interface User {
-  identificationPictureUri: string;
   name: string;
   phoneNumber: string;
   birthday: string;
@@ -53,13 +52,13 @@ export interface Parent {
 export interface Education {
   graduationType: GraduationType;
   graduationYear: string;
-  schoolName: string;
-  schoolLocation: string;
-  schoolAddress: string;
-  schoolCode: string;
-  teacherName: string;
-  teacherPhoneNumber: string;
-  teacherMobilePhoneNumber: string;
+  schoolName: string | null;
+  schoolLocation: string | null;
+  schoolAddress: string | null;
+  schoolCode: string | null;
+  teacherName: string | null;
+  teacherPhoneNumber: string | null;
+  teacherMobilePhoneNumber: string | null;
 }
 
 export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';

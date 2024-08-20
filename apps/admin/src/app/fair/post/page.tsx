@@ -6,7 +6,6 @@ import { flex } from '@maru/utils';
 import { Loader, Text } from '@maru/ui';
 import { Suspense } from 'react';
 import { FairPost } from '@/components/fair';
-import withAuth from '@/hocs/withAuth';
 
 const FairPostPage = () => {
   return (
@@ -23,7 +22,7 @@ const FairPostPage = () => {
   );
 };
 
-export default withAuth(FairPostPage);
+export default FairPostPage;
 
 const StyledFairPost = styled.div`
   position: relative;

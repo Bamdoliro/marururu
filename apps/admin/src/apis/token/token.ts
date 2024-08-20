@@ -1,5 +1,4 @@
 import { TOKEN } from '@/constants/common/constant';
-
 import { Storage } from '../storage/storage';
 
 const authorization = () => {

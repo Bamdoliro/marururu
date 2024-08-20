@@ -12,8 +12,11 @@ import type { FormStatus, FormType, FormSort } from '@/types/form/client';
 import { useSetFormToPrintStore } from '@/store/form/formToPrint';
 import { useIsFormToPrintSelectingStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
-import { useSetSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import { useFormListTypeStore, useFormListSortingTypeStore } from '@/store/form/type';
+import {
+  useSetSecondRoundResultStore,
+  useSecondRoundResultValueStore,
+} from '@/store/form/secondRoundResult';
 import {
   IconCheckDocument,
   IconClose,
@@ -28,7 +31,8 @@ import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
 import { usePrintFormURLAction, useSecondRoundResultEditAction } from './form.hooks';
-import withAuth from '@/hocs/withAuth';
+import { useEffect, useState } from 'react';
+import withAuth from '@/hoc/withAuth';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();
@@ -37,6 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 const FormPage = () => {
   const [formListType, setFormListType] = useFormListTypeStore();
   const [formListSortingType, setFormListSortingType] = useFormListSortingTypeStore();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleFormListTypeReview = () => setFormListType('검토해야 하는 원서 모아보기');
   const handleFormListTypeAll = () => setFormListType('모두 보기');
@@ -52,6 +57,7 @@ const FormPage = () => {
   const [isSecondRoundResultEditing, setIsSecondRoundResultEditing] =
     useIsSecondRoundResultEditingStore();
   const secondRoundResult = useSetSecondRoundResultStore();
+  const secondRoundResultValue = useSecondRoundResultValueStore();
 
   const setIsSecondRoundResultEditingTrue = () => setIsSecondRoundResultEditing(true);
   const setIsSecondRoundResultEditingFalse = () => {
@@ -61,6 +67,16 @@ const FormPage = () => {
 
   const { handleSecondRoundResultEditCompleteButtonClick } =
     useSecondRoundResultEditAction();
+
+  useEffect(() => {
+    setIsButtonDisabled(Object.keys(secondRoundResultValue).length === 0);
+  }, [secondRoundResultValue]);
+
+  const handleEditCompleteButtonClick = () => {
+    if (!isButtonDisabled) {
+      handleSecondRoundResultEditCompleteButtonClick();
+    }
+  };
 
   const openExportExcelModal = () => {
     overlay.open(({ isOpen, close }) => (
@@ -221,7 +237,9 @@ const FormPage = () => {
                   </Button>
                   <Button
                     size="SMALL"
-                    onClick={handleSecondRoundResultEditCompleteButtonClick}
+                    onClick={handleEditCompleteButtonClick}
+                    disabled={isButtonDisabled}
+                    styleType={isButtonDisabled ? 'DISABLED' : 'PRIMARY'}
                   >
                     완료
                   </Button>

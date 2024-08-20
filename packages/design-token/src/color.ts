@@ -4,6 +4,7 @@ const color = {
   orange: '#FF763B',
   red: '#F44336',
 
+  bamdoliro: '#1E2E3D',
   maruDefault: '#257CFF',
   maruHigh: '#3081FF',
   maruRow: '#0C57CB',

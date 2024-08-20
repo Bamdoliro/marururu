@@ -56,6 +56,7 @@ const FaqPost = () => {
               { value: 'TOP_QUESTION', label: '질문 TOP' },
             ]}
             size="SMALL"
+            width={140}
             value={FAQ_CATEGORY[faqData.category as Category]}
             placeholder="카테고리"
             onChange={handleFaqCategoryChange}

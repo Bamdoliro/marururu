@@ -19,6 +19,7 @@ import {
   postLoginUser,
   postRequestVerificationCode,
 } from './api';
+import { useCookies } from 'react-cookie';
 
 export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
   const router = useRouter();
@@ -101,13 +102,22 @@ export const useVerificationMutation = (
 };
 
 export const useLogoutUserMutation = () => {
+  const [, , removeCookie] = useCookies(['access-token', 'refresh-token']);
+  const router = useRouter();
+
   const { mutate: logoutUserMutate, ...restMutation } = useMutation({
     mutationFn: deleteLogoutUser,
     onSuccess: () => {
-      localStorage.clear();
-      window.location.href = ROUTES.MAIN;
+      removeCookie('access-token', { path: '/' });
+      removeCookie('refresh-token', { path: '/' });
+      window.location.reload();
+      router.replace(ROUTES.MAIN);
     },
-    onError: () => localStorage.clear(),
+    onError: () => {
+      removeCookie('access-token', { path: '/' });
+      removeCookie('refresh-token', { path: '/' });
+      window.location.reload();
+    },
   });
 
   return { logoutUserMutate, ...restMutation };

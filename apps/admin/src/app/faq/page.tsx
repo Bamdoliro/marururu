@@ -8,7 +8,6 @@ import AppLayout from '@/layouts/AppLayout';
 import FaqTable from '@/components/faq/FaqTable/FaqTable';
 import { flex } from '@maru/utils';
 import type { FaqCategory } from '@/types/faq/client';
-import withAuth from '@/hocs/withAuth';
 
 const FaqPage = () => {
   const { handleGoFaqPostPageButtonClick } = useCTAButton();
@@ -52,7 +51,7 @@ const FaqPage = () => {
   );
 };
 
-export default withAuth(FaqPage);
+export default FaqPage;
 
 const StyledFaqPage = styled.div`
   ${flex({ flexDirection: 'column' })}
