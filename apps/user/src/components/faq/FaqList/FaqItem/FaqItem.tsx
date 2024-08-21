@@ -1,4 +1,4 @@
-import { useBooleanState } from '@maru/hooks';
+import React from 'react';
 import { IconAnswer, IconArrowBottom, IconArrowTop, IconFaq } from '@maru/icon';
 import { color, font } from '@maru/design-token';
 import { Row } from '@maru/ui';
@@ -8,14 +8,14 @@ import styled from 'styled-components';
 interface Props {
   title: string;
   content: string;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
-const FaqItem = ({ content, title }: Props) => {
-  const { value: isOpen, toggle: toggleOpen } = useBooleanState();
-
+const FaqItem = ({ content, title, isOpen, onToggle }: Props) => {
   return (
     <StyledFaqItem>
-      <QuestionBox onClick={toggleOpen}>
+      <QuestionBox onClick={onToggle}>
         <Row alignItems="center">
           <IconFaq
             color={isOpen ? color.maruDefault : color.gray400}
@@ -77,6 +77,4 @@ const Answer = styled.p`
   width: calc(100%);
   margin-left: 12px;
   margin-top: 2px;
-  margin-bottom: 8px;
-  line-height: 1.5;
 `;
