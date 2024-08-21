@@ -7,7 +7,7 @@ import { ROUTES } from '@/constants/common/constant';
 import { useRouter } from 'next/navigation';
 
 const ApplicationBox = () => {
-  const day = '7월 8일, 8월 26일, 9월 16일, 10월 4일';
+  const day = '9월 12일, 9월 28일';
   const router = useRouter();
 
   return (
