@@ -95,17 +95,6 @@ export const middleware = (request: NextRequest) => {
     }
   }
 
-  if (url === '/login' || url === '/signup') {
-    if (accessToken) {
-      const redirectUrl = new URL('/', request.url);
-      redirectUrl.searchParams.set(
-        'message',
-        '로그인이 되어 있을 경우 접속이 불가합니다.'
-      );
-      return NextResponse.redirect(redirectUrl);
-    }
-  }
-
   return NextResponse.next();
 };
 
