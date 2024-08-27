@@ -42,7 +42,7 @@ const BlurBackground = styled.div<{ $isOpen: boolean }>`
 
 const StyledPdfGeneratedLoader = styled.div`
   position: relative;
-  ${flex({ flexDirection: 'column', alignItems: 'flex-start' })};
+  ${flex({ flexDirection: 'column', alignItems: 'center' })};
   gap: 48px;
   padding: 36px;
   height: 280px;
