@@ -31,9 +31,13 @@ const 지원자정보 = () => {
   }, []);
 
   useEffect(() => {
-    const birthdayValid = form.applicant.birthday.length === 10;
-    setIsBirthdayError(!birthdayValid);
-  }, [form.applicant.birthday]);
+    if (form?.applicant?.birthday) {
+      const birthdayValid = form.applicant.birthday.length === 10;
+      setIsBirthdayError(!birthdayValid);
+    } else {
+      setIsBirthdayError(true);
+    }
+  }, [form?.applicant?.birthday]);
 
   const validateForm = () => {
     const birthdayValid = form.applicant.birthday.length === 10;

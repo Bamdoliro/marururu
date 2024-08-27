@@ -116,7 +116,7 @@ const 보호자정보 = () => {
           />
         </Row>
         <Input
-          label="보호자 관계"
+          label="학생과의 관계"
           value={form.parent.relation}
           onChange={handle보호자정보ErrorChange}
           name="relation"
