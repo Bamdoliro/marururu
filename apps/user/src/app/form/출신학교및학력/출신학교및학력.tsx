@@ -271,7 +271,7 @@ const 출신학교및학력 = () => {
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
             <Input
               name="teacherPhoneNumber"
-              label="학교 연락처"
+              label="학교 대표 연락처"
               placeholder="학교의 교무실 연락처를 입력해주세요."
               width="100%"
               value={form.education.teacherPhoneNumber ?? ''}
@@ -297,7 +297,7 @@ const 출신학교및학력 = () => {
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
             <Input
               name="teacherMobilePhoneNumber"
-              label="작성 교사 연락처"
+              label="작성 교사 연락처(휴대전화)"
               placeholder="- 없이 입력해 주세요"
               width="100%"
               value={form.education.teacherMobilePhoneNumber ?? ''}
