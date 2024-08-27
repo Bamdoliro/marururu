@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
 import { Storage } from '@/apis/storage/storage';
+import ProfileUploadLoader from '../ProfileUpoloadLoader/ProfileUploadLoader';
 
 type ProfileUploaderProps = {
   onPhotoUpload: (success: boolean, url?: string) => void;
@@ -25,6 +26,7 @@ const ProfileUploader = ({
     useOpenFileUploader();
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -37,6 +39,7 @@ const ProfileUploader = ({
   const handleUploadSuccess = (downloadUrl: string) => {
     Storage.setLocalItem('downloadUrl', downloadUrl);
     onPhotoUpload(true, downloadUrl);
+    setIsUploading(false);
   };
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
@@ -60,6 +63,7 @@ const ProfileUploader = ({
         setImageSrc(URL.createObjectURL(file));
         setIsModalOpen(true);
       } else {
+        setIsUploading(true);
         uploadProfileImageMutate(file, {
           onSuccess: handleUploadSuccess,
         });
@@ -80,49 +84,55 @@ const ProfileUploader = ({
       <Text fontType="context" color={color.gray700}>
         증명사진
       </Text>
-      {previewUrl ? (
-        <ImagePreview src={previewUrl} alt="profile-image" />
+      {isUploading ? (
+        <ProfileUploadLoader isOpen={true} />
       ) : (
-        <UploadImageBox
-          onDragEnter={(e: DragEvent<HTMLDivElement>) => {
-            e.preventDefault();
-            setIsDragging(true);
-          }}
-          onDragLeave={(e: DragEvent<HTMLDivElement>) => {
-            e.preventDefault();
-            setIsDragging(false);
-          }}
-          onDragOver={(e: DragEvent<HTMLDivElement>) => {
-            e.preventDefault();
-            e.stopPropagation();
-          }}
-          onDrop={onDrop}
-          $isDragging={isDragging}
-          $isError={isError}
-        >
-          <Column gap={12} alignItems="center">
+        <>
+          {previewUrl ? (
+            <ImagePreview src={previewUrl} alt="profile-image" />
+          ) : (
+            <UploadImageBox
+              onDragEnter={(e: DragEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                setIsDragging(true);
+              }}
+              onDragLeave={(e: DragEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                setIsDragging(false);
+              }}
+              onDragOver={(e: DragEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              onDrop={onDrop}
+              $isDragging={isDragging}
+              $isError={isError}
+            >
+              <Column gap={12} alignItems="center">
+                <Button size="SMALL" onClick={openImageFileUploader}>
+                  파일 선택
+                </Button>
+                <Text fontType="p2" color={color.gray500}>
+                  또는
+                </Text>
+                <Text fontType="p2" color={color.gray500}>
+                  여기로 사진을 끌어오세요
+                </Text>
+              </Column>
+            </UploadImageBox>
+          )}
+          {previewUrl && (
             <Button size="SMALL" onClick={openImageFileUploader}>
-              파일 선택
+              재업로드
             </Button>
-            <Text fontType="p2" color={color.gray500}>
-              또는
-            </Text>
-            <Text fontType="p2" color={color.gray500}>
-              여기로 사진을 끌어오세요
-            </Text>
-          </Column>
-        </UploadImageBox>
+          )}
+          <Desc>
+            10MB 이하, 3개월 이내의
+            <br />
+            3x4 cm 증명사진
+          </Desc>
+        </>
       )}
-      {previewUrl && (
-        <Button size="SMALL" onClick={openImageFileUploader}>
-          재업로드
-        </Button>
-      )}
-      <Desc>
-        10MB 이하, 3개월 이내의
-        <br />
-        3x4 cm 증명사진
-      </Desc>
       <input
         type="file"
         ref={imageUploaderRef}
@@ -136,6 +146,7 @@ const ProfileUploader = ({
           imageSrc={imageSrc}
           onClose={() => setIsModalOpen(false)}
           onCropComplete={(croppedImage) => {
+            setIsUploading(true);
             const croppedFile = new File([croppedImage], 'image.jpg', {
               type: 'image/jpeg',
             });
