@@ -47,6 +47,8 @@ const ScoreSimulation = () => {
           <Text fontType="p3" color={color.red}>
             *교과 성적 산출 방식에 대한 자세한 정보는 모집요강에서 확인해주시기 바랍니다.
             <br /> *특례입학 대상자는 일반 전형 교과 성적 산출식이 적용됩니다.
+            <br />
+            *입학전형 요강을 참고하여 신중하게 입력하여 주시기 바랍니다.
           </Text>
           <GradePreview />
         </Column>

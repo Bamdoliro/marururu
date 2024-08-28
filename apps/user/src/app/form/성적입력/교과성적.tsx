@@ -13,9 +13,9 @@ const 교과성적 = () => {
     <FormLayout title="성적 입력">
       <Column gap={24}>
         <Text fontType="p3" color={color.red}>
-          *교과성적이 없는 학기나 학년의 경우 모집요강을 반드시 확인 바랍니다.
+          *과목명이 없는 경우 ‘과목추가’를 선택하여 성취 수준을 입력해주시길 바랍니다.
           <br />
-          *성취수준이 없고 원점수로 되어있는 학기나 학년은 아래표를 참고 바랍니다.
+          *국어•영어•수학에서 미이수 입력 시 자동으로 성적이 C로 처리됩니다.
         </Text>
         <Column gap={12}>
           <Text fontType="H4" color={color.gray900}>
