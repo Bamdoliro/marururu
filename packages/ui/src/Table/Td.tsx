@@ -1,5 +1,6 @@
 import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import type { TableProps, TableStyleType } from './Table.type';
 
@@ -12,6 +13,11 @@ const Td = ({
   borderTopRightRadius,
   borderBottomLeftRadius,
   borderBottomRightRadius,
+  isBottom = false,
+  isTop = false,
+  isLeft = false,
+  isRight = false,
+  isBottomBold = false,
 }: TableProps) => {
   return (
     <StyledTd
@@ -24,6 +30,11 @@ const Td = ({
         borderBottomRightRadius,
       }}
       styleType={styleType}
+      isBottom={isBottom}
+      isTop={isTop}
+      isLeft={isLeft}
+      isRight={isRight}
+      isBottomBold={isBottomBold}
     >
       {children}
     </StyledTd>
@@ -32,7 +43,14 @@ const Td = ({
 
 export default Td;
 
-const StyledTd = styled.div<{ styleType: TableStyleType }>`
+const StyledTd = styled.div<{
+  styleType: TableStyleType;
+  isBottom: boolean;
+  isTop: boolean;
+  isLeft: boolean;
+  isRight: boolean;
+  isBottomBold: boolean;
+}>`
   ${flex({ alignItems: 'center', justifyContent: 'center' })}
 
   color: ${color.gray900};
@@ -48,4 +66,34 @@ const StyledTd = styled.div<{ styleType: TableStyleType }>`
           ${font.p2}
           background-color: ${color.gray50};
         `}
+
+  ${(props) =>
+    props.isBottom &&
+    css`
+      border-bottom: 0.5px solid ${color.gray400};
+    `}
+
+    ${(props) =>
+    props.isBottomBold &&
+    css`
+      border-bottom: 1px solid ${color.gray400};
+    `}
+
+    ${(props) =>
+    props.isTop &&
+    css`
+      border-top: 0.5px solid ${color.gray400};
+    `}
+
+    ${(props) =>
+    props.isLeft &&
+    css`
+      border-left: 1px solid ${color.gray400};
+    `}
+
+    ${(props) =>
+    props.isRight &&
+    css`
+      border-right: 1px solid ${color.gray400};
+    `}
 `;
