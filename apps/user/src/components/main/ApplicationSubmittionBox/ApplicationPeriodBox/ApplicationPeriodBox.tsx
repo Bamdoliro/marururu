@@ -8,6 +8,8 @@ const ApplicationPeriodBox = () => {
   return (
     <Column gap={36}>
       <Text fontType="H1" color={color.white}>
+        부산소프트웨어마이스터고등학교
+        <br />
         2025학년도 신입생 모집
       </Text>
       <Text fontType="p2" color={color.gray300}>

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import type { Area } from 'react-easy-crop';
 import Cropper from 'react-easy-crop';
 import { getCropImg } from '@/utils';
+import ProfileUploadLoader from '../ProfileUpoloadLoader/ProfileUploadLoader';
 
 interface Props {
   zoom: number;
@@ -19,6 +20,7 @@ const CropImageModal = ({ zoom, isOpen, imageSrc, onClose, onCropComplete }: Pro
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [cropArea, setCropArea] = useState<Area | null>(null);
   const [currentZoom, setCurrentZoom] = useState(zoom);
+  const [isUploading, setIsUploading] = useState(false);
 
   const onCropCompleteInternal = useCallback(
     (cropArea: Area, croppedAreaPixels: Area) => {
@@ -29,13 +31,24 @@ const CropImageModal = ({ zoom, isOpen, imageSrc, onClose, onCropComplete }: Pro
 
   const handleApplyCrop = useCallback(async () => {
     if (!cropArea) return;
-    const croppedImage = await getCropImg(imageSrc, cropArea, 117, 156);
 
-    const response = await fetch(croppedImage as string);
-    const blob = await response.blob();
+    setIsUploading(true);
 
-    onCropComplete(blob);
-    onClose();
+    try {
+      const croppedImage = await getCropImg(imageSrc, cropArea, 117, 156);
+
+      const response = await fetch(croppedImage as string);
+      const blob = await response.blob();
+
+      onCropComplete(blob);
+    } catch (error) {
+      console.error('Error cropping the image:', error);
+    } finally {
+      setTimeout(() => {
+        setIsUploading(false);
+        onClose();
+      }, 2000);
+    }
   }, [imageSrc, cropArea, onCropComplete, onClose]);
 
   const handleZoomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,35 +61,45 @@ const CropImageModal = ({ zoom, isOpen, imageSrc, onClose, onCropComplete }: Pro
     <BlurBackground>
       <ModalContainer>
         <Column alignItems="center" gap={16}>
-          <CropImageModalStyle>
-            <Cropper
-              image={imageSrc}
-              crop={crop}
-              zoom={currentZoom}
-              aspect={117 / 156}
-              onCropChange={setCrop}
-              onCropComplete={onCropCompleteInternal}
-              onZoomChange={setCurrentZoom}
-              style={{
-                containerStyle: { width: '100%', height: '100%', position: 'relative' },
-              }}
-            />
-          </CropImageModalStyle>
-          <ZoomBoxStyle>
-            <InputStyle
-              type="range"
-              min="1"
-              max="3"
-              step="0.1"
-              value={currentZoom}
-              onChange={handleZoomChange}
-            />
-          </ZoomBoxStyle>
-          <Button onClick={handleApplyCrop}>
-            <Text fontType="btn1" color={color.white}>
-              사진 자르기 적용
-            </Text>
-          </Button>
+          {isUploading ? (
+            <ProfileUploadLoader isOpen={true} />
+          ) : (
+            <>
+              <CropImageModalStyle>
+                <Cropper
+                  image={imageSrc}
+                  crop={crop}
+                  zoom={currentZoom}
+                  aspect={117 / 156}
+                  onCropChange={setCrop}
+                  onCropComplete={onCropCompleteInternal}
+                  onZoomChange={setCurrentZoom}
+                  style={{
+                    containerStyle: {
+                      width: '100%',
+                      height: '100%',
+                      position: 'relative',
+                    },
+                  }}
+                />
+              </CropImageModalStyle>
+              <ZoomBoxStyle>
+                <InputStyle
+                  type="range"
+                  min="1"
+                  max="3"
+                  step="0.1"
+                  value={currentZoom}
+                  onChange={handleZoomChange}
+                />
+              </ZoomBoxStyle>
+              <Button onClick={handleApplyCrop}>
+                <Text fontType="btn1" color={color.white}>
+                  사진 자르기 적용
+                </Text>
+              </Button>
+            </>
+          )}
         </Column>
       </ModalContainer>
     </BlurBackground>

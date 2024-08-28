@@ -13,10 +13,10 @@ const PdfGeneratedLoader = ({ isOpen }: Props) => {
       <StyledPdfGeneratedLoader>
         <Column gap={8}>
           <Text fontType="H2" color={color.gray900}>
-            원서 초안 pdf파일을 만드는 중입니다...
+            증명사진을 업로드하는 중입니다.
           </Text>
           <Text fontType="p3" color={color.gray600}>
-            여러분의 멋진 원서를 만드는 중입니다. 조금만 기다려주세요!
+            여러분의 멋진 사진을 올리는 중입니다. 조금만 기다려주세요!
           </Text>
         </Column>
         <Loader top="65%" />

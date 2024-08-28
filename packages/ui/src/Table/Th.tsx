@@ -1,5 +1,6 @@
 import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import type { TableProps, TableStyleType } from './Table.type';
 
@@ -42,6 +43,7 @@ const StyledTh = styled.div<{ styleType: TableStyleType }>`
           background-color: ${color.maruDefault};
           color: ${color.white};
           border-right: 1px solid ${color.white};
+          border-bottom: 1px solid ${color.white};
           &:last-child {
             border-right: none;
           }

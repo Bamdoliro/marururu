@@ -5,33 +5,40 @@ import styled from 'styled-components';
 const GradeCalculatorHeader = () => {
   return (
     <StyledGradeCalculatorHeader>
-      <Th borderTopLeftRadius={12} width={123} height={100}>
+      <Th borderTopLeftRadius={12} width="100%" height={150}>
         과목
       </Th>
-      <Column width={380}>
-        <Th width="100%" height={50}>
-          2학년
+      <Column width="100%">
+        <Th width={693} height={100} borderTopRightRadius={12}>
+          성취수준
         </Th>
         <Row>
-          <Th styleType="SECONDARY" width="100%" height={50}>
-            1학기
-          </Th>
-          <Th styleType="SECONDARY" width="100%" height={50}>
-            2학기
+          <Column alignItems="center" width="100%">
+            <Th width={379} height={50}>
+              2학년
+            </Th>
+            <Row width={379}>
+              <Th styleType="SECONDARY" width={190} height={50}>
+                1학기
+              </Th>
+              <Th styleType="SECONDARY" width={190} height={50}>
+                2학기
+              </Th>
+            </Row>
+          </Column>
+          <Column alignItems="center" width="100%">
+            <Th width={190.1} height={50}>
+              3학년
+            </Th>
+            <Th styleType="SECONDARY" width={190.1} height={50}>
+              1학기
+            </Th>
+          </Column>
+          <Th width="100%" height={100}>
+            삭제
           </Th>
         </Row>
       </Column>
-      <Column width={190}>
-        <Th width="100%" height={50}>
-          3학년
-        </Th>
-        <Th styleType="SECONDARY" width="100%" height={50}>
-          1학기
-        </Th>
-      </Column>
-      <Th borderTopRightRadius={12} width={123} height={100}>
-        삭제
-      </Th>
     </StyledGradeCalculatorHeader>
   );
 };
@@ -39,7 +46,7 @@ const GradeCalculatorHeader = () => {
 export default GradeCalculatorHeader;
 
 const StyledGradeCalculatorHeader = styled.div`
-  ${flex({ alignItems: 'center' })}
+  ${flex({ justifyContent: 'space-between', alignItems: 'stretch' })}
   width: 100%;
-  height: 100px;
+  height: 150px;
 `;

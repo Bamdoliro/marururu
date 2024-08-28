@@ -21,7 +21,7 @@ const 봉사시간 = () => {
         </Text>
         <Column gap={12}>
           <Text fontType="H4" color={color.gray900}>
-            모의 성적 계산
+            성적 계산
           </Text>
           <GradePreview />
         </Column>

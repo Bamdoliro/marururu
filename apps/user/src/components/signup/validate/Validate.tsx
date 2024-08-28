@@ -13,7 +13,7 @@ const renderCheckItem = (condition: boolean, text: string) => (
 
 const Validate = (password: string) => (
   <Row gap={4}>
-    {renderCheckItem(password.length >= 8, '8자리')}
+    {renderCheckItem(password.length >= 8, '8자리 이상')}
     {renderCheckItem(/[a-zA-Z]/.test(password), '영어')}
     {renderCheckItem(/\d/.test(password), '숫자')}
     {renderCheckItem(/[!@#$%&*?]/.test(password), '특수문자(!@#$%&*?)')}

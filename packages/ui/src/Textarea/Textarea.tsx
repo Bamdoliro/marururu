@@ -37,7 +37,9 @@ const Textarea = ({
           $isError={isError}
         />
       </div>
-      <TextCount>{limit - textValue.length}</TextCount>
+      <TextCount>
+        {limit - textValue.length}/{limit}
+      </TextCount>
       <ConditionalMessage
         isError={isError}
         errorMessage={errorMessage}
