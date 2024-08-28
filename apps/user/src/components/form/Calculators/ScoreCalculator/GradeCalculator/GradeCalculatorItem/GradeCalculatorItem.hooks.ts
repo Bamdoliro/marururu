@@ -8,7 +8,7 @@ export const useInput = (id: number) => {
       const updatedData = [...prev];
       updatedData[id] = {
         ...updatedData[id],
-        [name]: data === '-' ? null : data,
+        [name]: data === '미이수' ? null : data,
       };
       return updatedData;
     });
