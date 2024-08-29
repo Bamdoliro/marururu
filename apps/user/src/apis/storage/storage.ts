@@ -1,6 +1,6 @@
 import { Cookies } from 'react-cookie';
 
-type CookieKey = 'access-token' | 'refresh-token';
+type CookieKey = 'access-token' | 'refresh-token' | 'noticeModalClosed';
 const cookies = new Cookies();
 
 export class Storage {
