@@ -21,9 +21,6 @@ const 출신학교및학력 = () => {
 
   const [isNextClicked, setIsNextClicked] = useState(false);
   const [isSchoolNameError, setIsSchoolNameError] = useState(false);
-  const [isSchoolAddressError, setIsSchoolAddressError] = useState(false);
-  const [isSchoolLocationError, setIsSchoolLocationError] = useState(false);
-  const [isSchoolCodeError, setIsSchoolCodeError] = useState(false);
   const [isTeacherPhoneNumberError, setIsTeacherPhoneNumberError] = useState(false);
   const [isTeacherNameError, setIsTeacherNameError] = useState(false);
   const [isTeacherMobilePhoneNumberError, setIsTeacherMobilePhoneNumberError] =
@@ -34,8 +31,6 @@ const 출신학교및학력 = () => {
     const {
       graduationType,
       schoolName,
-      schoolAddress,
-      schoolLocation,
       schoolCode,
       teacherPhoneNumber,
       teacherName,
@@ -48,12 +43,8 @@ const 출신학교및학력 = () => {
     } else {
       const schoolNameValid =
         (schoolName ?? '').length > 0 && (schoolName ?? '').length < 30;
-      const schoolAddressValid =
-        (schoolAddress ?? '').length > 0 && (schoolAddress ?? '').length < 40;
-      const schoolLocationValid =
-        (schoolLocation ?? '').length > 0 && (schoolLocation ?? '').length < 10;
       const schoolCodeValid = (schoolCode ?? '').length === 7;
-      const teacherPhoneNumberValid = (teacherPhoneNumber ?? '').length === 11;
+      const teacherPhoneNumberValid = (teacherPhoneNumber ?? '').length >= 10;
       const teacherNameValid =
         (teacherName ?? '').length > 0 && (teacherName ?? '').length < 20;
       const teacherMobilePhoneNumberValid =
@@ -62,8 +53,6 @@ const 출신학교및학력 = () => {
 
       return (
         schoolNameValid &&
-        schoolAddressValid &&
-        schoolLocationValid &&
         schoolCodeValid &&
         teacherPhoneNumberValid &&
         teacherNameValid &&
@@ -107,23 +96,9 @@ const 출신학교및학력 = () => {
         ((form.education.schoolName ?? '').length === 0 ||
           (form.education.schoolName ?? '').length >= 30)
     );
-    setIsSchoolAddressError(
-      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        ((form.education.schoolAddress ?? '').length === 0 ||
-          (form.education.schoolAddress ?? '').length >= 40)
-    );
-    setIsSchoolLocationError(
-      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        ((form.education.schoolLocation ?? '').length === 0 ||
-          (form.education.schoolLocation ?? '').length >= 10)
-    );
-    setIsSchoolCodeError(
-      form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        (form.education.schoolCode ?? '').length !== 7
-    );
     setIsTeacherPhoneNumberError(
       form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        (form.education.teacherPhoneNumber ?? '').length !== 11
+        (form.education.teacherPhoneNumber ?? '').length < 10
     );
     setIsTeacherNameError(
       form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
@@ -148,23 +123,9 @@ const 출신학교및학력 = () => {
           ((form.education.schoolName ?? '').length === 0 ||
             (form.education.schoolName ?? '').length >= 30)
       );
-      setIsSchoolAddressError(
-        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          ((form.education.schoolAddress ?? '').length === 0 ||
-            (form.education.schoolAddress ?? '').length >= 40)
-      );
-      setIsSchoolLocationError(
-        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          ((form.education.schoolLocation ?? '').length === 0 ||
-            (form.education.schoolLocation ?? '').length >= 10)
-      );
-      setIsSchoolCodeError(
-        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          (form.education.schoolCode ?? '').length !== 7
-      );
       setIsTeacherPhoneNumberError(
         form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          (form.education.teacherPhoneNumber ?? '').length !== 11
+          (form.education.teacherPhoneNumber ?? '').length < 10
       );
       setIsTeacherNameError(
         form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
@@ -177,7 +138,16 @@ const 출신학교및학력 = () => {
       );
       setIsGraduationYearError((form.education.graduationYear ?? '').length !== 4);
     }
-  }, [form, isNextClicked]);
+  }, [
+    form.education.schoolName,
+    form.education.schoolCode,
+    form.education.teacherPhoneNumber,
+    form.education.teacherName,
+    form.education.teacherMobilePhoneNumber,
+    form.education.graduationYear,
+    form.education.graduationType,
+    isNextClicked,
+  ]);
 
   return (
     <FormLayout title="출신학교 및 학력">
@@ -203,8 +173,10 @@ const 출신학교및학력 = () => {
               onClick={openFindSchoolModal}
               placeholder="검색 버튼을 눌러 학교를 검색하세요."
               readOnly
-              isError={isSchoolNameError}
-              errorMessage=""
+              isError={isNextClicked && isSchoolNameError}
+              errorMessage={
+                isNextClicked && isSchoolNameError ? '출신 학교를 입력해주세요.' : ''
+              }
             />
           )}
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
@@ -216,8 +188,6 @@ const 출신학교및학력 = () => {
               readOnly
               value={form.education.schoolAddress ?? ''}
               onChange={handle출신학교및학력Change}
-              isError={isSchoolAddressError}
-              errorMessage=""
             />
           )}
         </Row>
@@ -237,8 +207,12 @@ const 출신학교및학력 = () => {
             }
             value={form.education.graduationYear}
             onChange={handle출신학교및학력Change}
-            isError={isGraduationYearError}
-            errorMessage=""
+            isError={isNextClicked && isGraduationYearError}
+            errorMessage={
+              isNextClicked && isGraduationYearError
+                ? '졸업 연도, 합격 연도를 입력해주세요.'
+                : ''
+            }
           />
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
             <Input
@@ -246,8 +220,6 @@ const 출신학교및학력 = () => {
               label="지역"
               placeholder="학교를 선택하면 자동완성됩니다."
               readOnly
-              isError={isSchoolLocationError}
-              errorMessage=""
               width="100%"
               value={form.education.schoolLocation ?? ''}
               onChange={handle출신학교및학력Change}
@@ -264,8 +236,6 @@ const 출신학교및학력 = () => {
               width="100%"
               value={form.education.schoolCode ?? ''}
               onChange={handle출신학교및학력Change}
-              isError={isSchoolCodeError}
-              errorMessage=""
             />
           )}
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
@@ -276,8 +246,12 @@ const 출신학교및학력 = () => {
               width="100%"
               value={form.education.teacherPhoneNumber ?? ''}
               onChange={handle출신학교및학력Change}
-              isError={isTeacherPhoneNumberError}
-              errorMessage=""
+              isError={isNextClicked && isTeacherPhoneNumberError}
+              errorMessage={
+                isNextClicked && isTeacherPhoneNumberError
+                  ? '10자리 이상 입력해주세요.'
+                  : ''
+              }
             />
           )}
         </Row>
@@ -290,8 +264,12 @@ const 출신학교및학력 = () => {
               width="100%"
               value={form.education.teacherName ?? ''}
               onChange={handle출신학교및학력Change}
-              isError={isTeacherNameError}
-              errorMessage=""
+              isError={isNextClicked && isTeacherNameError}
+              errorMessage={
+                isNextClicked && isTeacherNameError
+                  ? '작성 교사 이름을 입력해주세요.'
+                  : ''
+              }
             />
           )}
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
@@ -302,8 +280,12 @@ const 출신학교및학력 = () => {
               width="100%"
               value={form.education.teacherMobilePhoneNumber ?? ''}
               onChange={handle출신학교및학력Change}
-              isError={isTeacherMobilePhoneNumberError}
-              errorMessage=""
+              isError={isNextClicked && isTeacherMobilePhoneNumberError}
+              errorMessage={
+                isNextClicked && isTeacherMobilePhoneNumberError
+                  ? '11자리를 입력해주세요.'
+                  : ''
+              }
             />
           )}
         </Row>
