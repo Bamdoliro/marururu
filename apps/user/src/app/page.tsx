@@ -13,19 +13,24 @@ import { AppLayout } from '@/layouts';
 import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ROUTES } from '@/constants/common/constant';
-
-if (process.env.NODE_ENV === 'development') {
-  // initMockAPI();
-}
+import NoticeModal from '@/components/main/NoticeModal/NoticeModal';
 
 const MainPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
   const message = searchParams.get('message');
   const warning = searchParams.get('warning');
+
+  useEffect(() => {
+    const noticeModalClosed = localStorage.getItem('noticeModalClosed');
+    if (!noticeModalClosed) {
+      setIsModalOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (message) {
@@ -54,6 +59,9 @@ const MainPage = () => {
           <FaqBox />
         </Row>
       </StyledMainPage>
+      {isModalOpen && (
+        <NoticeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      )}
     </AppLayout>
   );
 };
