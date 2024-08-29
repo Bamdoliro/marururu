@@ -32,7 +32,6 @@ const 지원자정보 = () => {
 
   const validateBirthday = (birthday: string) => birthday.length === 10;
 
-  // 생년월일 상태가 변경될 때마다 유효성 검사
   useEffect(() => {
     setIsBirthdayError(!validateBirthday(form.applicant.birthday));
   }, [form.applicant.birthday]);
