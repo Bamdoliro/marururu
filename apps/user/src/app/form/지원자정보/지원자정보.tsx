@@ -30,37 +30,27 @@ const 지원자정보 = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (form?.applicant?.birthday) {
-      const birthdayValid = form.applicant.birthday.length === 10;
-      setIsBirthdayError(!birthdayValid);
-    } else {
-      setIsBirthdayError(true);
-    }
-  }, [form?.applicant?.birthday]);
+  const validateBirthday = (birthday: string) => birthday.length === 10;
 
-  const validateForm = () => {
-    const birthdayValid = form.applicant.birthday.length === 10;
-    const photoValid = isPhotoUploaded;
-    return birthdayValid && photoValid;
-  };
+  useEffect(() => {
+    setIsBirthdayError(!validateBirthday(form.applicant.birthday));
+  }, [form.applicant.birthday]);
 
   const handleNextClick = () => {
     setIsNextClicked(true);
-    setIsPhotoError(!isPhotoUploaded);
+    const birthdayValid = validateBirthday(form.applicant.birthday);
+    const photoValid = isPhotoUploaded;
 
-    if (validateForm()) {
+    setIsPhotoError(!photoValid);
+    setIsBirthdayError(!birthdayValid);
+
+    if (birthdayValid && photoValid) {
       handleMoveNextStep();
-    } else {
-      setIsBirthdayError(form.applicant.birthday.length !== 10);
     }
   };
 
   const handleBirthdayChange = (e: ChangeEvent<HTMLInputElement>) => {
     handle지원자정보Change(e);
-    if (isNextClicked) {
-      setIsBirthdayError(e.target.value.length !== 10);
-    }
   };
 
   const handlePhotoUpload = (success: boolean, url?: string) => {
@@ -80,7 +70,7 @@ const 지원자정보 = () => {
       <Row width="100%" justifyContent="space-between">
         <Column gap={40} alignItems="center">
           <ProfileUploader
-            isError={isPhotoError}
+            isError={isNextClicked && isPhotoError}
             onPhotoUpload={handlePhotoUpload}
             previewUrl={previewUrl}
           />
@@ -100,9 +90,9 @@ const 지원자정보 = () => {
             value={form.applicant.birthday}
             onChange={handleBirthdayChange}
             name="birthday"
-            placeholder="예) 2006-11-03"
-            isError={isBirthdayError}
-            errorMessage=""
+            placeholder="예) 20061103"
+            isError={isNextClicked && isBirthdayError}
+            errorMessage={isBirthdayError ? '8자리를 입력해주세요.' : ''}
             width="100%"
           />
           <Row gap={40} alignItems="flex-end">

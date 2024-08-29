@@ -18,7 +18,6 @@ const 보호자정보 = () => {
   const [isParentRelationError, setIsParentRelationError] = useState(false);
   const [isAddressError, setIsAddressError] = useState(false);
   const [isDetailAddressError, setIsDetailAddressError] = useState(false);
-  const [isZoneCodeError, setIsZoneCodeError] = useState(false);
 
   const validateForm = () => {
     const nameValid = form.parent.name.length >= 2 && form.parent.name.length <= 5;
@@ -28,36 +27,28 @@ const 보호자정보 = () => {
       form.parent.address.length > 0 && form.parent.address.length < 100;
     const detailAddressValid =
       form.parent.detailAddress.length > 0 && form.parent.detailAddress.length < 100;
-    const zoneCodeValid = form.parent.zoneCode.length === 5;
 
     return (
-      nameValid &&
-      phoneNumberValid &&
-      relationValid &&
-      addressValid &&
-      detailAddressValid &&
-      zoneCodeValid
+      nameValid && phoneNumberValid && relationValid && addressValid && detailAddressValid
     );
   };
 
   const handleNextClick = () => {
     setIsNextClicked(true);
 
-    const nameValid = form.parent.name.length >= 2 && form.parent.name.length <= 5;
+    const nameValid = form.parent.name.length === null;
     const phoneNumberValid = form.parent.phoneNumber.length === 11;
     const relationValid = form.parent.relation.length > 0;
     const addressValid =
       form.parent.address.length > 0 && form.parent.address.length < 100;
     const detailAddressValid =
       form.parent.detailAddress.length > 0 && form.parent.detailAddress.length < 100;
-    const zoneCodeValid = form.parent.zoneCode.length === 5;
 
     setIsParentNameError(!nameValid);
     setIsParentPhoneNumberError(!phoneNumberValid);
     setIsParentRelationError(!relationValid);
     setIsAddressError(!addressValid);
     setIsDetailAddressError(!detailAddressValid);
-    setIsZoneCodeError(!zoneCodeValid);
 
     if (validateForm()) {
       handleMoveNextStep();
@@ -69,7 +60,7 @@ const 보호자정보 = () => {
     if (isNextClicked) {
       const { name, value } = e.target;
       if (name === 'name') {
-        setIsParentNameError(value.length < 2 && value.length > 5);
+        setIsParentNameError(value.length === null);
       } else if (name === 'phoneNumber') {
         setIsParentPhoneNumberError(value.length !== 11);
       } else if (name === 'relation') {
@@ -78,8 +69,6 @@ const 보호자정보 = () => {
         setIsAddressError(value.length === 0 || value.length >= 100);
       } else if (name === 'detailAddress') {
         setIsDetailAddressError(value.length === 0 || value.length >= 100);
-      } else if (name === 'zoneCode') {
-        setIsZoneCodeError(value.length !== 5);
       }
     }
   };
@@ -102,7 +91,7 @@ const 보호자정보 = () => {
             placeholder="예) 홍길동"
             width="100%"
             isError={isParentNameError}
-            errorMessage=""
+            errorMessage={isParentNameError ? '이름을 입력해주세요.' : ''}
           />
           <Input
             name="phoneNumber"
@@ -112,7 +101,7 @@ const 보호자정보 = () => {
             placeholder="- 없이 입력해주세요."
             width="100%"
             isError={isParentPhoneNumberError}
-            errorMessage=""
+            errorMessage={isParentPhoneNumberError ? '전화번호를 입력해주세요.' : ''}
           />
         </Row>
         <Input
@@ -122,7 +111,7 @@ const 보호자정보 = () => {
           name="relation"
           placeholder="예) 부, 모"
           isError={isParentRelationError}
-          errorMessage=""
+          errorMessage={isParentRelationError ? '올바른 값을 입력해주세요' : ''}
           width="calc(50% - 24px)"
         />
         <ButtonInput
@@ -132,9 +121,8 @@ const 보호자정보 = () => {
           width="100%"
           value={form.parent.address}
           placeholder="예) 부산광역시 강서구 가락대로 1393 봉림동 15 "
-          readOnly
           isError={isAddressError}
-          errorMessage=""
+          errorMessage={isAddressError ? '주소를 입력해주세요.' : ''}
         />
         <Row gap={48}>
           <Input
@@ -145,7 +133,7 @@ const 보호자정보 = () => {
             placeholder="상세 주소를 입력해주세요."
             width="100%"
             isError={isDetailAddressError}
-            errorMessage=""
+            errorMessage={isDetailAddressError ? '알맞은 상세 주소를 입력해 주세요.' : ''}
           />
           <Input
             name="zoneCode"
@@ -154,8 +142,6 @@ const 보호자정보 = () => {
             label="우편번호"
             placeholder="우편번호 5자리를 입력해주세요."
             width="100%"
-            isError={isZoneCodeError}
-            errorMessage=""
             readOnly
           />
         </Row>
