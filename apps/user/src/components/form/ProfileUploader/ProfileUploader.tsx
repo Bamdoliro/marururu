@@ -7,8 +7,8 @@ import type { ChangeEventHandler, DragEvent } from 'react';
 import { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
-import { Storage } from '@/apis/storage/storage';
 import ProfileUploadLoader from '../ProfileUpoloadLoader/ProfileUploadLoader';
+import { getUploadProfile, postUploadProfileImage } from '@/services/form/api';
 
 type ProfileUploaderProps = {
   onPhotoUpload: (success: boolean, url?: string) => void;
@@ -29,17 +29,22 @@ const ProfileUploader = ({
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setImageSrc(Storage.getLocalItem('downloadUrl'));
-    }
+    const fetchDownloadUrl = async () => {
+      const presignedData = await postUploadProfileImage();
+      const newDownloadUrl = await getUploadProfile(presignedData.downloadUrl);
+
+      setImageSrc(newDownloadUrl);
+    };
+
+    fetchDownloadUrl();
   }, []);
 
   const { mutate: uploadProfileImageMutate } = useUploadProfileImageMutation();
 
   const handleUploadSuccess = (downloadUrl: string) => {
-    Storage.setLocalItem('downloadUrl', downloadUrl);
     onPhotoUpload(true, downloadUrl);
     setIsUploading(false);
+    setImageSrc(downloadUrl);
   };
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
@@ -88,8 +93,8 @@ const ProfileUploader = ({
         <ProfileUploadLoader isOpen={true} />
       ) : (
         <>
-          {previewUrl ? (
-            <ImagePreview src={previewUrl} alt="profile-image" />
+          {imageSrc ? (
+            <ImagePreview src={imageSrc} alt="profile-image" />
           ) : (
             <UploadImageBox
               onDragEnter={(e: DragEvent<HTMLDivElement>) => {
