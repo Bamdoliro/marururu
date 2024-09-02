@@ -15,13 +15,11 @@ const 지원자정보 = () => {
   const [isBirthdayError, setIsBirthdayError] = useState(false);
   const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
   const [isPhotoError, setIsPhotoError] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const storedImage = Storage.getLocalItem('downloadUrl');
 
     if (storedImage) {
-      setPreviewUrl(storedImage);
       setIsPhotoUploaded(true);
       setIsPhotoError(false);
     } else {
@@ -55,7 +53,6 @@ const 지원자정보 = () => {
 
   const handlePhotoUpload = (success: boolean, url?: string) => {
     if (success && url) {
-      setPreviewUrl(url);
       setIsPhotoUploaded(true);
       setIsPhotoError(false);
       Storage.setLocalItem('downloadUrl', url);
@@ -72,7 +69,6 @@ const 지원자정보 = () => {
           <ProfileUploader
             isError={isNextClicked && isPhotoError}
             onPhotoUpload={handlePhotoUpload}
-            previewUrl={previewUrl}
           />
         </Column>
         <Column gap={30} width={492}>

@@ -13,14 +13,9 @@ import { getUploadProfile, postUploadProfileImage } from '@/services/form/api';
 type ProfileUploaderProps = {
   onPhotoUpload: (success: boolean, url?: string) => void;
   isError: boolean;
-  previewUrl: string | null;
 };
 
-const ProfileUploader = ({
-  onPhotoUpload,
-  isError,
-  previewUrl,
-}: ProfileUploaderProps) => {
+const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
@@ -32,7 +27,6 @@ const ProfileUploader = ({
     const fetchDownloadUrl = async () => {
       const presignedData = await postUploadProfileImage();
       const newDownloadUrl = await getUploadProfile(presignedData.downloadUrl);
-
       setImageSrc(newDownloadUrl);
     };
 
@@ -126,7 +120,7 @@ const ProfileUploader = ({
               </Column>
             </UploadImageBox>
           )}
-          {previewUrl && (
+          {imageSrc && (
             <Button size="SMALL" onClick={openImageFileUploader}>
               재업로드
             </Button>
