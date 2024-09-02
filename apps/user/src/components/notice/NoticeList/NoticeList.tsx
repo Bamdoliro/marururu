@@ -6,9 +6,13 @@ import NoticeItem from './NoticeItem/NoticeItem';
 const NoticeList = () => {
   const { data: noticeListData } = useNoticeListQuery();
 
-  return noticeListData ? (
+  const sortedNoticeListData = noticeListData
+    ?.slice()
+    .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+
+  return sortedNoticeListData ? (
     <StyledNoticeList>
-      {noticeListData.map(({ id, title, createdAt }) => (
+      {sortedNoticeListData.map(({ id, title, createdAt }) => (
         <NoticeItem key={id} id={id} title={title} createdAt={createdAt} />
       ))}
     </StyledNoticeList>
