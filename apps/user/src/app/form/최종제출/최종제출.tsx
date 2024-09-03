@@ -67,12 +67,12 @@ const 최종제출 = () => {
               </Text>
             </Column>
             <ExportFormButton onClick={handleExportForm}>
-              [ 원서 초안 pdf 다운로드 ]
+              [ 작성한 원서(pdf) 다운로드 ]
             </ExportFormButton>
           </Column>
           <Row gap={16} alignItems="center" style={{ margin: '72px 0 56px 0' }}>
             <Button onClick={openPdfFileUploader} size="SMALL">
-              첨부파일 업로드
+              제출 서류 업로드
             </Button>
             <Text fontType="p2" color={color.gray900}>
               {formDocument.fileName || '선택된 파일 없음'}

@@ -19,7 +19,7 @@ const 초안제출완료 = () => {
         <Row gap={8} alignItems="center">
           <IconCheckCircle width={64} height={64} />
           <Text fontType="H1" color={color.gray900}>
-            원서 초안 제출 완료
+            입학 서류 제출하기
           </Text>
         </Row>
         <Column gap={12}>
@@ -27,7 +27,11 @@ const 초안제출완료 = () => {
             원서 초안을 제출 완료하셨습니다.
           </Text>
           <Text fontType="H4" color={color.red}>
-            원서 초안과 기타 제출서류를 함께 제출해야 최종적으로 원서 제출이 완료됩니다.
+            작성한 입학 원서를 출력하여 학교장 직인을 날인 후 추가 서류와 함께
+            <br />
+            인터넷 접수하여 입학원서 접수를 완료하여 주시기 바랍니다.
+            <br />
+            최종 접수한 모든 서류는 우편 또는 방문 접수하여 주시기 바랍니다.
           </Text>
         </Column>
         <Row gap={16}>
