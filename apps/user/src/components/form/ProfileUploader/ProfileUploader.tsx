@@ -9,6 +9,7 @@ import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
 import ProfileUploadLoader from '../ProfileUpoloadLoader/ProfileUploadLoader';
 import { getUploadProfile, postUploadProfileImage } from '@/services/form/api';
+import { Storage } from '@/apis/storage/storage';
 
 type ProfileUploaderProps = {
   onPhotoUpload: (success: boolean, url?: string) => void;
@@ -23,22 +24,42 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
+  const { mutate: uploadProfileImageMutate } = useUploadProfileImageMutation();
+
   useEffect(() => {
     const fetchDownloadUrl = async () => {
-      const presignedData = await postUploadProfileImage();
-      const newDownloadUrl = await getUploadProfile(presignedData.downloadUrl);
-      setImageSrc(newDownloadUrl);
+      try {
+        const presignedData = await postUploadProfileImage();
+        const newDownloadUrl = await getUploadProfile(presignedData.downloadUrl);
+        setImageSrc(newDownloadUrl);
+        Storage.setItem('downloadUrl', newDownloadUrl);
+        onPhotoUpload(true, newDownloadUrl);
+      } catch (error) {
+        console.error('Failed to fetch the download URL:', error);
+        onPhotoUpload(false);
+      }
     };
 
-    fetchDownloadUrl();
-  }, []);
+    const isUploadPicture = Storage.getItem('isUploadPicture');
 
-  const { mutate: uploadProfileImageMutate } = useUploadProfileImageMutation();
+    if (isUploadPicture === 'true') {
+      const storedImageUrl = Storage.getItem('downloadUrl');
+      if (storedImageUrl) {
+        setImageSrc(storedImageUrl);
+      } else {
+        fetchDownloadUrl();
+      }
+    } else {
+      fetchDownloadUrl();
+    }
+  }, [onPhotoUpload]);
 
   const handleUploadSuccess = (downloadUrl: string) => {
     onPhotoUpload(true, downloadUrl);
     setIsUploading(false);
     setImageSrc(downloadUrl);
+    Storage.setItem('downloadUrl', downloadUrl);
+    Storage.setItem('isUploadPicture', 'true');
   };
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {

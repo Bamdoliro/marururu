@@ -102,7 +102,13 @@ export const useVerificationMutation = (
 };
 
 export const useLogoutUserMutation = () => {
-  const [, , removeCookie] = useCookies(['access-token', 'refresh-token']);
+  const [, , removeCookie] = useCookies([
+    'access-token',
+    'refresh-token',
+    'noticeModalClosed',
+    'isUploadPicture',
+    'downloadUrl',
+  ]);
   const router = useRouter();
 
   const { mutate: logoutUserMutate, ...restMutation } = useMutation({
@@ -110,16 +116,18 @@ export const useLogoutUserMutation = () => {
     onSuccess: () => {
       removeCookie('access-token', { path: '/' });
       removeCookie('refresh-token', { path: '/' });
-      Storage.removeLocalItem('noticeModalClosed');
-      Storage.removeLocalItem('downloadUrl');
+      removeCookie('noticeModalClosed');
+      removeCookie('isUploadPicture');
+      removeCookie('downloadUrl');
       window.location.reload();
       router.replace(ROUTES.MAIN);
     },
     onError: () => {
       removeCookie('access-token', { path: '/' });
       removeCookie('refresh-token', { path: '/' });
-      Storage.removeLocalItem('noticeModalClosed');
-      Storage.removeLocalItem('downloadUrl');
+      removeCookie('noticeModalClosed');
+      removeCookie('isUploadPicture');
+      removeCookie('downloadUrl');
       window.location.reload();
     },
   });

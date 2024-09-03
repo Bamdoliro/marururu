@@ -31,7 +31,7 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
 
   const handleCloseModal = () => {
     if (isLoggedIn) {
-      Storage.setLocalItem('noticeModalClosed', 'true');
+      Storage.setItem('noticeModalClosed', 'true');
     }
     router.replace(ROUTES.MAIN);
     onClose();

@@ -13,8 +13,8 @@ import {
   putProfileUpoload,
   putUpoloadFormDocument,
 } from './api';
-import { Storage } from '@/apis/storage/storage';
 import type { FormPresignedUrlData } from '@/types/form/remote';
+import { Storage } from '@/apis/storage/storage';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
   const setFormStep = useSetFormStepStore();
@@ -90,8 +90,7 @@ export const useUploadProfileImageMutation = () => {
       await putProfileUpoload(file, presignedData);
       const downloadUrl = await getUploadProfile(presignedData.downloadUrl);
 
-      Storage.setLocalItem('downloadUrl', downloadUrl);
-
+      Storage.setItem('downloadUrl', downloadUrl);
       return downloadUrl;
     },
     {

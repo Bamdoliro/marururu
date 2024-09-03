@@ -17,9 +17,9 @@ const 지원자정보 = () => {
   const [isPhotoError, setIsPhotoError] = useState(false);
 
   useEffect(() => {
-    const storedImage = Storage.getLocalItem('downloadUrl');
+    const storedImage = Storage.getItem('isUploadPicture');
 
-    if (storedImage) {
+    if (storedImage === 'true') {
       setIsPhotoUploaded(true);
       setIsPhotoError(false);
     } else {
@@ -55,7 +55,8 @@ const 지원자정보 = () => {
     if (success && url) {
       setIsPhotoUploaded(true);
       setIsPhotoError(false);
-      Storage.setLocalItem('downloadUrl', url);
+      Storage.setItem('isUploadPicture', 'true');
+      Storage.setItem('downloadUrl', url);
     } else {
       setIsPhotoUploaded(false);
       setIsPhotoError(true);

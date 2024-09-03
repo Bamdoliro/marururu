@@ -29,7 +29,7 @@ const useFilledApplicantFieldsCount = (applicant: Form['applicant']) => {
           return acc + 1;
       }
     },
-    Storage.getLocalItem('downloadUrl') ? 1 : 0
+    Storage.getItem('isUploadPicture') ? 1 : 0
   );
 };
 
