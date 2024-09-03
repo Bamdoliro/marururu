@@ -30,11 +30,11 @@ const FinalFormTable = () => {
             <li>입학 원서(원서 초안) 1부</li>
           </ul>
           <li>3개월 이내 증명사진 스캔 후 입력</li>
-          <Text fontType="form" color={color.red}>
-            <li>
+          <li>
+            <Text fontType="form" color={color.red}>
               인터넷 접수(maru.bamdoliro.com) 후 출력하여 출신 중학교장 직인 날인 후 제출
-            </li>
-          </Text>
+            </Text>
+          </li>
           <ul>
             <li>자기소개서 및 학업계획서 1부 ([서식2])</li>
           </ul>
@@ -42,12 +42,16 @@ const FinalFormTable = () => {
           <ul>
             <li>학교생활기록부 || 사본 1부 </li>
           </ul>
-          <Text fontType="form" color={color.red}>
-            <li>원조대조필</li>
-          </Text>
-          <Text fontType="form" color={color.red}>
-            <li>학교장 직인 날인</li>
-          </Text>
+          <li>
+            <Text fontType="form" color={color.red}>
+              원조대조필
+            </Text>
+          </li>{' '}
+          <li>
+            <Text fontType="form" color={color.red}>
+              학교장 직인 날인
+            </Text>
+          </li>
           <li>중졸 검정고시 합격자도 제출</li>
           <ul>
             <li>서약서 1부 ([서식3])</li>
@@ -78,9 +82,11 @@ const FinalFormTable = () => {
             <li>주민등록등본 1부 (검정고시 합격자, 사회통합전형 대상자 등)</li>
             <li>자격증 사본 1부</li>
           </ul>
-          <Text fontType="form" color={color.red}>
-            <li>원본대조필</li>
-          </Text>
+          <li>
+            <Text fontType="form" color={color.red}>
+              원본대조필
+            </Text>
+          </li>
           <li>인터넷 출력 시 자격증번호와 발급기관의 직인 필수</li>
           <ul>
             <li>학교장 추천서 ([서식4])</li>
