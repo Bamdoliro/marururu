@@ -111,12 +111,15 @@ export const useLogoutUserMutation = () => {
       removeCookie('access-token', { path: '/' });
       removeCookie('refresh-token', { path: '/' });
       Storage.removeLocalItem('noticeModalClosed');
+      Storage.removeLocalItem('downloadUrl');
       window.location.reload();
       router.replace(ROUTES.MAIN);
     },
     onError: () => {
       removeCookie('access-token', { path: '/' });
       removeCookie('refresh-token', { path: '/' });
+      Storage.removeLocalItem('noticeModalClosed');
+      Storage.removeLocalItem('downloadUrl');
       window.location.reload();
     },
   });
