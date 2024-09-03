@@ -2,6 +2,7 @@ import type { FormStep } from '@/types/form/client';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import { Storage } from '@/apis/storage/storage';
 
 interface Props {
   onPrevious?: () => void;
@@ -10,9 +11,11 @@ interface Props {
 }
 
 const FormController = ({ onPrevious, onNext, step }: Props) => {
+  const correct = Storage.getItem('correct');
+
   return (
     <FormControllerBar>
-      {step === '지원자정보' ? (
+      {step === '지원자정보' || correct ? (
         <Button width={150} onClick={onNext}>
           다음 단계
         </Button>

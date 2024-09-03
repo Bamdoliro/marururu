@@ -18,6 +18,13 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
   const isLoggedIn = Boolean(Storage.getItem('access-token'));
 
   useEffect(() => {
+    const noticeModalClosed = Storage.getItem('noticeModalClosed');
+
+    if (noticeModalClosed) {
+      onClose();
+      return;
+    }
+
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -27,13 +34,17 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (navigateToGuide = false) => {
     if (isLoggedIn) {
       Storage.setItem('noticeModalClosed', 'true');
     }
-    router.replace(ROUTES.MAIN);
+    if (navigateToGuide) {
+      router.push(UserGuide);
+    } else {
+      router.replace(ROUTES.MAIN);
+    }
     onClose();
   };
 
@@ -44,7 +55,7 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
       <StyledModal>
         <CloseButton>
           <IconClose
-            onClick={handleCloseModal}
+            onClick={() => handleCloseModal(false)}
             color={color.gray600}
             width={36}
             height={36}
@@ -65,7 +76,7 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
               </Text>
             </Column>
           </Column>
-          <Button type="button" onClick={() => router.push(UserGuide)}>
+          <Button type="button" onClick={() => handleCloseModal(true)}>
             <Text fontType="p1" color={color.white}>
               가이드 다운로드 페이지로 이동
             </Text>

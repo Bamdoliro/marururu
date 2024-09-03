@@ -108,6 +108,7 @@ export const useLogoutUserMutation = () => {
     'noticeModalClosed',
     'isUploadPicture',
     'downloadUrl',
+    'correct',
   ]);
   const router = useRouter();
 
@@ -119,6 +120,7 @@ export const useLogoutUserMutation = () => {
       removeCookie('noticeModalClosed');
       removeCookie('isUploadPicture');
       removeCookie('downloadUrl');
+      removeCookie('correct');
       window.location.reload();
       router.replace(ROUTES.MAIN);
     },
@@ -128,6 +130,7 @@ export const useLogoutUserMutation = () => {
       removeCookie('noticeModalClosed');
       removeCookie('isUploadPicture');
       removeCookie('downloadUrl');
+      removeCookie('correct');
       window.location.reload();
     },
   });
