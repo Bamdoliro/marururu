@@ -13,7 +13,7 @@ const 교과성적 = () => {
     <FormLayout title="성적 입력">
       <Column gap={12}>
         <Text fontType="H4" color={color.gray900}>
-          성적 계산 배점
+          지원자 성적 총점
         </Text>
         <GradePreview />
       </Column>
