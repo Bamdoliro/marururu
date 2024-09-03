@@ -144,7 +144,7 @@ const Header = () => {
   const NAVIGATION_LIST = (() => {
     return [
       { name: '홈', route: ROUTES.MAIN },
-      { name: '성적모의게산', route: ROUTES.SCORE_SIMULATION },
+      { name: '성적모의계산', route: ROUTES.SCORE_SIMULATION },
       { name: '공지사항', route: ROUTES.NOTICE },
       { name: '자주 묻는 질문', route: ROUTES.FAQ },
     ];
