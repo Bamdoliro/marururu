@@ -61,24 +61,23 @@ const 초안작성완료 = () => {
             <IconCancelCircle width={64} height={64} />
           )}
           <Text fontType="H1" color={color.gray900}>
-            {isComplete ? '원서 초안 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
+            {isComplete ? '입학원서 작성 완료' : '아직 작성하지 않은 곳이 있어요'}
           </Text>
         </Row>
         <Column gap={12} style={{ maxWidth: '80%' }}>
           <Text fontType="p1" color={color.gray900}>
             {isComplete
-              ? '원서 접수에 필요한 초안을 모두 작성하셨습니다.'
+              ? '입학원서 작성이 완료되었습니다.'
               : '원서 작성 중 입력하지 않은 곳이 있습니다.'}
           </Text>
           <Text fontType="H4" color={color.red}>
             {isComplete ? (
               <>
-                원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로
-                <br />
-                처리되며 더 이상 입학원서 수정이 불가능합니다.
+                작성한 입학원서를 출력하여 학교장 직인 날인 후 <br />
+                추가 서류와 인터넷 탑재해야만 원서 접수가 완료됩니다.
               </>
             ) : (
-              '원서 작성 중 입력하지 않은 곳이 있다면 초안을 제출할 수 없습니다.'
+              '원서 작성 중 입력하지 않은 곳이 있다면 원서 작성을 완료할 수 없습니다.'
             )}
           </Text>
           <Text fontType="p1" color={color.gray900}>
@@ -101,10 +100,10 @@ const 초안작성완료 = () => {
             </Text>
             <Row gap={16}>
               <Button onClick={handleCheckAgainForm} styleType="SECONDARY" size="LARGE">
-                다시 한번 확인하기
+                되돌아가기
               </Button>
               <Button onClick={openDraftFormConfrim} size="LARGE">
-                원서 초안 제출하기
+                확인
               </Button>
             </Row>
           </Column>

@@ -197,7 +197,7 @@ const 출신학교및학력 = () => {
             label={
               form.education.graduationType === 'QUALIFICATION_EXAMINATION'
                 ? '합격연도'
-                : '졸업연도'
+                : '졸업(예정)연도'
             }
             placeholder="예) 2024"
             width={

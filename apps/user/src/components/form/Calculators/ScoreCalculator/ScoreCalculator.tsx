@@ -24,11 +24,9 @@ const ScoreCalculator = ({ option }: Props) => {
     <StyledScoreCalculator>
       <Row alignItems="center" justifyContent="space-between">
         <Text fontType="p3" color={color.red}>
-          *과목명이 없는 경우 '과목추가' 선택하여 성취 수준 입력.
+          *과목명이 없는 경우 ‘과목추가’를 선택하여 성취 수준을 입력하시기 바랍니다.
           <br />
-          *선택과목은 응시한 과목을 선택하여 성적을 입력해주시기 바랍니다.
-          <br />
-          *국어•영어•수학에서 값 없음 미이수 입력 시 자동으로 C로 처리됩니다.
+          *국어•영어•수학에서 미이수 입력 시 자동으로 성적이 C로 처리됩니다.
         </Text>
         {option === 'SIMULATION' && (
           <Switch
