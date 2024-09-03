@@ -35,6 +35,7 @@ const font = {
   caption: fontGenerator(400, 0.75, 140, 0),
   context: fontGenerator(500, 1, 130, 0),
   code: fontGenerator(400, 1, 130, 0),
+  form: fontGenerator(400, 1, 180, 0),
 };
 
 export default font;
