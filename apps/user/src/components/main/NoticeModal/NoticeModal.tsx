@@ -37,7 +37,7 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
     onClose();
   };
 
-  const UserGuide = 'https://maru-user.vercel.app/notice';
+  const UserGuide = 'https://maru-user.vercel.app/notice/72';
 
   return (
     <BlurBackground $isOpen={isOpen}>
