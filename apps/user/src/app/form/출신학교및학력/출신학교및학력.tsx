@@ -76,9 +76,10 @@ const 출신학교및학력 = () => {
           teacherPhoneNumber: null,
           teacherName: null,
           teacherMobilePhoneNumber: null,
-          graduationYear: '',
+          graduationYear: prev.education.graduationYear || '',
         },
       }));
+      setIsGraduationYearReadOnly(false);
     } else if (form.education.graduationType === 'EXPECTED') {
       setForm((prev) => ({
         ...prev,
@@ -88,12 +89,12 @@ const 출신학교및학력 = () => {
         },
       }));
       setIsGraduationYearReadOnly(true);
-    } else {
+    } else if (form.education.graduationType === 'GRADUATED') {
       setForm((prev) => ({
         ...prev,
         education: {
           ...prev.education,
-          graduationYear: '',
+          graduationYear: prev.education.graduationYear || '',
         },
       }));
       setIsGraduationYearReadOnly(false);

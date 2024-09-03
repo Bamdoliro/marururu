@@ -80,6 +80,7 @@ const useFilledEducationFieldsCount = (education: Form['education']) => {
       case 'schoolCode':
         return acc + Number(value.length === 7);
       case 'schoolPhoneNumber':
+        return acc + Number(value.length >= 10);
       case 'teacherMobilePhoneNumber':
         return acc + Number(value.length <= 11);
       default:
