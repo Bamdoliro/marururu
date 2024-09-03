@@ -1,6 +1,7 @@
 import { useFormValueStore, useSetFormStepStore } from '@/store';
 import { styled } from 'styled-components';
 import CheckFormComplete from './CheckFormComplete/CheckFormComplete';
+import { Storage } from '@/apis/storage/storage';
 
 interface Props {
   applicantFilledCount: number;
@@ -20,22 +21,47 @@ const CheckFormCompleteBox = ({
   const setFormStep = useSetFormStepStore();
   const form = useFormValueStore();
 
+  const handleCorrect지원자정보 = () => {
+    setFormStep('지원자정보');
+    Storage.setItem('correct', '1');
+  };
+
+  const handleCorrect보호자정보 = () => {
+    setFormStep('보호자정보');
+    Storage.setItem('correct', '1');
+  };
+
+  const handleCorrect출신학교및학력 = () => {
+    setFormStep('출신학교및학력');
+    Storage.setItem('correct', '1');
+  };
+
+  const handleCorrect전형선택 = () => {
+    setFormStep('전형선택');
+    Storage.setItem('correct', '1');
+  };
+
+  const handleCorrect성적입력 = () => {
+    setFormStep('성적입력');
+    Storage.setItem('correct', '1');
+  };
+
   return (
     <StyledCheckFormCompleteBox>
       <CheckFormComplete
-        onClick={() => setFormStep('지원자정보')}
+        onClick={handleCorrect지원자정보}
         formStep="지원자 정보"
         maxCompleteOfNumber={5}
         completeOfNumber={applicantFilledCount}
       />
       <CheckFormComplete
-        onClick={() => setFormStep('보호자정보')}
+        onClick={handleCorrect보호자정보}
         formStep="보호자 정보"
         maxCompleteOfNumber={6}
         completeOfNumber={parentFilledCount}
       />
       <CheckFormComplete
-        onClick={() => setFormStep('출신학교및학력')}
+        onClick={handleCorrect출신학교및학력}
         formStep="출신학교 및 학력"
         maxCompleteOfNumber={
           form.education.graduationType === 'QUALIFICATION_EXAMINATION' ? +'2' : 9
@@ -43,13 +69,13 @@ const CheckFormCompleteBox = ({
         completeOfNumber={educationFilledCount}
       />
       <CheckFormComplete
-        onClick={() => setFormStep('전형선택')}
+        onClick={handleCorrect전형선택}
         formStep="전형 선택"
         maxCompleteOfNumber={1}
         completeOfNumber={typeFilledCount}
       />
       <CheckFormComplete
-        onClick={() => setFormStep('성적입력')}
+        onClick={handleCorrect성적입력}
         formStep="성적 입력"
         maxCompleteOfNumber={4}
         completeOfNumber={4}

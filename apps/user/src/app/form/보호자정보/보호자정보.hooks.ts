@@ -1,15 +1,25 @@
+import { Storage } from '@/apis/storage/storage';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store';
 import type { ChangeEventHandler } from 'react';
+import { useCookies } from 'react-cookie';
 
 export const useCTAButton = () => {
   const form = useFormValueStore();
   const { saveFormMutate } = useSaveFormMutation();
   const setFormStep = useSetFormStepStore();
+  const correct = Storage.getItem('correct');
+  const [, , removeCookie] = useCookies(['correct']);
 
   const handleMoveNextStep = () => {
-    setFormStep('출신학교및학력');
-    saveFormMutate(form);
+    if (correct) {
+      setFormStep('초안작성완료');
+      saveFormMutate(form);
+      removeCookie('correct');
+    } else {
+      setFormStep('출신학교및학력');
+      saveFormMutate(form);
+    }
   };
 
   const handleMovePreviousStep = () => {

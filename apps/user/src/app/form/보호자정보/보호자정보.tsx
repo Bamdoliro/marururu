@@ -5,6 +5,7 @@ import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useCTAButton, useInput } from './보호자정보.hooks';
 import { useState } from 'react';
+import { Storage } from '@/apis/storage/storage';
 
 const 보호자정보 = () => {
   const overlay = useOverlay();
@@ -18,6 +19,8 @@ const 보호자정보 = () => {
   const [isParentRelationError, setIsParentRelationError] = useState(false);
   const [isAddressError, setIsAddressError] = useState(false);
   const [isDetailAddressError, setIsDetailAddressError] = useState(false);
+
+  const correct = Storage.getItem('correct');
 
   const validateForm = () => {
     const nameValid = form.parent.name.length >= 2 && form.parent.name.length <= 5;
@@ -60,7 +63,7 @@ const 보호자정보 = () => {
     if (isNextClicked) {
       const { name, value } = e.target;
       if (name === 'name') {
-        setIsParentNameError(value.length === null);
+        setIsParentNameError(value.length < 2 || value.length > 5);
       } else if (name === 'phoneNumber') {
         setIsParentPhoneNumberError(value.length !== 11);
       } else if (name === 'relation') {
@@ -73,7 +76,7 @@ const 보호자정보 = () => {
     }
   };
 
-  const openFindAdressModal = () => {
+  const openFindAddressModal = () => {
     overlay.open(({ isOpen, close }) => (
       <FindAddressModal isOpen={isOpen} onClose={close} />
     ));
@@ -117,7 +120,7 @@ const 보호자정보 = () => {
         <ButtonInput
           label="주소"
           buttonText="검색"
-          onClick={openFindAdressModal}
+          onClick={openFindAddressModal}
           width="100%"
           value={form.parent.address}
           placeholder="예) 부산광역시 강서구 가락대로 1393 봉림동 15 "
@@ -147,7 +150,7 @@ const 보호자정보 = () => {
         </Row>
       </Column>
       <FormController
-        onPrevious={handleMovePreviousStep}
+        onPrevious={correct ? undefined : handleMovePreviousStep}
         onNext={handleNextClick}
         step="보호자정보"
       />

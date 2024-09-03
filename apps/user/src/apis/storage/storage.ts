@@ -5,7 +5,8 @@ type CookieKey =
   | 'refresh-token'
   | 'noticeModalClosed'
   | 'isUploadPicture'
-  | 'downloadUrl';
+  | 'downloadUrl'
+  | 'correct';
 const cookies = new Cookies();
 
 export class Storage {
