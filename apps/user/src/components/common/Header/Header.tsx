@@ -90,7 +90,7 @@ const Header = () => {
               <Button
                 styleType="PRIMARY"
                 size="SMALL"
-                onClick={() => router.push(ROUTES.SIGNUP)}
+                // onClick={() => router.push(ROUTES.SIGNUP)}
               >
                 회원가입
               </Button>
