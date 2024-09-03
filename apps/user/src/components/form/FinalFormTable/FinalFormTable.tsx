@@ -26,33 +26,32 @@ const FinalFormTable = () => {
           }}
           width={696}
         >
-            <ul>
-              <li>입학 원서(원서 초안) 1부</li>
-            </ul>
-            <li>3개월 이내 증명사진 스캔 후 입력</li>
-            <Text fontType="form" color={color.red}>
-              <li>
-                인터넷 접수(maru.bamdoliro.com) 후 출력하여 출신 중학교장 직인 날인 후
-                제출
-              </li>
-            </Text>
-            <ul>
-              <li>자기소개서 및 학업계획서 1부 ([서식2])</li>
-            </ul>
-            <li>인터넷 접수(마루도메인) 후 출력</li>
-            <ul>
-              <li>학교생활기록부 || 사본 1부 </li>
-            </ul>
-            <Text fontType="form" color={color.red}>
-              <li>원조대조필</li>
-            </Text>
-            <Text fontType="form" color={color.red}>
-              <li>학교장 직인 날인</li>
-            </Text>
-            <li>중졸 검정고시 합격자도 제출</li>
-            <ul>
-              <li>서약서 1부 ([서식3])</li>
-            </ul>
+          <ul>
+            <li>입학 원서(원서 초안) 1부</li>
+          </ul>
+          <li>3개월 이내 증명사진 스캔 후 입력</li>
+          <Text fontType="form" color={color.red}>
+            <li>
+              인터넷 접수(maru.bamdoliro.com) 후 출력하여 출신 중학교장 직인 날인 후 제출
+            </li>
+          </Text>
+          <ul>
+            <li>자기소개서 및 학업계획서 1부 ([서식2])</li>
+          </ul>
+          <li>인터넷 접수(마루도메인) 후 출력</li>
+          <ul>
+            <li>학교생활기록부 || 사본 1부 </li>
+          </ul>
+          <Text fontType="form" color={color.red}>
+            <li>원조대조필</li>
+          </Text>
+          <Text fontType="form" color={color.red}>
+            <li>학교장 직인 날인</li>
+          </Text>
+          <li>중졸 검정고시 합격자도 제출</li>
+          <ul>
+            <li>서약서 1부 ([서식3])</li>
+          </ul>
         </Td>
       </Tr>
       <Tr>
