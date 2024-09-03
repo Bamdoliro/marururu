@@ -21,7 +21,7 @@ const 최종제출완료 = () => {
         <Row gap={8} alignItems="center" justifyContent="center">
           <IconCheckCircle width={64} height={64} />
           <Text fontType="H1" color={color.gray900}>
-            원서 최종 제출 완료
+            입학원서 최종 제출 완료
           </Text>
         </Row>
         <Column gap={71} alignItems="center">
