@@ -26,6 +26,7 @@ const 출신학교및학력 = () => {
   const [isTeacherMobilePhoneNumberError, setIsTeacherMobilePhoneNumberError] =
     useState(false);
   const [isGraduationYearError, setIsGraduationYearError] = useState(false);
+  const [isGraduationYearReadOnly, setIsGraduationYearReadOnly] = useState(false);
 
   const validateForm = () => {
     const {
@@ -75,8 +76,27 @@ const 출신학교및학력 = () => {
           teacherPhoneNumber: null,
           teacherName: null,
           teacherMobilePhoneNumber: null,
+          graduationYear: '',
         },
       }));
+    } else if (form.education.graduationType === 'EXPECTED') {
+      setForm((prev) => ({
+        ...prev,
+        education: {
+          ...prev.education,
+          graduationYear: '2025',
+        },
+      }));
+      setIsGraduationYearReadOnly(true);
+    } else {
+      setForm((prev) => ({
+        ...prev,
+        education: {
+          ...prev.education,
+          graduationYear: '',
+        },
+      }));
+      setIsGraduationYearReadOnly(false);
     }
   }, [form.education.graduationType, setForm]);
 
@@ -213,6 +233,7 @@ const 출신학교및학력 = () => {
                 ? '졸업 연도, 합격 연도를 입력해주세요.'
                 : ''
             }
+            readOnly={isGraduationYearReadOnly}
           />
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
             <Input
