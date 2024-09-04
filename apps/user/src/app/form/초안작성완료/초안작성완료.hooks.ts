@@ -22,7 +22,7 @@ const useFilledApplicantFieldsCount = (applicant: Form['applicant']) => {
 
       switch (key) {
         case 'name':
-          return acc + Number(value.length <= 20);
+          return acc + Number(value.length >= 2);
         case 'phoneNumber':
           return acc + Number(value.length === 11);
         default:
@@ -39,7 +39,7 @@ const useFilledParentFieldsCount = (parent: Form['parent']) =>
 
     switch (key) {
       case 'name':
-        return acc + Number(value.length <= 20);
+        return acc + Number(value.length >= 2);
       case 'phoneNumber':
         return acc + Number(value.length === 11);
       case 'address':
@@ -74,7 +74,7 @@ const useFilledEducationFieldsCount = (education: Form['education']) => {
       case 'schoolLocation':
       case 'schoolAddress':
       case 'teacherName':
-        return acc + Number(value.length <= 20);
+        return acc + Number(value.length >= 2);
       case 'graduationYear':
         return acc + Number(value.length === 4);
       case 'schoolCode':
