@@ -36,7 +36,6 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
         Storage.setItem('downloadUrl', newDownloadUrl);
         onPhotoUpload(true, newDownloadUrl);
       } catch (error) {
-        console.error('Failed to fetch the download URL:', error);
         onPhotoUpload(false);
       }
     };

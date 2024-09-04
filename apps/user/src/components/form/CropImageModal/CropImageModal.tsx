@@ -56,7 +56,7 @@ const CropImageModal = ({ zoom, isOpen, imageSrc, onClose, onCropComplete }: Pro
 
       onCropComplete(blob);
     } catch (error) {
-      console.error('Error cropping the image:', error);
+      return;
     } finally {
       setTimeout(() => {
         setIsUploading(false);
