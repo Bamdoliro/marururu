@@ -29,7 +29,8 @@ export const useCTAButton = () => {
 };
 
 const formatBirthday = (value: string) => {
-  return formatDate(value.replace(/\D/g, ''));
+  const numericValue = value.replace(/\D/g, '');
+  return formatDate(numericValue);
 };
 
 export const useInput = () => {

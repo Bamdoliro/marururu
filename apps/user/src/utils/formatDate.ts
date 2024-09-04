@@ -1,5 +1,14 @@
 const formatDate = (date: string) => {
-  const formattedDate = date.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+  const cleanedDate = date.replace(/\D/g, '');
+
+  let year = cleanedDate.slice(0, 4);
+  if (parseInt(year) > 2024) {
+    year = '';
+  }
+
+  const month = cleanedDate.slice(4, 6);
+  const day = cleanedDate.slice(6, 8);
+  const formattedDate = [year, month, day].filter(Boolean).join('-');
 
   return formattedDate;
 };
