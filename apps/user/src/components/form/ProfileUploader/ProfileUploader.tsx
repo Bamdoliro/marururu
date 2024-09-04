@@ -21,6 +21,7 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [tempImageSrc, setTempImageSrc] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -80,7 +81,7 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
       }
 
       if (img.width > 117 || img.height > 156) {
-        setImageSrc(URL.createObjectURL(file));
+        setTempImageSrc(URL.createObjectURL(file));
         setIsModalOpen(true);
       } else {
         setIsUploading(true);
@@ -160,10 +161,10 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
         onChange={handleImageFileChange}
         hidden
       />
-      {imageSrc && (
+      {tempImageSrc && (
         <CropImageModal
           isOpen={isModalOpen}
-          imageSrc={imageSrc}
+          imageSrc={tempImageSrc}
           onClose={() => setIsModalOpen(false)}
           onCropComplete={(croppedImage) => {
             setIsUploading(true);

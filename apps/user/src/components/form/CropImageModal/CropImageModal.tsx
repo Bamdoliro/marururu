@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { color } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
@@ -21,6 +21,20 @@ const CropImageModal = ({ zoom, isOpen, imageSrc, onClose, onCropComplete }: Pro
   const [cropArea, setCropArea] = useState<Area | null>(null);
   const [currentZoom, setCurrentZoom] = useState(zoom);
   const [isUploading, setIsUploading] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   const onCropCompleteInternal = useCallback(
     (cropArea: Area, croppedAreaPixels: Area) => {
