@@ -3,7 +3,7 @@ const formatDate = (date: string) => {
 
   let year = cleanedDate.slice(0, 4);
   if (parseInt(year) > 2024) {
-    year = '2024';
+    year = '';
   }
 
   const month = cleanedDate.slice(4, 6);
