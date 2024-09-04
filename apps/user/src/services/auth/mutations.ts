@@ -23,7 +23,7 @@ import { useCookies } from 'react-cookie';
 
 export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
   const router = useRouter();
-  const { handleError } = useApiError();
+  const [, , removeCookie] = useCookies(['access-token', 'refresh-token']);
 
   const { mutate: loginUserMutate, ...restMutation } = useMutation({
     mutationFn: () => postLoginUser({ phoneNumber, password }),
@@ -33,7 +33,11 @@ export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq
       Storage.setItem(TOKEN.REFRESH, refreshToken);
       router.push(ROUTES.MAIN);
     },
-    onError: handleError,
+    onError: () => {
+      alert('다시 로그인을 시도해주세요');
+      removeCookie('access-token');
+      removeCookie('refresh-token');
+    },
   });
 
   return { loginUserMutate, ...restMutation };
