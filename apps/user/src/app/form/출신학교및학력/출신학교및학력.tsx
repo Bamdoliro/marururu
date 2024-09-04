@@ -76,7 +76,7 @@ const 출신학교및학력 = () => {
           teacherPhoneNumber: null,
           teacherName: null,
           teacherMobilePhoneNumber: null,
-          graduationYear: prev.education.graduationYear || '',
+          graduationYear: '',
         },
       }));
       setIsGraduationYearReadOnly(false);
@@ -94,7 +94,7 @@ const 출신학교및학력 = () => {
         ...prev,
         education: {
           ...prev.education,
-          graduationYear: prev.education.graduationYear || '',
+          graduationYear: '',
         },
       }));
       setIsGraduationYearReadOnly(false);
