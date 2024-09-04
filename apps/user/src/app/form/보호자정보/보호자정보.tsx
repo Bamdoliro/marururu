@@ -23,7 +23,7 @@ const 보호자정보 = () => {
   const correct = Storage.getItem('correct');
 
   const validateForm = () => {
-    const nameValid = form.parent.name.length >= 2 && form.parent.name.length <= 5;
+    const nameValid = form.parent.name.length >= 2;
     const phoneNumberValid = form.parent.phoneNumber.length === 11;
     const relationValid = form.parent.relation.length > 0;
     const addressValid =
@@ -39,7 +39,7 @@ const 보호자정보 = () => {
   const handleNextClick = () => {
     setIsNextClicked(true);
 
-    const nameValid = form.parent.name.length === null;
+    const nameValid = form.parent.name.length >= 2;
     const phoneNumberValid = form.parent.phoneNumber.length === 11;
     const relationValid = form.parent.relation.length > 0;
     const addressValid =
@@ -60,10 +60,11 @@ const 보호자정보 = () => {
 
   const handle보호자정보ErrorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handle보호자정보Change(e);
+    const { name, value } = e.target;
+
     if (isNextClicked) {
-      const { name, value } = e.target;
       if (name === 'name') {
-        setIsParentNameError(value.length < 2 || value.length > 5);
+        setIsParentNameError(value.length < 2);
       } else if (name === 'phoneNumber') {
         setIsParentPhoneNumberError(value.length !== 11);
       } else if (name === 'relation') {
@@ -123,7 +124,7 @@ const 보호자정보 = () => {
           onClick={openFindAddressModal}
           width="100%"
           value={form.parent.address}
-          placeholder="예) 부산광역시 강서구 가락대로 1393 봉림동 15 "
+          placeholder="예) 부산광역시 강서구 가락대로 1393 봉림동 15"
           isError={isAddressError}
           errorMessage={isAddressError ? '주소를 입력해주세요.' : ''}
         />
