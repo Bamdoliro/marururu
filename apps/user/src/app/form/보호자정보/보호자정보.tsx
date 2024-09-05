@@ -127,6 +127,7 @@ const 보호자정보 = () => {
           placeholder="예) 부산광역시 강서구 가락대로 1393 봉림동 15"
           isError={isAddressError}
           errorMessage={isAddressError ? '주소를 입력해주세요.' : ''}
+          enabled={true}
         />
         <Row gap={48}>
           <Input

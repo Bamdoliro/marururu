@@ -196,6 +196,7 @@ const 출신학교및학력 = () => {
               errorMessage={
                 isNextClicked && isSchoolNameError ? '출신 학교를 입력해주세요.' : ''
               }
+              enabled={true}
             />
           )}
           {form.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
