@@ -37,13 +37,21 @@ const ChangePasswordPage = () => {
     setTimerTime(300);
   };
 
+  const isPhoneNumberValid = updateUser.phoneNumber.length === 11;
+
   return (
     <AppLayout backgroundColor={color.gray100}>
       <StyledChangePasswordPage>
         <ChagePasswordBox>
           <Column gap={32} width="60%">
             <Text fontType="H2">비밀번호 변경</Text>
-            <Input label="이름" width="100%" name="name" placeholder="예) 홍길동" />
+            <Input
+              label="이름"
+              width="100%"
+              name="name"
+              placeholder="예) 홍길동"
+              value={updateUser.name}
+            />
             <ButtonInput
               label="전화번호 인증"
               buttonText={isVerificationCodeSend ? '재전송' : '인증번호 전송'}
@@ -51,7 +59,7 @@ const ChangePasswordPage = () => {
                 handleRequestVerificationCode();
                 startTimer();
               }}
-              enabled={isVerificationCodeDisabled}
+              enabled={isPhoneNumberValid && !isVerificationCodeDisabled}
               type="phoneNumber"
               placeholder="- 없이 입력해주세요."
               width="100%"

@@ -69,7 +69,16 @@ export const useInput = () => {
 
   const handleUpdateUserChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-    setUpdateUser({ ...updateUser, [name]: value });
+
+    if (name === 'name') {
+      const lettersOnly = value.replace(/[^a-zA-Z가-힣\s]/g, '');
+      setUpdateUser({ ...updateUser, [name]: lettersOnly });
+    } else if (name === 'phoneNumber') {
+      const numbersOnly = value.replace(/\D/g, '');
+      setUpdateUser({ ...updateUser, [name]: numbersOnly });
+    } else {
+      setUpdateUser({ ...updateUser, [name]: value });
+    }
   };
 
   return { updateUser, handleUpdateUserChange };
