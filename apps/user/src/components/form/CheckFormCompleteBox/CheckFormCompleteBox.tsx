@@ -1,4 +1,4 @@
-import { useFormValueStore, useSetFormStepStore } from '@/store';
+import { useFormValueStore, useSetFormStepStore, use성적입력StepStore } from '@/store';
 import { styled } from 'styled-components';
 import CheckFormComplete from './CheckFormComplete/CheckFormComplete';
 import { Storage } from '@/apis/storage/storage';
@@ -19,6 +19,7 @@ const CheckFormCompleteBox = ({
   documentFilledCount,
 }: Props) => {
   const setFormStep = useSetFormStepStore();
+  const [, set성적입력Step] = use성적입력StepStore();
   const form = useFormValueStore();
 
   const handleCorrect지원자정보 = () => {
@@ -43,6 +44,7 @@ const CheckFormCompleteBox = ({
 
   const handleCorrect성적입력 = () => {
     setFormStep('성적입력');
+    set성적입력Step('교과성적');
     Storage.setItem('correct', '1');
   };
 
