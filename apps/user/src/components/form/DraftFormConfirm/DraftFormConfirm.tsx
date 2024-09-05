@@ -21,17 +21,17 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
   return (
     <Confirm
       isOpen={isOpen}
-      title="원서 초안을 제출하시겠습니까?"
+      title="입학원서를 제출하시겠습니까?"
       content={
         <Column>
           <Text color={color.red} fontType="p2">
-            원서 초안 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로
+            입학원서 제출 시 부산소프트웨어마이스터고등학교 입학전형에 응시한 것으로
             <br />
             처리되며 더 이상 입학원서 수정이 불가능합니다.
           </Text>
           <Column height={28}> </Column>
           <Text color={color.gray900} fontType="p2">
-            원서 초안을 다시 한번 확인 하시고 잘못 입력한 부분이 없다고 판단되시는 경우
+            입학원서를 다시 한번 확인 하시고 잘못 입력한 부분이 없다고 판단되시는 경우
             아래
             <br />의 입력 칸에{' '}
             <Text fontType="H5" color={color.maruDefault}>
@@ -50,7 +50,7 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
       }
       onClose={onClose}
       onConfirm={isInputValid ? onConfirm : () => {}}
-      confirmButtonText="원서 초안 제출하기"
+      confirmButtonText="원서원서 제출하기"
       confirmButtonStyle={{
         backgroundColor: isInputValid ? color.maruDefault : color.gray500,
         cursor: isInputValid ? 'pointer' : 'not-allowed',

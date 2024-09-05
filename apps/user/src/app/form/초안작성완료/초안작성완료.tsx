@@ -49,7 +49,7 @@ const 초안작성완료 = () => {
       <CompleteAlarmBox>
         <CompleteAlaram
           isComplete={isComplete}
-          completeText="원서 초안 작성 완료"
+          completeText="입학원서 작성 완료"
           incompleteText="아직 작성하지 않은 곳이 있어요"
         />
       </CompleteAlarmBox>
