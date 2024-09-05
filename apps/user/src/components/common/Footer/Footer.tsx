@@ -36,7 +36,6 @@ const Footer = () => {
               <DirectLink href={ROUTES.FORM}>원서접수</DirectLink>
               <DirectLink href={ROUTES.NOTICE}>공지사항</DirectLink>
               <DirectLink href={ROUTES.FAQ}>자주묻는질문</DirectLink>
-              <DirectLink href="http://bssm.hs.kr">학교소개</DirectLink>
             </Column>
             <Column gap={24}>
               <DirectLink href={ROUTES.TERMUSE}>이용약관</DirectLink>
