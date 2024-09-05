@@ -2,7 +2,7 @@ import type { FormStep } from '@/types/form/client';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useFormStepStore, use성적입력StepStore } from '@/store';
+import { use성적입력StepStore } from '@/store';
 import { Storage } from '@/apis/storage/storage';
 
 interface Props {
