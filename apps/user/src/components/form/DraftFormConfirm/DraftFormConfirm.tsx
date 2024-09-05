@@ -34,7 +34,7 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
             원서 초안을 다시 한번 확인 하시고 잘못 입력한 부분이 없다고 판단되시는 경우
             아래
             <br />의 입력 칸에{' '}
-            <Text fontType="H5" color={color.gray900}>
+            <Text fontType="H5" color={color.maruDefault}>
               ‘확인했습니다’
             </Text>
             를 입력해 주세요.
