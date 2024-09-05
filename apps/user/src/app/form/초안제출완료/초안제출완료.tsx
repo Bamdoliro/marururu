@@ -13,7 +13,7 @@ const 초안제출완료 = () => {
   return (
     <AppLayout header>
       <CompleteAlarmBox>
-        <CompleteAlaram isComplete completeText="원서 초안 제출 완료" />
+        <CompleteAlaram isComplete completeText="입학원서 제출 완료" />
       </CompleteAlarmBox>
       <Styled초안제출완료>
         <Row gap={8} alignItems="center">
@@ -24,7 +24,7 @@ const 초안제출완료 = () => {
         </Row>
         <Column gap={12}>
           <Text fontType="p1" color={color.gray900}>
-            원서 초안을 제출 완료하셨습니다.
+            입학원서를 제출 완료하셨습니다.
           </Text>
           <Text fontType="H4" color={color.red}>
             작성한 입학 원서를 출력하여 학교장 직인을 날인 후 추가 서류와 함께
