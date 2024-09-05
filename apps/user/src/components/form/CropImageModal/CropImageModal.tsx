@@ -36,6 +36,18 @@ const CropImageModal = ({ zoom, isOpen, imageSrc, onClose, onCropComplete }: Pro
     };
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen, onClose]);
+
   const onCropCompleteInternal = useCallback(
     (cropArea: Area, croppedAreaPixels: Area) => {
       setCropArea(croppedAreaPixels);
@@ -135,7 +147,7 @@ const BlurBackground = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  margin-top: 10%;
+  margin-top: 5%;
   padding: 20px;
   border-radius: 10px;
   max-width: 468px;
