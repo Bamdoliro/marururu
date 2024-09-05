@@ -13,7 +13,6 @@ interface Props {
 
 const FormController = ({ onPrevious, onNext, step }: Props) => {
   const [성적입력Step] = use성적입력StepStore();
-  const [formStep] = useFormStepStore();
   const correct = Storage.getItem('correct');
 
   return (
