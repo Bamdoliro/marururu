@@ -1,14 +1,16 @@
 import { useOpenFileUploader } from '@/hooks';
-import { useUploadProfileImageMutation } from '@/services/form/mutations';
+import {
+  useRefreshProfileImageMutation,
+  useUploadProfileImageMutation,
+} from '@/services/form/mutations';
 import { color, font } from '@maru/design-token';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler, DragEvent } from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo, useMemo } from 'react';
 import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
 import ProfileUploadLoader from '../ProfileUpoloadLoader/ProfileUploadLoader';
-import { getUploadProfile, postUploadProfileImage } from '@/services/form/api';
 import { Storage } from '@/apis/storage/storage';
 
 type ProfileUploaderProps = {
@@ -16,7 +18,7 @@ type ProfileUploaderProps = {
   isError: boolean;
 };
 
-const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
+const ProfileUploader = memo(({ onPhotoUpload, isError }: ProfileUploaderProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const { openFileUploader: openImageFileUploader, ref: imageUploaderRef } =
     useOpenFileUploader();
@@ -26,40 +28,43 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
   const [isUploading, setIsUploading] = useState(false);
 
   const { mutate: uploadProfileImageMutate } = useUploadProfileImageMutation();
+  const { mutate: refreshProfileImageMutate } = useRefreshProfileImageMutation();
+
+  const isUploadPictureStored = useMemo(
+    () => Storage.getItem('isUploadPicture') === 'true',
+    []
+  );
 
   useEffect(() => {
-    const fetchDownloadUrl = async () => {
-      try {
-        const presignedData = await postUploadProfileImage();
-        const newDownloadUrl = await getUploadProfile(presignedData.downloadUrl);
-        setImageSrc(newDownloadUrl);
-        Storage.setItem('downloadUrl', newDownloadUrl);
-        onPhotoUpload(true, newDownloadUrl);
-      } catch (error) {
-        onPhotoUpload(false);
-      }
-    };
-
-    const isUploadPicture = Storage.getItem('isUploadPicture');
-
-    if (isUploadPicture === 'true') {
+    if (!isUploadPictureStored) {
+      refreshProfileImageMutate(undefined, {
+        onSuccess: (newDownloadUrl) => {
+          setImageSrc(newDownloadUrl);
+          Storage.setItem('downloadUrl', newDownloadUrl);
+          Storage.setItem('isUploadPicture', 'true');
+          onPhotoUpload(true, newDownloadUrl);
+        },
+        onError: () => {
+          onPhotoUpload(false);
+        },
+      });
+    } else {
       const storedImageUrl = Storage.getItem('downloadUrl');
       if (storedImageUrl) {
         setImageSrc(storedImageUrl);
-      } else {
-        fetchDownloadUrl();
       }
-    } else {
-      fetchDownloadUrl();
     }
-  }, [onPhotoUpload]);
+  }, [isUploadPictureStored, refreshProfileImageMutate, onPhotoUpload]);
 
   const handleUploadSuccess = (downloadUrl: string) => {
     onPhotoUpload(true, downloadUrl);
-    setIsUploading(false);
     setImageSrc(downloadUrl);
     Storage.setItem('downloadUrl', downloadUrl);
     Storage.setItem('isUploadPicture', 'true');
+    setIsUploading(false);
+
+    // 업로드 성공 후 페이지 새로고침
+    window.location.reload();
   };
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
@@ -86,9 +91,27 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
         setIsUploading(true);
         uploadProfileImageMutate(file, {
           onSuccess: handleUploadSuccess,
+          onError: () => {
+            setIsUploading(false);
+            onPhotoUpload(false);
+          },
         });
       }
     };
+  };
+
+  const onCropComplete = (croppedImage: Blob) => {
+    setIsUploading(true);
+    const croppedFile = new File([croppedImage], 'image.jpg', {
+      type: 'image/jpeg',
+    });
+    uploadProfileImageMutate(croppedFile, {
+      onSuccess: handleUploadSuccess,
+      onError: () => {
+        setIsUploading(false);
+        onPhotoUpload(false);
+      },
+    });
   };
 
   const onDrop = (e: DragEvent<HTMLDivElement>) => {
@@ -109,7 +132,7 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
       ) : (
         <>
           {imageSrc ? (
-            <ImagePreview src={imageSrc} alt="profile-image" />
+            imageSrc && <ImagePreview src={imageSrc} alt="profile-image" />
           ) : (
             <UploadImageBox
               onDragEnter={(e: DragEvent<HTMLDivElement>) => {
@@ -165,21 +188,15 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
           isOpen={isModalOpen}
           imageSrc={tempImageSrc}
           onClose={() => setIsModalOpen(false)}
-          onCropComplete={(croppedImage) => {
-            setIsUploading(true);
-            const croppedFile = new File([croppedImage], 'image.jpg', {
-              type: 'image/jpeg',
-            });
-            uploadProfileImageMutate(croppedFile, {
-              onSuccess: handleUploadSuccess,
-            });
-          }}
+          onCropComplete={onCropComplete}
           zoom={1}
         />
       )}
     </StyledProfileUploader>
   );
-};
+});
+
+ProfileUploader.displayName = 'ProfileUploader';
 
 export default ProfileUploader;
 
