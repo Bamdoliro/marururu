@@ -46,6 +46,11 @@ const CheckFormCompleteBox = ({
     Storage.setItem('correct', '1');
   };
 
+  const handleCorrect자기소개서 = () => {
+    setFormStep('자기소개서');
+    Storage.setItem('correct', '1');
+  };
+
   return (
     <StyledCheckFormCompleteBox>
       <CheckFormComplete
@@ -81,7 +86,7 @@ const CheckFormCompleteBox = ({
         completeOfNumber={4}
       />
       <CheckFormComplete
-        onClick={() => setFormStep('자기소개서')}
+        onClick={handleCorrect자기소개서}
         formStep="자기소개서 및 학업계획서"
         maxCompleteOfNumber={2}
         completeOfNumber={documentFilledCount}

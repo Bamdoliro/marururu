@@ -2,7 +2,8 @@ import type { FormStep } from '@/types/form/client';
 import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { use성적입력StepStore } from '@/store';
+import { useFormStepStore, use성적입력StepStore } from '@/store';
+import { Storage } from '@/apis/storage/storage';
 
 interface Props {
   onPrevious?: () => void;
@@ -12,10 +13,18 @@ interface Props {
 
 const FormController = ({ onPrevious, onNext, step }: Props) => {
   const [성적입력Step] = use성적입력StepStore();
+  const [formStep] = useFormStepStore();
+  const correct = Storage.getItem('correct');
 
   return (
     <FormControllerBar>
-      {step === '지원자정보' || 성적입력Step === '교과성적' ? (
+      {step === '지원자정보' ||
+      (correct &&
+        (성적입력Step == '교과성적' ||
+          step === '보호자정보' ||
+          step === '자기소개서' ||
+          step === '전형선택' ||
+          step === '출신학교및학력')) ? (
         <Button width={150} onClick={onNext}>
           다음 단계
         </Button>
