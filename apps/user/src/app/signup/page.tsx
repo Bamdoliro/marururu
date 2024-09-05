@@ -36,6 +36,8 @@ const SignUpPage = () => {
     setTimerTime(300); // 5분
   };
 
+  const isPhoneNumberValid = joinUser.phoneNumber.length === 11;
+
   return (
     <AppLayout>
       <StyledSignUpPage>
@@ -58,6 +60,7 @@ const SignUpPage = () => {
                 name="name"
                 placeholder="이름을 입력해주세요."
                 onChange={handleJoinUserChange}
+                value={joinUser.name}
               />
               <ButtonInput
                 label="전화번호 인증"
@@ -66,7 +69,7 @@ const SignUpPage = () => {
                   handleRequestVerificationCode();
                   startTimer();
                 }}
-                enabled={isVerificationCodeDisabled}
+                enabled={isPhoneNumberValid && !isVerificationCodeDisabled}
                 type="phoneNumber"
                 placeholder="- 없이 입력해주세요."
                 width="100%"
