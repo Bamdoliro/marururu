@@ -73,7 +73,16 @@ export const useInput = () => {
 
   const handleJoinUserChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
-    setJoinUser({ ...joinUser, [name]: value });
+
+    if (name === 'name') {
+      const lettersOnly = value.replace(/[^a-zA-Z가-힣\s]/g, '');
+      setJoinUser({ ...joinUser, [name]: lettersOnly });
+    } else if (name === 'phoneNumber') {
+      const numbersOnly = value.replace(/\D/g, '');
+      setJoinUser({ ...joinUser, [name]: numbersOnly });
+    } else {
+      setJoinUser({ ...joinUser, [name]: value });
+    }
   };
 
   return { joinUser, handleJoinUserChange };

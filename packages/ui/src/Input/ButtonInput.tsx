@@ -1,6 +1,7 @@
 import { color, font } from '@maru/design-token';
 import { flex } from '@maru/utils';
-import styled from 'styled-components';
+import React from 'react';
+import { styled } from 'styled-components';
 import Input from './Input';
 import type { InputProps } from './Input.type';
 
@@ -41,7 +42,7 @@ const ButtonInput = ({
           isError={isError}
           errorMessage={errorMessage}
         />
-        <Button onClick={onClick} enabled={enabled}>
+        <Button onClick={onClick} disabled={!enabled}>
           {buttonText}
         </Button>
       </StyledButtonInput>
@@ -57,20 +58,19 @@ export const StyledButtonInput = styled.div`
   width: 100%;
 `;
 
-export const Button = styled.button<{ enabled: boolean }>`
+export const Button = styled.button<{ disabled: boolean }>`
   ${font.btn2};
   color: ${color.white};
-  background-color: ${(props) => (props.enabled ? color.gray400 : color.maruDefault)};
-  pointer-events: ${(props) => props.enabled && 'none'};
+  background-color: ${(props) => (props.disabled ? color.gray400 : color.maruDefault)};
   ${flex({ alignItems: 'center', justifyContent: 'center' })}
   border-radius: 6px;
   height: 48px;
   padding: 10px 20px;
   flex-shrink: 0;
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
 
   &:hover {
-    background-color: ${(props) => (props.enabled ? color.gray400 : color.maruHoverd)};
-    cursor: ${(props) => (props.enabled ? 'default' : 'pointer')};
+    background-color: ${(props) => (props.disabled ? color.gray400 : color.maruHoverd)};
   }
 `;
 
