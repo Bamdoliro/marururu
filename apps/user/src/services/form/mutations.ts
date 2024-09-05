@@ -100,3 +100,20 @@ export const useUploadProfileImageMutation = () => {
 
   return mutation;
 };
+
+export const useRefreshProfileImageMutation = () => {
+  const { handleError } = useApiError();
+
+  const mutation = useMutation(
+    async () => {
+      const presignedData = await postUploadProfileImage();
+      const newDownloadUrl = await getUploadProfile(presignedData.downloadUrl);
+      return newDownloadUrl;
+    },
+    {
+      onError: handleError,
+    }
+  );
+
+  return mutation;
+};
