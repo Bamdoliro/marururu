@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { FormController, ProfileUploader } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
@@ -16,25 +16,30 @@ const 지원자정보 = () => {
   const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
   const [isPhotoError, setIsPhotoError] = useState(false);
 
-  useEffect(() => {
-    const storedImage = Storage.getItem('isUploadPicture');
+  const isUploadPictureStored = useMemo(
+    () => Storage.getItem('isUploadPicture') === 'true',
+    []
+  );
 
-    if (storedImage === 'true') {
+  useEffect(() => {
+    if (isUploadPictureStored) {
       setIsPhotoUploaded(true);
       setIsPhotoError(false);
     } else {
       setIsPhotoUploaded(false);
       setIsPhotoError(true);
     }
-  }, []);
+  }, [isUploadPictureStored]);
 
-  const validateBirthday = (birthday: string) => birthday.length === 10;
+  const validateBirthday = useCallback((birthday: string) => {
+    return birthday && birthday.length === 10;
+  }, []);
 
   useEffect(() => {
     setIsBirthdayError(!validateBirthday(form.applicant.birthday));
-  }, [form.applicant.birthday]);
+  }, [form.applicant.birthday, validateBirthday]);
 
-  const handleNextClick = () => {
+  const handleNextClick = useCallback(() => {
     setIsNextClicked(true);
     const birthdayValid = validateBirthday(form.applicant.birthday);
     const photoValid = isPhotoUploaded;
@@ -45,13 +50,16 @@ const 지원자정보 = () => {
     if (birthdayValid && photoValid) {
       handleMoveNextStep();
     }
-  };
+  }, [form.applicant.birthday, isPhotoUploaded, handleMoveNextStep, validateBirthday]);
 
-  const handleBirthdayChange = (e: ChangeEvent<HTMLInputElement>) => {
-    handle지원자정보Change(e);
-  };
+  const handleBirthdayChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      handle지원자정보Change(e);
+    },
+    [handle지원자정보Change]
+  );
 
-  const handlePhotoUpload = (success: boolean, url?: string) => {
+  const handlePhotoUpload = useCallback((success: boolean, url?: string) => {
     if (success && url) {
       setIsPhotoUploaded(true);
       setIsPhotoError(false);
@@ -61,7 +69,15 @@ const 지원자정보 = () => {
       setIsPhotoUploaded(false);
       setIsPhotoError(true);
     }
-  };
+  }, []);
+
+  const memoizedFormValues = useMemo(
+    () => ({
+      birthday: form.applicant.birthday,
+      gender: form.applicant.gender,
+    }),
+    [form.applicant.birthday, form.applicant.gender]
+  );
 
   return (
     <FormLayout title="지원자 정보">
@@ -84,7 +100,7 @@ const 지원자정보 = () => {
           />
           <Input
             label="생년월일"
-            value={form.applicant.birthday}
+            value={memoizedFormValues.birthday}
             onChange={handleBirthdayChange}
             name="birthday"
             placeholder="예) 20061103"
@@ -95,7 +111,7 @@ const 지원자정보 = () => {
           <Row gap={40} alignItems="flex-end">
             <RadioGroup
               label="성별"
-              value={form.applicant.gender}
+              value={memoizedFormValues.gender}
               onChange={handle지원자정보Change}
               name="gender"
               items={[
