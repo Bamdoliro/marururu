@@ -1,6 +1,7 @@
 import { color } from '@maru/design-token';
 import { IconTerms } from '@maru/icon';
 import { Column, Row, Text } from '@maru/ui';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 const Mean = () => {
@@ -22,8 +23,12 @@ const Mean = () => {
         </Indent>
         <DoubleIndent>
           <Text fontType="p3" color={color.maruDefault}>
-            • [사이트 주소 1]
-            <br />• [사이트 주소 2]
+            •{' '}
+            <Link href="https://maru.bamdoliro.com">
+              <Text fontType="p3" color={color.maruDefault}>
+                maru.bamdoliro.com
+              </Text>
+            </Link>
           </Text>
         </DoubleIndent>
         <Indent>
