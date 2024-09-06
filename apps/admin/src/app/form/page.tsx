@@ -121,7 +121,7 @@ const FormPage = () => {
           <Row justifyContent="space-between">
             <Dropdown
               data={[
-                { value: 'RESET', label: '정렬 초기화' },
+                { value: 'RESET', label: '전형 별' },
                 { value: 'TOTAL_SCORE_DESC', label: '높은 순' },
                 { value: 'TOTAL_SCORE_ASC', label: '낮은 순' },
               ]}
