@@ -86,12 +86,21 @@ export const useUploadProfileImageMutation = () => {
 
   const mutation = useMutation(
     async (file: File) => {
-      const presignedData = await postUploadProfileImage();
-      await putProfileUpoload(file, presignedData);
-      const downloadUrl = await getUploadProfile(presignedData.downloadUrl);
+      try {
+        const presignedData = await postUploadProfileImage();
+        await putProfileUpoload(file, presignedData);
 
-      Storage.setItem('downloadUrl', downloadUrl);
-      return downloadUrl;
+        if (presignedData.downloadUrl) {
+          const downloadUrl = await getUploadProfile(presignedData.downloadUrl);
+
+          Storage.setItem('downloadUrl', downloadUrl);
+          return downloadUrl;
+        } else {
+          return null;
+        }
+      } catch (error) {
+        return error;
+      }
     },
     {
       onError: handleError,
