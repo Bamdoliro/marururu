@@ -42,14 +42,14 @@ export const postUploadFormDocumnet = async (): Promise<FormPresignedUrlData> =>
   const { data } = await maru.post('/form/form-document', null, authorization());
 
   const uploadUrl = data?.data?.uploadUrl;
-  const downloadUrl = data?.data?.downloadUrl;
+  const downloadUrl = data?.data?.downloadUrl ?? '';
   const fields = data?.data?.fields;
 
   return {
     uploadUrl,
     downloadUrl,
     fields: fields || {},
-  } as PresignedUrlData;
+  } as FormPresignedUrlData;
 };
 
 export const putUpoloadFormDocument = async (
@@ -82,19 +82,21 @@ export const postUploadProfileImage = async (): Promise<PresignedUrlData> => {
 };
 
 export const putProfileUpoload = async (file: File, presignedData: PresignedUrlData) => {
-  const { uploadUrl } = presignedData;
-
-  const response = await axios.put(uploadUrl, file, {
-    headers: {
-      'Content-Type': file.type,
-    },
-  });
-
-  return response;
+  try {
+    const { uploadUrl } = presignedData;
+    const response = await axios.put(uploadUrl, file, {
+      headers: {
+        'Content-Type': file.type,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
 };
 
 export const getUploadProfile = async (fileUrl: string) => {
-  const { data } = await maru.get(fileUrl, { responseType: 'blob' });
+  const { data } = await axios.get(fileUrl, { responseType: 'blob' });
   return URL.createObjectURL(data);
 };
 
