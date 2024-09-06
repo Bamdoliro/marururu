@@ -62,9 +62,6 @@ const ProfileUploader = memo(({ onPhotoUpload, isError }: ProfileUploaderProps) 
     Storage.setItem('downloadUrl', downloadUrl);
     Storage.setItem('isUploadPicture', 'true');
     setIsUploading(false);
-
-    // 업로드 성공 후 페이지 새로고침
-    window.location.reload();
   };
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
