@@ -59,6 +59,8 @@ const Styled최종제출완료 = styled.div`
   opacity: 0;
   animation: show 1.2s 2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 
+  pointer-events: none;
+
   @keyframes show {
     from {
       transform: translateY(200px);
@@ -66,6 +68,7 @@ const Styled최종제출완료 = styled.div`
     to {
       transform: translateY(0);
       opacity: 100;
+      pointer-events: auto;
     }
   }
 `;
