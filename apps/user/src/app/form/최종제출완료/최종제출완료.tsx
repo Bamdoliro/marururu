@@ -7,10 +7,12 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
 import { useCTAButton } from './최종제출완료.hooks';
+import { useDownloadRecipt } from '@/components/form-management/DownloadRecipt/DownloadRecipt.hooks';
 
 const 최종제출완료 = () => {
   const { userData } = useUser();
   const { handleMoveMainPage } = useCTAButton();
+  const { handleDownloadReciptButtonClick } = useDownloadRecipt();
 
   return (
     <AppLayout header footer>
@@ -38,9 +40,18 @@ const 최종제출완료 = () => {
               {userData.name}님의 1차 합격을 기원합니다.
             </Text>
           </Column>
-          <Button onClick={handleMoveMainPage} size="SMALL">
-            홈으로 돌아가기
-          </Button>
+          <Row alignItems="center" gap={16}>
+            <Button
+              onClick={handleDownloadReciptButtonClick}
+              size="SMALL"
+              styleType="SECONDARY"
+            >
+              접수증 출력하기
+            </Button>
+            <Button onClick={handleMoveMainPage} size="SMALL">
+              홈으로 돌아가기
+            </Button>
+          </Row>
         </Column>
       </Styled최종제출완료>
     </AppLayout>
