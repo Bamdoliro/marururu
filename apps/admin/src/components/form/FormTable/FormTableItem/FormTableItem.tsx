@@ -116,6 +116,9 @@ const FormTableItem = ({
             />
           ) : null}
           <Text fontType="p2" width={60}>
+            {id}
+          </Text>
+          <Text fontType="p2" width={60}>
             {examinationNumber}
           </Text>
           <Text fontType="p2" width={60}>
