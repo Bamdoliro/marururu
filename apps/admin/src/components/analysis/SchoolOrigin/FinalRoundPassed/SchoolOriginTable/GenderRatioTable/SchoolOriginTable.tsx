@@ -13,7 +13,7 @@ const SchoolOriginTable: React.FC<Props> = ({ selectedCategory }) => {
   const { data: schoolOriginList } = useSchoolOriginListQuery({
     statusList: ['PASSED'],
     isBusan: selectedCategory === 'OTHER_AREA' ? false : true,
-    gu: selectedCategory === 'OTHER_AREA' ? null : selectedCategory,
+    gu: selectedCategory === 'OTHER_AREA' ? '' : selectedCategory,
   });
 
   return (
