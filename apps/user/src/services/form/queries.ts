@@ -2,7 +2,13 @@ import { Storage } from '@/apis/storage/storage';
 import { KEY, TOKEN } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
 import { useSuspenseQuery } from '@suspensive/react-query';
-import { getExportForm, getFormStatus, getSaveForm, getSchoolList } from './api';
+import {
+  getExportForm,
+  getExportRecipt,
+  getFormStatus,
+  getSaveForm,
+  getSchoolList,
+} from './api';
 
 export const useSchoolListQuery = (school: string) => {
   const { data, ...restQuery } = useSuspenseQuery({
@@ -17,6 +23,17 @@ export const useExportFormQuery = () => {
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.EXPORT_FORM],
     queryFn: getExportForm,
+    retry: 1,
+    suspense: false,
+  });
+
+  return { data, ...restQuery };
+};
+
+export const useExportReciptQuery = () => {
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.EXPORT_RECIPT],
+    queryFn: getExportRecipt,
     retry: 1,
     suspense: false,
   });

@@ -13,6 +13,7 @@ export const KEY = {
   FINAL_RESULT: 'useFinalResult',
   FAIR_LIST: 'useFairQuery',
   ADMISSION_TICKET: 'useAdmissionTicket',
+  EXPORT_RECIPT: 'useExportReciptQuery',
 } as const;
 
 export const ROUTES = {

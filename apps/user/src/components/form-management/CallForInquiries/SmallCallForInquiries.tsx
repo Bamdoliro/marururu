@@ -4,7 +4,7 @@ import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
 import { IconPhone } from '@maru/icon';
 
-const CallForInquiries = () => {
+const SmallCallForInquiries = () => {
   return (
     <StyledApplicationBox>
       <Column gap={5} alignItems="left">
@@ -13,12 +13,12 @@ const CallForInquiries = () => {
           <Text fontType="H2" color={color.gray900}>
             입학 문의 전화
           </Text>
+          <Text fontType="H4" color={color.gray600}>
+            교무실
+          </Text>
         </Row>
-        <Column height={225}> </Column>
-        <Text fontType="H4" color={color.gray600}>
-          교무실
-        </Text>
-        <Text fontType="H1" color={color.gray900}>
+        <Column height={16}> </Column>
+        <Text fontType="H4" color={color.gray900}>
           051-971-2153
         </Text>
       </Column>
@@ -26,13 +26,13 @@ const CallForInquiries = () => {
   );
 };
 
-export default CallForInquiries;
+export default SmallCallForInquiries;
 
 const StyledApplicationBox = styled.div`
   ${flex({ flexDirection: 'column', justifyContent: 'space-between' })}
   width: 450px;
-  height: 415x;
-  padding: 48px 32px;
+  height: 125x;
+  padding: 24px 32px;
   background-color: ${color.white};
   border: 1px solid ${color.gray200};
   border-radius: 12px;
