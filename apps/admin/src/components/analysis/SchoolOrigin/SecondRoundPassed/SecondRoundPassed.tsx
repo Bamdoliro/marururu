@@ -47,7 +47,7 @@ const SecondRoundPassed = () => {
               },
             ]}
             size="SMALL"
-            width={140}
+            width={200}
             placeholder="지역 선택"
             onChange={handleClassificationCategory}
             name="category"
