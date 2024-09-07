@@ -122,8 +122,8 @@ const FormPage = () => {
             <Dropdown
               data={[
                 { value: 'RESET', label: '전형별' },
-                { value: 'TOTAL_SCORE_DESC', label: '최종 점수 높은순' },
-                { value: 'TOTAL_SCORE_ASC', label: '최종 점수 낮은순' },
+                { value: 'TOTAL_SCORE_DESC', label: '최종 점수 높은 순' },
+                { value: 'TOTAL_SCORE_ASC', label: '최종 점수 낮은 순' },
                 { value: 'FORM_ID', label: '접수순' },
               ]}
               size="SMALL"
