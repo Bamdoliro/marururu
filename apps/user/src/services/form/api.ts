@@ -96,7 +96,7 @@ export const putProfileUpoload = async (file: File, presignedData: PresignedUrlD
 };
 
 export const getUploadProfile = async (fileUrl: string) => {
-  const { data } = await axios.get(fileUrl, { responseType: 'blob' });
+  const { data } = await maru.get(fileUrl, { responseType: 'blob' });
   return URL.createObjectURL(data);
 };
 
