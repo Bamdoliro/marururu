@@ -4,14 +4,24 @@ import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
 import { IconArrowOutward } from '@maru/icon';
 import { useDownloadAdmissionTicket } from './PrintAdmission.hooks';
+import { useFormStatusQuery } from '@/services/form/queries';
 
 const CheckForm = () => {
   const { handleDownloadAdmissionTicketButtonClick } = useDownloadAdmissionTicket();
+  const { data: formStatus } = useFormStatusQuery();
+
+  const handleClick = () => {
+    if (formStatus?.status === 'FIRST_PASSED') {
+      handleDownloadAdmissionTicketButtonClick();
+    } else {
+      alert('1차 합격일때만 수험표를 출력할 수 있습니다.');
+    }
+  };
 
   return (
-    <StyledApplicationBox onClick={handleDownloadAdmissionTicketButtonClick}>
+    <StyledApplicationBox onClick={handleClick}>
       <Column gap={9}>
-        <Row gap={4} alignItems="center">
+        <Row gap={15} alignItems="center">
           <Text fontType="H3" color={color.gray900}>
             수험표 출력하기
           </Text>
