@@ -50,7 +50,7 @@ const DraftFormConfirm = ({ isOpen, onClose, onConfirm }: Props) => {
       }
       onClose={onClose}
       onConfirm={isInputValid ? onConfirm : () => {}}
-      confirmButtonText="원서원서 제출하기"
+      confirmButtonText="원서 제출하기"
       confirmButtonStyle={{
         backgroundColor: isInputValid ? color.maruDefault : color.gray500,
         cursor: isInputValid ? 'pointer' : 'not-allowed',
