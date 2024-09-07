@@ -1,13 +1,13 @@
-import { FinalFormConfirm, FinalFormTable, PdfGeneratedLoader } from '@/components/form';
-import { useOpenFileUploader } from '@/hooks';
-import { AppLayout } from '@/layouts';
+import { styled } from 'styled-components';
+import { flex } from '@maru/utils';
+import { color, font } from '@maru/design-token';
+import { Column, Row, Text, Button } from '@maru/ui';
+import { useOverlay } from '@toss/use-overlay';
 import { useFormDocumentValueStore } from '@/store';
 import { useBooleanState } from '@maru/hooks';
-import { color, font } from '@maru/design-token';
-import { Button, Column, Row, Text } from '@maru/ui';
-import { flex } from '@maru/utils';
-import { useOverlay } from '@toss/use-overlay';
-import { styled } from 'styled-components';
+import { AppLayout } from '@/layouts';
+import { FinalFormConfirm, FinalFormTable, PdfGeneratedLoader } from '@/components/form';
+import { useOpenFileUploader } from '@/hooks';
 import {
   useExportFormAction,
   useInput,
@@ -98,7 +98,12 @@ const 최종제출 = () => {
                 </Text>
               </Column>
             </FormFinalSubmitInfoBox>
-            <Button onClick={openFinalFormConfirm} width="100%" size="LARGE">
+            <Button
+              onClick={openFinalFormConfirm}
+              width="100%"
+              size="LARGE"
+              styleType={!formDocument.fileName ? 'DISABLED' : 'PRIMARY'}
+            >
               원서 최종 제출
             </Button>
           </Column>
