@@ -66,7 +66,7 @@ export const useEditSecondRoundResultAutoMutation = () => {
   const { mutate: editSecondResultAuto, ...restMutation } = useMutation({
     mutationFn: () => patchSecondScoreResultAuto(),
     onSuccess: () => {
-      toast('2차 합격 여부가 반영되었습니다.', {
+      toast('2차 합격 여부가 모두 반영되었습니다.', {
         type: 'success',
       });
       refetch();
