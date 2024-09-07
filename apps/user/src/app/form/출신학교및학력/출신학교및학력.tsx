@@ -76,7 +76,7 @@ const 출신학교및학력 = () => {
           teacherPhoneNumber: null,
           teacherName: null,
           teacherMobilePhoneNumber: null,
-          graduationYear: '',
+          graduationYear: form.education.graduationYear,
         },
       }));
       setIsGraduationYearReadOnly(false);
@@ -94,12 +94,12 @@ const 출신학교및학력 = () => {
         ...prev,
         education: {
           ...prev.education,
-          graduationYear: '',
+          graduationYear: form.education.graduationYear,
         },
       }));
       setIsGraduationYearReadOnly(false);
     }
-  }, [form.education.graduationType, setForm]);
+  }, [form.education.graduationType, form.education.graduationYear, setForm]);
 
   const openFindSchoolModal = () => {
     overlay.open(({ isOpen, close }) => (
