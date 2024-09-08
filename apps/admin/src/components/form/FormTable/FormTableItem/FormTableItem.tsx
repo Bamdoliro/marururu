@@ -48,9 +48,13 @@ const FormTableItem = ({
   const getStatusString = (
     status: boolean | null,
     trueString: string,
-    falseString: string
+    falseString: string,
+    noShowString = '불참'
   ) => {
-    return typeof status !== 'boolean' ? '미정' : status ? trueString : falseString;
+    if (typeof status !== 'boolean') {
+      return noShowString;
+    }
+    return status ? trueString : falseString;
   };
 
   const getDocumentStatusString = (status: FormStatus) => {
@@ -139,7 +143,7 @@ const FormTableItem = ({
             {getDocumentStatusString(status)}
           </Text>
           <Text fontType="p2" width={60} color={getStatusColor(firstRoundPassed)}>
-            {getStatusString(firstRoundPassed, '합격', '불합격')}
+            {getStatusString(firstRoundPassed, '합격', '불합격', '불참')}
           </Text>
           <Text
             fontType="p2"

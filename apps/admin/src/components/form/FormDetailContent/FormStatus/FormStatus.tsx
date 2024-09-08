@@ -23,13 +23,16 @@ const FormStatus = ({ id }: Props) => {
       ? color.maruDefault
       : color.red;
   };
-
   const getStatusString = (
     status: boolean | null,
     trueString: string,
-    falseString: string
+    falseString: string,
+    noShowString = 'NO_SHOW'
   ) => {
-    return typeof status !== 'boolean' ? '미정' : status ? trueString : falseString;
+    if (typeof status !== 'boolean') {
+      return noShowString;
+    }
+    return status ? trueString : falseString;
   };
 
   const overlay = useOverlay();
