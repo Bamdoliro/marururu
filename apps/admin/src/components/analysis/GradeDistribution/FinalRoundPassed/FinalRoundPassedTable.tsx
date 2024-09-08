@@ -14,11 +14,16 @@ const FinalRoundPassedTable = () => {
     ? Math.max(...dataList.map((item) => item.totalMax)).toFixed(3)
     : undefined;
 
-  const entireFinalRoundMin = dataList
-    ? Math.min(
-        ...dataList.map((item) => item.totalMin).filter((value) => value !== 0)
-      ).toFixed(3)
-    : undefined;
+  const entireFinalRoundMinCom = dataList
+    ? dataList
+        .map((item) => item.totalMin)
+        .filter((value) => value !== 0)
+        .reduce((min, value) => Math.min(min, value), Infinity)
+        .toFixed(3)
+    : '0.000';
+
+  const entireFinalRoundMin =
+    entireFinalRoundMinCom === 'Infinity' ? '0.000' : entireFinalRoundMinCom;
 
   const regularFinalRoundMax = dataList
     ? Math.max(
@@ -45,19 +50,23 @@ const FinalRoundPassedTable = () => {
       ).toFixed(3)
     : undefined;
 
-  const specialAdmissionFinalRoundMin = dataList
-    ? Math.min(
-        ...dataList
-          .filter(
-            (item) =>
-              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
-                item.type
-              )
-          )
-          .filter((item) => item.totalMin !== 0)
-          .map((item) => item.totalMin)
-      ).toFixed(3)
-    : undefined;
+  const specialAdmissionFinalRoundMinCom = dataList
+    ? dataList
+        .filter(
+          (item) =>
+            !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+              item.type
+            ) && item.totalMin !== 0
+        )
+        .map((item) => item.totalMin)
+        .reduce((min, value) => Math.min(min, value), Infinity)
+        .toFixed(3)
+    : '0.000';
+
+  const specialAdmissionFinalRoundMin =
+    specialAdmissionFinalRoundMinCom === 'Infinity'
+      ? '0.000'
+      : specialAdmissionFinalRoundMinCom;
 
   const regularFinalRoundAvg = dataList
     ?.filter((item) => item.type === 'REGULAR')

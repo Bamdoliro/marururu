@@ -13,11 +13,17 @@ const FirstRoundPassedTable = () => {
   const entireFirstRoundMax = dataList
     ? Math.max(...dataList.map((item) => item.firstRoundMax)).toFixed(3)
     : undefined;
-  const entireFirstRoundMin = dataList
-    ? Math.min(
-        ...dataList.map((item) => item.firstRoundMin).filter((value) => value !== 0)
-      ).toFixed(3)
-    : undefined;
+
+  const entireFirstRoundMinCom = dataList
+    ? dataList
+        .map((item) => item.firstRoundMin)
+        .filter((value) => value !== 0)
+        .reduce((min, value) => Math.min(min, value), Infinity)
+        .toFixed(3)
+    : '0.000';
+
+  const entireFirstRoundMin =
+    entireFirstRoundMinCom === 'Infinity' ? '0.000' : entireFirstRoundMinCom;
 
   const regularFirstRoundMax = dataList
     ? Math.max(
@@ -48,19 +54,23 @@ const FirstRoundPassedTable = () => {
       ).toFixed(3)
     : undefined;
 
-  const specialAdmissionFirstRoundMin = dataList
-    ? Math.min(
-        ...dataList
-          .filter(
-            (item) =>
-              !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
-                item.type
-              )
-          )
-          .filter((item) => item.firstRoundMin !== 0)
-          .map((item) => item.firstRoundMin)
-      ).toFixed(3)
-    : undefined;
+  const specialAdmissionFirstRoundMinCom = dataList
+    ? dataList
+        .filter(
+          (item) =>
+            !['REGULAR', 'SPECIAL_ADMISSION', 'NATIONAL_VETERANS_EDUCATION'].includes(
+              item.type
+            ) && item.firstRoundMin !== 0
+        )
+        .map((item) => item.firstRoundMin)
+        .reduce((min, value) => Math.min(min, value), Infinity)
+        .toFixed(3)
+    : '0.000';
+
+  const specialAdmissionFirstRoundMin =
+    specialAdmissionFirstRoundMinCom === 'Infinity'
+      ? '0.000'
+      : specialAdmissionFirstRoundMinCom;
 
   const regularFirstRoundAvg = dataList
     ?.filter((item) => ['REGULAR'].includes(item.type))
