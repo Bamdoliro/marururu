@@ -58,7 +58,7 @@ export type FormListType = '모두 보기' | '검토해야 하는 원서 모아�
 export type FormSort = 'total-score-asc' | 'total-score-desc';
 export interface FormListSortingType {
   status: FormStatus | null;
-  category: FormCategory | null;
+  type: FormCategory | null;
   sort: FormSort | null;
 }
 

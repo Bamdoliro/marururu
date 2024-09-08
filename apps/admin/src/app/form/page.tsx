@@ -114,12 +114,12 @@ const FormPage = () => {
     }
   };
 
-  const handleSortCategory = (value: string) => {
+  const handleSortType = (value: string) => {
     setFormListType('정렬');
     if (value === 'RESET') {
-      setFormListSortingType((prev) => ({ ...prev, category: null }));
+      setFormListSortingType((prev) => ({ ...prev, type: null }));
     } else {
-      setFormListSortingType((prev) => ({ ...prev, category: value as FormCategory }));
+      setFormListSortingType((prev) => ({ ...prev, type: value as FormCategory }));
     }
   };
 
@@ -187,11 +187,11 @@ const FormPage = () => {
                 size="SMALL"
                 width={140}
                 placeholder="전형 별"
-                onChange={handleSortCategory}
+                onChange={handleSortType}
                 name="typeSort"
                 value={
-                  formListSortingType.category
-                    ? FORM_SORTING_CATEGORY[formListSortingType.category]
+                  formListSortingType.type
+                    ? FORM_SORTING_CATEGORY[formListSortingType.type]
                     : undefined
                 }
                 doubled={5}
