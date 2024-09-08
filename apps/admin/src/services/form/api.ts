@@ -23,7 +23,7 @@ export const getFormList = async (
   }
 
   if (formListType === '정렬' && formListSortingType) {
-    const url = `/form?sort=${`${formListSortingType}`}`;
+    const url = `/form?sort=${`${formListSortingType.replace(/_/g, '-').toLowerCase()}`}`;
     const { data } = await maru.get<GetFormListRes>(url, authorization());
     return data;
   }

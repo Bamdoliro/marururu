@@ -121,13 +121,14 @@ const FormPage = () => {
           <Row justifyContent="space-between">
             <Dropdown
               data={[
-                { value: 'RESET', label: '전형 별' },
-                { value: 'TOTAL_SCORE_DESC', label: '높은 순' },
-                { value: 'TOTAL_SCORE_ASC', label: '낮은 순' },
+                { value: 'reset', label: '전형별' },
+                { value: 'total-score-desc', label: '최종 점수 높은 순' },
+                { value: 'total-score-asc', label: '최종 점수 낮은 순' },
+                { value: 'form-id', label: '접수순' },
               ]}
               size="SMALL"
               width={140}
-              placeholder="최종 점수"
+              placeholder="정렬"
               onChange={handleSortForm}
               name="category"
               value={
