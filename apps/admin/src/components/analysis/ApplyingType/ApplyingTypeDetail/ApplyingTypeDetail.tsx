@@ -9,7 +9,7 @@ const ApplyingTypeDetail = () => {
 
   const getRatiotByType = (type: FormType) => {
     const entry = formList?.find((item) => item.type === type);
-    return entry ? ((entry.count / totalCount) * 100).toFixed(1) + '%' : 0;
+    return entry ? ((entry.count / totalCount) * 100).toFixed(3) + '%' : 0;
   };
   const regularApplicant = getRatiotByType('REGULAR');
   const meisterTalentApplicant = getRatiotByType('MEISTER_TALENT');
