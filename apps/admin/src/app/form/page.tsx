@@ -141,7 +141,7 @@ const FormPage = () => {
             <Row gap={8}>
               <Dropdown
                 data={[
-                  { value: 'RESET', label: '정렬 초기화' },
+                  { value: 'RESET', label: '전체 보기' },
                   { value: 'RECEIVED', label: '접수' },
                   { value: 'FIRST_FAILED', label: '1차 불합격' },
                   { value: 'FAILED', label: '불합격' },
@@ -167,7 +167,7 @@ const FormPage = () => {
               />
               <Dropdown
                 data={[
-                  { value: 'RESET', label: '정렬 초기화' },
+                  { value: 'RESET', label: '전체 보기' },
                   { value: 'REGULAR', label: '일반전형' },
                   { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
                   { value: 'NATIONAL_BASIC_LIVING', label: '국가기초생활수급권자' },
@@ -199,7 +199,7 @@ const FormPage = () => {
               />
               <Dropdown
                 data={[
-                  { value: 'reset', label: '정렬 초기화' },
+                  { value: 'reset', label: '전체 보기' },
                   { value: 'total-score-desc', label: '최종 점수 높은 순' },
                   { value: 'total-score-asc', label: '최종 점수 낮은 순' },
                   { value: 'form-id', label: '접수순' },
