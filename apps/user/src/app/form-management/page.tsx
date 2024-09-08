@@ -60,7 +60,7 @@ const FormManagementPage = () => {
     } else if (now.isBetween(이차_전형_시작, 입학_등록_기간_마감)) {
       return (
         <Row alignItems="top" gap={30}>
-          <BigFormStatus status={'REJECTED'} />
+          <BigFormStatus status={handleFormStatus?.status} />
           <CallForInquiries />
         </Row>
       );
