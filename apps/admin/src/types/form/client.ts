@@ -45,9 +45,9 @@ export interface Form {
 export type FormListType = '모두 보기' | '검토해야 하는 원서 모아보기' | '정렬';
 
 export type FormListSortingType =
-  | 'TOTAL_SCORE_DESC'
-  | 'TOTAL_SCORE_ASC'
-  | 'FORM_ID'
+  | 'total-score-desc'
+  | 'total-score-asc'
+  | 'form-id'
   | null;
 
 export type ExportExcelType =
