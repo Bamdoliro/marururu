@@ -44,11 +44,12 @@ export interface Form {
 
 export type FormListType = '모두 보기' | '검토해야 하는 원서 모아보기' | '정렬';
 
-export type FormListSortingType =
-  | 'total-score-desc'
-  | 'total-score-asc'
-  | 'form-id'
-  | null;
+export type FormSort = 'total-score-asc' | 'total-score-desc';
+export interface FormListSortingType {
+  status: FormStatus | null;
+  type: FormType | null;
+  sort: FormSort | null;
+}
 
 export type ExportExcelType =
   | '전체 내보내기'

@@ -8,7 +8,7 @@ import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/Sec
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
 import { FORM_SORTING_CATEGORY } from '@/constants/form/constants';
-import type { FormListSortingType } from '@/types/form/client';
+import type { FormStatus, FormType, FormSort } from '@/types/form/client';
 import { useSetFormToPrintStore } from '@/store/form/formToPrint';
 import { useIsFormToPrintSelectingStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
@@ -105,11 +105,30 @@ const FormPage = () => {
 
   const { handlePrintFormUrlButtonClick } = usePrintFormURLAction();
 
+  const handleSortStatus = (value: string) => {
+    setFormListType('정렬');
+    if (value === 'RESET') {
+      setFormListSortingType((prev) => ({ ...prev, status: null }));
+    } else {
+      setFormListSortingType((prev) => ({ ...prev, status: value as FormStatus }));
+    }
+  };
+
+  const handleSortType = (value: string) => {
+    setFormListType('정렬');
+    if (value === 'RESET') {
+      setFormListSortingType((prev) => ({ ...prev, type: null }));
+    } else {
+      setFormListSortingType((prev) => ({ ...prev, type: value as FormType }));
+    }
+  };
+
   const handleSortForm = (value: string) => {
     setFormListType('정렬');
-    if (value === 'RESET') setFormListSortingType(null);
-    else {
-      setFormListSortingType(value as FormListSortingType);
+    if (value === 'RESET') {
+      setFormListSortingType((prev) => ({ ...prev, sort: null }));
+    } else {
+      setFormListSortingType((prev) => ({ ...prev, sort: value as FormSort }));
     }
   };
 
@@ -119,24 +138,84 @@ const FormPage = () => {
         <Text fontType="H1">원서 관리</Text>
         <Column gap={36}>
           <Row justifyContent="space-between">
-            <Dropdown
-              data={[
-                { value: 'reset', label: '전형별' },
-                { value: 'total-score-desc', label: '최종 점수 높은 순' },
-                { value: 'total-score-asc', label: '최종 점수 낮은 순' },
-                { value: 'form-id', label: '접수순' },
-              ]}
-              size="SMALL"
-              width={140}
-              placeholder="정렬"
-              onChange={handleSortForm}
-              name="category"
-              value={
-                formListSortingType
-                  ? FORM_SORTING_CATEGORY[formListSortingType]
-                  : undefined
-              }
-            />
+            <Row gap={8}>
+              <Dropdown
+                data={[
+                  { value: 'RESET', label: '정렬 초기화' },
+                  { value: 'RECEIVED', label: '접수' },
+                  { value: 'FIRST_FAILED', label: '1차 불합격' },
+                  { value: 'FAILED', label: '불합격' },
+                  { value: 'FINAL_SUBMITTED', label: '최종 제출' },
+                  { value: 'SUBMITTED', label: '제출' },
+                  { value: 'APPROVED', label: '승인' },
+                  { value: 'NO_SHOW', label: '불참' },
+                  { value: 'FIRST_PASSED', label: '1차 합격' },
+                  { value: 'PASSED', label: '최종 합격' },
+                  { value: 'REJECTED', label: '반려' },
+                ]}
+                size="SMALL"
+                width={140}
+                placeholder="상태 별"
+                onChange={handleSortStatus}
+                name="category"
+                value={
+                  formListSortingType.status
+                    ? FORM_SORTING_CATEGORY[formListSortingType.status]
+                    : undefined
+                }
+                doubled={5}
+              />
+              <Dropdown
+                data={[
+                  { value: 'RESET', label: '정렬 초기화' },
+                  { value: 'REGULAR', label: '일반전형' },
+                  { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
+                  { value: 'NATIONAL_BASIC_LIVING', label: '국가기초생활수급권자' },
+                  {
+                    value: 'NATIONAL_VETERANS_EDUCATION',
+                    label: '국가보훈대상자 중 교육지원대상자녀',
+                  },
+                  { value: 'NEAR_POVERTY', label: '차상위계층' },
+                  { value: 'NATIONAL_VETERANS', label: '국가보훈자녀' },
+                  { value: 'ONE_PARENT', label: '한부모가정' },
+                  { value: 'FROM_NORTH_KOREA', label: '북한이탈주민' },
+                  { value: 'MULTICULTURAL', label: '다문화가정' },
+                  { value: 'TEEN_HOUSEHOLDER', label: '소년소녀가장' },
+                  { value: 'MULTI_CHILDREN', label: '다자녀가정자녀' },
+                  { value: 'FARMING_AND_FISHING', label: '농어촌지역출신자' },
+                  { value: 'SPECIAL_ADMISSION', label: '특례입학대상자' },
+                ]}
+                size="SMALL"
+                width={140}
+                placeholder="전형 별"
+                onChange={handleSortType}
+                name="category"
+                value={
+                  formListSortingType.type
+                    ? FORM_SORTING_CATEGORY[formListSortingType.type]
+                    : undefined
+                }
+                doubled={5}
+              />
+              <Dropdown
+                data={[
+                  { value: 'reset', label: '정렬 초기화' },
+                  { value: 'total-score-desc', label: '최종 점수 높은 순' },
+                  { value: 'total-score-asc', label: '최종 점수 낮은 순' },
+                  { value: 'form-id', label: '접수순' },
+                ]}
+                size="SMALL"
+                width={140}
+                placeholder="기타"
+                onChange={handleSortForm}
+                name="category"
+                value={
+                  formListSortingType.sort
+                    ? FORM_SORTING_CATEGORY[formListSortingType.sort]
+                    : undefined
+                }
+              />
+            </Row>
             <Row gap={16}>
               {formListType === '검토해야 하는 원서 모아보기' ? (
                 <ReviewFilterBox>

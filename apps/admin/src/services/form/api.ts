@@ -22,8 +22,15 @@ export const getFormList = async (
     return data;
   }
 
-  if (formListType === '정렬' && formListSortingType) {
-    const url = `/form?sort=${`${formListSortingType.replace(/_/g, '-').toLowerCase()}`}`;
+  if (formListType === '정렬') {
+    const params = new URLSearchParams();
+
+    if (formListSortingType.status) params.append('status', formListSortingType.status);
+    if (formListSortingType.type) params.append('type', formListSortingType.type);
+    if (formListSortingType.sort) params.append('sort', formListSortingType.sort);
+
+    const queryString = params.toString();
+    const url = `/form${`?${queryString}`}`;
     const { data } = await maru.get<GetFormListRes>(url, authorization());
     return data;
   }
