@@ -23,16 +23,17 @@ const FormStatus = ({ id }: Props) => {
       ? color.maruDefault
       : color.red;
   };
+
   const getStatusString = (
     status: boolean | null,
     trueString: string,
     falseString: string,
-    noShowString = 'NO_SHOW'
+    FormStatus?: string
   ) => {
-    if (typeof status !== 'boolean') {
-      return noShowString;
+    if (FormStatus === 'NO_SHOW') {
+      return '불참';
     }
-    return status ? trueString : falseString;
+    return typeof status !== 'boolean' ? '미정' : status ? trueString : falseString;
   };
 
   const overlay = useOverlay();
@@ -104,7 +105,12 @@ const FormStatus = ({ id }: Props) => {
           </Text>
           {formDetailData ? (
             <Text fontType="p2" color={getStatusColor(formDetailData.secondRoundPassed)}>
-              {getStatusString(formDetailData.secondRoundPassed, '합격', '불합격')}
+              {getStatusString(
+                formDetailData.secondRoundPassed,
+                '합격',
+                '불합격',
+                formDetailData.status
+              )}
             </Text>
           ) : null}
         </Row>
