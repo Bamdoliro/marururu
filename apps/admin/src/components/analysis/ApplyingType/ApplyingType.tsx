@@ -53,7 +53,7 @@ const ApplyingType = () => {
           </ApplicantsBox>
           <ApplicantsBox>
             <Text fontType="H3" color={color.gray750} width={60}>
-              특수 전형 지원 비율
+              특별 전형 지원 비율
             </Text>
             <Text fontType="D1" width={60}>
               {specialAdmissionRatio}
