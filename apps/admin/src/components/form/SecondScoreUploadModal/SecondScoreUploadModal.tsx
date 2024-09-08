@@ -44,6 +44,7 @@ const SecondScoreUploadModal = ({ isOpen, onClose }: Props) => {
     setFileData(null);
     removeFileInputValue();
     onClose();
+    window.location.reload();
   };
 
   const { handleUploadSecondScoreFormatButtonClick } = useUploadSecondScoreFormatAction(
