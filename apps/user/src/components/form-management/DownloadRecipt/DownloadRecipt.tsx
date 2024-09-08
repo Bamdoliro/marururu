@@ -13,8 +13,7 @@ const DownloadRecipt = () => {
   const isDownloadable =
     formStatus?.status === 'FINAL_SUBMITTED' ||
     formStatus?.status === 'APPROVED' ||
-    formStatus?.status === 'RECEIVED' ||
-    formStatus?.status === 'REJECTED';
+    formStatus?.status === 'RECEIVED';
 
   const handleClick = () => {
     if (isDownloadable) {
