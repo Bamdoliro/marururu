@@ -149,7 +149,7 @@ const FormStatus = ({ status }: Props) => {
       case 'NO_SHOW':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={180}>
+            <Row alignItems="top" gap={200}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -171,7 +171,7 @@ const FormStatus = ({ status }: Props) => {
       case 'FIRST_PASSED':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={140}>
+            <Row alignItems="top" gap={150}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태

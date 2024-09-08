@@ -17,7 +17,7 @@ const FormStatus = ({ status }: Props) => {
       case 'RECEIVED':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="center" gap={165}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -28,7 +28,7 @@ const FormStatus = ({ status }: Props) => {
               </Column>
               <IconCheckCircle width={110} height={110} />
             </Row>
-            <Column height={20}> </Column>
+            <Column height={228}> </Column>
             <Text fontType="p2" color={color.gray600}>
               원서가 접수되었습니다.
               <br />
@@ -83,7 +83,7 @@ const FormStatus = ({ status }: Props) => {
       case 'FINAL_SUBMITTED':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="top" gap={100}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -105,7 +105,7 @@ const FormStatus = ({ status }: Props) => {
       case 'SUBMITTED':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="top" gap={100}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -127,7 +127,7 @@ const FormStatus = ({ status }: Props) => {
       case 'APPROVED':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="top" gap={165}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -149,7 +149,7 @@ const FormStatus = ({ status }: Props) => {
       case 'NO_SHOW':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="top" gap={195}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -171,7 +171,7 @@ const FormStatus = ({ status }: Props) => {
       case 'FIRST_PASSED':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="top" gap={145}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -193,7 +193,7 @@ const FormStatus = ({ status }: Props) => {
       case 'PASSED':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="top" gap={140}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -215,7 +215,7 @@ const FormStatus = ({ status }: Props) => {
       case 'REJECTED':
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="top" gap={170}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
@@ -239,7 +239,7 @@ const FormStatus = ({ status }: Props) => {
       default:
         return (
           <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
+            <Row alignItems="top" gap={170}>
               <Column gap={8}>
                 <Text fontType="p1" color={color.gray600}>
                   원서 상태
