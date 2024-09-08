@@ -1,4 +1,4 @@
-import type { FormStatus, FormType } from '@/types/form/client';
+import type { FormCategory, FormStatus, FormType } from '@/types/form/client';
 
 export const FORM_STATUS_CATEGORY: Record<FormStatus, string> = {
   RECEIVED: '접수',
@@ -29,9 +29,21 @@ export const FORM_TYPE_CATEGORY: Record<FormType, string> = {
   SPECIAL_ADMISSION: '특례입학대상자',
 } as const;
 
+export const FORM_CATEGORY_CATEGORY: Record<FormCategory, string> = {
+  REGULAR: '일반전형',
+  SPECIAL: '특별전형',
+  SUPERNUMERARY: '정원 외 전형',
+  SOCIAL_INTEGRATION: '사회통합전형',
+  MEISTER_TALENT: '마이스터인재전형',
+  NATIONAL_VETERANS_EDUCATION: '국가보훈대상자 중 교육지원대상자녀',
+  SPECIAL_ADMISSION: '특례입학대상자',
+  EQUAL_OPPORTUNITY: '기회균등전형',
+  SOCIETY_DIVERSITY: '사회다양성전형',
+};
+
 export const FORM_SORTING_CATEGORY = {
   ...FORM_STATUS_CATEGORY,
-  ...FORM_TYPE_CATEGORY,
+  ...FORM_CATEGORY_CATEGORY,
   'total-score-desc': '최종 점수 높은 순',
   'total-score-asc': '최종 점수 낮은 순',
   'form-id': '접수순',

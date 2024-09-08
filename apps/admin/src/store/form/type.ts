@@ -10,7 +10,7 @@ const formListSortingTypeAtomState = atom<FormListSortingType>({
   key: 'form-sort-type',
   default: {
     status: null,
-    type: null,
+    category: null,
     sort: null,
   },
 });

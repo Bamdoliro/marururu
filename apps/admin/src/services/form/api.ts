@@ -26,7 +26,8 @@ export const getFormList = async (
     const params = new URLSearchParams();
 
     if (formListSortingType.status) params.append('status', formListSortingType.status);
-    if (formListSortingType.type) params.append('type', formListSortingType.type);
+    if (formListSortingType.category)
+      params.append('category', formListSortingType.category);
     if (formListSortingType.sort) params.append('sort', formListSortingType.sort);
 
     const queryString = params.toString();

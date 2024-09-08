@@ -25,6 +25,17 @@ export type FormType =
   | 'SPECIAL_ADMISSION'
   | 'NATIONAL_VETERANS_EDUCATION';
 
+export type FormCategory =
+  | 'REGULAR'
+  | 'SPECIAL'
+  | 'SUPERNUMERARY'
+  | 'SOCIAL_INTEGRATION'
+  | 'MEISTER_TALENT'
+  | 'NATIONAL_VETERANS_EDUCATION'
+  | 'SPECIAL_ADMISSION'
+  | 'EQUAL_OPPORTUNITY'
+  | 'SOCIETY_DIVERSITY';
+
 export type GraduationType = 'EXPECTED' | 'GRADUATED' | 'QUALIFICATION_EXAMINATION';
 
 export interface Form {
@@ -47,7 +58,7 @@ export type FormListType = '모두 보기' | '검토해야 하는 원서 모아�
 export type FormSort = 'total-score-asc' | 'total-score-desc';
 export interface FormListSortingType {
   status: FormStatus | null;
-  type: FormType | null;
+  category: FormCategory | null;
   sort: FormSort | null;
 }
 

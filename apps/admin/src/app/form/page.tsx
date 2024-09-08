@@ -8,7 +8,7 @@ import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/Sec
 import AppLayout from '@/layouts/AppLayout';
 import initMockAPI from '@/mocks';
 import { FORM_SORTING_CATEGORY } from '@/constants/form/constants';
-import type { FormStatus, FormType, FormSort } from '@/types/form/client';
+import type { FormStatus, FormSort, FormCategory } from '@/types/form/client';
 import { useSetFormToPrintStore } from '@/store/form/formToPrint';
 import { useIsFormToPrintSelectingStore } from '@/store/form/isFormToPrintSelecting';
 import { useIsSecondRoundResultEditingStore } from '@/store/form/isSecondRoundResultEditing';
@@ -114,12 +114,12 @@ const FormPage = () => {
     }
   };
 
-  const handleSortType = (value: string) => {
+  const handleSortCategory = (value: string) => {
     setFormListType('정렬');
     if (value === 'RESET') {
-      setFormListSortingType((prev) => ({ ...prev, type: null }));
+      setFormListSortingType((prev) => ({ ...prev, category: null }));
     } else {
-      setFormListSortingType((prev) => ({ ...prev, type: value as FormType }));
+      setFormListSortingType((prev) => ({ ...prev, category: value as FormCategory }));
     }
   };
 
@@ -157,7 +157,7 @@ const FormPage = () => {
                 width={140}
                 placeholder="상태 별"
                 onChange={handleSortStatus}
-                name="category"
+                name="statusSort"
                 value={
                   formListSortingType.status
                     ? FORM_SORTING_CATEGORY[formListSortingType.status]
@@ -169,30 +169,29 @@ const FormPage = () => {
                 data={[
                   { value: 'RESET', label: '전체 보기' },
                   { value: 'REGULAR', label: '일반전형' },
+                  { value: 'SPECIAL', label: '특별전형' },
+                  { value: 'SUPERNUMERARY', label: '정원 외 전형' },
+                  {
+                    value: 'SOCIAL_INTEGRATION',
+                    label: '사회통합전형',
+                  },
                   { value: 'MEISTER_TALENT', label: '마이스터인재전형' },
-                  { value: 'NATIONAL_BASIC_LIVING', label: '국가기초생활수급권자' },
                   {
                     value: 'NATIONAL_VETERANS_EDUCATION',
                     label: '국가보훈대상자 중 교육지원대상자녀',
                   },
-                  { value: 'NEAR_POVERTY', label: '차상위계층' },
-                  { value: 'NATIONAL_VETERANS', label: '국가보훈자녀' },
-                  { value: 'ONE_PARENT', label: '한부모가정' },
-                  { value: 'FROM_NORTH_KOREA', label: '북한이탈주민' },
-                  { value: 'MULTICULTURAL', label: '다문화가정' },
-                  { value: 'TEEN_HOUSEHOLDER', label: '소년소녀가장' },
-                  { value: 'MULTI_CHILDREN', label: '다자녀가정자녀' },
-                  { value: 'FARMING_AND_FISHING', label: '농어촌지역출신자' },
                   { value: 'SPECIAL_ADMISSION', label: '특례입학대상자' },
+                  { value: 'EQUAL_OPPORTUNITY', label: '기회균등전형' },
+                  { value: 'SOCIETY_DIVERSITY', label: '사회다양성전형' },
                 ]}
                 size="SMALL"
                 width={140}
                 placeholder="전형 별"
-                onChange={handleSortType}
-                name="category"
+                onChange={handleSortCategory}
+                name="typeSort"
                 value={
-                  formListSortingType.type
-                    ? FORM_SORTING_CATEGORY[formListSortingType.type]
+                  formListSortingType.category
+                    ? FORM_SORTING_CATEGORY[formListSortingType.category]
                     : undefined
                 }
                 doubled={5}
@@ -208,7 +207,7 @@ const FormPage = () => {
                 width={140}
                 placeholder="기타"
                 onChange={handleSortForm}
-                name="category"
+                name="formSort"
                 value={
                   formListSortingType.sort
                     ? FORM_SORTING_CATEGORY[formListSortingType.sort]
