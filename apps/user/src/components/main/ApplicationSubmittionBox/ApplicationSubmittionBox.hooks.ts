@@ -46,15 +46,13 @@ export const useDday = () => {
 };
 
 export const useButtonStatus = () => {
-  const { currentTime, remainDays /*, isSubmitPeriod*/ } = useDday();
+  const { currentTime, remainDays, isSubmitPeriod } = useDday();
   const router = useRouter();
 
   const isPeriodOfViewing = -2 < remainDays && remainDays <= 0;
 
-  // const buttonStyleType: ButtonStyleType =
-  //   isSubmitPeriod || isPeriodOfViewing ? 'PRIMARY' : 'DISABLED';
-
-  const buttonStyleType: ButtonStyleType = 'DISABLED';
+  const buttonStyleType: ButtonStyleType =
+    isSubmitPeriod || isPeriodOfViewing ? 'PRIMARY' : 'DISABLED';
 
   const handleMoveFormPage = () => {
     router.push(ROUTES.FORM);
