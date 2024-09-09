@@ -71,9 +71,7 @@ const LoginPage = () => {
             </Column>
             <SignUpLinkBox>
               회원이 아니신가요?
-              <SignUpLink /*href={ROUTES.SIGNUP}*/ href={ROUTES.MAIN}>
-                회원가입
-              </SignUpLink>
+              <SignUpLink href={ROUTES.SIGNUP}>회원가입</SignUpLink>
             </SignUpLinkBox>
           </Column>
         </LoginBox>
