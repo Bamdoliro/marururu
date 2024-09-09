@@ -51,6 +51,7 @@ const ChangePasswordPage = () => {
               name="name"
               placeholder="예) 홍길동"
               value={updateUser.name}
+              onChange={handleUpdateUserChange}
             />
             <ButtonInput
               label="전화번호 인증"

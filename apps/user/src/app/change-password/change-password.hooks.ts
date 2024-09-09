@@ -1,3 +1,4 @@
+import { useUser } from '@/hooks';
 import {
   useUpdateUserMutation,
   useRequestVerificationCodeMutation,
@@ -58,10 +59,11 @@ export const useVerificationCodeAction = (updateUserData: Update) => {
 };
 
 export const useInput = () => {
+  const user = useUser();
   const [updateUser, setUpdateUser] = useState<Update>({
-    phoneNumber: '',
+    phoneNumber: user.userData.phoneNumber || '',
     code: '',
-    name: '',
+    name: user.userData.name || '',
     password: '',
     password_confirm: '',
     type: 'UPDATE_PASSWORD',
@@ -70,12 +72,10 @@ export const useInput = () => {
   const handleUpdateUserChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'phoneNumber') {
-      const numbersOnly = value.replace(/\D/g, '');
-      setUpdateUser({ ...updateUser, [name]: numbersOnly });
-    } else {
-      setUpdateUser({ ...updateUser, [name]: value });
-    }
+    setUpdateUser((prevState) => ({
+      ...prevState,
+      [name]: name === 'phoneNumber' ? value.replace(/\D/g, '') : value,
+    }));
   };
 
   return { updateUser, handleUpdateUserChange };
