@@ -10,6 +10,10 @@ export class Storage {
 
   static setItem(key: CookieKey, value: string) {
     if (typeof window === 'undefined') return;
-    cookies.set(key, value, { path: '/' });
+    cookies.set(key, value, {
+      path: '/',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+    });
   }
 }
