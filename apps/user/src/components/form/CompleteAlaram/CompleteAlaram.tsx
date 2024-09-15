@@ -1,4 +1,4 @@
-import { IconCancelCircle, IconCheckCircle } from '@maru/icon';
+import { IconCancelCircle, IconLoader } from '@maru/icon';
 import { color } from '@maru/design-token';
 import { Column, Text } from '@maru/ui';
 
@@ -18,7 +18,7 @@ const CompleteAlarm = ({ isComplete, completeText, incompleteText }: Props) => {
       alignItems="center"
     >
       {isComplete ? (
-        <IconCheckCircle width={150} height={150} />
+        <IconLoader width={150} height={150} />
       ) : (
         <IconCancelCircle width={150} height={150} />
       )}
