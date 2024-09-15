@@ -40,17 +40,16 @@ const 출신학교및학력 = () => {
     } = form.education;
 
     if (graduationType === 'QUALIFICATION_EXAMINATION') {
-      return graduationYear.length === 4;
+      return graduationYear?.trim().length === 4;
     } else {
       const schoolNameValid =
-        (schoolName ?? '').length > 0 && (schoolName ?? '').length < 30;
-      const schoolCodeValid = (schoolCode ?? '').length === 7;
-      const teacherPhoneNumberValid = (teacherPhoneNumber ?? '').length >= 10;
-      const teacherNameValid =
-        (teacherName ?? '').length > 0 && (teacherName ?? '').length >= 2;
+        (schoolName?.trim().length ?? 0) > 0 && (schoolName?.trim().length ?? 0) < 30;
+      const schoolCodeValid = (schoolCode?.trim().length ?? 0) === 7;
+      const teacherPhoneNumberValid = (teacherPhoneNumber?.trim().length ?? 0) >= 10;
+      const teacherNameValid = (teacherName?.trim().length ?? 0) >= 2;
       const teacherMobilePhoneNumberValid =
-        (teacherMobilePhoneNumber ?? '').length === 11;
-      const graduationYearValid = (graduationYear ?? '').length === 4;
+        (teacherMobilePhoneNumber?.trim().length ?? 0) === 11;
+      const graduationYearValid = (graduationYear?.trim().length ?? 0) === 4;
 
       return (
         schoolNameValid &&
@@ -114,22 +113,22 @@ const 출신학교및학력 = () => {
 
     setIsSchoolNameError(
       form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        ((form.education.schoolName ?? '').length === 0 ||
-          (form.education.schoolName ?? '').length >= 30)
+        ((form.education.schoolName?.trim().length ?? 0) === 0 ||
+          (form.education.schoolName?.trim().length ?? 0) >= 30)
     );
     setIsTeacherPhoneNumberError(
       form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        (form.education.teacherPhoneNumber ?? '').length < 10
+        (form.education.teacherPhoneNumber?.trim().length ?? 0) < 10
     );
     setIsTeacherNameError(
       form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        (form.education.teacherName ?? '').length < 2
+        (form.education.teacherName?.trim().length ?? 0) < 2
     );
     setIsTeacherMobilePhoneNumberError(
       form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        (form.education.teacherMobilePhoneNumber ?? '').length !== 11
+        (form.education.teacherMobilePhoneNumber?.trim().length ?? 0) !== 11
     );
-    setIsGraduationYearError((form.education.graduationYear ?? '').length !== 4);
+    setIsGraduationYearError((form.education.graduationYear?.trim().length ?? 0) !== 4);
 
     if (isValid) {
       handleMoveNextStep();
@@ -139,23 +138,23 @@ const 출신학교및학력 = () => {
   useEffect(() => {
     if (isNextClicked) {
       setIsSchoolNameError(
-        form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          ((form.education.schoolName ?? '').length === 0 ||
-            (form.education.schoolName ?? '').length >= 30)
+        (form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
+          (form.education.schoolName?.trim().length ?? 0) === 0) ||
+          (form.education.schoolName?.trim().length ?? 0) >= 30
       );
       setIsTeacherPhoneNumberError(
         form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          (form.education.teacherPhoneNumber ?? '').length < 10
+          (form.education.teacherPhoneNumber?.trim().length ?? 0) < 10
       );
       setIsTeacherNameError(
         form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          (form.education.teacherName ?? '').length < 2
+          (form.education.teacherName?.trim().length ?? 0) < 2
       );
       setIsTeacherMobilePhoneNumberError(
         form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          (form.education.teacherMobilePhoneNumber ?? '').length !== 11
+          (form.education.teacherMobilePhoneNumber?.trim().length ?? 0) !== 11
       );
-      setIsGraduationYearError((form.education.graduationYear ?? '').length !== 4);
+      setIsGraduationYearError((form.education.graduationYear?.trim().length ?? 0) !== 4);
     }
   }, [
     form.education.schoolName,

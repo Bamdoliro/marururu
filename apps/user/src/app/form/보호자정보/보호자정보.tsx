@@ -23,13 +23,14 @@ const 보호자정보 = () => {
   const correct = Storage.getItem('correct');
 
   const validateForm = () => {
-    const nameValid = form.parent.name.length >= 2;
-    const phoneNumberValid = form.parent.phoneNumber.length === 11;
-    const relationValid = form.parent.relation.length > 0;
+    const nameValid = form.parent.name.trim().length >= 2;
+    const phoneNumberValid = form.parent.phoneNumber.trim().length === 11;
+    const relationValid = form.parent.relation.trim().length > 0;
     const addressValid =
-      form.parent.address.length > 0 && form.parent.address.length < 100;
+      form.parent.address.trim().length > 0 && form.parent.address.trim().length < 100;
     const detailAddressValid =
-      form.parent.detailAddress.length > 0 && form.parent.detailAddress.length < 100;
+      form.parent.detailAddress.trim().length > 0 &&
+      form.parent.detailAddress.trim().length < 100;
 
     return (
       nameValid && phoneNumberValid && relationValid && addressValid && detailAddressValid
@@ -39,13 +40,14 @@ const 보호자정보 = () => {
   const handleNextClick = () => {
     setIsNextClicked(true);
 
-    const nameValid = form.parent.name.length >= 2;
-    const phoneNumberValid = form.parent.phoneNumber.length === 11;
-    const relationValid = form.parent.relation.length > 0;
+    const nameValid = form.parent.name.trim().length >= 2;
+    const phoneNumberValid = form.parent.phoneNumber.trim().length === 11;
+    const relationValid = form.parent.relation.trim().length > 0;
     const addressValid =
-      form.parent.address.length > 0 && form.parent.address.length < 100;
+      form.parent.address.trim().length > 0 && form.parent.address.trim().length < 100;
     const detailAddressValid =
-      form.parent.detailAddress.length > 0 && form.parent.detailAddress.length < 100;
+      form.parent.detailAddress.trim().length > 0 &&
+      form.parent.detailAddress.trim().length < 100;
 
     setIsParentNameError(!nameValid);
     setIsParentPhoneNumberError(!phoneNumberValid);
@@ -64,15 +66,15 @@ const 보호자정보 = () => {
 
     if (isNextClicked) {
       if (name === 'name') {
-        setIsParentNameError(value.length < 2);
+        setIsParentNameError(value.trim().length < 2);
       } else if (name === 'phoneNumber') {
-        setIsParentPhoneNumberError(value.length !== 11);
+        setIsParentPhoneNumberError(value.trim().length !== 11);
       } else if (name === 'relation') {
-        setIsParentRelationError(value.length === 0);
+        setIsParentRelationError(value.trim().length === 0);
       } else if (name === 'address') {
-        setIsAddressError(value.length === 0 || value.length >= 100);
+        setIsAddressError(value.trim().length === 0 || value.trim().length >= 100);
       } else if (name === 'detailAddress') {
-        setIsDetailAddressError(value.length === 0 || value.length >= 100);
+        setIsDetailAddressError(value.trim().length === 0 || value.trim().length >= 100);
       }
     }
   };
