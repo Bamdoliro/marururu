@@ -178,7 +178,7 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
           <Desc>
             10MB 이하, 3개월 이내의
             <br />
-            3x4 cm 증명사진
+            3x4 cm 증명사진(.jpg, .png)
           </Desc>
         </>
       )}
