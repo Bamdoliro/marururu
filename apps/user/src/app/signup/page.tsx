@@ -51,9 +51,14 @@ const SignUpPage = () => {
         <ContentBox>
           <SignUpBox>
             <Column gap={24}>
-              <Text fontType="H2" color={color.gray900}>
-                회원가입
-              </Text>
+              <Column gap={4}>
+                <Text fontType="H2" color={color.gray900}>
+                  회원가입
+                </Text>
+                <Text fontType="p3" color={color.gray700}>
+                  입학하는 학생의 정보를 입력해주세요.
+                </Text>
+              </Column>
               <Input
                 label="이름"
                 width="100%"
