@@ -17,7 +17,7 @@ const 최종제출완료 = () => {
   return (
     <AppLayout header footer>
       <CompleteAlarmBox>
-        <CompleteAlaram isComplete completeText="원서 최종 제출 완료" />
+        <CompleteAlaram isComplete="check" completeText="원서 최종 제출 완료" />
       </CompleteAlarmBox>
       <Styled최종제출완료>
         <Row gap={8} alignItems="center" justifyContent="center">
