@@ -32,12 +32,17 @@ const 지원자정보 = () => {
   }, [isUploadPictureStored]);
 
   const validateBirthday = useCallback((birthday: string) => {
-    return birthday && birthday.length === 10;
+    return birthday.trim().length === 10;
   }, []);
 
   useEffect(() => {
     setIsBirthdayError(!validateBirthday(form.applicant.birthday));
-  }, [form.applicant.birthday, validateBirthday]);
+  }, [
+    form.applicant.birthday,
+    form.applicant.name,
+    form.applicant.phoneNumber,
+    validateBirthday,
+  ]);
 
   const handleNextClick = useCallback(() => {
     setIsNextClicked(true);
@@ -105,7 +110,7 @@ const 지원자정보 = () => {
             name="birthday"
             placeholder="예) 20061103"
             isError={isNextClicked && isBirthdayError}
-            errorMessage={isBirthdayError ? '8자리를 입력해주세요.' : ''}
+            errorMessage={isBirthdayError ? '생년월일을 정확히 입력해주세요.' : ''}
             width="100%"
           />
           <Row gap={40} alignItems="flex-end">

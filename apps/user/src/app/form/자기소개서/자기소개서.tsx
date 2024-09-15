@@ -18,10 +18,11 @@ const 자기소개서 = () => {
 
   const validateForm = () => {
     const coverLetterValid =
-      form.document.coverLetter.length > 0 && form.document.coverLetter.length <= 1000;
+      form.document.coverLetter.trim().length > 0 &&
+      form.document.coverLetter.trim().length <= 1000;
     const statementOfPurposeValid =
-      form.document.statementOfPurpose.length > 0 &&
-      form.document.statementOfPurpose.length <= 1000;
+      form.document.statementOfPurpose.trim().length > 0 &&
+      form.document.statementOfPurpose.trim().length <= 1000;
 
     return coverLetterValid && statementOfPurposeValid;
   };
@@ -30,10 +31,11 @@ const 자기소개서 = () => {
     setIsNextClicked(true);
 
     const coverLetterValid =
-      form.document.coverLetter.length > 0 && form.document.coverLetter.length <= 1000;
+      form.document.coverLetter.trim().length > 0 &&
+      form.document.coverLetter.trim().length <= 1000;
     const statementOfPurposeValid =
-      form.document.statementOfPurpose.length > 0 &&
-      form.document.statementOfPurpose.length <= 1000;
+      form.document.statementOfPurpose.trim().length > 0 &&
+      form.document.statementOfPurpose.trim().length <= 1000;
 
     setIsCoverLetterError(!coverLetterValid);
     setIsStatementOfPurposeError(!statementOfPurposeValid);
@@ -47,10 +49,13 @@ const 자기소개서 = () => {
     handle자기소개서Change(e);
     if (isNextClicked) {
       const { name, value } = e.target;
+      const trimmedValue = value.trim();
       if (name === 'coverLetter') {
-        setIsCoverLetterError(!(value.length > 0 && value.length <= 1000));
+        setIsCoverLetterError(!(trimmedValue.length > 0 && trimmedValue.length <= 1000));
       } else if (name === 'statementOfPurpose') {
-        setIsStatementOfPurposeError(!(value.length > 0 && value.length <= 1000));
+        setIsStatementOfPurposeError(
+          !(trimmedValue.length > 0 && trimmedValue.length <= 1000)
+        );
       }
     }
   };
@@ -67,7 +72,7 @@ const 자기소개서 = () => {
             value={form.document.coverLetter}
             onChange={handle자기소개서ErrorChange}
             isError={isCoverLetterError}
-            errorMessage=""
+            errorMessage={isCoverLetterError ? '자기소개서를 입력해주세요.' : ''}
           />
           <Textarea
             name="statementOfPurpose"
@@ -76,7 +81,7 @@ const 자기소개서 = () => {
             value={form.document.statementOfPurpose}
             onChange={handle자기소개서ErrorChange}
             isError={isStatementOfPurposeError}
-            errorMessage=""
+            errorMessage={isStatementOfPurposeError ? '학업계획서를 입력해주세요.' : ''}
           />
         </Column>
       </Column>
