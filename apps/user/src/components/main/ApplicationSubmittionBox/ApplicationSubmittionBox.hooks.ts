@@ -26,7 +26,7 @@ export const useDday = () => {
     ? 제출_마감_날짜
     : dayjs().isBefore(일차_합격_발표.add(2, 'day'))
     ? 일차_합격_발표
-    : dayjs().isBefore(최종_합격_발표)
+    : dayjs().isBefore(최종_합격_발표.add(2, 'day'))
     ? 최종_합격_발표
     : 입학_등록_기간;
 
