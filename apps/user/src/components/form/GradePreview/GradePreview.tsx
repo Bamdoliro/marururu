@@ -5,7 +5,7 @@ import styled from 'styled-components';
 type LocationType = 'GRADE' | 'ATTENDANCE' | 'VOLUNTEER' | 'CERTIFICATE';
 
 interface PreviewProps {
-  location: LocationType;
+  location?: LocationType;
 }
 
 const GradePreview = ({ location }: PreviewProps) => {
