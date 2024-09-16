@@ -15,7 +15,7 @@ const 교과성적 = () => {
         <Text fontType="H4" color={color.gray900}>
           지원자 성적 총점
         </Text>
-        <GradePreview />
+        <GradePreview location="GRADE" />
       </Column>
       <NavigationBar>
         <UnderlineButton active={true}>교과성적</UnderlineButton>

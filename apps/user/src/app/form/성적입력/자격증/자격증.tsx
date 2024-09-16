@@ -21,7 +21,7 @@ const 자격증 = () => {
           <Text fontType="H4" color={color.gray900}>
             성적 계산
           </Text>
-          <GradePreview />
+          <GradePreview location="CERTIFICATE" />
         </Column>
       </Column>
       <NavigationBar>

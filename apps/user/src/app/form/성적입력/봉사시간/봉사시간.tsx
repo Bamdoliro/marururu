@@ -23,7 +23,7 @@ const 봉사시간 = () => {
           <Text fontType="H4" color={color.gray900}>
             성적 계산
           </Text>
-          <GradePreview />
+          <GradePreview location="VOLUNTEER" />
         </Column>
       </Column>
       <NavigationBar>

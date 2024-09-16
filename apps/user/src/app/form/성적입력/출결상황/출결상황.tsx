@@ -23,7 +23,7 @@ const 출결상황 = () => {
           <Text fontType="H4" color={color.gray900}>
             성적 계산
           </Text>
-          <GradePreview />
+          <GradePreview location="ATTENDANCE" />
         </Column>
       </Column>
       <NavigationBar>
