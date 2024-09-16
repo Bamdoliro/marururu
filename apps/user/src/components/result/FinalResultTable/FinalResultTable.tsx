@@ -9,12 +9,9 @@ const FinalResultTable = () => {
   const { data: finalResultData } = useFinalResultQuery();
 
   return finalResultData ? (
-    <StyledFinalResultTable isPassed={finalResultData.passed}>
-      <Column gap={20} width={816}>
-        <FinalResultTableItem
-          type={finalResultData.type}
-          isPassed={finalResultData.passed}
-        />
+    <StyledFinalResultTable>
+      <Column gap={8} width={816}>
+        <FinalResultTableItem isPassed={finalResultData.passed} />
         <ResultTableFooter option="FINAL" isPassed={finalResultData.passed} />
       </Column>
     </StyledFinalResultTable>
@@ -23,7 +20,6 @@ const FinalResultTable = () => {
 
 export default FinalResultTable;
 
-const StyledFinalResultTable = styled.div<{ isPassed: boolean }>`
+const StyledFinalResultTable = styled.div`
   ${flex({ flexDirection: 'column', alignItems: 'center' })};
-  gap: ${(props) => (props.isPassed ? '1px' : '120px')};
 `;
