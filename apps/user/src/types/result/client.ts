@@ -7,4 +7,5 @@ export interface Result {
   name: string;
   type: string;
   passed: boolean;
+  changedToRegular: boolean;
 }

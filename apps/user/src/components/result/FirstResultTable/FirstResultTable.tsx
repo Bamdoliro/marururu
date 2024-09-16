@@ -14,6 +14,7 @@ const FirstResultTable = () => {
         <FirstResultTableItem
           type={firstResultData.type}
           isPassed={firstResultData.passed}
+          changedToRegular={firstResultData.changedToRegular}
         />
         <FirstResultTableFooter option="FIRST" isPassed={firstResultData.passed} />
       </Column>
