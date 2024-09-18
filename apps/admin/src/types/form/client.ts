@@ -90,6 +90,7 @@ export interface FormDetail {
     statementOfPurpose: string;
   };
   type: FormType;
+  changedToRegular: boolean;
 }
 
 export interface UserInfo {

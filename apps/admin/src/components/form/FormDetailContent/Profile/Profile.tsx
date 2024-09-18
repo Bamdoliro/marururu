@@ -41,7 +41,11 @@ const Profile = ({ id }: Props) => {
           <Row gap={10}>
             <IconPerson width={24} height={24} />
             <Text fontType="p2" color={color.gray900}>
-              {formDetailData?.type ? FORM_TYPE[formDetailData.type] : null}
+              {formDetailData?.type
+                ? formDetailData.changedToRegular
+                  ? '마이스터인재전형 -> 일반전형'
+                  : FORM_TYPE[formDetailData.type]
+                : null}
             </Text>
           </Row>
           {formDetailData?.education.graduationType !== 'QUALIFICATION_EXAMINATION' && (
