@@ -19,6 +19,7 @@ const FormTableItem = ({
   graduationType,
   school,
   type,
+  isChangedToRegular,
   status,
   totalScore,
   firstRoundPassed,
@@ -131,7 +132,11 @@ const FormTableItem = ({
           <Text fontType="p2" width={160} ellipsis>
             {graduationType === 'QUALIFICATION_EXAMINATION' ? '검정고시' : school}
           </Text>
-          <Text fontType="p2" width={240}>
+          <Text
+            fontType="p2"
+            width={240}
+            color={isChangedToRegular ? color.maruDefault : color.black}
+          >
             {FORM_TYPE[type as FormType]}
           </Text>
         </Row>
