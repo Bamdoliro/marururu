@@ -47,6 +47,7 @@ export interface Form {
   school: string;
   status: FormStatus;
   type: FormType;
+  isChangedToRegular: boolean;
   totalScore: number | null;
   hasDocument: boolean | null;
   firstRoundPassed: boolean | null;
@@ -90,6 +91,7 @@ export interface FormDetail {
     statementOfPurpose: string;
   };
   type: FormType;
+  changedToRegular: boolean;
 }
 
 export interface UserInfo {
