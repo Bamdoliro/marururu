@@ -42,7 +42,7 @@ const Profile = ({ id }: Props) => {
             <IconPerson width={24} height={24} />
             <Text fontType="p2" color={color.gray900}>
               {formDetailData?.type
-                ? formDetailData.changedToRegular
+                ? formDetailData.changedToRegular && formDetailData?.type === 'REGULAR'
                   ? '마이스터인재전형 -> 일반전형'
                   : FORM_TYPE[formDetailData.type]
                 : null}

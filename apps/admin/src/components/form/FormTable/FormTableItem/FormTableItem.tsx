@@ -135,7 +135,11 @@ const FormTableItem = ({
           <Text
             fontType="p2"
             width={240}
-            color={isChangedToRegular ? color.maruDefault : color.black}
+            color={
+              isChangedToRegular && FORM_TYPE[type as FormType] === '일반전형'
+                ? color.maruDefault
+                : color.black
+            }
           >
             {FORM_TYPE[type as FormType]}
           </Text>
