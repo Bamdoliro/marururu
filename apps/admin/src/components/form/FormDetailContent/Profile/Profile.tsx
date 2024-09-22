@@ -43,7 +43,7 @@ const Profile = ({ id }: Props) => {
             <Text fontType="p2" color={color.gray900}>
               {formDetailData?.type
                 ? formDetailData.changedToRegular && formDetailData?.type === 'REGULAR'
-                  ? '마이스터인재전형 -> 일반전형'
+                  ? '특별전형 -> 일반전형'
                   : FORM_TYPE[formDetailData.type]
                 : null}
             </Text>
