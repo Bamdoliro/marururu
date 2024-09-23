@@ -45,8 +45,8 @@ const GradeCalculator = () => {
             key={`subject ${id}`}
             achievementLevels={
               isSpecialSubject
-                ? ['미이수', 'A', 'B', 'C']
-                : ['미이수', 'A', 'B', 'C', 'D', 'E']
+                ? ['-', '미이수', 'A', 'B', 'C']
+                : ['-', '미이수', 'A', 'B', 'C', 'D', 'E']
             }
           />
         );
@@ -55,7 +55,7 @@ const GradeCalculator = () => {
       {newSubjectList.map(({ id }) => (
         <NewGradeCalculatorItem
           id={id}
-          achievementLevels={['미이수', 'A', 'B', 'C', 'D', 'E']}
+          achievementLevels={['-', '미이수', 'A', 'B', 'C', 'D', 'E']}
         />
       ))}
       <GradeCalculatorFooter>

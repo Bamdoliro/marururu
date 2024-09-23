@@ -74,9 +74,9 @@ export const SUBJECT_LIST: Subject[] = [
 ].map((subject, index) => ({
   id: index,
   subjectName: subject,
-  achievementLevel21: 'A',
-  achievementLevel22: 'A',
-  achievementLevel31: 'A',
+  achievementLevel21: '-',
+  achievementLevel22: '-',
+  achievementLevel31: '-',
   score: null,
 }));
 

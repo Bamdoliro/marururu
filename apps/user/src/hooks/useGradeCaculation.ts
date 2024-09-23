@@ -15,6 +15,7 @@ import { useFormValueStore } from '@/store';
 import { getAchivementLevel } from '@/utils';
 
 enum AchievementScore {
+  '-' = 0,
   'A' = 5,
   'B' = 4,
   'C' = 3,
