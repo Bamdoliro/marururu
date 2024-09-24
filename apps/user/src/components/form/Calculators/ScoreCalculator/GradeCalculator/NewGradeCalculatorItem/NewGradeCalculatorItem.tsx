@@ -8,15 +8,18 @@ import { useDeleteNewSubject, useInput } from './NewGradeCalculatorItem.hooks';
 interface Props {
   id: number;
   achievementLevels: string[];
+  isError: boolean[];
 }
 
-const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
+const NewGradeCalculatorItem = ({ id, achievementLevels, isError }: Props) => {
   const newSubjectList = useNewSubjectListValueStore();
-
   const newSubjectIndex = newSubjectList.findIndex((item) => item.id === id);
+
   const { handleNewSubjectChange, handleNewSubjectNameChange } =
     useInput(newSubjectIndex);
   const { handleDeleteNewSubject } = useDeleteNewSubject();
+
+  const subject = newSubjectList[newSubjectIndex];
 
   return (
     <StyledNewGradeCalculatorItem>
@@ -24,38 +27,41 @@ const NewGradeCalculatorItem = ({ id, achievementLevels }: Props) => {
         <NewSubjectInput
           name="subjectName"
           onChange={handleNewSubjectNameChange}
-          value={newSubjectList[newSubjectIndex].subjectName}
+          value={subject.subjectName || ''}
           placeholder="과목명 입력"
         />
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={newSubjectList[newSubjectIndex].achievementLevel21 ?? '미이수'}
+          value={subject.achievementLevel21 ?? '미이수'}
           size="SMALL"
           data={achievementLevels}
           width={80}
           name="achievementLevel21"
           onChange={handleNewSubjectChange}
+          isError={subject.achievementLevel21 === '-' && isError[id]}
         />
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={newSubjectList[newSubjectIndex].achievementLevel22 ?? '미이수'}
+          value={subject.achievementLevel22 ?? '미이수'}
           size="SMALL"
           data={achievementLevels}
           width={80}
           name="achievementLevel22"
           onChange={handleNewSubjectChange}
+          isError={subject.achievementLevel22 === '-' && isError[id]}
         />
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={newSubjectList[newSubjectIndex].achievementLevel31 ?? '미이수'}
+          value={subject.achievementLevel31 ?? '미이수'}
           size="SMALL"
           data={achievementLevels}
           width={80}
           name="achievementLevel31"
           onChange={handleNewSubjectChange}
+          isError={subject.achievementLevel31 === '-' && isError[id]}
         />
       </Td>
       <Td width={123} height="100%">

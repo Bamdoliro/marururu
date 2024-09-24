@@ -7,7 +7,12 @@ import styled from 'styled-components';
 import GradeCalculator from './GradeCalculator/GradeCalculator';
 import GEDCaculator from './GEDCalculator/GEDCalculator';
 
-const ScoreCalculator = () => {
+interface Props {
+  subjectError: boolean[];
+  newSubjectError: boolean[];
+}
+
+const ScoreCalculator = ({ subjectError, newSubjectError }: Props) => {
   const [form] = useFormStore();
 
   return (
@@ -24,7 +29,12 @@ const ScoreCalculator = () => {
         caseBy={{
           QUALIFICATION_EXAMINATION: <GEDCaculator />,
         }}
-        defaultComponent={<GradeCalculator />}
+        defaultComponent={
+          <GradeCalculator
+            subjectError={subjectError}
+            newSubjectError={newSubjectError}
+          />
+        }
       />
     </StyledScoreCalculator>
   );
