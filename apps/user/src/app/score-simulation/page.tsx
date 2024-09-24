@@ -4,9 +4,9 @@ import {
   AttendanceCalculator,
   CertificateCalculator,
   GradePreview,
-  ScoreCalculator,
   VolunteerCalculator,
 } from '@/components/form';
+import { SimulationScoreCalculator } from '@/components/score-simulation';
 import { SCORE_STEP_LIST } from '@/constants/form/data';
 import { AppLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
@@ -67,12 +67,12 @@ const ScoreSimulation = () => {
           <SwitchCase
             value={currentScoreStep}
             caseBy={{
-              성적입력: <ScoreCalculator option="SIMULATION" />,
+              성적입력: <SimulationScoreCalculator />,
               출결상황: <AttendanceCalculator />,
               봉사시간: <VolunteerCalculator />,
               자격증: <CertificateCalculator />,
             }}
-            defaultComponent={<ScoreCalculator option="SIMULATION" />}
+            defaultComponent={<SimulationScoreCalculator />}
           />
         </Column>
       </ScoreSimulationPage>

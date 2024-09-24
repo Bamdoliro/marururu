@@ -20,7 +20,7 @@ const 교과성적 = () => {
       <NavigationBar>
         <UnderlineButton active={true}>교과성적</UnderlineButton>
       </NavigationBar>
-      <ScoreCalculator option="FORM" />
+      <ScoreCalculator />
       <FormController
         onPrevious={handleMovePreviousStep}
         onNext={handleMoveNextStep}
