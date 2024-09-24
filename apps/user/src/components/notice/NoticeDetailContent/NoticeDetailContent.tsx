@@ -13,10 +13,23 @@ interface Props {
 const NoticeDetailContent = ({ id }: Props) => {
   const { data: noticeDetailData } = useNoticeDetailQuery(id);
 
-  const handleFileDownload = () => {
-    if (noticeDetailData?.fileUrl) {
-      window.open(noticeDetailData.fileUrl, '_blank');
+  const handleFileDownload = async () => {
+    if (!noticeDetailData.fileUrl) {
+      return;
     }
+
+    const response = await fetch(noticeDetailData.fileUrl);
+    const blob = await response.blob();
+
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = formatFileName(noticeDetailData.fileName || '');
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
   };
 
   return noticeDetailData ? (
