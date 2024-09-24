@@ -16,6 +16,23 @@ export const useSubjectListStore = () => useRecoilState(subjectListAtomState);
 export const useSubjectListValueStore = () => useRecoilValue(subjectListAtomState);
 export const useSetSubjectListStore = () => useSetRecoilState(subjectListAtomState);
 
-export const useNewSubjectListStore = () => useRecoilState(newSubjectListAtomState);
+export const useNewSubjectListStore = () => {
+  const [newSubjectList, setNewSubjectList] = useRecoilState(newSubjectListAtomState);
+
+  const addNewSubject = (subjectName: string) => {
+    const newSubject: Subject = {
+      id: newSubjectList.length,
+      subjectName: subjectName,
+      achievementLevel21: '-',
+      achievementLevel22: '-',
+      achievementLevel31: '-',
+      score: null,
+    };
+
+    setNewSubjectList((prevSubjects) => [...prevSubjects, newSubject]);
+  };
+
+  return [newSubjectList, addNewSubject];
+};
 export const useNewSubjectListValueStore = () => useRecoilValue(newSubjectListAtomState);
 export const useSetNewSubjectListStore = () => useSetRecoilState(newSubjectListAtomState);

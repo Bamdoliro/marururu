@@ -9,7 +9,7 @@ export const useInput = (newSubjectIndex: number) => {
       const updatedData = [...prev];
       updatedData[newSubjectIndex] = {
         ...updatedData[newSubjectIndex],
-        [name]: data === '미이수' || data === '-' ? null : data,
+        [name]: data === '미이수' ? null : data,
       };
       return updatedData;
     });
