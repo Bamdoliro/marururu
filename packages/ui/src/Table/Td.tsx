@@ -62,9 +62,15 @@ const StyledTd = styled.div<{
           ${font.context}
           background-color: ${color.white};
         `
-      : css`
+      : props.styleType === 'SECONDARY'
+      ? css`
           ${font.p2}
           background-color: ${color.gray50};
+        `
+      : props.styleType === 'FORM' &&
+        css`
+          ${font.p2}
+          background-color: ${color.maruLightBlue};
         `}
 
   ${(props) =>
@@ -73,25 +79,25 @@ const StyledTd = styled.div<{
       border-bottom: 0.5px solid ${color.gray400};
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.isBottomBold &&
     css`
       border-bottom: 1px solid ${color.gray400};
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.isTop &&
     css`
       border-top: 0.5px solid ${color.gray400};
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.isLeft &&
     css`
       border-left: 1px solid ${color.gray400};
     `}
 
-    ${(props) =>
+  ${(props) =>
     props.isRight &&
     css`
       border-right: 1px solid ${color.gray400};

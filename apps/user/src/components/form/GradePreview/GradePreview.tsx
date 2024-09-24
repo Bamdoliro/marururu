@@ -2,7 +2,13 @@ import { useGradeCalculation } from '@/hooks';
 import { Row, Td, Th } from '@maru/ui';
 import styled from 'styled-components';
 
-const GradePreview = () => {
+type LocationType = 'GRADE' | 'ATTENDANCE' | 'VOLUNTEER' | 'CERTIFICATE';
+
+interface PreviewProps {
+  location?: LocationType;
+}
+
+const GradePreview = ({ location }: PreviewProps) => {
   const {
     regularScore,
     specialScore,
@@ -40,16 +46,32 @@ const GradePreview = () => {
           <Td styleType="SECONDARY" width="calc(100% / 6)" height={56}>
             일반전형
           </Td>
-          <Td width="calc(100% / 6)" height={56}>
+          <Td
+            width="calc(100% / 6)"
+            height={56}
+            styleType={location === 'GRADE' ? 'FORM' : 'PRIMARY'}
+          >
             {regularScore}
           </Td>
-          <Td width="calc(100% / 6)" height={56}>
+          <Td
+            width="calc(100% / 6)"
+            height={56}
+            styleType={location === 'ATTENDANCE' ? 'FORM' : 'PRIMARY'}
+          >
             {attendanceScore}
           </Td>
-          <Td width="calc(100% / 6)" height={56}>
+          <Td
+            width="calc(100% / 6)"
+            height={56}
+            styleType={location === 'VOLUNTEER' ? 'FORM' : 'PRIMARY'}
+          >
             {volunteerScore}
           </Td>
-          <Td width="calc(100% / 6)" height={56}>
+          <Td
+            width="calc(100% / 6)"
+            height={56}
+            styleType={location === 'CERTIFICATE' ? 'FORM' : 'PRIMARY'}
+          >
             {certificateScore}
           </Td>
           <Td width="calc(100% / 6)" height={56}>
@@ -65,16 +87,32 @@ const GradePreview = () => {
           >
             특별전형
           </Td>
-          <Td width="calc(100% / 6)" height={56}>
+          <Td
+            width="calc(100% / 6)"
+            height={56}
+            styleType={location === 'GRADE' ? 'FORM' : 'PRIMARY'}
+          >
             {specialScore}
           </Td>
-          <Td width="calc(100% / 6)" height={56}>
+          <Td
+            width="calc(100% / 6)"
+            height={56}
+            styleType={location === 'ATTENDANCE' ? 'FORM' : 'PRIMARY'}
+          >
             {attendanceScore}
           </Td>
-          <Td width="calc(100% / 6)" height={56}>
+          <Td
+            width="calc(100% / 6)"
+            height={56}
+            styleType={location === 'VOLUNTEER' ? 'FORM' : 'PRIMARY'}
+          >
             {volunteerScore}
           </Td>
-          <Td width="calc(100% / 6)" height={56}>
+          <Td
+            width="calc(100% / 6)"
+            height={56}
+            styleType={location === 'CERTIFICATE' ? 'FORM' : 'PRIMARY'}
+          >
             {certificateScore}
           </Td>
           <Td borderBottomRightRadius={12} width="calc(100% / 6)" height={56}>

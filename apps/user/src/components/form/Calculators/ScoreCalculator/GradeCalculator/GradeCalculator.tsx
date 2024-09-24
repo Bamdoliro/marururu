@@ -13,7 +13,12 @@ import GradeCalculatorHeader from './GradeCalculatorHeader/GradeCalculatorHeader
 import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 
-const GradeCalculator = () => {
+interface Props {
+  subjectError?: boolean[];
+  newSubjectError?: boolean[];
+}
+
+const GradeCalculator = ({ subjectError, newSubjectError }: Props) => {
   const newSubjectList = useNewSubjectListValueStore();
   const subjectList = useSubjectListValueStore();
   const setForm = useSetFormStore();
@@ -45,9 +50,10 @@ const GradeCalculator = () => {
             key={`subject ${id}`}
             achievementLevels={
               isSpecialSubject
-                ? ['미이수', 'A', 'B', 'C']
-                : ['미이수', 'A', 'B', 'C', 'D', 'E']
+                ? ['-', '미이수', 'A', 'B', 'C']
+                : ['-', '미이수', 'A', 'B', 'C', 'D', 'E']
             }
+            isError={subjectError}
           />
         );
       })}
@@ -55,7 +61,8 @@ const GradeCalculator = () => {
       {newSubjectList.map(({ id }) => (
         <NewGradeCalculatorItem
           id={id}
-          achievementLevels={['미이수', 'A', 'B', 'C', 'D', 'E']}
+          achievementLevels={['-', '미이수', 'A', 'B', 'C', 'D', 'E']}
+          isError={newSubjectError}
         />
       ))}
       <GradeCalculatorFooter>

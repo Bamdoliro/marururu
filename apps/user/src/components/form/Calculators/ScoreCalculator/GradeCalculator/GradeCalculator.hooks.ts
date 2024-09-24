@@ -10,9 +10,9 @@ export const useAddNewSubject = () => {
     const newSubject: Subject = {
       id: newSubjectIdRef.current++,
       subjectName: '',
-      achievementLevel21: null,
-      achievementLevel22: null,
-      achievementLevel31: null,
+      achievementLevel21: '-',
+      achievementLevel22: '-',
+      achievementLevel31: '-',
       score: null,
     };
     setNewSubjectList((prev) => [...prev, newSubject]);

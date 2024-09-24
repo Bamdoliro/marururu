@@ -1,14 +1,12 @@
-import { AttendanceCalculator, FormController, GradePreview } from '@/components/form';
+import { CertificateCalculator, FormController, GradePreview } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { color } from '@maru/design-token';
 import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useCTAButton } from './출결상황.hooks';
-import { useFormValueStore } from '@/store';
+import { useCTAButton } from './자격증.hooks';
 
-const 출결상황 = () => {
-  const form = useFormValueStore();
+const 자격증 = () => {
   const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
   return (
@@ -23,17 +21,13 @@ const 출결상황 = () => {
           <Text fontType="H4" color={color.gray900}>
             성적 계산
           </Text>
-          <GradePreview />
+          <GradePreview location="CERTIFICATE" />
         </Column>
       </Column>
       <NavigationBar>
-        <UnderlineButton active={true}>출결 상황</UnderlineButton>
+        <UnderlineButton active={true}>자격증</UnderlineButton>
       </NavigationBar>
-      <AttendanceCalculatorWrapper
-        disabled={form.education.graduationType === 'QUALIFICATION_EXAMINATION'}
-      >
-        <AttendanceCalculator />
-      </AttendanceCalculatorWrapper>
+      <CertificateCalculator />
       <FormController
         onPrevious={handleMovePreviousStep}
         onNext={handleMoveNextStep}
@@ -43,20 +37,11 @@ const 출결상황 = () => {
   );
 };
 
-export default 출결상황;
+export default 자격증;
 
 const NavigationBar = styled.div`
   ${flex({ alignItems: 'center' })}
   width: 100%;
   margin: 64px 0 16px;
   background-color: ${color.white};
-`;
-
-const AttendanceCalculatorWrapper = styled.div<{ disabled: boolean }>`
-  ${({ disabled }) =>
-    disabled &&
-    `
-    pointer-events: none;
-    opacity: 0.5;
-  `}
 `;

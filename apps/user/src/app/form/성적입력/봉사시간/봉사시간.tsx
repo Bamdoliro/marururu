@@ -1,12 +1,14 @@
-import { CertificateCalculator, FormController, GradePreview } from '@/components/form';
+import { FormController, GradePreview, VolunteerCalculator } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { color } from '@maru/design-token';
 import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useCTAButton } from './자격증.hooks';
+import { useCTAButton } from './봉사시간.hooks';
+import { useFormValueStore } from '@/store';
 
-const 자격증 = () => {
+const 봉사시간 = () => {
+  const form = useFormValueStore();
   const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
   return (
@@ -21,13 +23,17 @@ const 자격증 = () => {
           <Text fontType="H4" color={color.gray900}>
             성적 계산
           </Text>
-          <GradePreview />
+          <GradePreview location="VOLUNTEER" />
         </Column>
       </Column>
       <NavigationBar>
-        <UnderlineButton active={true}>자격증</UnderlineButton>
+        <UnderlineButton active={true}>봉사시간</UnderlineButton>
       </NavigationBar>
-      <CertificateCalculator />
+      <VolunteerCalculatorWrapper
+        disabled={form.education.graduationType === 'QUALIFICATION_EXAMINATION'}
+      >
+        <VolunteerCalculator />
+      </VolunteerCalculatorWrapper>
       <FormController
         onPrevious={handleMovePreviousStep}
         onNext={handleMoveNextStep}
@@ -37,11 +43,20 @@ const 자격증 = () => {
   );
 };
 
-export default 자격증;
+export default 봉사시간;
 
 const NavigationBar = styled.div`
   ${flex({ alignItems: 'center' })}
   width: 100%;
   margin: 64px 0 16px;
   background-color: ${color.white};
+`;
+
+const VolunteerCalculatorWrapper = styled.div<{ disabled: boolean }>`
+  ${({ disabled }) =>
+    disabled &&
+    `
+    pointer-events: none;
+    opacity: 0.5;
+  `}
 `;

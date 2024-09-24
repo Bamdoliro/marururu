@@ -7,45 +7,51 @@ import { useInput } from './GradeCalculatorItem.hooks';
 interface Props {
   id: number;
   achievementLevels: string[];
+  isError?: boolean[];
 }
 
-const GradeCalculatorItem = ({ id, achievementLevels }: Props) => {
+const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => {
   const subjectList = useSubjectListValueStore();
   const { handleSubjectChange } = useInput(id);
+
+  const subject = subjectList[id];
 
   return (
     <StyledGradeCalculatorItem>
       <Td styleType="SECONDARY" width={123} height="100%">
-        {subjectList[id].subjectName}
+        {subject.subjectName}
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={subjectList[id].achievementLevel21 ?? '미이수'}
+          value={subject.achievementLevel21 ?? '미이수'}
           size="SMALL"
           data={achievementLevels}
           width={80}
           onChange={handleSubjectChange}
           name="achievementLevel21"
+          isError={subject.achievementLevel21 === '-' && isError[id]}
         />
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={subjectList[id].achievementLevel22 ?? '미이수'}
+          value={subject.achievementLevel22 ?? '미이수'}
           size="SMALL"
           data={achievementLevels}
           width={80}
           onChange={handleSubjectChange}
           name="achievementLevel22"
+          isError={subject.achievementLevel22 === '-' && isError[id]}
         />
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={subjectList[id].achievementLevel31 ?? '미이수'}
+          value={subject.achievementLevel31 ?? '미이수'}
           size="SMALL"
           data={achievementLevels}
           width={80}
           onChange={handleSubjectChange}
           name="achievementLevel31"
+          isError={subject.achievementLevel31 === '-' && isError[id]}
         />
       </Td>
       <Td width={123} height="100%">

@@ -16,4 +16,4 @@ export interface TableProps {
   isRight?: boolean;
 }
 
-export type TableStyleType = 'PRIMARY' | 'SECONDARY';
+export type TableStyleType = 'PRIMARY' | 'SECONDARY' | 'FORM';

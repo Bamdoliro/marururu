@@ -3,9 +3,9 @@ import { useBooleanState, useOutsideClick } from '@maru/hooks';
 import { IconArrowBottom, IconArrowTop } from '@maru/icon';
 import { flex } from '@maru/utils';
 import type { CSSProperties } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import Text from '../Text/Text';
-import React from 'react';
 
 type DropdownSizeOption = 'MEDIUM' | 'SMALL';
 
@@ -24,6 +24,7 @@ interface Props {
   name: string;
   placeholder?: string;
   doubled?: number;
+  isError?: boolean;
 }
 
 const Dropdown = ({
@@ -36,6 +37,7 @@ const Dropdown = ({
   name,
   placeholder,
   doubled,
+  isError = false,
 }: Props) => {
   const {
     value: isOpen,
@@ -52,7 +54,12 @@ const Dropdown = ({
   return (
     <div ref={dropdownRef} style={{ width }}>
       {label && <Label>{label}</Label>}
-      <StyledDropdown size={size} onClick={handleToggleButtonClick} $isOpen={isOpen}>
+      <StyledDropdown
+        size={size}
+        onClick={handleToggleButtonClick}
+        $isOpen={isOpen}
+        isError={isError}
+      >
         <Text fontType="p2" color={value ? color.gray900 : color.gray500} ellipsis={true}>
           {value || placeholder}
         </Text>
@@ -91,7 +98,11 @@ const Label = styled.p`
   margin-bottom: 8px;
 `;
 
-const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }>`
+const StyledDropdown = styled.div<{
+  $isOpen: boolean;
+  size: DropdownSizeOption;
+  isError: boolean;
+}>`
   ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
   width: 100%;
   background-color: ${color.white};
@@ -118,6 +129,18 @@ const StyledDropdown = styled.div<{ $isOpen: boolean; size: DropdownSizeOption }
           height: 40px;
           padding: 10px 10px 10px 16px;
         `}
+
+  ${(props) =>
+    props.isError &&
+    css`
+      border: 1px solid ${color.red};
+      outline: 2px solid rgba(244, 67, 54, 0.25);
+
+      &:focus {
+        border: 1px solid ${color.red};
+        outline: 2px solid rgba(244, 67, 54, 0.25);
+      }
+    `}
 `;
 
 const DropdownListBox = styled.div<{ $isOpen: boolean }>`

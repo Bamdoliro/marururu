@@ -1,13 +1,13 @@
-import { FormController, GradePreview, VolunteerCalculator } from '@/components/form';
+import { AttendanceCalculator, FormController, GradePreview } from '@/components/form';
 import { FormLayout } from '@/layouts';
 import { color } from '@maru/design-token';
 import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useCTAButton } from './봉사시간.hooks';
+import { useCTAButton } from './출결상황.hooks';
 import { useFormValueStore } from '@/store';
 
-const 봉사시간 = () => {
+const 출결상황 = () => {
   const form = useFormValueStore();
   const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
@@ -23,17 +23,17 @@ const 봉사시간 = () => {
           <Text fontType="H4" color={color.gray900}>
             성적 계산
           </Text>
-          <GradePreview />
+          <GradePreview location="ATTENDANCE" />
         </Column>
       </Column>
       <NavigationBar>
-        <UnderlineButton active={true}>봉사시간</UnderlineButton>
+        <UnderlineButton active={true}>출결 상황</UnderlineButton>
       </NavigationBar>
-      <VolunteerCalculatorWrapper
+      <AttendanceCalculatorWrapper
         disabled={form.education.graduationType === 'QUALIFICATION_EXAMINATION'}
       >
-        <VolunteerCalculator />
-      </VolunteerCalculatorWrapper>
+        <AttendanceCalculator />
+      </AttendanceCalculatorWrapper>
       <FormController
         onPrevious={handleMovePreviousStep}
         onNext={handleMoveNextStep}
@@ -43,7 +43,7 @@ const 봉사시간 = () => {
   );
 };
 
-export default 봉사시간;
+export default 출결상황;
 
 const NavigationBar = styled.div`
   ${flex({ alignItems: 'center' })}
@@ -52,7 +52,7 @@ const NavigationBar = styled.div`
   background-color: ${color.white};
 `;
 
-const VolunteerCalculatorWrapper = styled.div<{ disabled: boolean }>`
+const AttendanceCalculatorWrapper = styled.div<{ disabled: boolean }>`
   ${({ disabled }) =>
     disabled &&
     `

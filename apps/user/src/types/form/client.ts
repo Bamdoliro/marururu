@@ -61,7 +61,7 @@ export interface Education {
   teacherMobilePhoneNumber: string | null;
 }
 
-export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
+export type AchievementLevel = '-' | 'A' | 'B' | 'C' | 'D' | 'E';
 
 export interface Subject {
   id: number;
