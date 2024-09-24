@@ -14,8 +14,8 @@ import GradeCalculatorItem from './GradeCalculatorItem/GradeCalculatorItem';
 import NewGradeCalculatorItem from './NewGradeCalculatorItem/NewGradeCalculatorItem';
 
 interface Props {
-  subjectError: boolean[];
-  newSubjectError: boolean[];
+  subjectError?: boolean[];
+  newSubjectError?: boolean[];
 }
 
 const GradeCalculator = ({ subjectError, newSubjectError }: Props) => {

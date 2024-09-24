@@ -7,10 +7,10 @@ import { useInput } from './GradeCalculatorItem.hooks';
 interface Props {
   id: number;
   achievementLevels: string[];
-  isError: boolean[];
+  isError?: boolean[];
 }
 
-const GradeCalculatorItem = ({ id, achievementLevels, isError }: Props) => {
+const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => {
   const subjectList = useSubjectListValueStore();
   const { handleSubjectChange } = useInput(id);
 

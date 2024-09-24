@@ -1,6 +1,7 @@
 import { useFormStore } from '@/store';
+import type { GraduationType } from '@/types/form/client';
 import { color } from '@maru/design-token';
-import { Row, Text } from '@maru/ui';
+import { Row, Switch, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
 import styled from 'styled-components';
@@ -8,12 +9,18 @@ import GradeCalculator from './GradeCalculator/GradeCalculator';
 import GEDCaculator from './GEDCalculator/GEDCalculator';
 
 interface Props {
-  subjectError: boolean[];
-  newSubjectError: boolean[];
+  subjectError?: boolean[];
+  newSubjectError?: boolean[];
+  option: 'SIMULATION' | 'FORM';
 }
 
-const ScoreCalculator = ({ subjectError, newSubjectError }: Props) => {
-  const [form] = useFormStore();
+const ScoreCalculator = ({ option, subjectError, newSubjectError }: Props) => {
+  const [form, setForm] = useFormStore();
+
+  const handleGraduationTypeChange = (value: string) => {
+    const graduationType = value as GraduationType;
+    setForm((prev) => ({ ...prev, education: { ...prev.education, graduationType } }));
+  };
 
   return (
     <StyledScoreCalculator>
@@ -23,6 +30,17 @@ const ScoreCalculator = ({ subjectError, newSubjectError }: Props) => {
           <br />
           *국어•영어•수학에서 미이수 입력 시 자동으로 성적이 C로 처리됩니다.
         </Text>
+        {option === 'SIMULATION' && (
+          <Switch
+            items={[
+              { name: '졸업 예정', value: 'EXPECTED' },
+              { name: '졸업', value: 'GRADUATED' },
+              { name: '고입검정', value: 'QUALIFICATION_EXAMINATION' },
+            ]}
+            value={form.education.graduationType}
+            onChange={handleGraduationTypeChange}
+          />
+        )}
       </Row>
       <SwitchCase
         value={form.education.graduationType}

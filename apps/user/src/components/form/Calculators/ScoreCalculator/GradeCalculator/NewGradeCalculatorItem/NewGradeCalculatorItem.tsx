@@ -8,10 +8,10 @@ import { useDeleteNewSubject, useInput } from './NewGradeCalculatorItem.hooks';
 interface Props {
   id: number;
   achievementLevels: string[];
-  isError: boolean[];
+  isError?: boolean[];
 }
 
-const NewGradeCalculatorItem = ({ id, achievementLevels, isError }: Props) => {
+const NewGradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => {
   const newSubjectList = useNewSubjectListValueStore();
   const newSubjectIndex = newSubjectList.findIndex((item) => item.id === id);
 
@@ -39,7 +39,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels, isError }: Props) => {
           width={80}
           name="achievementLevel21"
           onChange={handleNewSubjectChange}
-          isError={subject.achievementLevel21 === '-' && isError[id]}
+          isError={subject.achievementLevel21 === '-' && (isError[id] ?? false)}
         />
       </Td>
       <Td width={190} height="100%">
