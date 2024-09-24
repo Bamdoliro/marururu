@@ -17,8 +17,18 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ROUTES } from '@/constants/common/constant';
 import NoticeModal from '@/components/main/NoticeModal/NoticeModal';
+import React from 'react';
+import { Suspense } from '@suspensive/react';
 
 const MainPage = () => {
+  return (
+    <Suspense.CSROnly>
+      <MainContent />
+    </Suspense.CSROnly>
+  );
+};
+
+const MainContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
