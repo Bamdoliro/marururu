@@ -21,7 +21,7 @@ const 출신학교및학력 = () => {
 
   const [isNextClicked, setIsNextClicked] = useState(false);
   const [isSchoolNameError, setIsSchoolNameError] = useState(false);
-  const [isTeacherPhoneNumberError, setIsTeacherPhoneNumberError] = useState(false);
+  const [isTeacherPhoneNumberError, setIsTeacherPhoneNumberError] = useState('');
   const [isTeacherNameError, setIsTeacherNameError] = useState(false);
   const [isTeacherMobilePhoneNumberError, setIsTeacherMobilePhoneNumberError] =
     useState(false);
@@ -45,7 +45,9 @@ const 출신학교및학력 = () => {
       const schoolNameValid =
         (schoolName?.trim().length ?? 0) > 0 && (schoolName?.trim().length ?? 0) < 30;
       const schoolCodeValid = (schoolCode?.trim().length ?? 0) === 7;
-      const teacherPhoneNumberValid = (teacherPhoneNumber?.trim().length ?? 0) >= 10;
+      const teacherPhoneNumberValid =
+        (teacherPhoneNumber?.trim().length ?? 0) >= 10 &&
+        (teacherPhoneNumber?.trim().length ?? 0) <= 20;
       const teacherNameValid = (teacherName?.trim().length ?? 0) >= 2;
       const teacherMobilePhoneNumberValid =
         (teacherMobilePhoneNumber?.trim().length ?? 0) === 11;
@@ -116,10 +118,14 @@ const 출신학교및학력 = () => {
         ((form.education.schoolName?.trim().length ?? 0) === 0 ||
           (form.education.schoolName?.trim().length ?? 0) >= 30)
     );
-    setIsTeacherPhoneNumberError(
+    const teacherPhoneNumberError =
       form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-        (form.education.teacherPhoneNumber?.trim().length ?? 0) < 10
-    );
+      ((form.education.teacherPhoneNumber?.trim().length ?? 0) < 10
+        ? '10자 이상 입력해주세요.'
+        : (form.education.teacherPhoneNumber?.trim().length ?? 0) > 20
+        ? '20자 이하로 입력해주세요.'
+        : '');
+    setIsTeacherPhoneNumberError(teacherPhoneNumberError || '');
     setIsTeacherNameError(
       form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
         (form.education.teacherName?.trim().length ?? 0) < 2
@@ -142,10 +148,14 @@ const 출신학교및학력 = () => {
           (form.education.schoolName?.trim().length ?? 0) === 0) ||
           (form.education.schoolName?.trim().length ?? 0) >= 30
       );
-      setIsTeacherPhoneNumberError(
+      const teacherPhoneNumberError =
         form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
-          (form.education.teacherPhoneNumber?.trim().length ?? 0) < 10
-      );
+        ((form.education.teacherPhoneNumber?.trim().length ?? 0) < 10
+          ? '10자 이상 입력해주세요.'
+          : (form.education.teacherPhoneNumber?.trim().length ?? 0) > 20
+          ? '20자 이하로 입력해주세요.'
+          : '');
+      setIsTeacherPhoneNumberError(teacherPhoneNumberError || '');
       setIsTeacherNameError(
         form.education.graduationType !== 'QUALIFICATION_EXAMINATION' &&
           (form.education.teacherName?.trim().length ?? 0) < 2
@@ -266,10 +276,10 @@ const 출신학교및학력 = () => {
               width="100%"
               value={form.education.teacherPhoneNumber ?? ''}
               onChange={handle출신학교및학력Change}
-              isError={isNextClicked && isTeacherPhoneNumberError}
+              isError={isNextClicked && !!isTeacherPhoneNumberError}
               errorMessage={
                 isNextClicked && isTeacherPhoneNumberError
-                  ? '10자리 이상 입력해주세요.'
+                  ? isTeacherPhoneNumberError
                   : ''
               }
             />

@@ -15,7 +15,7 @@ const 보호자정보 = () => {
 
   const [isNextClicked, setIsNextClicked] = useState(false);
   const [isParentNameError, setIsParentNameError] = useState(false);
-  const [isParentPhoneNumberError, setIsParentPhoneNumberError] = useState(false);
+  const [isParentPhoneNumberError, setIsParentPhoneNumberError] = useState('');
   const [isParentRelationError, setIsParentRelationError] = useState(false);
   const [isAddressError, setIsAddressError] = useState(false);
   const [isDetailAddressError, setIsDetailAddressError] = useState(false);
@@ -41,7 +41,6 @@ const 보호자정보 = () => {
     setIsNextClicked(true);
 
     const nameValid = form.parent.name.trim().length >= 2;
-    const phoneNumberValid = form.parent.phoneNumber.trim().length === 11;
     const relationValid = form.parent.relation.trim().length > 0;
     const addressValid =
       form.parent.address.trim().length > 0 && form.parent.address.trim().length < 100;
@@ -50,7 +49,15 @@ const 보호자정보 = () => {
       form.parent.detailAddress.trim().length < 100;
 
     setIsParentNameError(!nameValid);
-    setIsParentPhoneNumberError(!phoneNumberValid);
+
+    if (form.parent.phoneNumber.trim().length === 0) {
+      setIsParentPhoneNumberError('전화번호를 입력해주세요.');
+    } else if (form.parent.phoneNumber.trim().length !== 11) {
+      setIsParentPhoneNumberError('전화번호는 11자리를 입력해주세요.');
+    } else {
+      setIsParentPhoneNumberError('');
+    }
+
     setIsParentRelationError(!relationValid);
     setIsAddressError(!addressValid);
     setIsDetailAddressError(!detailAddressValid);
@@ -68,7 +75,13 @@ const 보호자정보 = () => {
       if (name === 'name') {
         setIsParentNameError(value.trim().length < 2);
       } else if (name === 'phoneNumber') {
-        setIsParentPhoneNumberError(value.trim().length !== 11);
+        if (value.trim().length === 0) {
+          setIsParentPhoneNumberError('전화번호를 입력해주세요.');
+        } else if (value.trim().length !== 11) {
+          setIsParentPhoneNumberError('전화번호는 11자리를 입력해주세요.');
+        } else {
+          setIsParentPhoneNumberError('');
+        }
       } else if (name === 'relation') {
         setIsParentRelationError(value.trim().length === 0);
       } else if (name === 'address') {
@@ -106,8 +119,8 @@ const 보호자정보 = () => {
             label="전화번호"
             placeholder="- 없이 입력해주세요."
             width="100%"
-            isError={isParentPhoneNumberError}
-            errorMessage={isParentPhoneNumberError ? '전화번호를 입력해주세요.' : ''}
+            isError={!!isParentPhoneNumberError}
+            errorMessage={isParentPhoneNumberError}
           />
         </Row>
         <Input
