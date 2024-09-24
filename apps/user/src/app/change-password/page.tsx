@@ -2,8 +2,6 @@
 
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/design-token';
-import { styled } from 'styled-components';
-import { flex } from '@maru/utils';
 import {
   Button,
   ButtonInput,
@@ -20,6 +18,8 @@ import {
   useVerificationCodeAction,
 } from './change-password.hooks';
 import { Validate } from '@/components/signup';
+import { flex } from '@maru/utils';
+import styled from 'styled-components';
 
 const ChangePasswordPage = () => {
   const [timerTime, setTimerTime] = useState(0);
