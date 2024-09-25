@@ -4,6 +4,7 @@ import { Button, Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useDeleteNewSubject, useInput } from './NewGradeCalculatorItem.hooks';
+import { SUBJECT_LIST } from '@/constants/form/data';
 
 interface Props {
   id: number;
@@ -20,6 +21,13 @@ const NewGradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) 
   const { handleDeleteNewSubject } = useDeleteNewSubject();
 
   const subject = newSubjectList[newSubjectIndex];
+
+  const isDropdownDisabled =
+    !subject.subjectName ||
+    SUBJECT_LIST.some(
+      (listSubject) =>
+        listSubject.subjectName.toLowerCase() === subject.subjectName?.toLowerCase()
+    );
 
   return (
     <StyledNewGradeCalculatorItem>
@@ -40,6 +48,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) 
           name="achievementLevel21"
           onChange={handleNewSubjectChange}
           isError={subject.achievementLevel21 === '-' && (isError[id] ?? false)}
+          disabled={isDropdownDisabled}
         />
       </Td>
       <Td width={190} height="100%">
@@ -51,6 +60,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) 
           name="achievementLevel22"
           onChange={handleNewSubjectChange}
           isError={subject.achievementLevel22 === '-' && isError[id]}
+          disabled={isDropdownDisabled}
         />
       </Td>
       <Td width={190} height="100%">
@@ -62,6 +72,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) 
           name="achievementLevel31"
           onChange={handleNewSubjectChange}
           isError={subject.achievementLevel31 === '-' && isError[id]}
+          disabled={isDropdownDisabled}
         />
       </Td>
       <Td width={123} height="100%">

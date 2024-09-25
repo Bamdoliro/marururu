@@ -25,6 +25,7 @@ interface Props {
   placeholder?: string;
   doubled?: number;
   isError?: boolean;
+  disabled?: boolean;
   background?: 'White' | 'Gray';
 }
 
@@ -40,6 +41,7 @@ const Dropdown = ({
   doubled,
   isError = false,
   background = 'White',
+  disabled = false,
 }: Props) => {
   const {
     value: isOpen,
@@ -49,8 +51,16 @@ const Dropdown = ({
   const dropdownRef = useOutsideClick(closeDropdown);
 
   const handleDropdownItemButtonClick = (data: string) => {
-    onChange(data, name);
-    closeDropdown();
+    if (!disabled) {
+      onChange(data, name);
+      closeDropdown();
+    }
+  };
+
+  const handleDropdownClick = () => {
+    if (!disabled) {
+      handleToggleButtonClick();
+    }
   };
 
   return (
@@ -58,10 +68,11 @@ const Dropdown = ({
       {label && <Label>{label}</Label>}
       <StyledDropdown
         size={size}
-        onClick={handleToggleButtonClick}
+        onClick={handleDropdownClick}
         $isOpen={isOpen}
         isError={isError}
         background={background}
+        disabled={disabled}
       >
         <Text fontType="p2" color={value ? color.gray900 : color.gray500} ellipsis={true}>
           {value || placeholder}
@@ -72,7 +83,7 @@ const Dropdown = ({
           <IconArrowBottom color={color.gray600} width={24} height={24} />
         )}
       </StyledDropdown>
-      <DropdownListBox $isOpen={isOpen}>
+      <DropdownListBox $isOpen={isOpen && !disabled}>
         <DropdownList $isMultiple={data.length > (doubled ?? 100)}>
           {data?.map((item, index) => {
             const isString = typeof item === 'string';
@@ -106,16 +117,18 @@ const StyledDropdown = styled.div<{
   size: DropdownSizeOption;
   isError: boolean;
   background: 'White' | 'Gray';
+  disabled: boolean;
 }>`
   ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
   width: 100%;
   border-radius: 6px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   background-color: ${(props) =>
     props.background === 'White' ? `${color.white}` : `${color.gray100}`};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 
   ${(props) =>
-    props.$isOpen
+    props.$isOpen && !props.disabled
       ? css`
           border: 1px solid ${color.maruDefault};
           outline: 2px solid rgba(20, 112, 255, 0.25);
