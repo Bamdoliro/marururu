@@ -4,39 +4,39 @@ import type { ChangeEventHandler } from 'react';
 export const useInput = (newGEDSubjectIndex: number) => {
   const setNewGEDSubjectList = useSetNewGEDSubjectListStore();
 
-  const handleNewGEDSubjectChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { name, value } = e.target;
-    if (name === 'subjectName') {
-      setNewGEDSubjectList((prev) => {
-        const updatedData = [...prev];
-        updatedData[newGEDSubjectIndex] = {
-          ...updatedData[newGEDSubjectIndex],
-          [name]: value,
-        };
-        return updatedData;
-      });
-    } else if (name === 'score') {
-      const trimmedValue = value.replace(/^0+/, '');
-
-      const processValue =
-        Number(value) == 100
-          ? 100
-          : value.length > 2
-          ? Number(trimmedValue.slice(1))
-          : Number(trimmedValue);
-
-      setNewGEDSubjectList((prev) => {
-        const updatedData = [...prev];
-        updatedData[newGEDSubjectIndex] = {
-          ...updatedData[newGEDSubjectIndex],
-          [name]: processValue,
-        };
-        return updatedData;
-      });
-    }
+  const handleNewGEDSubjectChange = (value: string) => {
+    setNewGEDSubjectList((prev) => {
+      const updatedData = [...prev];
+      updatedData[newGEDSubjectIndex] = {
+        ...updatedData[newGEDSubjectIndex],
+        subjectName: value,
+      };
+      return updatedData;
+    });
   };
 
-  return { handleNewGEDSubjectChange };
+  const handleScoreChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { name, value } = e.target;
+    const trimmedValue = value.replace(/^0+/, '');
+
+    const processValue =
+      Number(value) === 100
+        ? 100
+        : value.length > 2
+        ? Number(trimmedValue.slice(1))
+        : Number(trimmedValue);
+
+    setNewGEDSubjectList((prev) => {
+      const updatedData = [...prev];
+      updatedData[newGEDSubjectIndex] = {
+        ...updatedData[newGEDSubjectIndex],
+        [name]: processValue,
+      };
+      return updatedData;
+    });
+  };
+
+  return { handleNewGEDSubjectChange, handleScoreChange };
 };
 
 export const useDeleteNewGEDSubject = () => {

@@ -1,6 +1,5 @@
 import { useNewGEDSubjectListValueStore } from '@/store';
-import { color, font } from '@maru/design-token';
-import { Button, CellInput, Td } from '@maru/ui';
+import { Button, CellInput, Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useDeleteNewGEDSubject, useInput } from './NewGEDCalculatorItem.hooks';
@@ -10,25 +9,37 @@ interface Props {
   score: number | null;
 }
 
+const SUBJECT_OPTIONS = ['도덕', '기술가정', '음악', '체육', '미술'];
+
 const NewGEDCalculatorItem = ({ id, score }: Props) => {
   const newGEDSubjectList = useNewGEDSubjectListValueStore();
-
   const newGEDSubjectIndex = newGEDSubjectList.findIndex((item) => item.id === id);
-  const { handleNewGEDSubjectChange } = useInput(newGEDSubjectIndex);
+
+  const { handleNewGEDSubjectChange, handleScoreChange } = useInput(newGEDSubjectIndex);
   const { handleDeleteNewGEDSubject } = useDeleteNewGEDSubject();
 
   return (
     <StyledNewGEDCalculatorItem>
       <Td styleType="SECONDARY" width={123} height="100%">
-        <NewSubjectInput
-          onChange={handleNewGEDSubjectChange}
+        <Dropdown
+          background="Gray"
+          value={newGEDSubjectList[newGEDSubjectIndex]?.subjectName}
+          size="SMALL"
+          data={SUBJECT_OPTIONS}
+          onChange={(selectedSubject: string) =>
+            handleNewGEDSubjectChange(selectedSubject)
+          }
+          width={80}
           name="subjectName"
-          value={newGEDSubjectList[newGEDSubjectIndex].subjectName}
-          placeholder="과목명 입력"
+          placeholder="-"
         />
       </Td>
       <Td width={570} height="100%">
-        <CellInput value={score ?? 0} name="score" onChange={handleNewGEDSubjectChange} />
+        <CellInput
+          value={score ?? 0}
+          name="score"
+          onChange={(e) => handleScoreChange(e)}
+        />
       </Td>
       <Td width={123} height="100%">
         <Button
@@ -49,15 +60,4 @@ const StyledNewGEDCalculatorItem = styled.div`
   ${flex({ alignItems: 'center' })}
   width: 100%;
   height: 64px;
-`;
-
-const NewSubjectInput = styled.input`
-  ${font.p2}
-  color: ${color.gray900};
-  background-color: ${color.gray50};
-  width: 74px;
-  text-align: center;
-  &:-webkit-input-placeholder {
-    color: ${color.gray500};
-  }
 `;
