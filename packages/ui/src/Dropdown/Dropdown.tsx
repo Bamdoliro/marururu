@@ -25,6 +25,7 @@ interface Props {
   placeholder?: string;
   doubled?: number;
   isError?: boolean;
+  background?: 'White' | 'Gray';
 }
 
 const Dropdown = ({
@@ -38,6 +39,7 @@ const Dropdown = ({
   placeholder,
   doubled,
   isError = false,
+  background = 'White',
 }: Props) => {
   const {
     value: isOpen,
@@ -59,6 +61,7 @@ const Dropdown = ({
         onClick={handleToggleButtonClick}
         $isOpen={isOpen}
         isError={isError}
+        background={background}
       >
         <Text fontType="p2" color={value ? color.gray900 : color.gray500} ellipsis={true}>
           {value || placeholder}
@@ -102,12 +105,14 @@ const StyledDropdown = styled.div<{
   $isOpen: boolean;
   size: DropdownSizeOption;
   isError: boolean;
+  background: 'White' | 'Gray';
 }>`
   ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
   width: 100%;
-  background-color: ${color.white};
   border-radius: 6px;
   cursor: pointer;
+  background-color: ${(props) =>
+    props.background === 'White' ? `${color.white}` : `${color.gray100}`};
 
   ${(props) =>
     props.$isOpen
