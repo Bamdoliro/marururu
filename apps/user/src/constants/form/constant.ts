@@ -29,3 +29,6 @@ export const MIN_VOLUNTEER_TIME = 15;
 export const MIN_VOLUNTEER_SCORE = 0;
 export const MAX_VOLUNTEER_TIME = 30;
 export const MAX_VOLUNTEER_SCORE = 18;
+
+export const MAX_VOLUNTEER_TIME_GRADE_1_2 = 5;
+export const MAX_VOLUNTEER_TIME_GRADE_3 = 20;
