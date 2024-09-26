@@ -29,6 +29,11 @@ const NewGradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) 
         listSubject.subjectName.toLowerCase() === subject.subjectName?.toLowerCase()
     );
 
+  const sameSubject = SUBJECT_LIST.some(
+    (listSubject) =>
+      listSubject.subjectName.toLowerCase() === subject.subjectName?.toLowerCase()
+  );
+
   return (
     <StyledNewGradeCalculatorItem>
       <Td styleType="SECONDARY" width={123} height="100%">
@@ -37,6 +42,7 @@ const NewGradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) 
           onChange={handleNewSubjectNameChange}
           value={subject.subjectName || ''}
           placeholder="과목명 입력"
+          error={sameSubject}
         />
       </Td>
       <Td width={190} height="100%">
@@ -96,9 +102,9 @@ const StyledNewGradeCalculatorItem = styled.div`
   height: 64px;
 `;
 
-const NewSubjectInput = styled.input`
+const NewSubjectInput = styled.input<{ error: boolean }>`
   ${font.p2}
-  color: ${color.gray900};
+  color: ${(props) => (props.error ? `${color.red}` : `${color.gray900}`)};
   background-color: ${color.gray50};
   width: 74px;
   text-align: center;
