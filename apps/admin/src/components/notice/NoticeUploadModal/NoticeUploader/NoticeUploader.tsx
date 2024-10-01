@@ -1,23 +1,34 @@
-import { useNoticeFileStore } from '@/store/notice/noticeFile';
+import { useVisibleNoticeFileStore } from '@/store/notice/noticeFile';
 import { color } from '@maru/design-token';
 import { IconClose } from '@maru/icon';
 import { Button, Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
-import { useState, type DragEvent } from 'react';
+import { useEffect, useState, type DragEvent } from 'react';
 import styled from 'styled-components';
 
 interface Props {
+  isOpen: boolean;
   removeFileInputValue: () => void;
   handleUploadFileButtonClick: () => void;
 }
 
-const NoticeUploader = ({ removeFileInputValue, handleUploadFileButtonClick }: Props) => {
-  const [fileData, setFileData] = useNoticeFileStore();
+const NoticeUploader = ({
+  isOpen,
+  removeFileInputValue,
+  handleUploadFileButtonClick,
+}: Props) => {
+  const [visibleFile, setVisibleFile] = useVisibleNoticeFileStore();
   const [isDragging, setIsDragging] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setVisibleFile(null);
+    }
+  }, [isOpen, setVisibleFile]);
 
   const handleUploadCancelButtonClick = () => {
     removeFileInputValue();
-    setFileData(null);
+    setVisibleFile(null);
   };
 
   const onDragEnter = (e: DragEvent<HTMLDivElement>) => {
@@ -43,7 +54,12 @@ const NoticeUploader = ({ removeFileInputValue, handleUploadFileButtonClick }: P
   const onDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    setFileData(e.dataTransfer.files[0]);
+
+    const droppedFile = e.dataTransfer.files[0];
+    if (droppedFile) {
+      setVisibleFile(droppedFile);
+      setIsDragging(false);
+    }
   };
 
   return (
@@ -55,10 +71,10 @@ const NoticeUploader = ({ removeFileInputValue, handleUploadFileButtonClick }: P
       $isDragging={isDragging}
     >
       <Column gap={12} alignItems="center">
-        {fileData ? (
+        {visibleFile ? (
           <FileNameBox>
             <Text fontType="p2" color={color.gray900}>
-              {fileData.name}
+              {visibleFile.name}
             </Text>
             <IconClose
               width={18}

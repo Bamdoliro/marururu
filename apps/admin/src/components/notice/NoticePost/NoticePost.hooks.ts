@@ -11,17 +11,18 @@ export const useNoticePostAction = (noticeData: PostNoticeReq) => {
   const [fileData, setFileData] = useNoticeFileStore();
 
   const handleNoticePostButtonClick = async () => {
-    let fileName = null;
+    let fileNames: string[] = noticeData.fileNames ? noticeData.fileNames : [];
 
-    if (fileData) {
-      fileName = await uploadFile(fileData);
+    if (fileData && fileData.length > 0) {
+      const uploadedFileNames = await uploadFile(fileData);
+      fileNames = [...fileNames, ...uploadedFileNames];
     }
 
     postNoticeMutate(
-      { ...noticeData, fileName },
+      { ...noticeData, fileNames },
       {
         onSuccess: () => {
-          setFileData(null);
+          setFileData([]);
         },
       }
     );

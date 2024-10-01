@@ -22,7 +22,7 @@ const NoticeEdit = ({ id }: Props) => {
   const [noticeData, setNoticeData] = useState({
     title: noticeDetailData?.title ?? '',
     content: noticeDetailData?.content ?? '',
-    fileName: noticeDetailData?.fileName ?? '',
+    fileNames: noticeDetailData?.fileNames ?? [],
   });
 
   const { handleNoticeEditButtonClick } = useNotieEditAction(id, noticeData);
@@ -46,11 +46,21 @@ const NoticeEdit = ({ id }: Props) => {
         onClose={close}
         onFileAttach={(file) => {
           if (file) {
-            setNoticeData({ ...noticeData, fileName: file.name });
+            setNoticeData((prevData) => ({
+              ...prevData,
+              fileNames: [...prevData.fileNames, file.name],
+            }));
           }
         }}
       />
     ));
+  };
+
+  const handleDeleteNoticeFile = (fileNameToDelete: string) => {
+    setNoticeData((prevData) => ({
+      ...prevData,
+      fileNames: prevData.fileNames.filter((fileName) => fileName !== fileNameToDelete),
+    }));
   };
 
   return (
@@ -86,15 +96,26 @@ const NoticeEdit = ({ id }: Props) => {
           placeholder="내용을 작성해주세요."
           rows={1}
         />
-        {noticeData.fileName && (
-          <StyledNoticeFile>
-            <Row alignItems="center" gap={10}>
-              <IconClip width={19} height={12} />
-              <Text fontType="p3" color={color.gray750}>
-                {formatFileName(noticeData.fileName || '')}
-              </Text>
-            </Row>
-          </StyledNoticeFile>
+        {noticeData.fileNames.length > 0 && (
+          <Column gap={12}>
+            {noticeData.fileNames.map((fileName, index) => (
+              <Row alignItems="center" gap={12} key={index}>
+                <StyledNoticeFile>
+                  <Row alignItems="center" gap={10}>
+                    <IconClip width={19} height={12} />
+                    <Text fontType="p3" color={color.gray750}>
+                      {formatFileName(fileName)}
+                    </Text>
+                  </Row>
+                </StyledNoticeFile>
+                <DeleteButton onClick={() => handleDeleteNoticeFile(fileName)}>
+                  <Text fontType="caption" color={color.red}>
+                    [삭제]
+                  </Text>
+                </DeleteButton>
+              </Row>
+            ))}
+          </Column>
         )}
       </Column>
     </StyledNoticeEdit>
@@ -154,4 +175,9 @@ const StyledNoticeFile = styled.div`
   &:hover {
     background-color: ${color.gray300};
   }
+`;
+
+const DeleteButton = styled.div`
+  ${flex({ justifyContent: 'space-between', alignItems: 'center' })};
+  cursor: pointer;
 `;

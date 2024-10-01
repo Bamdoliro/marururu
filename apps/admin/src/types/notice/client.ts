@@ -7,7 +7,7 @@ export interface Notice {
 export interface NoticeDetail {
   title: string;
   content: string;
-  fileUrl?: string;
-  fileName?: string;
+  fileUrls?: string[];
+  fileNames?: string[];
   createdAt: string;
 }

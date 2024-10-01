@@ -1,6 +1,6 @@
 import { resizeTextarea } from '@/utils';
 import { color, font } from '@maru/design-token';
-import { Button, Column, Row } from '@maru/ui';
+import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';
 import { useRef, useState } from 'react';
@@ -17,7 +17,7 @@ const NoticePost = () => {
     title: '',
     content: '',
   });
-  const [fileName, setFileName] = useState<string | null>(null);
+  const [fileNames, setFileNames] = useState<string[]>([]);
 
   const { handleNoticePostButtonClick } = useNoticePostAction(noticeData);
 
@@ -35,9 +35,19 @@ const NoticePost = () => {
       <NoticeUploadModal
         isOpen={isOpen}
         onClose={close}
-        onFileAttach={(file) => setFileName(file?.name || null)}
+        onFileAttach={(file) => {
+          if (file) {
+            setFileNames((prev) => [...prev, file.name]);
+          }
+        }}
       />
     ));
+  };
+
+  const handleDeleteNoticeFile = (fileNameToDelete: string) => {
+    setFileNames((prevFileNames) =>
+      prevFileNames.filter((name) => name !== fileNameToDelete)
+    );
   };
 
   return (
@@ -54,9 +64,10 @@ const NoticePost = () => {
             <Button
               size="SMALL"
               icon="CLIP_ICON"
-              styleType="SECONDARY"
+              styleType={fileNames.length >= 3 ? 'DISABLED' : 'SECONDARY'}
               width={124}
               onClick={handleNoticeFileModalButtonClick}
+              disabled={fileNames.length >= 3}
             >
               파일 첨부
             </Button>
@@ -73,13 +84,24 @@ const NoticePost = () => {
           placeholder="내용을 작성해주세요."
           rows={1}
         />
-        {fileName && (
-          <StyledNoticeFile>
-            <Row alignItems="center" gap={10}>
-              <IconClip width={19} height={12} />
-              {fileName}
-            </Row>
-          </StyledNoticeFile>
+        {fileNames.length > 0 && (
+          <Column gap={12}>
+            {fileNames.map((fileName, index) => (
+              <Row alignItems="center" gap={12} key={index}>
+                <StyledNoticeFile>
+                  <Row alignItems="center" gap={10}>
+                    <IconClip width={19} height={12} />
+                    {fileName}
+                  </Row>
+                </StyledNoticeFile>
+                <DeleteButton onClick={() => handleDeleteNoticeFile(fileName)}>
+                  <Text fontType="caption" color={color.red}>
+                    [삭제]
+                  </Text>
+                </DeleteButton>
+              </Row>
+            ))}
+          </Column>
         )}
       </Column>
     </StyledNoticePost>
@@ -139,4 +161,9 @@ const StyledNoticeFile = styled.div`
   &:hover {
     background-color: ${color.gray300};
   }
+`;
+
+const DeleteButton = styled.div`
+  ${flex({ justifyContent: 'space-between', alignItems: 'center' })};
+  cursor: pointer;
 `;

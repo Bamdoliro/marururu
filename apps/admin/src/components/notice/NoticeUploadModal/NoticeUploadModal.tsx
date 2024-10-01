@@ -1,10 +1,10 @@
-import { useNoticeFileStore } from '@/store/notice/noticeFile';
+import { useRef, useEffect } from 'react';
+import { useNoticeFileStore, useVisibleNoticeFileStore } from '@/store/notice/noticeFile';
 import { color } from '@maru/design-token';
 import { IconClose } from '@maru/icon';
 import { Button, Column, Row, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import type { ChangeEventHandler } from 'react';
-import { useRef } from 'react';
 import styled from 'styled-components';
 import NoticeUploader from './NoticeUploader/NoticeUploader';
 
@@ -16,7 +16,14 @@ interface Props {
 
 const NoticeUploadModal = ({ isOpen, onClose, onFileAttach }: Props) => {
   const [fileData, setFileData] = useNoticeFileStore();
+  const [visibleFile, setVisibleFile] = useVisibleNoticeFileStore();
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setVisibleFile(null);
+    }
+  }, [isOpen, setVisibleFile]);
 
   const handleUploadFileButtonClick = () => {
     fileInputRef.current?.click();
@@ -32,19 +39,20 @@ const NoticeUploadModal = ({ isOpen, onClose, onFileAttach }: Props) => {
 
     if (!files || files.length === 0) return;
     const selectedFile = files[0];
-    setFileData(selectedFile);
-    onFileAttach(selectedFile);
+    setVisibleFile(selectedFile);
   };
 
   const removeFileAndCloseModal = () => {
-    setFileData(null);
+    setVisibleFile(null);
     removeFileInputValue();
     onFileAttach(null);
     onClose();
   };
 
   const handleAttachFile = () => {
-    if (fileData) {
+    if (visibleFile) {
+      onFileAttach(visibleFile);
+      setFileData(fileData ? [...fileData, visibleFile] : [visibleFile]);
       onClose();
     }
   };
@@ -72,6 +80,7 @@ const NoticeUploadModal = ({ isOpen, onClose, onFileAttach }: Props) => {
         <NoticeUploader
           removeFileInputValue={removeFileAndCloseModal}
           handleUploadFileButtonClick={handleUploadFileButtonClick}
+          isOpen={isOpen}
         />
         <Row gap={16} style={{ alignSelf: 'flex-end' }}>
           <Button size="SMALL" styleType="SECONDARY" onClick={removeFileAndCloseModal}>
@@ -79,7 +88,7 @@ const NoticeUploadModal = ({ isOpen, onClose, onFileAttach }: Props) => {
           </Button>
           <Button
             size="SMALL"
-            styleType={fileData ? 'PRIMARY' : 'DISABLED'}
+            styleType={visibleFile ? 'PRIMARY' : 'DISABLED'}
             onClick={handleAttachFile}
           >
             첨부하기

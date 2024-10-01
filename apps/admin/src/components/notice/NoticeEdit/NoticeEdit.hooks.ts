@@ -11,17 +11,18 @@ export const useNotieEditAction = (id: number, noticeData: PutNoticeReq) => {
   const [fileData, setFileData] = useNoticeFileStore();
 
   const handleNoticeEditButtonClick = async () => {
-    let fileName = noticeData.fileName || '';
+    let fileNames: string[] = noticeData.fileNames ? noticeData.fileNames : [];
 
-    if (fileData) {
-      fileName = await uploadFile(fileData);
+    if (fileData && fileData.length > 0) {
+      const uploadedFileNames = await uploadFile(fileData);
+      fileNames = [...fileNames, ...uploadedFileNames];
     }
 
     editNoticeMutate(
-      { ...noticeData, fileName },
+      { ...noticeData, fileNames },
       {
         onSuccess: () => {
-          setFileData(null);
+          setFileData([]);
         },
       }
     );

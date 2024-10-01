@@ -72,12 +72,13 @@ export const useUploadFileWithPresignedUrl = () => {
   const fileData = useNoticeFileValueStore();
 
   const mutation = useMutation(
-    async (file: File) => {
+    async (file: File[]) => {
       if (!fileData) {
         throw new Error('파일이 선택되지 않았습니다.');
       }
 
-      const presignedData = await postNoticePresignedUrl(fileData.name);
+      const fileNames = fileData.map((file) => file.name);
+      const presignedData = await postNoticePresignedUrl(fileNames);
       await putNoticeFileUrl(file, presignedData);
       return presignedData.fileName;
     },

@@ -18,18 +18,14 @@ const NoticeDetailContent = ({ id }: Props) => {
   const { data: noticeDetailData } = useNoticeDetailQuery(id);
   const { handleDeleteNoticeButtonClick } = useNoticeDeleteAction(id);
 
-  const handleFileDownload = async () => {
-    if (!noticeDetailData?.fileUrl) {
-      return;
-    }
-
-    const response = await fetch(noticeDetailData.fileUrl);
+  const handleFileDownload = async (fileUrl: string, fileName: string) => {
+    const response = await fetch(fileUrl);
     const blob = await response.blob();
 
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = formatFileName(noticeDetailData.fileName || '');
+    link.download = fileName;
 
     document.body.appendChild(link);
     link.click();
@@ -72,15 +68,35 @@ const NoticeDetailContent = ({ id }: Props) => {
           <Content
             dangerouslySetInnerHTML={{ __html: convertLink(noticeDetailData.content) }}
           />
-          {noticeDetailData.fileUrl && (
-            <StyledNoticeFile onClick={handleFileDownload}>
-              <Row alignItems="center" gap={10}>
-                <IconClip width={19} height={12} />
-                <Text fontType="p3" color={color.gray750}>
-                  {formatFileName(noticeDetailData.fileName || '')}
-                </Text>
-              </Row>
-            </StyledNoticeFile>
+          {/* console.log('여기 고쳐야함') */}
+          <Column>콘텐트: {noticeDetailData.content}</Column>
+          <Column>url: {noticeDetailData.fileUrls}</Column>
+          <Column>네임: {noticeDetailData.fileNames}</Column>
+          {noticeDetailData.fileUrls && noticeDetailData.fileNames && (
+            <Column gap={12}>
+              {noticeDetailData.fileUrls.map((fileUrl: string, index: number) => (
+                <StyledNoticeFile
+                  key={index}
+                  onClick={() =>
+                    handleFileDownload(
+                      fileUrl,
+                      noticeDetailData.fileNames ? noticeDetailData.fileNames[index] : ''
+                    )
+                  }
+                >
+                  <Row alignItems="center" gap={10}>
+                    <IconClip width={19} height={12} />
+                    <Text fontType="p3" color={color.gray750}>
+                      {formatFileName(
+                        noticeDetailData.fileNames
+                          ? noticeDetailData.fileNames[index]
+                          : ''
+                      )}
+                    </Text>
+                  </Row>
+                </StyledNoticeFile>
+              ))}
+            </Column>
           )}
         </Column>
       </Column>
