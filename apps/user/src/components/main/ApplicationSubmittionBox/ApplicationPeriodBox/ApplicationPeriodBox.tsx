@@ -8,9 +8,9 @@ const ApplicationPeriodBox = () => {
   return (
     <Column gap={36}>
       <Text fontType="H1" color={color.white}>
-        지금은 입학전형 기간이 아닙니다.
+        부산소프트웨어마이스터고등학교
         <br />
-        현재 회원가입을 진행할 수 없습니다
+        2025학년도 신입생 모집
       </Text>
       <Text fontType="p2" color={color.gray300}>
         {applicationStart} ~ {applicationEnd}
