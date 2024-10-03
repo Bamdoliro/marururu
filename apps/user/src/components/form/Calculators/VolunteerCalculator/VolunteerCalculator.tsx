@@ -1,28 +1,15 @@
-import { useState, useEffect } from 'react';
 import { useFormValueStore } from '@/store';
 import { color, font } from '@maru/design-token';
 import { CellInput, Column, Row, Td, Text, Th } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
 import { useInput } from './VolunteerCalculator.hooks';
-import useGradeCalculation from '@/hooks/useGradeCaculation';
 
 const VolunteerCalculator = () => {
   const form = useFormValueStore();
   const { handleVolunteerTimeChange } = useInput();
-  const { volunteerScore } = useGradeCalculation();
-  const [, setScore] = useState(volunteerScore);
 
   const isReadOnly = form.education.graduationType === 'QUALIFICATION_EXAMINATION';
-
-  useEffect(() => {
-    setScore(volunteerScore);
-  }, [
-    form.grade.volunteerTime1,
-    form.grade.volunteerTime2,
-    form.grade.volunteerTime3,
-    volunteerScore,
-  ]);
 
   return (
     <StyledVolunteerCalculator>

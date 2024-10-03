@@ -5,8 +5,6 @@ import {
   MAX_ATTENDANCE_SCORE,
   MAX_VOLUNTEER_SCORE,
   MAX_VOLUNTEER_TIME,
-  MAX_VOLUNTEER_TIME_GRADE_1_2,
-  MAX_VOLUNTEER_TIME_GRADE_3,
   MIN_ATTENDANCE_SCORE,
   MIN_VOLUNTEER_SCORE,
   MIN_VOLUNTEER_TIME,
@@ -143,11 +141,8 @@ const useGradeCalculation = () => {
       return DEFAULT_VOLUNTEER_SCORE;
     }
 
-    const grade1Time = Math.min(form.grade.volunteerTime1, MAX_VOLUNTEER_TIME_GRADE_1_2);
-    const grade2Time = Math.min(form.grade.volunteerTime2, MAX_VOLUNTEER_TIME_GRADE_1_2);
-    const grade3Time = Math.min(form.grade.volunteerTime3, MAX_VOLUNTEER_TIME_GRADE_3);
-
-    const totalVolunteerTime = grade1Time + grade2Time + grade3Time;
+    const totalVolunteerTime =
+      form.grade.volunteerTime1 + form.grade.volunteerTime2 + form.grade.volunteerTime3;
 
     if (totalVolunteerTime < MIN_VOLUNTEER_TIME) return MIN_VOLUNTEER_SCORE;
     if (totalVolunteerTime > MAX_VOLUNTEER_TIME) return MAX_VOLUNTEER_SCORE;
