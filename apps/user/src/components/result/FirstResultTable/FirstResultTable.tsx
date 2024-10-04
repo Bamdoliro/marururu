@@ -25,6 +25,6 @@ const FirstResultTable = () => {
 export default FirstResultTable;
 
 const StyledFirstResultTable = styled.div<{ isPassed: boolean }>`
-  ${flex({ flexDirection: 'column', alignItems: 'center' })};
+  ${flex({ alignItems: 'center' })};
   gap: ${(props) => (props.isPassed ? '10px' : '120px')};
 `;
