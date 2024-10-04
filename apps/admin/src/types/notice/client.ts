@@ -7,7 +7,9 @@ export interface Notice {
 export interface NoticeDetail {
   title: string;
   content: string;
-  fileUrls?: string[];
-  fileNames?: string[];
+  fileList?: Array<{
+    downloadUrl: string;
+    fileName: string;
+  }>;
   createdAt: string;
 }

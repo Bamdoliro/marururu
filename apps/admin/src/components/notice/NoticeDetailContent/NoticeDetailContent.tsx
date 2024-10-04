@@ -12,7 +12,6 @@ import { formatFileName } from '@/utils';
 interface Props {
   id: number;
 }
-
 const NoticeDetailContent = ({ id }: Props) => {
   const router = useRouter();
   const { data: noticeDetailData } = useNoticeDetailQuery(id);
@@ -68,30 +67,17 @@ const NoticeDetailContent = ({ id }: Props) => {
           <Content
             dangerouslySetInnerHTML={{ __html: convertLink(noticeDetailData.content) }}
           />
-          {/* console.log('여기 고쳐야함') */}
-          <Column>콘텐트: {noticeDetailData.content}</Column>
-          <Column>url: {noticeDetailData.fileUrls}</Column>
-          <Column>네임: {noticeDetailData.fileNames}</Column>
-          {noticeDetailData.fileUrls && noticeDetailData.fileNames && (
+          {noticeDetailData.fileList && (
             <Column gap={12}>
-              {noticeDetailData.fileUrls.map((fileUrl: string, index: number) => (
+              {noticeDetailData.fileList.map((file, index) => (
                 <StyledNoticeFile
                   key={index}
-                  onClick={() =>
-                    handleFileDownload(
-                      fileUrl,
-                      noticeDetailData.fileNames ? noticeDetailData.fileNames[index] : ''
-                    )
-                  }
+                  onClick={() => handleFileDownload(file.downloadUrl, file.fileName)}
                 >
                   <Row alignItems="center" gap={10}>
                     <IconClip width={19} height={12} />
                     <Text fontType="p3" color={color.gray750}>
-                      {formatFileName(
-                        noticeDetailData.fileNames
-                          ? noticeDetailData.fileNames[index]
-                          : ''
-                      )}
+                      {formatFileName(file.fileName)}
                     </Text>
                   </Row>
                 </StyledNoticeFile>

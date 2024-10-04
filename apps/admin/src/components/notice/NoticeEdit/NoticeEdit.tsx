@@ -22,7 +22,7 @@ const NoticeEdit = ({ id }: Props) => {
   const [noticeData, setNoticeData] = useState({
     title: noticeDetailData?.title ?? '',
     content: noticeDetailData?.content ?? '',
-    fileNames: noticeDetailData?.fileNames ?? [],
+    fileList: noticeDetailData?.fileList ?? [],
   });
 
   const { handleNoticeEditButtonClick } = useNotieEditAction(id, noticeData);
@@ -48,7 +48,7 @@ const NoticeEdit = ({ id }: Props) => {
           if (file) {
             setNoticeData((prevData) => ({
               ...prevData,
-              fileNames: [...prevData.fileNames, file.name],
+              fileList: [...prevData.fileList, { fileName: file.name, downloadUrl: '' }],
             }));
           }
         }}
@@ -59,7 +59,7 @@ const NoticeEdit = ({ id }: Props) => {
   const handleDeleteNoticeFile = (fileNameToDelete: string) => {
     setNoticeData((prevData) => ({
       ...prevData,
-      fileNames: prevData.fileNames.filter((fileName) => fileName !== fileNameToDelete),
+      fileList: prevData.fileList.filter((file) => file.fileName !== fileNameToDelete),
     }));
   };
 
@@ -96,19 +96,19 @@ const NoticeEdit = ({ id }: Props) => {
           placeholder="내용을 작성해주세요."
           rows={1}
         />
-        {noticeData.fileNames.length > 0 && (
+        {noticeData.fileList && (
           <Column gap={12}>
-            {noticeData.fileNames.map((fileName, index) => (
+            {noticeData.fileList.map((file, index) => (
               <Row alignItems="center" gap={12} key={index}>
                 <StyledNoticeFile>
                   <Row alignItems="center" gap={10}>
                     <IconClip width={19} height={12} />
                     <Text fontType="p3" color={color.gray750}>
-                      {formatFileName(fileName)}
+                      {formatFileName(file.fileName)}
                     </Text>
                   </Row>
                 </StyledNoticeFile>
-                <DeleteButton onClick={() => handleDeleteNoticeFile(fileName)}>
+                <DeleteButton onClick={() => handleDeleteNoticeFile(file.fileName)}>
                   <Text fontType="caption" color={color.red}>
                     [삭제]
                   </Text>

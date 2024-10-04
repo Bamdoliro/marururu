@@ -17,7 +17,7 @@ const NoticePost = () => {
     title: '',
     content: '',
   });
-  const [fileNames, setFileNames] = useState<string[]>([]);
+  const [fileNameList, setfileNameList] = useState<Array<string>>([]);
 
   const { handleNoticePostButtonClick } = useNoticePostAction(noticeData);
 
@@ -37,7 +37,7 @@ const NoticePost = () => {
         onClose={close}
         onFileAttach={(file) => {
           if (file) {
-            setFileNames((prev) => [...prev, file.name]);
+            setfileNameList((prev) => [...prev, file.name]);
           }
         }}
       />
@@ -45,8 +45,8 @@ const NoticePost = () => {
   };
 
   const handleDeleteNoticeFile = (fileNameToDelete: string) => {
-    setFileNames((prevFileNames) =>
-      prevFileNames.filter((name) => name !== fileNameToDelete)
+    setfileNameList((prevfileNameList) =>
+      prevfileNameList.filter((name) => name !== fileNameToDelete)
     );
   };
 
@@ -64,10 +64,10 @@ const NoticePost = () => {
             <Button
               size="SMALL"
               icon="CLIP_ICON"
-              styleType={fileNames.length >= 3 ? 'DISABLED' : 'SECONDARY'}
+              styleType={fileNameList.length >= 3 ? 'DISABLED' : 'SECONDARY'}
               width={124}
               onClick={handleNoticeFileModalButtonClick}
-              disabled={fileNames.length >= 3}
+              disabled={fileNameList.length >= 3}
             >
               파일 첨부
             </Button>
@@ -84,9 +84,9 @@ const NoticePost = () => {
           placeholder="내용을 작성해주세요."
           rows={1}
         />
-        {fileNames.length > 0 && (
+        {fileNameList.length > 0 && (
           <Column gap={12}>
-            {fileNames.map((fileName, index) => (
+            {fileNameList.map((fileName, index) => (
               <Row alignItems="center" gap={12} key={index}>
                 <StyledNoticeFile>
                   <Row alignItems="center" gap={10}>
