@@ -14,11 +14,11 @@ const ResultMain = ({ setResultStep, option }: Props) => {
   const resultInfoData =
     option === 'FIRST'
       ? {
-          date: '2023년 10월 23일 (월) 15:00',
+          date: '2023년 10월 21일 (월) 15:00',
           capacity: '일반전형 및 특별전형 각각 모집정원의 130% 이내',
         }
       : {
-          date: '2023년 11월 2일 (목) 15:00',
+          date: '2023년 10월 31일 (목) 15:00',
           capacity: '일반전형 36명, 특별전형 28명, 정원 외 전형 3명',
         };
 

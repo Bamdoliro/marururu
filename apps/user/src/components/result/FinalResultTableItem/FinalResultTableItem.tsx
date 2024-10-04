@@ -1,5 +1,6 @@
 import { color } from '@maru/design-token';
 import { Column, Text } from '@maru/ui';
+import { flex } from '@maru/utils';
 import styled from 'styled-components';
 
 interface Props {
@@ -21,8 +22,8 @@ const FinalResultTableItem = ({ isPassed }: Props) => {
 export default FinalResultTableItem;
 
 const StyledResultTableItem = styled.div`
-  align-items: center;
-  justify-content: space-between;
+  ${flex({ alignItems: 'center', justifyContent: 'space-between' })}
   display: inline-block;
   background-color: ${color.white};
+  width: 100%;
 `;

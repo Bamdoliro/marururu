@@ -21,5 +21,5 @@ const FinalResultTable = () => {
 export default FinalResultTable;
 
 const StyledFinalResultTable = styled.div`
-  ${flex({ flexDirection: 'column', alignItems: 'center' })};
+  ${flex({ alignItems: 'center' })};
 `;
