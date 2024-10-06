@@ -10,6 +10,7 @@ import { useNotieEditAction } from './NoticeEdit.hooks';
 import NoticeUploadModal from '../NoticeUploadModal/NoticeUploadModal';
 import { useOverlay } from '@toss/use-overlay';
 import { IconClip } from '@maru/icon';
+import { useNoticeFileStore } from '@/store/notice/noticeFile';
 
 interface Props {
   id: number;
@@ -17,6 +18,7 @@ interface Props {
 
 const NoticeEdit = ({ id }: Props) => {
   const { data: noticeDetailData } = useNoticeDetailQuery(id);
+  const [fileData, setFileData] = useNoticeFileStore();
 
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
   const [noticeData, setNoticeData] = useState({
@@ -64,6 +66,7 @@ const NoticeEdit = ({ id }: Props) => {
       ...prevData,
       fileList: prevData.fileList.filter((file) => file !== fileNameToDelete),
     }));
+    setFileData(fileData?.filter((file) => file.name !== fileNameToDelete) ?? []);
   };
 
   return (

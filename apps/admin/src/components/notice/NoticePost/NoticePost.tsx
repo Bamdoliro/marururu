@@ -9,10 +9,13 @@ import { useNoticePostAction } from './NoticePost.hooks';
 import { useOverlay } from '@toss/use-overlay';
 import NoticeUploadModal from '../NoticeUploadModal/NoticeUploadModal';
 import { IconClip } from '@maru/icon';
+import { useNoticeFileStore } from '@/store/notice/noticeFile';
 
 const NoticePost = () => {
   const overlay = useOverlay();
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
+  const [fileData, setFileData] = useNoticeFileStore();
+
   const [noticeData, setNoticeData] = useState<{
     title: string;
     content: string;
@@ -56,6 +59,7 @@ const NoticePost = () => {
       ...prevData,
       fileNameList: prevData.fileNameList.filter((file) => file !== fileNameToDelete),
     }));
+    setFileData(fileData?.filter((file) => file.name !== fileNameToDelete) ?? []);
   };
 
   return (
