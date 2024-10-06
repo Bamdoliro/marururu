@@ -17,6 +17,10 @@ export const useNoticePostAction = (noticeData: PostNoticeReq) => {
 
     if (fileData && fileData.length > 0) {
       const uploadedfileNameList = await uploadFile(fileData);
+      fileNameList = fileNameList.filter(
+        (fileName) =>
+          !uploadedfileNameList.some((uploadedFile) => uploadedFile.includes(fileName))
+      );
       fileNameList = [...fileNameList, ...uploadedfileNameList];
     }
 

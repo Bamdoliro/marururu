@@ -36,7 +36,7 @@ const NoticeEdit = ({ id }: Props) => {
   > = (e) => {
     const { name, value } = e.target;
     setNoticeData({ ...noticeData, [name]: value });
-    console.log(noticeData);
+
     resizeTextarea(contentTextareaRef);
   };
 

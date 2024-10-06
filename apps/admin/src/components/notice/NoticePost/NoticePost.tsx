@@ -13,11 +13,15 @@ import { IconClip } from '@maru/icon';
 const NoticePost = () => {
   const overlay = useOverlay();
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
-  const [noticeData, setNoticeData] = useState({
+  const [noticeData, setNoticeData] = useState<{
+    title: string;
+    content: string;
+    fileNameList: string[];
+  }>({
     title: '',
     content: '',
+    fileNameList: [],
   });
-  const [fileNameList, setfileNameList] = useState<Array<string>>([]);
 
   const { handleNoticePostButtonClick } = useNoticePostAction(noticeData);
 
@@ -37,7 +41,10 @@ const NoticePost = () => {
         onClose={close}
         onFileAttach={(file) => {
           if (file) {
-            setfileNameList((prev) => [...prev, file.name]);
+            setNoticeData((prevData) => ({
+              ...prevData,
+              fileNameList: [...prevData.fileNameList, file.name],
+            }));
           }
         }}
       />
@@ -45,9 +52,10 @@ const NoticePost = () => {
   };
 
   const handleDeleteNoticeFile = (fileNameToDelete: string) => {
-    setfileNameList((prevfileNameList) =>
-      prevfileNameList.filter((name) => name !== fileNameToDelete)
-    );
+    setNoticeData((prevData) => ({
+      ...prevData,
+      fileNameList: prevData.fileNameList.filter((file) => file !== fileNameToDelete),
+    }));
   };
 
   return (
@@ -64,10 +72,10 @@ const NoticePost = () => {
             <Button
               size="SMALL"
               icon="CLIP_ICON"
-              styleType={fileNameList.length >= 3 ? 'DISABLED' : 'SECONDARY'}
+              styleType={noticeData.fileNameList.length >= 3 ? 'DISABLED' : 'SECONDARY'}
               width={124}
               onClick={handleNoticeFileModalButtonClick}
-              disabled={fileNameList.length >= 3}
+              disabled={noticeData.fileNameList.length >= 3}
             >
               파일 첨부
             </Button>
@@ -84,17 +92,17 @@ const NoticePost = () => {
           placeholder="내용을 작성해주세요."
           rows={1}
         />
-        {fileNameList.length > 0 && (
+        {noticeData.fileNameList.length > 0 && (
           <Column gap={12}>
-            {fileNameList.map((fileName, index) => (
+            {noticeData.fileNameList.map((file, index) => (
               <Row alignItems="center" gap={12} key={index}>
                 <StyledNoticeFile>
                   <Row alignItems="center" gap={10}>
                     <IconClip width={19} height={12} />
-                    {fileName}
+                    {file}
                   </Row>
                 </StyledNoticeFile>
-                <DeleteButton onClick={() => handleDeleteNoticeFile(fileName)}>
+                <DeleteButton onClick={() => handleDeleteNoticeFile(file)}>
                   <Text fontType="caption" color={color.red}>
                     [삭제]
                   </Text>
