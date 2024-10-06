@@ -22,10 +22,13 @@ const NoticeEdit = ({ id }: Props) => {
   const [noticeData, setNoticeData] = useState({
     title: noticeDetailData?.title ?? '',
     content: noticeDetailData?.content ?? '',
-    fileList: noticeDetailData?.fileList ?? [],
+    fileList: noticeDetailData?.fileList?.map((file) => file.fileName) ?? [],
   });
 
-  const { handleNoticeEditButtonClick } = useNotieEditAction(id, noticeData);
+  const { handleNoticeEditButtonClick } = useNotieEditAction(id, {
+    ...noticeData,
+    fileNameList: noticeData.fileList.map((file) => file),
+  });
   const overlay = useOverlay();
 
   const handleNoticeDataChange: ChangeEventHandler<
@@ -33,7 +36,7 @@ const NoticeEdit = ({ id }: Props) => {
   > = (e) => {
     const { name, value } = e.target;
     setNoticeData({ ...noticeData, [name]: value });
-
+    console.log(noticeData);
     resizeTextarea(contentTextareaRef);
   };
 
@@ -48,7 +51,7 @@ const NoticeEdit = ({ id }: Props) => {
           if (file) {
             setNoticeData((prevData) => ({
               ...prevData,
-              fileList: [...prevData.fileList, { fileName: file.name, downloadUrl: '' }],
+              fileList: [...prevData.fileList, file.name],
             }));
           }
         }}
@@ -59,7 +62,7 @@ const NoticeEdit = ({ id }: Props) => {
   const handleDeleteNoticeFile = (fileNameToDelete: string) => {
     setNoticeData((prevData) => ({
       ...prevData,
-      fileList: prevData.fileList.filter((file) => file.fileName !== fileNameToDelete),
+      fileList: prevData.fileList.filter((file) => file !== fileNameToDelete),
     }));
   };
 
@@ -77,9 +80,10 @@ const NoticeEdit = ({ id }: Props) => {
             <Button
               size="SMALL"
               icon="CLIP_ICON"
-              styleType="SECONDARY"
+              styleType={noticeData.fileList.length >= 3 ? 'DISABLED' : 'SECONDARY'}
               width={124}
               onClick={handleNoticeFileModalButtonClick}
+              disabled={noticeData.fileList.length >= 3}
             >
               파일 첨부
             </Button>
@@ -104,11 +108,11 @@ const NoticeEdit = ({ id }: Props) => {
                   <Row alignItems="center" gap={10}>
                     <IconClip width={19} height={12} />
                     <Text fontType="p3" color={color.gray750}>
-                      {formatFileName(file.fileName)}
+                      {formatFileName(file)}
                     </Text>
                   </Row>
                 </StyledNoticeFile>
-                <DeleteButton onClick={() => handleDeleteNoticeFile(file.fileName)}>
+                <DeleteButton onClick={() => handleDeleteNoticeFile(file)}>
                   <Text fontType="caption" color={color.red}>
                     [삭제]
                   </Text>
