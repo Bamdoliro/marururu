@@ -30,3 +30,6 @@ npm-debug.log*
 
 # vercel
 .vercel
+
+# for build
+dist

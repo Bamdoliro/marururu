@@ -1,5 +1,5 @@
 {
-  "name": "@maru/hooks",
+  "name": "@maru/tsup-config",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
@@ -23,16 +23,9 @@
     "build": "tsup",
     "lint": "eslint \"**/*.ts*\""
   },
-  "dependencies": {
-    "@types/lodash": "^4.14.195",
-    "lodash": "^4.17.21",
-    "react": "18.2.0"
-  },
   "devDependencies": {
-    "@maru/tsup-config": "workspace:*",
-    "@maru/eslint-config": "workspace:*",
+    "@maru/eslint-config-ts": "workspace:^",
     "@maru/tsconfig": "workspace:*",
-    "@types/react": "18.2.13",
     "typescript": "^5.1.3"
   }
 }

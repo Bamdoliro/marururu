@@ -1,11 +1,5 @@
 {
   "extends": "@maru/tsconfig/react-library.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"],
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "es2017"], // es2017 추가
-    "jsx": "react"
-    // 기타 설정...
-  }
+  "exclude": ["dist", "build", "node_modules"]
 }

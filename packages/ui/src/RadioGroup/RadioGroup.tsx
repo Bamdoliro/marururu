@@ -1,18 +1,17 @@
 import { color, font } from '@maru/design-token';
 import type { ChangeEventHandler } from 'react';
-import React from 'react';
 import styled from 'styled-components';
 import Row from '../Flex/Row';
 import Radio from '../Radio/Radio';
 
-interface Radio {
+interface RadioItem {
   value: string;
   label: string;
 }
 
 interface Props {
   label: string;
-  items: Radio[] | string[];
+  items: RadioItem[] | string[];
   name: string;
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;

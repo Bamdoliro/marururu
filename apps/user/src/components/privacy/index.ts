@@ -1,4 +1,3 @@
-export { default as Box } from '@maru/ui/src/Box/Box';
 export { default as PrivacyResponsibilityTeacher } from './ ResponsibilityTeacher/PrivacyResponsibilityTeacher';
 export { default as CameraLocation } from './CameraLocation/CameraLocation';
 export { default as CameraResponsibilityTeacher } from './ ResponsibilityTeacher/CameraResponsibilityTeacher';
