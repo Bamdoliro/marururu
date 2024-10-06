@@ -36,7 +36,6 @@ import {
   useSecondRoundResultEditAction,
   useSecondRoundResultEditAutoAction,
 } from './form.hooks';
-import withAuth from '@/hoc/withAuth';
 import { useState, useEffect } from 'react';
 
 if (process.env.NODE_ENV === 'development') {
@@ -316,7 +315,7 @@ const FormPage = () => {
   );
 };
 
-export default withAuth(FormPage);
+export default FormPage;
 
 const StyledMainPage = styled.div`
   ${flex({ flexDirection: 'column' })}
