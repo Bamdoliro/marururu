@@ -13,23 +13,28 @@ interface Props {
 const NoticeDetailContent = ({ id }: Props) => {
   const { data: noticeDetailData } = useNoticeDetailQuery(id);
 
-  const handleFileDownload = async () => {
-    if (!noticeDetailData.fileUrl) {
-      return;
-    }
-
-    const response = await fetch(noticeDetailData.fileUrl);
+  const handleFileDownload = async (fileUrl: string, fileName: string) => {
+    const response = await fetch(fileUrl);
     const blob = await response.blob();
 
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = formatFileName(noticeDetailData.fileName || '');
+    link.download = fileName;
 
     document.body.appendChild(link);
     link.click();
     link.remove();
     window.URL.revokeObjectURL(url);
+  };
+
+  const handleViewNow = async (fileUrl: string) => {
+    const response = await fetch(fileUrl);
+    const blob = await response.blob();
+    const blobUrl = window.URL.createObjectURL(blob);
+
+    window.open(blobUrl);
+    window.URL.revokeObjectURL(blobUrl);
   };
 
   return noticeDetailData ? (
@@ -48,15 +53,30 @@ const NoticeDetailContent = ({ id }: Props) => {
         <Content
           dangerouslySetInnerHTML={{ __html: convertLink(noticeDetailData.content) }}
         />
-        {noticeDetailData.fileUrl && (
-          <StyledNoticeFile onClick={handleFileDownload}>
-            <Row alignItems="center" gap={10}>
-              <IconClip width={19} height={12} />
-              <Text fontType="p3" color={color.gray750}>
-                {formatFileName(noticeDetailData.fileName || '')}
-              </Text>
-            </Row>
-          </StyledNoticeFile>
+        {noticeDetailData.fileList && (
+          <Column gap={12}>
+            {noticeDetailData.fileList.map((file, index) => (
+              <Row alignItems="center" gap={12} key={index}>
+                <StyledNoticeFile
+                  onClick={() => handleFileDownload(file.downloadUrl, file.fileName)}
+                >
+                  <Row alignItems="center" gap={10}>
+                    <IconClip width={19} height={12} />
+                    <Text fontType="p3" color={color.gray750}>
+                      {formatFileName(file.fileName)}
+                    </Text>
+                  </Row>
+                </StyledNoticeFile>
+                {!file.fileName.endsWith('.hwp') && (
+                  <DeleteButton onClick={() => handleViewNow(file.downloadUrl)}>
+                    <Text fontType="p2" color={color.maruDefault}>
+                      [바로보기]
+                    </Text>
+                  </DeleteButton>
+                )}
+              </Row>
+            ))}
+          </Column>
         )}
       </Column>
     </StyledNoticeDetailContent>
@@ -101,4 +121,8 @@ const StyledNoticeFile = styled.div`
   &:hover {
     background-color: ${color.gray300};
   }
+`;
+
+const DeleteButton = styled.div`
+  cursor: pointer;
 `;
