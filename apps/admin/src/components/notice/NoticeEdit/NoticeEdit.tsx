@@ -10,6 +10,7 @@ import { useNotieEditAction } from './NoticeEdit.hooks';
 import NoticeUploadModal from '../NoticeUploadModal/NoticeUploadModal';
 import { useOverlay } from '@toss/use-overlay';
 import { IconClip } from '@maru/icon';
+import { useNoticeFileStore } from '@/store/notice/noticeFile';
 
 interface Props {
   id: number;
@@ -17,15 +18,19 @@ interface Props {
 
 const NoticeEdit = ({ id }: Props) => {
   const { data: noticeDetailData } = useNoticeDetailQuery(id);
+  const [fileData, setFileData] = useNoticeFileStore();
 
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
   const [noticeData, setNoticeData] = useState({
     title: noticeDetailData?.title ?? '',
     content: noticeDetailData?.content ?? '',
-    fileName: noticeDetailData?.fileName ?? '',
+    fileList: noticeDetailData?.fileList?.map((file) => file.fileName) ?? [],
   });
 
-  const { handleNoticeEditButtonClick } = useNotieEditAction(id, noticeData);
+  const { handleNoticeEditButtonClick } = useNotieEditAction(id, {
+    ...noticeData,
+    fileNameList: noticeData.fileList.map((file) => file),
+  });
   const overlay = useOverlay();
 
   const handleNoticeDataChange: ChangeEventHandler<
@@ -46,11 +51,22 @@ const NoticeEdit = ({ id }: Props) => {
         onClose={close}
         onFileAttach={(file) => {
           if (file) {
-            setNoticeData({ ...noticeData, fileName: file.name });
+            setNoticeData((prevData) => ({
+              ...prevData,
+              fileList: [...prevData.fileList, file.name],
+            }));
           }
         }}
       />
     ));
+  };
+
+  const handleDeleteNoticeFile = (fileNameToDelete: string) => {
+    setNoticeData((prevData) => ({
+      ...prevData,
+      fileList: prevData.fileList.filter((file) => file !== fileNameToDelete),
+    }));
+    setFileData(fileData?.filter((file) => file.name !== fileNameToDelete) ?? []);
   };
 
   return (
@@ -67,9 +83,10 @@ const NoticeEdit = ({ id }: Props) => {
             <Button
               size="SMALL"
               icon="CLIP_ICON"
-              styleType="SECONDARY"
+              styleType={noticeData.fileList.length >= 3 ? 'DISABLED' : 'SECONDARY'}
               width={124}
               onClick={handleNoticeFileModalButtonClick}
+              disabled={noticeData.fileList.length >= 3}
             >
               파일 첨부
             </Button>
@@ -86,15 +103,26 @@ const NoticeEdit = ({ id }: Props) => {
           placeholder="내용을 작성해주세요."
           rows={1}
         />
-        {noticeData.fileName && (
-          <StyledNoticeFile>
-            <Row alignItems="center" gap={10}>
-              <IconClip width={19} height={12} />
-              <Text fontType="p3" color={color.gray750}>
-                {formatFileName(noticeData.fileName || '')}
-              </Text>
-            </Row>
-          </StyledNoticeFile>
+        {noticeData.fileList && (
+          <Column gap={12}>
+            {noticeData.fileList.map((file, index) => (
+              <Row alignItems="center" gap={12} key={index}>
+                <StyledNoticeFile>
+                  <Row alignItems="center" gap={10}>
+                    <IconClip width={19} height={12} />
+                    <Text fontType="p3" color={color.gray750}>
+                      {formatFileName(file)}
+                    </Text>
+                  </Row>
+                </StyledNoticeFile>
+                <DeleteButton onClick={() => handleDeleteNoticeFile(file)}>
+                  <Text fontType="caption" color={color.red}>
+                    [삭제]
+                  </Text>
+                </DeleteButton>
+              </Row>
+            ))}
+          </Column>
         )}
       </Column>
     </StyledNoticeEdit>
@@ -154,4 +182,9 @@ const StyledNoticeFile = styled.div`
   &:hover {
     background-color: ${color.gray300};
   }
+`;
+
+const DeleteButton = styled.div`
+  ${flex({ justifyContent: 'space-between', alignItems: 'center' })};
+  cursor: pointer;
 `;

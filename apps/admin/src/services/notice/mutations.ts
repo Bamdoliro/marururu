@@ -1,6 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useApiError } from '@/hooks';
-import type { PostNoticeReq, PutNoticeReq } from '@/types/notice/remote';
+import type { PostNoticeReq, PresignedDatReq, PutNoticeReq } from '@/types/notice/remote';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
@@ -72,14 +72,15 @@ export const useUploadFileWithPresignedUrl = () => {
   const fileData = useNoticeFileValueStore();
 
   const mutation = useMutation(
-    async (file: File) => {
+    async (files: File[]) => {
       if (!fileData) {
         throw new Error('파일이 선택되지 않았습니다.');
       }
 
-      const presignedData = await postNoticePresignedUrl(fileData.name);
-      await putNoticeFileUrl(file, presignedData);
-      return presignedData.fileName;
+      const fileNameList = fileData.map((file) => file.name);
+      const presignedData: PresignedDatReq[] = await postNoticePresignedUrl(fileNameList);
+      await putNoticeFileUrl(files, presignedData);
+      return presignedData.map((data) => data.fileName);
     },
     {
       onError: handleError,

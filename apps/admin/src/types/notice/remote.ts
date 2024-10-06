@@ -11,13 +11,13 @@ export interface GetNoticeDetailRes {
 export interface PostNoticeReq {
   title: string;
   content: string;
-  fileName?: string | null;
+  fileNameList?: Array<string> | null;
 }
 
 export interface PutNoticeReq {
   title: string;
   content: string;
-  fileName?: string | null;
+  fileNameList?: Array<string> | null;
 }
 
 export interface PresignedDatReq {

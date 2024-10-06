@@ -19,17 +19,22 @@ export const getNoticeDetail = async (id: number) => {
   return data;
 };
 
-export const downloadFile = async (fileUrl: string) => {
-  const response = await maru.get(fileUrl, {
-    responseType: 'blob',
-  });
-  return response.data;
+export const downloadFiles = async (fileUrls: Array<string>) => {
+  const downloadPromises = fileUrls.map((fileUrl) =>
+    maru.get(fileUrl, {
+      responseType: 'blob',
+    })
+  );
+
+  const responses = await Promise.all(downloadPromises);
+
+  return responses.map((response) => response.data);
 };
 
-export const postNotice = async ({ title, content, fileName }: PostNoticeReq) => {
+export const postNotice = async ({ title, content, fileNameList }: PostNoticeReq) => {
   const { data } = await maru.post(
     '/notice',
-    { title, content, fileName },
+    { title, content, fileNameList },
     authorization()
   );
   return data;
@@ -37,11 +42,11 @@ export const postNotice = async ({ title, content, fileName }: PostNoticeReq) =>
 
 export const putEditNotice = async (
   id: number,
-  { title, content, fileName }: PutNoticeReq
+  { title, content, fileNameList }: PutNoticeReq
 ) => {
   const { data } = await maru.put(
     `/notice/${id}`,
-    { title, content, fileName },
+    { title, content, fileNameList },
     authorization()
   );
   return { data };
@@ -53,27 +58,40 @@ export const deleteNotice = async (id: number) => {
 };
 
 export const postNoticePresignedUrl = async (
-  fileName: string
-): Promise<PresignedDatReq> => {
-  const response = await maru.post(`/notice/file`, { fileName }, authorization());
+  fileNameList: Array<string>
+): Promise<PresignedDatReq[]> => {
+  const response = await maru.post(`/notice/file`, { fileNameList }, authorization());
+  const dataList = response.data.dataList;
 
-  const { url, fields, fileName: returnedFileName } = response.data.data;
-
-  return {
-    url,
-    fields: fields || {},
-    fileName: returnedFileName,
-  } as PresignedDatReq;
+  return dataList.map(
+    (fileData: {
+      url: { uploadUrl: string; downloadUrl?: string | null };
+      fileName: string;
+    }) =>
+      ({
+        url: {
+          uploadUrl: fileData.url.uploadUrl,
+          downloadUrl: fileData.url.downloadUrl || null,
+        },
+        fields: {},
+        fileName: fileData.fileName,
+      } as PresignedDatReq)
+  );
 };
 
-export const putNoticeFileUrl = async (file: File, presignedData: PresignedDatReq) => {
-  const { url } = presignedData;
+export const putNoticeFileUrl = async (
+  files: File[],
+  presignedData: PresignedDatReq[]
+) => {
+  const uploadPromises = files.map((file, index) => {
+    const { url } = presignedData[index];
 
-  const response = await axios.put(url.uploadUrl, file, {
-    headers: {
-      'Content-Type': file.type,
-    },
+    return axios.put(url.uploadUrl, file, {
+      headers: {
+        'Content-Type': file.type,
+      },
+    });
   });
-
-  return response;
+  const responses = await Promise.all(uploadPromises);
+  return responses;
 };
