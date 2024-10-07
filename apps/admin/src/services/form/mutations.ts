@@ -14,14 +14,16 @@ import {
 import { useFormListQuery } from './queries';
 
 import type { ApprovalStatus } from '@/types/form/client';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const useUploadSecondScoreFormatMutation = (
   removeFileAndCloseModal: () => void
 ) => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: uploadSecondScoreFormat, ...restMutation } = useMutation({
-    mutationFn: (formData: FormData) => patchSecondScoreFormat(formData),
+    mutationFn: (formData: FormData) => patchSecondScoreFormat(formData, accessToken),
     onSuccess: () => {
       toast('파일이 입력되었습니다.', { type: 'success' });
 
@@ -40,11 +42,12 @@ export const useEditSecondRoundResultMutation = (
 
   const setIsSecondRoundResultEditing = useSetIsSecondRoundResultEditingStore();
   const setSecondRoundResult = useSetSecondRoundResultStore();
+  const accessToken = useAccessTokenValueStore();
 
   const { refetch } = useFormListQuery();
 
   const { mutate: editSecondRoundResult, ...restMutation } = useMutation({
-    mutationFn: () => patchSecondRoundResult(secondRoundResultData),
+    mutationFn: () => patchSecondRoundResult(secondRoundResultData, accessToken),
     onSuccess: () => {
       toast('2차 합격 여부가 반영되었습니다.', {
         type: 'success',
@@ -62,9 +65,10 @@ export const useEditSecondRoundResultMutation = (
 export const useEditSecondRoundResultAutoMutation = () => {
   const { handleError } = useApiError();
   const { refetch } = useFormListQuery();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: editSecondResultAuto, ...restMutation } = useMutation({
-    mutationFn: () => patchSecondScoreResultAuto(),
+    mutationFn: () => patchSecondScoreResultAuto(accessToken),
     onSuccess: () => {
       toast('2차 합격 여부가 모두 반영되었습니다.', {
         type: 'success',
@@ -83,8 +87,10 @@ export const useChangeFinalScoreStatusMutation = (
   closeModal: () => void
 ) => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
+
   const { mutate: changeFinalScoreStatus, ...restMutation } = useMutation({
-    mutationFn: () => patchFinalScore(id, status),
+    mutationFn: () => patchFinalScore(id, status, accessToken),
     onSuccess: () => {
       toast('최종 접수 상태가 변경되었습니다.', { type: 'success' });
       closeModal();
@@ -96,8 +102,10 @@ export const useChangeFinalScoreStatusMutation = (
 
 export const useCheckFormUrlMutation = () => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
+
   const { mutate: checkFormUrl, ...restMutation } = useMutation({
-    mutationFn: (formId: number) => getFormUrl([formId]),
+    mutationFn: (formId: number) => getFormUrl([formId], accessToken),
     onSuccess: (formURL) => {
       if (formURL.dataList[0].formUrl == null) {
         alert('최종제출이 완료되지 않은 학생입니다.');
@@ -113,8 +121,10 @@ export const useCheckFormUrlMutation = () => {
 
 export const usePrintFormUrlMutation = () => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
+
   const { mutate: printFormUrl, ...restMutation } = useMutation({
-    mutationFn: (formIdList: number[]) => getFormUrl(formIdList),
+    mutationFn: (formIdList: number[]) => getFormUrl(formIdList, accessToken),
     onSuccess: (formURL) => {
       let hasShownAlert = false;
       formURL.dataList.forEach((formURL) => {

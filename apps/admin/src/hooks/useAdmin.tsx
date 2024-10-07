@@ -7,7 +7,9 @@ const useAdmin = () => {
   const { data: adminData } = useAdminQuery();
 
   useEffect(() => {
-    if (adminData) setAdmin(adminData);
+    if (adminData) {
+      setAdmin(adminData.data);
+    }
   }, [setAdmin, adminData]);
 
   return { adminData: admin, isLoggedIn: !!adminData };

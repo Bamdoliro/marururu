@@ -5,12 +5,14 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { deleteFaq, postFaq, putEditFaq } from './api';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const useDeleteFaqMutation = (id: number) => {
   const router = useRouter();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: deleteFaqMutate, ...restMutation } = useMutation({
-    mutationFn: () => deleteFaq(id),
+    mutationFn: () => deleteFaq(id, accessToken),
     onSuccess: () => {
       toast('게시물이 삭제되었습니다.', {
         type: 'success',
@@ -25,9 +27,10 @@ export const useDeleteFaqMutation = (id: number) => {
 export const usePostFaqMutation = (faqData: PostFaqReq) => {
   const { handleError } = useApiError();
   const router = useRouter();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: postFaqMutate, ...restMutation } = useMutation({
-    mutationFn: () => postFaq(faqData),
+    mutationFn: () => postFaq(faqData, accessToken),
     onSuccess: ({ data }) => {
       toast('게시물이 게시되었습니다.', {
         type: 'success',
@@ -43,9 +46,10 @@ export const usePostFaqMutation = (faqData: PostFaqReq) => {
 export const useFaqEditMutation = (id: number, faqData: PutFaqReq) => {
   const { handleError } = useApiError();
   const router = useRouter();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: editFaqMutate, ...restMutation } = useMutation({
-    mutationFn: () => putEditFaq(id, faqData),
+    mutationFn: () => putEditFaq(id, faqData, accessToken),
     onSuccess: () => {
       toast('게시물이 수정되었습니다.', {
         type: 'success',

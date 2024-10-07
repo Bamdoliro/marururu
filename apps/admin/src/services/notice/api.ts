@@ -26,36 +26,45 @@ export const downloadFile = async (fileUrl: string) => {
   return response.data;
 };
 
-export const postNotice = async ({ title, content, fileName }: PostNoticeReq) => {
+export const postNotice = async (
+  { title, content, fileName }: PostNoticeReq,
+  accessToken: string | null
+) => {
   const { data } = await maru.post(
     '/notice',
     { title, content, fileName },
-    authorization()
+    authorization(accessToken)
   );
   return data;
 };
 
 export const putEditNotice = async (
   id: number,
-  { title, content, fileName }: PutNoticeReq
+  { title, content, fileName }: PutNoticeReq,
+  accessToken: string | null
 ) => {
   const { data } = await maru.put(
     `/notice/${id}`,
     { title, content, fileName },
-    authorization()
+    authorization(accessToken)
   );
   return { data };
 };
 
-export const deleteNotice = async (id: number) => {
-  const { data } = await maru.delete(`/notice/${id}`, authorization());
+export const deleteNotice = async (id: number, accessToken: string | null) => {
+  const { data } = await maru.delete(`/notice/${id}`, authorization(accessToken));
   return data;
 };
 
 export const postNoticePresignedUrl = async (
-  fileName: string
+  fileName: string,
+  accessToken: string | null
 ): Promise<PresignedDatReq> => {
-  const response = await maru.post(`/notice/file`, { fileName }, authorization());
+  const response = await maru.post(
+    `/notice/file`,
+    { fileName },
+    authorization(accessToken)
+  );
 
   const { url, fields, fileName: returnedFileName } = response.data.data;
 

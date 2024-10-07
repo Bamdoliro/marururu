@@ -1,15 +1,17 @@
-import { Storage } from '@/apis/storage/storage';
-import { KEY, TOKEN } from '@/constants/common/constant';
+import { KEY } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
 import { getAdmin } from './api';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const useAdminQuery = () => {
+  const accessToken = useAccessTokenValueStore();
+
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.ADMIN] as const,
-    queryFn: getAdmin,
-    enabled: !!Storage.getItem(TOKEN.ACCESS),
+    queryKey: [KEY.ADMIN],
+    queryFn: () => getAdmin(accessToken),
+    enabled: !!accessToken,
     suspense: false,
   });
 
-  return { data: data?.data, ...restQuery };
+  return { data: data, ...restQuery };
 };

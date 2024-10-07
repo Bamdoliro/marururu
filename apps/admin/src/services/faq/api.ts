@@ -17,17 +17,21 @@ export const getFaqDetail = async (id: number) => {
   return data;
 };
 
-export const deleteFaq = async (id: number) => {
-  const { data } = await maru.delete(`/question/${id}`, authorization());
+export const deleteFaq = async (id: number, accessToken: string | null) => {
+  const { data } = await maru.delete(`/question/${id}`, authorization(accessToken));
   return data;
 };
 
-export const postFaq = async (faqData: PostFaqReq) => {
-  const { data } = await maru.post(`/question`, faqData, authorization());
+export const postFaq = async (faqData: PostFaqReq, accessToken: string | null) => {
+  const { data } = await maru.post(`/question`, faqData, authorization(accessToken));
   return data;
 };
 
-export const putEditFaq = async (id: number, faqData: PutFaqReq) => {
-  const { data } = await maru.put(`/question/${id}`, faqData, authorization());
+export const putEditFaq = async (
+  id: number,
+  faqData: PutFaqReq,
+  accessToken: string | null
+) => {
+  const { data } = await maru.put(`/question/${id}`, faqData, authorization(accessToken));
   return data;
 };

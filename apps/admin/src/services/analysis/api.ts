@@ -10,47 +10,47 @@ import type {
   GetGenderRatioRes,
 } from '@/types/analysis/remote';
 
-export const getNumberOfApplicantsList = async () => {
+export const getNumberOfApplicantsList = async (accessToken: string | null) => {
   const { data } = await maru.get<GetNumberOfApplicantsRes>(
     '/analysis/number-of-applicants',
-    authorization()
+    authorization(accessToken)
   );
   return data;
 };
 
-export const getGradeDistributionList = async ({
-  statusList,
-}: AnalysisApplicantTypeReq) => {
+export const getGradeDistributionList = async (
+  { statusList }: AnalysisApplicantTypeReq,
+  accessToken: string | null
+) => {
   const { data } = await maru.get<GetGradeDistributionRes>(
     `/analysis/grade-distribution?statusList=${statusList.join('&statusList=')}`,
-    authorization()
+    authorization(accessToken)
   );
   return data;
 };
 
-export const getGenderRatioList = async ({
-  statusList,
-  mainCategory,
-}: GenderRatioStatusReq) => {
+export const getGenderRatioList = async (
+  { statusList, mainCategory }: GenderRatioStatusReq,
+  accessToken: string | null
+) => {
   const { data } = await maru.get<GetGenderRatioRes>(
     `/analysis/gender-ratio?statusList=${statusList.join(
       '&statusList='
     )}&mainCategory=${mainCategory}`,
-    authorization()
+    authorization(accessToken)
   );
   return data;
 };
 
-export const getSchoolOriginList = async ({
-  statusList,
-  isBusan,
-  gu,
-}: SchoolStatusReq) => {
+export const getSchoolOriginList = async (
+  { statusList, isBusan, gu }: SchoolStatusReq,
+  accessToken: string | null
+) => {
   const { data } = await maru.get<GetSchoolOriginRes>(
     `/analysis/school-status?statusList=${statusList.join(
       '&statusList='
     )}&isBusan=${isBusan}&gu=${gu}`,
-    authorization()
+    authorization(accessToken)
   );
   return data;
 };

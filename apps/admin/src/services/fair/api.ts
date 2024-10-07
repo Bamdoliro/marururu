@@ -7,7 +7,7 @@ export const getFairList = async (fairType: string) => {
   return data;
 };
 
-export const postFair = async (fairData: PostFairReq) => {
-  const { data } = await maru.post('/fair', fairData, authorization());
+export const postFair = async (fairData: PostFairReq, accessToken: string | null) => {
+  const { data } = await maru.post('/fair', fairData, authorization(accessToken));
   return data;
 };

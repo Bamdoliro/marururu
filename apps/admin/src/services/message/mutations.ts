@@ -3,12 +3,14 @@ import type { PostMessageReq, PostMeisterMessageReq } from '@/types/message/remo
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { postMessage, postMeisterMessage } from './api';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const usePostMessageMutation = (messageData: PostMessageReq) => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: postMessageMutate, ...restMutation } = useMutation({
-    mutationFn: () => postMessage(messageData),
+    mutationFn: () => postMessage(messageData, accessToken),
     onSuccess: () => {
       toast('메시지가 전송되었습니다.', {
         type: 'success',
@@ -24,9 +26,10 @@ export const usePostMeisterMessageMutaion = (
   meisterMessageData: PostMeisterMessageReq
 ) => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: postMeisterMessageMutate, ...restMutation } = useMutation({
-    mutationFn: () => postMeisterMessage(meisterMessageData),
+    mutationFn: () => postMeisterMessage(meisterMessageData, accessToken),
     onSuccess: () => {
       toast('메시지가 전송되었습니다.', {
         type: 'success',

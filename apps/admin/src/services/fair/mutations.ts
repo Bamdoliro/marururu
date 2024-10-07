@@ -5,13 +5,15 @@ import { useRouter } from 'next/navigation';
 import { postFair } from './api';
 import { toast } from 'react-toastify';
 import { ROUTES } from '@/constants/common/constant';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const usePostFairMustation = (fairData: PostFairReq) => {
   const { handleError } = useApiError();
   const router = useRouter();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: postFairMutate, ...restMutation } = useMutation({
-    mutationFn: () => postFair(fairData),
+    mutationFn: () => postFair(fairData, accessToken),
     onSuccess: () => {
       toast('입학설명회 일정이 게시되었습니다.', {
         type: 'success',

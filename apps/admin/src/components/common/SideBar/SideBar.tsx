@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styled, { css } from 'styled-components';
 import { color, font } from '@maru/design-token';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 const NAVIGATION_DATA = [
   {
@@ -41,9 +42,10 @@ const SideBar = () => {
   const pathName = usePathname();
   const { isLoggedIn } = useAdmin();
   const { logoutAdminMutate } = useLogoutAdminMutation();
+  const accessToken = useAccessTokenValueStore();
 
   const handleLogoutAdmin = () => {
-    logoutAdminMutate();
+    logoutAdminMutate(accessToken);
   };
 
   return (

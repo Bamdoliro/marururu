@@ -11,11 +11,13 @@ import type {
   AnalysisApplicantTypeReq,
   GenderRatioStatusReq,
 } from '@/types/analysis/remote';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const useNumberOfApplicantsListQuery = () => {
+  const accessToken = useAccessTokenValueStore();
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.ANALYSIS_APPLICANTS_COUNT],
-    queryFn: () => getNumberOfApplicantsList(),
+    queryFn: () => getNumberOfApplicantsList(accessToken),
     suspense: false,
   });
 
@@ -23,27 +25,33 @@ export const useNumberOfApplicantsListQuery = () => {
 };
 
 export const useGradeDistributionListQuery = (params: AnalysisApplicantTypeReq) => {
+  const accessToken = useAccessTokenValueStore();
+
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.ANALYSIS_GRADE_DISTRIBUTION, params],
-    queryFn: () => getGradeDistributionList(params),
+    queryFn: () => getGradeDistributionList(params, accessToken),
     suspense: false,
   });
   return { data: data?.dataList, ...restQuery };
 };
 
 export const useGenderRatioListQuery = (params: GenderRatioStatusReq) => {
+  const accessToken = useAccessTokenValueStore();
+
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.ANALYSIS_GENDER_RATIO, params],
-    queryFn: () => getGenderRatioList(params),
+    queryFn: () => getGenderRatioList(params, accessToken),
     suspense: false,
   });
   return { data: data?.dataList, ...restQuery };
 };
 
 export const useSchoolOriginListQuery = (params: SchoolStatusReq) => {
+  const accessToken = useAccessTokenValueStore();
+
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.ANALYSIS_SCHOOL_ORIGIN, params],
-    queryFn: () => getSchoolOriginList(params),
+    queryFn: () => getSchoolOriginList(params, accessToken),
     suspense: false,
   });
   return { data: data?.dataList, ...restQuery };
