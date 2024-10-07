@@ -70,6 +70,7 @@ export interface Subject {
   achievementLevel22: AchievementLevel | null;
   achievementLevel31: AchievementLevel | null;
   score: number | null;
+  is미이수: boolean | null;
 }
 
 export type StudentSubject = Omit<Subject, 'id'>;
