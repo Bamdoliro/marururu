@@ -135,6 +135,7 @@ export interface Subject {
   achievementLevel: AchievementLevel;
   grade: number;
   semester: number;
+  is미이수: boolean;
 }
 
 export interface Attendance {

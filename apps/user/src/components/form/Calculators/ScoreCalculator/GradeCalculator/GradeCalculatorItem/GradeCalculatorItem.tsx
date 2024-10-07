@@ -16,10 +16,8 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
 
   const subject = subjectList[id];
 
-  const getDisplayValue = (value: string | null) => {
-    if (value === null) return '미이수';
-    if (['국어', '영어', '수학'].includes(subject.subjectName) && value === 'C')
-      return '미이수';
+  const getDisplayValue = (value: string | null, is미이수: boolean | null) => {
+    if (value === null || (is미이수 && value === 'C')) return '미이수';
     return value;
   };
 
@@ -30,7 +28,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel21)}
+          value={getDisplayValue(subject.achievementLevel21, subject.is미이수)}
           size="SMALL"
           data={achievementLevels}
           width={80}
@@ -41,7 +39,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel22)}
+          value={getDisplayValue(subject.achievementLevel22, subject.is미이수)}
           size="SMALL"
           data={achievementLevels}
           width={80}
@@ -52,7 +50,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel31)}
+          value={getDisplayValue(subject.achievementLevel31, subject.is미이수)}
           size="SMALL"
           data={achievementLevels}
           width={80}

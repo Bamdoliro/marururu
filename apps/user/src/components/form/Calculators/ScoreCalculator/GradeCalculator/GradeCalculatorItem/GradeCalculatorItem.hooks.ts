@@ -11,9 +11,11 @@ export const useInput = (id: number) => {
       const subject = updatedData[id];
 
       let newValue: string | null;
+      let is미이수 = false;
       if (data === '미이수') {
         if (CORE_SUBJECTS.includes(subject.subjectName)) {
           newValue = 'C';
+          is미이수 = true;
         } else {
           newValue = null;
         }
@@ -24,6 +26,7 @@ export const useInput = (id: number) => {
       updatedData[id] = {
         ...subject,
         [name]: newValue,
+        is미이수: is미이수,
       };
       return updatedData;
     });
