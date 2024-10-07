@@ -18,7 +18,9 @@ export const useAddNewGEDSubject = () => {
       achievementLevel22: null,
       achievementLevel31: null,
       score: 0,
-      is미이수: null,
+      is미이수21: null,
+      is미이수22: null,
+      is미이수31: null,
     };
     setNewGEDSubjectList((prev) => [...prev, newSubject]);
   };
