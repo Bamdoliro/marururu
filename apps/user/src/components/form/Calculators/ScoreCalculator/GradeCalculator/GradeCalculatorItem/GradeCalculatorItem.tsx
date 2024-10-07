@@ -28,7 +28,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel21, subject.is미이수)}
+          value={getDisplayValue(subject.achievementLevel21, subject.is미이수21)}
           size="SMALL"
           data={achievementLevels}
           width={80}
@@ -39,7 +39,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel22, subject.is미이수)}
+          value={getDisplayValue(subject.achievementLevel22, subject.is미이수22)}
           size="SMALL"
           data={achievementLevels}
           width={80}
@@ -50,7 +50,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel31, subject.is미이수)}
+          value={getDisplayValue(subject.achievementLevel31, subject.is미이수31)}
           size="SMALL"
           data={achievementLevels}
           width={80}

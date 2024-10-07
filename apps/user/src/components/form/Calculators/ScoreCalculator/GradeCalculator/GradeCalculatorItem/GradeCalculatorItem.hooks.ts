@@ -26,7 +26,9 @@ export const useInput = (id: number) => {
       updatedData[id] = {
         ...subject,
         [name]: newValue,
-        is미이수: is미이수,
+        is미이수21: name === 'achievementLevel21' ? is미이수 : subject.is미이수21,
+        is미이수22: name === 'achievementLevel22' ? is미이수 : subject.is미이수22,
+        is미이수31: name === 'achievementLevel31' ? is미이수 : subject.is미이수31,
       };
       return updatedData;
     });
