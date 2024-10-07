@@ -1,16 +1,15 @@
-import { ROUTES, TOKEN } from '@/constants/common/constant';
+import { ROUTES } from '@/constants/common/constant';
 import { maru } from '../instance/instance';
-import { Storage } from '../storage/storage';
 import { Session } from '../session/session';
 
-const refreshToken = async () => {
+const refreshToken = async (setAccessToken: (newAccessToken: string) => void) => {
   try {
     const { data } = await maru.patch('/auth', null, {
       headers: {
-        'Refresh-Token': `${Session.getItem(TOKEN.REFRESH)}`,
+        'Refresh-Token': `${Session.getRefreshToken()}`,
       },
     });
-    Storage.setItem(TOKEN.ACCESS, data.data.accessToken);
+    setAccessToken(data.data.accessToken);
   } catch {
     window.location.href = ROUTES.MAIN;
     alert('다시 로그인 해주세요');
