@@ -20,20 +20,17 @@ maru.interceptors.request.use(
 
 export const setupInterceptor = (setAccessToken: (newAccessToken: string) => void) => {
   maru.interceptors.response.use(
-    (response) => {
-      return response;
-    },
+    (response) => response,
     async (error) => {
-      if (error.response) {
-        const {
-          status,
-          data: { message, code },
-        } = error.response;
-
-        if (message) {
-          if (status === 401 && code === 'EXPIRED_TOKEN') {
-            await refreshToken(setAccessToken);
-          }
+      const originalRequest = error.config;
+      if (error.response.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
+        try {
+          const newAccessToken = await refreshToken(setAccessToken);
+          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+          return maru(originalRequest);
+        } catch (refreshError) {
+          return Promise.reject(refreshError);
         }
       }
       return Promise.reject(error);
