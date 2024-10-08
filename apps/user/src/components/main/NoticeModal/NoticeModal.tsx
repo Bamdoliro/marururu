@@ -16,7 +16,7 @@ interface Props {
 
 const NoticeModal = ({ isOpen, onClose }: Props) => {
   const router = useRouter();
-  const isLoggedIn = Boolean(Session.getItem('access-token'));
+  const isLoggedIn = Boolean(Session.getRefreshToken());
 
   useEffect(() => {
     const noticeModalClosed = Cookie.getItem('noticeModalClosed');
