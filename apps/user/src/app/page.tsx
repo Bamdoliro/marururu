@@ -36,9 +36,9 @@ const MainPage = () => {
 const MainContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const searchParams = useSearchParams();
-  const router = useRouter();
   const message = searchParams.get('message');
   const warning = searchParams.get('warning');
+  const router = useRouter();
   const [accessToken, setAccessToken] = useAccessTokenStore();
   const refreshingRef = useRef(false);
   const token = Session.getRefreshToken();
