@@ -8,7 +8,7 @@ const FormStatusManager = () => {
 
   useEffect(() => {
     if (formStatusData) {
-      const { status } = formStatusData;
+      const { status } = formStatusData.data;
       if (status === 'SUBMITTED') setFormStep('초안제출완료');
       else if (
         status === 'RECEIVED' ||

@@ -8,7 +8,7 @@ import { useFormStatusQuery } from '@/services/form/queries';
 
 const CheckForm = () => {
   const { handleDownloadAdmissionTicketButtonClick } = useDownloadAdmissionTicket();
-  const { data: formStatus } = useFormStatusQuery();
+  const { data: formStatus } = useFormStatusQuery().data ?? {};
 
   const handleClick = () => {
     if (formStatus?.status === 'FIRST_PASSED') {

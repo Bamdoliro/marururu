@@ -1,5 +1,4 @@
-import { Storage } from '@/apis/storage/storage';
-import { KEY, TOKEN } from '@/constants/common/constant';
+import { KEY } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
 import { useSuspenseQuery } from '@suspensive/react-query';
 import {
@@ -9,6 +8,7 @@ import {
   getSaveForm,
   getSchoolList,
 } from './api';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const useSchoolListQuery = (school: string) => {
   const { data, ...restQuery } = useSuspenseQuery({
@@ -22,7 +22,7 @@ export const useSchoolListQuery = (school: string) => {
 export const useExportFormQuery = () => {
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.EXPORT_FORM],
-    queryFn: getExportForm,
+    queryFn: () => getExportForm,
     retry: 1,
     suspense: false,
   });
@@ -33,7 +33,7 @@ export const useExportFormQuery = () => {
 export const useExportReciptQuery = () => {
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.EXPORT_RECIPT],
-    queryFn: getExportRecipt,
+    queryFn: () => getExportRecipt,
     retry: 1,
     suspense: false,
   });
@@ -42,25 +42,28 @@ export const useExportReciptQuery = () => {
 };
 
 export const useSaveFormQuery = () => {
+  const accessToken = useAccessTokenValueStore();
+
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.SAVE_FORM],
-    queryFn: getSaveForm,
-    enabled: !!Storage.getItem(TOKEN.ACCESS),
+    queryFn: () => getSaveForm(accessToken),
+    enabled: !!accessToken,
     retry: 1,
     suspense: false,
   });
 
-  return { data: data?.data, ...restQuery };
+  return { data, ...restQuery };
 };
 
 export const useFormStatusQuery = () => {
+  const accessToken = useAccessTokenValueStore();
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.FORM_STATUS],
-    queryFn: getFormStatus,
-    enabled: !!Storage.getItem(TOKEN.ACCESS),
+    queryFn: () => getFormStatus(accessToken),
+    enabled: !!accessToken,
     suspense: false,
     retry: 1,
   });
 
-  return { data: data?.data, ...restQuery };
+  return { data: data, ...restQuery };
 };

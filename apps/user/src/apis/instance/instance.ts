@@ -18,23 +18,25 @@ maru.interceptors.request.use(
   }
 );
 
-maru.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    if (error.response) {
-      const {
-        status,
-        data: { message, code },
-      } = error.response;
+export const setupInterceptor = (setAccessToken: (newAccessToken: string) => void) => {
+  maru.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    async (error) => {
+      if (error.response) {
+        const {
+          status,
+          data: { message, code },
+        } = error.response;
 
-      if (message) {
-        if (status === 401 && code === 'EXPIRED_TOKEN') {
-          refreshToken();
+        if (message) {
+          if (status === 401 && code === 'EXPIRED_TOKEN') {
+            await refreshToken(setAccessToken);
+          }
         }
       }
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
-  }
-);
+  );
+};

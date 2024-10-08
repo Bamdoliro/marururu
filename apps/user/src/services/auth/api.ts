@@ -37,11 +37,11 @@ export const patchVerification = async ({
   return data;
 };
 
-export const deleteLogoutUser = async () => {
-  await maru.delete('/auth', authorization());
+export const deleteLogoutUser = async (accessToken: string | null) => {
+  await maru.delete('/auth', authorization(accessToken));
 };
 
-export const getCheckLogin = async () => {
-  const { data } = await maru.get<GetCheckLoginRes>('/user', authorization());
+export const getCheckLogin = async (accessToken: string | null) => {
+  const { data } = await maru.get<GetCheckLoginRes>('/user', authorization(accessToken));
   return data;
 };

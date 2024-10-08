@@ -3,7 +3,7 @@ import { Button } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { use성적입력StepStore } from '@/store';
-import { Storage } from '@/apis/storage/storage';
+import { Cookie } from '@/apis/cookie/cookie';
 
 interface Props {
   onPrevious?: () => void;
@@ -13,7 +13,7 @@ interface Props {
 
 const FormController = ({ onPrevious, onNext, step }: Props) => {
   const [성적입력Step] = use성적입력StepStore();
-  const correct = Storage.getItem('correct');
+  const correct = Cookie.getItem('correct');
 
   return (
     <FormControllerBar>

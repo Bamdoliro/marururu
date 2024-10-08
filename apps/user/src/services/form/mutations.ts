@@ -14,14 +14,16 @@ import {
   putUpoloadFormDocument,
 } from './api';
 import type { FormPresignedUrlData } from '@/types/form/remote';
-import { Storage } from '@/apis/storage/storage';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
+import { Cookie } from '@/apis/cookie/cookie';
 
 export const useSubmitFinalFormMutation = (formUrl: string) => {
   const setFormStep = useSetFormStepStore();
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: submitFinalFormMutate, ...restQuery } = useMutation({
-    mutationFn: () => patchSubmitFinalForm(formUrl),
+    mutationFn: () => patchSubmitFinalForm(formUrl, accessToken),
     onSuccess: () => {
       setFormStep('최종제출완료');
     },
@@ -34,9 +36,10 @@ export const useSubmitFinalFormMutation = (formUrl: string) => {
 export const useSubmitDraftFormMutation = (formData: Form) => {
   const setFormStep = useSetFormStepStore();
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: submitDraftFormMutate, ...restMutation } = useMutation({
-    mutationFn: () => postSubmitDraftForm(formData),
+    mutationFn: () => postSubmitDraftForm(formData, accessToken),
     onSuccess: () => setFormStep('초안제출완료'),
     onError: handleError,
   });
@@ -46,9 +49,10 @@ export const useSubmitDraftFormMutation = (formData: Form) => {
 
 export const useSaveFormMutation = () => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: saveFormMutate, ...restMutation } = useMutation({
-    mutationFn: (form: Form) => postSaveForm(form),
+    mutationFn: (form: Form) => postSaveForm(form, accessToken),
     onError: handleError,
   });
 
@@ -59,10 +63,11 @@ export const useUploadFormDocumentMutation = (
   setFormDocument: Dispatch<SetStateAction<FormDocument>>
 ) => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const { mutate: uploadFormDocumentMutate, ...restMutation } = useMutation({
     mutationFn: async (file: File) => {
-      const presignedData = await postUploadFormDocumnet();
+      const presignedData = await postUploadFormDocumnet(accessToken);
 
       await putUpoloadFormDocument(file, presignedData);
 
@@ -83,17 +88,18 @@ export const useUploadFormDocumentMutation = (
 
 export const useUploadProfileImageMutation = () => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const mutation = useMutation(
     async (file: File) => {
       try {
-        const presignedData = await postUploadProfileImage();
+        const presignedData = await postUploadProfileImage(accessToken);
         await putProfileUpoload(file, presignedData);
 
         if (presignedData.downloadUrl) {
           const downloadUrl = await getUploadProfile(presignedData.downloadUrl);
 
-          Storage.setItem('downloadUrl', downloadUrl);
+          Cookie.setItem('downloadUrl', downloadUrl);
           return downloadUrl;
         } else {
           return null;
@@ -112,10 +118,11 @@ export const useUploadProfileImageMutation = () => {
 
 export const useRefreshProfileImageMutation = () => {
   const { handleError } = useApiError();
+  const accessToken = useAccessTokenValueStore();
 
   const mutation = useMutation(
     async () => {
-      const presignedData = await postUploadProfileImage();
+      const presignedData = await postUploadProfileImage(accessToken);
       const newDownloadUrl = await getUploadProfile(presignedData.downloadUrl);
       return newDownloadUrl;
     },

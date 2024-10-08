@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 const useUser = () => {
   const [user, setUser] = useUserStore();
-  const { data: userData } = useUserQuery();
+  const { data: userData } = useUserQuery().data ?? {};
 
   useEffect(() => {
     if (userData) setUser(userData);

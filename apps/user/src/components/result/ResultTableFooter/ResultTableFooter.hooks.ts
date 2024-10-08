@@ -1,6 +1,7 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useUser } from '@/hooks';
 import { useDownloadAdmissionTicketQuery } from '@/services/result/queries';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 import { useRouter } from 'next/navigation';
 
 export const useCTAButton = () => {
@@ -16,11 +17,15 @@ export const useCTAButton = () => {
 export const useDownloadAdmissionTicket = () => {
   const { data: admissionTicketData } = useDownloadAdmissionTicketQuery();
   const { userData } = useUser();
+  const accessToken = useAccessTokenValueStore();
 
-  const handleDownloadAdmissionTicketButtonClick = () => {
+  const handleDownloadAdmissionTicketButtonClick = async () => {
     if (!admissionTicketData) return;
+
+    const data = await admissionTicketData(accessToken);
+
     const admissionTicketUrl = window.URL.createObjectURL(
-      new Blob([admissionTicketData])
+      new Blob([data], { type: 'application/pdf' })
     );
 
     const link = document.createElement('a');

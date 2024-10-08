@@ -6,7 +6,7 @@ import ResultTableFooter from '../ResultTableFooter/final/ResultTableFooter';
 import FinalResultTableItem from '../FinalResultTableItem/FinalResultTableItem';
 
 const FinalResultTable = () => {
-  const { data: finalResultData } = useFinalResultQuery();
+  const { data: finalResultData } = useFinalResultQuery()?.data ?? {};
 
   return finalResultData ? (
     <StyledFinalResultTable>

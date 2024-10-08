@@ -18,7 +18,7 @@ import { useFormStatusQuery } from '@/services/form/queries';
 
 const FormPage = () => {
   const [formStep, setFormStep] = useFormStepStore();
-  const formStatusData = useFormStatusQuery().data;
+  const formStatusData = useFormStatusQuery().data?.data;
 
   useEffect(() => {
     if (formStatusData?.status === 'REJECTED') {

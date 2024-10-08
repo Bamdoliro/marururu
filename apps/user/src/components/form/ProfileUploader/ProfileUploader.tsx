@@ -11,7 +11,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
 import ProfileUploadLoader from '../ProfileUpoloadLoader/ProfileUploadLoader';
-import { Storage } from '@/apis/storage/storage';
+import { Cookie } from '@/apis/cookie/cookie';
 
 type ProfileUploaderProps = {
   onPhotoUpload: (success: boolean, url?: string) => void;
@@ -30,7 +30,7 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
   const { mutate: refreshProfileImage } = useRefreshProfileImageMutation();
 
   const isUploadPictureStored = useMemo(
-    () => Storage.getItem('isUploadPicture') === 'true',
+    () => Cookie.getItem('isUploadPicture') === 'true',
     []
   );
 
@@ -43,8 +43,8 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
 
       onPhotoUpload(true, downloadUrl);
       setImageSrc(downloadUrl);
-      Storage.setItem('downloadUrl', downloadUrl);
-      Storage.setItem('isUploadPicture', 'true');
+      Cookie.setItem('downloadUrl', downloadUrl);
+      Cookie.setItem('isUploadPicture', 'true');
       setIsUploading(false);
     },
     [onPhotoUpload]
@@ -112,7 +112,7 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
         onError: () => onPhotoUpload(false),
       });
     } else {
-      const storedImageUrl = Storage.getItem('downloadUrl');
+      const storedImageUrl = Cookie.getItem('downloadUrl');
       if (storedImageUrl) setImageSrc(storedImageUrl);
     }
   }, [

@@ -5,7 +5,7 @@ import { FormLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { Column, Input, RadioGroup, Row } from '@maru/ui';
 import { useCTAButton, useInput } from './지원자정보.hooks';
-import { Storage } from '@/apis/storage/storage';
+import { Cookie } from '@/apis/cookie/cookie';
 
 const 지원자정보 = () => {
   const form = useFormValueStore();
@@ -17,7 +17,7 @@ const 지원자정보 = () => {
   const [isPhotoError, setIsPhotoError] = useState(false);
 
   const isUploadPictureStored = useMemo(
-    () => Storage.getItem('isUploadPicture') === 'true',
+    () => Cookie.getItem('isUploadPicture') === 'true',
     []
   );
 
@@ -68,8 +68,8 @@ const 지원자정보 = () => {
     if (success && url) {
       setIsPhotoUploaded(true);
       setIsPhotoError(false);
-      Storage.setItem('isUploadPicture', 'true');
-      Storage.setItem('downloadUrl', url);
+      Cookie.setItem('isUploadPicture', 'true');
+      Cookie.setItem('downloadUrl', url);
     } else {
       setIsPhotoUploaded(false);
       setIsPhotoError(true);

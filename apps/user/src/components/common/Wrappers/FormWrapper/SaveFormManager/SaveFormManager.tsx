@@ -11,7 +11,7 @@ import { updateSlicedSubjectList } from '@/utils';
 import { useEffect } from 'react';
 
 const SaveFormManager = () => {
-  const { data: saveFormData } = useSaveFormQuery();
+  const { data: saveFormData } = useSaveFormQuery()?.data ?? {};
   const [isSaveFormLoaded, setIsSaveFormLoaded] = useIsSaveFormLoadedStore();
   const setForm = useSetFormStore();
   const setSubjectList = useSetSubjectListStore();

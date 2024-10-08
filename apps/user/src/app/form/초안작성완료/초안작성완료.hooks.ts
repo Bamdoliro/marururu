@@ -1,4 +1,4 @@
-import { Storage } from '@/apis/storage/storage';
+import { Cookie } from '@/apis/cookie/cookie';
 import { useSubmitDraftFormMutation } from '@/services/form/mutations';
 import { useFormValueStore, useSetFormStepStore } from '@/store';
 import type { Form } from '@/types/form/client';
@@ -29,7 +29,7 @@ const useFilledApplicantFieldsCount = (applicant: Form['applicant']) => {
           return acc + 1;
       }
     },
-    Storage.getItem('isUploadPicture') ? 1 : 0
+    Cookie.getItem('isUploadPicture') ? 1 : 0
   );
 };
 

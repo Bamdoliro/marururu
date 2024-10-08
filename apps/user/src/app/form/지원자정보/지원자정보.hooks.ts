@@ -4,14 +4,14 @@ import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store
 import useUser from '@/hooks/useUser';
 import { formatDate } from '@/utils';
 import { useSaveFormMutation } from '@/services/form/mutations';
-import { Storage } from '@/apis/storage/storage';
 import { useCookies } from 'react-cookie';
+import { Cookie } from '@/apis/cookie/cookie';
 
 export const useCTAButton = () => {
   const form = useFormValueStore();
   const setFormStep = useSetFormStepStore();
   const { saveFormMutate } = useSaveFormMutation();
-  const correct = Storage.getItem('correct');
+  const correct = Cookie.getItem('correct');
   const [, , removeCookie] = useCookies(['correct']);
 
   const handleMoveNextStep = () => {

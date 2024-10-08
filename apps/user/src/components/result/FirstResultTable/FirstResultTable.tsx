@@ -6,7 +6,7 @@ import FirstResultTableFooter from '../ResultTableFooter/first/ResultTableFooter
 import FirstResultTableItem from '../FirstResultTableItem/FirstResultTableItem';
 
 const FirstResultTable = () => {
-  const { data: firstResultData } = useFirstResultQuery();
+  const { data: firstResultData } = useFirstResultQuery()?.data ?? {};
 
   return firstResultData ? (
     <StyledFirstResultTable isPassed={firstResultData.passed}>

@@ -8,7 +8,7 @@ import { useFormStatusQuery } from '@/services/form/queries';
 
 const CheckForm = () => {
   const { handlleDownloadFormButtonClick } = useDownloadForm();
-  const { data: formStatus } = useFormStatusQuery();
+  const { data: formStatus } = useFormStatusQuery().data ?? {};
 
   const handleClick = () => {
     const allowedStatuses = ['FINAL_SUBMITTED', 'APPROVED', 'RECEIVED', 'REJECTED'];

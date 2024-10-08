@@ -1,19 +1,15 @@
-import { TOKEN } from '@/constants/common/constant';
-
-import { Storage } from '../storage/storage';
-
-const authorization = () => {
+const authorization = (accessToken: string | null) => {
   return {
     headers: {
-      Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   };
 };
 
-authorization.FormData = () => {
+authorization.FormData = (accessToken: string | null) => {
   return {
     headers: {
-      Authorization: `Bearer ${Storage.getItem(TOKEN.ACCESS)}`,
+      Authorization: `Bearer ${accessToken}`,
       'Content-Type': 'multipart/form-data',
     },
   };

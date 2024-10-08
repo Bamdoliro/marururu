@@ -1,15 +1,16 @@
-import { Storage } from '@/apis/storage/storage';
-import { KEY, TOKEN } from '@/constants/common/constant';
+import { KEY } from '@/constants/common/constant';
 import { useQuery } from '@tanstack/react-query';
 import { getUser } from './api';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const useUserQuery = () => {
+  const accessToken = useAccessTokenValueStore();
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.USER] as const,
-    queryFn: getUser,
-    enabled: !!Storage.getItem(TOKEN.ACCESS),
+    queryKey: [KEY.USER],
+    queryFn: () => getUser(accessToken),
+    enabled: !!accessToken,
     suspense: false,
   });
 
-  return { data: data?.data, ...restQuery };
+  return { data: data, ...restQuery };
 };

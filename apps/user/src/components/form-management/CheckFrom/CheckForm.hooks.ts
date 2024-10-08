@@ -1,13 +1,18 @@
 import { useUser } from '@/hooks';
 import { useExportFormQuery } from '@/services/form/queries';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 
 export const useDownloadForm = () => {
   const { userData } = useUser();
   const { data: exportFormData } = useExportFormQuery();
+  const accessToken = useAccessTokenValueStore();
 
-  const handlleDownloadFormButtonClick = () => {
+  const handlleDownloadFormButtonClick = async () => {
     if (!exportFormData) return;
-    const pdfBlobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
+
+    const formData = await exportFormData(accessToken);
+
+    const pdfBlobUrl = window.URL.createObjectURL(new Blob([formData]));
 
     const link = document.createElement('a');
     link.href = pdfBlobUrl;

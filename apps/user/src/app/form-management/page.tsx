@@ -29,7 +29,7 @@ import { flex } from '@maru/utils';
 dayjs.extend(isBetween);
 
 const FormManagementPage = () => {
-  const { data: handleFormStatus } = useFormStatusQuery();
+  const { data: handleFormStatus } = useFormStatusQuery()?.data ?? {};
   const now = dayjs();
 
   const FormManagementComponent = () => {

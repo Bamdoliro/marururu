@@ -5,6 +5,7 @@ import {
 } from '@/services/form/mutations';
 import { useExportFormQuery } from '@/services/form/queries';
 import { useFormDocumentValueStore, useSetFormDocumentStore } from '@/store';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 import type { ChangeEventHandler } from 'react';
 import { useCallback, useState } from 'react';
 import { useEffect } from 'react';
@@ -46,34 +47,44 @@ export const useExportFormAction = (
     setHasDownloaded(true);
   }, [pdfBlobUrl, userData.name]);
 
+  const accessToken = useAccessTokenValueStore();
   useEffect(() => {
-    if (exportFormData && !hasDownloaded) {
-      const blobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
-      setPdfBlobUrl(blobUrl);
-      downloadPdf();
-      closePdfGeneratedLoader();
-    } else if (!exportFormData) {
-      openPdfGeneratedLoader();
-    }
+    const handleExportForm = async () => {
+      if (exportFormData && !hasDownloaded) {
+        const formData = await exportFormData(accessToken);
+        const blobUrl = window.URL.createObjectURL(new Blob([formData]));
+        setPdfBlobUrl(blobUrl);
+
+        downloadPdf();
+        closePdfGeneratedLoader();
+      } else if (!exportFormData) {
+        openPdfGeneratedLoader();
+      }
+    };
+
+    handleExportForm();
   }, [
     exportFormData,
     hasDownloaded,
     closePdfGeneratedLoader,
     openPdfGeneratedLoader,
     downloadPdf,
+    accessToken,
   ]);
 
-  const handleExportForm = useCallback(() => {
+  const handleExportForm = useCallback(async () => {
     if (pdfBlobUrl) {
       downloadPdf();
     } else if (exportFormData) {
-      const blobUrl = window.URL.createObjectURL(new Blob([exportFormData]));
+      const formData = await exportFormData(accessToken);
+
+      const blobUrl = window.URL.createObjectURL(new Blob([formData]));
       setPdfBlobUrl(blobUrl);
       downloadPdf();
     } else {
       openPdfGeneratedLoader();
     }
-  }, [downloadPdf, openPdfGeneratedLoader, exportFormData, pdfBlobUrl]);
+  }, [pdfBlobUrl, exportFormData, downloadPdf, accessToken, openPdfGeneratedLoader]);
 
   return { handleExportForm };
 };

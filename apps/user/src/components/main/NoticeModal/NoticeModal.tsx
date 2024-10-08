@@ -6,7 +6,8 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import { flex } from '@maru/utils';
 import { IconClose } from '@maru/icon';
-import { Storage } from '@/apis/storage/storage';
+import { Cookie } from '@/apis/cookie/cookie';
+import { Session } from '@/apis/session/session';
 
 interface Props {
   isOpen: boolean;
@@ -15,10 +16,10 @@ interface Props {
 
 const NoticeModal = ({ isOpen, onClose }: Props) => {
   const router = useRouter();
-  const isLoggedIn = Boolean(Storage.getItem('access-token'));
+  const isLoggedIn = Boolean(Session.getItem('access-token'));
 
   useEffect(() => {
-    const noticeModalClosed = Storage.getItem('noticeModalClosed');
+    const noticeModalClosed = Cookie.getItem('noticeModalClosed');
 
     if (noticeModalClosed) {
       onClose();
@@ -38,7 +39,7 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
 
   const handleCloseModal = (navigateToGuide = false) => {
     if (isLoggedIn) {
-      Storage.setItem('noticeModalClosed', 'true');
+      Cookie.setItem('noticeModalClosed', 'true');
     }
     if (navigateToGuide) {
       router.push(UserGuide);

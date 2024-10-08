@@ -1,7 +1,7 @@
 import { useFormValueStore, useSetFormStepStore, use성적입력StepStore } from '@/store';
 import { styled } from 'styled-components';
 import CheckFormComplete from './CheckFormComplete/CheckFormComplete';
-import { Storage } from '@/apis/storage/storage';
+import { Cookie } from '@/apis/cookie/cookie';
 
 interface Props {
   applicantFilledCount: number;
@@ -24,33 +24,33 @@ const CheckFormCompleteBox = ({
 
   const handleCorrect지원자정보 = () => {
     setFormStep('지원자정보');
-    Storage.setItem('correct', '1');
+    Cookie.setItem('correct', '1');
   };
 
   const handleCorrect보호자정보 = () => {
     setFormStep('보호자정보');
-    Storage.setItem('correct', '1');
+    Cookie.setItem('correct', '1');
   };
 
   const handleCorrect출신학교및학력 = () => {
     setFormStep('출신학교및학력');
-    Storage.setItem('correct', '1');
+    Cookie.setItem('correct', '1');
   };
 
   const handleCorrect전형선택 = () => {
     setFormStep('전형선택');
-    Storage.setItem('correct', '1');
+    Cookie.setItem('correct', '1');
   };
 
   const handleCorrect성적입력 = () => {
     setFormStep('성적입력');
     set성적입력Step('교과성적');
-    Storage.setItem('correct', '1');
+    Cookie.setItem('correct', '1');
   };
 
   const handleCorrect자기소개서 = () => {
     setFormStep('자기소개서');
-    Storage.setItem('correct', '1');
+    Cookie.setItem('correct', '1');
   };
 
   return (

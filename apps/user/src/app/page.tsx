@@ -19,6 +19,8 @@ import { ROUTES } from '@/constants/common/constant';
 import NoticeModal from '@/components/main/NoticeModal/NoticeModal';
 import React from 'react';
 import { Suspense } from '@suspensive/react';
+import { useSetAccessTokenStore } from '@/store/auth/auth';
+import { setupInterceptor } from '@/apis/instance/instance';
 
 const MainPage = () => {
   return (
@@ -34,6 +36,11 @@ const MainContent = () => {
   const router = useRouter();
   const message = searchParams.get('message');
   const warning = searchParams.get('warning');
+  const setAccessToken = useSetAccessTokenStore();
+
+  useEffect(() => {
+    setupInterceptor(setAccessToken);
+  }, [setAccessToken]);
 
   useEffect(() => {
     const noticeModalClosed = localStorage.getItem('noticeModalClosed');

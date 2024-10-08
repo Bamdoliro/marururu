@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 export const useLoginCheckQuery = () => {
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.LOGIN_CHECK],
-    queryFn: getCheckLogin,
+    queryFn: () => getCheckLogin,
     suspense: false,
   });
 

@@ -5,7 +5,7 @@ import { ButtonInput, Column, Input, Row } from '@maru/ui';
 import { useOverlay } from '@toss/use-overlay';
 import { useCTAButton, useInput } from './보호자정보.hooks';
 import { useState } from 'react';
-import { Storage } from '@/apis/storage/storage';
+import { Cookie } from '@/apis/cookie/cookie';
 
 const 보호자정보 = () => {
   const overlay = useOverlay();
@@ -20,7 +20,7 @@ const 보호자정보 = () => {
   const [isAddressError, setIsAddressError] = useState(false);
   const [isDetailAddressError, setIsDetailAddressError] = useState(false);
 
-  const correct = Storage.getItem('correct');
+  const correct = Cookie.getItem('correct');
 
   const validateForm = () => {
     const nameValid = form.parent.name.trim().length >= 2;

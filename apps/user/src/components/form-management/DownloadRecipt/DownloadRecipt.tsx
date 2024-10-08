@@ -8,7 +8,7 @@ import { useFormStatusQuery } from '@/services/form/queries';
 
 const DownloadRecipt = () => {
   const { handleDownloadReciptButtonClick } = useDownloadRecipt();
-  const { data: formStatus } = useFormStatusQuery();
+  const { data: formStatus } = useFormStatusQuery().data ?? {};
 
   const isDownloadable =
     formStatus?.status === 'FINAL_SUBMITTED' ||

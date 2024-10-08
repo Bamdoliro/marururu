@@ -1,4 +1,3 @@
-import { Storage } from '@/apis/storage/storage';
 import { ROUTES, TOKEN } from '@/constants/common/constant';
 import { useApiError } from '@/hooks';
 import type {
@@ -20,23 +19,24 @@ import {
   postRequestVerificationCode,
 } from './api';
 import { useCookies } from 'react-cookie';
+import { Session } from '@/apis/session/session';
+import { useSetAccessTokenStore } from '@/store/auth/auth';
 
 export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
   const router = useRouter();
-  const [, , removeCookie] = useCookies(['access-token', 'refresh-token']);
+  const setAccessToken = useSetAccessTokenStore();
 
   const { mutate: loginUserMutate, ...restMutation } = useMutation({
     mutationFn: () => postLoginUser({ phoneNumber, password }),
     onSuccess: (res: AxiosResponse) => {
       const { accessToken, refreshToken } = res.data;
-      Storage.setItem(TOKEN.ACCESS, accessToken);
-      Storage.setItem(TOKEN.REFRESH, refreshToken);
+      setAccessToken(accessToken);
+      Session.setItem(TOKEN.REFRESH, refreshToken);
       router.push(ROUTES.MAIN);
     },
     onError: () => {
       alert('다시 로그인을 시도해주세요');
-      removeCookie('access-token');
-      removeCookie('refresh-token');
+      sessionStorage.clear();
     },
   });
 
@@ -68,7 +68,7 @@ export const useUpdateUserMutation = ({ phoneNumber, password }: PatchUpdateAuth
     onSuccess: () => {
       alert('비밀번호 변경 성공');
       router.push(ROUTES.LOGIN);
-      localStorage.clear();
+      sessionStorage.clear();
     },
     onError: handleError,
   });
@@ -107,8 +107,6 @@ export const useVerificationMutation = (
 
 export const useLogoutUserMutation = () => {
   const [, , removeCookie] = useCookies([
-    'access-token',
-    'refresh-token',
     'noticeModalClosed',
     'isUploadPicture',
     'downloadUrl',
@@ -119,8 +117,7 @@ export const useLogoutUserMutation = () => {
   const { mutate: logoutUserMutate, ...restMutation } = useMutation({
     mutationFn: deleteLogoutUser,
     onSuccess: () => {
-      removeCookie('access-token', { path: '/' });
-      removeCookie('refresh-token', { path: '/' });
+      sessionStorage.clear();
       removeCookie('noticeModalClosed');
       removeCookie('isUploadPicture');
       removeCookie('downloadUrl');
@@ -129,8 +126,7 @@ export const useLogoutUserMutation = () => {
       router.replace(ROUTES.MAIN);
     },
     onError: () => {
-      removeCookie('access-token', { path: '/' });
-      removeCookie('refresh-token', { path: '/' });
+      sessionStorage.clear();
       removeCookie('noticeModalClosed');
       removeCookie('isUploadPicture');
       removeCookie('downloadUrl');

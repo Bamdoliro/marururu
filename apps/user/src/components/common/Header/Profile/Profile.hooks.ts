@@ -1,5 +1,6 @@
 import { ROUTES } from '@/constants/common/constant';
 import { useLogoutUserMutation } from '@/services/auth/mutations';
+import { useAccessTokenValueStore } from '@/store/auth/auth';
 import { useRouter } from 'next/navigation';
 
 export const useCTAButton = () => {
@@ -18,9 +19,10 @@ export const useCTAButton = () => {
 
 export const useLogoutAction = () => {
   const { logoutUserMutate } = useLogoutUserMutation();
+  const accessToken = useAccessTokenValueStore();
 
   const handleLogout = () => {
-    logoutUserMutate();
+    logoutUserMutate(accessToken);
   };
 
   return { handleLogout };

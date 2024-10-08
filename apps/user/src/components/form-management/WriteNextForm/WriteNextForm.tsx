@@ -8,16 +8,16 @@ import { useFormStatusQuery } from '@/services/form/queries';
 
 const WriteNextForm = () => {
   const router = useRouter();
-  const status = useFormStatusQuery();
+  const status = useFormStatusQuery().data?.data;
 
   const isNotSubmit =
-    status.data?.status === 'APPROVED' ||
-    status.data?.status === 'REJECTED' ||
-    status.data?.status === 'FINAL_SUBMITTED' ||
-    status.data?.status === 'SUBMITTED' ||
-    status.data?.status === 'PASSED' ||
-    status.data?.status === 'RECEIVED' ||
-    status.data?.status === 'FIRST_PASSED';
+    status?.status === 'APPROVED' ||
+    status?.status === 'REJECTED' ||
+    status?.status === 'FINAL_SUBMITTED' ||
+    status?.status === 'SUBMITTED' ||
+    status?.status === 'PASSED' ||
+    status?.status === 'RECEIVED' ||
+    status?.status === 'FIRST_PASSED';
 
   const handleFormWrite = () => {
     if (!isNotSubmit) {
