@@ -10,36 +10,32 @@ const useRefreshToken = () => {
   const router = useRouter();
   const [accessToken, setAccessToken] = useAccessTokenStore();
   const refreshingRef = useRef(false);
+  const token = Session.getRefreshToken();
 
   useEffect(() => {
     setupInterceptor(setAccessToken);
 
-    const handleLoginRedirect = () => {
-      alert('다시 로그인 해주세요');
-      sessionStorage.clear();
-      router.push(ROUTES.LOGIN);
-    };
-
     const checkAndRefreshToken = async () => {
-      const token = Session.getRefreshToken();
-
-      if (!accessToken && !refreshingRef.current && token) {
-        refreshingRef.current = true;
-
-        try {
-          await refreshToken(setAccessToken);
-        } catch (error) {
-          handleLoginRedirect();
-        } finally {
+      if (token) {
+        if (!accessToken && !refreshingRef.current) {
+          refreshingRef.current = true;
+          const refreshTokenValue = Session.getRefreshToken();
+          if (refreshTokenValue) {
+            try {
+              await refreshToken(setAccessToken);
+            } catch (error) {
+              router.push(ROUTES.LOGIN);
+            }
+          } else {
+            router.push(ROUTES.LOGIN);
+          }
           refreshingRef.current = false;
         }
-      } else if (!token) {
-        handleLoginRedirect();
       }
     };
 
     checkAndRefreshToken();
-  }, [accessToken, setAccessToken, router]);
+  }, [accessToken, setAccessToken, router, token]);
 };
 
 export default useRefreshToken;
