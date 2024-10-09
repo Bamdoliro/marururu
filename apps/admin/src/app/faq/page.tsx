@@ -8,10 +8,13 @@ import AppLayout from '@/layouts/AppLayout';
 import FaqTable from '@/components/faq/FaqTable/FaqTable';
 import { flex } from '@maru/utils';
 import type { FaqCategory } from '@/types/faq/client';
+import { useRefreshToken } from '@/hooks';
 
 const FaqPage = () => {
   const { handleGoFaqPostPageButtonClick } = useCTAButton();
   const [selectedCategory, setSelectedCategory] = useState<FaqCategory>('BOARD_ALL');
+
+  useRefreshToken();
 
   const handleClassificationCategory = (value: string) => {
     setSelectedCategory(value as FaqCategory);

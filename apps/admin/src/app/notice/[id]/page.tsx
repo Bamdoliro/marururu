@@ -9,12 +9,15 @@ import { flex } from '@maru/utils';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
+import { useRefreshToken } from '@/hooks';
 
 interface Props {
   params: { id: number };
 }
 
 const NoticeDetailPage = ({ params: { id } }: Props) => {
+  useRefreshToken();
+
   return (
     <AppLayout>
       <StyledNoticeDetail>

@@ -37,6 +37,7 @@ import {
   useSecondRoundResultEditAutoAction,
 } from './form.hooks';
 import { useState, useEffect } from 'react';
+import { useRefreshToken } from '@/hooks';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();
@@ -51,6 +52,8 @@ const FormPage = () => {
   const handleFormListTypeAll = () => setFormListType('모두 보기');
 
   const overlay = useOverlay();
+
+  useRefreshToken();
 
   const openSecondScoreUplaodModal = () => {
     overlay.open(({ isOpen, close }) => (

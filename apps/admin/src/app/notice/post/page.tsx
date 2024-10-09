@@ -10,8 +10,11 @@ import { flex } from '@maru/utils';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import styled from 'styled-components';
+import { useRefreshToken } from '@/hooks';
 
 const NoticePostPage = () => {
+  useRefreshToken();
+
   return (
     <AppLayout>
       <StyledNoticePost>

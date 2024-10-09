@@ -7,9 +7,12 @@ import { flex } from '@maru/utils';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
 import useCTAButton from './notice.hooks';
+import { useRefreshToken } from '@/hooks';
 
 const NoticePage = () => {
   const { handleGoNoticePostPageButtonClick } = useCTAButton();
+
+  useRefreshToken();
 
   return (
     <AppLayout>

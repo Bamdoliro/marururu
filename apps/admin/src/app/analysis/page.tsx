@@ -13,9 +13,12 @@ import ApplyingType from '@/components/analysis/ApplyingType/ApplyingType';
 import GenderRatio from '@/components/analysis/GenderRatio/GenderRatio';
 import SchoolOrigin from '@/components/analysis/SchoolOrigin/SchoolOrigin';
 import styled from 'styled-components';
+import { useRefreshToken } from '@/hooks';
 
 const AnalysisPage = () => {
   const [currentAnalysisStep, setCurrentAnalysisStep] = useState('지원자 수 (경쟁률)');
+
+  useRefreshToken();
 
   return (
     <AppLayout>

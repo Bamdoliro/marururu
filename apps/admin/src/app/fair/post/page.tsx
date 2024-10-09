@@ -6,8 +6,11 @@ import { flex } from '@maru/utils';
 import { Loader, Text } from '@maru/ui';
 import { Suspense } from 'react';
 import { FairPost } from '@/components/fair';
+import { useRefreshToken } from '@/hooks';
 
 const FairPostPage = () => {
+  useRefreshToken();
+
   return (
     <AppLayout>
       <StyledFairPost>
