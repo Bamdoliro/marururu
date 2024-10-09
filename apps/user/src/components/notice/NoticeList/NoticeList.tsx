@@ -8,7 +8,7 @@ const NoticeList = () => {
 
   const sortedNoticeListData = noticeListData
     ?.slice()
-    .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
   return sortedNoticeListData ? (
     <StyledNoticeList>
