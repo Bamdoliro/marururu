@@ -25,9 +25,11 @@ const useRefreshToken = () => {
               await refreshToken(setAccessToken);
             } catch (error) {
               router.push(ROUTES.LOGIN);
+              sessionStorage.clear();
             }
           } else {
             router.push(ROUTES.LOGIN);
+            sessionStorage.clear();
           }
           refreshingRef.current = false;
         }
