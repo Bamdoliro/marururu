@@ -8,6 +8,7 @@ import {
   VolunteerCalculator,
 } from '@/components/form';
 import { SCORE_STEP_LIST } from '@/constants/form/data';
+import { useRefreshToken } from '@/hooks';
 import { AppLayout } from '@/layouts';
 import { useFormValueStore } from '@/store';
 import { color } from '@maru/design-token';
@@ -19,6 +20,8 @@ import styled from 'styled-components';
 const ScoreSimulation = () => {
   const form = useFormValueStore();
   const [currentScoreStep, setCurrentScoreStep] = useState('성적 입력');
+
+  useRefreshToken();
 
   const handleMoveScoreStep = (scoreStep: string) => {
     if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {

@@ -25,8 +25,11 @@ import 손해배상 from './손해배상/손해배상';
 import 회원개인정보보호 from './회원개인정보보호/회원개인정보보호';
 import 쿠키 from './쿠키/쿠키';
 import 불만처리 from './불만처리/불만처리';
+import { useRefreshToken } from '@/hooks';
 
-const termUse = () => {
+const TermUse = () => {
+  useRefreshToken();
+
   return (
     <AppLayout header footer>
       <StyledTermUsePage>
@@ -107,7 +110,7 @@ const termUse = () => {
   );
 };
 
-export default termUse;
+export default TermUse;
 
 const StyledTermUsePage = styled.div`
   width: 100%;

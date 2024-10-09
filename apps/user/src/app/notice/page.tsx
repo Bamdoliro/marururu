@@ -1,6 +1,7 @@
 'use client';
 
 import { NoticeList } from '@/components/notice';
+import { useRefreshToken } from '@/hooks';
 import { AppLayout } from '@/layouts';
 import { color } from '@maru/design-token';
 import { Text } from '@maru/ui';
@@ -9,6 +10,8 @@ import { Suspense } from '@suspensive/react';
 import styled from 'styled-components';
 
 const NoticePage = () => {
+  useRefreshToken();
+
   return (
     <AppLayout header footer>
       <StyledNoticePage>

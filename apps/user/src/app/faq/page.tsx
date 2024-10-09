@@ -7,9 +7,12 @@ import { Text } from '@maru/ui';
 import { useState } from 'react';
 import { Suspense } from '@suspensive/react';
 import styled from 'styled-components';
+import { useRefreshToken } from '@/hooks';
 
 const FaqPage = () => {
   const [category, setCategory] = useState('TOP_QUESTION');
+
+  useRefreshToken();
 
   return (
     <AppLayout header footer>

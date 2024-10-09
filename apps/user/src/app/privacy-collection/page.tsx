@@ -8,8 +8,11 @@ import PrivacyCollectionItem from './PrivacyCollectionItem/PrivacyCollectionItem
 import PrivacyCollectionOrPurpose from './PrivacyCollectionOrPurpose/PrivacyCollectionOrPurpose';
 import RetentionPeriod from './RetentionPeriod/RetentionPeriod';
 import RefuseConstent from './RefuseConsent/RefuseConsent';
+import { useRefreshToken } from '@/hooks';
 
-const privacyCollection = () => {
+const PrivacyCollection = () => {
+  useRefreshToken();
+
   return (
     <AppLayout header footer>
       <StyledPrivacyCollectionPage>
@@ -38,7 +41,7 @@ const privacyCollection = () => {
   );
 };
 
-export default privacyCollection;
+export default PrivacyCollection;
 
 const StyledPrivacyCollectionPage = styled.div`
   width: 100%;

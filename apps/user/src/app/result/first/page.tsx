@@ -1,6 +1,7 @@
 'use client';
 
 import { FirstResultTable, ResultMain } from '@/components/result';
+import { useRefreshToken } from '@/hooks';
 import { AppLayout } from '@/layouts';
 import type { ResultStep } from '@/types/result/client';
 import { color } from '@maru/design-token';
@@ -12,6 +13,8 @@ import styled from 'styled-components';
 
 const FirstResultPage = () => {
   const [firstResultStep, setFirstResultStep] = useState<ResultStep>('MAIN');
+
+  useRefreshToken();
 
   return (
     <AppLayout header footer>

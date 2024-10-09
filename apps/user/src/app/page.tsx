@@ -13,17 +13,14 @@ import { AppLayout } from '@/layouts';
 import { Row } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ROUTES } from '@/constants/common/constant';
 import NoticeModal from '@/components/main/NoticeModal/NoticeModal';
 import React from 'react';
 import { Suspense } from '@suspensive/react';
-import { setupInterceptor } from '@/apis/instance/instance';
-import { Session } from '@/apis/session/session';
-import { refreshToken } from '@/apis/token';
-import { useAccessTokenStore } from '@/store/auth/auth';
 import { Cookie } from '@/apis/cookie/cookie';
+import { useRefreshToken } from '@/hooks';
 
 const MainPage = () => {
   return (
@@ -39,34 +36,8 @@ const MainContent = () => {
   const message = searchParams.get('message');
   const warning = searchParams.get('warning');
   const router = useRouter();
-  const [accessToken, setAccessToken] = useAccessTokenStore();
-  const refreshingRef = useRef(false);
-  const token = Session.getRefreshToken();
 
-  useEffect(() => {
-    setupInterceptor(setAccessToken);
-
-    const checkAndRefreshToken = async () => {
-      if (token) {
-        if (!accessToken && !refreshingRef.current) {
-          refreshingRef.current = true;
-          const refreshTokenValue = Session.getRefreshToken();
-          if (refreshTokenValue) {
-            try {
-              await refreshToken(setAccessToken);
-            } catch (error) {
-              router.push(ROUTES.LOGIN);
-            }
-          } else {
-            router.push(ROUTES.LOGIN);
-          }
-          refreshingRef.current = false;
-        }
-      }
-    };
-
-    checkAndRefreshToken();
-  }, [accessToken, setAccessToken, router, token]);
+  useRefreshToken();
 
   useEffect(() => {
     const noticeModalClosed = Cookie.getItem('noticeModalClosed');

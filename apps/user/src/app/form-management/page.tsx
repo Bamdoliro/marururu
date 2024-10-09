@@ -25,12 +25,15 @@ import {
 } from '@/constants/form/constant';
 import { AppLayout } from '@/layouts';
 import { flex } from '@maru/utils';
+import { useRefreshToken } from '@/hooks';
 
 dayjs.extend(isBetween);
 
 const FormManagementPage = () => {
   const { data: handleFormStatus } = useFormStatusQuery()?.data ?? {};
   const now = dayjs();
+
+  useRefreshToken();
 
   const FormManagementComponent = () => {
     if (now.isBetween(제출_시작_날짜, 일차_합격_발표)) {

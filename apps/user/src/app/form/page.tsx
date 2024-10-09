@@ -15,10 +15,13 @@ import 최종제출 from './최종제출/최종제출';
 import 최종제출완료 from './최종제출완료/최종제출완료';
 import 출신학교및학력 from './출신학교및학력/출신학교및학력';
 import { useFormStatusQuery } from '@/services/form/queries';
+import { useRefreshToken } from '@/hooks';
 
 const FormPage = () => {
   const [formStep, setFormStep] = useFormStepStore();
   const formStatusData = useFormStatusQuery().data?.data;
+
+  useRefreshToken();
 
   useEffect(() => {
     if (formStatusData?.status === 'REJECTED') {

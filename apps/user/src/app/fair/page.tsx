@@ -7,9 +7,12 @@ import { Column, Text } from '@maru/ui';
 import styled from 'styled-components';
 import { Suspense } from '@suspensive/react';
 import { ApplyingList, ClosedList, Header } from '@/components/fair';
+import { useRefreshToken } from '@/hooks';
 
 const FairPage = () => {
   const [status, setStatus] = useState('진행 중인 신청');
+
+  useRefreshToken();
 
   useEffect(() => {
     const savedStatus = localStorage.getItem('selectedTab');
