@@ -6,17 +6,18 @@ const CORE_SUBJECTS = ['국어', '영어', '수학'];
 export const useInput = (id: number) => {
   const setSubjectList = useSetSubjectListStore();
   const setSubjectIncomplete = useSetmSubjectIncompleteStore();
-  console.log(id);
 
   const handleSubjectChange = (data: string, name: string) => {
     let isIncomplete = false;
+    let subjectName = '';
     setSubjectList((prev) => {
       const updatedData = [...prev];
       const subject = updatedData[id];
 
       let newValue: string | null;
+      subjectName = subject.subjectName;
       if (data === '미이수') {
-        if (CORE_SUBJECTS.includes(subject.subjectName)) {
+        if (CORE_SUBJECTS.includes(subjectName)) {
           newValue = 'C';
           isIncomplete = true;
         } else {
@@ -35,13 +36,14 @@ export const useInput = (id: number) => {
 
     setSubjectIncomplete((prev) => ({
       ...prev,
-      [name === 'achievementLevel21'
-        ? 'Incomplete21'
-        : name === 'achievementLevel22'
-        ? 'Incomplete22'
-        : name === 'achievementLevel31'
-        ? 'Incomplete31'
-        : '']: isIncomplete,
+      [subjectName]: {
+        ...prev[subjectName],
+        [name === 'achievementLevel21'
+          ? 'isIncomplete21'
+          : name === 'achievementLevel22'
+          ? 'isIncomplete22'
+          : 'isIncomplete31']: isIncomplete,
+      },
     }));
   };
 
