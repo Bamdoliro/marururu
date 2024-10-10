@@ -8,7 +8,9 @@ import {
   getSaveForm,
   getSchoolList,
 } from './api';
-import { useAccessTokenValueStore } from '@/store/auth/auth';
+import { useAccessTokenStore } from '@/store/auth/auth';
+import { refreshToken } from '@/apis/token';
+import type { AxiosError } from 'axios';
 
 export const useSchoolListQuery = (school: string) => {
   const { data, ...restQuery } = useSuspenseQuery({
@@ -42,11 +44,21 @@ export const useExportReciptQuery = () => {
 };
 
 export const useSaveFormQuery = () => {
-  const accessToken = useAccessTokenValueStore();
-
+  const [accessToken, setAccesssToken] = useAccessTokenStore();
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.SAVE_FORM],
-    queryFn: () => getSaveForm(accessToken),
+    queryFn: async () => {
+      try {
+        return await getSaveForm(accessToken);
+      } catch (error) {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 401) {
+          await refreshToken(setAccesssToken);
+          return await getSaveForm(accessToken);
+        }
+        throw error;
+      }
+    },
     enabled: !!accessToken,
     retry: 1,
     suspense: false,
@@ -56,14 +68,25 @@ export const useSaveFormQuery = () => {
 };
 
 export const useFormStatusQuery = () => {
-  const accessToken = useAccessTokenValueStore();
+  const [accessToken, setAccesssToken] = useAccessTokenStore();
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.FORM_STATUS],
-    queryFn: () => getFormStatus(accessToken),
+    queryFn: async () => {
+      try {
+        return await getFormStatus(accessToken);
+      } catch (error) {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 401) {
+          await refreshToken(setAccesssToken);
+          return await getFormStatus(accessToken);
+        }
+        throw error;
+      }
+    },
     enabled: !!accessToken,
     suspense: false,
     retry: 1,
   });
 
-  return { data: data, ...restQuery };
+  return { data, ...restQuery };
 };

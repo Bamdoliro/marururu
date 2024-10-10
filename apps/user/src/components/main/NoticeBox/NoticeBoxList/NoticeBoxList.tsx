@@ -7,8 +7,8 @@ const NoticeBoxList = () => {
 
   return mainNoticeListData ? (
     <StyledNoticeBoxList>
-      {mainNoticeListData.slice(0, 3).map(({ id, title }, index) => (
-        <MainNoticeItem key={`main-notice ${index}`} id={id} title={title} />
+      {mainNoticeListData.dataList.slice(0, 3).map(({ id, title }, index) => (
+        <MainNoticeItem key={`main-notice-${index}`} id={id} title={title} />
       ))}
     </StyledNoticeBoxList>
   ) : null;
