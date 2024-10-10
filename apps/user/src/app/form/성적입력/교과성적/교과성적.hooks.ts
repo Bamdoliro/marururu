@@ -10,7 +10,6 @@ export const useCTAButton = () => {
   const handleMoveNextStep = () => {
     const isEmptySubjectName = form.grade.subjectList.some(({ subjectName }) => {
       if (subjectName === '') {
-        alert('비어있는 과목명이 있어요');
         setFormStep('성적입력');
         return true;
       }
