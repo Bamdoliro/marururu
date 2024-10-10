@@ -61,7 +61,9 @@ const useGradeCalculation = () => {
       return acc;
     }, 0);
 
-    console.log('scoreLength', scoreLength, achievementLevelKey);
+    if (scoreLength === 0) {
+      return 0;
+    }
 
     return scoreTotal / scoreLength;
   };

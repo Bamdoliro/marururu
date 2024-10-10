@@ -15,8 +15,6 @@ const 교과성적 = ({ id }: Props) => {
     formDetailData?.grade.subjectList
   );
 
-  console.log(achievementLevelsGroupList);
-
   return (
     <Column>
       <교과성적Header />
