@@ -1,7 +1,7 @@
 export interface Notice {
   id: number;
   title: string;
-  createdAt: string;
+  updatedAt: string;
 }
 
 export interface NoticeDetail {
@@ -12,4 +12,5 @@ export interface NoticeDetail {
     fileName: string;
   }>;
   createdAt: string;
+  updatedAt: string;
 }

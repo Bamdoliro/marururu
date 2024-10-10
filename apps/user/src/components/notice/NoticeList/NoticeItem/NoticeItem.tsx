@@ -9,10 +9,10 @@ import styled from 'styled-components';
 interface Props {
   id: number;
   title: string;
-  createdAt: string;
+  updatedAt: string;
 }
 
-const NoticeItem = ({ id, title, createdAt }: Props) => {
+const NoticeItem = ({ id, title, updatedAt }: Props) => {
   const router = useRouter();
 
   return (
@@ -22,7 +22,7 @@ const NoticeItem = ({ id, title, createdAt }: Props) => {
           {title}
         </Text>
         <Text fontType="p3" color={color.gray750}>
-          {formatCreatedAt(createdAt)}
+          {formatCreatedAt(updatedAt)}
         </Text>
       </Column>
       <IconArrowRight color={color.gray600} width={24} height={24} />
