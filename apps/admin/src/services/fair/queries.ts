@@ -1,11 +1,26 @@
 import { KEY } from '@/constants/common/constant';
 import { getFairList } from './api';
 import { useQuery } from '@tanstack/react-query';
+import { refreshToken } from '@/apis/token';
+import type { AxiosError } from 'axios';
+import { useSetAccessTokenStore } from '@/store/auth/auth';
 
 export const useFairListQuery = (fairType: string) => {
+  const setAccesssToken = useSetAccessTokenStore();
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.FAIR_LIST, fairType] as const,
-    queryFn: () => getFairList(fairType),
+    queryFn: async () => {
+      try {
+        return await getFairList(fairType);
+      } catch (error) {
+        const axiosError = error as AxiosError;
+        if (axiosError.response?.status === 401) {
+          await refreshToken(setAccesssToken);
+          return await getFairList(fairType);
+        }
+        throw error;
+      }
+    },
   });
 
   return { data: data?.dataList, ...restQuery };
