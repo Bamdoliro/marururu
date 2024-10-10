@@ -24,6 +24,9 @@ const Footer = () => {
               <Text fontType="p2" color={color.gray600}>
                 행정실: 051-971-2152, Fax: 051-971-6325
               </Text>
+              <Text fontType="p2" color={color.gray600}>
+                입학담당자: 051-970-1725, Fax: 051-971-2061
+              </Text>
             </ContentBox>
             <Text fontType="p3" color={color.gray600}>
               Copyright © 밤돌이로 all rights reserved.
