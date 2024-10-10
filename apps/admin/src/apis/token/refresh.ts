@@ -13,7 +13,7 @@ const refreshToken = async (setAccessToken: (newAccessToken: string) => void) =>
   } catch {
     window.location.href = ROUTES.MAIN;
     alert('다시 로그인 해주세요');
-    localStorage.clear();
+    sessionStorage.clear();
   }
 };
 
