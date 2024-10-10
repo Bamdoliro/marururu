@@ -78,21 +78,6 @@ const FinalScoreConfirm = ({ id, isOpen, onClose }: Props) => {
               hidden
             />
           </CardRadio>
-          <CardRadio approvalStatusType="접수" $checked={approvalStatus === '접수'}>
-            <Text
-              fontType="context"
-              color={approvalStatus === '접수' ? color.maruDefault : color.gray600}
-            >
-              접수
-            </Text>
-            <input
-              type="radio"
-              name="approvalStatus"
-              value="접수"
-              onChange={handleApprovalRadioChange}
-              hidden
-            />
-          </CardRadio>
         </Row>
         <Row gap={16} style={{ alignSelf: 'flex-end' }}>
           <Button size="SMALL" styleType="SECONDARY" onClick={onClose}>
@@ -155,10 +140,6 @@ const CardRadio = styled.label<{ approvalStatusType: ApprovalStatus; $checked: b
       ? css`
           border: 1px solid ${color.red};
           background: rgba(244, 67, 54, 0.1);
-        `
-      : approvalStatusType === '접수'
-      ? css`
-          border: 1px solid ${color.maruDefault};
         `
       : null)}
 `;
