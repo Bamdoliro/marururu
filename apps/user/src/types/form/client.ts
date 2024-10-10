@@ -73,9 +73,11 @@ export interface Subject {
 }
 
 export interface Incomplete {
-  isIncomplete21: boolean | null;
-  isIncomplete22: boolean | null;
-  isIncomplete31: boolean | null;
+  [subjectName: string]: {
+    isIncomplete21: boolean | null;
+    isIncomplete22: boolean | null;
+    isIncomplete31: boolean | null;
+  };
 }
 
 export type StudentSubject = Omit<Subject, 'id'>;

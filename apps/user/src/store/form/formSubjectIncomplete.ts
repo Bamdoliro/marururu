@@ -3,11 +3,7 @@ import { useRecoilState, atom, useSetRecoilState, useRecoilValue } from 'recoil'
 
 const formSubjectIncomplete = atom<Incomplete>({
   key: 'form-Subject-Incomplete',
-  default: {
-    isIncomplete21: null,
-    isIncomplete22: null,
-    isIncomplete31: null,
-  },
+  default: {},
 });
 
 export const useFormSubjectIncompleteStore = () => useRecoilState(formSubjectIncomplete);

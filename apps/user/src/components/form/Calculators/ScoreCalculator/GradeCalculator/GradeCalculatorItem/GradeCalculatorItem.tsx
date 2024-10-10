@@ -31,7 +31,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
         <Dropdown
           value={getDisplayValue(
             subject.achievementLevel21,
-            subjectIncomplete.isIncomplete21
+            subjectIncomplete[subject.subjectName]?.isIncomplete21
           )}
           size="SMALL"
           data={achievementLevels}
@@ -45,7 +45,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
         <Dropdown
           value={getDisplayValue(
             subject.achievementLevel22,
-            subjectIncomplete.isIncomplete22
+            subjectIncomplete[subject.subjectName]?.isIncomplete22
           )}
           size="SMALL"
           data={achievementLevels}
@@ -59,7 +59,7 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
         <Dropdown
           value={getDisplayValue(
             subject.achievementLevel31,
-            subjectIncomplete.isIncomplete31
+            subjectIncomplete[subject.subjectName]?.isIncomplete31
           )}
           size="SMALL"
           data={achievementLevels}
