@@ -78,10 +78,10 @@ const SpecificAdmission = () => {
             <Td width={160} height={56}>
               {meisterTalentOtherLocationMale}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {meisterTalentOtherLocationFemale}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {meisterTalentOtherLocationTotal}
             </Td>
           </Row>
@@ -135,10 +135,10 @@ const SpecificAdmission = () => {
             <Td width={160} height={56}>
               {socialIntegrationOtherLocationMale}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {socialIntegrationOtherLocationFemale}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {socialIntegrationOtherLocationTotal}
             </Td>
           </Row>

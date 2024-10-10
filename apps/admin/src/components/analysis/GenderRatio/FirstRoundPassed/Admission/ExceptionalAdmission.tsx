@@ -84,10 +84,10 @@ const ExceptionalAdmission = () => {
             <Td width={160} height={56}>
               {specialAdmissionOtherLocationMale}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {specialAdmissionOtherLocationFemale}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {specialAdmissionOtherLocationTotal}
             </Td>
           </Row>
@@ -141,10 +141,10 @@ const ExceptionalAdmission = () => {
             <Td width={160} height={56}>
               {nationalVeteransOtherLocationMale}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {nationalVeteransOtherLocationFemale}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {nationalVeteransOtherLocationTotal}
             </Td>
           </Row>

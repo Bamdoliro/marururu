@@ -61,10 +61,10 @@ const GeneralAdmission = () => {
           <Td width={160} height={56}>
             {regularOtherLocationMale}
           </Td>
-          <Td width={160} height={56} borderBottomRightRadius={12}>
+          <Td width={160} height={56}>
             {regularOtherLocationFemale}
           </Td>
-          <Td width={160} height={56} borderBottomRightRadius={12}>
+          <Td width={160} height={56}>
             {regularOtherLocationTotal}
           </Td>
         </Row>

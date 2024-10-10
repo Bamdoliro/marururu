@@ -101,12 +101,12 @@ const FirstRoundPassedMain = () => {
             <Td width={160} height={56}>
               {SupernumeraryMaleCount}
             </Td>
-            <Td width={160} height={56} borderBottomRightRadius={12}>
+            <Td width={160} height={56}>
               {SupernumeraryFemaleCount}
             </Td>
           </Row>
           <Row>
-            <Td styleType="SECONDARY" width={160} height={56}>
+            <Td styleType="SECONDARY" width={160} height={56} borderBottomLeftRadius={12}>
               전체 (정원 외 제외)
             </Td>
             <Td width={160} height={56}>
