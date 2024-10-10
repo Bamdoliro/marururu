@@ -141,9 +141,5 @@ const CardRadio = styled.label<{ approvalStatusType: ApprovalStatus; $checked: b
           border: 1px solid ${color.red};
           background: rgba(244, 67, 54, 0.1);
         `
-      : approvalStatusType === '접수'
-      ? css`
-          border: 1px solid ${color.maruDefault};
-        `
       : null)}
 `;
