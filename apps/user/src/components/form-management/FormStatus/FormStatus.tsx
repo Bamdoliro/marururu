@@ -23,16 +23,16 @@ const FormStatus = ({ status }: Props) => {
                   원서 상태
                 </Text>
                 <Text fontType="H1" color={color.gray900}>
-                  접수됨
+                  확인중
                 </Text>
               </Column>
               <IconCheckCircle width={120} height={120} />
             </Row>
             <Column height={64}> </Column>
             <Text fontType="p2" color={color.gray600}>
-              원서가 접수되었습니다.
+              원서가 확인 중입니다.
               <br />
-              원서 승인을 기다려주세요.
+              담당 선생님의 원서 승인을 기다려주세요.
             </Text>
           </StyledApplicationBox>
         );
@@ -67,14 +67,14 @@ const FormStatus = ({ status }: Props) => {
                   원서 상태
                 </Text>
                 <Text fontType="H1" color={color.gray900}>
-                  2차 불합격
+                  최종 불합격
                 </Text>
               </Column>
               <IconCancelCircle width={120} height={120} />
             </Row>
             <Column height={64}> </Column>
             <Text fontType="p2" color={color.gray600}>
-              2차 전형에서 불합격하셨습니다.
+              최종 전형에서 불합격하셨습니다.
               <br />
               관심을 가지고 지원해 주셔서 감사합니다.
             </Text>
