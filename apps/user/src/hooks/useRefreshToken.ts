@@ -1,10 +1,9 @@
-import { setupInterceptor } from '@/apis/instance/instance';
+import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAccessTokenStore } from '@/store/auth/auth';
 import { Session } from '@/apis/session/session';
 import { refreshToken } from '@/apis/token';
 import { ROUTES } from '@/constants/common/constant';
-import { useAccessTokenStore } from '@/store/auth/auth';
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef } from 'react';
 
 const useRefreshToken = () => {
   const router = useRouter();
@@ -13,25 +12,18 @@ const useRefreshToken = () => {
   const token = Session.getRefreshToken();
 
   useEffect(() => {
-    setupInterceptor(setAccessToken);
-
     const checkAndRefreshToken = async () => {
       if (token) {
         if (!accessToken && !refreshingRef.current) {
           refreshingRef.current = true;
-          const refreshTokenValue = Session.getRefreshToken();
-          if (refreshTokenValue) {
-            try {
-              await refreshToken(setAccessToken);
-            } catch (error) {
-              router.push(ROUTES.LOGIN);
-              sessionStorage.clear();
-            }
-          } else {
-            router.push(ROUTES.LOGIN);
+          try {
+            await refreshToken(setAccessToken);
+          } catch (error) {
+            router.push(ROUTES.MAIN);
             sessionStorage.clear();
+          } finally {
+            refreshingRef.current = false;
           }
-          refreshingRef.current = false;
         }
       }
     };
