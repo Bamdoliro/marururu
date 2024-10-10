@@ -14,9 +14,6 @@ export const useAddNewSubject = () => {
       achievementLevel22: '-',
       achievementLevel31: '-',
       score: null,
-      is미이수21: null,
-      is미이수22: null,
-      is미이수31: null,
     };
     setNewSubjectList((prev) => [...prev, newSubject]);
   };

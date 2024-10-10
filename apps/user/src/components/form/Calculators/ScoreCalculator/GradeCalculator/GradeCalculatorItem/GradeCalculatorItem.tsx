@@ -1,4 +1,4 @@
-import { useSubjectListValueStore } from '@/store';
+import { useSubjectIncompleteValueStore, useSubjectListValueStore } from '@/store';
 import { Dropdown, Td } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
@@ -12,12 +12,13 @@ interface Props {
 
 const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => {
   const subjectList = useSubjectListValueStore();
+  const subjectIncomplete = useSubjectIncompleteValueStore();
   const { handleSubjectChange } = useInput(id);
 
   const subject = subjectList[id];
 
-  const getDisplayValue = (value: string | null, is미이수: boolean | null) => {
-    if (value === null || (is미이수 && value === 'C')) return '미이수';
+  const getDisplayValue = (value: string | null, incomplete: boolean | null) => {
+    if (value === null || (incomplete && value === 'C')) return '미이수';
     return value;
   };
 
@@ -28,7 +29,10 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel21, subject.is미이수21)}
+          value={getDisplayValue(
+            subject.achievementLevel21,
+            subjectIncomplete.isIncomplete21
+          )}
           size="SMALL"
           data={achievementLevels}
           width={80}
@@ -39,7 +43,10 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel22, subject.is미이수22)}
+          value={getDisplayValue(
+            subject.achievementLevel22,
+            subjectIncomplete.isIncomplete22
+          )}
           size="SMALL"
           data={achievementLevels}
           width={80}
@@ -50,7 +57,10 @@ const GradeCalculatorItem = ({ id, achievementLevels, isError = [] }: Props) => 
       </Td>
       <Td width={190} height="100%">
         <Dropdown
-          value={getDisplayValue(subject.achievementLevel31, subject.is미이수31)}
+          value={getDisplayValue(
+            subject.achievementLevel31,
+            subjectIncomplete.isIncomplete31
+          )}
           size="SMALL"
           data={achievementLevels}
           width={80}

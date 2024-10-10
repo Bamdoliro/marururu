@@ -78,9 +78,6 @@ export const SUBJECT_LIST: Subject[] = [
   achievementLevel22: '-',
   achievementLevel31: '-',
   score: null,
-  is미이수21: null,
-  is미이수22: null,
-  is미이수31: null,
 }));
 
 export const GED_SUBJECT_LIST: Subject[] = ['국어', '수학', '사회', '과학', '영어'].map(
@@ -91,9 +88,6 @@ export const GED_SUBJECT_LIST: Subject[] = ['국어', '수학', '사회', '과�
     achievementLevel22: null,
     achievementLevel31: null,
     score: 0,
-    is미이수21: null,
-    is미이수22: null,
-    is미이수31: null,
   })
 );
 
@@ -111,9 +105,6 @@ export const SELECT_GED_SUBJECT_LIST: Subject[] = [
   achievementLevel22: null,
   achievementLevel31: null,
   score: 0,
-  is미이수21: null,
-  is미이수22: null,
-  is미이수31: null,
 }));
 
 export const SCORE_STEP_LIST = ['성적 입력', '출결상황', '봉사시간', '자격증'] as const;
