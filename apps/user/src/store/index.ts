@@ -9,6 +9,11 @@ export {
   useFormStepValueStore,
   useSetFormStepStore,
 } from './form/formStep';
+export {
+  useFormSubjectIncompleteStore,
+  useSubjectIncompleteValueStore,
+  useSetmSubjectIncompleteStore,
+} from './form/formSubjectIncomplete';
 export { useIsSaveFormLoadedStore } from './form/isSave';
 export {
   useNewSubjectListStore,
