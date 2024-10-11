@@ -53,7 +53,7 @@ const Header = () => {
       return [
         { name: '홈', route: ROUTES.MAIN },
         { name: '성적 모의 계산', route: ROUTES.SCORE_SIMULATION },
-        { name: '공지사항', route: ROUTES.NOTICE },
+        // { name: '공지사항', route: ROUTES.NOTICE },
         { name: '자주 묻는 질문', route: ROUTES.FAQ },
       ];
     }
