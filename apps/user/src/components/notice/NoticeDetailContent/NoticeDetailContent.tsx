@@ -44,8 +44,10 @@ const NoticeDetailContent = ({ id }: Props) => {
           <Text fontType="H3" color={color.gray900}>
             {noticeDetailData.title}
           </Text>
-          <Text fontType="p3" color={color.gray750}>
-            {formatCreatedAt(noticeDetailData.createdAt)}
+          <Text fontType="p2" color={color.gray600}>
+            {noticeDetailData.updatedAt === null
+              ? formatCreatedAt(noticeDetailData.createdAt)
+              : formatCreatedAt(noticeDetailData.updatedAt)}
           </Text>
         </Column>
       </NoticeHeader>

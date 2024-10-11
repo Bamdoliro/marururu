@@ -8,12 +8,12 @@ const NoticeList = () => {
 
   const sortedNoticeListData = noticeListData
     ?.slice()
-    .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
 
   return sortedNoticeListData ? (
     <StyledNoticeList>
-      {sortedNoticeListData.map(({ id, title, createdAt }) => (
-        <NoticeItem key={id} id={id} title={title} createdAt={createdAt} />
+      {sortedNoticeListData.map(({ id, title, updatedAt }) => (
+        <NoticeItem key={id} id={id} title={title} updatedAt={updatedAt} />
       ))}
     </StyledNoticeList>
   ) : null;

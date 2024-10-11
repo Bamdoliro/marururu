@@ -7,10 +7,10 @@ import Link from 'next/link';
 interface Props {
   id: number;
   title: string;
-  createdAt: string;
+  updatedAt: string;
 }
 
-const NoticeTableItem = ({ id, title, createdAt }: Props) => {
+const NoticeTableItem = ({ id, title, updatedAt }: Props) => {
   return (
     <Link href={`${ROUTES.NOTICE}/${id}`}>
       <TableItem key={id}>
@@ -23,7 +23,7 @@ const NoticeTableItem = ({ id, title, createdAt }: Props) => {
           </Text>
         </Row>
         <Text fontType="p2" width={100}>
-          {formatPostedAt(createdAt)}
+          {formatPostedAt(updatedAt)}
         </Text>
       </TableItem>
     </Link>

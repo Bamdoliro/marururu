@@ -41,7 +41,9 @@ const NoticeDetailContent = ({ id }: Props) => {
               {noticeDetailData.title}
             </Text>
             <Text fontType="p2" color={color.gray600}>
-              {formatCreatedAt(noticeDetailData.createdAt)}
+              {noticeDetailData.updatedAt === null
+                ? formatCreatedAt(noticeDetailData.createdAt)
+                : formatCreatedAt(noticeDetailData.updatedAt)}
             </Text>
           </Column>
           <Row gap={16} alignItems="flex-end">
