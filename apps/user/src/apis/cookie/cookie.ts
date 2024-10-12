@@ -16,6 +16,6 @@ export class Cookie {
 
   static removeItem(key: CookieKey) {
     if (typeof window === 'undefined') return;
-    cookies.remove(key, { path: '/' });
+    cookies.remove(key, { path: '/', httpOnly: true });
   }
 }
