@@ -19,6 +19,8 @@ import { ROUTES } from '@/constants/common/constant';
 import NoticeModal from '@/components/main/NoticeModal/NoticeModal';
 import React from 'react';
 import { Suspense } from '@suspensive/react';
+import { Cookie } from '@/apis/cookie/cookie';
+import { refreshToken } from '@/apis/token';
 
 const MainPage = () => {
   return (
@@ -34,6 +36,23 @@ const MainContent = () => {
   const router = useRouter();
   const message = searchParams.get('message');
   const warning = searchParams.get('warning');
+  const [hasRefreshed, setHasRefreshed] = useState(false);
+
+  useEffect(() => {
+    const refreshIfNeeded = async () => {
+      if (hasRefreshed) return;
+
+      const accessToken = localStorage.getItem('accessToken');
+      const refreshTokenValue = Cookie.getItem('refresh-token');
+
+      if (!accessToken && refreshTokenValue) {
+        await refreshToken();
+        setHasRefreshed(true);
+      }
+    };
+
+    refreshIfNeeded();
+  }, [router, hasRefreshed]);
 
   useEffect(() => {
     const noticeModalClosed = localStorage.getItem('noticeModalClosed');
@@ -48,6 +67,8 @@ const MainContent = () => {
       router.replace(ROUTES.MAIN);
     } else if (warning) {
       alert(warning);
+      localStorage.clear();
+      Cookie.removeItem('refresh-token');
       router.replace(ROUTES.LOGIN);
     }
   }, [message, warning, router]);

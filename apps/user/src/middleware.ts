@@ -19,7 +19,7 @@ export const middleware = (request: NextRequest) => {
   const cookies = request.headers.get('cookie');
   const accessToken = cookies
     ?.split('; ')
-    .find((row) => row.startsWith('access-token='))
+    .find((row) => row.startsWith('refresh-token='))
     ?.split('=')[1];
 
   if ((device.type === 'mobile' || device.type === 'tablet') && url !== '/mobile') {

@@ -11,7 +11,7 @@ export class Cookie {
 
   static setItem(key: CookieKey, value: string) {
     if (typeof window === 'undefined') return;
-    cookies.set(key, value, { path: '/', httpOnly: true, secure: true });
+    cookies.set(key, value, { path: '/' });
   }
 
   static removeItem(key: CookieKey) {
