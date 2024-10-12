@@ -11,11 +11,11 @@ export class Cookie {
 
   static setItem(key: CookieKey, value: string) {
     if (typeof window === 'undefined') return;
-    cookies.set(key, value, { path: '/' });
+    cookies.set(key, value, { path: '/', httpOnly: true });
   }
 
   static removeItem(key: CookieKey) {
     if (typeof window === 'undefined') return;
-    cookies.remove(key, { path: '/', httpOnly: true });
+    cookies.remove(key, { path: '/' });
   }
 }
