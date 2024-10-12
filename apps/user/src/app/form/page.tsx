@@ -22,7 +22,7 @@ const FormPage = () => {
 
   useEffect(() => {
     if (formStatusData?.status === 'REJECTED') {
-      setFormStep('최종제출');
+      setFormStep('지원자정보');
     }
   }, [formStatusData, setFormStep]);
 
