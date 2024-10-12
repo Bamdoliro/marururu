@@ -25,12 +25,34 @@ import {
 } from '@/constants/form/constant';
 import { AppLayout } from '@/layouts';
 import { flex } from '@maru/utils';
+import { useEffect, useState } from 'react';
+import { Cookie } from '@/apis/cookie/cookie';
+import { refreshToken } from '@/apis/token';
+import { useRouter } from 'next/navigation';
 
 dayjs.extend(isBetween);
 
 const FormManagementPage = () => {
   const { data: handleFormStatus } = useFormStatusQuery();
   const now = dayjs();
+  const router = useRouter();
+  const [hasRefreshed, setHasRefreshed] = useState(false);
+
+  useEffect(() => {
+    const refreshIfNeeded = async () => {
+      if (hasRefreshed) return;
+
+      const accessToken = localStorage.getItem('accessToken');
+      const refreshTokenValue = Cookie.getItem('refresh-token');
+
+      if (!accessToken && refreshTokenValue) {
+        await refreshToken();
+        setHasRefreshed(true);
+      }
+    };
+
+    refreshIfNeeded();
+  }, [router, hasRefreshed]);
 
   const FormManagementComponent = () => {
     if (now.isBetween(제출_시작_날짜, 일차_합격_발표)) {
