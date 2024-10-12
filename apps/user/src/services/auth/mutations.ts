@@ -1,4 +1,3 @@
-import { Storage } from '@/apis/storage/storage';
 import { ROUTES, TOKEN } from '@/constants/common/constant';
 import { useApiError } from '@/hooks';
 import type {
@@ -20,6 +19,8 @@ import {
   postRequestVerificationCode,
 } from './api';
 import { useCookies } from 'react-cookie';
+import { Storage } from '@/apis/storage/storage';
+import { Cookie } from '@/apis/cookie/cookie';
 
 export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq) => {
   const router = useRouter();
@@ -30,7 +31,7 @@ export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq
     onSuccess: (res: AxiosResponse) => {
       const { accessToken, refreshToken } = res.data;
       Storage.setItem(TOKEN.ACCESS, accessToken);
-      Storage.setItem(TOKEN.REFRESH, refreshToken);
+      Cookie.setItem(TOKEN.REFRESH, refreshToken);
       router.push(ROUTES.MAIN);
     },
     onError: () => {
@@ -106,36 +107,21 @@ export const useVerificationMutation = (
 };
 
 export const useLogoutUserMutation = () => {
-  const [, , removeCookie] = useCookies([
-    'access-token',
-    'refresh-token',
-    'noticeModalClosed',
-    'isUploadPicture',
-    'downloadUrl',
-    'correct',
-  ]);
   const router = useRouter();
 
   const { mutate: logoutUserMutate, ...restMutation } = useMutation({
     mutationFn: deleteLogoutUser,
     onSuccess: () => {
-      removeCookie('access-token', { path: '/' });
-      removeCookie('refresh-token', { path: '/' });
-      removeCookie('noticeModalClosed');
-      removeCookie('isUploadPicture');
-      removeCookie('downloadUrl');
-      removeCookie('correct');
+      localStorage.clear();
+      Cookie.removeItem('refresh-token');
       window.location.reload();
       router.replace(ROUTES.MAIN);
     },
     onError: () => {
-      removeCookie('access-token', { path: '/' });
-      removeCookie('refresh-token', { path: '/' });
-      removeCookie('noticeModalClosed');
-      removeCookie('isUploadPicture');
-      removeCookie('downloadUrl');
-      removeCookie('correct');
+      Cookie.removeItem('refresh-token');
+      localStorage.clear();
       window.location.reload();
+      router.replace(ROUTES.MAIN);
     },
   });
 
