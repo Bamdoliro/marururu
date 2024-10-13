@@ -48,7 +48,7 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
     onClose();
   };
 
-  const UserGuide = `${ROUTES.NOTICE}/72`;
+  const UserGuide = `${ROUTES.NOTICE}/1`;
 
   return (
     <BlurBackground $isOpen={isOpen}>
