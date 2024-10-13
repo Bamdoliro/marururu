@@ -15,8 +15,6 @@ const VolunteerCalculator = () => {
     <StyledVolunteerCalculator>
       <Text fontType="p3" color={color.red}>
         *2024.09.30까지의 봉사시간을 기재해주세요. 졸업생은 졸업일 기준으로 기재해주세요.
-        <br />
-        *1•2학년은 각각 최대 5시간, 3학년은 최대 20시간입니다.
       </Text>
       <Column>
         <Row>
