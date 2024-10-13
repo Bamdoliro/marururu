@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Column, Dropdown, Row, Text } from '@maru/ui';
 import { styled } from 'styled-components';
 import useCTAButton from './faq.hooks';
@@ -8,34 +8,14 @@ import AppLayout from '@/layouts/AppLayout';
 import FaqTable from '@/components/faq/FaqTable/FaqTable';
 import { flex } from '@maru/utils';
 import type { FaqCategory } from '@/types/faq/client';
-import { useRouter } from 'next/navigation';
-import { Cookie } from '@/apis/cookie/cookie';
-import { refreshToken } from '@/apis/token';
 
 const FaqPage = () => {
   const { handleGoFaqPostPageButtonClick } = useCTAButton();
   const [selectedCategory, setSelectedCategory] = useState<FaqCategory>('BOARD_ALL');
-  const [hasRefreshed, setHasRefreshed] = useState(false);
-  const router = useRouter();
+
   const handleClassificationCategory = (value: string) => {
     setSelectedCategory(value as FaqCategory);
   };
-
-  useEffect(() => {
-    const refreshIfNeeded = async () => {
-      if (hasRefreshed) return;
-
-      const accessToken = localStorage.getItem('accessToken');
-      const refreshTokenValue = Cookie.getItem('refresh-token');
-
-      if (!accessToken && refreshTokenValue) {
-        await refreshToken();
-        setHasRefreshed(true);
-      }
-    };
-
-    refreshIfNeeded();
-  }, [router, hasRefreshed]);
 
   return (
     <AppLayout>

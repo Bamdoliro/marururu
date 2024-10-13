@@ -38,9 +38,6 @@ import {
 } from './form.hooks';
 import withAuth from '@/hoc/withAuth';
 import { useState, useEffect } from 'react';
-import { refreshToken } from '@/apis/token';
-import { Cookie } from '@/apis/cookie/cookie';
-import { useRouter } from 'next/navigation';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();
@@ -50,24 +47,6 @@ const FormPage = () => {
   const [formListType, setFormListType] = useFormListTypeStore();
   const [formListSortingType, setFormListSortingType] = useFormListSortingTypeStore();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [hasRefreshed, setHasRefreshed] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const refreshIfNeeded = async () => {
-      if (hasRefreshed) return;
-
-      const accessToken = localStorage.getItem('accessToken');
-      const refreshTokenValue = Cookie.getItem('refresh-token');
-
-      if (!accessToken && refreshTokenValue) {
-        await refreshToken();
-        setHasRefreshed(true);
-      }
-    };
-
-    refreshIfNeeded();
-  }, [router, hasRefreshed]);
 
   const handleFormListTypeReview = () => setFormListType('검토해야 하는 원서 모아보기');
   const handleFormListTypeAll = () => setFormListType('모두 보기');

@@ -1,7 +1,5 @@
 'use client';
 
-import { Cookie } from '@/apis/cookie/cookie';
-import { refreshToken } from '@/apis/token';
 import { FinalResultTable, ResultMain } from '@/components/result';
 import { AppLayout } from '@/layouts';
 import type { ResultStep } from '@/types/result/client';
@@ -9,30 +7,11 @@ import { color } from '@maru/design-token';
 import { Column, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { SwitchCase } from '@toss/react';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const FinalResultPage = () => {
-  const router = useRouter();
   const [finalResultStep, setFinalResultStep] = useState<ResultStep>('MAIN');
-  const [hasRefreshed, setHasRefreshed] = useState(false);
-
-  useEffect(() => {
-    const refreshIfNeeded = async () => {
-      if (hasRefreshed) return;
-
-      const accessToken = localStorage.getItem('accessToken');
-      const refreshTokenValue = Cookie.getItem('refresh-token');
-
-      if (!accessToken && refreshTokenValue) {
-        await refreshToken();
-        setHasRefreshed(true);
-      }
-    };
-
-    refreshIfNeeded();
-  }, [router, hasRefreshed]);
 
   return (
     <AppLayout header footer>

@@ -5,7 +5,7 @@ import SideMenu from '@/components/common/SideMenu/SideMenu';
 import { flex } from '@maru/utils';
 import { Column, Row, Text } from '@maru/ui';
 import { SwitchCase } from '@toss/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ANALYSIS_STEP_LIST } from '@/constants/analysis/data';
 import NumberOfApplicants from '@/components/analysis/NumberOfApplicants/NumberOfApplicants';
 import GradeDistribution from '@/components/analysis/GradeDistribution/GradeDistribution';
@@ -13,30 +13,9 @@ import ApplyingType from '@/components/analysis/ApplyingType/ApplyingType';
 import GenderRatio from '@/components/analysis/GenderRatio/GenderRatio';
 import SchoolOrigin from '@/components/analysis/SchoolOrigin/SchoolOrigin';
 import styled from 'styled-components';
-import { useRouter } from 'next/navigation';
-import { Cookie } from '@/apis/cookie/cookie';
-import { refreshToken } from '@/apis/token';
 
 const AnalysisPage = () => {
   const [currentAnalysisStep, setCurrentAnalysisStep] = useState('지원자 수 (경쟁률)');
-  const [hasRefreshed, setHasRefreshed] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const refreshIfNeeded = async () => {
-      if (hasRefreshed) return;
-
-      const accessToken = localStorage.getItem('accessToken');
-      const refreshTokenValue = Cookie.getItem('refresh-token');
-
-      if (!accessToken && refreshTokenValue) {
-        await refreshToken();
-        setHasRefreshed(true);
-      }
-    };
-
-    refreshIfNeeded();
-  }, [router, hasRefreshed]);
 
   return (
     <AppLayout>

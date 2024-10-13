@@ -7,30 +7,9 @@ import { Suspense } from '@suspensive/react';
 import { ApplyingList, ClosedList, Header } from '@/components/fair';
 import AppLayout from '@/layouts/AppLayout';
 import { flex } from '@maru/utils';
-import { useRouter } from 'next/navigation';
-import { Cookie } from '@/apis/cookie/cookie';
-import { refreshToken } from '@/apis/token';
 
 const FairPage = () => {
   const [status, setStatus] = useState('진행 중인 신청');
-  const [hasRefreshed, setHasRefreshed] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const refreshIfNeeded = async () => {
-      if (hasRefreshed) return;
-
-      const accessToken = localStorage.getItem('accessToken');
-      const refreshTokenValue = Cookie.getItem('refresh-token');
-
-      if (!accessToken && refreshTokenValue) {
-        await refreshToken();
-        setHasRefreshed(true);
-      }
-    };
-
-    refreshIfNeeded();
-  }, [router, hasRefreshed]);
 
   useEffect(() => {
     const savedStatus = localStorage.getItem('selectedTab');
