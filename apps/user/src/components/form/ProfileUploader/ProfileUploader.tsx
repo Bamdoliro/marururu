@@ -12,6 +12,7 @@ import styled, { css } from 'styled-components';
 import CropImageModal from '../CropImageModal/CropImageModal';
 import ProfileUploadLoader from '../ProfileUpoloadLoader/ProfileUploadLoader';
 import { Storage } from '@/apis/storage/storage';
+import { useFormStatusQuery } from '@/services/form/queries';
 
 type ProfileUploaderProps = {
   onPhotoUpload: (success: boolean, url?: string) => void;
@@ -25,6 +26,7 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const { openFileUploader, ref: imageUploaderRef } = useOpenFileUploader();
+  const formStatusData = useFormStatusQuery().data;
 
   const { mutate: uploadProfileImage } = useUploadProfileImageMutation();
   const { mutate: refreshProfileImage } = useRefreshProfileImageMutation();
@@ -106,7 +108,10 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
   );
 
   useEffect(() => {
-    if (!isUploadPictureStored && !isUploading) {
+    if (
+      (!isUploadPictureStored && !isUploading) ||
+      formStatusData?.status === 'REJECTED'
+    ) {
       refreshProfileImage(undefined, {
         onSuccess: (newDownloadUrl) => handleUploadSuccess(newDownloadUrl),
         onError: () => onPhotoUpload(false),
@@ -121,6 +126,7 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
     handleUploadSuccess,
     onPhotoUpload,
     isUploading,
+    formStatusData?.status,
   ]);
 
   const handleImageFileChange: ChangeEventHandler<HTMLInputElement> = useCallback(
