@@ -9,6 +9,7 @@ import { useInput, useLoginAction } from './login.hooks';
 import { useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ROUTES } from '@/constants/common/constant';
+import { Cookie } from '@/apis/cookie/cookie';
 
 const LoginContent = () => {
   const { loginAdminData, handleLoginAdminDataChange } = useInput();
@@ -26,6 +27,8 @@ const LoginContent = () => {
   useEffect(() => {
     if (message) {
       alert(message);
+      localStorage.clear();
+      Cookie.removeItem('refresh-token');
       router.replace(ROUTES.MAIN);
     }
   }, [message, router]);
