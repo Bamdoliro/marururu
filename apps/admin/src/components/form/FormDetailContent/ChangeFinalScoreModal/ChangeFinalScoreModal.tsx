@@ -48,17 +48,17 @@ const FinalScoreConfirm = ({ id, isOpen, onClose }: Props) => {
           />
         </Row>
         <Row gap={12}>
-          <CardRadio approvalStatusType="승인" $checked={approvalStatus === '승인'}>
+          <CardRadio approvalStatusType="접수" $checked={approvalStatus === '접수'}>
             <Text
               fontType="context"
-              color={approvalStatus === '승인' ? color.maruDefault : color.gray600}
+              color={approvalStatus === '접수' ? color.maruDefault : color.gray600}
             >
               승인
             </Text>
             <input
               type="radio"
               name="approvalStatus"
-              value="승인"
+              value="접수"
               onChange={handleApprovalRadioChange}
               hidden
             />
@@ -131,7 +131,7 @@ const CardRadio = styled.label<{ approvalStatusType: ApprovalStatus; $checked: b
 
   ${({ $checked, approvalStatusType }) =>
     $checked &&
-    (approvalStatusType === '승인'
+    (approvalStatusType === '접수'
       ? css`
           border: 1px solid ${color.maruDefault};
           background: ${color.maruLightBlue};
