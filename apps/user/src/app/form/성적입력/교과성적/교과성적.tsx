@@ -5,17 +5,28 @@ import { Column, Text, UnderlineButton } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import { useCTAButton } from './교과성적.hooks';
-import { useNewSubjectListValueStore, useSubjectListValueStore } from '@/store';
+import {
+  useFormValueStore,
+  useNewSubjectListValueStore,
+  useSubjectListValueStore,
+} from '@/store';
 import { useState } from 'react';
 
 const 교과성적 = () => {
   const { handleMovePreviousStep, handleMoveNextStep } = useCTAButton();
   const subjectList = useSubjectListValueStore();
   const newSubjectList = useNewSubjectListValueStore();
+  const form = useFormValueStore();
   const [subjectError, setSubjectError] = useState<boolean[]>([]);
   const [newSubjectError, setNewSubjectError] = useState<boolean[]>([]);
 
   const validateSubjects = () => {
+    const type = form.education.graduationType === 'QUALIFICATION_EXAMINATION';
+
+    if (type) {
+      return true;
+    }
+
     const subjectErrors = subjectList.map(
       (subject) =>
         subject.achievementLevel21 === '-' ||
