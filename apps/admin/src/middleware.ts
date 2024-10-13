@@ -6,7 +6,7 @@ export const middleware = async (request: NextRequest) => {
   const cookies = request.headers.get('cookie');
   const accessToken = cookies
     ?.split('; ')
-    .find((row) => row.startsWith('access-token='))
+    .find((row) => row.startsWith('refresh-token='))
     ?.split('=')[1];
 
   if (
