@@ -71,7 +71,7 @@ const useGradeCalculation = () => {
   const calculateRegularScore = () => {
     if (form.education.graduationType === 'QUALIFICATION_EXAMINATION') {
       const regularTotal = form.grade.subjectList.reduce((acc, subject) => {
-        const achievementLevel = subject.score && getAchivementLevel(subject.score);
+        const achievementLevel = subject.score ? getAchivementLevel(subject.score) : 'E';
 
         if (achievementLevel) {
           if (subject.subjectName === '수학') {
@@ -82,10 +82,10 @@ const useGradeCalculation = () => {
         return acc;
       }, 0);
 
-      const regularLength = form.grade.subjectList.length;
+      const regularLength = form.grade.subjectList.length + 1;
 
       const regularScore =
-        REGULAR_TYPE_DEFAULT_SCORE + 12 * 2 * (regularTotal / regularLength);
+        REGULAR_TYPE_DEFAULT_SCORE + (12 * 2 * regularTotal) / regularLength;
 
       return Number(regularScore.toFixed(3));
     }
