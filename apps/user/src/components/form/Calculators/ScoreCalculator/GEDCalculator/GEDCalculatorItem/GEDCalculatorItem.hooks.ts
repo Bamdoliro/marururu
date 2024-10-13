@@ -10,7 +10,8 @@ export const useInput = (id: number) => {
 
     if (numericValue > 100) return;
 
-    const trimmedValue = value.replace(/^0+/, '');
+    const trimmedValue = numericValue !== 0 ? value.replace(/^0+/, '') : value;
+
     const processValue =
       numericValue === 100 ? 100 : numericValue >= 10 ? numericValue : trimmedValue;
 
