@@ -1,12 +1,13 @@
 import { ROUTES, TOKEN } from '@/constants/common/constant';
 import { maru } from '../instance/instance';
 import { Storage } from '../storage/storage';
+import { Cookie } from '../cookie/cookie';
 
 const refreshToken = async () => {
   try {
     const { data } = await maru.patch('/auth', null, {
       headers: {
-        'Refresh-Token': `${Storage.getItem(TOKEN.REFRESH)}`,
+        'Refresh-Token': `${Cookie.getItem(TOKEN.REFRESH)}`,
       },
     });
     Storage.setItem(TOKEN.ACCESS, data.data.accessToken);
