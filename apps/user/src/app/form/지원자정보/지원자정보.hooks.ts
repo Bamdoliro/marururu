@@ -60,9 +60,10 @@ export const useInput = () => {
       return;
     }
 
-    if (name === 'name' || name === 'phoneNumber') return;
-
-    setForm((prev) => ({ ...prev, applicant: { ...prev.applicant, [name]: value } }));
+    setForm((prev) => ({
+      ...prev,
+      applicant: { ...prev.applicant, [name]: value },
+    }));
   };
 
   return { handle지원자정보Change };
