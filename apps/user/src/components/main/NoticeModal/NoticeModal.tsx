@@ -75,6 +75,14 @@ const NoticeModal = ({ isOpen, onClose }: Props) => {
                 다운로드를 받을 수 있으니 확인바랍니다.
               </Text>
             </Column>
+            <Column alignItems="center">
+              <Text fontType="p1" color={color.gray900}>
+                2024.10.13.(일) 테스트 이후 회원 정보를 삭제했으니
+              </Text>
+              <Text fontType="p1" color={color.gray900}>
+                새롭게 회원가입 해주시길 바랍니다.
+              </Text>
+            </Column>
           </Column>
           <Button type="button" onClick={() => handleCloseModal(true)}>
             <Text fontType="p1" color={color.white}>
@@ -106,7 +114,7 @@ const StyledModal = styled.div`
   position: relative;
   ${flex({ justifyContent: 'center' })}
   width: 480px;
-  height: 384px;
+  height: 454px;
   padding: 60px;
   border-radius: 16px;
   background-color: ${color.white};
