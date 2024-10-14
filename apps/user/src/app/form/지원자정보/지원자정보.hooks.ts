@@ -31,6 +31,10 @@ const formatBirthday = (value: string) => {
   return formatDate(numericValue);
 };
 
+const formatPhoneNumber = (value: string) => {
+  return value.replace(/\D/g, '');
+};
+
 export const useInput = () => {
   const setForm = useSetFormStore();
   const user = useUser();
@@ -56,6 +60,15 @@ export const useInput = () => {
       setForm((prev) => ({
         ...prev,
         applicant: { ...prev.applicant, birthday: formattedValue },
+      }));
+      return;
+    }
+
+    if (name === 'phoneNumber') {
+      const formattedValue = formatPhoneNumber(value);
+      setForm((prev) => ({
+        ...prev,
+        applicant: { ...prev.applicant, phoneNumber: formattedValue },
       }));
       return;
     }
