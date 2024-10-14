@@ -101,6 +101,7 @@ const 지원자정보 = () => {
             name="name"
             placeholder="예) 홍길동"
             width="100%"
+            readOnly
           />
           <Input
             label="생년월일"
@@ -131,6 +132,7 @@ const 지원자정보 = () => {
             name="phoneNumber"
             placeholder="- 없이 입력해주세요."
             width="100%"
+            readOnly
           />
         </Column>
       </Row>
