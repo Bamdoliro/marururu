@@ -12,14 +12,13 @@ const WriteNextForm = () => {
 
   const isNotSubmit =
     status.data?.status === 'APPROVED' ||
-    status.data?.status === 'REJECTED' ||
     status.data?.status === 'FINAL_SUBMITTED' ||
     status.data?.status === 'PASSED' ||
     status.data?.status === 'RECEIVED' ||
     status.data?.status === 'FIRST_PASSED';
 
   const handleFormWrite = () => {
-    if (!isNotSubmit) {
+    if (isNotSubmit) {
       alert('원서를 제출한 상태입니다.');
     } else {
       router.push(ROUTES.FORM);
