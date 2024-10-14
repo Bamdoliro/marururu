@@ -3,7 +3,6 @@
 import {
   ApplicationBox,
   ApplicationSubmittionBox,
-  EmergancyModal,
   FaqBox,
   GuidelineBox,
   NoticeBox,
@@ -33,7 +32,6 @@ const MainPage = () => {
 
 const MainContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEmergancyModalOpen, setIsEmergancyModalOpen] = useState(true);
   const searchParams = useSearchParams();
   const router = useRouter();
   const message = searchParams.get('message');
@@ -41,10 +39,10 @@ const MainContent = () => {
 
   useEffect(() => {
     const noticeModalClosed = Storage.getItem('noticeModalClosed');
-    if (!noticeModalClosed && !isEmergancyModalOpen) {
+    if (!noticeModalClosed) {
       setIsModalOpen(true);
     }
-  }, [isEmergancyModalOpen]);
+  }, []);
 
   useEffect(() => {
     if (message) {
@@ -75,14 +73,7 @@ const MainContent = () => {
           <FaqBox />
         </Row>
       </StyledMainPage>
-      {isEmergancyModalOpen && (
-        <EmergancyModal
-          isOpen={isEmergancyModalOpen}
-          onClose={() => setIsEmergancyModalOpen(false)}
-        />
-      )}
-
-      {!isEmergancyModalOpen && isModalOpen && (
+      {isModalOpen && (
         <NoticeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       )}
     </AppLayout>
