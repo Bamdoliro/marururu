@@ -14,7 +14,6 @@ const WriteNextForm = () => {
     status.data?.status === 'APPROVED' ||
     status.data?.status === 'REJECTED' ||
     status.data?.status === 'FINAL_SUBMITTED' ||
-    status.data?.status === 'SUBMITTED' ||
     status.data?.status === 'PASSED' ||
     status.data?.status === 'RECEIVED' ||
     status.data?.status === 'FIRST_PASSED';
