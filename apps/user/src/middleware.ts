@@ -27,6 +27,13 @@ export const middleware = (request: NextRequest) => {
     return NextResponse.redirect(inspectionUrl);
   }
 
+  if (
+    !now.isBetween(점검_시작, 점검_끝, 'minute', '[]') &&
+    request.nextUrl.pathname === '/inspection'
+  ) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
+
   const cookies = request.headers.get('cookie');
   const accessToken = cookies
     ?.split('; ')
