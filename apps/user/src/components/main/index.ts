@@ -5,3 +5,4 @@ export { default as GuidelineBox } from './GuidelineBox/GuidelineBox';
 export { default as NoticeBox } from './NoticeBox/NoticeBox';
 export { default as ScheduleBox } from './ScheduleBox/ScheduleBox';
 export { default as SimulatorBox } from './SimulatorBox/SimulatorBox';
+export { default as EmergancyModal } from './EmergancyModal/EmergancyModal';

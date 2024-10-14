@@ -3,6 +3,7 @@
 import {
   ApplicationBox,
   ApplicationSubmittionBox,
+  EmergancyModal,
   FaqBox,
   GuidelineBox,
   NoticeBox,
@@ -20,6 +21,7 @@ import NoticeModal from '@/components/main/NoticeModal/NoticeModal';
 import React from 'react';
 import { Suspense } from '@suspensive/react';
 import { Cookie } from '@/apis/cookie/cookie';
+import { Storage } from '@/apis/storage/storage';
 
 const MainPage = () => {
   return (
@@ -31,17 +33,18 @@ const MainPage = () => {
 
 const MainContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEmergancyModalOpen, setIsEmergancyModalOpen] = useState(true);
   const searchParams = useSearchParams();
   const router = useRouter();
   const message = searchParams.get('message');
   const warning = searchParams.get('warning');
 
   useEffect(() => {
-    const noticeModalClosed = localStorage.getItem('noticeModalClosed');
-    if (!noticeModalClosed) {
+    const noticeModalClosed = Storage.getItem('noticeModalClosed');
+    if (!noticeModalClosed && !isEmergancyModalOpen) {
       setIsModalOpen(true);
     }
-  }, []);
+  }, [isEmergancyModalOpen]);
 
   useEffect(() => {
     if (message) {
@@ -72,7 +75,14 @@ const MainContent = () => {
           <FaqBox />
         </Row>
       </StyledMainPage>
-      {isModalOpen && (
+      {isEmergancyModalOpen && (
+        <EmergancyModal
+          isOpen={isEmergancyModalOpen}
+          onClose={() => setIsEmergancyModalOpen(false)}
+        />
+      )}
+
+      {!isEmergancyModalOpen && isModalOpen && (
         <NoticeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       )}
     </AppLayout>
