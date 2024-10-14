@@ -35,7 +35,7 @@ export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq
       router.push(ROUTES.MAIN);
     },
     onError: () => {
-      alert('다시 로그인을 시도해주세요');
+      alert('아이디또는 비밀번호가 틀렸습니다.');
       removeCookie('access-token');
       removeCookie('refresh-token');
     },
