@@ -119,6 +119,10 @@ const ProfileUploader = ({ onPhotoUpload, isError }: ProfileUploaderProps) => {
     } else {
       const storedImageUrl = Storage.getItem('downloadUrl');
       if (storedImageUrl) setImageSrc(storedImageUrl);
+      refreshProfileImage(undefined, {
+        onSuccess: (newDownloadUrl) => handleUploadSuccess(newDownloadUrl),
+        onError: () => onPhotoUpload(false),
+      });
     }
   }, [
     isUploadPictureStored,
