@@ -13,6 +13,8 @@ const 지원자정보 = () => {
   const { handleMoveNextStep } = useCTAButton();
   const [isNextClicked, setIsNextClicked] = useState(false);
   const [isBirthdayError, setIsBirthdayError] = useState(false);
+  const [isNameError, setIsNameError] = useState(false);
+  const [isPhoneNumberError, setIsPhoneNumberError] = useState(false);
   const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
   const [isPhotoError, setIsPhotoError] = useState(false);
 
@@ -35,27 +37,50 @@ const 지원자정보 = () => {
     return birthday.trim().length === 10;
   }, []);
 
+  const validateName = useCallback((name: string) => {
+    return name.trim().length >= 2;
+  }, []);
+
+  const validatePhoneNumber = useCallback((phoneNumber: string) => {
+    return phoneNumber.trim().length === 11;
+  }, []);
+
   useEffect(() => {
     setIsBirthdayError(!validateBirthday(form.applicant.birthday));
+    setIsNameError(!validateName(form.applicant.name));
+    setIsPhoneNumberError(!validatePhoneNumber(form.applicant.phoneNumber));
   }, [
     form.applicant.birthday,
     form.applicant.name,
     form.applicant.phoneNumber,
     validateBirthday,
+    validateName,
+    validatePhoneNumber,
   ]);
 
   const handleNextClick = useCallback(() => {
     setIsNextClicked(true);
     const birthdayValid = validateBirthday(form.applicant.birthday);
+    const nameValid = validateName(form.applicant.name);
+    const phoneNumberValid = validatePhoneNumber(form.applicant.phoneNumber);
     const photoValid = isPhotoUploaded;
 
     setIsPhotoError(!photoValid);
     setIsBirthdayError(!birthdayValid);
 
-    if (birthdayValid && photoValid) {
+    if (birthdayValid && photoValid && nameValid && phoneNumberValid) {
       handleMoveNextStep();
     }
-  }, [form.applicant.birthday, isPhotoUploaded, handleMoveNextStep, validateBirthday]);
+  }, [
+    validateBirthday,
+    form.applicant.birthday,
+    form.applicant.name,
+    form.applicant.phoneNumber,
+    validateName,
+    validatePhoneNumber,
+    isPhotoUploaded,
+    handleMoveNextStep,
+  ]);
 
   const handleBirthdayChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -101,6 +126,8 @@ const 지원자정보 = () => {
             name="name"
             placeholder="예) 홍길동"
             width="100%"
+            isError={isNextClicked && isNameError}
+            errorMessage={isNameError ? '이름을 입력해주세요.' : ''}
           />
           <Input
             label="생년월일"
@@ -131,6 +158,8 @@ const 지원자정보 = () => {
             name="phoneNumber"
             placeholder="- 없이 입력해주세요."
             width="100%"
+            isError={isNextClicked && isPhoneNumberError}
+            errorMessage={isPhoneNumberError ? '전화번호를 정확하게 입력해주세요.' : ''}
           />
         </Column>
       </Row>
