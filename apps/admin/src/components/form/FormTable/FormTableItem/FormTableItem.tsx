@@ -38,7 +38,7 @@ const FormTableItem = ({
 
   const getDocumentStatusColor = (status: FormStatus) => {
     switch (status) {
-      case 'APPROVED':
+      case 'RECEIVED':
         return color.maruDefault;
       case 'REJECTED':
         return color.red;
