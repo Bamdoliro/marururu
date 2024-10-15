@@ -99,11 +99,7 @@ export const getFormDetail = async (id: number) => {
 };
 
 export const patchFinalScore = async (id: number, status: ApprovalStatus) => {
-  if (status === '접수') {
-    const { data } = await maru.patch(`/form/${id}/approve`, {}, authorization());
-
-    return data;
-  } else if (status === '반려') {
+  if (status === '반려') {
     const { data } = await maru.patch(`/form/${id}/reject`, {}, authorization());
 
     return data;
