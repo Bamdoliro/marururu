@@ -61,7 +61,7 @@ const FormTableItem = ({
 
   const getDocumentStatusString = (status: FormStatus) => {
     switch (status) {
-      case 'APPROVED':
+      case 'RECEIVED':
         return '승인';
       case 'REJECTED':
         return '반려';
