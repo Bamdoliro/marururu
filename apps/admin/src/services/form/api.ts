@@ -103,6 +103,10 @@ export const patchFinalScore = async (id: number, status: ApprovalStatus) => {
     const { data } = await maru.patch(`/form/${id}/reject`, {}, authorization());
 
     return data;
+  } else if (status === '확인 중') {
+    const { data } = await maru.patch(`/form/${id}/approve`, {}, authorization());
+
+    return data;
   }
   const { data } = await maru.patch(`/form/${id}/receive`, {}, authorization());
 

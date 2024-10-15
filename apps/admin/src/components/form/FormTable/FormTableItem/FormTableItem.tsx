@@ -42,6 +42,8 @@ const FormTableItem = ({
         return color.maruDefault;
       case 'REJECTED':
         return color.red;
+      case 'APPROVED':
+        return color.green;
       default:
         return color.gray900;
     }
@@ -65,6 +67,8 @@ const FormTableItem = ({
         return '승인';
       case 'REJECTED':
         return '반려';
+      case 'APPROVED':
+        return '확인 중';
       default:
         return '접수 중';
     }

@@ -3,6 +3,7 @@ const color = {
   white: '#FFFFFF',
   orange: '#FF763B',
   red: '#F44336',
+  green: '#00BF40',
 
   bamdoliro: '#1E2E3D',
   maruDefault: '#257CFF',
