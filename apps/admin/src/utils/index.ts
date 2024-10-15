@@ -5,3 +5,4 @@ export { formatStatus } from './functions/formatStatus';
 export { default as formatDate } from './functions/formatDate';
 export { default as formatTime } from './functions/formatTime';
 export { default as formatFileName } from './functions/formatFileName';
+export { default as formatName } from './functions/formatName';

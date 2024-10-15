@@ -6,6 +6,7 @@ import { useIsFormToPrintSelectingValueStore } from '@/store/form/isFormToPrintS
 import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import type { Form, FormType, PassStatusType, FormStatus } from '@/types/form/client';
+import { formatName } from '@/utils';
 import { color } from '@maru/design-token';
 import { CheckBox, Dropdown, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
@@ -127,7 +128,7 @@ const FormTableItem = ({
             {examinationNumber}
           </Text>
           <Text fontType="p2" width={60}>
-            {name}
+            {formatName(name)}
           </Text>
           <Text fontType="p2" width={160} ellipsis>
             {graduationType === 'QUALIFICATION_EXAMINATION' ? '검정고시' : school}
