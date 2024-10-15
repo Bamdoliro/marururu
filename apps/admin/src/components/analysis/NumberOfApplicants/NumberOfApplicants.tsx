@@ -34,9 +34,9 @@ const NumberOfApplicants = () => {
       )
       .reduce((sum, item) => sum + item.count, 0) || 0;
 
-  const regularCompetitionRate = (regularCount / 64).toFixed(2);
-  const specialAdmissionCompetitionRate = (specialAdmissionCount / 64).toFixed(2);
-  const otherCompetitionRate = (otherCount / 64).toFixed(2);
+  const regularCompetitionRate = (regularCount / 36).toFixed(1);
+  const specialAdmissionCompetitionRate = (specialAdmissionCount / 28).toFixed(1);
+  const otherCompetitionRate = (otherCount / 3).toFixed(1);
 
   return (
     <Layout>
