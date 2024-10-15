@@ -112,16 +112,20 @@ export const useLogoutUserMutation = () => {
   const { mutate: logoutUserMutate, ...restMutation } = useMutation({
     mutationFn: deleteLogoutUser,
     onSuccess: () => {
+      router.replace(ROUTES.MAIN);
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
       localStorage.clear();
       Cookie.removeItem('refresh-token');
-      window.location.reload();
-      router.replace(ROUTES.MAIN);
     },
     onError: () => {
-      Cookie.removeItem('refresh-token');
-      localStorage.clear();
-      window.location.reload();
       router.replace(ROUTES.MAIN);
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+      localStorage.clear();
+      Cookie.removeItem('refresh-token');
     },
   });
 
