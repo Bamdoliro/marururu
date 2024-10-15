@@ -14,7 +14,7 @@ const 보호자정보 = () => {
   const { handleMoveNextStep, handleMovePreviousStep } = useCTAButton();
 
   const [isNextClicked, setIsNextClicked] = useState(false);
-  const [isParentNameError, setIsParentNameError] = useState(false);
+  const [isParentNameError, setIsParentNameError] = useState('');
   const [isParentPhoneNumberError, setIsParentPhoneNumberError] = useState('');
   const [isParentRelationError, setIsParentRelationError] = useState(false);
   const [isAddressError, setIsAddressError] = useState(false);
@@ -40,7 +40,6 @@ const 보호자정보 = () => {
   const handleNextClick = () => {
     setIsNextClicked(true);
 
-    const nameValid = form.parent.name.trim().length >= 2;
     const relationValid = form.parent.relation.trim().length > 0;
     const addressValid =
       form.parent.address.trim().length > 0 && form.parent.address.trim().length < 100;
@@ -48,7 +47,15 @@ const 보호자정보 = () => {
       form.parent.detailAddress.trim().length > 0 &&
       form.parent.detailAddress.trim().length < 100;
 
-    setIsParentNameError(!nameValid);
+    if (form.parent.name.trim().length === 0) {
+      setIsParentNameError('보호자 이름을 입력해주세요.');
+    } else if (form.parent.name.trim().length <= 2) {
+      setIsParentNameError('보호자 이름은 2자 이상 입력해주세요.');
+    } else if (form.parent.name.trim().length >= 20) {
+      setIsParentNameError('보호자 이름은 20자 이하로 입력해주세요.');
+    } else {
+      setIsParentNameError('');
+    }
 
     if (form.parent.phoneNumber.trim().length === 0) {
       setIsParentPhoneNumberError('전화번호를 입력해주세요.');
@@ -73,7 +80,9 @@ const 보호자정보 = () => {
 
     if (isNextClicked) {
       if (name === 'name') {
-        setIsParentNameError(value.trim().length < 2);
+        setIsParentNameError(
+          (value.trim().length < 2 || value.trim().length > 20).toString()
+        );
       } else if (name === 'phoneNumber') {
         if (value.trim().length === 0) {
           setIsParentPhoneNumberError('전화번호를 입력해주세요.');
@@ -109,7 +118,7 @@ const 보호자정보 = () => {
             label="성명"
             placeholder="예) 홍길동"
             width="100%"
-            isError={isParentNameError}
+            isError={!!isParentNameError}
             errorMessage={isParentNameError ? '이름을 입력해주세요.' : ''}
           />
           <Input
