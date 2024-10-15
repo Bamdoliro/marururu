@@ -65,11 +65,8 @@ const FormTableItem = ({
         return '승인';
       case 'REJECTED':
         return '반려';
-      case 'SUBMITTED':
-      case 'FINAL_SUBMITTED':
-        return '접수 중';
       default:
-        return '접수';
+        return '접수 중';
     }
   };
 
