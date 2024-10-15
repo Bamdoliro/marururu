@@ -31,6 +31,9 @@ export const useLoginUserMutation = ({ phoneNumber, password }: PostLoginAuthReq
       Storage.setItem(TOKEN.ACCESS, accessToken);
       Cookie.setItem(TOKEN.REFRESH, refreshToken);
       router.push(ROUTES.MAIN);
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     },
     onError: () => {
       alert('아이디또는 비밀번호가 틀렸습니다.');
