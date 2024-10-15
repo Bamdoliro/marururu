@@ -35,7 +35,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   const cookies = request.headers.get('cookie');
-  const accessToken = cookies
+  const refreshToken = cookies
     ?.split('; ')
     .find((row) => row.startsWith('refresh-token='))
     ?.split('=')[1];
@@ -49,7 +49,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   if (url === '/form') {
-    if (!accessToken) {
+    if (!refreshToken) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
@@ -66,7 +66,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   if (url === '/form-management') {
-    if (!accessToken) {
+    if (!refreshToken) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
@@ -80,7 +80,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   if (url === '/result/first') {
-    if (!accessToken) {
+    if (!refreshToken) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
@@ -97,7 +97,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   if (url === '/result/final') {
-    if (!accessToken) {
+    if (!refreshToken) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
