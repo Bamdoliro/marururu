@@ -3,6 +3,7 @@ const nextConfig = {
   transpilePackages: ['@maru/design-token'],
   poweredByHeader: false,
   images: {
+    unoptimized: false,
     domains: ['s3.ap-northeast-2.amazonaws.com'],
     remotePatterns: [
       {
