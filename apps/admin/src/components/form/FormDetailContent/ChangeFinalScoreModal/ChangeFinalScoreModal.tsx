@@ -48,17 +48,17 @@ const FinalScoreConfirm = ({ id, isOpen, onClose }: Props) => {
           />
         </Row>
         <Row gap={12}>
-          <CardRadio approvalStatusType="접수" $checked={approvalStatus === '접수'}>
+          <CardRadio approvalStatusType="승인" $checked={approvalStatus === '승인'}>
             <Text
               fontType="context"
-              color={approvalStatus === '접수' ? color.maruDefault : color.gray600}
+              color={approvalStatus === '승인' ? color.maruDefault : color.gray600}
             >
               승인
             </Text>
             <input
               type="radio"
               name="approvalStatus"
-              value="접수"
+              value="승인"
               onChange={handleApprovalRadioChange}
               hidden
             />
@@ -74,6 +74,21 @@ const FinalScoreConfirm = ({ id, isOpen, onClose }: Props) => {
               type="radio"
               name="approvalStatus"
               value="반려"
+              onChange={handleApprovalRadioChange}
+              hidden
+            />
+          </CardRadio>
+          <CardRadio approvalStatusType="확인 중" $checked={approvalStatus === '확인 중'}>
+            <Text
+              fontType="context"
+              color={approvalStatus === '확인 중' ? color.green : color.gray600}
+            >
+              확인 중
+            </Text>
+            <input
+              type="radio"
+              name="approvalStatus"
+              value="확인 중"
               onChange={handleApprovalRadioChange}
               hidden
             />
@@ -131,7 +146,7 @@ const CardRadio = styled.label<{ approvalStatusType: ApprovalStatus; $checked: b
 
   ${({ $checked, approvalStatusType }) =>
     $checked &&
-    (approvalStatusType === '접수'
+    (approvalStatusType === '승인'
       ? css`
           border: 1px solid ${color.maruDefault};
           background: ${color.maruLightBlue};
@@ -140,6 +155,11 @@ const CardRadio = styled.label<{ approvalStatusType: ApprovalStatus; $checked: b
       ? css`
           border: 1px solid ${color.red};
           background: rgba(244, 67, 54, 0.1);
+        `
+      : approvalStatusType === '확인 중'
+      ? css`
+          border: 1px solid ${color.green};
+          background: rgba(0, 191, 64, 0.1);
         `
       : null)}
 `;

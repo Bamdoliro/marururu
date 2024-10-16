@@ -6,6 +6,7 @@ import { useIsFormToPrintSelectingValueStore } from '@/store/form/isFormToPrintS
 import { useIsSecondRoundResultEditingValueStore } from '@/store/form/isSecondRoundResultEditing';
 import { useSecondRoundResultStore } from '@/store/form/secondRoundResult';
 import type { Form, FormType, PassStatusType, FormStatus } from '@/types/form/client';
+import { formatName } from '@/utils';
 import { color } from '@maru/design-token';
 import { CheckBox, Dropdown, Row, Text } from '@maru/ui';
 import { useRouter } from 'next/navigation';
@@ -37,10 +38,12 @@ const FormTableItem = ({
 
   const getDocumentStatusColor = (status: FormStatus) => {
     switch (status) {
-      case 'APPROVED':
+      case 'RECEIVED':
         return color.maruDefault;
       case 'REJECTED':
         return color.red;
+      case 'APPROVED':
+        return color.green;
       default:
         return color.gray900;
     }
@@ -60,15 +63,14 @@ const FormTableItem = ({
 
   const getDocumentStatusString = (status: FormStatus) => {
     switch (status) {
-      case 'APPROVED':
+      case 'RECEIVED':
         return '승인';
       case 'REJECTED':
         return '반려';
-      case 'SUBMITTED':
-      case 'FINAL_SUBMITTED':
-        return '접수 중';
+      case 'APPROVED':
+        return '확인 중';
       default:
-        return '접수';
+        return '접수 중';
     }
   };
 
@@ -127,7 +129,7 @@ const FormTableItem = ({
             {examinationNumber}
           </Text>
           <Text fontType="p2" width={60}>
-            {name}
+            {formatName(name)}
           </Text>
           <Text fontType="p2" width={160} ellipsis>
             {graduationType === 'QUALIFICATION_EXAMINATION' ? '검정고시' : school}

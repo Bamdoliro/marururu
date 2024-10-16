@@ -25,7 +25,7 @@ const FormController = ({ onPrevious, onNext, step }: Props) => {
           step === '전형선택' ||
           step === '출신학교및학력')) ? (
         <Button width={150} onClick={onNext}>
-          다음 단계
+          다음
         </Button>
       ) : (
         <StyledFormController>

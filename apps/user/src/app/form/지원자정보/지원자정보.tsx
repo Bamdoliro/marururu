@@ -13,6 +13,8 @@ const 지원자정보 = () => {
   const { handleMoveNextStep } = useCTAButton();
   const [isNextClicked, setIsNextClicked] = useState(false);
   const [isBirthdayError, setIsBirthdayError] = useState(false);
+  const [isNameError, setIsNameError] = useState('');
+  const [isPhoneNumberError, setIsPhoneNumberError] = useState(false);
   const [isPhotoUploaded, setIsPhotoUploaded] = useState(false);
   const [isPhotoError, setIsPhotoError] = useState(false);
 
@@ -35,27 +37,66 @@ const 지원자정보 = () => {
     return birthday.trim().length === 10;
   }, []);
 
+  const validateName = useCallback((name: string) => {
+    if (name.trim().length === 0) {
+      return '이름을 입력해주세요.';
+    } else if (name.trim().length < 2) {
+      return '이름은 2자 이상이어야 합니다.';
+    } else if (name.trim().length > 20) {
+      return '이름은 20자 이하이어야 합니다.';
+    } else {
+      return '';
+    }
+  }, []);
+
+  const validatePhoneNumber = useCallback((phoneNumber: string) => {
+    return phoneNumber.trim().length === 11;
+  }, []);
+
   useEffect(() => {
     setIsBirthdayError(!validateBirthday(form.applicant.birthday));
+    setIsNameError(validateName(form.applicant.name));
+    setIsPhoneNumberError(!validatePhoneNumber(form.applicant.phoneNumber));
   }, [
     form.applicant.birthday,
     form.applicant.name,
     form.applicant.phoneNumber,
     validateBirthday,
+    validateName,
+    validatePhoneNumber,
   ]);
 
   const handleNextClick = useCallback(() => {
     setIsNextClicked(true);
     const birthdayValid = validateBirthday(form.applicant.birthday);
+    const nameError = validateName(form.applicant.name);
+    const nameValid = nameError === '';
+    const phoneNumberValid = validatePhoneNumber(form.applicant.phoneNumber);
     const photoValid = isPhotoUploaded;
 
     setIsPhotoError(!photoValid);
     setIsBirthdayError(!birthdayValid);
 
-    if (birthdayValid && photoValid) {
+    if (form.applicant.name.trim().length > 20) {
+      alert(
+        `학생 성명은 20자를 넘을 수가 없습니다.\n\n외국인인 경우 생활기록부에 기재된 성 또는 이름으로 작성해주세요.`
+      );
+      return;
+    }
+
+    if (birthdayValid && photoValid && nameValid && phoneNumberValid) {
       handleMoveNextStep();
     }
-  }, [form.applicant.birthday, isPhotoUploaded, handleMoveNextStep, validateBirthday]);
+  }, [
+    validateBirthday,
+    form.applicant.birthday,
+    form.applicant.name,
+    form.applicant.phoneNumber,
+    validateName,
+    validatePhoneNumber,
+    isPhotoUploaded,
+    handleMoveNextStep,
+  ]);
 
   const handleBirthdayChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +142,8 @@ const 지원자정보 = () => {
             name="name"
             placeholder="예) 홍길동"
             width="100%"
-            readOnly
+            isError={isNextClicked && isNameError !== ''}
+            errorMessage={isNameError}
           />
           <Input
             label="생년월일"
@@ -132,7 +174,8 @@ const 지원자정보 = () => {
             name="phoneNumber"
             placeholder="- 없이 입력해주세요."
             width="100%"
-            readOnly
+            isError={isNextClicked && isPhoneNumberError}
+            errorMessage={isPhoneNumberError ? '전화번호를 정확하게 입력해주세요.' : ''}
           />
         </Column>
       </Row>

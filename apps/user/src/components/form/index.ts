@@ -12,3 +12,4 @@ export { default as PdfGeneratedLoader } from './PdfGeneratedLoader/PdfGenerated
 export { default as ProfileUploader } from './ProfileUploader/ProfileUploader';
 export { default as ProgressSteps } from './ProgressSteps/ProgressSteps';
 export { default as CropImageModal } from './CropImageModal/CropImageModal';
+export { default as PdfUploadLoader } from './PdfUploadLoader/PdfUploadLoader';

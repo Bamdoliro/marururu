@@ -11,7 +11,11 @@ export class Cookie {
 
   static setItem(key: CookieKey, value: string) {
     if (typeof window === 'undefined') return;
-    cookies.set(key, value, { path: '/' });
+    cookies.set(key, value, {
+      path: '/',
+      secure: true,
+      sameSite: 'none',
+    });
   }
 
   static removeItem(key: CookieKey) {

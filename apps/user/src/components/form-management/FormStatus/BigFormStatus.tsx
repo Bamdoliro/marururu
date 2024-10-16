@@ -23,16 +23,16 @@ const FormStatus = ({ status }: Props) => {
                   원서 상태
                 </Text>
                 <Text fontType="H1" color={color.gray900}>
-                  확인중
+                  승인됨
                 </Text>
               </Column>
               <IconCheckCircle width={110} height={110} />
             </Row>
             <Column height={228}> </Column>
             <Text fontType="p2" color={color.gray600}>
-              원서가 확인 중입니다.
+              원서가 승인되었습니다.
               <br />
-              담당 선생님의 원서 승인을 기다려주세요.
+              {userData.name}님의 1차 합격을 기원합니다!
             </Text>
           </StyledApplicationBox>
         );
@@ -133,16 +133,16 @@ const FormStatus = ({ status }: Props) => {
                   원서 상태
                 </Text>
                 <Text fontType="H1" color={color.gray900}>
-                  승인됨
+                  확인중
                 </Text>
               </Column>
               <IconCheckCircle width={110} height={110} />
             </Row>
             <Column height={20}> </Column>
             <Text fontType="p2" color={color.gray600}>
-              원서가 승인되었습니다.
+              원서가 확인 중입니다.
               <br />
-              {userData.name}님의 1차 합격을 기원합니다!
+              담당 선생님의 원서 승인을 기다려주세요.
             </Text>
           </StyledApplicationBox>
         );

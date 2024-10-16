@@ -1,7 +1,6 @@
 import { Storage } from '@/apis/storage/storage';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { useFormValueStore, useSetFormStepStore, useSet성적입력StepStore } from '@/store';
-import { useCookies } from 'react-cookie';
 
 export const useCTAButton = () => {
   const form = useFormValueStore();
@@ -9,7 +8,6 @@ export const useCTAButton = () => {
   const set성적입력Step = useSet성적입력StepStore();
   const { saveFormMutate } = useSaveFormMutation();
   const correct = Storage.getItem('correct');
-  const [, , removeCookie] = useCookies(['correct']);
 
   const handleMoveNextStep = () => {
     const isEmptySubjectName = form.grade.subjectList.some(({ subjectName }) => {
@@ -25,7 +23,7 @@ export const useCTAButton = () => {
       if (correct) {
         setFormStep('초안작성완료');
         saveFormMutate(form);
-        removeCookie('correct');
+        localStorage.removeItem('correct');
       } else {
         setFormStep('자기소개서');
         saveFormMutate(form);

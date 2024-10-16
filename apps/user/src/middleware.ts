@@ -15,9 +15,27 @@ export const middleware = (request: NextRequest) => {
   const 이차_전형_시작 = dayjs(process.env.NEXT_PUBLIC_SECOND_EXAM_START_DAY);
   const 최종_합격_발표 = dayjs(process.env.NEXT_PUBLIC_FINAL_RESULT_DAY);
   const 입학_등록_기간 = dayjs(process.env.NEXT_PUBLIC_ADMISSION_REGISTRATION_START_DAY);
+  const 점검_시작 = dayjs('2024-10-14T14:00:00+09:00');
+  const 점검_끝 = dayjs('2024-10-14T14:25:00+09:00');
+
+  const inspectionUrl = new URL('/inspection', request.url);
+
+  if (
+    now.isBetween(점검_시작, 점검_끝, 'minute', '[]') &&
+    request.nextUrl.pathname !== '/inspection'
+  ) {
+    return NextResponse.redirect(inspectionUrl);
+  }
+
+  if (
+    !now.isBetween(점검_시작, 점검_끝, 'minute', '[]') &&
+    request.nextUrl.pathname === '/inspection'
+  ) {
+    return NextResponse.redirect(new URL('/', request.url));
+  }
 
   const cookies = request.headers.get('cookie');
-  const accessToken = cookies
+  const refreshToken = cookies
     ?.split('; ')
     .find((row) => row.startsWith('refresh-token='))
     ?.split('=')[1];
@@ -31,7 +49,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   if (url === '/form') {
-    if (!accessToken) {
+    if (!refreshToken) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
@@ -48,7 +66,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   if (url === '/form-management') {
-    if (!accessToken) {
+    if (!refreshToken) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
@@ -62,7 +80,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   if (url === '/result/first') {
-    if (!accessToken) {
+    if (!refreshToken) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
@@ -79,7 +97,7 @@ export const middleware = (request: NextRequest) => {
   }
 
   if (url === '/result/final') {
-    if (!accessToken) {
+    if (!refreshToken) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);

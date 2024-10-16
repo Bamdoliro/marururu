@@ -2,20 +2,18 @@ import { Storage } from '@/apis/storage/storage';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { useFormValueStore, useSetFormStepStore, useSetFormStore } from '@/store';
 import type { ChangeEventHandler } from 'react';
-import { useCookies } from 'react-cookie';
 
 export const useCTAButton = () => {
   const form = useFormValueStore();
   const setFormStep = useSetFormStepStore();
   const { saveFormMutate } = useSaveFormMutation();
   const correct = Storage.getItem('correct');
-  const [, , removeCookie] = useCookies(['correct']);
 
   const handleMoveNextStep = () => {
     if (correct) {
       setFormStep('초안작성완료');
       saveFormMutate(form);
-      removeCookie('correct');
+      localStorage.removeItem('correct');
     } else {
       setFormStep('전형선택');
       saveFormMutate(form);

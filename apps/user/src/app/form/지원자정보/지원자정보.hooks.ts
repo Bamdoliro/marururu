@@ -5,20 +5,18 @@ import useUser from '@/hooks/useUser';
 import { formatDate } from '@/utils';
 import { useSaveFormMutation } from '@/services/form/mutations';
 import { Storage } from '@/apis/storage/storage';
-import { useCookies } from 'react-cookie';
 
 export const useCTAButton = () => {
   const form = useFormValueStore();
   const setFormStep = useSetFormStepStore();
   const { saveFormMutate } = useSaveFormMutation();
   const correct = Storage.getItem('correct');
-  const [, , removeCookie] = useCookies(['correct']);
 
   const handleMoveNextStep = () => {
     if (correct) {
       setFormStep('초안작성완료');
       saveFormMutate(form);
-      removeCookie('correct');
+      localStorage.removeItem('correct');
     } else {
       setFormStep('보호자정보');
       saveFormMutate(form);
@@ -31,6 +29,10 @@ export const useCTAButton = () => {
 const formatBirthday = (value: string) => {
   const numericValue = value.replace(/\D/g, '');
   return formatDate(numericValue);
+};
+
+const formatPhoneNumber = (value: string) => {
+  return value.replace(/\D/g, '');
 };
 
 export const useInput = () => {
@@ -52,6 +54,7 @@ export const useInput = () => {
 
   const handle지원자정보Change: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
+
     if (name === 'birthday') {
       const formattedValue = formatBirthday(value);
       setForm((prev) => ({
@@ -61,9 +64,19 @@ export const useInput = () => {
       return;
     }
 
-    if (name === 'name' || name === 'phoneNumber') return;
+    if (name === 'phoneNumber') {
+      const formattedValue = formatPhoneNumber(value);
+      setForm((prev) => ({
+        ...prev,
+        applicant: { ...prev.applicant, phoneNumber: formattedValue },
+      }));
+      return;
+    }
 
-    setForm((prev) => ({ ...prev, applicant: { ...prev.applicant, [name]: value } }));
+    setForm((prev) => ({
+      ...prev,
+      applicant: { ...prev.applicant, [name]: value },
+    }));
   };
 
   return { handle지원자정보Change };

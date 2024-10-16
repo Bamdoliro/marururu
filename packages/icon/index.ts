@@ -37,3 +37,4 @@ export { default as IconClip } from './src/IconClip';
 export { default as IconRoundBamdoliro } from './src/IconRoundBamdoliro';
 export { default as IconRoundInstagram } from './src/IconRoundInstagram';
 export { default as IconLoader } from './src/IconLoader';
+export { default as IconIngCircle } from './src/IconIngCircle';

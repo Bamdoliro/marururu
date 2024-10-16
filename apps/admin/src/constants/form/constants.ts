@@ -1,12 +1,12 @@
 import type { FormCategory, FormStatus, FormType } from '@/types/form/client';
 
 export const FORM_STATUS_CATEGORY: Record<FormStatus, string> = {
-  RECEIVED: '접수',
+  RECEIVED: '승인',
   FIRST_FAILED: '1차 불합격',
   FAILED: '불합격',
   FINAL_SUBMITTED: '최종 제출',
   SUBMITTED: '제출',
-  APPROVED: '승인',
+  APPROVED: '확인 중',
   NO_SHOW: '불참',
   FIRST_PASSED: '1차 합격',
   PASSED: '최종 합격',
