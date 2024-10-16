@@ -6,7 +6,12 @@ import { useOverlay } from '@toss/use-overlay';
 import { useFormDocumentValueStore } from '@/store';
 import { useBooleanState } from '@maru/hooks';
 import { AppLayout } from '@/layouts';
-import { FinalFormConfirm, FinalFormTable, PdfGeneratedLoader } from '@/components/form';
+import {
+  FinalFormConfirm,
+  FinalFormTable,
+  PdfGeneratedLoader,
+  PdfUploadLoader,
+} from '@/components/form';
 import { useOpenFileUploader } from '@/hooks';
 import {
   useExportFormAction,
@@ -31,7 +36,10 @@ const 최종제출 = () => {
   );
   const { handleSubmitFinalForm } = useSubmitFinalFormAction();
 
-  const { handleFormDocumentChange } = useInput();
+  const { handleFormDocumentChange, isUploadSuccessful, isLoading } = useInput(
+    openPdfGeneratedLoader,
+    closePdfGeneratedLoader
+  );
 
   const openFinalFormConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -49,6 +57,7 @@ const 최종제출 = () => {
   return (
     <AppLayout header>
       <PdfGeneratedLoader isOpen={isOpenPdfGeneratedLoader} />
+      <PdfUploadLoader isOpen={isLoading} />
       <Styled최종제출>
         <ContentBox>
           <Column gap={36} alignItems="flex-start">
@@ -103,7 +112,9 @@ const 최종제출 = () => {
               onClick={openFinalFormConfirm}
               width="100%"
               size="LARGE"
-              styleType={!formDocument.fileName ? 'DISABLED' : 'PRIMARY'}
+              styleType={
+                !formDocument.fileName || !isUploadSuccessful ? 'DISABLED' : 'PRIMARY'
+              }
             >
               원서 최종 제출
             </Button>
