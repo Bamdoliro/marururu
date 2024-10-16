@@ -58,6 +58,8 @@ export const useFormDetailQuery = (id: number) => {
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.FORM_DETAIL, id],
     queryFn: () => getFormDetail(id),
+    staleTime: 60000,
+    cacheTime: 300000,
   });
 
   return { data: data?.data, ...restQuery };
