@@ -30,7 +30,7 @@ const 최종제출 = () => {
     closePdfGeneratedLoader
   );
   const { handleSubmitFinalForm } = useSubmitFinalFormAction();
-  const { handleFormDocumentChange } = useInput();
+  const { handleFormDocumentChange, isUploadSuccessful, isLoading } = useInput();
 
   const openFinalFormConfirm = () => {
     overlay.open(({ isOpen, close }) => (
@@ -102,7 +102,11 @@ const 최종제출 = () => {
               onClick={openFinalFormConfirm}
               width="100%"
               size="LARGE"
-              styleType={!formDocument.fileName ? 'DISABLED' : 'PRIMARY'}
+              styleType={
+                !formDocument.fileName || !isUploadSuccessful || isLoading
+                  ? 'DISABLED'
+                  : 'PRIMARY'
+              }
             >
               원서 최종 제출
             </Button>
