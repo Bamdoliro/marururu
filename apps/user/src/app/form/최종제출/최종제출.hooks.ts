@@ -78,11 +78,9 @@ export const useExportFormAction = (
   return { handleExportForm };
 };
 
-export const useInput = (openLoader: () => void, closeLoader: () => void) => {
+export const useInput = () => {
   const setFormDocument = useSetFormDocumentStore();
-  const { uploadFormDocumentMutate, isLoading } =
-    useUploadFormDocumentMutation(setFormDocument);
-  const [isUploadSuccessful, setIsUploadSuccessful] = useState(false);
+  const { uploadFormDocumentMutate } = useUploadFormDocumentMutation(setFormDocument);
 
   const handleFormDocumentChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.target;
@@ -92,20 +90,8 @@ export const useInput = (openLoader: () => void, closeLoader: () => void) => {
 
     setFormDocument((prev) => ({ ...prev, fileName: file.name }));
 
-    openLoader();
-
-    uploadFormDocumentMutate(file, {
-      onSuccess: () => {
-        setIsUploadSuccessful(true);
-        closeLoader();
-      },
-      onError: () => {
-        setIsUploadSuccessful(false);
-        closeLoader();
-        alert('파일 업로드에 실패했습니다. 다시 시도해주세요.');
-      },
-    });
+    uploadFormDocumentMutate(file);
   };
 
-  return { handleFormDocumentChange, isUploadSuccessful, isLoading };
+  return { handleFormDocumentChange };
 };
