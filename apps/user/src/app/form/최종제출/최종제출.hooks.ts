@@ -82,31 +82,17 @@ export const useInput = () => {
   const setFormDocument = useSetFormDocumentStore();
   const { uploadFormDocumentMutate, isLoading } =
     useUploadFormDocumentMutation(setFormDocument);
-  const [isUploadSuccessful, setIsUploadSuccessful] = useState(false);
+  const [isUploadSuccessful] = useState(false);
 
   const handleFormDocumentChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { files } = e.target;
     if (!files || files.length === 0) return;
 
     const file = files[0];
-    const maxSizeInBytes = 20 * 1024 * 1024;
-
-    if (file.size > maxSizeInBytes) {
-      alert('파일 크기는 최대 20MB까지만 가능합니다.');
-      e.target.value = '';
-      return;
-    }
 
     setFormDocument((prev) => ({ ...prev, fileName: file.name }));
 
-    uploadFormDocumentMutate(file, {
-      onSuccess: () => {
-        setIsUploadSuccessful(true);
-      },
-      onError: () => {
-        setIsUploadSuccessful(false);
-      },
-    });
+    uploadFormDocumentMutate(file);
   };
 
   return { handleFormDocumentChange, isUploadSuccessful, isLoading };
