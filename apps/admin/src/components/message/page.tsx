@@ -128,9 +128,10 @@ const Message = () => {
           <SubDropdown
             name="status"
             data={[
-              { value: 'APPROVED', label: '원서 승인 완료자' },
+              { value: 'SUBMITTED', label: '원서 초안 제출자' },
+              { value: 'APPROVED', label: '원서 확인 중인 지원자' },
               { value: 'REJECTED', label: '원서 반려자' },
-              { value: 'RECEIVED', label: '접수 완료' },
+              { value: 'RECEIVED', label: '원서 승인 완료자' },
               {
                 value: 'MEISTER_CASE',
                 label: '1차 합격자',
