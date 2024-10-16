@@ -1,4 +1,5 @@
 export type Category =
+  | 'SUBMITTED'
   | 'APPROVED'
   | 'REJECTED'
   | 'RECEIVED'
