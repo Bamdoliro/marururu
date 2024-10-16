@@ -1,11 +1,7 @@
 import DataBox from '@/components/common/DataBox/DataBox';
 import { useFormDetailQuery } from '@/services/form/queries';
 import type { UserInfo } from '@/types/form/client';
-import { color } from '@maru/design-token';
-import { Column, Row, Text } from '@maru/ui';
-import { flex } from '@maru/utils';
-import Image from 'next/image';
-import styled from 'styled-components';
+import { Column, Row } from '@maru/ui';
 
 const GENDER: Record<UserInfo['gender'], string> = {
   MALE: '남자',
@@ -42,37 +38,8 @@ const 지원자정보 = ({ id }: Props) => {
         />
         <DataBox label="전화번호" data={formDetailData?.applicant.phoneNumber ?? ''} />
       </Row>
-      <ProfileImageDataBox>
-        <Text fontType="H4">증명사진</Text>
-        <ProfileImageBox>
-          {formDetailData ? (
-            <Image
-              src={formDetailData.applicant.identificationPictureUri ?? ''}
-              alt="profile-image"
-              width={225}
-              height={300}
-            />
-          ) : null}
-        </ProfileImageBox>
-      </ProfileImageDataBox>
     </Column>
   );
 };
 
 export default 지원자정보;
-
-const ProfileImageDataBox = styled.div`
-  ${flex({ flexDirection: 'column' })}
-  gap: 16px;
-  width: 604px;
-  height: 392px;
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid ${color.gray200};
-  background: ${color.white};
-`;
-
-const ProfileImageBox = styled.div`
-  width: 225px;
-  height: 300px;
-`;
