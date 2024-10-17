@@ -123,11 +123,13 @@ export interface EducationInfo {
   teacherMobilePhoneNumber: string;
 }
 
-export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E';
+export type AchievementLevel = 'A' | 'B' | 'C' | 'D' | 'E' | '-';
 
 export interface AchievementLevelsGroup {
   subjectName: string;
   achievementLevels: AchievementLevel[];
+  grades: number[];
+  semesters: number[];
 }
 
 export interface Subject {
