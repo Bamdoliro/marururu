@@ -71,15 +71,16 @@ export const middleware = (request: NextRequest) => {
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
     } else if (!now.isBetween(제출_시작_날짜, 입학_등록_기간, 'minute', '[]')) {
-      if (now.isBetween(일차_합격_발표, 이차_전형_시작, 'minute', '[]')) {
-        const redirectUrl = new URL('/', request.url);
-        redirectUrl.searchParams.set('message', '1차 합격 발표 기간입니다.');
-        return NextResponse.redirect(redirectUrl);
-      } else {
-        const redirectUrl = new URL('/', request.url);
-        redirectUrl.searchParams.set('message', '입학전형 기간이 아닙니다.');
-        return NextResponse.redirect(redirectUrl);
-      }
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set('message', '입학전형 기간이 아닙니다.');
+      return NextResponse.redirect(redirectUrl);
+    } else if (
+      now.isBetween(제출_시작_날짜, 입학_등록_기간, 'minute', '[]') &&
+      now.isBetween(일차_합격_발표, 이차_전형_시작, 'minute', '[]')
+    ) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set('message', '1차 합격 발표 기간이 아닙니다.');
+      return NextResponse.redirect(redirectUrl);
     } else {
       return NextResponse.rewrite(new URL('/form-management', request.url));
     }
