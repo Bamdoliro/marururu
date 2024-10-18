@@ -36,6 +36,7 @@ const MainContent = () => {
   const router = useRouter();
   const message = searchParams.get('message');
   const warning = searchParams.get('warning');
+  const result = searchParams.get('result');
 
   useEffect(() => {
     const noticeModalClosed = Storage.getItem('noticeModalClosed');
@@ -53,8 +54,11 @@ const MainContent = () => {
       localStorage.clear();
       Cookie.removeItem('refresh-token');
       router.replace(ROUTES.LOGIN);
+    } else if (result) {
+      alert(result);
+      router.replace(ROUTES.MAIN);
     }
-  }, [message, warning, router]);
+  }, [message, warning, router, result]);
 
   return (
     <AppLayout header footer>
