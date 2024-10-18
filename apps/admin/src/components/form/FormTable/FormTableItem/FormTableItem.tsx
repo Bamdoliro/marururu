@@ -69,6 +69,16 @@ const FormTableItem = ({
         return '반려';
       case 'APPROVED':
         return '확인 중';
+      case 'FIRST_FAILED':
+        return '승인';
+      case 'FIRST_PASSED':
+        return '승인';
+      case 'FAILED':
+        return '승인';
+      case 'PASSED':
+        return '승인';
+      case 'NO_SHOW':
+        return '승인';
       default:
         return '접수 중';
     }
