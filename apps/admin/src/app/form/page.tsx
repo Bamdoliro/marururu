@@ -38,6 +38,7 @@ import {
 } from './form.hooks';
 import withAuth from '@/hoc/withAuth';
 import { useState, useEffect } from 'react';
+import FinalCheckingModal from '@/components/form/FinalCheckingModal/FinalCheckingModal';
 
 if (process.env.NODE_ENV === 'development') {
   initMockAPI();
@@ -56,6 +57,19 @@ const FormPage = () => {
   const openSecondScoreUplaodModal = () => {
     overlay.open(({ isOpen, close }) => (
       <SecondScoreUploadModal isOpen={isOpen} onClose={close} />
+    ));
+  };
+
+  const openFinalCheckingModal = () => {
+    overlay.open(({ isOpen, close }) => (
+      <FinalCheckingModal
+        isOpen={isOpen}
+        onClose={close}
+        onConfirm={() => {
+          handleSecondRoundResultEditAuto();
+          close();
+        }}
+      />
     ));
   };
 
@@ -286,7 +300,7 @@ const FormPage = () => {
                         2차 합격 여부 변경하기
                       </Text>
                     </ButtonMenuItem>,
-                    <ButtonMenuItem onClick={handleSecondRoundResultEditAuto}>
+                    <ButtonMenuItem onClick={openFinalCheckingModal}>
                       <IconEditAllDocument color={color.gray600} width={24} height={24} />
                       <Text fontType="p2" color={color.gray900}>
                         2차 합격자 자동 선발
