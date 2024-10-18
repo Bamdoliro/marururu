@@ -74,6 +74,9 @@ export const middleware = (request: NextRequest) => {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('message', '입학전형 기간이 아닙니다.');
       return NextResponse.redirect(redirectUrl);
+    } else if (!now.isBetween(일차_합격_발표, 이차_전형_시작, 'minute', '[]')) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set('message', '1차 합격 발표 기간이 아닙니다.');
     } else {
       return NextResponse.rewrite(new URL('/form-management', request.url));
     }
