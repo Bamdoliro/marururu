@@ -8,9 +8,10 @@ import styled from 'styled-components';
 import FirstRoundPassedTable from './FirstRoundPassed/FirstRoundPassedTable';
 import SecondRoundPassedTable from './SecondRoundPassed/SecondRoundPassedTable';
 import FinalRoundPassedTable from './FinalRoundPassed/FinalRoundPassedTable';
+import AllSubmitTable from './AllSubmitGrade/AllSubmitTable';
 
 const GradeDistribution = () => {
-  const [currentPassDetailStep, setCurrentPassDetailStep] = useState('1차 합격자');
+  const [currentPassDetailStep, setCurrentPassDetailStep] = useState('전체 지원자');
 
   return (
     <StyledGradeDistribution>
@@ -30,6 +31,7 @@ const GradeDistribution = () => {
           <SwitchCase
             value={currentPassDetailStep}
             caseBy={{
+              '전체 지원자': <AllSubmitTable />,
               '1차 합격자': <FirstRoundPassedTable />,
               '2차 전형자': <SecondRoundPassedTable />,
               '최종 합격자': <FinalRoundPassedTable />,

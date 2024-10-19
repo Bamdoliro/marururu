@@ -6,15 +6,18 @@ import type {
   GenderRatioCategory,
   GenderRatio,
   AnalysisApplicantType,
+  AnalysisNumberOfApplicantsType,
 } from '@/types/analysis/client';
 
 const useAdmissionData = (
   statusList: AnalysisApplicantType[],
-  mainCategory: FormTypeMainCategory
+  mainCategory: FormTypeMainCategory,
+  type: AnalysisNumberOfApplicantsType
 ) => {
   const { data: dataList } = useGenderRatioListQuery({
     statusList,
     mainCategory,
+    type,
   });
 
   const [data, setData] = useState<{

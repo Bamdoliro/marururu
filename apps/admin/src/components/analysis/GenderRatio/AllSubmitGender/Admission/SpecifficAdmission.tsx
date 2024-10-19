@@ -4,46 +4,47 @@ import { color } from '@maru/design-token';
 import { flex } from '@maru/utils';
 import useAdmissionData from '../../GenderRatio.hooks';
 
-const ExceptionalAdmission = () => {
-  const { data } = useAdmissionData(['FAILED', 'PASSED'], 'SUPERNUMERARY', 'CURRENT');
+const SpecificAdmission = () => {
+  const { data } = useAdmissionData(
+    ['RECEIVED', 'FIRST_PASSED', 'FAILED', 'PASSED'],
+    'SPECIAL',
+    'ORIGINAL'
+  );
 
-  const specialAdmissionBusanMale = data.categories.SPECIAL_ADMISSION?.busanMale || 0;
-  const specialAdmissionBusanFemale = data.categories.SPECIAL_ADMISSION?.busanFemale || 0;
-  const specialAdmissionBusanTotal =
-    specialAdmissionBusanMale + specialAdmissionBusanFemale;
+  const meisterTalentBusanMale = data.categories.MEISTER_TALENT?.busanMale || 0;
+  const meisterTalentBusanFemale = data.categories.MEISTER_TALENT?.busanFemale || 0;
+  const meisterTalentBusanTotal = meisterTalentBusanMale + meisterTalentBusanFemale;
 
-  const specialAdmissionOtherLocationMale =
-    data.categories.SPECIAL_ADMISSION?.otherLocationMale || 0;
-  const specialAdmissionOtherLocationFemale =
-    data.categories.SPECIAL_ADMISSION?.otherLocationFemale || 0;
-  const specialAdmissionOtherLocationTotal =
-    specialAdmissionOtherLocationMale + specialAdmissionOtherLocationFemale;
+  const meisterTalentOtherLocationMale =
+    data.categories.MEISTER_TALENT?.otherLocationMale || 0;
+  const meisterTalentOtherLocationFemale =
+    data.categories.MEISTER_TALENT?.otherLocationFemale || 0;
+  const meisterTalentOtherLocationTotal =
+    meisterTalentOtherLocationMale + meisterTalentOtherLocationFemale;
 
-  const specialAdmissionTotal =
-    specialAdmissionBusanTotal + specialAdmissionOtherLocationTotal;
+  const meisterTalentTotal = meisterTalentBusanTotal + meisterTalentOtherLocationTotal;
 
-  const nationalVeteransBusanMale =
-    data.categories.NATIONAL_VETERANS_EDUCATION?.busanMale || 0;
-  const nationalVeteransBusanFemale =
-    data.categories.NATIONAL_VETERANS_EDUCATION?.busanFemale || 0;
-  const nationalVeteransBusanTotal =
-    nationalVeteransBusanMale + nationalVeteransBusanFemale;
+  const socialIntegrationBusanMale = data.categories.SOCIAL_INTEGRATION?.busanMale || 0;
+  const socialIntegrationBusanFemale =
+    data.categories.SOCIAL_INTEGRATION?.busanFemale || 0;
+  const socialIntegrationBusanTotal =
+    socialIntegrationBusanMale + socialIntegrationBusanFemale;
 
-  const nationalVeteransOtherLocationMale =
-    data.categories.NATIONAL_VETERANS_EDUCATION?.otherLocationMale || 0;
-  const nationalVeteransOtherLocationFemale =
-    data.categories.NATIONAL_VETERANS_EDUCATION?.otherLocationFemale || 0;
-  const nationalVeteransOtherLocationTotal =
-    nationalVeteransOtherLocationMale + nationalVeteransOtherLocationFemale;
+  const socialIntegrationOtherLocationMale =
+    data.categories.SOCIAL_INTEGRATION?.otherLocationMale || 0;
+  const socialIntegrationOtherLocationFemale =
+    data.categories.SOCIAL_INTEGRATION?.otherLocationFemale || 0;
+  const socialIntegrationOtherLocationTotal =
+    socialIntegrationOtherLocationMale + socialIntegrationOtherLocationFemale;
 
-  const nationalVeteransTotal =
-    nationalVeteransBusanTotal + nationalVeteransOtherLocationTotal;
+  const socialIntegrationTotal =
+    socialIntegrationBusanTotal + socialIntegrationOtherLocationTotal;
 
   return (
     <TableLayout>
       <TableBox>
         <Text fontType="H3" color={color.gray750} width={60}>
-          특례입학
+          마이스터 인재 전형 지역별 성비
         </Text>
         <Column>
           <Row>
@@ -65,13 +66,13 @@ const ExceptionalAdmission = () => {
               부산 지역
             </Td>
             <Td width={160} height={56}>
-              {specialAdmissionBusanMale}
+              {meisterTalentBusanMale}
             </Td>
             <Td width={160} height={56}>
-              {specialAdmissionBusanFemale}
+              {meisterTalentBusanFemale}
             </Td>
             <Td width={160} height={56}>
-              {specialAdmissionBusanTotal}
+              {meisterTalentBusanTotal}
             </Td>
           </Row>
           <Row>
@@ -79,13 +80,13 @@ const ExceptionalAdmission = () => {
               타 지역
             </Td>
             <Td width={160} height={56}>
-              {specialAdmissionOtherLocationMale}
+              {meisterTalentOtherLocationMale}
             </Td>
             <Td width={160} height={56}>
-              {specialAdmissionOtherLocationFemale}
+              {meisterTalentOtherLocationFemale}
             </Td>
             <Td width={160} height={56}>
-              {specialAdmissionOtherLocationTotal}
+              {meisterTalentOtherLocationTotal}
             </Td>
           </Row>
           <Row>
@@ -93,14 +94,14 @@ const ExceptionalAdmission = () => {
               지역 합계
             </Td>
             <Td width={480} height={56} borderBottomRightRadius={12}>
-              {specialAdmissionTotal}
+              {meisterTalentTotal}
             </Td>
           </Row>
         </Column>
       </TableBox>
       <TableBox>
         <Text fontType="H3" color={color.gray750} width={60}>
-          국가보훈대상자 중 교육지원대상자
+          사회통합 - 정원내 지역별 성비
         </Text>
         <Column>
           <Row>
@@ -122,13 +123,13 @@ const ExceptionalAdmission = () => {
               부산 지역
             </Td>
             <Td width={160} height={56}>
-              {nationalVeteransBusanMale}
+              {socialIntegrationBusanMale}
             </Td>
             <Td width={160} height={56}>
-              {nationalVeteransBusanFemale}
+              {socialIntegrationBusanFemale}
             </Td>
             <Td width={160} height={56}>
-              {nationalVeteransBusanTotal}
+              {socialIntegrationBusanTotal}
             </Td>
           </Row>
           <Row>
@@ -136,13 +137,13 @@ const ExceptionalAdmission = () => {
               타 지역
             </Td>
             <Td width={160} height={56}>
-              {nationalVeteransOtherLocationMale}
+              {socialIntegrationOtherLocationMale}
             </Td>
             <Td width={160} height={56}>
-              {nationalVeteransOtherLocationFemale}
+              {socialIntegrationOtherLocationFemale}
             </Td>
             <Td width={160} height={56}>
-              {nationalVeteransOtherLocationTotal}
+              {socialIntegrationOtherLocationTotal}
             </Td>
           </Row>
           <Row>
@@ -150,7 +151,7 @@ const ExceptionalAdmission = () => {
               지역 합계
             </Td>
             <Td width={480} height={56} borderBottomRightRadius={12}>
-              {nationalVeteransTotal}
+              {socialIntegrationTotal}
             </Td>
           </Row>
         </Column>
@@ -159,7 +160,7 @@ const ExceptionalAdmission = () => {
   );
 };
 
-export default ExceptionalAdmission;
+export default SpecificAdmission;
 
 const TableLayout = styled.section`
   ${flex({ flexDirection: 'column' })}

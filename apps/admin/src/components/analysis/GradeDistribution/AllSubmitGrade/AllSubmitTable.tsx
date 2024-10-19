@@ -2,12 +2,12 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import FirstRoundPassedDetail from './FirstRoundPassedDetail';
 import { useGradeDistributionListQuery } from '@/services/analysis/queries';
+import AllSubmitDetail from './AllSubmitDetail';
 
-const FirstRoundPassedTable = () => {
+const AllSubmitTable = () => {
   const { data: dataList } = useGradeDistributionListQuery({
-    statusList: ['FIRST_PASSED', 'FAILED', 'PASSED'],
+    statusList: ['RECEIVED', 'FIRST_PASSED', 'FAILED', 'PASSED'],
   });
 
   const entireFirstRoundMax = dataList
@@ -174,12 +174,12 @@ const FirstRoundPassedTable = () => {
           </Column>
         </LeftDetailBox>
       </LeftBox>
-      <FirstRoundPassedDetail />
+      <AllSubmitDetail />
     </Layout>
   );
 };
 
-export default FirstRoundPassedTable;
+export default AllSubmitTable;
 
 const Layout = styled.div`
   ${flex({ flexDirection: 'row' })}

@@ -9,8 +9,13 @@ import type {
   FormTypeMainCategory,
 } from '@/types/analysis/client';
 
-const SecondRoundPassedMain = () => {
-  const statusList: AnalysisApplicantType[] = ['FAILED', 'PASSED'];
+const AllSubmitGenderMain = () => {
+  const statusList: AnalysisApplicantType[] = [
+    'RECEIVED',
+    'FIRST_PASSED',
+    'PASSED',
+    'FAILED',
+  ];
 
   const useAdmissionDataWithStatus = (
     mainCategory: FormTypeMainCategory,
@@ -19,11 +24,11 @@ const SecondRoundPassedMain = () => {
     return useAdmissionData(statusList, mainCategory, type);
   };
 
-  const { data: RegularData } = useAdmissionDataWithStatus('REGULAR', 'CURRENT');
-  const { data: SpecialData } = useAdmissionDataWithStatus('SPECIAL', 'CURRENT');
+  const { data: RegularData } = useAdmissionDataWithStatus('REGULAR', 'ORIGINAL');
+  const { data: SpecialData } = useAdmissionDataWithStatus('SPECIAL', 'ORIGINAL');
   const { data: SupernumeraryData } = useAdmissionDataWithStatus(
     'SUPERNUMERARY',
-    'CURRENT'
+    'ORIGINAL'
   );
 
   const RegularMaleCount = RegularData.overallMale || 0;
@@ -147,4 +152,4 @@ const TableBox = styled.section`
   gap: 24px;
 `;
 
-export default SecondRoundPassedMain;
+export default AllSubmitGenderMain;

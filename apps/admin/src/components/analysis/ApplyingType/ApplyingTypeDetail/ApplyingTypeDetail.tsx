@@ -3,7 +3,7 @@ import { useNumberOfApplicantsListQuery } from '@/services/analysis/queries';
 import type { FormType } from '@/types/analysis/client';
 
 const ApplyingTypeDetail = () => {
-  const { data: formList } = useNumberOfApplicantsListQuery();
+  const { data: formList } = useNumberOfApplicantsListQuery({ type: 'CURRENT' });
 
   const totalCount = formList?.reduce((sum, item) => sum + item.count, 0) || 0;
 

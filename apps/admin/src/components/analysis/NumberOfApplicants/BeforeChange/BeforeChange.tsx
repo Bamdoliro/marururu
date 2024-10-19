@@ -2,13 +2,14 @@ import { Column, Row, Td, Th, Text } from '@maru/ui';
 import { color } from '@maru/design-token';
 import { styled } from 'styled-components';
 import { flex } from '@maru/utils';
-import ApplyingTypeDetail from './ApplyingTypeDetail/ApplyingTypeDetail';
 import { useNumberOfApplicantsListQuery } from '@/services/analysis/queries';
+import BeforeChangeDetail from './BeforeChangeDetail';
 
-const ApplyingType = () => {
-  const { data: formList } = useNumberOfApplicantsListQuery({ type: 'CURRENT' });
+const NumberOfApplicants = () => {
+  const { data: formList } = useNumberOfApplicantsListQuery({ type: 'ORIGINAL' });
 
-  const totalCount = formList?.reduce((sum, item) => sum + item.count, 0) || 0;
+  const totalCount = formList?.reduce((sum, item) => sum + item.count, 0);
+  const competitionRate = totalCount ? (totalCount / 64).toFixed(2) : '0.00';
 
   const regularCount =
     formList
@@ -33,41 +34,39 @@ const ApplyingType = () => {
       )
       .reduce((sum, item) => sum + item.count, 0) || 0;
 
-  const regularRatio =
-    totalCount !== 0 ? ((regularCount / totalCount) * 100).toFixed(1) + '%' : 0;
-  const specialAdmissionRatio =
-    totalCount !== 0 ? ((specialAdmissionCount / totalCount) * 100).toFixed(1) + '%' : 0;
-  const otherRatio =
-    totalCount !== 0 ? ((otherCount / totalCount) * 100).toFixed(1) + '%' : 0;
+  const regularCompetitionRate = (regularCount / 36).toFixed(1);
+  const specialAdmissionCompetitionRate = (specialAdmissionCount / 28).toFixed(1);
+  const otherCompetitionRate = (otherCount / 3).toFixed(1);
+
   return (
     <Layout>
       <LeftBox>
         <TotalBox>
           <ApplicantsBox>
             <Text fontType="H3" color={color.gray750} width={60}>
-              일반 전형 지원 비율
+              전체 지원자 수
             </Text>
             <Text fontType="D1" width={60}>
-              {regularRatio}
+              {totalCount}
             </Text>
           </ApplicantsBox>
           <ApplicantsBox>
             <Text fontType="H3" color={color.gray750} width={60}>
-              특별 전형 지원 비율
+              전체 경쟁률
             </Text>
             <Text fontType="D1" width={60}>
-              {specialAdmissionRatio}
+              {competitionRate} : 1
             </Text>
           </ApplicantsBox>
         </TotalBox>
         <LeftDetailBox>
           <Text fontType="H3" color={color.gray750} width={60}>
-            전형별 지원자 수와 지원 비율
+            전형별 지원자 수와 경쟁률
           </Text>
           <Column>
             <Row>
               <Th width={112} height={56} borderTopLeftRadius={12}>
-                <div></div>
+                <></>
               </Th>
               <Th width={112} height={56}>
                 일반 전형
@@ -100,27 +99,27 @@ const ApplyingType = () => {
                 height={56}
                 borderBottomLeftRadius={12}
               >
-                지원 비율
+                경쟁률
               </Td>
               <Td width={112} height={56}>
-                {regularRatio}
+                {regularCompetitionRate}
               </Td>
               <Td width={112} height={56}>
-                {specialAdmissionRatio}
+                {specialAdmissionCompetitionRate}
               </Td>
               <Td width={112} height={56} borderBottomRightRadius={12}>
-                {otherRatio}
+                {otherCompetitionRate}
               </Td>
             </Row>
           </Column>
         </LeftDetailBox>
       </LeftBox>
-      <ApplyingTypeDetail />
+      <BeforeChangeDetail />
     </Layout>
   );
 };
 
-export default ApplyingType;
+export default NumberOfApplicants;
 
 const Layout = styled.div`
   ${flex({ flexDirection: 'row' })}

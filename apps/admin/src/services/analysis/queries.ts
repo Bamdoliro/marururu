@@ -10,12 +10,13 @@ import type {
   SchoolStatusReq,
   AnalysisApplicantTypeReq,
   GenderRatioStatusReq,
+  AnalysisNumberOfApplicantsReq,
 } from '@/types/analysis/remote';
 
-export const useNumberOfApplicantsListQuery = () => {
+export const useNumberOfApplicantsListQuery = (type: AnalysisNumberOfApplicantsReq) => {
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.ANALYSIS_APPLICANTS_COUNT],
-    queryFn: () => getNumberOfApplicantsList(),
+    queryKey: [KEY.ANALYSIS_APPLICANTS_COUNT, type] as const,
+    queryFn: () => getNumberOfApplicantsList(type),
     suspense: false,
   });
 
