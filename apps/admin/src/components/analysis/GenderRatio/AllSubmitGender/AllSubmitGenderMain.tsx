@@ -13,10 +13,10 @@ const AllSubmitGenderMain = () => {
   const statusList: AnalysisApplicantType[] = [
     'RECEIVED',
     'FIRST_PASSED',
-    'PASSED',
     'FAILED',
+    'PASSED',
+    'FIRST_FAILED',
   ];
-
   const useAdmissionDataWithStatus = (
     mainCategory: FormTypeMainCategory,
     type: AnalysisNumberOfApplicantsType

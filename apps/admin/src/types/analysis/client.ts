@@ -18,7 +18,8 @@ export type AnalysisApplicantType =
   | 'FAILED'
   | 'PASSED'
   | 'NO_SHOW'
-  | 'RECEIVED';
+  | 'RECEIVED'
+  | 'FIRST_FAILED';
 
 export type AnalysisNumberOfApplicantsType = 'CURRENT' | 'ORIGINAL';
 

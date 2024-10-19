@@ -10,7 +10,12 @@ import type {
 } from '@/types/analysis/client';
 
 const FirstRoundPassedMain = () => {
-  const statusList: AnalysisApplicantType[] = ['FIRST_PASSED', 'FAILED', 'PASSED'];
+  const statusList: AnalysisApplicantType[] = [
+    'NO_SHOW',
+    'FIRST_PASSED',
+    'FAILED',
+    'PASSED',
+  ];
 
   const useAdmissionDataWithStatus = (
     mainCategory: FormTypeMainCategory,

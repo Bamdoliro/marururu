@@ -6,7 +6,7 @@ import useAdmissionData from '../../GenderRatio.hooks';
 
 const ExceptionalAdmission = () => {
   const { data } = useAdmissionData(
-    ['FIRST_PASSED', 'FAILED', 'PASSED'],
+    ['NO_SHOW', 'FIRST_PASSED', 'FAILED', 'PASSED'],
     'SUPERNUMERARY',
     'CURRENT'
   );

@@ -2,8 +2,8 @@ import { Column, Row, Td, Th } from '@maru/ui';
 import { useNumberOfApplicantsListQuery } from '@/services/analysis/queries';
 import type { FormType } from '@/types/analysis/client';
 
-const ApplyingTypeDetail = () => {
-  const { data: formList } = useNumberOfApplicantsListQuery({ type: 'CURRENT' });
+const BeforeChangeDetail = () => {
+  const { data: formList } = useNumberOfApplicantsListQuery({ type: 'ORIGINAL' });
 
   const totalCount = formList?.reduce((sum, item) => sum + item.count, 0) || 0;
 
@@ -193,4 +193,4 @@ const ApplyingTypeDetail = () => {
   );
 };
 
-export default ApplyingTypeDetail;
+export default BeforeChangeDetail;

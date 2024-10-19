@@ -7,7 +7,7 @@ import AllSubmitDetail from './AllSubmitDetail';
 
 const AllSubmitTable = () => {
   const { data: dataList } = useGradeDistributionListQuery({
-    statusList: ['RECEIVED', 'FIRST_PASSED', 'FAILED', 'PASSED'],
+    statusList: ['RECEIVED', 'FIRST_PASSED', 'FAILED', 'PASSED', 'FIRST_FAILED'],
   });
 
   const entireFirstRoundMax = dataList

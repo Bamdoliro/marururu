@@ -11,7 +11,7 @@ interface Props {
 
 const SchoolOriginTable: React.FC<Props> = ({ selectedCategory }) => {
   const { data: schoolOriginList } = useSchoolOriginListQuery({
-    statusList: ['FIRST_PASSED', 'FAILED', 'PASSED'],
+    statusList: ['NO_SHOW', 'FIRST_PASSED', 'FAILED', 'PASSED'],
     isBusan: selectedCategory === 'OTHER_AREA' ? false : true,
     gu: selectedCategory === 'OTHER_AREA' ? '' : selectedCategory,
   });

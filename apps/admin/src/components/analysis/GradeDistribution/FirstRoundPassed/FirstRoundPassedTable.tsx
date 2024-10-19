@@ -7,7 +7,7 @@ import { useGradeDistributionListQuery } from '@/services/analysis/queries';
 
 const FirstRoundPassedTable = () => {
   const { data: dataList } = useGradeDistributionListQuery({
-    statusList: ['FIRST_PASSED', 'FAILED', 'PASSED'],
+    statusList: ['NO_SHOW', 'FIRST_PASSED', 'FAILED', 'PASSED'],
   });
 
   const entireFirstRoundMax = dataList
