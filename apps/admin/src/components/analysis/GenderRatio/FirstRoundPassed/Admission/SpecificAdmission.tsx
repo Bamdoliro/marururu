@@ -6,8 +6,9 @@ import useAdmissionData from '../../GenderRatio.hooks';
 
 const SpecificAdmission = () => {
   const { data } = useAdmissionData(
-    ['NO_SHOW', 'FIRST_PASSED', 'FAILED', 'PASSED'],
-    'SPECIAL'
+    ['FIRST_PASSED', 'FAILED', 'PASSED'],
+    'SPECIAL',
+    'CURRENT'
   );
 
   const meisterTalentBusanMale = data.categories.MEISTER_TALENT?.busanMale || 0;

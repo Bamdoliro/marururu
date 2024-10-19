@@ -1,26 +1,34 @@
 import { Column, Row, Td, Th } from '@maru/ui';
-import { useNumberOfApplicantsListQuery } from '@/services/analysis/queries';
+import { useGradeDistributionListQuery } from '@/services/analysis/queries';
 import type { FormType } from '@/types/analysis/client';
 
-const NumberOfApplicants = () => {
-  const { data: formList } = useNumberOfApplicantsListQuery();
-  const getCountByType = (type: FormType) => {
-    const entry = formList?.find((item) => item.type === type);
-    return entry ? entry.count : 0;
+const AllSubmitDetail = () => {
+  const { data: dataList } = useGradeDistributionListQuery({
+    statusList: ['RECEIVED', 'FIRST_PASSED', 'FAILED', 'PASSED'],
+  });
+  const getMaxMinByType = (type: FormType) => {
+    const entries = dataList?.filter((item) => item.type === type);
+    if (!entries || entries.length === 0) {
+      return { max: 0, min: 0 };
+    }
+    const max = Math.max(...entries.map((item) => item.firstRoundMax)).toFixed(3);
+    const min = Math.min(...entries.map((item) => item.firstRoundMin)).toFixed(3);
+    return { max, min };
   };
-  const regularApplicant = getCountByType('REGULAR');
-  const meisterTalentApplicant = getCountByType('MEISTER_TALENT');
-  const nationalBasicLivingApplicant = getCountByType('NATIONAL_BASIC_LIVING');
-  const nearPovertyApplicant = getCountByType('NEAR_POVERTY');
-  const nationalVeteransApplicant = getCountByType('NATIONAL_VETERANS');
-  const oneParentApplicant = getCountByType('ONE_PARENT');
-  const fromNorthKoreaApplicant = getCountByType('FROM_NORTH_KOREA');
-  const multiculturalApplicant = getCountByType('MULTICULTURAL');
-  const teenHouseholderApplicant = getCountByType('TEEN_HOUSEHOLDER');
-  const multiChildrenApplicant = getCountByType('MULTI_CHILDREN');
-  const farmingAndFishingApplicant = getCountByType('FARMING_AND_FISHING');
-  const specialAdmissionApplicant = getCountByType('SPECIAL_ADMISSION');
-  const nationalVeteransEducationApplicant = getCountByType(
+
+  const regularApplicant = getMaxMinByType('REGULAR');
+  const meisterTalentApplicant = getMaxMinByType('MEISTER_TALENT');
+  const nationalBasicLivingApplicant = getMaxMinByType('NATIONAL_BASIC_LIVING');
+  const nearPovertyApplicant = getMaxMinByType('NEAR_POVERTY');
+  const nationalVeteransApplicant = getMaxMinByType('NATIONAL_VETERANS');
+  const oneParentApplicant = getMaxMinByType('ONE_PARENT');
+  const fromNorthKoreaApplicant = getMaxMinByType('FROM_NORTH_KOREA');
+  const multiculturalApplicant = getMaxMinByType('MULTICULTURAL');
+  const teenHouseholderApplicant = getMaxMinByType('TEEN_HOUSEHOLDER');
+  const multiChildrenApplicant = getMaxMinByType('MULTI_CHILDREN');
+  const farmingAndFishingApplicant = getMaxMinByType('FARMING_AND_FISHING');
+  const specialAdmissionApplicant = getMaxMinByType('SPECIAL_ADMISSION');
+  const nationalVeteransEducationApplicant = getMaxMinByType(
     'NATIONAL_VETERANS_EDUCATION'
   );
 
@@ -36,22 +44,28 @@ const NumberOfApplicants = () => {
         <Th width={240} height={56}>
           구분
         </Th>
+        <Th width={80} height={56}>
+          최고점
+        </Th>
         <Th width={80} height={56} borderTopRightRadius={12}>
-          지원자
+          최하점
         </Th>
       </Row>
       <Row>
         <Td width={200} height={56}>
-          일반 전형
+          일반전형
         </Td>
         <Td width={240} height={56}>
-          {null}
+          <div></div>
         </Td>
         <Td width={240} height={56}>
-          {null}
+          <div></div>
         </Td>
         <Td width={80} height={56}>
-          {regularApplicant}
+          {regularApplicant.max}
+        </Td>
+        <Td width={80} height={56}>
+          {regularApplicant.min}
         </Td>
       </Row>
       <Row>
@@ -64,10 +78,13 @@ const NumberOfApplicants = () => {
               마이스터 인재 전형
             </Td>
             <Td width={240} height={56}>
-              {null}
+              <div></div>
             </Td>
             <Td width={80} height={56}>
-              {meisterTalentApplicant}
+              {meisterTalentApplicant.max}
+            </Td>
+            <Td width={80} height={56}>
+              {meisterTalentApplicant.min}
             </Td>
           </Row>
           <Row>
@@ -80,7 +97,10 @@ const NumberOfApplicants = () => {
                   국민기초생활수급자
                 </Td>
                 <Td width={80} height={56}>
-                  {nationalBasicLivingApplicant}
+                  {nationalBasicLivingApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {nationalBasicLivingApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -88,7 +108,10 @@ const NumberOfApplicants = () => {
                   차상위계층
                 </Td>
                 <Td width={80} height={56}>
-                  {nearPovertyApplicant}
+                  {nearPovertyApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {nearPovertyApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -96,7 +119,10 @@ const NumberOfApplicants = () => {
                   국가보훈대상자 (국가유공자)
                 </Td>
                 <Td width={80} height={56}>
-                  {nationalVeteransApplicant}
+                  {nationalVeteransApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {nationalVeteransApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -104,7 +130,10 @@ const NumberOfApplicants = () => {
                   한부모가정
                 </Td>
                 <Td width={80} height={56}>
-                  {oneParentApplicant}
+                  {oneParentApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {oneParentApplicant.min}
                 </Td>
               </Row>
             </Column>
@@ -119,7 +148,10 @@ const NumberOfApplicants = () => {
                   북한이탈청소년
                 </Td>
                 <Td width={80} height={56}>
-                  {fromNorthKoreaApplicant}
+                  {fromNorthKoreaApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {fromNorthKoreaApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -127,7 +159,10 @@ const NumberOfApplicants = () => {
                   다문화가족 자녀
                 </Td>
                 <Td width={80} height={56}>
-                  {multiculturalApplicant}
+                  {multiculturalApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {multiculturalApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -135,7 +170,10 @@ const NumberOfApplicants = () => {
                   소년 · 소녀가장
                 </Td>
                 <Td width={80} height={56}>
-                  {teenHouseholderApplicant}
+                  {teenHouseholderApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {teenHouseholderApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -143,7 +181,10 @@ const NumberOfApplicants = () => {
                   다자녀 가정 자녀
                 </Td>
                 <Td width={80} height={56}>
-                  {multiChildrenApplicant}
+                  {multiChildrenApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {multiChildrenApplicant.min}
                 </Td>
               </Row>
               <Row>
@@ -151,7 +192,10 @@ const NumberOfApplicants = () => {
                   농어촌지역출신자
                 </Td>
                 <Td width={80} height={56}>
-                  {farmingAndFishingApplicant}
+                  {farmingAndFishingApplicant.max}
+                </Td>
+                <Td width={80} height={56}>
+                  {farmingAndFishingApplicant.min}
                 </Td>
               </Row>
             </Column>
@@ -168,10 +212,13 @@ const NumberOfApplicants = () => {
               국가보훈대상자 중 교육지원대상자
             </Td>
             <Td width={240} height={56}>
-              {null}
+              <div></div>
             </Td>
             <Td width={80} height={56}>
-              {nationalVeteransEducationApplicant}
+              {nationalVeteransEducationApplicant.max}
+            </Td>
+            <Td width={80} height={56}>
+              {nationalVeteransEducationApplicant.min}
             </Td>
           </Row>
           <Row>
@@ -179,10 +226,13 @@ const NumberOfApplicants = () => {
               특례입학 대상자
             </Td>
             <Td width={240} height={56}>
-              {null}
+              <div></div>
+            </Td>
+            <Td width={80} height={56}>
+              {specialAdmissionApplicant.max}
             </Td>
             <Td width={80} height={56} borderBottomRightRadius={12}>
-              {specialAdmissionApplicant}
+              {specialAdmissionApplicant.min}
             </Td>
           </Row>
         </Column>
@@ -191,4 +241,4 @@ const NumberOfApplicants = () => {
   );
 };
 
-export default NumberOfApplicants;
+export default AllSubmitDetail;

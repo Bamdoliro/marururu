@@ -5,7 +5,7 @@ import { flex } from '@maru/utils';
 import useAdmissionData from '../../GenderRatio.hooks';
 
 const GeneralAdmission = () => {
-  const { data } = useAdmissionData(['FAILED', 'PASSED'], 'REGULAR');
+  const { data } = useAdmissionData(['FAILED', 'PASSED'], 'REGULAR', 'CURRENT');
 
   const regularBusanMale = data.categories.REGULAR?.busanMale || 0;
   const regularBusanFemale = data.categories.REGULAR?.busanFemale || 0;

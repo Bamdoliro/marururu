@@ -5,19 +5,26 @@ import { flex } from '@maru/utils';
 import useAdmissionData from '../GenderRatio.hooks';
 import type {
   AnalysisApplicantType,
+  AnalysisNumberOfApplicantsType,
   FormTypeMainCategory,
 } from '@/types/analysis/client';
 
 const FinalRoundPassedMain = () => {
   const statusList: AnalysisApplicantType[] = ['PASSED'];
 
-  const useAdmissionDataWithStatus = (type: FormTypeMainCategory) => {
-    return useAdmissionData(statusList, type);
+  const useAdmissionDataWithStatus = (
+    mainCategory: FormTypeMainCategory,
+    type: AnalysisNumberOfApplicantsType
+  ) => {
+    return useAdmissionData(statusList, mainCategory, type);
   };
 
-  const { data: RegularData } = useAdmissionDataWithStatus('REGULAR');
-  const { data: SpecialData } = useAdmissionDataWithStatus('SPECIAL');
-  const { data: SupernumeraryData } = useAdmissionDataWithStatus('SUPERNUMERARY');
+  const { data: RegularData } = useAdmissionDataWithStatus('REGULAR', 'CURRENT');
+  const { data: SpecialData } = useAdmissionDataWithStatus('SPECIAL', 'CURRENT');
+  const { data: SupernumeraryData } = useAdmissionDataWithStatus(
+    'SUPERNUMERARY',
+    'CURRENT'
+  );
 
   const RegularMaleCount = RegularData.overallMale || 0;
   const RegularFemaleCount = RegularData.overallFemale || 0;

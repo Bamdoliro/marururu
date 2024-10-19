@@ -4,7 +4,7 @@ import type { FormType } from '@/types/analysis/client';
 
 const FirstRoundPassedDetail = () => {
   const { data: dataList } = useGradeDistributionListQuery({
-    statusList: ['FIRST_PASSED', 'FAILED', 'PASSED', 'NO_SHOW'],
+    statusList: ['FIRST_PASSED', 'FAILED', 'PASSED'],
   });
   const getMaxMinByType = (type: FormType) => {
     const entries = dataList?.filter((item) => item.type === type);

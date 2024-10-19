@@ -1,9 +1,9 @@
 import { useSchoolOriginListQuery } from '@/services/analysis/queries';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
+import type { AreaCategory } from '@/types/analysis/client';
 import SchoolOriginTableHeader from './SchoolOriginTableHeader/SchoolOriginTableHeader';
 import SchoolOriginTableItem from './SchoolOriginTableItem/SchoolOriginTableItem';
-import type { AreaCategory } from '@/types/analysis/client';
 
 interface Props {
   selectedCategory: AreaCategory;
@@ -11,7 +11,7 @@ interface Props {
 
 const SchoolOriginTable: React.FC<Props> = ({ selectedCategory }) => {
   const { data: schoolOriginList } = useSchoolOriginListQuery({
-    statusList: ['FIRST_PASSED', 'FAILED', 'PASSED'],
+    statusList: ['RECEIVED', 'FIRST_PASSED', 'PASSED', 'FAILED'],
     isBusan: selectedCategory === 'OTHER_AREA' ? false : true,
     gu: selectedCategory === 'OTHER_AREA' ? '' : selectedCategory,
   });

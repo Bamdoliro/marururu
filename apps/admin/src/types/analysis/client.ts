@@ -13,7 +13,14 @@ export type FormType =
   | 'SPECIAL_ADMISSION'
   | 'NATIONAL_VETERANS_EDUCATION';
 
-export type AnalysisApplicantType = 'FIRST_PASSED' | 'FAILED' | 'PASSED' | 'NO_SHOW';
+export type AnalysisApplicantType =
+  | 'FIRST_PASSED'
+  | 'FAILED'
+  | 'PASSED'
+  | 'NO_SHOW'
+  | 'RECEIVED';
+
+export type AnalysisNumberOfApplicantsType = 'CURRENT' | 'ORIGINAL';
 
 export interface NumberOfApplicants {
   type: FormType;

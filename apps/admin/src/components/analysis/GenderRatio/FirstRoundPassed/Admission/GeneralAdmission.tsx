@@ -6,8 +6,9 @@ import useAdmissionData from '../../GenderRatio.hooks';
 
 const GeneralAdmission = () => {
   const { data } = useAdmissionData(
-    ['NO_SHOW', 'FIRST_PASSED', 'FAILED', 'PASSED'],
-    'REGULAR'
+    ['FIRST_PASSED', 'FAILED', 'PASSED'],
+    'REGULAR',
+    'CURRENT'
   );
 
   const regularBusanMale = data.categories.REGULAR?.busanMale || 0;
