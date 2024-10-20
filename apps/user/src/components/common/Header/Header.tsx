@@ -46,6 +46,7 @@ const Header = () => {
       return [
         { name: '홈', route: ROUTES.MAIN },
         { name: '공지사항', route: ROUTES.NOTICE },
+        { name: '원서관리', route: ROUTES.FORM_MANAGEMENT },
         { name: '자주 묻는 질문', route: ROUTES.FAQ },
       ];
     } else {
