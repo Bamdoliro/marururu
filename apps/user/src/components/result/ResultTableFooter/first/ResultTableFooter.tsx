@@ -20,7 +20,7 @@ const ResultTableFooter = ({ option, isPassed }: Props) => {
   return isPassed === true && option === 'FIRST' ? (
     <Column gap={24} alignItems="center">
       <Text fontType="p2" color={color.gray900} textAlign="center">
-        2단계 전형 응시를 위해 수험표를 출력하고 10월 27일에 본교에 방문해주시기 바랍니다.
+        2단계 전형 응시를 위해 수험표를 출력하고 10월 25일에 본교에 방문해주시기 바랍니다.
         <br /> 자세한 내용은 입학 요강에서 확인해주시기 바랍니다.
       </Text>
       <Text fontType="btn2" color={color.gray500} textAlign="center">
