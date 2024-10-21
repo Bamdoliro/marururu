@@ -4,6 +4,9 @@ import { color } from '@maru/design-token';
 import { Column, Row, Text } from '@maru/ui';
 import { IconCancelCircle, IconCheckCircle, IconGrayCircle } from '@maru/icon';
 import { useUser } from '@/hooks';
+import { 일차_합격_발표, 최종_합격_발표 } from '@/constants/form/constant';
+import dayjs from 'dayjs';
+import BigNotAlreadyResult from '../NotAlreadyResult/BigNotAlreadyResult';
 
 interface Props {
   status?: string | undefined;
@@ -11,6 +14,7 @@ interface Props {
 
 const FormStatus = ({ status }: Props) => {
   const { userData } = useUser();
+  const now = dayjs();
 
   const getFormStatus = () => {
     switch (status) {
@@ -37,49 +41,55 @@ const FormStatus = ({ status }: Props) => {
           </StyledApplicationBox>
         );
       case 'FIRST_FAILED':
-        return (
-          <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
-              <Column gap={8}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  1차 불합격
-                </Text>
-              </Column>
-              <IconCancelCircle width={110} height={110} />
-            </Row>
-            <Column height={20}> </Column>
-            <Text fontType="p2" color={color.gray600}>
-              1차 전형에서 불합격하셨습니다.
-              <br />
-              관심을 가지고 지원해 주셔서 감사합니다.
-            </Text>
-          </StyledApplicationBox>
-        );
+        if (now.isAfter(일차_합격_발표)) {
+          return (
+            <StyledApplicationBox>
+              <Row alignItems="top" gap={110}>
+                <Column gap={8}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    1차 불합격
+                  </Text>
+                </Column>
+                <IconCancelCircle width={110} height={110} />
+              </Row>
+              <Column height={20}> </Column>
+              <Text fontType="p2" color={color.gray600}>
+                1차 전형에서 불합격하셨습니다.
+                <br />
+                관심을 가지고 지원해 주셔서 감사합니다.
+              </Text>
+            </StyledApplicationBox>
+          );
+        }
+        return <BigNotAlreadyResult result="1차" />;
       case 'FAILED':
-        return (
-          <StyledApplicationBox>
-            <Row alignItems="top" gap={110}>
-              <Column gap={8}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  최종 불합격
-                </Text>
-              </Column>
-              <IconCancelCircle width={110} height={110} />
-            </Row>
-            <Column height={20}> </Column>
-            <Text fontType="p2" color={color.gray600}>
-              최종 전형에서 불합격하셨습니다.
-              <br />
-              관심을 가지고 지원해 주셔서 감사합니다.
-            </Text>
-          </StyledApplicationBox>
-        );
+        if (now.isAfter(최종_합격_발표)) {
+          return (
+            <StyledApplicationBox>
+              <Row alignItems="top" gap={110}>
+                <Column gap={8}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    최종 불합격
+                  </Text>
+                </Column>
+                <IconCancelCircle width={110} height={110} />
+              </Row>
+              <Column height={20}> </Column>
+              <Text fontType="p2" color={color.gray600}>
+                최종 전형에서 불합격하셨습니다.
+                <br />
+                관심을 가지고 지원해 주셔서 감사합니다.
+              </Text>
+            </StyledApplicationBox>
+          );
+        }
+        return <BigNotAlreadyResult result="최종" />;
       case 'FINAL_SUBMITTED':
         return (
           <StyledApplicationBox>
@@ -147,71 +157,80 @@ const FormStatus = ({ status }: Props) => {
           </StyledApplicationBox>
         );
       case 'NO_SHOW':
-        return (
-          <StyledApplicationBox>
-            <Row alignItems="top" gap={195}>
-              <Column gap={8}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  불참
-                </Text>
-              </Column>
-              <IconCancelCircle width={110} height={110} />
-            </Row>
-            <Column height={20}> </Column>
-            <Text fontType="p2" color={color.gray600}>
-              2차 전형에 참여하지 않으셨기에
-              <br />
-              자동 불합격 처리되셨습니다.
-            </Text>
-          </StyledApplicationBox>
-        );
+        if (now.isAfter(최종_합격_발표)) {
+          return (
+            <StyledApplicationBox>
+              <Row alignItems="top" gap={195}>
+                <Column gap={8}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    불참
+                  </Text>
+                </Column>
+                <IconCancelCircle width={110} height={110} />
+              </Row>
+              <Column height={20}> </Column>
+              <Text fontType="p2" color={color.gray600}>
+                2차 전형에 참여하지 않으셨기에
+                <br />
+                자동 불합격 처리되셨습니다.
+              </Text>
+            </StyledApplicationBox>
+          );
+        }
+        return <BigNotAlreadyResult result="최종" />;
       case 'FIRST_PASSED':
-        return (
-          <StyledApplicationBox>
-            <Row alignItems="top" gap={145}>
-              <Column gap={8}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  1차 합격
-                </Text>
-              </Column>
-              <IconCheckCircle width={110} height={110} />
-            </Row>
-            <Column height={20}> </Column>
-            <Text fontType="p2" color={color.gray600}>
-              1차 합격하셨습니다.
-              <br />
-              남은 전형도 힘내시길 바랍니다.
-            </Text>
-          </StyledApplicationBox>
-        );
+        if (now.isAfter(일차_합격_발표)) {
+          return (
+            <StyledApplicationBox>
+              <Row alignItems="top" gap={145}>
+                <Column gap={8}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    1차 합격
+                  </Text>
+                </Column>
+                <IconCheckCircle width={110} height={110} />
+              </Row>
+              <Column height={20}> </Column>
+              <Text fontType="p2" color={color.gray600}>
+                1차 합격하셨습니다.
+                <br />
+                남은 전형도 힘내시길 바랍니다.
+              </Text>
+            </StyledApplicationBox>
+          );
+        }
+        return <BigNotAlreadyResult result="1차" />;
       case 'PASSED':
-        return (
-          <StyledApplicationBox>
-            <Row alignItems="top" gap={140}>
-              <Column gap={8}>
-                <Text fontType="p1" color={color.gray600}>
-                  원서 상태
-                </Text>
-                <Text fontType="H1" color={color.gray900}>
-                  최종합격
-                </Text>
-              </Column>
-              <IconCheckCircle width={110} height={110} />
-            </Row>
-            <Column height={20}> </Column>
-            <Text fontType="p2" color={color.gray600}>
-              최종 합격하셨습니다.
-              <br />
-              위대한 여정의 시작을 축하드립니다.
-            </Text>
-          </StyledApplicationBox>
-        );
+        if (now.isAfter(최종_합격_발표)) {
+          return (
+            <StyledApplicationBox>
+              <Row alignItems="top" gap={140}>
+                <Column gap={8}>
+                  <Text fontType="p1" color={color.gray600}>
+                    원서 상태
+                  </Text>
+                  <Text fontType="H1" color={color.gray900}>
+                    최종합격
+                  </Text>
+                </Column>
+                <IconCheckCircle width={110} height={110} />
+              </Row>
+              <Column height={20}> </Column>
+              <Text fontType="p2" color={color.gray600}>
+                최종 합격하셨습니다.
+                <br />
+                위대한 여정의 시작을 축하드립니다.
+              </Text>
+            </StyledApplicationBox>
+          );
+        }
+        return <BigNotAlreadyResult result="최종" />;
       case 'REJECTED':
         return (
           <StyledApplicationBox>
