@@ -17,6 +17,7 @@ export const KEY = {
   MESSAGE_LIST: 'useMessageList',
   MESSAGE_DETAIL: 'userMessageDetail',
   FAIR_LIST: 'useFairQuery',
+  ADMISSION_TICKET_ALL: 'useAllAdmissionTicket',
 };
 
 export const ROUTES = {
