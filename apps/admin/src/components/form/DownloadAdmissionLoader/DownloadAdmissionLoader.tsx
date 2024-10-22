@@ -3,13 +3,9 @@ import { Column, Loader, Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
 
-interface Props {
-  isOpen: boolean;
-}
-
-const DonwloadAdmissionLoader = ({ isOpen }: Props) => {
+const DownloadAdmissionLoader = () => {
   return (
-    <BlurBackground $isOpen={isOpen}>
+    <BlurBackground>
       <StyledDonwloadAdmissionLoader>
         <Column gap={8}>
           <Text fontType="H2" color={color.gray900}>
@@ -25,13 +21,13 @@ const DonwloadAdmissionLoader = ({ isOpen }: Props) => {
   );
 };
 
-export default DonwloadAdmissionLoader;
+export default DownloadAdmissionLoader;
 
-const BlurBackground = styled.div<{ $isOpen: boolean }>`
+const BlurBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  display: ${(props) => (props.$isOpen ? 'flex' : 'none')};
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -44,6 +40,7 @@ const StyledDonwloadAdmissionLoader = styled.div`
   position: relative;
   ${flex({ flexDirection: 'column', alignItems: 'center' })};
   gap: 48px;
+  width: 450px;
   padding: 36px;
   height: 280px;
   background-color: ${color.white};
