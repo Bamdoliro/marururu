@@ -1,5 +1,7 @@
 import { ROUTES } from '@/constants/common/constant';
 import {
+  이차_전형_끝,
+  이차_전형_시작,
   일차_합격_발표,
   입학_등록_기간,
   제출_마감_날짜,
@@ -24,9 +26,13 @@ export const useDday = () => {
     ? 제출_시작_날짜
     : dayjs().isBefore(제출_마감_날짜)
     ? 제출_마감_날짜
-    : dayjs().isBefore(일차_합격_발표.add(2, 'day'))
+    : dayjs().isBefore(일차_합격_발표.add(1, 'day'))
     ? 일차_합격_발표
-    : dayjs().isBefore(최종_합격_발표.add(2, 'day'))
+    : dayjs().isBefore(이차_전형_시작)
+    ? 이차_전형_시작
+    : dayjs().isBefore(이차_전형_끝)
+    ? 이차_전형_끝
+    : dayjs().isBefore(최종_합격_발표.add(1, 'day'))
     ? 최종_합격_발표
     : 입학_등록_기간;
 

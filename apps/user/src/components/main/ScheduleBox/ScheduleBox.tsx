@@ -13,6 +13,7 @@ import { Text } from '@maru/ui';
 import { flex } from '@maru/utils';
 import styled from 'styled-components';
 import ScheduleItem from './ScheduleBoxItem/ScheduleBoxItem';
+import dayjs from 'dayjs';
 
 const SCHEDULE_DATA = [
   {
@@ -27,7 +28,7 @@ const SCHEDULE_DATA = [
     date: '2024년 10월 21일 15:00',
     plan: '1차 합격자 발표',
     startTime: 일차_합격_발표,
-    endTime: 이차_전형_시작,
+    endTime: dayjs(일차_합격_발표).endOf('day'),
   },
   {
     id: 2,
@@ -41,7 +42,7 @@ const SCHEDULE_DATA = [
     date: '2024년 10월 31일 15:00',
     plan: '최종 합격자 발표',
     startTime: 최종_합격_발표,
-    endTime: 입학_등록_기간,
+    endTime: dayjs(최종_합격_발표).endOf('day'),
   },
   {
     id: 4,
