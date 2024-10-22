@@ -3,8 +3,10 @@ import {
   useEditSecondRoundResultAutoMutation,
   usePrintFormUrlMutation,
 } from '@/services/form/mutations';
+import { useExportAllAddmissionTicket } from '@/services/form/queries';
 import { useFormToPrintValueStore } from '@/store/form/formToPrint';
 import { useSecondRoundResultValueStore } from '@/store/form/secondRoundResult';
+import { useState } from 'react';
 export const useSecondRoundResultEditAction = () => {
   const secondRoundResult = useSecondRoundResultValueStore();
   const secondRoundResultData = {
@@ -52,4 +54,34 @@ export const usePrintFormURLAction = () => {
   };
 
   return { handlePrintFormUrlButtonClick };
+};
+
+export const useAllAdmissionTicket = () => {
+  const { refetch } = useExportAllAddmissionTicket();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleDownloadAllAdmissionTicket = async () => {
+    try {
+      setIsLoading(true);
+      const { data } = await refetch();
+      if (!data) return;
+
+      const blob = new Blob([data]);
+      const ticketURL = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = ticketURL;
+      link.download = '전체 접수증.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(ticketURL);
+    } catch (error) {
+      alert('다운로드 다시 시도해주세요.');
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return { handleDownloadAllAdmissionTicket, isLoading };
 };

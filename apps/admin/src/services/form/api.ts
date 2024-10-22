@@ -121,3 +121,12 @@ export const getFormUrl = async (formIdList: number[]) => {
 
   return data;
 };
+
+export const getAllAdmissionTicket = async () => {
+  const { data } = await maru.get('/form/admission-ticket/all', {
+    ...authorization(),
+    responseType: 'blob',
+  });
+
+  return data;
+};

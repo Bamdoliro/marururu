@@ -4,7 +4,13 @@ import {
   useFormListSortingTypeValueStore,
 } from '@/store/form/type';
 import { useQuery } from '@tanstack/react-query';
-import { getExportExcel, getFormDetail, getFormList, getSecondScoreFormat } from './api';
+import {
+  getAllAdmissionTicket,
+  getExportExcel,
+  getFormDetail,
+  getFormList,
+  getSecondScoreFormat,
+} from './api';
 import type { ExportExcelType } from '@/types/form/client';
 
 export const useFormListQuery = () => {
@@ -63,4 +69,15 @@ export const useFormDetailQuery = (id: number) => {
   });
 
   return { data: data?.data, ...restQuery };
+};
+
+export const useExportAllAddmissionTicket = () => {
+  const { data, ...restQuery } = useQuery({
+    queryKey: [KEY.ADMISSION_TICKET_ALL],
+    queryFn: () => getAllAdmissionTicket(),
+    suspense: false,
+    enabled: false,
+  });
+
+  return { data, ...restQuery };
 };

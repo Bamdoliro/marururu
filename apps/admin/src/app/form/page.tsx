@@ -6,7 +6,6 @@ import ExportExcelModal from '@/components/form/ExportExcelModal/ExportExcelModa
 import FormTable from '@/components/form/FormTable/FormTable';
 import SecondScoreUploadModal from '@/components/form/SecondScoreUploadModal/SecondScoreUploadModal';
 import AppLayout from '@/layouts/AppLayout';
-import initMockAPI from '@/mocks';
 import { FORM_SORTING_CATEGORY } from '@/constants/form/constants';
 import type { FormStatus, FormSort, FormCategory } from '@/types/form/client';
 import { useSetFormToPrintStore } from '@/store/form/formToPrint';
@@ -25,6 +24,7 @@ import {
   IconFilter,
   IconPrint,
   IconUpload,
+  IconAdmission,
 } from '@maru/icon';
 import { color } from '@maru/design-token';
 import { Button, Column, Row, Dropdown, Text } from '@maru/ui';
@@ -32,6 +32,7 @@ import { flex } from '@maru/utils';
 import { useOverlay } from '@toss/use-overlay';
 import { styled } from 'styled-components';
 import {
+  useAllAdmissionTicket,
   usePrintFormURLAction,
   useSecondRoundResultEditAction,
   useSecondRoundResultEditAutoAction,
@@ -39,10 +40,7 @@ import {
 import withAuth from '@/hoc/withAuth';
 import { useState, useEffect } from 'react';
 import FinalCheckingModal from '@/components/form/FinalCheckingModal/FinalCheckingModal';
-
-if (process.env.NODE_ENV === 'development') {
-  initMockAPI();
-}
+import DownloadAdmissionLoader from '@/components/form/DownloadAdmissionLoader/DownloadAdmissionLoader';
 
 const FormPage = () => {
   const [formListType, setFormListType] = useFormListTypeStore();
@@ -85,9 +83,9 @@ const FormPage = () => {
   };
 
   const { handleSecondRoundResultEditAuto } = useSecondRoundResultEditAutoAction();
-
   const { handleSecondRoundResultEditCompleteButtonClick } =
     useSecondRoundResultEditAction();
+  const { handleDownloadAllAdmissionTicket, isLoading } = useAllAdmissionTicket();
 
   useEffect(() => {
     setIsButtonDisabled(Object.keys(secondRoundResultValue).length === 0);
@@ -148,6 +146,7 @@ const FormPage = () => {
 
   return (
     <AppLayout>
+      {isLoading && <DownloadAdmissionLoader />}
       <StyledMainPage>
         <Text fontType="H1">원서 관리</Text>
         <Column gap={36}>
@@ -316,6 +315,12 @@ const FormPage = () => {
                       <IconPrint color={color.gray600} width={24} height={24} />
                       <Text fontType="p2" color={color.gray900}>
                         원서 출력하기
+                      </Text>
+                    </ButtonMenuItem>,
+                    <ButtonMenuItem onClick={handleDownloadAllAdmissionTicket}>
+                      <IconAdmission width={24} height={24} />
+                      <Text fontType="p2" color={color.gray900}>
+                        수험표 전체 발급하기
                       </Text>
                     </ButtonMenuItem>,
                   ]}
