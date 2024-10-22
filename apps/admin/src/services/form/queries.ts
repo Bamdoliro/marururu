@@ -75,6 +75,8 @@ export const useExportAllAddmissionTicket = () => {
   const { data, ...restQuery } = useQuery({
     queryKey: [KEY.ADMISSION_TICKET_ALL],
     queryFn: () => getAllAdmissionTicket(),
+    suspense: false,
+    enabled: false,
   });
 
   return { data, ...restQuery };

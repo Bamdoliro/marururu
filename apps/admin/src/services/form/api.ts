@@ -123,7 +123,10 @@ export const getFormUrl = async (formIdList: number[]) => {
 };
 
 export const getAllAdmissionTicket = async () => {
-  const { data } = await maru.get('/form/admission-ticket/all', authorization());
+  const { data } = await maru.get('/form/admission-ticket/all', {
+    ...authorization(),
+    responseType: 'blob',
+  });
 
   return data;
 };
