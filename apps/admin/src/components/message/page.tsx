@@ -144,7 +144,7 @@ const Message = () => {
                 setNext: true,
               },
               { value: 'FIRST_PASSED', label: '전체 1차 합격자' },
-              { value: 'FINAL_PASSED', label: '최종 합격자' },
+              { value: 'PASSED', label: '최종 합격자' },
             ]}
             size="SMALL"
             value={MESSAGE_CATEGORY[messageData.status as Category]}
