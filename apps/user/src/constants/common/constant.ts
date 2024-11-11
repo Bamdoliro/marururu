@@ -32,6 +32,7 @@ export const ROUTES = {
   TERMUSE: '/term-use',
   CHANGE_PASSWORD: '/change-password',
   FORM_MANAGEMENT: '/form-management',
+  REGIST: '/regist',
 } as const;
 
 export const TOKEN = {
