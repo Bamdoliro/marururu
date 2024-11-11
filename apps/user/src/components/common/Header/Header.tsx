@@ -25,13 +25,13 @@ const Header = () => {
   const now = dayjs();
 
   const isFormSubmittedPeriod = now.isBetween(제출_시작_날짜, 제출_마감_날짜);
+  const isAdmissionRegist = now.isBetween(입학_등록_기간, 입학_등록_기간_마감);
   const isAdmissionPeriod =
     now.isBetween(제출_마감_날짜, 일차_합격_발표) ||
     now.isBetween(일차_합격_발표, 이차_전형_시작) ||
     now.isBetween(이차_전형_시작, 이차_전형_끝) ||
     now.isBetween(이차_전형_끝, 최종_합격_발표) ||
-    now.isBetween(최종_합격_발표, 입학_등록_기간) ||
-    now.isBetween(입학_등록_기간, 입학_등록_기간_마감);
+    now.isBetween(최종_합격_발표, 입학_등록_기간);
 
   const NAVIGATION_LIST = (() => {
     if (isFormSubmittedPeriod) {
@@ -45,8 +45,16 @@ const Header = () => {
     } else if (isAdmissionPeriod) {
       return [
         { name: '홈', route: ROUTES.MAIN },
-        { name: '공지사항', route: ROUTES.NOTICE },
         { name: '원서관리', route: ROUTES.FORM_MANAGEMENT },
+        { name: '공지사항', route: ROUTES.NOTICE },
+        { name: '자주 묻는 질문', route: ROUTES.FAQ },
+      ];
+    } else if (isAdmissionRegist) {
+      return [
+        { name: '홈', route: ROUTES.MAIN },
+        { name: '입학 등록', route: ROUTES.REGIST },
+        { name: '원서관리', route: ROUTES.FORM_MANAGEMENT },
+        { name: '공지사항', route: ROUTES.NOTICE },
         { name: '자주 묻는 질문', route: ROUTES.FAQ },
       ];
     } else {
