@@ -8,7 +8,7 @@ const ExportFormButton = () => {
         alert('다운로드됨');
       }}
     >
-      [ 입학 등록원 PDF 다운로드 ]
+      [ 입학 등록원 & 금연 동의서 PDF 다운로드 ]
     </ExportButton>
   );
 };
