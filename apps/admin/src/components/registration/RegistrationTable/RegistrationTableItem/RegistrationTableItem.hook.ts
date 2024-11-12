@@ -1,15 +1,3 @@
-import { useDeleteNoticeMutation } from '@/services/notice/mutations';
-
-export const useNoticeDeleteAction = (id: number) => {
-  const { deleteNoticeMutate } = useDeleteNoticeMutation(id);
-
-  const handleDeleteNoticeButtonClick = () => {
-    deleteNoticeMutate();
-  };
-
-  return { handleDeleteNoticeButtonClick };
-};
-
 export const handleFileDownload = async (fileUrl: string, fileName: string) => {
   const response = await fetch(fileUrl);
   const blob = await response.blob();
@@ -23,4 +11,13 @@ export const handleFileDownload = async (fileUrl: string, fileName: string) => {
   link.click();
   link.remove();
   window.URL.revokeObjectURL(url);
+};
+
+export const handleViewNow = async (fileUrl: string) => {
+  const response = await fetch(fileUrl);
+  const blob = await response.blob();
+  const blobUrl = window.URL.createObjectURL(blob);
+
+  window.open(blobUrl);
+  window.URL.revokeObjectURL(blobUrl);
 };

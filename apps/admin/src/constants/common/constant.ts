@@ -29,6 +29,7 @@ export const ROUTES = {
   FAQ_EDIT: '/faq/edit',
   FAQ_POST: '/faq/post',
   MESSAGE: '/message',
+  REGISTRATION: '/registration',
   ANALYSIS: '/analysis',
   FORM: '/form',
   FAIR: '/fair',

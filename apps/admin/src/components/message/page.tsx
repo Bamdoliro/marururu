@@ -174,7 +174,7 @@ const StyledMessage = styled.div`
   ${flex({ flexDirection: 'column' })}
   width: 100%;
   min-height: 100vh;
-  padding: 64px 60px;
+  padding: 64px 75px;
 `;
 
 const MessageHeader = styled.div`

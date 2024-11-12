@@ -5,7 +5,7 @@ import { Button, Column, Row, Text } from '@maru/ui';
 import { convertLink, flex, formatCreatedAt } from '@maru/utils';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
-import { useNoticeDeleteAction } from './NoticeDetailContent.hooks';
+import { useNoticeDeleteAction, handleFileDownload } from './NoticeDetailContent.hooks';
 import { IconClip } from '@maru/icon';
 import { formatFileName } from '@/utils';
 
@@ -16,21 +16,6 @@ const NoticeDetailContent = ({ id }: Props) => {
   const router = useRouter();
   const { data: noticeDetailData } = useNoticeDetailQuery(id);
   const { handleDeleteNoticeButtonClick } = useNoticeDeleteAction(id);
-
-  const handleFileDownload = async (fileUrl: string, fileName: string) => {
-    const response = await fetch(fileUrl);
-    const blob = await response.blob();
-
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = fileName;
-
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.URL.revokeObjectURL(url);
-  };
 
   return noticeDetailData ? (
     <StyledNoticeDetailContent>
