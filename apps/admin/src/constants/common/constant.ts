@@ -14,6 +14,7 @@ export const KEY = {
   ANALYSIS_GRADE_DISTRIBUTION: 'useGradeDistribution',
   ANALYSIS_GENDER_RATIO: 'useGenderRatio',
   ANALYSIS_SCHOOL_ORIGIN: 'useSchoolOrigin',
+  REGISTRATION_LIST: 'useRegistrationList',
   MESSAGE_LIST: 'useMessageList',
   MESSAGE_DETAIL: 'userMessageDetail',
   FAIR_LIST: 'useFairQuery',

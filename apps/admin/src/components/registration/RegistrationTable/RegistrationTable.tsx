@@ -1,10 +1,10 @@
-import { useNoticeListQuery } from '@/services/registration/queries';
+import { useRegistrationListQuery } from '@/services/registration/queries';
 import { Column } from '@maru/ui';
 import RegistrationTableHeader from './RegistrationTableHeader/RegistrationTableHeader';
 import RegistrationTableItem from './RegistrationTableItem/RegistrationTableItem';
 
 const RegistrationTable = () => {
-  const { data: RegistrationList } = useNoticeListQuery();
+  const { data: RegistrationList } = useRegistrationListQuery();
 
   return (
     <Column gap={12}>

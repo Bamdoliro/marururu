@@ -4,7 +4,7 @@ import { getRegistrationList } from './api';
 
 export const useRegistrationListQuery = () => {
   const { data, ...restQuery } = useQuery({
-    queryKey: [KEY.NOTICE_LIST],
+    queryKey: [KEY.REGISTRATION_LIST],
     queryFn: getRegistrationList,
     suspense: false,
   });
