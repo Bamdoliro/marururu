@@ -15,7 +15,8 @@ export const middleware = async (request: NextRequest) => {
     url.startsWith('/faq') ||
     url.startsWith('/message') ||
     url.startsWith('/fair') ||
-    url.startsWith('/analysis')
+    url.startsWith('/analysis') ||
+    url.startsWith('/registration')
   ) {
     if (!accessToken) {
       const redirectUrl = new URL('/', request.url);
