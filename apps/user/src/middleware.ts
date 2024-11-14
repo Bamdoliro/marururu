@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import type { NextRequest } from 'next/server';
 import { NextResponse, userAgent } from 'next/server';
+import { 입학_등록_기간_마감 } from './constants/form/constant';
 
 dayjs.extend(isBetween);
 
@@ -20,17 +21,11 @@ export const middleware = (request: NextRequest) => {
 
   const inspectionUrl = new URL('/inspection', request.url);
 
-  if (
-    now.isBetween(점검_시작, 점검_끝, 'minute', '[]') &&
-    request.nextUrl.pathname !== '/inspection'
-  ) {
+  if (now.isBetween(점검_시작, 점검_끝) && request.nextUrl.pathname !== '/inspection') {
     return NextResponse.redirect(inspectionUrl);
   }
 
-  if (
-    !now.isBetween(점검_시작, 점검_끝, 'minute', '[]') &&
-    request.nextUrl.pathname === '/inspection'
-  ) {
+  if (!now.isBetween(점검_시작, 점검_끝) && request.nextUrl.pathname === '/inspection') {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
@@ -53,7 +48,7 @@ export const middleware = (request: NextRequest) => {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
-    } else if (!now.isBetween(제출_시작_날짜, 제출_마감_날짜, 'minute', '[]')) {
+    } else if (!now.isBetween(제출_시작_날짜, 제출_마감_날짜)) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set(
         'message',
@@ -70,7 +65,7 @@ export const middleware = (request: NextRequest) => {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
-    } else if (!now.isBetween(제출_시작_날짜, 입학_등록_기간, 'minute', '[]')) {
+    } else if (!now.isBetween(제출_시작_날짜, 입학_등록_기간)) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('message', '입학전형 기간이 아닙니다.');
       return NextResponse.redirect(redirectUrl);
@@ -84,7 +79,7 @@ export const middleware = (request: NextRequest) => {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
-    } else if (!now.isBetween(일차_합격_발표, 이차_전형_시작, 'minute', '[]')) {
+    } else if (!now.isBetween(일차_합격_발표, 이차_전형_시작)) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set(
         'message',
@@ -101,7 +96,7 @@ export const middleware = (request: NextRequest) => {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
-    } else if (!now.isBetween(최종_합격_발표, 입학_등록_기간, 'minute', '[]')) {
+    } else if (!now.isBetween(최종_합격_발표, 입학_등록_기간)) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set(
         'message',
@@ -110,6 +105,23 @@ export const middleware = (request: NextRequest) => {
       return NextResponse.redirect(redirectUrl);
     } else {
       return NextResponse.rewrite(new URL('/result/final', request.url));
+    }
+  }
+
+  if (url === '/regist') {
+    if (!refreshToken) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
+      return NextResponse.redirect(redirectUrl);
+    } else if (!now.isBetween(입학_등록_기간, 입학_등록_기간_마감)) {
+      const redirectUrl = new URL('/', request.url);
+      redirectUrl.searchParams.set(
+        'message',
+        '정상적인 경로를 통해 최종 결과를 확인해주세요.'
+      );
+      return NextResponse.redirect(redirectUrl);
+    } else {
+      return NextResponse.rewrite(new URL('/regist', request.url));
     }
   }
 
