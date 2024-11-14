@@ -115,10 +115,7 @@ export const middleware = (request: NextRequest) => {
       return NextResponse.redirect(redirectUrl);
     } else if (!now.isBetween(입학_등록_기간, 입학_등록_기간_마감)) {
       const redirectUrl = new URL('/', request.url);
-      redirectUrl.searchParams.set(
-        'message',
-        '정상적인 경로를 통해 최종 결과를 확인해주세요.'
-      );
+      redirectUrl.searchParams.set('message', '정상적인 경로를 통해 입학 등록 해주세요.');
       return NextResponse.redirect(redirectUrl);
     } else {
       return NextResponse.rewrite(new URL('/regist', request.url));
