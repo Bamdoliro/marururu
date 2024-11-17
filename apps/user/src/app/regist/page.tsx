@@ -35,9 +35,9 @@ const RegistPage = () => {
 
   const handleButtonClick = () => {
     if (!isUploadSuccessful) {
-      alert('파일을 업로드해주세요');
+      alert('파일을 업로드해주세요.');
     } else {
-      alert('서류 제출이 되었습니다.');
+      alert('서류가 제출이 되었습니다.');
       router.replace(ROUTES.MAIN);
     }
   };
@@ -57,7 +57,12 @@ const RegistPage = () => {
               document={registForm.fileName}
               ref={pdfFileUploaderRef}
             />
-            <SubmitButton onClick={handleButtonClick} />
+            <SubmitButton
+              onClick={handleButtonClick}
+              styleType={
+                !registForm.fileName || !isUploadSuccessful ? 'DISABLED' : 'PRIMARY'
+              }
+            />
           </Column>
         </Column>
       </StyledRegistPage>
