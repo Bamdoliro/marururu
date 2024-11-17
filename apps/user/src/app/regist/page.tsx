@@ -4,25 +4,60 @@ import {
   Explain,
   ExportFormButton,
   FileUploader,
+  RegistFormLoader,
   SubmitButton,
 } from '@/components/regist';
+import { useOpenFileUploader } from '@/hooks';
 import { AppLayout } from '@/layouts';
+import { useRegistFormValueStore } from '@/store/regist/registForm';
 import { Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
+import { useDownloadRegistForm, useInput } from './regist.hooks';
+import { useBooleanState } from '@maru/hooks';
+import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/constants/common/constant';
 
 const RegistPage = () => {
+  const router = useRouter();
+  const registForm = useRegistFormValueStore();
+
+  const { setTrue: openPdfGeneratedLoader, setFalse: closePdfGeneratedLoader } =
+    useBooleanState();
+  const { openFileUploader: openPdfFileUploader, ref: pdfFileUploaderRef } =
+    useOpenFileUploader();
+
+  const { handleDownloadRegistFormButtonClick } = useDownloadRegistForm();
+  const { handleFormDocumentChange, isUploadSuccessful, isLoading } = useInput(
+    openPdfGeneratedLoader,
+    closePdfGeneratedLoader
+  );
+
+  const handleButtonClick = () => {
+    if (!isUploadSuccessful) {
+      alert('파일을 업로드해주세요');
+    } else {
+      alert('서류 제출이 되었습니다.');
+      router.replace(ROUTES.MAIN);
+    }
+  };
   return (
     <AppLayout header footer>
+      <RegistFormLoader isOpen={isLoading} />
       <StyledRegistPage>
         <Column alignItems="left" gap={64}>
           <Column alignItems="left" gap={36}>
             <Explain />
-            <ExportFormButton />
+            <ExportFormButton onClick={handleDownloadRegistFormButtonClick} />
           </Column>
           <Column alignItems="left" gap={100}>
-            <FileUploader />
-            <SubmitButton />
+            <FileUploader
+              onClick={openPdfFileUploader}
+              onChange={handleFormDocumentChange}
+              document={registForm.fileName}
+              ref={pdfFileUploaderRef}
+            />
+            <SubmitButton onClick={handleButtonClick} />
           </Column>
         </Column>
       </StyledRegistPage>
