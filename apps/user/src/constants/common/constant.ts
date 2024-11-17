@@ -14,6 +14,7 @@ export const KEY = {
   FAIR_LIST: 'useFairQuery',
   ADMISSION_TICKET: 'useAdmissionTicket',
   EXPORT_RECIPT: 'useExportReciptQuery',
+  REGIST_FORM: 'useRegistForm',
 } as const;
 
 export const ROUTES = {
