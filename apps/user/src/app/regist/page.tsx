@@ -9,7 +9,10 @@ import {
 } from '@/components/regist';
 import { useOpenFileUploader } from '@/hooks';
 import { AppLayout } from '@/layouts';
-import { useRegistFormValueStore } from '@/store/regist/registForm';
+import {
+  useRegistFormValueStore,
+  useSetRegistFormStore,
+} from '@/store/regist/registForm';
 import { Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
@@ -21,6 +24,7 @@ import { ROUTES } from '@/constants/common/constant';
 const RegistPage = () => {
   const router = useRouter();
   const registForm = useRegistFormValueStore();
+  const setRegistForm = useSetRegistFormStore();
 
   const { setTrue: openPdfGeneratedLoader, setFalse: closePdfGeneratedLoader } =
     useBooleanState();
@@ -39,6 +43,7 @@ const RegistPage = () => {
     } else {
       alert('서류가 제출이 되었습니다.');
       router.replace(ROUTES.MAIN);
+      setRegistForm({ fileName: '', formUrl: '' });
     }
   };
   return (
