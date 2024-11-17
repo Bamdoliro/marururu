@@ -11,12 +11,12 @@ const RegistFormLoader = ({ isOpen }: Props) => {
   return (
     <BlurBackground $isOpen={isOpen}>
       <StyledRegistFormLoader>
-        <Column gap={8}>
+        <Column gap={8} alignItems="center">
           <Text fontType="H2" color={color.gray900}>
             pdf를 업로드하는 중입니다.
           </Text>
           <Text fontType="p3" color={color.gray600}>
-            여러분의 원서를 올리는 중입니다. 조금만 기다려주세요!
+            여러분의 입학 등록원과 금연 동의서를 올리는 중입니다. 조금만 기다려주세요!
           </Text>
         </Column>
         <Loader top="65%" />
