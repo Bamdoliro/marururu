@@ -3,14 +3,6 @@ import { authorization } from '@/apis/token';
 import type { RegistFormPresignedUrlData } from '@/types/regist/remote';
 import axios from 'axios';
 
-export const getExportRegistForm = async () => {
-  const { data } = await maru.get('/form/admission-and-pledge', {
-    ...authorization(),
-    responseType: 'blob',
-  });
-  return data;
-};
-
 export const postSubmitRegistForm = async (): Promise<RegistFormPresignedUrlData> => {
   const { data } = await maru.post('/form/admission-and-pledge', null, authorization());
 
