@@ -8,8 +8,8 @@ interface SubmitButtonProps {
 
 const SubmitButton = ({ onClick, styleType }: SubmitButtonProps) => {
   return (
-    <Button onClick={onClick} width="30%" size="LARGE" styleType={styleType}>
-      서류 제출하기
+    <Button onClick={onClick} width={111} size="LARGE" styleType={styleType}>
+      서류 제출
     </Button>
   );
 };
