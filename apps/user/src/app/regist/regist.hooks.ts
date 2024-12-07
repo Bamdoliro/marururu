@@ -1,32 +1,7 @@
 import { useFormStatusQuery } from '@/services/form/queries';
 import { useUploadFormDocumentMutation } from '@/services/regist/mutations';
-import { useDownloadRegistFormQuery } from '@/services/regist/queries';
 import { useSetRegistFormStore } from '@/store/regist/registForm';
 import { useState, type ChangeEventHandler } from 'react';
-
-export const useDownloadRegistForm = () => {
-  const { data: registFormData } = useDownloadRegistFormQuery();
-  const { data: handleFormStatus } = useFormStatusQuery();
-
-  const handleDownloadRegistFormButtonClick = () => {
-    if (handleFormStatus?.status === 'PASSED') {
-      if (!registFormData) return;
-      const registFormUrl = window.URL.createObjectURL(new Blob([registFormData]));
-
-      const link = document.createElement('a');
-      link.href = registFormUrl;
-      link.download = '입학 등록원 & 급연 동의서.pdf';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.URL.revokeObjectURL(registFormUrl);
-    } else {
-      alert('입학 등록원 & 금연 동의서는 최종 합격자만 다운로드 할 수 있습니다.');
-    }
-  };
-
-  return { handleDownloadRegistFormButtonClick };
-};
 
 export const useInput = (openLoader: () => void, closeLoader: () => void) => {
   const setFormDocument = useSetRegistFormStore();
