@@ -2,7 +2,6 @@
 
 import {
   Explain,
-  ExportFormButton,
   FileUploader,
   RegistFormLoader,
   SubmitButton,
@@ -16,7 +15,7 @@ import {
 import { Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
-import { useDownloadRegistForm, useInput } from './regist.hooks';
+import { useInput } from './regist.hooks';
 import { useBooleanState } from '@maru/hooks';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/constants/common/constant';
@@ -31,7 +30,6 @@ const RegistPage = () => {
   const { openFileUploader: openPdfFileUploader, ref: pdfFileUploaderRef } =
     useOpenFileUploader();
 
-  const { handleDownloadRegistFormButtonClick } = useDownloadRegistForm();
   const { handleFormDocumentChange, isUploadSuccessful, isLoading } = useInput(
     openPdfGeneratedLoader,
     closePdfGeneratedLoader
@@ -51,10 +49,7 @@ const RegistPage = () => {
       <RegistFormLoader isOpen={isLoading} />
       <StyledRegistPage>
         <Column alignItems="left" gap={64}>
-          <Column alignItems="left" gap={36}>
-            <Explain />
-            <ExportFormButton onClick={handleDownloadRegistFormButtonClick} />
-          </Column>
+          <Explain />
           <Column alignItems="left" gap={100}>
             <FileUploader
               onClick={openPdfFileUploader}
