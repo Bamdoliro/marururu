@@ -19,11 +19,13 @@ import { useInput } from './regist.hooks';
 import { useBooleanState } from '@maru/hooks';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/constants/common/constant';
+import { useFormStatusQuery } from '@/services/form/queries';
 
 const RegistPage = () => {
   const router = useRouter();
   const registForm = useRegistFormValueStore();
   const setRegistForm = useSetRegistFormStore();
+  const { data } = useFormStatusQuery();
 
   const { setTrue: openPdfGeneratedLoader, setFalse: closePdfGeneratedLoader } =
     useBooleanState();
@@ -34,6 +36,14 @@ const RegistPage = () => {
     openPdfGeneratedLoader,
     closePdfGeneratedLoader
   );
+
+  const onCheckPassFileUploader = () => {
+    if (!(data?.status === 'PASSED')) {
+      alert('최종 합격자만 업로드 가능합니다.');
+    } else {
+      openPdfFileUploader;
+    }
+  };
 
   const handleButtonClick = () => {
     if (!isUploadSuccessful) {
@@ -52,7 +62,7 @@ const RegistPage = () => {
           <Explain />
           <Column alignItems="left" gap={100}>
             <FileUploader
-              onClick={openPdfFileUploader}
+              onClick={onCheckPassFileUploader}
               onChange={handleFormDocumentChange}
               document={registForm.fileName}
               ref={pdfFileUploaderRef}
