@@ -41,7 +41,7 @@ const RegistPage = () => {
     if (!(data?.status === 'PASSED')) {
       alert('최종 합격자만 업로드 가능합니다.');
     } else {
-      openPdfFileUploader;
+      openPdfFileUploader();
     }
   };
 
