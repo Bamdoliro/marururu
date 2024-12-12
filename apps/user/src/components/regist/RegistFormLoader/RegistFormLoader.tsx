@@ -16,7 +16,7 @@ const RegistFormLoader = ({ isOpen }: Props) => {
             pdf를 업로드하는 중입니다.
           </Text>
           <Text fontType="p3" color={color.gray600}>
-            여러분의 입학 등록원과 금연 동의서를 올리는 중입니다. 조금만 기다려주세요!
+            여러분의 입학 등록원을 올리는 중입니다. 조금만 기다려주세요!
           </Text>
         </Column>
         <Loader top="65%" />
