@@ -10,13 +10,12 @@ const RegistrationTable = () => {
     <Column gap={12}>
       <RegistrationTableHeader />
       {RegistrationList
-        ? RegistrationList.sort((a, b) => a.id - b.id).map(
-            ({ id, title, fileUrl, fileName }) => (
+        ? RegistrationList.sort((a, b) => a.examinationNumber - b.examinationNumber).map(
+            ({ examinationNumber, name, admissionAndPledgeUrl }) => (
               <RegistrationTableItem
-                id={id}
-                title={title}
-                fileUrl={fileUrl}
-                fileName={fileName}
+                examinationNumber={examinationNumber}
+                name={name}
+                admissionAndPledgeUrl={admissionAndPledgeUrl}
               />
             )
           )

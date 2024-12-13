@@ -3,31 +3,38 @@ import { Row, Text, Button } from '@maru/ui';
 import { handleFileDownload, handleViewNow } from './RegistrationTableItem.hook';
 
 interface Props {
-  id: number;
-  title: string;
-  fileUrl: string;
-  fileName: string;
+  examinationNumber: number;
+  name: string;
+  admissionAndPledgeUrl: string;
 }
 
-const RegistrationTableItem = ({ id, title, fileUrl, fileName }: Props) => {
+const RegistrationTableItem = ({
+  examinationNumber,
+  name,
+  admissionAndPledgeUrl,
+}: Props) => {
   return (
-    <TableItem key={id}>
+    <TableItem key={examinationNumber}>
       <Row gap={48}>
         <Text fontType="p2" width={50}>
-          {id}
+          {examinationNumber}
         </Text>
         <Text fontType="p2" width={50}>
-          {id}
+          {name}
         </Text>
         <Text fontType="p2" width={400}>
-          {title}
+          {name}
         </Text>
       </Row>
       <Row gap={16}>
-        <Button styleType="SECONDARY" size="SMALL" onClick={() => handleViewNow(fileUrl)}>
+        <Button
+          styleType="SECONDARY"
+          size="SMALL"
+          onClick={() => handleViewNow(admissionAndPledgeUrl)}
+        >
           파일 미리보기
         </Button>
-        <Button size="SMALL" onClick={() => handleFileDownload(fileUrl, fileName)}>
+        <Button size="SMALL" onClick={() => handleFileDownload(admissionAndPledgeUrl)}>
           파일 다운로드
         </Button>
       </Row>
