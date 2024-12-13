@@ -8,24 +8,18 @@ import {
 } from '@/components/regist';
 import { useOpenFileUploader } from '@/hooks';
 import { AppLayout } from '@/layouts';
-import {
-  useRegistFormValueStore,
-  useSetRegistFormStore,
-} from '@/store/regist/registForm';
+import { useRegistFormValueStore } from '@/store/regist/registForm';
 import { Column } from '@maru/ui';
 import { flex } from '@maru/utils';
 import { styled } from 'styled-components';
-import { useInput } from './regist.hooks';
+import { useChangeFormEnterAction, useInput } from './regist.hooks';
 import { useBooleanState } from '@maru/hooks';
-import { useRouter } from 'next/navigation';
-import { ROUTES } from '@/constants/common/constant';
 import { useFormStatusQuery } from '@/services/form/queries';
 
 const RegistPage = () => {
-  const router = useRouter();
   const registForm = useRegistFormValueStore();
-  const setRegistForm = useSetRegistFormStore();
   const { data } = useFormStatusQuery();
+  const { handleChangeFormEnter } = useChangeFormEnterAction();
 
   const { setTrue: openPdfGeneratedLoader, setFalse: closePdfGeneratedLoader } =
     useBooleanState();
@@ -45,15 +39,6 @@ const RegistPage = () => {
     }
   };
 
-  const handleButtonClick = () => {
-    if (!isUploadSuccessful) {
-      alert('파일을 업로드해주세요.');
-    } else {
-      alert('서류가 제출이 되었습니다.');
-      router.replace(ROUTES.MAIN);
-      setRegistForm({ fileName: '', formUrl: '' });
-    }
-  };
   return (
     <AppLayout header footer>
       <RegistFormLoader isOpen={isLoading} />
@@ -68,7 +53,7 @@ const RegistPage = () => {
               ref={pdfFileUploaderRef}
             />
             <SubmitButton
-              onClick={handleButtonClick}
+              onClick={handleChangeFormEnter}
               styleType={
                 !registForm.fileName || !isUploadSuccessful ? 'DISABLED' : 'PRIMARY'
               }

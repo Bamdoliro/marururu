@@ -139,7 +139,8 @@ export interface FormStatus {
     | 'NO_SHOW'
     | 'FIRST_PASSED'
     | 'PASSED'
-    | 'REJECTED';
+    | 'REJECTED'
+    | 'ENTERED';
   type: FormType;
 }
 
