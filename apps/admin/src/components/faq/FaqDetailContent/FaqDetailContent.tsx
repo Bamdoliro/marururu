@@ -18,9 +18,9 @@ const FaqDetailContent = ({ id }: Props) => {
   const { handleDeleteFaqButtonClick } = useFaqDeleteAction(id);
 
   return faqDetailData ? (
-    <StyledNoticeDetailContent>
+    <StyledFaqDetailContent>
       <Column gap={36}>
-        <NoticeHeader>
+        <FaqHeader>
           <Column gap={20}>
             <Text fontType="H1" color={color.gray900}>
               {faqDetailData.title}
@@ -47,23 +47,23 @@ const FaqDetailContent = ({ id }: Props) => {
               삭제
             </Button>
           </Row>
-        </NoticeHeader>
+        </FaqHeader>
         <Content
           dangerouslySetInnerHTML={{ __html: convertLink(faqDetailData.content) }}
         />
       </Column>
-    </StyledNoticeDetailContent>
+    </StyledFaqDetailContent>
   ) : null;
 };
 
 export default FaqDetailContent;
 
-const StyledNoticeDetailContent = styled.div`
+const StyledFaqDetailContent = styled.div`
   ${flex({ flexDirection: 'column' })}
   padding: 0px 7px;
 `;
 
-const NoticeHeader = styled.div`
+const FaqHeader = styled.div`
   ${flex({ justifyContent: 'space-between' })}
   width: 100%;
   border-bottom: 1px solid ${color.gray300};

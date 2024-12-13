@@ -32,6 +32,10 @@ const NAVIGATION_DATA = [
     route: ROUTES.FAIR,
   },
   {
+    name: '입학 등록원',
+    route: ROUTES.REGISTRATION,
+  },
+  {
     name: '분석',
     route: ROUTES.ANALYSIS,
   },
