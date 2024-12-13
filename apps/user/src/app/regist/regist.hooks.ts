@@ -1,5 +1,8 @@
 import { useFormStatusQuery } from '@/services/form/queries';
-import { useUploadFormDocumentMutation } from '@/services/regist/mutations';
+import {
+  useChangeFormEnterMutation,
+  useUploadFormDocumentMutation,
+} from '@/services/regist/mutations';
 import { useSetRegistFormStore } from '@/store/regist/registForm';
 import { useState, type ChangeEventHandler } from 'react';
 
@@ -38,4 +41,14 @@ export const useInput = (openLoader: () => void, closeLoader: () => void) => {
   };
 
   return { handleFormDocumentChange, isUploadSuccessful, isLoading };
+};
+
+export const useChangeFormEnterAction = () => {
+  const { changeFormEnterMutate } = useChangeFormEnterMutation();
+
+  const handleChangeFormEnter = () => {
+    changeFormEnterMutate();
+  };
+
+  return { handleChangeFormEnter };
 };
