@@ -24,7 +24,7 @@ const FileUploader = forwardRef(
             {document || '선택된 파일 없음'}
           </Text>
         </Row>
-        <input ref={ref} onChange={onChange} type="file" accept=".pdf" hidden />
+        <input ref={ref} onChange={onChange} type="file" accept=".pdf, .hwpx" hidden />
       </>
     );
   }
