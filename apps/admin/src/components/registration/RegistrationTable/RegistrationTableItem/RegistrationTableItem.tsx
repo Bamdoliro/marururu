@@ -22,9 +22,6 @@ const RegistrationTableItem = ({
         <Text fontType="p2" width={50}>
           {name}
         </Text>
-        <Text fontType="p2" width={400}>
-          {name}
-        </Text>
       </Row>
       <Row gap={16}>
         <Button

@@ -11,9 +11,6 @@ const RegistrationTableHeader = () => {
         <Text fontType="p2" width={50}>
           이름
         </Text>
-        <Text fontType="p2" width={400}>
-          학교
-        </Text>
       </Row>
     </TableHeader>
   );
