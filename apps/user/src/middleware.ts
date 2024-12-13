@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import type { NextRequest } from 'next/server';
 import { NextResponse, userAgent } from 'next/server';
-import { 입학_등록_기간_마감 } from './constants/form/constant';
 
 dayjs.extend(isBetween);
 
@@ -16,6 +15,9 @@ export const middleware = (request: NextRequest) => {
   const 이차_전형_시작 = dayjs(process.env.NEXT_PUBLIC_SECOND_EXAM_START_DAY);
   const 최종_합격_발표 = dayjs(process.env.NEXT_PUBLIC_FINAL_RESULT_DAY);
   const 입학_등록_기간 = dayjs(process.env.NEXT_PUBLIC_ADMISSION_REGISTRATION_START_DAY);
+  const 입학_등록_기간_마감 = dayjs(
+    process.env.NEXT_PUBLIC_ADMISSION_REGISTRATION_END_DAY
+  );
   const 점검_시작 = dayjs('2024-10-14T14:00:00+09:00');
   const 점검_끝 = dayjs('2024-10-14T14:25:00+09:00');
 
@@ -65,7 +67,7 @@ export const middleware = (request: NextRequest) => {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('warning', '로그인 후 시도해주세요');
       return NextResponse.redirect(redirectUrl);
-    } else if (!now.isBetween(제출_시작_날짜, 입학_등록_기간)) {
+    } else if (!now.isBetween(제출_시작_날짜, 입학_등록_기간_마감)) {
       const redirectUrl = new URL('/', request.url);
       redirectUrl.searchParams.set('message', '입학전형 기간이 아닙니다.');
       return NextResponse.redirect(redirectUrl);
