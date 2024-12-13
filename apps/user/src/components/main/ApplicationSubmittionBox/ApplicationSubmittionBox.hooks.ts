@@ -4,6 +4,7 @@ import {
   이차_전형_시작,
   일차_합격_발표,
   입학_등록_기간,
+  입학_등록_기간_마감,
   제출_마감_날짜,
   제출_시작_날짜,
   최종_합격_발표,
@@ -69,11 +70,17 @@ export const useButtonStatus = () => {
         router.push(ROUTES.FIRST_RESULT);
       } else if (currentTime === 최종_합격_발표) {
         router.push(ROUTES.FINAL_RESULT);
+      } else if (currentTime === 입학_등록_기간) {
+        router.push(ROUTES.REGIST);
       }
     }
   };
 
-  const buttonText = dayjs().isBefore(제출_마감_날짜) ? '원서 접수하기' : '결과 확인하기';
+  const buttonText = dayjs().isBefore(제출_마감_날짜)
+    ? '원서 접수하기'
+    : dayjs().isBetween(입학_등록_기간, 입학_등록_기간_마감)
+    ? '입학 등록하기'
+    : '결과 확인하기';
 
   return {
     buttonStyleType,
