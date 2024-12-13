@@ -29,3 +29,9 @@ export const putUpoloadRegistFormDocument = async (
 
   return response;
 };
+
+export const patchFormEnter = async () => {
+  const { data } = await maru.patch('/form/enter', null, authorization());
+
+  return data;
+};
