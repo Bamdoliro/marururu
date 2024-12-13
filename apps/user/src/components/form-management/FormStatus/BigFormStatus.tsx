@@ -255,6 +255,28 @@ const FormStatus = ({ status }: Props) => {
             </Text>
           </StyledApplicationBox>
         );
+      case 'ENTERED':
+        return (
+          <StyledApplicationBox>
+            <Row alignItems="top" gap={190}>
+              <Column gap={8}>
+                <Text fontType="p1" color={color.gray600}>
+                  원서 상태
+                </Text>
+                <Text fontType="H1" color={color.gray900}>
+                  입학
+                </Text>
+              </Column>
+              <IconCheckCircle width={120} height={120} />
+            </Row>
+            <Column height={20}> </Column>
+            <Text fontType="p2" color={color.gray600}>
+              부산소프트웨어마이스터고 입학을
+              <br />
+              진심으로 축하드립니다!
+            </Text>
+          </StyledApplicationBox>
+        );
       default:
         return (
           <StyledApplicationBox>
