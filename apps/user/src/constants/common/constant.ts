@@ -14,6 +14,7 @@ export const KEY = {
   FAIR_LIST: 'useFairQuery',
   ADMISSION_TICKET: 'useAdmissionTicket',
   EXPORT_RECIPT: 'useExportReciptQuery',
+  REGIST_FORM: 'useRegistForm',
 } as const;
 
 export const ROUTES = {
@@ -32,6 +33,7 @@ export const ROUTES = {
   TERMUSE: '/term-use',
   CHANGE_PASSWORD: '/change-password',
   FORM_MANAGEMENT: '/form-management',
+  REGIST: '/regist',
 } as const;
 
 export const TOKEN = {
