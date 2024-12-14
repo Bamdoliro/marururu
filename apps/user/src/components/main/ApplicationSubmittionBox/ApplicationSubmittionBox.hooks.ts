@@ -37,10 +37,12 @@ export const useDday = () => {
     ? 최종_합격_발표
     : 입학_등록_기간;
 
-  const [remainDays, setRemainDays] = useState(currentTime.diff(dayjs(), 'days', true));
+  const [remainDays, setRemainDays] = useState(
+    currentTime.diff(dayjs().startOf('day'), 'days', true)
+  );
 
   useInterval(() => {
-    setRemainDays(currentTime.diff(dayjs(), 'days', true));
+    setRemainDays(currentTime.diff(dayjs().startOf('day'), 'days', true));
   }, 1000);
 
   const isSubmitPeriod = dayjs().isBetween(제출_시작_날짜, 제출_마감_날짜);
@@ -64,13 +66,14 @@ export const useButtonStatus = () => {
   const handleMoveFormPage = () => {
     router.push(ROUTES.FORM);
   };
+
   const handleMoveResultPage = () => {
     if (isPeriodOfViewing) {
-      if (currentTime === 일차_합격_발표) {
+      if (currentTime.isSame(일차_합격_발표)) {
         router.push(ROUTES.FIRST_RESULT);
-      } else if (currentTime === 최종_합격_발표) {
+      } else if (currentTime.isSame(최종_합격_발표)) {
         router.push(ROUTES.FINAL_RESULT);
-      } else if (currentTime === 입학_등록_기간) {
+      } else if (currentTime.isSame(입학_등록_기간)) {
         router.push(ROUTES.REGIST);
       }
     }
