@@ -20,6 +20,7 @@ const Header = () => {
     { name: '자주 묻는 질문', route: ROUTES.FAQ },
     { name: '입학 등록', route: ROUTES.REGIST },
   ];
+
   return (
     <StyledHeader>
       <HeaderBox>
