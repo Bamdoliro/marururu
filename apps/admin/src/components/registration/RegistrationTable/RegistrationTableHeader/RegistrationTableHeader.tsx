@@ -5,8 +5,11 @@ const RegistrationTableHeader = () => {
   return (
     <TableHeader>
       <Row gap={48}>
-        <Text fontType="p2" width={50}>
+        <Text fontType="p2" width={30}>
           연번
+        </Text>
+        <Text fontType="p2" width={50}>
+          수험번호
         </Text>
         <Text fontType="p2" width={50}>
           이름
