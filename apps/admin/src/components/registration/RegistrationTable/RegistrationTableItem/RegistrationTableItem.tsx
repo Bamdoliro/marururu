@@ -3,19 +3,24 @@ import { Row, Text, Button } from '@maru/ui';
 import { handleFileDownload, handleViewNow } from './RegistrationTableItem.hook';
 
 interface Props {
+  id: number;
   examinationNumber: number;
   name: string;
   admissionAndPledgeUrl: string;
 }
 
 const RegistrationTableItem = ({
+  id,
   examinationNumber,
   name,
   admissionAndPledgeUrl,
 }: Props) => {
   return (
-    <TableItem key={examinationNumber}>
+    <TableItem key={id}>
       <Row gap={48}>
+        <Text fontType="p2" width={30}>
+          {id}
+        </Text>
         <Text fontType="p2" width={50}>
           {examinationNumber}
         </Text>

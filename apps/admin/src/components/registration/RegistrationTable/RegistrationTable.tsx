@@ -11,9 +11,10 @@ const RegistrationTable = () => {
       <RegistrationTableHeader />
       {RegistrationList
         ? RegistrationList.sort((a, b) => a.examinationNumber - b.examinationNumber).map(
-            ({ examinationNumber, name, admissionAndPledgeUrl }) => (
+            ({ examinationNumber, name, admissionAndPledgeUrl }, index) => (
               <RegistrationTableItem
                 examinationNumber={examinationNumber}
+                id={index + 1}
                 name={name}
                 admissionAndPledgeUrl={admissionAndPledgeUrl}
               />
