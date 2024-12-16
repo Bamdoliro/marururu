@@ -35,7 +35,7 @@ const CameraResponsibilityTeacher = () => {
           </Td>
           <Td width="calc(100% / 9)" height={56}>
             <Text fontType="context" color={color.maruDefault}>
-              윤혜정
+              김성율
             </Text>
           </Td>
           <Td width="calc(100% / 12)" height={56}>

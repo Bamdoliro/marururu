@@ -27,7 +27,7 @@ const PrivacyResponsibilityTeacher = () => {
             교장
           </Td>
           <Td width="calc(100% / 4.9)" height={56}>
-            윤혜정
+            김성율
           </Td>
           <Td width="calc(100% / 4.9)" height={56}>
             051-970-1701
