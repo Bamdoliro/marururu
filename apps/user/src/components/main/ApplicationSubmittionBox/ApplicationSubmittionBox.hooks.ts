@@ -35,7 +35,9 @@ export const useDday = () => {
     ? 이차_전형_끝
     : dayjs().isBefore(최종_합격_발표.add(1, 'day'))
     ? 최종_합격_발표
-    : 입학_등록_기간;
+    : dayjs().isBetween(입학_등록_기간, 입학_등록_기간_마감)
+    ? 입학_등록_기간
+    : dayjs();
 
   const [remainDays, setRemainDays] = useState(
     currentTime.diff(dayjs().startOf('day'), 'days', true)
@@ -58,7 +60,9 @@ export const useButtonStatus = () => {
   const { currentTime, remainDays, isSubmitPeriod } = useDday();
   const router = useRouter();
 
-  const isPeriodOfViewing = -2 < remainDays && remainDays <= 0;
+  const isPeriodOfViewing =
+    (-2 < remainDays && remainDays <= 0) ||
+    dayjs().isBetween(입학_등록_기간, 입학_등록_기간_마감);
 
   const buttonStyleType: ButtonStyleType =
     isSubmitPeriod || isPeriodOfViewing ? 'PRIMARY' : 'DISABLED';
@@ -73,7 +77,7 @@ export const useButtonStatus = () => {
         router.push(ROUTES.FIRST_RESULT);
       } else if (currentTime.isSame(최종_합격_발표)) {
         router.push(ROUTES.FINAL_RESULT);
-      } else if (currentTime.isSame(입학_등록_기간)) {
+      } else if (dayjs().isBetween(입학_등록_기간, 입학_등록_기간_마감)) {
         router.push(ROUTES.REGIST);
       }
     }
