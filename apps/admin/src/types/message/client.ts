@@ -7,7 +7,8 @@ export type Category =
   | 'MEISTER_TALENT'
   | 'TRUE_REGULAR'
   | 'FALSE_REGULAR'
-  | 'PASSED';
+  | 'PASSED'
+  | 'ENTERED';
 
 export interface Message {
   title: string;

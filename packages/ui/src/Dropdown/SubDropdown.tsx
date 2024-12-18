@@ -86,7 +86,7 @@ const SubDropdown: FC<Props> = ({
         )}
       </StyledDropdown>
       <DropdownListBox $isOpen={isOpen}>
-        <DropdownList $isMultiple={data.length > 7}>
+        <DropdownList $isMultiple={data.length > 8}>
           {data.map((item, index) => (
             <DropdownItem
               key={`dropdown ${index}`}
