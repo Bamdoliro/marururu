@@ -10,4 +10,5 @@ export const MESSAGE_CATEGORY: Record<Category, string> = {
   FALSE_REGULAR: '마이스터 -> 일반 제외',
   FIRST_PASSED: '전체 1차 합격자',
   PASSED: '최종 합격자',
+  ENTERED: '입학 등록자',
 } as const;
