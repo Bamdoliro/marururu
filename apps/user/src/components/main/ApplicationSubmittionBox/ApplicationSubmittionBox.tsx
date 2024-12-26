@@ -4,25 +4,29 @@ import { Button, Column } from '@maru/ui';
 import { styled } from 'styled-components';
 import ApplicationPeriodBox from './ApplicationPeriodBox/ApplicationPeriodBox';
 import { useButtonStatus, useDday } from './ApplicationSubmittionBox.hooks';
+import { useRemainDate } from './DdayBox/DdayBox.hooks';
 import DdayBox from './DdayBox/DdayBox';
 
 const ApplicationSubmittionBox = () => {
   const { isSubmitPeriod } = useDday();
   const { buttonStyleType, handleMoveFormPage, handleMoveResultPage, buttonText } =
     useButtonStatus();
+  const { isAfterRegistrationClosed } = useRemainDate();
 
   return (
     <StyledApplicationSubmittionBox>
       <Column width="100%" height="100%" justifyContent="space-between">
         {isSubmitPeriod ? <ApplicationPeriodBox /> : <DdayBox />}
-        <Button
-          width={250}
-          size="LARGE"
-          styleType={buttonStyleType}
-          onClick={isSubmitPeriod ? handleMoveFormPage : handleMoveResultPage}
-        >
-          {buttonText}
-        </Button>
+        {!isAfterRegistrationClosed && (
+          <Button
+            width={250}
+            size="LARGE"
+            styleType={buttonStyleType}
+            onClick={isSubmitPeriod ? handleMoveFormPage : handleMoveResultPage}
+          >
+            {buttonText}
+          </Button>
+        )}
       </Column>
     </StyledApplicationSubmittionBox>
   );

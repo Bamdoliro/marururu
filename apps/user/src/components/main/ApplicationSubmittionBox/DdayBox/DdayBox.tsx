@@ -4,6 +4,7 @@ import { useRemainDate } from './DdayBox.hooks';
 
 const DdayBox = () => {
   const { status, remainTime, targetDate, isSecondRoundDay } = useRemainDate();
+
   return (
     <Column gap={16}>
       <Column gap={8}>
