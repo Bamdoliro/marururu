@@ -16,7 +16,7 @@ const PrivacyResponsibilityTeacher = () => {
             성명
           </Th>
           <Th borderTopRightRadius={12} width="calc(100% / 4.9)" height={56}>
-            정원 외 전형
+            연락처
           </Th>
         </Row>
         <Row alignItems="center">
